@@ -13,7 +13,7 @@ import yaml
 class ServerConfig(BaseModel):
     """Configuration for the local Pokémon Showdown server."""
 
-    host: str = Field(default="localhost", description="Server hostname")
+    host: str = Field(default="127.0.0.1", description="Server hostname")
     port: int = Field(default=8000, description="Server port")
     websocket_path: str = Field(
         default="/showdown/websocket", description="WebSocket endpoint path"

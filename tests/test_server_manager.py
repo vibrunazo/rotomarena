@@ -17,11 +17,11 @@ def test_generate_showdown_config():
 
 def test_server_manager_initialization(tmp_path):
     server_cfg = ServerConfig(
-        host="localhost",
+        host="127.0.0.1",
         port=8000,
         server_dir=tmp_path / "pokemon-showdown",
     )
     mgr = ShowdownServerManager(server_cfg)
     assert mgr.config.port == 8000
-    assert mgr.config.websocket_url == "ws://localhost:8000/showdown/websocket"
+    assert mgr.config.websocket_url == "ws://127.0.0.1:8000/showdown/websocket"
     assert mgr.pid_file == tmp_path / "showdown.pid"

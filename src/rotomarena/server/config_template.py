@@ -27,9 +27,9 @@ exports.backuptimer = false;
 
 // Custom formats and basic config
 exports.allowcustomteams = true;
-exports.report joins = false;
-exports.report battles = false;
-exports.report userstats = false;
+exports.reportjoins = false;
+exports.reportbattles = false;
+exports.reportuserstats = false;
 
 // Export default options
 exports.defaultbattleoptions = {{

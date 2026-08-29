@@ -173,15 +173,23 @@ class MatchRunner:
             total_games=n_games,
         )
 
-        for g in range(1, n_games + 1):
-            match_res = await self.run_single_battle(player_1, player_2, match_index=g)
-            series.matches.append(match_res)
+        try:
+            for g in range(1, n_games + 1):
+                match_res = await self.run_single_battle(player_1, player_2, match_index=g)
+                series.matches.append(match_res)
 
-            if match_res.winner == player_1.agent_name:
-                series.p1_wins += 1
-            elif match_res.winner == player_2.agent_name:
-                series.p2_wins += 1
-            else:
-                series.draws += 1
+                if match_res.winner == player_1.agent_name:
+                    series.p1_wins += 1
+                elif match_res.winner == player_2.agent_name:
+                    series.p2_wins += 1
+                else:
+                    series.draws += 1
+        finally:
+            for p in (player_1, player_2):
+                try:
+                    if hasattr(p, "ps_client") and hasattr(p.ps_client, "stop_listening"):
+                        await p.ps_client.stop_listening()
+                except Exception:
+                    pass
 
         return series

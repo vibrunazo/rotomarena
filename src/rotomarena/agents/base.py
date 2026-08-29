@@ -29,7 +29,10 @@ class BaseBenchmarkPlayer(Player):
         breadcrumbs_recorder: Optional[BreadcrumbsRecorder] = None,
         **kwargs,
     ):
-        server_config = server_configuration or LocalhostServerConfiguration
+        server_config = server_configuration or ServerConfiguration(
+            "ws://127.0.0.1:8000/showdown/websocket",
+            "https://play.pokemonshowdown.com/action.php?",
+        )
         account_config = account_configuration or AccountConfiguration(player_name, None)
 
         super().__init__(

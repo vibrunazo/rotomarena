@@ -252,28 +252,30 @@ def run_battle(
         model=model,
     )
 
-    player_1 = create_agent_instance(p1_cfg, app_cfg, team_str=t1)
-    player_2 = create_agent_instance(p2_cfg, app_cfg, team_str=t2)
-
+    server_mgr = ShowdownServerManager(app_cfg.server)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry)
 
     async def _execute():
-        console.rule(f"[bold cyan]⚡ 1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
-        series_res = await runner.run_series(player_1, player_2, n_games=games)
+        async with server_mgr.ensure_running():
+            player_1 = create_agent_instance(p1_cfg, app_cfg, team_str=t1)
+            player_2 = create_agent_instance(p2_cfg, app_cfg, team_str=t2)
 
-        console.print("\n[bold green]=== Series Finished ===[/bold green]")
-        console.print(f"{player_1.agent_name} Wins: [bold cyan]{series_res.p1_wins}[/bold cyan] ({series_res.p1_win_rate}%)")
-        console.print(f"{player_2.agent_name} Wins: [bold magenta]{series_res.p2_wins}[/bold magenta] ({series_res.p2_win_rate}%)")
-        console.print(f"Draws: {series_res.draws}")
-        if series_res.matches:
-            latest = series_res.matches[-1]
-            console.print(f"\nArtifacts saved in run folder:")
-            if latest.replay_html_path:
-                console.print(f"  - Replay HTML: [cyan]{latest.replay_html_path}[/cyan]")
-            if latest.breadcrumbs_json_path:
-                console.print(f"  - Telemetry: [cyan]{latest.breadcrumbs_json_path}[/cyan]")
-            if latest.report_md_path:
-                console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
+            console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
+            series_res = await runner.run_series(player_1, player_2, n_games=games)
+
+            console.print("\n[bold green]=== Series Finished ===[/bold green]")
+            console.print(f"{player_1.agent_name} Wins: [bold cyan]{series_res.p1_wins}[/bold cyan] ({series_res.p1_win_rate}%)")
+            console.print(f"{player_2.agent_name} Wins: [bold magenta]{series_res.p2_wins}[/bold magenta] ({series_res.p2_win_rate}%)")
+            console.print(f"Draws: {series_res.draws}")
+            if series_res.matches:
+                latest = series_res.matches[-1]
+                console.print(f"\nArtifacts saved in run folder:")
+                if latest.replay_html_path:
+                    console.print(f"  - Replay HTML: [cyan]{latest.replay_html_path}[/cyan]")
+                if latest.breadcrumbs_json_path:
+                    console.print(f"  - Telemetry: [cyan]{latest.breadcrumbs_json_path}[/cyan]")
+                if latest.report_md_path:
+                    console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
 
     asyncio.run(_execute())
 
@@ -284,10 +286,12 @@ def run_tournament(
 ):
     """Run an automated round-robin tournament bracket."""
     app_cfg = AppConfig.load_from_yaml(config_file)
+    server_mgr = ShowdownServerManager(app_cfg.server)
     orchestrator = TournamentOrchestrator(app_cfg)
 
     async def _exec():
-        await orchestrator.run_tournament()
+        async with server_mgr.ensure_running():
+            await orchestrator.run_tournament()
 
     asyncio.run(_exec())
 

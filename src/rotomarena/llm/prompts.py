@@ -79,7 +79,7 @@ def format_battle_state(battle: Battle) -> str:
 
     opp_side_conds = [k.name.title() for k in battle.opponent_side_conditions.keys()]
     lines.append(f"\nOpponent Side Hazards / Conditions: {', '.join(opp_side_conds) if opp_side_conds else 'None'}")
-    lines.append(f"Opponent Terastallized: {'Yes' if battle.opponent_can_tera is False else 'Unknown/Available'}")
+    lines.append(f"Opponent Terastallized: {'Yes' if getattr(battle, 'opponent_used_tera', False) else 'No'}")
 
     # Available moves and switches
     lines.append("\n#### LEGAL ACTIONS THIS TURN:")

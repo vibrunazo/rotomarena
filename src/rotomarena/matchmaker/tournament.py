@@ -48,33 +48,49 @@ def create_agent_instance(
             model_override=agent_cfg.model,
         )
 
+    import uuid
+    unique_player_name = f"{agent_cfg.name[:13]}_{uuid.uuid4().hex[:4]}"
+
+    from poke_env.ps_client import ServerConfiguration
+    server_conf = ServerConfiguration(
+        app_config.server.websocket_url,
+        "https://play.pokemonshowdown.com/action.php?",
+    )
+
     if a_type == "pokechamp":
         return PokeChampPlayer(
-            player_name=agent_cfg.name,
+            player_name=unique_player_name,
             depth=agent_cfg.depth,
             use_llm_prior=agent_cfg.use_llm_prior,
             llm_client=llm_client,
             evaluation_weights=agent_cfg.evaluation_weights,
             team=team_str,
+            server_configuration=server_conf,
         )
     elif a_type == "direct_llm":
         return DirectLLMPlayer(
-            player_name=agent_cfg.name,
+            player_name=unique_player_name,
             llm_client=llm_client,
             model=agent_cfg.model,
             temperature=agent_cfg.temperature,
             team=team_str,
+            server_configuration=server_conf,
         )
     elif a_type == "max_damage":
-        return MaxDamagePlayer(player_name=agent_cfg.name, team=team_str)
+        return MaxDamagePlayer(
+            player_name=unique_player_name, team=team_str, server_configuration=server_conf
+        )
     elif a_type == "heuristic":
         return HeuristicPlayer(
-            player_name=agent_cfg.name,
+            player_name=unique_player_name,
             evaluation_weights=agent_cfg.evaluation_weights,
             team=team_str,
+            server_configuration=server_conf,
         )
     else:
-        return RandomBenchmarkPlayer(player_name=agent_cfg.name, team=team_str)
+        return RandomBenchmarkPlayer(
+            player_name=unique_player_name, team=team_str, server_configuration=server_conf
+        )
 
 
 class TournamentOrchestrator:

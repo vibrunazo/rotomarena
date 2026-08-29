@@ -9,7 +9,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import AsyncIterator, Optional, Tuple
+from typing import AsyncIterator, Dict, Optional, Tuple
 from contextlib import asynccontextmanager
 
 import websockets
@@ -26,6 +26,7 @@ class ShowdownServerManager:
         self.pid_file = self.server_dir.parent / "showdown.pid"
         self.log_file = self.server_dir.parent / "showdown_server.log"
         self._process: Optional[subprocess.Popen] = None
+        self._ensure_node_on_path()
 
     def find_node_executable(self) -> Optional[str]:
         """Locate the Node.js executable on the host system."""
@@ -34,17 +35,27 @@ class ShowdownServerManager:
         if node:
             return node
 
-        # 2. Common Windows paths
+        # 2. Dynamic environment path discovery
         if sys.platform == "win32":
-            common_paths = [
-                Path(os.environ.get("ProgramFiles", "C:\\Program Files")) / "nodejs" / "node.exe",
-                Path(os.environ.get("ProgramFiles(x86)", "C:\\Program Files (x86)")) / "nodejs" / "node.exe",
-                Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "node" / "node.exe",
-                Path(os.environ.get("APPDATA", "")) / "nvm" / "v*" / "node.exe",
+            env_dirs = [
+                os.environ.get("ProgramFiles"),
+                os.environ.get("ProgramFiles(x86)"),
+                os.environ.get("LOCALAPPDATA"),
+                os.environ.get("APPDATA"),
+                os.environ.get("USERPROFILE"),
             ]
-            for p in common_paths:
-                if p.exists():
-                    return str(p)
+            for base in env_dirs:
+                if not base:
+                    continue
+                p_base = Path(base)
+                for candidate in (
+                    p_base / "nodejs" / "node.exe",
+                    p_base / "Programs" / "node" / "node.exe",
+                    p_base / "Programs" / "nodejs" / "node.exe",
+                    p_base / "nvm" / "current" / "node.exe",
+                ):
+                    if candidate.exists():
+                        return str(candidate)
 
         return None
 
@@ -55,16 +66,42 @@ class ShowdownServerManager:
             return npm
 
         if sys.platform == "win32":
-            common_paths = [
-                Path(os.environ.get("ProgramFiles", "C:\\Program Files")) / "nodejs" / "npm.cmd",
-                Path(os.environ.get("ProgramFiles(x86)", "C:\\Program Files (x86)")) / "nodejs" / "npm.cmd",
-                Path(os.environ.get("APPDATA", "")) / "npm" / "npm.cmd",
+            env_dirs = [
+                os.environ.get("ProgramFiles"),
+                os.environ.get("ProgramFiles(x86)"),
+                os.environ.get("APPDATA"),
+                os.environ.get("LOCALAPPDATA"),
+                os.environ.get("USERPROFILE"),
             ]
-            for p in common_paths:
-                if p.exists():
-                    return str(p)
+            for base in env_dirs:
+                if not base:
+                    continue
+                p_base = Path(base)
+                for candidate in (
+                    p_base / "nodejs" / "npm.cmd",
+                    p_base / "npm" / "npm.cmd",
+                    p_base / "Programs" / "nodejs" / "npm.cmd",
+                ):
+                    if candidate.exists():
+                        return str(candidate)
 
         return None
+
+    def _ensure_node_on_path(self) -> None:
+        """Ensures the Node.js directory is prepended to the system PATH."""
+        node = self.find_node_executable()
+        if node:
+            node_dir = str(Path(node).parent)
+            for key in ("PATH", "Path", "path"):
+                if key in os.environ:
+                    curr = os.environ[key]
+                    if node_dir.lower() not in curr.lower():
+                        os.environ[key] = f"{node_dir}{os.pathsep}{curr}"
+
+    def get_subprocess_env(self) -> Dict[str, str]:
+        """Generate environment dictionary with Node.js directory in PATH."""
+        self._ensure_node_on_path()
+        return os.environ.copy()
 
     def is_git_available(self) -> bool:
         """Check if Git is installed and available."""
@@ -90,6 +127,7 @@ class ShowdownServerManager:
             return False, "Git is required to clone the Pokémon Showdown repository."
 
         self.server_dir.parent.mkdir(parents=True, exist_ok=True)
+        env = self.get_subprocess_env()
 
         # 1. Clone repository if missing or force_reclone
         if force_reclone and self.server_dir.exists():
@@ -103,6 +141,7 @@ class ShowdownServerManager:
                     check=True,
                     capture_output=True,
                     text=True,
+                    env=env,
                 )
             except subprocess.CalledProcessError as e:
                 return False, f"Failed to clone Pokémon Showdown: {e.stderr}"
@@ -110,16 +149,41 @@ class ShowdownServerManager:
         # 2. Run npm install
         try:
             subprocess.run(
-                [npm, "install", "--production"],
+                [npm, "install"],
                 cwd=str(self.server_dir),
                 check=True,
                 capture_output=True,
                 text=True,
+                env=env,
             )
         except subprocess.CalledProcessError as e:
-            return False, f"npm install failed: {e.stderr}"
+            # Fallback with ignore-scripts if needed
+            try:
+                subprocess.run(
+                    [npm, "install", "--ignore-scripts"],
+                    cwd=str(self.server_dir),
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    env=env,
+                )
+            except subprocess.CalledProcessError:
+                return False, f"npm install failed: {e.stderr or e.stdout}"
 
-        # 3. Generate config/config.js with disabled timers and no-security
+        # 3. Build Showdown TypeScript assets
+        try:
+            subprocess.run(
+                [node, "build"],
+                cwd=str(self.server_dir),
+                check=False,
+                capture_output=True,
+                text=True,
+                env=env,
+            )
+        except Exception:
+            pass
+
+        # 4. Generate config/config.js with disabled timers and no-security
         config_dir = self.server_dir / "config"
         config_dir.mkdir(parents=True, exist_ok=True)
         config_js = config_dir / "config.js"
@@ -132,16 +196,20 @@ class ShowdownServerManager:
 
     async def is_server_healthy(self, timeout: float = 3.0) -> bool:
         """Check if Showdown WebSocket server is responding."""
-        ws_url = self.config.websocket_url
-        try:
-            async with websockets.connect(
-                ws_url, open_timeout=timeout, close_timeout=timeout
-            ) as ws:
-                # Wait briefly for standard Showdown greeting '|updateuser|' or challenge message
-                msg = await asyncio.wait_for(ws.recv(), timeout=timeout)
-                return True
-        except Exception:
-            return False
+        urls = [
+            self.config.websocket_url,
+            f"ws://127.0.0.1:{self.config.port}{self.config.websocket_path}",
+        ]
+        for url in urls:
+            try:
+                async with websockets.connect(
+                    url, open_timeout=timeout, close_timeout=timeout
+                ) as ws:
+                    msg = await asyncio.wait_for(ws.recv(), timeout=timeout)
+                    return True
+            except Exception:
+                continue
+        return False
 
     def start(self) -> Tuple[bool, str]:
         """Start the Showdown server in the background."""
@@ -175,18 +243,24 @@ class ShowdownServerManager:
         self.log_file.parent.mkdir(parents=True, exist_ok=True)
         log_f = open(self.log_file, "a", encoding="utf-8")
 
-        cmd = [node, "pokemon-showdown", "start", "--no-security"]
+        cmd = [node, "pokemon-showdown", "start", "--skip-build", "--no-security"]
         creationflags = 0
         if sys.platform == "win32":
-            # DETACHED_PROCESS flag on Windows
-            creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | 0x00000008
+            DETACHED_PROCESS = 0x00000008
+            CREATE_NEW_PROCESS_GROUP = 0x00000200
+            CREATE_NO_WINDOW = 0x08000000
+            creationflags = DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP | CREATE_NO_WINDOW
 
+        env = self.get_subprocess_env()
         self._process = subprocess.Popen(
             cmd,
             cwd=str(self.server_dir),
+            stdin=subprocess.DEVNULL,
             stdout=log_f,
             stderr=subprocess.STDOUT,
             creationflags=creationflags,
+            env=env,
+            close_fds=(sys.platform != "win32"),
         )
 
         # Write PID
@@ -222,14 +296,14 @@ class ShowdownServerManager:
             return None
         try:
             pid = int(self.pid_file.read_text(encoding="utf-8").strip())
-            # Check if alive
             if sys.platform == "win32":
-                import ctypes
-                kernel32 = ctypes.windll.kernel32
-                SYNCHRONIZE = 0x00100000
-                process = kernel32.OpenProcess(SYNCHRONIZE, False, pid)
-                if process:
-                    kernel32.CloseHandle(process)
+                res = subprocess.run(
+                    ["tasklist", "/FI", f"PID eq {pid}", "/NH"],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                if str(pid) in res.stdout:
                     return pid
                 return None
             else:

@@ -139,12 +139,10 @@ class Team(BaseModel):
             shiny = "S" if mon.shiny else ""
             level = str(mon.level) if mon.level != 100 else ""
             
-            # misc: happiness,pokeball,hiddenpowertype,teratype
-            misc_parts = []
+            # misc: happiness,pokeball,hiddenpowertype,gmax,dynamaxlevel,teratype
+            misc = ""
             if mon.tera_type:
-                # Tera type is passed as 4th item in misc
-                misc_parts = ["", "", "", mon.tera_type]
-            misc = ",".join(misc_parts).rstrip(",")
+                misc = f",,,,,{mon.tera_type}"
 
             packed = f"{name}|{species}|{item}|{ability}|{moves}|{nature}|{evs}|{gender}|{ivs}|{shiny}|{level}|{misc}"
             packed_mons.append(packed)

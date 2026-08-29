@@ -146,6 +146,30 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
 """
 
 
+def _flatten_logs(logs: Any) -> List[str]:
+    """Recursively flatten raw log items into a list of strings."""
+    lines = []
+    if isinstance(logs, str):
+        for line in logs.split("\n"):
+            l_str = line.strip()
+            if l_str:
+                lines.append(l_str)
+    elif isinstance(logs, (list, tuple)):
+        for item in logs:
+            if isinstance(item, (list, tuple)):
+                # Join sub-lists with pipe if protocol split
+                joined = "|".join(str(sub) for sub in item if sub is not None)
+                if joined.strip():
+                    lines.append(joined.strip())
+            elif isinstance(item, str):
+                for l in item.split("\n"):
+                    if l.strip():
+                        lines.append(l.strip())
+            else:
+                lines.append(str(item).strip())
+    return lines
+
+
 def save_battle_replay_html(
     match_id: str,
     player_1: str,
@@ -153,15 +177,12 @@ def save_battle_replay_html(
     winner: Optional[str],
     total_turns: int,
     duration_seconds: float,
-    raw_logs: List[str] | str,
+    raw_logs: Any,
     output_path: str | Path,
     format_str: str = "gen9ou",
 ) -> Path:
     """Renders and saves a standalone HTML replay viewer."""
-    if isinstance(raw_logs, str):
-        lines = [line.strip() for line in raw_logs.split("\n") if line.strip()]
-    else:
-        lines = raw_logs
+    lines = _flatten_logs(raw_logs)
 
     template = Template(REPLAY_HTML_TEMPLATE)
     html_content = template.render(
