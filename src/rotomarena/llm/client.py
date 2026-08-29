@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import re
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 import openai
 from openai import AsyncOpenAI
 
@@ -46,7 +47,7 @@ class LLMClient:
             self.provider_name = provider_name
         else:
             self.base_url = base_url or os.getenv("OPENAI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
-            self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY", "dummy")
+            self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("OPENAI_API_KEY", "dummy")
             self.default_model = default_model or os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
             self.temperature = 0.2
             self.timeout = 30.0
@@ -68,16 +69,15 @@ class LLMClient:
         """Factory method to instantiate a client for a named provider profile."""
         if providers_dict and name in providers_dict:
             config = providers_dict[name]
-            client = cls(provider_config=config, provider_name=name)
             if model_override:
-                client.default_model = model_override
-            return client
+                config = config.model_copy(update={"default_model": model_override})
+            return cls(provider_config=config, provider_name=name)
 
         # Built-in presets
         if name == "gemini":
             return cls(
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-                api_key=os.getenv("GEMINI_API_KEY", ""),
+                api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", ""),
                 default_model=model_override or os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
                 provider_name="gemini",
             )

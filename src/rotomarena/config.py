@@ -62,7 +62,7 @@ class ProviderConfig(BaseModel):
                 return env_val
         # Fallback for common providers
         if "generativelanguage.googleapis.com" in self.base_url:
-            return os.getenv("GEMINI_API_KEY", "")
+            return os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
         if "openrouter.ai" in self.base_url:
             return os.getenv("OPENROUTER_API_KEY", "")
         return "local"
