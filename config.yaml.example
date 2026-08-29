@@ -1,0 +1,101 @@
+# =====================================================================
+# RotomArena Benchmark & Tournament Configuration
+# =====================================================================
+
+server:
+  host: "localhost"
+  port: 8000
+  websocket_path: "/showdown/websocket"
+  action_path: "/action.php?"
+  no_security: true
+  auto_start: true
+
+# LLM Providers Configuration
+providers:
+  gemini:
+    base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
+    api_key_env: "GEMINI_API_KEY"
+    default_model: "gemini-2.5-flash"
+    temperature: 0.2
+    timeout: 30.0
+
+  openrouter:
+    base_url: "https://openrouter.ai/api/v1"
+    api_key_env: "OPENROUTER_API_KEY"
+    default_model: "anthropic/claude-3.5-sonnet"
+    temperature: 0.2
+    timeout: 30.0
+
+  ollama:
+    base_url: "http://localhost:11434/v1"
+    api_key: "ollama"
+    default_model: "llama3.3:70b"
+    temperature: 0.2
+    timeout: 60.0
+
+# Registered Benchmark Agents
+agents:
+  pokechamp_d1_heur:
+    type: "pokechamp"
+    depth: 1
+    use_llm_prior: false
+    evaluation_weights:
+      alive_pokemon: 3.0
+      hp_diff: 2.0
+      status: 1.0
+      boosts: 0.5
+      hazards: 0.5
+      matchup: 1.0
+
+  pokechamp_d2_gemini:
+    type: "pokechamp"
+    depth: 2
+    use_llm_prior: true
+    provider: "gemini"
+    model: "gemini-2.5-flash"
+    evaluation_weights:
+      alive_pokemon: 3.0
+      hp_diff: 2.0
+      status: 1.0
+      boosts: 0.5
+      hazards: 0.5
+      matchup: 1.0
+
+  direct_llm_gemini:
+    type: "direct_llm"
+    provider: "gemini"
+    model: "gemini-2.5-flash"
+    temperature: 0.3
+
+  direct_llm_openrouter:
+    type: "direct_llm"
+    provider: "openrouter"
+    model: "anthropic/claude-3.5-sonnet"
+    temperature: 0.3
+
+  baseline_heuristic:
+    type: "heuristic"
+
+  baseline_random:
+    type: "random"
+
+# Tournament Configuration
+tournament:
+  name: "Gen9 OU AI Championship"
+  format: "gen9ou"
+  rounds_per_pair: 2
+  teams:
+    - "data/teams/gen9ou_balance.txt"
+    - "data/teams/gen9ou_hyper_offense.txt"
+  participants:
+    - "pokechamp_d1_heur"
+    - "direct_llm_gemini"
+    - "baseline_heuristic"
+  initial_elo: 1500
+  k_factor: 32
+
+telemetry:
+  output_dir: "./runs"
+  save_replays: true
+  save_breadcrumbs: true
+  save_reports: true
