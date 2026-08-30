@@ -1,0 +1,36 @@
+# 🤖 RotomArena AI Agent Instructions & Guidelines
+
+## ⚠️ CRITICAL TESTING POLICY: Free LLM Model for Internal Testing
+When running live test battles or automated verification runs that require an LLM agent:
+- **NEVER use paid Gemini or paid models for test runs** to avoid burning the user's credits.
+- **ALWAYS use the free OpenRouter model:** `nvidia/nemotron-3-ultra-550b-a55b:free`
+
+### Standard Test Command:
+```powershell
+uv run rotomarena battle `
+  --p1 direct_llm --p1-provider openrouter --p1-model nvidia/nemotron-3-ultra-550b-a55b:free `
+  --p2 heuristic `
+  --games 1
+```
+
+Or for non-LLM testing, prefer fast baseline agents:
+```powershell
+uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
+```
+
+---
+
+## ⚙️ Key System Specifications & Defaults
+1. **Turn Limits & Chess-Clock:**
+   - Default turn timeout: **45.0s** (`--turn-timeout 45`)
+   - Default total match time bank: **7:00 / 420.0s** (`--bank-timeout 420`)
+   - Auto-fallback moves execute upon timeout without crashing the match.
+
+2. **Concise Reasoning Constraints:**
+   - Direct LLM `<thought>` output must remain **under 60 words total**.
+   - Focus on the single decisive tactical factor (speed tier, knockout threshold, or switch priority).
+
+3. **Pokémon Showdown Server:**
+   - Server runs on port `8000` (`http://127.0.0.1:8000`).
+   - Guest autoconfirmation and battle chat are enabled.
+   - Bot usernames are formatted dynamically based on their model/agent type (e.g., `Gemini 3.7_abc`, `DeepSeek V4_def`, `Nemotron_ghi`, `PokeChamp D1_jkl`).

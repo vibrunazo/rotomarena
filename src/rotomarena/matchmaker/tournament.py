@@ -56,6 +56,8 @@ def format_bot_display_name(agent_cfg: AgentConfig) -> str:
             base = "Claude 3.5"
         elif "llama-3.3" in clean_model:
             base = "Llama 3.3"
+        elif "nemotron" in clean_model:
+            base = "Nemotron"
         elif model:
             base = model.split("/")[-1][:12].title()
         elif agent_cfg.provider:
