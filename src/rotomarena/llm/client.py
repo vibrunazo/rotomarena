@@ -48,7 +48,7 @@ class LLMClient:
         else:
             self.base_url = base_url or os.getenv("OPENAI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
             self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("OPENAI_API_KEY", "dummy")
-            self.default_model = default_model or os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
+            self.default_model = default_model or os.getenv("GEMINI_MODEL", "gemini-3.7-flash")
             self.temperature = 0.2
             self.timeout = 30.0
             self.provider_name = provider_name
@@ -78,7 +78,7 @@ class LLMClient:
             return cls(
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
                 api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", ""),
-                default_model=model_override or os.getenv("GEMINI_MODEL", "gemini-3.6-flash"),
+                default_model=model_override or os.getenv("GEMINI_MODEL", "gemini-3.7-flash"),
                 provider_name="gemini",
             )
         elif name == "openrouter":

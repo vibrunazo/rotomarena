@@ -167,7 +167,7 @@ class AppConfig(BaseSettings):
                 "gemini": ProviderConfig(
                     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
                     api_key_env="GEMINI_API_KEY",
-                    default_model=os.getenv("GEMINI_MODEL", "gemini-3.6-flash"),
+                    default_model=os.getenv("GEMINI_MODEL", "gemini-3.7-flash"),
                     temperature=0.2,
                 ),
                 "openrouter": ProviderConfig(
@@ -200,7 +200,7 @@ class AppConfig(BaseSettings):
                     name="direct_llm_gemini",
                     type="direct_llm",
                     provider="gemini",
-                    model="gemini-3.6-flash",
+                    model="gemini-3.7-flash",
                 ),
                 "baseline_heuristic": AgentConfig(
                     name="baseline_heuristic",
