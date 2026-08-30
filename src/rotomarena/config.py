@@ -92,7 +92,10 @@ class AgentConfig(BaseModel):
         default=0.2, description="LLM temperature override"
     )
     turn_timeout: float = Field(
-        default=30.0, description="Per-turn timeout in seconds before automated move fallback"
+        default=45.0, description="Per-turn timeout in seconds before automated move fallback"
+    )
+    bank_timeout: float = Field(
+        default=420.0, description="Total match chess-clock time bank in seconds (default: 420s / 7 min)"
     )
     evaluation_weights: Dict[str, float] = Field(
         default_factory=lambda: {

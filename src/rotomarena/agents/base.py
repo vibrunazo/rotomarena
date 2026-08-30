@@ -17,8 +17,16 @@ from poke_env.ps_client import (
 from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, TurnBreadcrumb
 
 
+def _format_time_bank(seconds: float) -> str:
+    """Format seconds into M:SS representation."""
+    s = int(max(0, seconds))
+    mins = s // 60
+    secs = s % 60
+    return f"{mins}:{secs:02d}"
+
+
 class BaseBenchmarkPlayer(Player):
-    """Base class for all RotomArena benchmark players with telemetry recording and turn timers."""
+    """Base class for all RotomArena benchmark players with telemetry recording, turn timer, and chess-clock bank."""
 
     def __init__(
         self,
@@ -26,7 +34,8 @@ class BaseBenchmarkPlayer(Player):
         agent_type: str = "base",
         battle_format: str = "gen9ou",
         team: Optional[str] = None,
-        turn_timeout: float = 30.0,
+        turn_timeout: float = 45.0,
+        bank_timeout: float = 420.0,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
         breadcrumbs_recorder: Optional[BreadcrumbsRecorder] = None,
@@ -49,6 +58,9 @@ class BaseBenchmarkPlayer(Player):
         self.agent_name = player_name
         self.agent_type = agent_type
         self.turn_timeout = turn_timeout
+        self.bank_timeout = bank_timeout
+        self.time_bank_remaining = bank_timeout
+        self._current_battle_tag: Optional[str] = None
         self.breadcrumbs_recorder = breadcrumbs_recorder
 
     def set_recorder(self, recorder: BreadcrumbsRecorder) -> None:
@@ -115,43 +127,73 @@ class BaseBenchmarkPlayer(Player):
         return DefaultBattleOrder()
 
     async def _async_choose_move_with_timer(self, battle: Battle) -> BattleOrder:
-        """Wraps move computation with a strict turn timer, live room status, and fallback."""
-        start_time = time.perf_counter()
-        await self.send_room_message(
-            battle,
-            f"⏳ [{self.agent_name}] is deciding turn {battle.turn} (Timer: {self.turn_timeout}s)...",
-        )
+        """Wraps move computation with a 45s turn timer and 7min total bank timer."""
+        # Reset bank on new match
+        b_tag = getattr(battle, "battle_tag", "battle-unknown")
+        if self._current_battle_tag != b_tag:
+            self._current_battle_tag = b_tag
+            self.time_bank_remaining = self.bank_timeout
 
-        try:
-            coro_or_order = self._async_choose_move(battle)
-            if asyncio.iscoroutine(coro_or_order):
-                order = await asyncio.wait_for(coro_or_order, timeout=self.turn_timeout)
-            else:
-                order = coro_or_order
-
-            elapsed = time.perf_counter() - start_time
+        # Check total time bank
+        if self.time_bank_remaining <= 0.0:
             await self.send_room_message(
                 battle,
-                f"✅ [{self.agent_name}] locked in move ({elapsed:.2f}s)! Waiting for opponent...",
-            )
-            return order
-
-        except asyncio.TimeoutError:
-            elapsed = time.perf_counter() - start_time
-            await self.send_room_message(
-                battle,
-                f"⏰ [{self.agent_name}] TIMED OUT ({self.turn_timeout}s)! Auto-selecting legal fallback move.",
+                f"⏰ [{self.agent_name}] Match time bank exhausted (0:00 remaining)! Auto-selecting fallback move.",
             )
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
                 battle=battle,
                 chosen_order=fallback_order,
-                reasoning=f"[TIMEOUT] Turn calculation exceeded timer limit ({self.turn_timeout}s). Automated move executed.",
+                reasoning="[TIME BANK EXHAUSTED] Match time bank depleted. Automated move executed.",
+            )
+            return fallback_order
+
+        start_time = time.perf_counter()
+        effective_timeout = min(self.turn_timeout, max(0.1, self.time_bank_remaining))
+        bank_display = _format_time_bank(self.time_bank_remaining)
+
+        await self.send_room_message(
+            battle,
+            f"⏳ [{self.agent_name}] is deciding turn {battle.turn} (Turn limit: {self.turn_timeout:.0f}s | Bank: {bank_display} remaining)...",
+        )
+
+        try:
+            coro_or_order = self._async_choose_move(battle)
+            if asyncio.iscoroutine(coro_or_order):
+                order = await asyncio.wait_for(coro_or_order, timeout=effective_timeout)
+            else:
+                order = coro_or_order
+
+            elapsed = time.perf_counter() - start_time
+            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
+            new_bank_display = _format_time_bank(self.time_bank_remaining)
+
+            await self.send_room_message(
+                battle,
+                f"✅ [{self.agent_name}] locked in move ({elapsed:.2f}s)! Bank: {new_bank_display}. Waiting for opponent...",
+            )
+            return order
+
+        except asyncio.TimeoutError:
+            elapsed = time.perf_counter() - start_time
+            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
+            new_bank_display = _format_time_bank(self.time_bank_remaining)
+
+            await self.send_room_message(
+                battle,
+                f"⏰ [{self.agent_name}] TIMED OUT ({effective_timeout:.1f}s)! Bank: {new_bank_display}. Auto-selecting legal fallback move.",
+            )
+            fallback_order = self.choose_default_order(battle)
+            self.record_turn_telemetry(
+                battle=battle,
+                chosen_order=fallback_order,
+                reasoning=f"[TIMEOUT] Turn calculation exceeded limit ({effective_timeout:.1f}s). Automated move executed.",
             )
             return fallback_order
 
         except Exception as e:
             elapsed = time.perf_counter() - start_time
+            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
             await self.send_room_message(
                 battle,
                 f"⚠️ [{self.agent_name}] calculation error: {e}. Auto-selecting legal fallback move.",

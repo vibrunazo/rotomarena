@@ -36,6 +36,7 @@ class MockBattle:
     """Mock Battle object adhering to poke-env Battle interface."""
 
     def __init__(self):
+        self.battle_tag = "battle-gen9ou-1"
         self.turn = 1
         self.format = "gen9ou"
         self.weather = None
