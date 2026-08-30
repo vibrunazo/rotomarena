@@ -172,18 +172,16 @@ def format_battle_state(battle: Battle) -> str:
 
 
 SYSTEM_PROMPT_DIRECT_COT = """You are an expert competitive Pokémon player and Gen 9 OU tournament grandmaster.
-Your goal is to analyze the battle state carefully and choose the single best strategic action for the current turn.
+Your goal is to analyze the battle state quickly and choose the single best strategic action for the current turn.
 
-When evaluating the turn:
-1. Speed & Priority: Determine who moves first and if priority moves (e.g., Extreme Speed, Sucker Punch, Grassy Glide) threaten a knockout.
-2. Type Effectiveness & Damage: Calculate potential damage output and defensive resistances.
-3. Win Conditions: Protect your setup sweepers, preserve your defensive walls, and position for end-game advantages.
-4. Opponent Prediction: Anticipate whether the opponent will attack, setup, switch to a counter, or Terastallize.
-5. Risk vs Reward: Avoid high-risk plays if you have momentum, or take calculated risks if behind.
+CRITICAL TOURNAMENT RULES:
+1. Conciseness is mandatory: Keep your <thought> analysis strictly UNDER 60 WORDS total.
+2. Focus only on the single decisive tactical factor (speed tier, knockout threshold, or switch need).
+3. Do not write lengthy paragraphs or list every Pokémon. Get straight to the point.
 
 Output your response strictly following this format:
 <thought>
-Step-by-step tactical Chain-of-Thought analysis.
+Concise tactical reasoning under 60 words.
 </thought>
 <decision>
 ACTION: <MOVE: move_id | MOVE: move_id [TERA] | SWITCH: pokemon_species>
@@ -195,36 +193,32 @@ USER_PROMPT_DIRECT_COT_TEMPLATE = """Here is the current battle state:
 
 {battle_state}
 
-Analyze the situation and select the optimal move or switch from the LEGAL ACTIONS list.
-Make sure your <decision> tag contains exactly one valid action matching the legal options list."""
+Select the optimal action from the LEGAL ACTIONS list.
+Remember: Keep your <thought> strictly under 60 words total. Your <decision> tag must contain exactly one valid action."""
 
 
 SYSTEM_PROMPT_VALUE_EVALUATION = """You are an evaluation engine for competitive Pokémon battles.
 Assess the given Gen 9 OU game position from the perspective of Player 1.
 Score the position from -1.0 (certain defeat) to +1.0 (certain victory), with 0.0 being completely even.
 
-Consider:
-- Number of alive Pokémon on each team
-- Total remaining HP percentage across the teams
-- Active matchup advantage / speed tiers
-- Entry hazards and field conditions
-- Status conditions (toxic/burn/paralysis)
-- Unused Terastallization
+Keep your explanation ultra-concise (under 25 words).
 
 Output your evaluation in strict JSON format:
 {
   "score": float (-1.0 to 1.0),
   "win_probability": float (0.0 to 1.0),
-  "explanation": "concise reasoning"
+  "explanation": "ultra-concise reasoning under 25 words"
 }"""
 
 
 SYSTEM_PROMPT_OPPONENT_PREDICTION = """You are a predictive opponent modeling engine for competitive Pokémon battles.
 Analyze the current turn state and predict the opponent's most probable action.
 
+Keep your rationale ultra-concise (under 25 words).
+
 Output your prediction in strict JSON format:
 {
   "predicted_action": "move_id or switch_species",
   "probability": float (0.0 to 1.0),
-  "rationale": "concise reasoning"
+  "rationale": "ultra-concise reasoning under 25 words"
 }"""

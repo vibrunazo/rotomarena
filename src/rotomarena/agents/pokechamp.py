@@ -64,10 +64,3 @@ class PokeChampPlayer(BaseBenchmarkPlayer):
             search_telemetry=telemetry.model_dump(),
         )
         return order
-
-    def choose_move(self, battle: Battle) -> BattleOrder:
-        """
-        poke-env entrypoint for move selection.
-        Returns coroutine or BattleOrder.
-        """
-        return self._async_choose_move(battle)  # type: ignore

@@ -29,7 +29,7 @@ class MaxDamagePlayer(BaseBenchmarkPlayer):
             **kwargs,
         )
 
-    def choose_move(self, battle: Battle) -> BattleOrder:
+    async def _async_choose_move(self, battle: Battle) -> BattleOrder:
         if not battle.available_moves:
             order = self.choose_default_order(battle)
             self.record_turn_telemetry(battle, order, reasoning="No moves available, switching.")
@@ -87,7 +87,7 @@ class HeuristicPlayer(BaseBenchmarkPlayer):
         )
         self.weights = evaluation_weights
 
-    def choose_move(self, battle: Battle) -> BattleOrder:
+    async def _async_choose_move(self, battle: Battle) -> BattleOrder:
         best_score = -float("inf")
         best_order = self.choose_default_order(battle)
         best_reason = "Default fallback"

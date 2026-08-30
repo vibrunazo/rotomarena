@@ -98,7 +98,3 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         )
 
         return chosen_order
-
-    def choose_move(self, battle: Battle) -> BattleOrder:
-        """poke-env entrypoint for move selection."""
-        return self._async_choose_move(battle)  # type: ignore

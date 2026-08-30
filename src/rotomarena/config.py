@@ -91,6 +91,9 @@ class AgentConfig(BaseModel):
     temperature: float = Field(
         default=0.2, description="LLM temperature override"
     )
+    turn_timeout: float = Field(
+        default=30.0, description="Per-turn timeout in seconds before automated move fallback"
+    )
     evaluation_weights: Dict[str, float] = Field(
         default_factory=lambda: {
             "alive_pokemon": 3.0,

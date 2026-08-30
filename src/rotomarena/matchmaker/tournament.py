@@ -65,6 +65,7 @@ def create_agent_instance(
             llm_client=llm_client,
             evaluation_weights=agent_cfg.evaluation_weights,
             team=team_str,
+            turn_timeout=agent_cfg.turn_timeout,
             server_configuration=server_conf,
         )
     elif a_type == "direct_llm":
@@ -74,22 +75,30 @@ def create_agent_instance(
             model=agent_cfg.model,
             temperature=agent_cfg.temperature,
             team=team_str,
+            turn_timeout=agent_cfg.turn_timeout,
             server_configuration=server_conf,
         )
     elif a_type == "max_damage":
         return MaxDamagePlayer(
-            player_name=unique_player_name, team=team_str, server_configuration=server_conf
+            player_name=unique_player_name,
+            team=team_str,
+            turn_timeout=agent_cfg.turn_timeout,
+            server_configuration=server_conf,
         )
     elif a_type == "heuristic":
         return HeuristicPlayer(
             player_name=unique_player_name,
             evaluation_weights=agent_cfg.evaluation_weights,
             team=team_str,
+            turn_timeout=agent_cfg.turn_timeout,
             server_configuration=server_conf,
         )
     else:
         return RandomBenchmarkPlayer(
-            player_name=unique_player_name, team=team_str, server_configuration=server_conf
+            player_name=unique_player_name,
+            team=team_str,
+            turn_timeout=agent_cfg.turn_timeout,
+            server_configuration=server_conf,
         )
 
 

@@ -229,6 +229,7 @@ def run_battle(
     team1: str = typer.Option("balance", "--team1", help="Team for Player 1"),
     team2: str = typer.Option("hyper_offense", "--team2", help="Team for Player 2"),
     games: int = typer.Option(1, "--games", "-n", help="Number of games in series"),
+    turn_timeout: float = typer.Option(30.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (auto-fallback if exceeded)"),
     provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
@@ -248,6 +249,7 @@ def run_battle(
         use_llm_prior=p1_llm_prior,
         provider=p1_provider or provider,
         model=p1_model or model,
+        turn_timeout=turn_timeout,
     )
     p2_cfg = AgentConfig(
         name=f"{p2}_p2",
@@ -256,6 +258,7 @@ def run_battle(
         use_llm_prior=p2_llm_prior,
         provider=p2_provider or provider,
         model=p2_model or model,
+        turn_timeout=turn_timeout,
     )
 
     server_mgr = ShowdownServerManager(app_cfg.server)
