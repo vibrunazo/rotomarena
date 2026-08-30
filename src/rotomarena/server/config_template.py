@@ -21,6 +21,10 @@ exports.battlemodchat = false;
 exports.pmmodchat = false;
 exports.restrictLinks = false;
 
+// Run in single-process mode (prevents spawning dozens of worker processes on Windows)
+exports.subprocesses = 0;
+exports.workers = 0;
+
 // Logging
 exports.loglevel = 'info';
 exports.consoleloglevel = 'info';
