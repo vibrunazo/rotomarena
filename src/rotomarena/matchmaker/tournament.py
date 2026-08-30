@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import itertools
+import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
@@ -37,7 +38,8 @@ def format_bot_display_name(agent_cfg: AgentConfig) -> str:
 
     if a_type == "direct_llm":
         model = agent_cfg.model or ""
-        clean_model = model.split("/")[-1].lower()
+        # Strip suffix tags like :free, :beta, :preview
+        clean_model = model.split(":")[0].split("/")[-1].lower()
         if "gemini-3.7" in clean_model:
             base = "Gemini 3.7"
         elif "gemini-2.5" in clean_model:
@@ -52,14 +54,25 @@ def format_bot_display_name(agent_cfg: AgentConfig) -> str:
             base = "DeepSeek R1"
         elif "deepseek" in clean_model:
             base = "DeepSeek V3"
+        elif "nemotron-3.5" in clean_model:
+            base = "Nemotron 3.5"
+        elif "nemotron" in clean_model:
+            base = "Nemotron"
+        elif "minimax-m3" in clean_model or "minimax" in clean_model:
+            base = "MiniMax M3"
+        elif "qwen" in clean_model:
+            base = "Qwen 2.5"
         elif "claude-3.5" in clean_model:
             base = "Claude 3.5"
         elif "llama-3.3" in clean_model:
             base = "Llama 3.3"
-        elif "nemotron" in clean_model:
-            base = "Nemotron"
+        elif "llama" in clean_model:
+            base = "Llama"
+        elif "gpt-4" in clean_model:
+            base = "GPT-4o"
         elif model:
-            base = model.split("/")[-1][:12].title()
+            cleaned = re.sub(r"[^a-zA-Z0-9 ]", " ", clean_model).strip()
+            base = cleaned[:12].title()
         elif agent_cfg.provider:
             base = f"{agent_cfg.provider.title()}"
         else:
@@ -75,6 +88,9 @@ def format_bot_display_name(agent_cfg: AgentConfig) -> str:
         base = "Random AI"
     else:
         base = agent_cfg.name[:12].title()
+
+    # Sanitize base for Showdown (only alphanumeric, dot, hyphen, and space)
+    base = re.sub(r"[^a-zA-Z0-9. -]", "", base).strip()
 
     import uuid
     suffix = uuid.uuid4().hex[:3]

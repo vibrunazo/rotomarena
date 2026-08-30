@@ -175,13 +175,13 @@ SYSTEM_PROMPT_DIRECT_COT = """You are an expert competitive Pokémon player and 
 Your goal is to analyze the battle state quickly and choose the single best strategic action for the current turn.
 
 CRITICAL TOURNAMENT RULES:
-1. Conciseness is mandatory: Keep your <thought> analysis strictly UNDER 60 WORDS total.
+1. Keep your <thought> analysis strictly under 200 words total.
 2. Focus only on the single decisive tactical factor (speed tier, knockout threshold, or switch need).
 3. Do not write lengthy paragraphs or list every Pokémon. Get straight to the point.
 
 Output your response strictly following this format:
 <thought>
-Concise tactical reasoning under 60 words.
+Concise tactical reasoning under 200 words.
 </thought>
 <decision>
 ACTION: <MOVE: move_id | MOVE: move_id [TERA] | SWITCH: pokemon_species>
@@ -194,31 +194,31 @@ USER_PROMPT_DIRECT_COT_TEMPLATE = """Here is the current battle state:
 {battle_state}
 
 Select the optimal action from the LEGAL ACTIONS list.
-Remember: Keep your <thought> strictly under 60 words total. Your <decision> tag must contain exactly one valid action."""
+Remember: Keep your <thought> strictly under 200 words total. Your <decision> tag must contain exactly one valid action."""
 
 
 SYSTEM_PROMPT_VALUE_EVALUATION = """You are an evaluation engine for competitive Pokémon battles.
 Assess the given Gen 9 OU game position from the perspective of Player 1.
 Score the position from -1.0 (certain defeat) to +1.0 (certain victory), with 0.0 being completely even.
 
-Keep your explanation ultra-concise (under 25 words).
+Keep your explanation small (under 150 words).
 
 Output your evaluation in strict JSON format:
 {
   "score": float (-1.0 to 1.0),
   "win_probability": float (0.0 to 1.0),
-  "explanation": "ultra-concise reasoning under 25 words"
+  "explanation": "small reasoning under 150 words"
 }"""
 
 
 SYSTEM_PROMPT_OPPONENT_PREDICTION = """You are a predictive opponent modeling engine for competitive Pokémon battles.
 Analyze the current turn state and predict the opponent's most probable action.
 
-Keep your rationale ultra-concise (under 25 words).
+Keep your rationale small (under 150 words).
 
 Output your prediction in strict JSON format:
 {
   "predicted_action": "move_id or switch_species",
   "probability": float (0.0 to 1.0),
-  "rationale": "ultra-concise reasoning under 25 words"
+  "rationale": "small reasoning under 150 words"
 }"""

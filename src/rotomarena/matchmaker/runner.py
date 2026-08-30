@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime
+import re
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -65,7 +66,9 @@ class MatchRunner:
     ) -> MatchResult:
         """Executes a single battle between player_1 and player_2."""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        match_id = f"match_{timestamp}_{player_1.agent_name}_vs_{player_2.agent_name}_g{match_index}"
+        safe_p1 = re.sub(r"[^\w\s-]", "_", player_1.agent_name).strip()
+        safe_p2 = re.sub(r"[^\w\s-]", "_", player_2.agent_name).strip()
+        match_id = f"match_{timestamp}_{safe_p1}_vs_{safe_p2}_g{match_index}"
         match_dir = self.output_dir / match_id
         match_dir.mkdir(parents=True, exist_ok=True)
 
