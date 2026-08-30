@@ -22,11 +22,12 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 
 ## ⚙️ Key System Specifications & Defaults
 1. **Turn Limits & Chess-Clock:**
-   - Default turn timeout: **45.0s** (`--turn-timeout 45`)
-   - Default total match time bank: **7:00 / 420.0s** (`--bank-timeout 420`)
+   - Default turn timeout: **100.0s** (`--turn-timeout 100`)
+   - Default total match time bank: **10:00 / 600.0s** (`--bank-timeout 600`)
    - Auto-fallback moves execute upon timeout without crashing the match.
 
-2. **Concise Reasoning Constraints:**
+2. **Concise Reasoning & Effort Controls:**
+   - OpenRouter calls default to `reasoning: {"effort": "low"}` to minimize latency and token consumption.
    - Direct LLM `<thought>` output must remain **under 60 words total**.
    - Focus on the single decisive tactical factor (speed tier, knockout threshold, or switch priority).
 

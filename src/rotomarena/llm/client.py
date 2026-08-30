@@ -45,6 +45,9 @@ class LLMClient:
             self.temperature = provider_config.temperature
             self.timeout = provider_config.timeout
             self.provider_name = provider_name
+            self.reasoning_effort = getattr(provider_config, "reasoning_effort", None)
+            if not self.reasoning_effort and ("openrouter" in (provider_name or "").lower() or "openrouter.ai" in (self.base_url or "").lower()):
+                self.reasoning_effort = "low"
         else:
             self.base_url = base_url or os.getenv("OPENAI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
             self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("OPENAI_API_KEY", "dummy")
@@ -52,6 +55,7 @@ class LLMClient:
             self.temperature = 0.2
             self.timeout = 30.0
             self.provider_name = provider_name
+            self.reasoning_effort = "low" if ("openrouter" in (provider_name or "").lower() or "openrouter.ai" in (self.base_url or "").lower()) else None
 
         headers = {}
         if "openrouter.ai" in self.base_url:
@@ -118,21 +122,27 @@ class LLMClient:
         messages: List[Dict[str, str]],
         model: Optional[str] = None,
         temperature: Optional[float] = None,
+        reasoning_effort: Optional[str] = None,
         max_retries: int = 3,
     ) -> Tuple[str, LLMUsageMetrics]:
         """Calls the OpenAI-compatible API with retry and telemetry collection."""
         target_model = model or self.default_model
         temp = temperature if temperature is not None else self.temperature
+        effort = reasoning_effort or self.reasoning_effort
 
         last_err: Optional[Exception] = None
         for attempt in range(max_retries):
             start_time = time.perf_counter()
             try:
-                response = await self._client.chat.completions.create(
-                    model=target_model,
-                    messages=messages,
-                    temperature=temp,
-                )
+                create_kwargs: Dict[str, Any] = {
+                    "model": target_model,
+                    "messages": messages,
+                    "temperature": temp,
+                }
+                if effort:
+                    create_kwargs["extra_body"] = {"reasoning": {"effort": effort}}
+
+                response = await self._client.chat.completions.create(**create_kwargs)
                 latency = (time.perf_counter() - start_time) * 1000.0
 
                 content = response.choices[0].message.content or ""
