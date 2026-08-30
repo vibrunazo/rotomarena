@@ -72,7 +72,7 @@ def server_start():
     if ok:
         console.print(f"[bold green][OK] {msg}[/bold green]")
         console.print(
-            f"WebSocket URL: [cyan]{manager.config.websocket_url}[/cyan] (Battle timers disabled)"
+            f"WebSocket URL: [cyan]{manager.config.websocket_url}[/cyan] (Clock managed by RotomArena: 100s turn / 10m bank)"
         )
     else:
         console.print(f"[bold red][ERROR] {msg}[/bold red]")
