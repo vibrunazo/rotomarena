@@ -53,10 +53,18 @@ class LLMClient:
             self.timeout = 30.0
             self.provider_name = provider_name
 
+        headers = {}
+        if "openrouter.ai" in self.base_url:
+            headers = {
+                "HTTP-Referer": "https://github.com/rotomarena",
+                "X-Title": "RotomArena",
+            }
+
         self._client = AsyncOpenAI(
             base_url=self.base_url,
             api_key=self.api_key or "dummy",
             timeout=self.timeout,
+            default_headers=headers if headers else None,
         )
 
     @classmethod

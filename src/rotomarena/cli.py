@@ -218,14 +218,19 @@ def replay_list(output_dir: str = typer.Option("./runs", "--dir", "-d")):
 def run_battle(
     p1: str = typer.Option("pokechamp", "--p1", help="Player 1 agent type (pokechamp, direct_llm, heuristic, random)"),
     p2: str = typer.Option("heuristic", "--p2", help="Player 2 agent type"),
+    p1_provider: Optional[str] = typer.Option(None, "--p1-provider", help="LLM Provider for Player 1 (gemini, openrouter, ollama)"),
+    p1_model: Optional[str] = typer.Option(None, "--p1-model", help="LLM Model for Player 1"),
     p1_depth: int = typer.Option(1, "--p1-depth", help="Minimax depth for Player 1 (PokéChamp)"),
-    p2_depth: int = typer.Option(1, "--p2-depth", help="Minimax depth for Player 2 (PokéChamp)"),
     p1_llm_prior: bool = typer.Option(False, "--p1-llm-prior", help="Enable LLM value prior for P1 PokéChamp"),
+    p2_provider: Optional[str] = typer.Option(None, "--p2-provider", help="LLM Provider for Player 2 (gemini, openrouter, ollama)"),
+    p2_model: Optional[str] = typer.Option(None, "--p2-model", help="LLM Model for Player 2"),
+    p2_depth: int = typer.Option(1, "--p2-depth", help="Minimax depth for Player 2 (PokéChamp)"),
+    p2_llm_prior: bool = typer.Option(False, "--p2-llm-prior", help="Enable LLM value prior for P2 PokéChamp"),
     team1: str = typer.Option("balance", "--team1", help="Team for Player 1"),
     team2: str = typer.Option("hyper_offense", "--team2", help="Team for Player 2"),
     games: int = typer.Option(1, "--games", "-n", help="Number of games in series"),
-    provider: str = typer.Option("gemini", "--provider", help="LLM Provider (gemini, openrouter, ollama)"),
-    model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM Model override"),
+    provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
+    model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
 ):
     """Run a 1v1 battle series between two configured AI agents."""
@@ -241,15 +246,16 @@ def run_battle(
         type=p1,
         depth=p1_depth,
         use_llm_prior=p1_llm_prior,
-        provider=provider,
-        model=model,
+        provider=p1_provider or provider,
+        model=p1_model or model,
     )
     p2_cfg = AgentConfig(
         name=f"{p2}_p2",
         type=p2,
         depth=p2_depth,
-        provider=provider,
-        model=model,
+        use_llm_prior=p2_llm_prior,
+        provider=p2_provider or provider,
+        model=p2_model or model,
     )
 
     server_mgr = ShowdownServerManager(app_cfg.server)
