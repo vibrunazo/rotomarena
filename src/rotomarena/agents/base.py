@@ -138,7 +138,7 @@ class BaseBenchmarkPlayer(Player):
         if self.time_bank_remaining <= 0.0:
             await self.send_room_message(
                 battle,
-                f"⏰ [{self.agent_name}] Match time bank exhausted (0:00 remaining)! Auto-selecting fallback move.",
+                "⏰ Match time bank exhausted (0:00)! Auto-selecting fallback move.",
             )
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
@@ -154,7 +154,7 @@ class BaseBenchmarkPlayer(Player):
 
         await self.send_room_message(
             battle,
-            f"⏳ [{self.agent_name}] is deciding turn {battle.turn} (Turn limit: {self.turn_timeout:.0f}s | Bank: {bank_display} remaining)...",
+            f"⏳ Deciding turn {battle.turn} (Turn limit: {self.turn_timeout:.0f}s | Bank: {bank_display} remaining)...",
         )
 
         try:
@@ -170,7 +170,7 @@ class BaseBenchmarkPlayer(Player):
 
             await self.send_room_message(
                 battle,
-                f"✅ [{self.agent_name}] locked in move ({elapsed:.2f}s)! Bank: {new_bank_display}. Waiting for opponent...",
+                f"✅ Move locked in ({elapsed:.2f}s)! Bank: {new_bank_display}. Waiting for opponent...",
             )
             return order
 
@@ -181,7 +181,7 @@ class BaseBenchmarkPlayer(Player):
 
             await self.send_room_message(
                 battle,
-                f"⏰ [{self.agent_name}] TIMED OUT ({effective_timeout:.1f}s)! Bank: {new_bank_display}. Auto-selecting legal fallback move.",
+                f"⏰ Turn timed out ({effective_timeout:.1f}s)! Bank: {new_bank_display}. Auto-selecting legal fallback move.",
             )
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
@@ -196,7 +196,7 @@ class BaseBenchmarkPlayer(Player):
             self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
             await self.send_room_message(
                 battle,
-                f"⚠️ [{self.agent_name}] calculation error: {e}. Auto-selecting legal fallback move.",
+                f"⚠️ Calculation error: {e}. Auto-selecting legal fallback move.",
             )
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
