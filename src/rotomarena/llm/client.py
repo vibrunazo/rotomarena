@@ -47,7 +47,7 @@ class LLMClient:
             self.provider_name = provider_name
             self.reasoning_effort = getattr(provider_config, "reasoning_effort", None)
             if not self.reasoning_effort and ("openrouter" in (provider_name or "").lower() or "openrouter.ai" in (self.base_url or "").lower()):
-                self.reasoning_effort = "low"
+                self.reasoning_effort = "medium"
         else:
             self.base_url = base_url or os.getenv("OPENAI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
             self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("OPENAI_API_KEY", "dummy")
@@ -55,7 +55,7 @@ class LLMClient:
             self.temperature = 0.2
             self.timeout = 30.0
             self.provider_name = provider_name
-            self.reasoning_effort = "low" if ("openrouter" in (provider_name or "").lower() or "openrouter.ai" in (self.base_url or "").lower()) else None
+            self.reasoning_effort = "medium" if ("openrouter" in (provider_name or "").lower() or "openrouter.ai" in (self.base_url or "").lower()) else None
 
         headers = {}
         if "openrouter.ai" in self.base_url:

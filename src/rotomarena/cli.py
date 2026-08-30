@@ -72,7 +72,7 @@ def server_start():
     if ok:
         console.print(f"[bold green][OK] {msg}[/bold green]")
         console.print(
-            f"WebSocket URL: [cyan]{manager.config.websocket_url}[/cyan] (Clock managed by RotomArena: 100s turn / 10m bank)"
+            f"WebSocket URL: [cyan]{manager.config.websocket_url}[/cyan] (Clock managed by RotomArena: 120s turn / 15m bank)"
         )
     else:
         console.print(f"[bold red][ERROR] {msg}[/bold red]")
@@ -229,8 +229,8 @@ def run_battle(
     team1: str = typer.Option("balance", "--team1", help="Team for Player 1"),
     team2: str = typer.Option("hyper_offense", "--team2", help="Team for Player 2"),
     games: int = typer.Option(1, "--games", "-n", help="Number of games in series"),
-    turn_timeout: float = typer.Option(100.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (default: 100s)"),
-    bank_timeout: float = typer.Option(600.0, "--bank-timeout", "-b", help="Total match chess-clock bank in seconds (default: 600s / 10 min)"),
+    turn_timeout: float = typer.Option(120.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (default: 120s)"),
+    bank_timeout: float = typer.Option(900.0, "--bank-timeout", "-b", help="Total match chess-clock bank in seconds (default: 900s / 15 min)"),
     provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),

@@ -194,7 +194,7 @@ USER_PROMPT_DIRECT_COT_TEMPLATE = """Here is the current battle state:
 {battle_state}
 
 Select the optimal action from the LEGAL ACTIONS list.
-Remember: Keep your <thought> strictly under 200 words total. Your <decision> tag must contain exactly one valid action."""
+Remember: Keep your <thought> strictly under 200 words total. Including thought is mandatory. Your <decision> tag must contain exactly one valid action."""
 
 
 SYSTEM_PROMPT_VALUE_EVALUATION = """You are an evaluation engine for competitive Pokémon battles.
