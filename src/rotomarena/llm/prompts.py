@@ -7,36 +7,101 @@ from poke_env.battle import Battle, Pokemon, Move
 
 
 def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_opponent: bool = False) -> str:
-    """Format a single Pokemon state for prompt injection."""
+    """Format a single Pokemon state for prompt injection with full competitive details."""
     if mon is None:
         return "None"
 
     status_str = f" [{mon.status.name}]" if mon.status else ""
+    if mon.fainted:
+        status_str = " [FAINTED]"
+
     hp_pct = round(mon.current_hp_fraction * 100, 1)
+    hp_info = f"{hp_pct}% HP"
+    if not is_opponent and mon.current_hp is not None and mon.max_hp is not None:
+        hp_info = f"{mon.current_hp}/{mon.max_hp} ({hp_pct}%)"
+
     types_str = "/".join([t.name.title() for t in mon.types if t])
-    tera_str = f" (Tera: {mon.tera_type.name.title()})" if mon.tera_type else ""
+    tera_type_str = mon.tera_type.name.title() if mon.tera_type else None
+    is_terad = getattr(mon, "_terastallized", False) or getattr(mon, "is_terastallized", False)
 
-    info = f"- **{mon.species}** ({types_str}){status_str}: {hp_pct}% HP{tera_str}"
+    tera_str = ""
+    if is_terad and tera_type_str:
+        tera_str = f" [TERASTALLIZED: {tera_type_str}]"
+    elif tera_type_str:
+        tera_str = f" (Tera Type: {tera_type_str})"
 
-    if is_active:
-        # Boosts
-        boosts = [f"{k.upper()}: {v:+d}" for k, v in mon.boosts.items() if v != 0]
-        if boosts:
-            info += f" | Boosts: [{', '.join(boosts)}]"
-        if mon.item and not is_opponent:
-            info += f" | Item: {mon.item}"
-        if mon.ability and not is_opponent:
-            info += f" | Ability: {mon.ability}"
+    info = f"- **{mon.species}** ({types_str}){status_str}: {hp_info}{tera_str}"
 
-        # Moves
+    if not is_opponent:
+        # YOUR TEAM: Include Item, Ability, Stats, and Moves for ALL Pokémon (active and bench)
+        details = []
+        if mon.item:
+            details.append(f"Item: {mon.item}")
+        else:
+            details.append("Item: None")
+
+        if mon.ability:
+            details.append(f"Ability: {mon.ability}")
+
+        if mon.stats:
+            stat_strs = [f"{k.upper()}: {v}" for k, v in mon.stats.items() if v is not None]
+            if stat_strs:
+                details.append(f"Stats: [{', '.join(stat_strs)}]")
+
+        if is_active:
+            boosts = [f"{k.upper()}: {v:+d}" for k, v in mon.boosts.items() if v != 0]
+            if boosts:
+                details.append(f"Boosts: [{', '.join(boosts)}]")
+
+        if details:
+            info += f"\n  {' | '.join(details)}"
+
+        # Moves with PP, Category, Type, Power, Accuracy
         if mon.moves:
             move_strs = []
             for m in mon.moves.values():
-                cat = m.category.name.title() if m.category else "Unknown"
+                cat = m.category.name.title() if m.category else "Status"
                 m_type = m.type.name.title() if m.type else "Normal"
                 bp = m.base_power if m.base_power > 0 else "-"
                 move_strs.append(f"{m.id} ({m_type}/{cat}, BP:{bp}, PP:{m.current_pp}/{m.max_pp})")
             info += f"\n  Moves: {', '.join(move_strs)}"
+
+    else:
+        # OPPONENT TEAM: Include revealed Item, Ability, Base Stats, Boosts, and Revealed Moves
+        details = []
+        if mon.item:
+            details.append(f"Item: {mon.item}")
+        else:
+            details.append("Item: Unknown")
+
+        if mon.ability:
+            details.append(f"Ability: {mon.ability}")
+        else:
+            details.append("Ability: Unknown")
+
+        if mon.base_stats:
+            b_stats = [f"{k.upper()}: {v}" for k, v in mon.base_stats.items() if v is not None]
+            if b_stats:
+                details.append(f"Base Stats: [{', '.join(b_stats)}]")
+
+        if is_active:
+            boosts = [f"{k.upper()}: {v:+d}" for k, v in mon.boosts.items() if v != 0]
+            if boosts:
+                details.append(f"Boosts: [{', '.join(boosts)}]")
+
+        if details:
+            info += f"\n  {' | '.join(details)}"
+
+        if mon.moves:
+            move_strs = []
+            for m in mon.moves.values():
+                cat = m.category.name.title() if m.category else "Status"
+                m_type = m.type.name.title() if m.type else "Normal"
+                bp = m.base_power if m.base_power > 0 else "-"
+                move_strs.append(f"{m.id} ({m_type}/{cat}, BP:{bp})")
+            info += f"\n  Revealed Moves: {', '.join(move_strs)}"
+        else:
+            info += f"\n  Revealed Moves: None yet"
 
     return info
 
