@@ -31,6 +31,55 @@ class TournamentSummary(BaseModel):
     matches: List[MatchResult] = Field(default_factory=list)
 
 
+def format_bot_display_name(agent_cfg: AgentConfig) -> str:
+    """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
+    a_type = agent_cfg.type.lower()
+
+    if a_type == "direct_llm":
+        model = agent_cfg.model or ""
+        clean_model = model.split("/")[-1].lower()
+        if "gemini-3.7" in clean_model:
+            base = "Gemini 3.7"
+        elif "gemini-2.5" in clean_model:
+            base = "Gemini 2.5"
+        elif "gemini-2.0" in clean_model:
+            base = "Gemini 2.0"
+        elif "gemini" in clean_model:
+            base = "Gemini"
+        elif "deepseek-v4" in clean_model:
+            base = "DeepSeek V4"
+        elif "deepseek-r1" in clean_model:
+            base = "DeepSeek R1"
+        elif "deepseek" in clean_model:
+            base = "DeepSeek V3"
+        elif "claude-3.5" in clean_model:
+            base = "Claude 3.5"
+        elif "llama-3.3" in clean_model:
+            base = "Llama 3.3"
+        elif model:
+            base = model.split("/")[-1][:12].title()
+        elif agent_cfg.provider:
+            base = f"{agent_cfg.provider.title()}"
+        else:
+            base = "Direct LLM"
+    elif a_type == "pokechamp":
+        prior = "+LLM" if agent_cfg.use_llm_prior else ""
+        base = f"PokeChamp D{agent_cfg.depth}{prior}"
+    elif a_type == "max_damage":
+        base = "MaxDamage AI"
+    elif a_type == "heuristic":
+        base = "Heuristic AI"
+    elif a_type == "random":
+        base = "Random AI"
+    else:
+        base = agent_cfg.name[:12].title()
+
+    import uuid
+    suffix = uuid.uuid4().hex[:3]
+    max_base_len = 18 - 1 - len(suffix)
+    return f"{base[:max_base_len]}_{suffix}"
+
+
 def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
@@ -38,7 +87,7 @@ def create_agent_instance(
 ) -> BaseBenchmarkPlayer:
     """Factory to instantiate a Benchmark player from its configuration model."""
     a_type = agent_cfg.type.lower()
-    
+
     # Resolve LLM client if needed
     llm_client = None
     if agent_cfg.provider:
@@ -48,8 +97,7 @@ def create_agent_instance(
             model_override=agent_cfg.model,
         )
 
-    import uuid
-    unique_player_name = f"{agent_cfg.name[:13]}_{uuid.uuid4().hex[:4]}"
+    unique_player_name = format_bot_display_name(agent_cfg)
 
     from poke_env.ps_client import ServerConfiguration
     server_conf = ServerConfiguration(

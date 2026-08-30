@@ -29,17 +29,17 @@ def test_create_agent_instances():
     # PokéChamp
     cfg_pokechamp = AgentConfig(name="pokechamp_test", type="pokechamp", depth=1)
     agent_pc = create_agent_instance(cfg_pokechamp, app_cfg)
-    assert agent_pc.agent_name.startswith("pokechamp_tes")
+    assert agent_pc.agent_name.startswith("PokeChamp D1")
     assert agent_pc.agent_type == "pokechamp"
 
     # Direct LLM
-    cfg_llm = AgentConfig(name="llm_test", type="direct_llm", provider="gemini")
+    cfg_llm = AgentConfig(name="llm_test", type="direct_llm", provider="gemini", model="gemini-3.7-flash")
     agent_llm = create_agent_instance(cfg_llm, app_cfg)
-    assert agent_llm.agent_name.startswith("llm_test")
+    assert agent_llm.agent_name.startswith("Gemini 3.7")
     assert agent_llm.agent_type == "direct_llm"
 
     # Heuristic
     cfg_heur = AgentConfig(name="heur_test", type="heuristic")
     agent_heur = create_agent_instance(cfg_heur, app_cfg)
-    assert agent_heur.agent_name.startswith("heur_test")
+    assert agent_heur.agent_name.startswith("Heuristic AI")
     assert agent_heur.agent_type == "heuristic"

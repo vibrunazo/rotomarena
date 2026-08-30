@@ -13,8 +13,13 @@ exports.port = {port};
 exports.bindaddress = '0.0.0.0';
 exports.ssl = null;
 
-// Allow unauthenticated local bot connections
+// Allow unauthenticated local bot connections & open chat
 exports.no_security = {str(no_security).lower()};
+exports.noguestsecurity = true;
+exports.chatmodchat = false;
+exports.battlemodchat = false;
+exports.pmmodchat = false;
+exports.restrictLinks = false;
 
 // Logging
 exports.loglevel = 'info';
