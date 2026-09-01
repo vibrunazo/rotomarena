@@ -17,7 +17,7 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
     <title>RotomArena Replay: {{ player_1 }} vs {{ player_2 }}</title>
     <style>
         :root {
-            --bg-color: #0f172a;
+            --bg-color: #0b1120;
             --card-bg: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -34,27 +34,28 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             padding: 24px;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1180px;
             margin: 0 auto;
         }
         .header {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
         }
         .match-title {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 16px;
-            margin-bottom: 16px;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
         }
         .badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 9999px;
             font-size: 14px;
             font-weight: 600;
@@ -64,34 +65,58 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             color: var(--accent-green);
             border: 1px solid var(--accent-green);
         }
-        .log-section {
+        .replay-container {
+            margin-bottom: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111827;
+            border: 1px solid var(--border);
+            padding: 12px 0;
+        }
+        details.log-section {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px;
+            padding: 16px 24px;
+            margin-top: 20px;
+        }
+        summary {
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--accent);
+            outline: none;
+        }
+        .log-container {
+            margin-top: 14px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid var(--border);
         }
         .log-line {
             font-family: "Cascadia Code", "Fira Code", monospace;
-            font-size: 13px;
-            line-height: 1.6;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            line-height: 1.5;
+            padding: 3px 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
         .log-turn {
             background-color: #0369a1;
             color: #ffffff;
             font-weight: bold;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            padding: 6px 12px;
-            border-radius: 6px;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
         .log-switch { color: #a78bfa; }
         .log-move { color: #38bdf8; }
         .log-damage { color: #f87171; }
         .log-faint { color: #ef4444; font-weight: bold; }
-        .log-win { color: #4ade80; font-weight: bold; font-size: 15px; }
+        .log-win { color: #4ade80; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -99,18 +124,18 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="header">
             <div class="match-title">
                 <div>
-                    <h1 style="margin:0 0 8px 0; font-size: 24px;">⚡ RotomArena Battle Replay</h1>
-                    <div style="color: var(--text-muted);">Match ID: <code>{{ match_id }}</code> | Format: <code>{{ format }}</code></div>
+                    <h1 style="margin:0 0 6px 0; font-size: 22px;">⚡ RotomArena Battle Replay</h1>
+                    <div style="color: var(--text-muted); font-size: 13px;">Match ID: <code>{{ match_id }}</code> | Format: <code>{{ format }}</code></div>
                 </div>
                 <div>
                     {% if winner %}
-                    <span class="badge badge-winner">Winner: {{ winner }}</span>
+                    <span class="badge badge-winner">🏆 Winner: {{ winner }}</span>
                     {% else %}
                     <span class="badge">Result: Draw</span>
                     {% endif %}
                 </div>
             </div>
-            <div style="display: flex; gap: 24px; color: var(--text-muted); font-size: 14px;">
+            <div style="display: flex; gap: 24px; color: var(--text-muted); font-size: 14px; flex-wrap: wrap;">
                 <div><strong>Player 1:</strong> {{ player_1 }}</div>
                 <div><strong>Player 2:</strong> {{ player_2 }}</div>
                 <div><strong>Total Turns:</strong> {{ total_turns }}</div>
@@ -118,8 +143,18 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
 
-        <div class="log-section">
-            <h2 style="margin-top:0; font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Showdown Protocol Stream</h2>
+        <div class="replay-container">
+            <div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
+                <div class="battle"></div>
+                <div class="clippy"></div>
+                <div class="battle-log"></div>
+                <div class="replay-controls"></div>
+                <div class="replay-controls-2"></div>
+            </div>
+        </div>
+
+        <details class="log-section">
+            <summary>📜 View Raw Protocol Log ({{ raw_log_lines|length }} lines)</summary>
             <div class="log-container">
                 {% for line in raw_log_lines %}
                     {% if line.startswith('|turn|') %}
@@ -139,8 +174,13 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
                     {% endif %}
                 {% endfor %}
             </div>
-        </div>
+        </details>
     </div>
+
+    <script type="text/plain" class="battle-log-data">
+{{ raw_log_text }}
+    </script>
+    <script src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
 </body>
 </html>
 """
@@ -181,8 +221,9 @@ def save_battle_replay_html(
     output_path: str | Path,
     format_str: str = "gen9ou",
 ) -> Path:
-    """Renders and saves a standalone HTML replay viewer."""
+    """Renders and saves a standalone animated HTML replay viewer."""
     lines = _flatten_logs(raw_logs)
+    raw_log_text = "\n".join(lines)
 
     template = Template(REPLAY_HTML_TEMPLATE)
     html_content = template.render(
@@ -193,6 +234,7 @@ def save_battle_replay_html(
         total_turns=total_turns,
         duration_seconds=round(duration_seconds, 2),
         raw_log_lines=lines,
+        raw_log_text=raw_log_text,
         format=format_str,
     )
 
