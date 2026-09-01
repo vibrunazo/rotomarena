@@ -182,14 +182,17 @@ def teams_validate(file_path: str = typer.Argument(..., help="Path to team .txt 
 
 
 @replay_app.command("list")
-def replay_list(output_dir: str = typer.Option("./runs", "--dir", "-d")):
+def replay_list(
+    limit: int = typer.Option(15, "--limit", "-n", help="Number of recent matches to show"),
+    output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
+):
     """List recent match runs and replays."""
     p = Path(output_dir)
     if not p.exists():
         console.print("[yellow]No runs directory found.[/yellow]")
         return
 
-    matches = sorted([d for d in p.iterdir() if d.is_dir()], reverse=True)
+    matches = sorted([d for d in p.iterdir() if d.is_dir()], key=lambda x: x.stat().st_mtime, reverse=True)
     if not matches:
         console.print("[yellow]No recorded matches found.[/yellow]")
         return
@@ -200,13 +203,99 @@ def replay_list(output_dir: str = typer.Option("./runs", "--dir", "-d")):
     table.add_column("Breadcrumbs JSON", style="yellow")
     table.add_column("Report MD", style="magenta")
 
-    for m in matches[:15]:
-        has_html = "Yes" if (m / "replay.html").exists() else "-"
-        has_json = "Yes" if (m / "breadcrumbs.json").exists() else "-"
-        has_md = "Yes" if (m / "report.md").exists() else "-"
+    for m in matches[:limit]:
+        has_html = "[green]Yes[/green]" if (m / "replay.html").exists() else "[dim]-[/dim]"
+        has_json = "[green]Yes[/green]" if (m / "breadcrumbs.json").exists() else "[dim]-[/dim]"
+        has_md = "[green]Yes[/green]" if (m / "report.md").exists() else "[dim]-[/dim]"
         table.add_row(m.name, has_html, has_json, has_md)
 
     console.print(table)
+
+
+@replay_app.command("open")
+def replay_open(
+    match: Optional[str] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
+    output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
+):
+    """Open an animated battle replay HTML in your default browser."""
+    import webbrowser
+    p = Path(output_dir)
+    if not p.exists():
+        console.print("[red]No runs directory found.[/red]")
+        return
+
+    matches = sorted([d for d in p.iterdir() if d.is_dir() and (d / "replay.html").exists()], key=lambda x: x.stat().st_mtime, reverse=True)
+    if not matches:
+        console.print("[yellow]No match replays with replay.html found in runs/.[/yellow]")
+        return
+
+    target_match = None
+    if not match:
+        target_match = matches[0]
+    else:
+        for m in matches:
+            if match.lower() in m.name.lower():
+                target_match = m
+                break
+
+    if not target_match:
+        console.print(f"[red]Could not find match matching: {match}[/red]")
+        return
+
+    replay_file = target_match / "replay.html"
+    console.print(f"[bold green]Opening animated replay:[/bold green] [cyan]{replay_file}[/cyan]")
+    webbrowser.open(replay_file.resolve().as_uri())
+
+
+@replay_app.command("refresh")
+def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs")):
+    """Re-render all replay.html files across the runs/ folder with the embedded animated player."""
+    from rotomarena.telemetry.replay_saver import save_battle_replay_html
+    import json
+
+    p = Path(output_dir)
+    if not p.exists():
+        console.print("[yellow]No runs directory found.[/yellow]")
+        return
+
+    matches = [d for d in p.iterdir() if d.is_dir()]
+    updated = 0
+    for match_dir in matches:
+        log_file = match_dir / "battle_log.json"
+        if not log_file.exists():
+            continue
+        try:
+            data = json.loads(log_file.read_text(encoding="utf-8"))
+            raw_logs = data.get("raw_logs", [])
+            meta = data.get("metadata", {})
+            match_id = data.get("match_id", match_dir.name)
+            p1 = "Player 1"
+            p2 = "Player 2"
+            for line in raw_logs:
+                if isinstance(line, (list, tuple)) and len(line) >= 4 and line[1] == "player":
+                    if line[2] == "p1": p1 = line[3]
+                    elif line[2] == "p2": p2 = line[3]
+                elif isinstance(line, str) and line.startswith("|player|"):
+                    parts = line.split("|")
+                    if len(parts) >= 4:
+                        if parts[2] == "p1": p1 = parts[3]
+                        elif parts[2] == "p2": p2 = parts[3]
+
+            save_battle_replay_html(
+                match_id=match_id,
+                player_1=p1,
+                player_2=p2,
+                winner=meta.get("winner"),
+                total_turns=meta.get("turns", 0),
+                duration_seconds=meta.get("duration_seconds", 0.0),
+                raw_logs=raw_logs,
+                output_path=match_dir / "replay.html",
+            )
+            updated += 1
+        except Exception as e:
+            console.print(f"[red]Error updating {match_dir.name}: {e}[/red]")
+
+    console.print(f"[bold green]Successfully refreshed {updated} replay.html files with the embedded animated player![/bold green]")
 
 
 # ---------------------------------------------------------------------
