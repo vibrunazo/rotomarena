@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 import typer
 from rich.console import Console
 from rich.panel import Panel
@@ -216,7 +216,7 @@ def replay_list(
 
 @replay_app.command("open")
 def replay_open(
-    match: Optional[str] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
+    match: Optional[List[str]] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
     output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
 ):
     """Open an animated battle replay HTML in your default browser."""
@@ -235,13 +235,14 @@ def replay_open(
     if not match:
         target_match = matches[0]
     else:
+        match_str = " ".join(match).lower()
         for m in matches:
-            if match.lower() in m.name.lower():
+            if match_str in m.name.lower() or all(token.lower() in m.name.lower() for token in match):
                 target_match = m
                 break
 
     if not target_match:
-        console.print(f"[red]Could not find match matching: {match}[/red]")
+        console.print(f"[red]Could not find match matching: {' '.join(match or [])}[/red]")
         return
 
     replay_file = target_match / "replay.html"
@@ -283,6 +284,14 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
                         if parts[2] == "p1": p1 = parts[3]
                         elif parts[2] == "p2": p2 = parts[3]
 
+            comm_file = match_dir / "commentary.json"
+            commentary = None
+            if comm_file.exists():
+                try:
+                    commentary = json.loads(comm_file.read_text(encoding="utf-8"))
+                except Exception:
+                    pass
+
             save_battle_replay_html(
                 match_id=match_id,
                 player_1=p1,
@@ -292,6 +301,7 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
                 duration_seconds=meta.get("duration_seconds", 0.0),
                 raw_logs=raw_logs,
                 output_path=match_dir / "replay.html",
+                commentary=commentary,
             )
             updated += 1
         except Exception as e:
@@ -307,7 +317,7 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
 
 @commentary_app.command("generate")
 def commentary_generate(
-    match: Optional[str] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
+    match: Optional[List[str]] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
     provider: Optional[str] = typer.Option(None, "--provider", "-p", help="LLM Provider (gemini, openrouter, ollama)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM Model"),
     output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
@@ -332,13 +342,14 @@ def commentary_generate(
     if not match:
         target_match = matches[0]
     else:
+        match_str = " ".join(match).lower()
         for m in matches:
-            if match.lower() in m.name.lower():
+            if match_str in m.name.lower() or all(token.lower() in m.name.lower() for token in match):
                 target_match = m
                 break
 
     if not target_match:
-        console.print(f"[red]Could not find match matching: {match}[/red]")
+        console.print(f"[red]Could not find match matching: {' '.join(match or [])}[/red]")
         return
 
     console.print(f"[cyan]Generating play-by-play commentary for [bold]{target_match.name}[/bold]...[/cyan]")
@@ -413,7 +424,7 @@ def commentary_generate(
 
 @commentary_app.command("view")
 def commentary_view(
-    match: Optional[str] = typer.Argument(None, help="Match folder name (defaults to latest)"),
+    match: Optional[List[str]] = typer.Argument(None, help="Match folder name (defaults to latest)"),
     output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
 ):
     """View play-by-play commentary for a match in terminal."""
@@ -428,13 +439,14 @@ def commentary_view(
     if not match:
         target_match = matches[0]
     else:
+        match_str = " ".join(match).lower()
         for m in matches:
-            if match.lower() in m.name.lower():
+            if match_str in m.name.lower() or all(token.lower() in m.name.lower() for token in match):
                 target_match = m
                 break
 
     if not target_match:
-        console.print(f"[red]Could not find match with commentary matching: {match}[/red]")
+        console.print(f"[red]Could not find match with commentary matching: {' '.join(match or [])}[/red]")
         return
 
     data = json.loads((target_match / "commentary.json").read_text(encoding="utf-8"))
