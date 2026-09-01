@@ -34,10 +34,12 @@ app = typer.Typer(
 server_app = typer.Typer(help="Manage local Pokemon Showdown server")
 teams_app = typer.Typer(help="Inspect and manage Gen 9 OU teams")
 replay_app = typer.Typer(help="Inspect and view battle replays and telemetry")
+commentary_app = typer.Typer(help="Generate and inspect play-by-play battle commentary")
 
 app.add_typer(server_app, name="server")
 app.add_typer(teams_app, name="teams")
 app.add_typer(replay_app, name="replay")
+app.add_typer(commentary_app, name="commentary")
 
 console = Console(legacy_windows=False)
 
@@ -299,6 +301,153 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
 
 
 # ---------------------------------------------------------------------
+# Commentary Commands
+# ---------------------------------------------------------------------
+
+
+@commentary_app.command("generate")
+def commentary_generate(
+    match: Optional[str] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
+    provider: Optional[str] = typer.Option(None, "--provider", "-p", help="LLM Provider (gemini, openrouter, ollama)"),
+    model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM Model"),
+    output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
+):
+    """Generate or re-generate play-by-play LLM commentary for a battle."""
+    import json
+    from rotomarena.commentary.generator import CommentaryGenerator
+    from rotomarena.llm.client import LLMClient
+    from rotomarena.telemetry.replay_saver import save_battle_replay_html
+
+    p = Path(output_dir)
+    if not p.exists():
+        console.print("[red]No runs directory found.[/red]")
+        return
+
+    matches = sorted([d for d in p.iterdir() if d.is_dir() and (d / "battle_log.json").exists()], key=lambda x: x.stat().st_mtime, reverse=True)
+    if not matches:
+        console.print("[yellow]No match directories with battle_log.json found in runs/.[/yellow]")
+        return
+
+    target_match = None
+    if not match:
+        target_match = matches[0]
+    else:
+        for m in matches:
+            if match.lower() in m.name.lower():
+                target_match = m
+                break
+
+    if not target_match:
+        console.print(f"[red]Could not find match matching: {match}[/red]")
+        return
+
+    console.print(f"[cyan]Generating play-by-play commentary for [bold]{target_match.name}[/bold]...[/cyan]")
+
+    log_data = json.loads((target_match / "battle_log.json").read_text(encoding="utf-8"))
+    raw_logs = log_data.get("raw_logs", [])
+    meta = log_data.get("metadata", {})
+    match_id = log_data.get("match_id", target_match.name)
+
+    p1 = "Player 1"
+    p2 = "Player 2"
+    for line in raw_logs:
+        if isinstance(line, (list, tuple)) and len(line) >= 4 and line[1] == "player":
+            if line[2] == "p1": p1 = line[3]
+            elif line[2] == "p2": p2 = line[3]
+        elif isinstance(line, str) and line.startswith("|player|"):
+            parts = line.split("|")
+            if len(parts) >= 4:
+                if parts[2] == "p1": p1 = parts[3]
+                elif parts[2] == "p2": p2 = parts[3]
+
+    breadcrumbs = None
+    b_file = target_match / "breadcrumbs.json"
+    if b_file.exists():
+        try:
+            b_data = json.loads(b_file.read_text(encoding="utf-8"))
+            breadcrumbs = b_data.get("breadcrumbs", [])
+        except Exception:
+            pass
+
+    client = None
+    if provider or model:
+        client = LLMClient(
+            base_url="https://openrouter.ai/api/v1" if provider == "openrouter" else None,
+            default_model=model,
+            provider_name=provider,
+        )
+
+    generator = CommentaryGenerator(llm_client=client)
+
+    async def _run():
+        commentary = await generator.generate_commentary(
+            raw_logs=raw_logs,
+            p1_name=p1,
+            p2_name=p2,
+            match_id=match_id,
+            winner=meta.get("winner"),
+            total_turns=meta.get("turns", 0),
+            breadcrumbs=breadcrumbs,
+        )
+
+        comm_file = target_match / "commentary.json"
+        comm_file.write_text(commentary.model_dump_json(indent=2), encoding="utf-8")
+        console.print(f"[bold green]Saved commentary JSON:[/bold green] [cyan]{comm_file}[/cyan]")
+
+        # Refresh replay.html with embedded commentary
+        save_battle_replay_html(
+            match_id=match_id,
+            player_1=p1,
+            player_2=p2,
+            winner=meta.get("winner"),
+            total_turns=meta.get("turns", 0),
+            duration_seconds=meta.get("duration_seconds", 0.0),
+            raw_logs=raw_logs,
+            output_path=target_match / "replay.html",
+            commentary=commentary,
+        )
+        console.print(f"[bold green]Updated animated replay with TTS:[/bold green] [cyan]{target_match / 'replay.html'}[/cyan]")
+
+    asyncio.run(_run())
+
+
+@commentary_app.command("view")
+def commentary_view(
+    match: Optional[str] = typer.Argument(None, help="Match folder name (defaults to latest)"),
+    output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
+):
+    """View play-by-play commentary for a match in terminal."""
+    import json
+    p = Path(output_dir)
+    matches = sorted([d for d in p.iterdir() if d.is_dir() and (d / "commentary.json").exists()], key=lambda x: x.stat().st_mtime, reverse=True)
+    if not matches:
+        console.print("[yellow]No commentary.json found in runs/. Run 'rotomarena commentary generate' first.[/yellow]")
+        return
+
+    target_match = None
+    if not match:
+        target_match = matches[0]
+    else:
+        for m in matches:
+            if match.lower() in m.name.lower():
+                target_match = m
+                break
+
+    if not target_match:
+        console.print(f"[red]Could not find match with commentary matching: {match}[/red]")
+        return
+
+    data = json.loads((target_match / "commentary.json").read_text(encoding="utf-8"))
+    console.rule(f"[bold cyan]🎙️ Commentary: {data.get('match_id')}[/bold cyan]")
+    for turn in data.get("turns", []):
+        t_num = turn.get("turn", 0)
+        title = turn.get("title", f"Turn {t_num}")
+        text = turn.get("commentary", "")
+        console.print(f"\n[bold yellow]{title}[/bold yellow]")
+        console.print(f"[white]{text}[/white]")
+
+
+# ---------------------------------------------------------------------
 # Battle & Tournament Commands
 # ---------------------------------------------------------------------
 
@@ -320,12 +469,15 @@ def run_battle(
     games: int = typer.Option(1, "--games", "-n", help="Number of games in series"),
     turn_timeout: float = typer.Option(120.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (default: 120s)"),
     bank_timeout: float = typer.Option(900.0, "--bank-timeout", "-b", help="Total match chess-clock bank in seconds (default: 900s / 15 min)"),
+    commentary: bool = typer.Option(False, "--commentary", help="Auto-generate play-by-play LLM commentary after match"),
     provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
 ):
     """Run a 1v1 battle series between two configured AI agents."""
     app_cfg = AppConfig.load_from_yaml(config_file) if config_file else AppConfig.default_config()
+    if commentary:
+        app_cfg.telemetry.generate_commentary = True
 
     # Load teams
     t1 = load_preset_team(team1).to_showdown_packed()
@@ -377,6 +529,8 @@ def run_battle(
                     console.print(f"  - Telemetry: [cyan]{latest.breadcrumbs_json_path}[/cyan]")
                 if latest.report_md_path:
                     console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
+                if latest.commentary_json_path:
+                    console.print(f"  - Commentary: [cyan]{latest.commentary_json_path}[/cyan]")
 
     asyncio.run(_execute())
 

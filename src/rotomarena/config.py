@@ -132,6 +132,9 @@ class TelemetryConfig(BaseModel):
     save_replays: bool = Field(default=True)
     save_breadcrumbs: bool = Field(default=True)
     save_reports: bool = Field(default=True)
+    generate_commentary: bool = Field(
+        default=False, description="Auto-generate LLM play-by-play commentary"
+    )
 
 
 class AppConfig(BaseSettings):
