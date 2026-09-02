@@ -320,6 +320,7 @@ def commentary_generate(
     match: Optional[List[str]] = typer.Argument(None, help="Match folder name or partial match ID (defaults to latest match)"),
     provider: Optional[str] = typer.Option(None, "--provider", "-p", help="LLM Provider (gemini, openrouter, ollama)"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM Model"),
+    language: str = typer.Option("en-US", "--language", "-l", help="Commentary language (e.g. en-US, pt-BR, es, ja, fr, de)"),
     output_dir: str = typer.Option("./runs", "--dir", "-d", help="Directory containing match runs"),
 ):
     """Generate or re-generate play-by-play LLM commentary for a battle."""
@@ -352,7 +353,7 @@ def commentary_generate(
         console.print(f"[red]Could not find match matching: {' '.join(match or [])}[/red]")
         return
 
-    console.print(f"[cyan]Generating play-by-play commentary for [bold]{target_match.name}[/bold]...[/cyan]")
+    console.print(f"[cyan]Generating play-by-play commentary in [bold]{language}[/bold] for [bold]{target_match.name}[/bold]...[/cyan]")
 
     log_data = json.loads((target_match / "battle_log.json").read_text(encoding="utf-8"))
     raw_logs = log_data.get("raw_logs", [])
@@ -398,6 +399,7 @@ def commentary_generate(
             match_id=match_id,
             winner=meta.get("winner"),
             total_turns=meta.get("turns", 0),
+            language=language,
             breadcrumbs=breadcrumbs,
         )
 
@@ -482,6 +484,7 @@ def run_battle(
     turn_timeout: float = typer.Option(120.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (default: 120s)"),
     bank_timeout: float = typer.Option(900.0, "--bank-timeout", "-b", help="Total match chess-clock bank in seconds (default: 900s / 15 min)"),
     commentary: bool = typer.Option(False, "--commentary", help="Auto-generate play-by-play LLM commentary after match"),
+    commentary_language: str = typer.Option("en-US", "--commentary-language", "-cl", help="Commentary language (e.g. en-US, pt-BR, es, ja, fr, de)"),
     provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
@@ -490,6 +493,8 @@ def run_battle(
     app_cfg = AppConfig.load_from_yaml(config_file) if config_file else AppConfig.default_config()
     if commentary:
         app_cfg.telemetry.generate_commentary = True
+    if commentary_language:
+        app_cfg.telemetry.commentary_language = commentary_language
 
     # Load teams
     t1 = load_preset_team(team1).to_showdown_packed()

@@ -135,6 +135,9 @@ class TelemetryConfig(BaseModel):
     generate_commentary: bool = Field(
         default=False, description="Auto-generate LLM play-by-play commentary"
     )
+    commentary_language: str = Field(
+        default="en-US", description="Language code for commentary (e.g. en-US, pt-BR)"
+    )
 
 
 class AppConfig(BaseSettings):

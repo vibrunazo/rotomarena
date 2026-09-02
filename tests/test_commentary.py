@@ -138,3 +138,45 @@ def test_embed_commentary_into_replay_html(tmp_path):
     assert "Tackle lands for the win!" in content
     assert "Play-by-Play Esports Commentary &amp; TTS Caster" in content or "Play-by-Play Esports Commentary & TTS Caster" in content
     assert "window.speechSynthesis" in content
+
+
+@pytest.mark.asyncio
+async def test_generate_commentary_portuguese():
+    mock_client = MagicMock()
+    mock_client.generate_text = AsyncMock(
+        return_value=json.dumps(
+            {
+                "turns": [
+                    {
+                        "turn": 0,
+                        "title": "Abertura dos Líderes",
+                        "commentary": "Bem-vindos ao RotomArena! Grande Tusk e Heatran entram em campo nesta partida imperdível de Gen 9 OU!",
+                    },
+                    {
+                        "turn": 1,
+                        "title": "Turno 1: Terremoto Devastador",
+                        "commentary": "Grande Tusk manda um Terremoto massivo e derruba Heatran em um único golpe!",
+                    },
+                ]
+            }
+        )
+    )
+
+    generator = CommentaryGenerator(llm_client=mock_client)
+    raw_logs = ["|turn|1", "|move|p1a: mon1|Earthquake|p2a: mon2", "|win|P1"]
+
+    comm = await generator.generate_commentary(
+        raw_logs=raw_logs,
+        p1_name="Treinador 1",
+        p2_name="Treinador 2",
+        match_id="test_pt_match",
+        winner="Treinador 1",
+        total_turns=1,
+        language="pt-BR",
+    )
+
+    assert comm.language == "pt-BR"
+    assert "Terremoto" in comm.get_turn(1).commentary
+    # Check that system prompt requested Portuguese
+    called_args = mock_client.generate_text.call_args
+    assert "Português do Brasil" in called_args.kwargs["system_prompt"]

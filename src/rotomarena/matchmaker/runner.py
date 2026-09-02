@@ -134,6 +134,7 @@ class MatchRunner:
                     winner=winner,
                     total_turns=total_turns,
                     format_str=player_1.format,
+                    language=self.telemetry_config.commentary_language,
                     breadcrumbs=[b.model_dump() for b in telemetry.breadcrumbs],
                 )
                 comm_p = match_dir / "commentary.json"

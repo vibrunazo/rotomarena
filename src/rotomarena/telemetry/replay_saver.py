@@ -366,18 +366,36 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             if (!voiceSelect) return;
             voiceSelect.innerHTML = '';
             
+            const targetLang = (commentaryData && commentaryData.language ? commentaryData.language.toLowerCase() : 'en-us');
+            const isPt = targetLang.includes('pt') || targetLang.includes('br');
+            const isEs = targetLang.includes('es');
+            const isJa = targetLang.includes('ja');
+            const isFr = targetLang.includes('fr');
+            const isDe = targetLang.includes('de');
+
+            const prefix = isPt ? 'pt' : (isEs ? 'es' : (isJa ? 'ja' : (isFr ? 'fr' : (isDe ? 'de' : 'en'))));
+
             const sorted = [...voices].sort((a, b) => {
-                const aEn = a.lang.startsWith('en') ? 0 : 1;
-                const bEn = b.lang.startsWith('en') ? 0 : 1;
-                return aEn - bEn;
+                const aMatch = a.lang.toLowerCase().startsWith(prefix) ? 0 : 1;
+                const bMatch = b.lang.toLowerCase().startsWith(prefix) ? 0 : 1;
+                if (aMatch !== bMatch) return aMatch - bMatch;
+                return a.name.localeCompare(b.name);
             });
 
+            let defaultSelected = false;
             sorted.forEach((v, idx) => {
                 const opt = document.createElement('option');
                 opt.value = v.name;
                 opt.textContent = `${v.name} (${v.lang})`;
-                if (v.default || (v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Google') || idx === 0))) {
-                    opt.selected = true;
+                const matchesLang = v.lang.toLowerCase().startsWith(prefix);
+                if (!defaultSelected && matchesLang) {
+                    if (isPt && (v.lang.toLowerCase().includes('br') || v.name.includes('Brazil') || v.name.includes('Natural') || idx === 0)) {
+                        opt.selected = true;
+                        defaultSelected = true;
+                    } else if (!isPt && (v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Google') || idx === 0)) {
+                        opt.selected = true;
+                        defaultSelected = true;
+                    }
                 }
                 voiceSelect.appendChild(opt);
             });
@@ -432,6 +450,7 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(turnObj.commentary);
             utterance.rate = speechRate;
+            utterance.lang = commentaryData.language || 'en-US';
             
             const selName = voiceSelect ? voiceSelect.value : '';
             const chosenVoice = voices.find(v => v.name === selName);

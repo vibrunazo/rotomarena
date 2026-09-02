@@ -28,6 +28,7 @@ class BattleCommentary(BaseModel):
     p2_name: str
     winner: Optional[str] = None
     total_turns: int = 0
+    language: str = "en-US"
     turns: List[TurnCommentary] = Field(default_factory=list)
 
     def get_turn(self, turn_num: int) -> Optional[TurnCommentary]:
@@ -38,32 +39,70 @@ class BattleCommentary(BaseModel):
         return None
 
 
-COMMENTARY_SYSTEM_PROMPT = """You are a world-class competitive Pokémon esports color commentator (in the style of official Smogon Champions League and Pokémon VGC World Championships).
+def get_commentary_system_prompt(language: str = "en-US") -> str:
+    """Constructs the system prompt with explicit language requirements."""
+    lang_clean = language.lower().strip()
+    if "pt" in lang_clean or "br" in lang_clean:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in natural Brazilian Portuguese (Português do Brasil - pt-BR). "
+            "Use standard competitive Pokémon terminology used in Brazilian esports broadcasts (e.g. 'Pedras Furtivas / Stealth Rock', 'troca', 'nocaute', 'dano massivo', 'Teracristalização', 'fim de jogo'). "
+            "Write in natural conversational spoken Portuguese suitable for Text-To-Speech (TTS) narration."
+        )
+    elif "es" in lang_clean:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in Spanish (Español). "
+            "Write in natural conversational spoken Spanish suitable for Text-To-Speech (TTS) narration."
+        )
+    elif "ja" in lang_clean:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in Japanese (日本語). "
+            "Write in natural conversational spoken Japanese suitable for Text-To-Speech (TTS) narration."
+        )
+    elif "fr" in lang_clean:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in French (Français). "
+            "Write in natural conversational spoken French suitable for Text-To-Speech (TTS) narration."
+        )
+    elif "de" in lang_clean:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in German (Deutsch). "
+            "Write in natural conversational spoken German suitable for Text-To-Speech (TTS) narration."
+        )
+    else:
+        lang_instruction = (
+            "LANGUAGE REQUIREMENT: Generate ALL commentary and titles in natural conversational spoken English suitable for Text-To-Speech (TTS) narration."
+        )
+
+    return f"""You are a world-class competitive Pokémon esports color commentator (in the style of official Smogon Champions League and Pokémon VGC World Championships).
 Your job is to provide engaging, high-energy, and strategically insightful play-by-play commentary for each turn of a Pokémon battle.
 
 Tone & Style Guidelines:
 1. Energetic & Professional: Treat this like an elite championship esports broadcast.
-2. Punchy & Spoken-Friendly: Write in natural conversational spoken English suitable for Text-To-Speech (TTS) narration. Avoid markdown asterisks, emojis, or bullet points in the commentary text.
-3. Length: Keep each turn's commentary between 25 to 45 words so turn narration remains brisk and well-paced.
-4. Insights: Highlight tactical momentum, critical reads, type matchups, damage thresholds, hazards, and sacrifices.
-5. Structure: Provide an intro for Turn 0 (previewing matchup & leads), commentary for every combat turn, and a victory outro on the final turn.
+2. {lang_instruction}
+3. Punchy & Spoken-Friendly: Avoid markdown asterisks, emojis, or bullet points in the commentary text.
+4. Length: Keep each turn's commentary between 25 to 45 words so turn narration remains brisk and well-paced.
+5. Insights: Highlight tactical momentum, critical reads, type matchups, damage thresholds, hazards, and sacrifices.
+6. Structure: Provide an intro for Turn 0 (previewing matchup & leads), commentary for every combat turn, and a victory outro on the final turn.
 
 Return ONLY a valid JSON object with the following schema:
-{
+{{
   "turns": [
-    {
+    {{
       "turn": 0,
       "title": "Opening Leads",
-      "commentary": "Welcome to RotomArena! We have an electrifying Gen 9 OU matchup between Player 1 and Player 2. Both trainers lock in their openers as Great Tusk faces off against Ting-Lu!"
-    },
-    {
+      "commentary": "..."
+    }},
+    {{
       "turn": 1,
       "title": "Turn 1",
       "commentary": "..."
-    }
+    }}
   ]
-}
+}}
 """
+
+
+COMMENTARY_SYSTEM_PROMPT = get_commentary_system_prompt("en-US")
 
 
 class CommentaryGenerator:
@@ -198,6 +237,7 @@ class CommentaryGenerator:
         winner: Optional[str] = None,
         total_turns: int = 0,
         format_str: str = "gen9ou",
+        language: str = "en-US",
         breadcrumbs: Optional[List[Dict[str, Any]]] = None,
     ) -> BattleCommentary:
         """Generate structured battle commentary for the entire match."""
@@ -213,10 +253,13 @@ class CommentaryGenerator:
             format_str=format_str,
         )
 
+        sys_prompt = get_commentary_system_prompt(language)
+        is_pt = "pt" in language.lower() or "br" in language.lower()
+
         try:
             response = await self.llm_client.generate_text(
                 prompt=user_prompt,
-                system_prompt=COMMENTARY_SYSTEM_PROMPT,
+                system_prompt=sys_prompt,
             )
 
             # Parse JSON from response
@@ -244,14 +287,14 @@ class CommentaryGenerator:
             for t in range(total_turns + 1):
                 if t not in existing_turns:
                     if t == 0:
-                        title = "Match Intro"
-                        text = f"Welcome to the arena! {p1_name} faces off against {p2_name} in this Gen 9 OU clash!"
+                        title = "Introdução da Partida" if is_pt else "Match Intro"
+                        text = f"Bem-vindos ao RotomArena! {p1_name} enfrenta {p2_name} neste confronto de Gen 9 OU!" if is_pt else f"Welcome to the arena! {p1_name} faces off against {p2_name} in this Gen 9 OU clash!"
                     elif t == total_turns and winner:
-                        title = f"Turn {t} - Victory"
-                        text = f"That seals it! {winner} claims victory after an intense {total_turns}-turn battle!"
+                        title = f"Turno {t} - Vitória" if is_pt else f"Turn {t} - Victory"
+                        text = f"Fim de jogo! {winner} garante a vitória após uma batalha eletrizante de {total_turns} turnos!" if is_pt else f"That seals it! {winner} claims victory after an intense {total_turns}-turn battle!"
                     else:
-                        title = f"Turn {t}"
-                        text = f"Action continues in Turn {t} as both trainers jockey for position."
+                        title = f"Turno {t}" if is_pt else f"Turn {t}"
+                        text = f"A ação continua no Turno {t} com ambos os treinadores disputando a vantagem." if is_pt else f"Action continues in Turn {t} as both trainers jockey for position."
                     turn_commentaries.append(TurnCommentary(turn=t, title=title, commentary=text))
 
             turn_commentaries.sort(key=lambda x: x.turn)
@@ -263,6 +306,7 @@ class CommentaryGenerator:
                 p2_name=p2_name,
                 winner=winner,
                 total_turns=total_turns,
+                language=language,
                 turns=turn_commentaries,
             )
 
@@ -271,16 +315,16 @@ class CommentaryGenerator:
             fallback_turns = []
             for t in range(total_turns + 1):
                 if t == 0:
-                    text = f"Welcome to RotomArena! {p1_name} battles {p2_name} in Gen 9 OU."
-                    title = "Opening Setup"
+                    text = f"Bem-vindos ao RotomArena! {p1_name} batalha contra {p2_name} em Gen 9 OU." if is_pt else f"Welcome to RotomArena! {p1_name} battles {p2_name} in Gen 9 OU."
+                    title = "Abertura" if is_pt else "Opening Setup"
                 elif t == total_turns and winner:
-                    text = f"And {winner} takes the victory in Turn {t}!"
-                    title = "Match Conclusion"
+                    text = f"E {winner} garante a vitória no Turno {t}!" if is_pt else f"And {winner} takes the victory in Turn {t}!"
+                    title = "Conclusão" if is_pt else "Match Conclusion"
                 else:
                     events = turn_events.get(t, [])
-                    summary_events = ", ".join(events[:2]) if events else "Both players make their tactical choices."
-                    text = f"Turn {t}: {summary_events}"
-                    title = f"Turn {t}"
+                    summary_events = ", ".join(events[:2]) if events else ("Os jogadores fazem suas jogadas táticas." if is_pt else "Both players make their tactical choices.")
+                    text = f"Turno {t}: {summary_events}" if is_pt else f"Turn {t}: {summary_events}"
+                    title = f"Turno {t}" if is_pt else f"Turn {t}"
                 fallback_turns.append(TurnCommentary(turn=t, title=title, commentary=text))
 
             return BattleCommentary(
@@ -290,5 +334,6 @@ class CommentaryGenerator:
                 p2_name=p2_name,
                 winner=winner,
                 total_turns=total_turns,
+                language=language,
                 turns=fallback_turns,
             )
