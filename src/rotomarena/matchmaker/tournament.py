@@ -32,53 +32,156 @@ class TournamentSummary(BaseModel):
     matches: List[MatchResult] = Field(default_factory=list)
 
 
-def format_bot_display_name(agent_cfg: AgentConfig) -> str:
+def clean_llm_model_name(model_str: str) -> str:
+    """Extracts a concise, distinct model name (max ~13 chars) capturing family, version, and variant."""
+    if not model_str:
+        return "Direct LLM"
+
+    # Strip provider prefix (e.g., 'google/', 'meta-llama/', 'nvidia/') and tag suffixes (':free', ':beta')
+    raw = model_str.split(":")[0].strip()
+    if "/" in raw:
+        raw = raw.split("/")[-1]
+
+    # Convert dashed version numbers (e.g. claude-3-7 -> claude-3.7, llama-3-3 -> llama-3.3)
+    s = re.sub(r"(\d+)-(\d+)", r"\1.\2", raw)
+    # Replace underscores/hyphens with spaces
+    s = re.sub(r"[-_]+", " ", s).strip()
+    lower_s = s.lower()
+
+    # 1. Gemini (e.g., gemini-3.8-flash, gemini-3.7-pro, gemini-2.5, gemini-1.5-flash)
+    if "gemini" in lower_s:
+        v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        var = ""
+        if "pro" in lower_s:
+            var = " Pro"
+        elif "ultra" in lower_s:
+            var = " Ultra"
+        res = f"Gemini{ver}{var}".strip()
+        if len(res) <= 14:
+            return res
+        return f"Gem{ver}{var}"[:14].strip()
+
+    # 2. Claude (e.g., claude-3.7-sonnet, claude-3.5-haiku, claude-opus)
+    if "claude" in lower_s:
+        v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        var = ""
+        for opt in ["sonnet", "haiku", "opus"]:
+            if opt in lower_s:
+                var = f" {opt[0].upper()}"  # S, H, O
+                break
+        return f"Claude{ver}{var}"[:13].strip()
+
+    # 3. GPT / OpenAI (e.g., gpt-4o, gpt-4o-mini, gpt-4.5, o1, o3-mini, gpt-5)
+    if "gpt" in lower_s or re.search(r"\b(o1|o3|o4)\b", lower_s):
+        if "4o mini" in lower_s or "4o-mini" in lower_s:
+            return "GPT-4o Mini"
+        if "4o" in lower_s:
+            return "GPT-4o"
+        if "4.5" in lower_s:
+            return "GPT-4.5"
+        if "o1 mini" in lower_s or "o1-mini" in lower_s:
+            return "OpenAI o1-m"
+        if "o1" in lower_s:
+            return "OpenAI o1"
+        if "o3 mini" in lower_s or "o3-mini" in lower_s:
+            return "OpenAI o3-m"
+        if "o3" in lower_s:
+            return "OpenAI o3"
+        if "o4" in lower_s:
+            return "OpenAI o4"
+        v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        return f"GPT{ver}"[:13].strip()
+
+    # 4. DeepSeek (e.g., deepseek-r1, deepseek-v4, deepseek-v3, deepseek-chat)
+    if "deepseek" in lower_s:
+        if "r1" in lower_s:
+            return "DeepSeek R1"
+        if "v4" in lower_s:
+            return "DeepSeek V4"
+        if "v3" in lower_s or "chat" in lower_s:
+            return "DeepSeek V3"
+        v_match = re.search(r"(v\d+|r\d+)", lower_s)
+        if v_match:
+            return f"DeepSeek {v_match.group(1).upper()}"[:13]
+        return "DeepSeek"
+
+    # 5. Llama (e.g., llama-3.3-70b, llama-3.1-8b, llama-3.2-3b)
+    if "llama" in lower_s:
+        v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        s_match = re.search(r"(\d+b)", lower_s)
+        size = f" {s_match.group(1).upper()}" if s_match else ""
+        return f"Llama{ver}{size}"[:13].strip()
+
+    # 6. Nemotron (e.g., nemotron-3-ultra-550b, nemotron-3.5-lightning, nemotron-70b)
+    if "nemotron" in lower_s:
+        v_match = re.search(r"nemotron\s*(\d+(?:\.\d+)?)", lower_s)
+        if not v_match:
+            v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        if v_match:
+            return f"Nemotron {v_match.group(1)}"
+        s_match = re.search(r"(\d+b)", lower_s)
+        size = f" {s_match.group(1).upper()}" if s_match else ""
+        return f"Nemotron{size}"[:14].strip()
+
+    # 7. Qwen / QwQ (e.g., qwen-2.5-72b, qwq-32b)
+    if "qwen" in lower_s or "qwq" in lower_s:
+        v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        s_match = re.search(r"(\d+b)", lower_s)
+        size = f" {s_match.group(1).upper()}" if s_match else ""
+        prefix = "QwQ" if "qwq" in lower_s else "Qwen"
+        return f"{prefix}{ver}{size}"[:13].strip()
+
+    # 8. MiniMax (e.g., minimax-m3, minimax-01)
+    if "minimax" in lower_s:
+        m_match = re.search(r"(m\d+|01)", lower_s)
+        tag = f" {m_match.group(1).upper()}" if m_match else " M3"
+        return f"MiniMax{tag}"[:13].strip()
+
+    # 9. Mistral / Mixtral
+    if "mixtral" in lower_s:
+        s_match = re.search(r"(\d+x\d+b)", lower_s)
+        size = f" {s_match.group(1)}" if s_match else ""
+        return f"Mixtral{size}"[:13].strip()
+    if "mistral" in lower_s:
+        var = "Large" if "large" in lower_s else ("Small" if "small" in lower_s else ("Nemo" if "nemo" in lower_s else ""))
+        v_str = f" {var}" if var else ""
+        return f"Mistral{v_str}"[:13].strip()
+
+    # 10. Grok
+    if "grok" in lower_s:
+        v_match = re.search(r"(\d+)", lower_s)
+        ver = f" {v_match.group(1)}" if v_match else ""
+        return f"Grok{ver}"[:13].strip()
+
+    # Generic Fallback: Extract meaningful tokens
+    tokens = s.split()
+    words = [w.title() if not any(c.isdigit() for c in w) else w.upper() for w in tokens[:2]]
+    cand = " ".join(words)
+    return cand[:13].strip() or "Direct LLM"
+
+
+def format_bot_display_name(
+    agent_cfg: AgentConfig,
+    resolved_model: Optional[str] = None,
+) -> str:
     """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
     a_type = agent_cfg.type.lower()
 
     if a_type == "direct_llm":
-        model = agent_cfg.model or ""
-        # Strip suffix tags like :free, :beta, :preview
-        clean_model = model.split(":")[0].split("/")[-1].lower()
-        if "gemini-3.7" in clean_model:
-            base = "Gemini 3.7"
-        elif "gemini-2.5" in clean_model:
-            base = "Gemini 2.5"
-        elif "gemini-2.0" in clean_model:
-            base = "Gemini 2.0"
-        elif "gemini" in clean_model:
-            base = "Gemini"
-        elif "deepseek-v4" in clean_model:
-            base = "DeepSeek V4"
-        elif "deepseek-r1" in clean_model:
-            base = "DeepSeek R1"
-        elif "deepseek" in clean_model:
-            base = "DeepSeek V3"
-        elif "nemotron-3.5" in clean_model:
-            base = "Nemotron 3.5"
-        elif "nemotron" in clean_model:
-            base = "Nemotron"
-        elif "minimax-m3" in clean_model or "minimax" in clean_model:
-            base = "MiniMax M3"
-        elif "qwen" in clean_model:
-            base = "Qwen 2.5"
-        elif "claude-3.5" in clean_model:
-            base = "Claude 3.5"
-        elif "llama-3.3" in clean_model:
-            base = "Llama 3.3"
-        elif "llama" in clean_model:
-            base = "Llama"
-        elif "gpt-4" in clean_model:
-            base = "GPT-4o"
-        elif model:
-            cleaned = re.sub(r"[^a-zA-Z0-9 ]", " ", clean_model).strip()
-            base = cleaned[:12].title()
+        model = resolved_model or agent_cfg.model or ""
+        if model:
+            base = clean_llm_model_name(model)
         elif agent_cfg.provider:
             base = f"{agent_cfg.provider.title()}"
         else:
             base = "Direct LLM"
     elif a_type == "pokechamp":
-        prior = "+LLM" if agent_cfg.use_llm_prior else ""
+        prior = "+L" if agent_cfg.use_llm_prior else ""
         base = f"PokeChamp D{agent_cfg.depth}{prior}"
     elif a_type == "max_damage":
         base = "MaxDamage AI"
@@ -87,7 +190,7 @@ def format_bot_display_name(agent_cfg: AgentConfig) -> str:
     elif a_type == "random":
         base = "Random AI"
     else:
-        base = agent_cfg.name[:12].title()
+        base = agent_cfg.name[:13].title()
 
     # Sanitize base for Showdown (only alphanumeric, dot, hyphen, and space)
     base = re.sub(r"[^a-zA-Z0-9. -]", "", base).strip()
@@ -115,7 +218,11 @@ def create_agent_instance(
             model_override=agent_cfg.model,
         )
 
-    unique_player_name = format_bot_display_name(agent_cfg)
+    resolved_model = agent_cfg.model
+    if not resolved_model and llm_client and getattr(llm_client, "default_model", None):
+        resolved_model = llm_client.default_model
+
+    unique_player_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
 
     from poke_env.ps_client import ServerConfiguration
     server_conf = ServerConfiguration(

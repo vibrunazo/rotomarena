@@ -15,6 +15,57 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RotomArena Replay: {{ player_1 }} vs {{ player_2 }}</title>
+    <script>
+        // Guarantee Showdown Config & Dex routes are defined before any scripts load
+        window.Config = window.Config || {};
+        window.Config.routes = {
+            root: 'pokemonshowdown.com',
+            client: 'play.pokemonshowdown.com',
+            dex: 'dex.pokemonshowdown.com',
+            replays: 'replay.pokemonshowdown.com'
+        };
+
+        // Intercept any broken effect images (stealth rock, spikes, webs) and redirect them to official Showdown fx CDN
+        document.addEventListener('error', function(e) {
+            var target = e.target;
+            if (target && target.tagName === 'IMG') {
+                var src = target.getAttribute('src') || '';
+                if (!target.dataset.retried) {
+                    target.dataset.retried = 'true';
+                    var filename = src.split('/').pop().split('?')[0];
+                    if (filename && filename.endsWith('.png')) {
+                        target.src = 'https://play.pokemonshowdown.com/fx/' + filename;
+                    }
+                }
+            }
+        }, true);
+
+        // Continuously ensure BattleEffects and Dex prefixes are properly set
+        function fixBattleEffects() {
+            var fxBase = 'https://play.pokemonshowdown.com/fx/';
+            if (window.Dex) {
+                if (!window.Dex.fxPrefix || !window.Dex.fxPrefix.startsWith('http')) {
+                    window.Dex.fxPrefix = fxBase;
+                }
+                if (!window.Dex.resourcePrefix || !window.Dex.resourcePrefix.startsWith('http')) {
+                    window.Dex.resourcePrefix = 'https://play.pokemonshowdown.com/';
+                }
+            }
+            if (window.BattleEffects) {
+                for (var id in window.BattleEffects) {
+                    var fx = window.BattleEffects[id];
+                    if (fx && fx.url && !fx.url.startsWith('http') && !fx.url.startsWith('//')) {
+                        fx.url = fxBase + fx.url.replace(/^\\/?(fx\\/)?/, '');
+                    }
+                }
+            }
+        }
+        var fixTimer = setInterval(fixBattleEffects, 50);
+        window.addEventListener('load', function() {
+            fixBattleEffects();
+            setTimeout(function() { clearInterval(fixTimer); }, 10000);
+        });
+    </script>
     <style>
         :root {
             --bg-color: #0b1120;
