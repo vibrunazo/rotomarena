@@ -34,4 +34,4 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 3. **Pokémon Showdown Server:**
    - Server runs on port `8000` (`http://127.0.0.1:8000`).
    - Guest autoconfirmation and battle chat are enabled.
-   - Bot usernames are formatted dynamically based on their model/agent type (e.g., `Gemini 3.7_abc`, `DeepSeek V4_def`, `Nemotron_ghi`, `PokeChamp D1_jkl`).
+   - Bot usernames are formatted cleanly based on their model/agent type without random hashes (e.g., `Gemini 3.7 Flash`, `Gemini 3.8 Flash`, `DeepSeek V4`, `PokeChamp D1`). Only identical mirror matches receive clean numeric tags (e.g., `Gemini 3.7 Flash 1` vs `Gemini 3.7 Flash 2`).

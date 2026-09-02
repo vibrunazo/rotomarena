@@ -32,40 +32,48 @@ def test_create_agent_instances():
     assert agent_pc.agent_name.startswith("PokeChamp D1")
     assert agent_pc.agent_type == "pokechamp"
 
-    # Direct LLM with various model versions
+    # Direct LLM with various model versions (no random hashes)
     cfg_llm_37 = AgentConfig(name="llm_test", type="direct_llm", provider="gemini", model="gemini-3.7-flash")
     agent_llm_37 = create_agent_instance(cfg_llm_37, app_cfg)
-    assert agent_llm_37.agent_name.startswith("Gemini 3.7")
+    assert agent_llm_37.agent_name == "Gemini 3.7 Flash"
     assert agent_llm_37.agent_type == "direct_llm"
 
     cfg_llm_38 = AgentConfig(name="llm_test2", type="direct_llm", provider="gemini", model="gemini-3.8-flash")
     agent_llm_38 = create_agent_instance(cfg_llm_38, app_cfg)
-    assert agent_llm_38.agent_name.startswith("Gemini 3.8")
+    assert agent_llm_38.agent_name == "Gemini 3.8 Flash"
 
     cfg_llm_38_pro = AgentConfig(name="llm_test3", type="direct_llm", provider="gemini", model="gemini-3.8-pro")
     agent_llm_38_pro = create_agent_instance(cfg_llm_38_pro, app_cfg)
-    assert agent_llm_38_pro.agent_name.startswith("Gemini 3.8 Pro")
+    assert agent_llm_38_pro.agent_name == "Gemini 3.8 Pro"
+
+    # Disambiguation tag (for mirror matches)
+    agent_mirror_1 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="1")
+    agent_mirror_2 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="2")
+    assert agent_mirror_1.agent_name == "Gemini 3.7 Flash 1"
+    assert agent_mirror_2.agent_name == "Gemini 3.7 Flash 2"
+    assert len(agent_mirror_1.agent_name) <= 18
+    assert len(agent_mirror_2.agent_name) <= 18
 
     # Heuristic
     cfg_heur = AgentConfig(name="heur_test", type="heuristic")
     agent_heur = create_agent_instance(cfg_heur, app_cfg)
-    assert agent_heur.agent_name.startswith("Heuristic AI")
+    assert agent_heur.agent_name == "Heuristic AI"
     assert agent_heur.agent_type == "heuristic"
 
 
 def test_clean_llm_model_name():
     from rotomarena.matchmaker.tournament import clean_llm_model_name
 
-    assert clean_llm_model_name("gemini-3.7-flash") == "Gemini 3.7"
-    assert clean_llm_model_name("gemini-3.8-flash") == "Gemini 3.8"
+    assert clean_llm_model_name("gemini-3.7-flash") == "Gemini 3.7 Flash"
+    assert clean_llm_model_name("gemini-3.8-flash") == "Gemini 3.8 Flash"
     assert clean_llm_model_name("gemini-3.8-pro") == "Gemini 3.8 Pro"
-    assert clean_llm_model_name("anthropic/claude-3-7-sonnet-20250219") == "Claude 3.7 S"
-    assert clean_llm_model_name("claude-3.5-haiku") == "Claude 3.5 H"
+    assert clean_llm_model_name("anthropic/claude-3-7-sonnet-20250219") == "Claude 3.7 Sonnet"
+    assert clean_llm_model_name("claude-3.5-haiku") == "Claude 3.5 Haiku"
     assert clean_llm_model_name("openai/gpt-4o-mini") == "GPT-4o Mini"
     assert clean_llm_model_name("openai/gpt-4.5-preview") == "GPT-4.5"
     assert clean_llm_model_name("meta-llama/llama-3.3-70b-instruct") == "Llama 3.3 70B"
     assert clean_llm_model_name("qwen/qwen-2.5-72b-instruct") == "Qwen 2.5 72B"
-    assert clean_llm_model_name("nvidia/nemotron-3-ultra-550b-a55b:free") == "Nemotron 3"
+    assert clean_llm_model_name("nvidia/nemotron-3-ultra-550b-a55b:free") == "Nemotron 3 550B"
     assert clean_llm_model_name("nvidia/nemotron-3.5-lightning:free") == "Nemotron 3.5"
     assert clean_llm_model_name("deepseek/deepseek-r1:free") == "DeepSeek R1"
     assert clean_llm_model_name("deepseek/deepseek-v4") == "DeepSeek V4"

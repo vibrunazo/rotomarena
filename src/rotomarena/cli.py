@@ -21,7 +21,11 @@ if sys.platform == "win32":
 
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
-from rotomarena.matchmaker.tournament import TournamentOrchestrator, create_agent_instance
+from rotomarena.matchmaker.tournament import (
+    TournamentOrchestrator,
+    create_agent_instance,
+    format_bot_display_name,
+)
 from rotomarena.server.manager import ShowdownServerManager
 from rotomarena.teams.loader import load_team_file, parse_smogon_team
 from rotomarena.teams.presets import list_available_teams, load_preset_team
@@ -527,8 +531,17 @@ def run_battle(
 
     async def _execute():
         async with server_mgr.ensure_running():
-            player_1 = create_agent_instance(p1_cfg, app_cfg, team_str=t1)
-            player_2 = create_agent_instance(p2_cfg, app_cfg, team_str=t2)
+            # Check for mirror match to avoid duplicate name collision on Showdown
+            p1_preview = format_bot_display_name(p1_cfg, resolved_model=p1_cfg.model)
+            p2_preview = format_bot_display_name(p2_cfg, resolved_model=p2_cfg.model)
+            is_mirror = (p1_preview.lower() == p2_preview.lower())
+
+            player_1 = create_agent_instance(
+                p1_cfg, app_cfg, team_str=t1, player_tag="1" if is_mirror else None
+            )
+            player_2 = create_agent_instance(
+                p2_cfg, app_cfg, team_str=t2, player_tag="2" if is_mirror else None
+            )
 
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(player_1, player_2, n_games=games)

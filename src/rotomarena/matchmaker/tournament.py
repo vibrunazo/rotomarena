@@ -57,10 +57,14 @@ def clean_llm_model_name(model_str: str) -> str:
             var = " Pro"
         elif "ultra" in lower_s:
             var = " Ultra"
+        elif "flash" in lower_s:
+            var = " Flash"
+        elif "exp" in lower_s:
+            var = " Exp"
         res = f"Gemini{ver}{var}".strip()
-        if len(res) <= 14:
+        if len(res) <= 18:
             return res
-        return f"Gem{ver}{var}"[:14].strip()
+        return f"Gem{ver}{var}"[:18].strip()
 
     # 2. Claude (e.g., claude-3.7-sonnet, claude-3.5-haiku, claude-opus)
     if "claude" in lower_s:
@@ -69,9 +73,12 @@ def clean_llm_model_name(model_str: str) -> str:
         var = ""
         for opt in ["sonnet", "haiku", "opus"]:
             if opt in lower_s:
-                var = f" {opt[0].upper()}"  # S, H, O
+                var = f" {opt.title()}"
                 break
-        return f"Claude{ver}{var}"[:13].strip()
+        res = f"Claude{ver}{var}".strip()
+        if len(res) <= 18:
+            return res
+        return f"Claude{ver} {var[1]}"[:18].strip()
 
     # 3. GPT / OpenAI (e.g., gpt-4o, gpt-4o-mini, gpt-4.5, o1, o3-mini, gpt-5)
     if "gpt" in lower_s or re.search(r"\b(o1|o3|o4)\b", lower_s):
@@ -82,18 +89,18 @@ def clean_llm_model_name(model_str: str) -> str:
         if "4.5" in lower_s:
             return "GPT-4.5"
         if "o1 mini" in lower_s or "o1-mini" in lower_s:
-            return "OpenAI o1-m"
+            return "OpenAI o1-mini"
         if "o1" in lower_s:
             return "OpenAI o1"
         if "o3 mini" in lower_s or "o3-mini" in lower_s:
-            return "OpenAI o3-m"
+            return "OpenAI o3-mini"
         if "o3" in lower_s:
             return "OpenAI o3"
         if "o4" in lower_s:
             return "OpenAI o4"
         v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
         ver = f" {v_match.group(1)}" if v_match else ""
-        return f"GPT{ver}"[:13].strip()
+        return f"GPT{ver}"[:18].strip()
 
     # 4. DeepSeek (e.g., deepseek-r1, deepseek-v4, deepseek-v3, deepseek-chat)
     if "deepseek" in lower_s:
@@ -105,7 +112,7 @@ def clean_llm_model_name(model_str: str) -> str:
             return "DeepSeek V3"
         v_match = re.search(r"(v\d+|r\d+)", lower_s)
         if v_match:
-            return f"DeepSeek {v_match.group(1).upper()}"[:13]
+            return f"DeepSeek {v_match.group(1).upper()}"[:18]
         return "DeepSeek"
 
     # 5. Llama (e.g., llama-3.3-70b, llama-3.1-8b, llama-3.2-3b)
@@ -114,18 +121,17 @@ def clean_llm_model_name(model_str: str) -> str:
         ver = f" {v_match.group(1)}" if v_match else ""
         s_match = re.search(r"(\d+b)", lower_s)
         size = f" {s_match.group(1).upper()}" if s_match else ""
-        return f"Llama{ver}{size}"[:13].strip()
+        return f"Llama{ver}{size}"[:18].strip()
 
     # 6. Nemotron (e.g., nemotron-3-ultra-550b, nemotron-3.5-lightning, nemotron-70b)
     if "nemotron" in lower_s:
         v_match = re.search(r"nemotron\s*(\d+(?:\.\d+)?)", lower_s)
         if not v_match:
             v_match = re.search(r"(\d+(?:\.\d+)?)", lower_s)
-        if v_match:
-            return f"Nemotron {v_match.group(1)}"
+        ver = f" {v_match.group(1)}" if v_match else ""
         s_match = re.search(r"(\d+b)", lower_s)
         size = f" {s_match.group(1).upper()}" if s_match else ""
-        return f"Nemotron{size}"[:14].strip()
+        return f"Nemotron{ver}{size}"[:18].strip()
 
     # 7. Qwen / QwQ (e.g., qwen-2.5-72b, qwq-32b)
     if "qwen" in lower_s or "qwq" in lower_s:
@@ -134,40 +140,41 @@ def clean_llm_model_name(model_str: str) -> str:
         s_match = re.search(r"(\d+b)", lower_s)
         size = f" {s_match.group(1).upper()}" if s_match else ""
         prefix = "QwQ" if "qwq" in lower_s else "Qwen"
-        return f"{prefix}{ver}{size}"[:13].strip()
+        return f"{prefix}{ver}{size}"[:18].strip()
 
     # 8. MiniMax (e.g., minimax-m3, minimax-01)
     if "minimax" in lower_s:
         m_match = re.search(r"(m\d+|01)", lower_s)
         tag = f" {m_match.group(1).upper()}" if m_match else " M3"
-        return f"MiniMax{tag}"[:13].strip()
+        return f"MiniMax{tag}"[:18].strip()
 
     # 9. Mistral / Mixtral
     if "mixtral" in lower_s:
         s_match = re.search(r"(\d+x\d+b)", lower_s)
         size = f" {s_match.group(1)}" if s_match else ""
-        return f"Mixtral{size}"[:13].strip()
+        return f"Mixtral{size}"[:18].strip()
     if "mistral" in lower_s:
         var = "Large" if "large" in lower_s else ("Small" if "small" in lower_s else ("Nemo" if "nemo" in lower_s else ""))
         v_str = f" {var}" if var else ""
-        return f"Mistral{v_str}"[:13].strip()
+        return f"Mistral{v_str}"[:18].strip()
 
     # 10. Grok
     if "grok" in lower_s:
         v_match = re.search(r"(\d+)", lower_s)
         ver = f" {v_match.group(1)}" if v_match else ""
-        return f"Grok{ver}"[:13].strip()
+        return f"Grok{ver}"[:18].strip()
 
     # Generic Fallback: Extract meaningful tokens
     tokens = s.split()
     words = [w.title() if not any(c.isdigit() for c in w) else w.upper() for w in tokens[:2]]
     cand = " ".join(words)
-    return cand[:13].strip() or "Direct LLM"
+    return cand[:18].strip() or "Direct LLM"
 
 
 def format_bot_display_name(
     agent_cfg: AgentConfig,
     resolved_model: Optional[str] = None,
+    tag: Optional[str] = None,
 ) -> str:
     """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
     a_type = agent_cfg.type.lower()
@@ -190,21 +197,23 @@ def format_bot_display_name(
     elif a_type == "random":
         base = "Random AI"
     else:
-        base = agent_cfg.name[:13].title()
+        base = agent_cfg.name.title()
 
     # Sanitize base for Showdown (only alphanumeric, dot, hyphen, and space)
     base = re.sub(r"[^a-zA-Z0-9. -]", "", base).strip()
 
-    import uuid
-    suffix = uuid.uuid4().hex[:3]
-    max_base_len = 18 - 1 - len(suffix)
-    return f"{base[:max_base_len]}_{suffix}"
+    if tag:
+        max_base_len = 18 - 1 - len(str(tag))
+        return f"{base[:max_base_len].strip()} {tag}"
+
+    return base[:18].strip()
 
 
 def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
     team_str: Optional[str] = None,
+    player_tag: Optional[str] = None,
 ) -> BaseBenchmarkPlayer:
     """Factory to instantiate a Benchmark player from its configuration model."""
     a_type = agent_cfg.type.lower()
@@ -222,7 +231,9 @@ def create_agent_instance(
     if not resolved_model and llm_client and getattr(llm_client, "default_model", None):
         resolved_model = llm_client.default_model
 
-    unique_player_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
+    unique_player_name = format_bot_display_name(
+        agent_cfg, resolved_model=resolved_model, tag=player_tag
+    )
 
     from poke_env.ps_client import ServerConfiguration
     server_conf = ServerConfiguration(
@@ -321,19 +332,25 @@ class TournamentOrchestrator:
         for p1_name, p2_name in pairs:
             p1_cfg = self.config.agents.get(p1_name, AgentConfig(name=p1_name))
             p2_cfg = self.config.agents.get(p2_name, AgentConfig(name=p2_name))
+            p1_preview = format_bot_display_name(p1_cfg)
+            p2_preview = format_bot_display_name(p2_cfg)
+            is_mirror = (p1_preview.lower() == p2_preview.lower())
 
             for round_idx in range(1, self.tournament_config.rounds_per_pair + 1):
                 # Pick teams for round
                 t1 = loaded_teams[(round_idx - 1) % len(loaded_teams)]
                 t2 = loaded_teams[round_idx % len(loaded_teams)]
 
+                tag_1 = "1" if is_mirror else None
+                tag_2 = "2" if is_mirror else None
+
                 # Alternate side assignments
                 if round_idx % 2 == 1:
-                    player_a = create_agent_instance(p1_cfg, self.config, team_str=t1)
-                    player_b = create_agent_instance(p2_cfg, self.config, team_str=t2)
+                    player_a = create_agent_instance(p1_cfg, self.config, team_str=t1, player_tag=tag_1)
+                    player_b = create_agent_instance(p2_cfg, self.config, team_str=t2, player_tag=tag_2)
                 else:
-                    player_a = create_agent_instance(p2_cfg, self.config, team_str=t2)
-                    player_b = create_agent_instance(p1_cfg, self.config, team_str=t1)
+                    player_a = create_agent_instance(p2_cfg, self.config, team_str=t2, player_tag=tag_2)
+                    player_b = create_agent_instance(p1_cfg, self.config, team_str=t1, player_tag=tag_1)
 
                 self.console.print(
                     f"\n[bold yellow]▶ Match:[/bold yellow] [cyan]{player_a.agent_name}[/cyan] vs [magenta]{player_b.agent_name}[/magenta] (Game {round_idx}/{self.tournament_config.rounds_per_pair})"
