@@ -23,7 +23,6 @@
    - Smogon `.txt` export format parser, validator, and Showdown packed team generator.
    - Includes standard Gen 9 OU sample teams (Balance, Hyper Offense, Bulky Offense, Rain).
    - Automated 1v1 battle series runner with side swapping.
-   - Round-robin tournament bracket manager with dynamic Elo rating computation.
 
 5. **Telemetry & Replays:**
    - Standalone interactive HTML replays and raw Showdown protocol dumps.
@@ -71,13 +70,13 @@ uv run rotomarena server start
 uv run rotomarena server status
 ```
 
-### 4. Running Battles & Tournaments
+### 4. Running Battles
 
 #### 1v1 Matchup: PokéChamp vs Direct LLM
 ```bash
 uv run rotomarena battle \
   --p1 pokechamp \
-  --p2 direct-llm \
+  --p2 direct_llm \
   --team1 balance \
   --team2 hyper_offense \
   --games 3
@@ -90,11 +89,6 @@ uv run rotomarena battle \
   --p2 heuristic \
   --p1-depth 2 \
   --games 5
-```
-
-#### Round-Robin Tournament
-```bash
-uv run rotomarena tournament --config config.yaml
 ```
 
 #### Manage Teams
@@ -131,7 +125,7 @@ rotomarena/
 │       ├── search/              # PokéChamp Minimax search, heuristics & simulator
 │       ├── agents/              # Player implementations (PokéChamp, Direct LLM, etc.)
 │       ├── teams/               # Smogon team parser & loader
-│       ├── matchmaker/          # 1v1 battle series, tournament & Elo
+│       ├── matchmaker/          # 1v1 battle series runner
 │       └── telemetry/           # Breadcrumb logging, replay HTML saver & reports
 └── tests/                       # Pytest test suite
 ```

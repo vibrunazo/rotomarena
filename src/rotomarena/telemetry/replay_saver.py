@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import html
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -76,7 +75,6 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             --accent-green: #4ade80;
             --accent-red: #f87171;
             --border: #334155;
-            --caster-bg: #182234;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -126,120 +124,6 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             padding: 12px 0;
         }
         
-        /* 🎙️ Commentary & TTS Caster Panel */
-        .commentary-panel {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid #38bdf8;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
-        }
-        .commentary-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 14px;
-            margin-bottom: 14px;
-        }
-        .commentary-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #38bdf8;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .pulse-icon {
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-        .pulse-icon.speaking {
-            animation: pulse-glow 1s infinite alternate;
-        }
-        @keyframes pulse-glow {
-            from { transform: scale(1.0); filter: drop-shadow(0 0 2px #38bdf8); }
-            to { transform: scale(1.3); filter: drop-shadow(0 0 8px #38bdf8); }
-        }
-        .commentary-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            cursor: pointer;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: none;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-        .btn-primary {
-            background: #0284c7;
-            color: #ffffff;
-        }
-        .btn-primary:hover {
-            background: #0369a1;
-        }
-        .btn-warning {
-            background: #f59e0b;
-            color: #ffffff;
-        }
-        .btn-warning:hover {
-            background: #d97706;
-        }
-        .btn-secondary {
-            background: #334155;
-            color: #f8fafc;
-        }
-        .btn-secondary:hover {
-            background: #475569;
-        }
-        .control-group {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-        .select-input {
-            background: #0f172a;
-            color: #f8fafc;
-            border: 1px solid var(--border);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            max-width: 200px;
-        }
-        .teleprompter-box {
-            background: #0a0f1d;
-            border: 1px solid #1e293b;
-            border-left: 4px solid #38bdf8;
-            border-radius: 8px;
-            padding: 16px 20px;
-            min-height: 54px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .teleprompter-turn-badge {
-            font-size: 12px;
-            font-weight: bold;
-            color: #38bdf8;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .teleprompter-text {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #f1f5f9;
-        }
-
         details.log-section {
             background-color: var(--card-bg);
             border: 1px solid var(--border);
@@ -310,33 +194,6 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- 🎙️ Commentary & TTS Caster Panel -->
-        <div class="commentary-panel" id="commentary-section" style="{% if not commentary_json %}display:none;{% endif %}">
-            <div class="commentary-header">
-                <div class="commentary-title">
-                    <span class="pulse-icon" id="tts-pulse">🎙️</span>
-                    <span>Play-by-Play Esports Commentary & TTS Caster</span>
-                </div>
-                <div class="commentary-controls">
-                    <button id="tts-toggle-btn" class="btn btn-primary" onclick="toggleCommentaryPlay()">▶ Start Commentary</button>
-                    <button id="tts-stop-btn" class="btn btn-secondary" onclick="stopCommentary()">⏹ Reset</button>
-                    <div class="control-group">
-                        <label for="tts-voice-select">Voice:</label>
-                        <select id="tts-voice-select" class="select-input"></select>
-                    </div>
-                    <div class="control-group">
-                        <label for="tts-rate-input">Speed: <span id="tts-rate-val">1.1x</span></label>
-                        <input type="range" id="tts-rate-input" min="0.8" max="1.6" step="0.1" value="1.1" oninput="updateTtsRate(this.value)">
-                    </div>
-                </div>
-            </div>
-
-            <div class="teleprompter-box">
-                <div class="teleprompter-turn-badge" id="teleprompter-turn-badge">Opening Matchup</div>
-                <div class="teleprompter-text" id="teleprompter-text">Press "Start Commentary" to begin live turn-by-turn voice narration...</div>
-            </div>
-        </div>
-
         <div class="replay-container">
             <div class="wrapper replay-wrapper" style="max-width:1180px;margin:0 auto">
                 <div class="battle"></div>
@@ -374,243 +231,7 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
     <script type="text/plain" class="battle-log-data">
 {{ raw_log_text }}
     </script>
-    {% if commentary_json %}
-    <script type="application/json" id="rotomarena-commentary-data">
-{{ commentary_json }}
-    </script>
-    {% endif %}
     <script src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
-
-    <script>
-    (function() {
-        let commentaryData = null;
-        try {
-            const raw = document.getElementById('rotomarena-commentary-data');
-            if (raw && raw.textContent.trim()) {
-                commentaryData = JSON.parse(raw.textContent.trim());
-            }
-        } catch (e) {
-            console.error("Failed to parse commentary data:", e);
-        }
-
-        if (!commentaryData || !commentaryData.turns || !commentaryData.turns.length) {
-            return;
-        }
-
-        const section = document.getElementById('commentary-section');
-        if (section) section.style.display = 'block';
-
-        let isPlaying = false;
-        let currentTurn = 0;
-        let voices = [];
-        let speechRate = 1.1;
-
-        const toggleBtn = document.getElementById('tts-toggle-btn');
-        const voiceSelect = document.getElementById('tts-voice-select');
-        const turnBadge = document.getElementById('teleprompter-turn-badge');
-        const teleText = document.getElementById('teleprompter-text');
-        const pulseIcon = document.getElementById('tts-pulse');
-
-        function loadVoices() {
-            if (!('speechSynthesis' in window)) return;
-            voices = window.speechSynthesis.getVoices();
-            if (!voiceSelect) return;
-            voiceSelect.innerHTML = '';
-            
-            const targetLang = (commentaryData && commentaryData.language ? commentaryData.language.toLowerCase() : 'en-us');
-            const isPt = targetLang.includes('pt') || targetLang.includes('br');
-            const isEs = targetLang.includes('es');
-            const isJa = targetLang.includes('ja');
-            const isFr = targetLang.includes('fr');
-            const isDe = targetLang.includes('de');
-
-            const prefix = isPt ? 'pt' : (isEs ? 'es' : (isJa ? 'ja' : (isFr ? 'fr' : (isDe ? 'de' : 'en'))));
-
-            const sorted = [...voices].sort((a, b) => {
-                const aMatch = a.lang.toLowerCase().startsWith(prefix) ? 0 : 1;
-                const bMatch = b.lang.toLowerCase().startsWith(prefix) ? 0 : 1;
-                if (aMatch !== bMatch) return aMatch - bMatch;
-                return a.name.localeCompare(b.name);
-            });
-
-            let defaultSelected = false;
-            sorted.forEach((v, idx) => {
-                const opt = document.createElement('option');
-                opt.value = v.name;
-                opt.textContent = `${v.name} (${v.lang})`;
-                const matchesLang = v.lang.toLowerCase().startsWith(prefix);
-                if (!defaultSelected && matchesLang) {
-                    if (isPt && (v.lang.toLowerCase().includes('br') || v.name.includes('Brazil') || v.name.includes('Natural') || idx === 0)) {
-                        opt.selected = true;
-                        defaultSelected = true;
-                    } else if (!isPt && (v.name.includes('Natural') || v.name.includes('Online') || v.name.includes('Google') || idx === 0)) {
-                        opt.selected = true;
-                        defaultSelected = true;
-                    }
-                }
-                voiceSelect.appendChild(opt);
-            });
-        }
-
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = loadVoices;
-            loadVoices();
-        }
-
-        function getTurnCommentary(t) {
-            const match = commentaryData.turns.find(x => x.turn === t);
-            return match || null;
-        }
-
-        function updateUI(t, text, isSpeaking) {
-            if (turnBadge) {
-                const turnObj = getTurnCommentary(t);
-                turnBadge.textContent = turnObj && turnObj.title ? turnObj.title : (t === 0 ? "Opening Leads" : `Turn ${t}`);
-            }
-            if (teleText) teleText.textContent = text || "Battle in progress...";
-            if (pulseIcon) {
-                if (isSpeaking) {
-                    pulseIcon.classList.add('speaking');
-                } else {
-                    pulseIcon.classList.remove('speaking');
-                }
-            }
-        }
-
-        function speakTurn(turnNum) {
-            if (!isPlaying) return;
-            const turnObj = getTurnCommentary(turnNum);
-            if (!turnObj) {
-                if (turnNum < commentaryData.total_turns) {
-                    advanceToTurn(turnNum + 1);
-                } else {
-                    stop();
-                }
-                return;
-            }
-
-            updateUI(turnNum, turnObj.commentary, true);
-
-            if (!('speechSynthesis' in window)) {
-                setTimeout(() => {
-                    if (isPlaying) advanceToTurn(turnNum + 1);
-                }, 3000);
-                return;
-            }
-
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(turnObj.commentary);
-            utterance.rate = speechRate;
-            utterance.lang = commentaryData.language || 'en-US';
-            
-            const selName = voiceSelect ? voiceSelect.value : '';
-            const chosenVoice = voices.find(v => v.name === selName);
-            if (chosenVoice) utterance.voice = chosenVoice;
-
-            utterance.onend = () => {
-                updateUI(turnNum, turnObj.commentary, false);
-                if (!isPlaying) return;
-                
-                setTimeout(() => {
-                    if (!isPlaying) return;
-                    if (turnNum < commentaryData.total_turns) {
-                        advanceToTurn(turnNum + 1);
-                    } else {
-                        stop();
-                    }
-                }, 400);
-            };
-
-            utterance.onerror = (e) => {
-                console.warn("TTS error:", e);
-                updateUI(turnNum, turnObj.commentary, false);
-                if (isPlaying && turnNum < commentaryData.total_turns) {
-                    setTimeout(() => advanceToTurn(turnNum + 1), 1000);
-                }
-            };
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function advanceToTurn(nextTurn) {
-            currentTurn = nextTurn;
-            if (window.Replays && window.Replays.battle) {
-                try {
-                    if (typeof window.Replays.battle.seekTurn === 'function') {
-                        window.Replays.battle.seekTurn(nextTurn);
-                    } else if (typeof window.Replays.battle.stepTurn === 'function') {
-                        window.Replays.battle.stepTurn();
-                    }
-                } catch (err) {
-                    console.warn("Replay step error:", err);
-                }
-            }
-            speakTurn(nextTurn);
-        }
-
-        function start() {
-            isPlaying = true;
-            if (toggleBtn) {
-                toggleBtn.textContent = '⏸ Pause Commentary';
-                toggleBtn.classList.remove('btn-primary');
-                toggleBtn.classList.add('btn-warning');
-            }
-            if (window.Replays && window.Replays.battle && typeof window.Replays.battle.turn === 'number') {
-                currentTurn = window.Replays.battle.turn;
-            }
-            speakTurn(currentTurn);
-        }
-
-        function pause() {
-            isPlaying = false;
-            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-            if (toggleBtn) {
-                toggleBtn.textContent = '▶ Resume Commentary';
-                toggleBtn.classList.remove('btn-warning');
-                toggleBtn.classList.add('btn-primary');
-            }
-            updateUI(currentTurn, getTurnCommentary(currentTurn)?.commentary, false);
-        }
-
-        function stop() {
-            isPlaying = false;
-            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-            if (toggleBtn) {
-                toggleBtn.textContent = '▶ Start Commentary';
-                toggleBtn.classList.remove('btn-warning');
-                toggleBtn.classList.add('btn-primary');
-            }
-            currentTurn = 0;
-            updateUI(0, getTurnCommentary(0)?.commentary || "Ready to start commentary.", false);
-        }
-
-        window.toggleCommentaryPlay = function() {
-            if (isPlaying) {
-                pause();
-            } else {
-                start();
-            }
-        };
-
-        window.stopCommentary = function() {
-            stop();
-            if (window.Replays && window.Replays.battle && typeof window.Replays.battle.seekTurn === 'function') {
-                window.Replays.battle.seekTurn(0);
-            }
-        };
-
-        window.updateTtsRate = function(val) {
-            speechRate = parseFloat(val);
-            const label = document.getElementById('tts-rate-val');
-            if (label) label.textContent = `${speechRate.toFixed(1)}x`;
-        };
-
-        const intro = getTurnCommentary(0);
-        if (intro) {
-            updateUI(0, intro.commentary, false);
-        }
-    })();
-    </script>
 </body>
 </html>
 """
@@ -649,22 +270,10 @@ def save_battle_replay_html(
     raw_logs: Any,
     output_path: str | Path,
     format_str: str = "gen9ou",
-    commentary: Optional[Any] = None,
 ) -> Path:
-    """Renders and saves a standalone animated HTML replay viewer with TTS commentary."""
+    """Renders and saves a standalone animated HTML replay viewer."""
     lines = _flatten_logs(raw_logs)
     raw_log_text = "\n".join(lines)
-
-    commentary_json = None
-    if commentary is not None:
-        if hasattr(commentary, "model_dump_json"):
-            commentary_json = commentary.model_dump_json(indent=2)
-        elif hasattr(commentary, "json"):
-            commentary_json = commentary.json()
-        elif isinstance(commentary, dict):
-            commentary_json = json.dumps(commentary, indent=2)
-        elif isinstance(commentary, str):
-            commentary_json = commentary
 
     template = Template(REPLAY_HTML_TEMPLATE)
     html_content = template.render(
@@ -676,7 +285,6 @@ def save_battle_replay_html(
         duration_seconds=round(duration_seconds, 2),
         raw_log_lines=lines,
         raw_log_text=raw_log_text,
-        commentary_json=commentary_json,
         format=format_str,
     )
 

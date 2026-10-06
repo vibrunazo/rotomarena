@@ -1,5 +1,5 @@
 # =====================================================================
-# RotomArena Benchmark & Tournament Configuration
+# RotomArena Benchmark Configuration
 # =====================================================================
 
 server:
@@ -78,21 +78,6 @@ agents:
 
   baseline_random:
     type: "random"
-
-# Tournament Configuration
-tournament:
-  name: "Gen9 OU AI Championship"
-  format: "gen9ou"
-  rounds_per_pair: 2
-  teams:
-    - "data/teams/gen9ou_balance.txt"
-    - "data/teams/gen9ou_hyper_offense.txt"
-  participants:
-    - "pokechamp_d1_heur"
-    - "direct_llm_gemini"
-    - "baseline_heuristic"
-  initial_elo: 1500
-  k_factor: 32
 
 telemetry:
   output_dir: "./runs"

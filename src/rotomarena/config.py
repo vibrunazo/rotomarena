@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Dict, Optional
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
@@ -109,22 +109,6 @@ class AgentConfig(BaseModel):
     )
 
 
-class TournamentConfig(BaseModel):
-    """Configuration for a round-robin tournament."""
-
-    name: str = Field(default="Gen9 OU Tournament")
-    format: str = Field(default="gen9ou")
-    rounds_per_pair: int = Field(
-        default=2, description="Number of games per pair (swapping sides)"
-    )
-    teams: List[str] = Field(
-        default_factory=lambda: ["data/teams/gen9ou_balance.txt"]
-    )
-    participants: List[str] = Field(default_factory=list)
-    initial_elo: float = Field(default=1500.0)
-    k_factor: float = Field(default=32.0)
-
-
 class TelemetryConfig(BaseModel):
     """Telemetry and replay recording settings."""
 
@@ -132,12 +116,6 @@ class TelemetryConfig(BaseModel):
     save_replays: bool = Field(default=True)
     save_breadcrumbs: bool = Field(default=True)
     save_reports: bool = Field(default=True)
-    generate_commentary: bool = Field(
-        default=False, description="Auto-generate LLM play-by-play commentary"
-    )
-    commentary_language: str = Field(
-        default="en-US", description="Language code for commentary (e.g. en-US, pt-BR)"
-    )
 
 
 class AppConfig(BaseSettings):
@@ -146,7 +124,6 @@ class AppConfig(BaseSettings):
     server: ServerConfig = Field(default_factory=ServerConfig)
     providers: Dict[str, ProviderConfig] = Field(default_factory=dict)
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
-    tournament: Optional[TournamentConfig] = Field(default=None)
     telemetry: TelemetryConfig = Field(default_factory=TelemetryConfig)
 
     model_config = SettingsConfigDict(
@@ -223,8 +200,5 @@ class AppConfig(BaseSettings):
                     type="random",
                 ),
             },
-            tournament=TournamentConfig(
-                participants=["pokechamp_d1", "baseline_heuristic", "baseline_random"]
-            ),
             telemetry=TelemetryConfig(),
         )

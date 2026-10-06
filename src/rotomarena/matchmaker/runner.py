@@ -6,13 +6,12 @@ import datetime
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 from pydantic import BaseModel, Field
 
-from poke_env.player.player import Player
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.config import TelemetryConfig
-from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, MatchTelemetry
+from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder
 from rotomarena.telemetry.replay_saver import save_battle_raw_json, save_battle_replay_html
 from rotomarena.telemetry.reporter import generate_match_markdown_report
 
@@ -29,7 +28,6 @@ class MatchResult(BaseModel):
     replay_html_path: Optional[str] = None
     breadcrumbs_json_path: Optional[str] = None
     report_md_path: Optional[str] = None
-    commentary_json_path: Optional[str] = None
 
 
 class SeriesResult(BaseModel):
@@ -120,30 +118,6 @@ class MatchRunner:
         if not raw_logs and hasattr(last_battle_p1, "observations"):
             raw_logs = [str(obs) for obs in last_battle_p1.observations.values()]
 
-        commentary = None
-        commentary_path = None
-        if self.telemetry_config.generate_commentary:
-            try:
-                from rotomarena.commentary.generator import CommentaryGenerator
-                gen = CommentaryGenerator()
-                commentary = await gen.generate_commentary(
-                    raw_logs=raw_logs,
-                    p1_name=player_1.agent_name,
-                    p2_name=player_2.agent_name,
-                    match_id=match_id,
-                    winner=winner,
-                    total_turns=total_turns,
-                    format_str=player_1.format,
-                    language=self.telemetry_config.commentary_language,
-                    breadcrumbs=[b.model_dump() for b in telemetry.breadcrumbs],
-                )
-                comm_p = match_dir / "commentary.json"
-                comm_p.write_text(commentary.model_dump_json(indent=2), encoding="utf-8")
-                commentary_path = str(comm_p)
-            except Exception as e:
-                import logging
-                logging.getLogger("rotomarena").warning(f"Failed to generate commentary: {e}")
-
         if self.telemetry_config.save_replays:
             html_p = match_dir / "replay.html"
             save_battle_replay_html(
@@ -156,7 +130,6 @@ class MatchRunner:
                 raw_logs=raw_logs,
                 output_path=html_p,
                 format_str=player_1.format,
-                commentary=commentary,
             )
             replay_html_path = str(html_p)
 
@@ -187,7 +160,6 @@ class MatchRunner:
             replay_html_path=replay_html_path,
             breadcrumbs_json_path=breadcrumbs_path,
             report_md_path=report_md_path,
-            commentary_json_path=commentary_path,
         )
 
     async def run_series(

@@ -1,26 +1,7 @@
-"""Tests for Elo rating updates and matchmaker orchestration."""
+"""Tests for the agent factory and bot display names."""
 
-import pytest
-from rotomarena.matchmaker.elo import EloRatingSystem
-from rotomarena.matchmaker.tournament import create_agent_instance
+from rotomarena.agents.factory import clean_llm_model_name, create_agent_instance
 from rotomarena.config import AgentConfig, AppConfig
-
-
-def test_elo_rating_updates():
-    elo = EloRatingSystem(initial_elo=1500.0, k_factor=32.0)
-    
-    # Win for agent A
-    new_a, new_b = elo.record_match("AgentA", "AgentB", winner="AgentA")
-    assert new_a > 1500.0
-    assert new_b < 1500.0
-    assert round(new_a + new_b, 1) == 3000.0
-
-    # Leaderboard
-    leaderboard = elo.get_leaderboard()
-    assert len(leaderboard) == 2
-    assert leaderboard[0].name == "AgentA"
-    assert leaderboard[0].wins == 1
-    assert leaderboard[0].win_rate == 100.0
 
 
 def test_create_agent_instances():
@@ -62,8 +43,6 @@ def test_create_agent_instances():
 
 
 def test_clean_llm_model_name():
-    from rotomarena.matchmaker.tournament import clean_llm_model_name
-
     assert clean_llm_model_name("gemini-3.7-flash") == "Gemini 3.7 Flash"
     assert clean_llm_model_name("gemini-3.8-flash") == "Gemini 3.8 Flash"
     assert clean_llm_model_name("gemini-3.8-pro") == "Gemini 3.8 Pro"
