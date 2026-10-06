@@ -3,81 +3,89 @@
 # =====================================================================
 
 server:
-  host: "localhost"
+  host: "127.0.0.1"   # Showdown also binds to this address
   port: 8000
   websocket_path: "/showdown/websocket"
   action_path: "/action.php?"
   no_security: true
   auto_start: true
 
-# LLM Providers Configuration
-providers:
-  gemini:
-    base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
-    api_key_env: "GEMINI_API_KEY"
-    default_model: "gemini-3.7-flash"
-    temperature: 0.2
-    timeout: 30.0
+# Rules shared by every player in a season. They are recorded in every match;
+# changing any of them starts a new season.
+ruleset:
+  version: "s1"
+  max_output_tokens: 1024   # per turn; a cut-off answer plays the default move
+  turn_timeout: 900         # seconds; only catches a hung server
+  reasoning: "off"          # hidden reasoning: off | low | medium | high
 
-  openrouter:
-    base_url: "https://openrouter.ai/api/v1"
-    api_key_env: "OPENROUTER_API_KEY"
-    default_model: "anthropic/claude-3.5-sonnet"
-    temperature: 0.2
-    timeout: 30.0
+# Built-in providers: openrouter (default), local (llama.cpp on :8080), gemini, ollama, vllm (:8001).
+# Entries here override or extend them, e.g.:
+# providers:
+#   local:
+#     base_url: "http://127.0.0.1:8080/v1"
+#     api_key: "local"
+#     api_style: "llama.cpp"
+#     default_model: "bonsai"
 
-  ollama:
-    base_url: "http://localhost:11434/v1"
-    api_key: "ollama"
-    default_model: "llama3.3:70b"
-    temperature: 0.2
-    timeout: 60.0
-
-# Registered Benchmark Agents
+# Model registry: `rotomarena battle --p1 <config id>` uses these entries.
 agents:
-  pokechamp_d1_heur:
+  # Anchors (free, never change)
+  heuristic:
+    type: "heuristic"
+  pokechamp:
     type: "pokechamp"
-    depth: 1
-    use_llm_prior: false
-    evaluation_weights:
-      alive_pokemon: 3.0
-      hp_diff: 2.0
-      status: 1.0
-      boosts: 0.5
-      hazards: 0.5
-      matchup: 1.0
 
-  pokechamp_d2_gemini:
-    type: "pokechamp"
-    depth: 2
-    use_llm_prior: true
-    provider: "gemini"
-    model: "gemini-2.5-flash"
-    evaluation_weights:
-      alive_pokemon: 3.0
-      hp_diff: 2.0
-      status: 1.0
-      boosts: 0.5
-      hazards: 0.5
-      matchup: 1.0
-
-  direct_llm_gemini:
-    type: "direct_llm"
-    provider: "gemini"
-    model: "gemini-2.5-flash"
-    temperature: 0.3
-
-  direct_llm_openrouter:
+  # Free API sparring partners
+  nemotron_3_ultra:
     type: "direct_llm"
     provider: "openrouter"
-    model: "anthropic/claude-3.5-sonnet"
-    temperature: 0.3
+    model: "nvidia/nemotron-3-ultra-550b-a55b:free"
+  gemma_4_31b:
+    type: "direct_llm"
+    provider: "openrouter"
+    model: "google/gemma-4-31b-it:free"
 
-  baseline_heuristic:
-    type: "heuristic"
-
-  baseline_random:
-    type: "random"
+  # Season 1 local lineup (draft). Model names are the llama.cpp server aliases.
+  bonsai_2_27b:
+    type: "direct_llm"
+    provider: "local"
+    model: "bonsai"
+    quantization: "PQ2_0"
+  qwen3_8_27b:
+    type: "direct_llm"
+    provider: "local"
+    model: "qwen3.8-27b"
+    quantization: "UD-Q4_K_M"
+  gpt_oss_20b:
+    type: "direct_llm"
+    provider: "local"
+    model: "gpt-oss-20b"
+    quantization: "MXFP4"
+  granite_4_2_30b:
+    type: "direct_llm"
+    provider: "local"
+    model: "granite-4.2-30b"
+    quantization: "Q4_K_M"
+  ornith_1_5_35b_a3b:
+    type: "direct_llm"
+    provider: "local"
+    model: "ornith-1.5-35b-a3b"
+    quantization: "Q4_K_M"
+  kolibri_1:
+    type: "direct_llm"
+    provider: "local"
+    model: "kolibri-1"
+    quantization: "Q4_K_M"
+  ling_3_0_tiny:
+    type: "direct_llm"
+    provider: "local"
+    model: "ling-3.0-tiny"
+    quantization: "Q8_0"
+  minicpm5_2b:
+    type: "direct_llm"
+    provider: "local"
+    model: "minicpm5-2b"
+    quantization: "Q8_0"
 
 telemetry:
   output_dir: "./runs"

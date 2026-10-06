@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from jinja2 import Template
+from jinja2 import Environment
+from markupsafe import Markup
 
 
 REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
@@ -273,9 +274,11 @@ def save_battle_replay_html(
 ) -> Path:
     """Renders and saves a standalone animated HTML replay viewer."""
     lines = _flatten_logs(raw_logs)
-    raw_log_text = "\n".join(lines)
+    # Showdown's convention for a log inlined in <script>: every "/" becomes "\/", so the log can never
+    # contain "</script>"; replay-embed.js turns them back.
+    raw_log_text = Markup("\n".join(lines).replace("/", "\\/"))
 
-    template = Template(REPLAY_HTML_TEMPLATE)
+    template = Environment(autoescape=True).from_string(REPLAY_HTML_TEMPLATE)
     html_content = template.render(
         match_id=match_id,
         player_1=player_1,

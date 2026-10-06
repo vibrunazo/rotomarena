@@ -6,12 +6,13 @@ import datetime
 import re
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from pydantic import BaseModel, Field
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
-from rotomarena.config import TelemetryConfig
-from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder
+from rotomarena.config import RulesetConfig, TelemetryConfig
+from rotomarena.teams.loader import Team
+from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, MatchPlayer
 from rotomarena.telemetry.replay_saver import save_battle_raw_json, save_battle_replay_html
 from rotomarena.telemetry.reporter import generate_match_markdown_report
 
@@ -33,77 +34,87 @@ class MatchResult(BaseModel):
 class SeriesResult(BaseModel):
     """Result of a multi-game series between two agents."""
 
-    p1_name: str
-    p2_name: str
+    a_name: str
+    b_name: str
     total_games: int
-    p1_wins: int = 0
-    p2_wins: int = 0
+    a_wins: int = 0
+    b_wins: int = 0
     draws: int = 0
     matches: List[MatchResult] = Field(default_factory=list)
 
     @property
-    def p1_win_rate(self) -> float:
-        return round((self.p1_wins / max(1, self.total_games)) * 100, 2)
+    def a_win_rate(self) -> float:
+        return round((self.a_wins / max(1, self.total_games)) * 100, 2)
 
     @property
-    def p2_win_rate(self) -> float:
-        return round((self.p2_wins / max(1, self.total_games)) * 100, 2)
+    def b_win_rate(self) -> float:
+        return round((self.b_wins / max(1, self.total_games)) * 100, 2)
+
+
+def series_schedule(n_games: int) -> List[Tuple[bool, bool]]:
+    """Per game: (swap_teams, b_challenges). Every 4 games cover both team assignments from both sides."""
+    return [((g // 2) % 2 == 1, g % 2 == 1) for g in range(n_games)]
 
 
 class MatchRunner:
     """Orchestrates 1v1 battle series between two configured players."""
 
-    def __init__(self, telemetry_config: Optional[TelemetryConfig] = None):
+    def __init__(
+        self,
+        telemetry_config: Optional[TelemetryConfig] = None,
+        ruleset: Optional[RulesetConfig] = None,
+    ):
         self.telemetry_config = telemetry_config or TelemetryConfig()
+        self.ruleset = ruleset or RulesetConfig()
         self.output_dir = Path(self.telemetry_config.output_dir)
 
     async def run_single_battle(
         self,
-        player_1: BaseBenchmarkPlayer,
-        player_2: BaseBenchmarkPlayer,
+        challenger: BaseBenchmarkPlayer,
+        opponent: BaseBenchmarkPlayer,
+        team_names: Tuple[str, str],
         match_index: int = 1,
     ) -> MatchResult:
-        """Executes a single battle between player_1 and player_2."""
+        """Executes one battle; `team_names` are the challenger's and the opponent's teams."""
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        safe_p1 = re.sub(r"[^\w\s-]", "_", player_1.agent_name).strip()
-        safe_p2 = re.sub(r"[^\w\s-]", "_", player_2.agent_name).strip()
-        match_id = f"match_{timestamp}_{safe_p1}_vs_{safe_p2}_g{match_index}"
+        safe_a = re.sub(r"[^\w\s-]", "_", challenger.agent_name).strip()
+        safe_b = re.sub(r"[^\w\s-]", "_", opponent.agent_name).strip()
+        match_id = f"match_{timestamp}_{safe_a}_vs_{safe_b}_g{match_index}"
         match_dir = self.output_dir / match_id
         match_dir.mkdir(parents=True, exist_ok=True)
 
         recorder = BreadcrumbsRecorder(
             match_id=match_id,
-            p1_name=player_1.agent_name,
-            p2_name=player_2.agent_name,
-            format_str=player_1.format,
+            format_str=challenger.format,
+            ruleset=self.ruleset.model_dump(),
         )
-        player_1.set_recorder(recorder)
-        player_2.set_recorder(recorder)
+        challenger.set_recorder(recorder)
+        opponent.set_recorder(recorder)
 
         start_time = time.perf_counter()
-
-        # Execute battle via poke-env
-        await player_1.battle_against(player_2, n_battles=1)
-
+        await challenger.battle_against(opponent, n_battles=1)
         duration = time.perf_counter() - start_time
 
-        # Retrieve the latest battle
-        last_battle_p1 = list(player_1.battles.values())[-1]
-        
+        battle = list(challenger.battles.values())[-1]
+        challenger_role = battle.player_role or "p1"
+        opponent_role = "p2" if challenger_role == "p1" else "p1"
+        players = [
+            MatchPlayer(**challenger.identity.model_dump(), role=challenger_role, team=team_names[0]),
+            MatchPlayer(**opponent.identity.model_dump(), role=opponent_role, team=team_names[1]),
+        ]
+        names = {challenger_role: challenger.agent_name, opponent_role: opponent.agent_name}
+
         winner: Optional[str] = None
-        if last_battle_p1.won:
-            winner = player_1.agent_name
-        elif last_battle_p1.lost:
-            winner = player_2.agent_name
+        if battle.won:
+            winner = challenger.agent_name
+        elif battle.lost:
+            winner = opponent.agent_name
+        total_turns = battle.turn
 
-        total_turns = last_battle_p1.turn
-
-        # Finalize telemetry
         telemetry = recorder.finalize(
-            winner=winner, total_turns=total_turns, duration_sec=duration
+            players=players, winner=winner, total_turns=total_turns, duration_sec=duration
         )
 
-        # Save outputs
         breadcrumbs_path = None
         replay_html_path = None
         report_md_path = None
@@ -113,36 +124,34 @@ class MatchRunner:
             telemetry.save_json(b_path)
             breadcrumbs_path = str(b_path)
 
-        # Get logs from battle if available
-        raw_logs = getattr(last_battle_p1, "_replay_data", []) or []
-        if not raw_logs and hasattr(last_battle_p1, "observations"):
-            raw_logs = [str(obs) for obs in last_battle_p1.observations.values()]
+        raw_logs = getattr(battle, "_replay_data", []) or []
 
         if self.telemetry_config.save_replays:
             html_p = match_dir / "replay.html"
             save_battle_replay_html(
                 match_id=match_id,
-                player_1=player_1.agent_name,
-                player_2=player_2.agent_name,
+                player_1=names["p1"],
+                player_2=names["p2"],
                 winner=winner,
                 total_turns=total_turns,
                 duration_seconds=duration,
                 raw_logs=raw_logs,
                 output_path=html_p,
-                format_str=player_1.format,
+                format_str=challenger.format,
             )
             replay_html_path = str(html_p)
 
-            raw_json_p = match_dir / "battle_log.json"
             save_battle_raw_json(
                 match_id=match_id,
                 metadata={
                     "winner": winner,
                     "turns": total_turns,
                     "duration_seconds": duration,
+                    "players": [p.model_dump() for p in telemetry.players],
+                    "ruleset": telemetry.ruleset,
                 },
                 raw_logs=raw_logs,
-                output_path=raw_json_p,
+                output_path=match_dir / "battle_log.json",
             )
 
         if self.telemetry_config.save_reports:
@@ -152,8 +161,8 @@ class MatchRunner:
 
         return MatchResult(
             match_id=match_id,
-            p1_name=player_1.agent_name,
-            p2_name=player_2.agent_name,
+            p1_name=names["p1"],
+            p2_name=names["p2"],
             winner=winner,
             total_turns=total_turns,
             duration_seconds=round(duration, 2),
@@ -164,30 +173,34 @@ class MatchRunner:
 
     async def run_series(
         self,
-        player_1: BaseBenchmarkPlayer,
-        player_2: BaseBenchmarkPlayer,
-        n_games: int = 2,
+        player_a: BaseBenchmarkPlayer,
+        player_b: BaseBenchmarkPlayer,
+        team_1: Team,
+        team_2: Team,
+        n_games: int = 4,
     ) -> SeriesResult:
-        """Runs a multi-game series between two players."""
-        series = SeriesResult(
-            p1_name=player_1.agent_name,
-            p2_name=player_2.agent_name,
-            total_games=n_games,
-        )
+        """Runs a series that alternates sides every game and swaps teams every two games."""
+        series = SeriesResult(a_name=player_a.agent_name, b_name=player_b.agent_name, total_games=n_games)
 
         try:
-            for g in range(1, n_games + 1):
-                match_res = await self.run_single_battle(player_1, player_2, match_index=g)
+            for g, (swap_teams, b_challenges) in enumerate(series_schedule(n_games), 1):
+                team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
+                player_a.update_team(team_a.to_showdown_packed())
+                player_b.update_team(team_b.to_showdown_packed())
+                if b_challenges:
+                    match_res = await self.run_single_battle(player_b, player_a, (team_b.name, team_a.name), g)
+                else:
+                    match_res = await self.run_single_battle(player_a, player_b, (team_a.name, team_b.name), g)
                 series.matches.append(match_res)
 
-                if match_res.winner == player_1.agent_name:
-                    series.p1_wins += 1
-                elif match_res.winner == player_2.agent_name:
-                    series.p2_wins += 1
+                if match_res.winner == player_a.agent_name:
+                    series.a_wins += 1
+                elif match_res.winner == player_b.agent_name:
+                    series.b_wins += 1
                 else:
                     series.draws += 1
         finally:
-            for p in (player_1, player_2):
+            for p in (player_a, player_b):
                 try:
                     if hasattr(p, "ps_client") and hasattr(p.ps_client, "stop_listening"):
                         await p.ps_client.stop_listening()

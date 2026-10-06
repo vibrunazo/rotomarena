@@ -21,17 +21,17 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 ---
 
 ## ⚙️ Key System Specifications & Defaults
-1. **Turn Limits & Chess-Clock:**
-   - Default turn timeout: **120.0s** (`--turn-timeout 120`)
-   - Default total match time bank: **15:00 / 900.0s** (`--bank-timeout 900`)
-   - Auto-fallback moves execute upon timeout without crashing the match.
+1. **Ruleset (season `s1`, `ruleset:` in config.yaml):**
+   - LLM answers get a **1,024-token output budget per turn**. A cut-off or unparseable answer plays the default move.
+   - Hidden reasoning is **off** for every provider; models reason in the visible `<thought>` block (under 200 words).
+   - The only clock is a **900s per-turn hang guard**; there is no chess-clock bank (local models must not lose turns to slow hardware).
+   - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
 
-2. **Concise Reasoning & Effort Controls:**
-   - OpenRouter calls default to `reasoning: {"effort": "medium"}`.
-   - Direct LLM `<thought>` output must remain **under 60 words total**.
-   - Focus on the single decisive tactical factor (speed tier, knockout threshold, or switch priority).
+2. **Providers:**
+   - `openrouter` is the default; its default model is the free Nemotron above.
+   - `local` is a llama.cpp server on `http://127.0.0.1:8080/v1` (the Smooth Generator's `gen llm serve`; Bonsai's alias is `bonsai`).
 
 3. **Pokémon Showdown Server:**
-   - Server runs on port `8000` (`http://127.0.0.1:8000`).
+   - Server runs on port `8000` and listens on `127.0.0.1` only.
    - Guest autoconfirmation and battle chat are enabled.
-   - Bot usernames are formatted cleanly based on their model/agent type without random hashes (e.g., `Gemini 3.7 Flash`, `Gemini 3.8 Flash`, `DeepSeek V4`, `PokeChamp D1`). Only identical mirror matches receive clean numeric tags (e.g., `Gemini 3.7 Flash 1` vs `Gemini 3.7 Flash 2`).
+   - Bot usernames are formatted cleanly based on their model/agent type without random hashes (e.g., `Gemini 3.7 Flash`, `DeepSeek V4`, `PokeChamp`). Only identical mirror matches receive clean numeric tags (e.g., `Gemini 3.7 Flash 1` vs `Gemini 3.7 Flash 2`).

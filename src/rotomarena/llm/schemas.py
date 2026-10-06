@@ -1,8 +1,8 @@
-"""Pydantic schemas for LLM inputs, decisions, evaluations, and telemetry."""
+"""Pydantic schemas for LLM decisions and telemetry."""
 
 from __future__ import annotations
 
-from typing import List, Literal, Optional
+from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 
@@ -11,58 +11,29 @@ class LLMUsageMetrics(BaseModel):
 
     prompt_tokens: int = 0
     completion_tokens: int = 0
+    reasoning_tokens: int = 0
     total_tokens: int = 0
     latency_ms: float = 0.0
+    finish_reason: str = ""
     model: str = ""
     provider: str = ""
 
 
 class ActionDecision(BaseModel):
-    """Structured decision output from an LLM agent."""
+    """An LLM's parsed answer for one turn. `parse_error` is set when the answer has no usable action."""
 
-    action_type: Literal["MOVE", "SWITCH"] = Field(
-        ..., description="Type of action: MOVE or SWITCH"
+    action_type: Optional[Literal["MOVE", "SWITCH"]] = Field(
+        default=None, description="MOVE or SWITCH; None when parsing failed"
     )
     target: str = Field(
-        ..., description="Name of the move to use or Pokémon to switch into"
+        default="", description="Showdown id of the move or species (lowercase letters and digits)"
     )
     terastallize: bool = Field(
-        default=False, description="Whether to Terastallize this turn"
+        default=False, description="True only when the action line carries a [TERA] tag"
     )
     reasoning: str = Field(
-        default="", description="Strategic reasoning and Chain-of-Thought behind the decision"
+        default="", description="Contents of the <thought> block"
     )
-    confidence: float = Field(
-        default=1.0, ge=0.0, le=1.0, description="Confidence score for this action"
-    )
-    metrics: Optional[LLMUsageMetrics] = None
-
-
-class StateEvaluation(BaseModel):
-    """Leaf state evaluation score from an LLM for PokéChamp Minimax."""
-
-    score: float = Field(
-        ..., ge=-1.0, le=1.0, description="Estimated state advantage from -1.0 (loss) to +1.0 (win)"
-    )
-    win_probability: float = Field(
-        default=0.5, ge=0.0, le=1.0, description="Estimated probability of winning"
-    )
-    explanation: str = Field(
-        default="", description="Brief evaluation reasoning"
-    )
-    metrics: Optional[LLMUsageMetrics] = None
-
-
-class OpponentPrediction(BaseModel):
-    """Predicted opponent action distribution."""
-
-    predicted_action: str = Field(
-        ..., description="Opponent's most likely move or switch"
-    )
-    probability: float = Field(
-        default=0.5, ge=0.0, le=1.0, description="Probability estimate"
-    )
-    rationale: str = Field(
-        default="", description="Reasoning for opponent prediction"
-    )
+    parse_error: Optional[str] = None
+    raw_response: str = ""
     metrics: Optional[LLMUsageMetrics] = None

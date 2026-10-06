@@ -5,28 +5,21 @@ from __future__ import annotations
 import asyncio
 import datetime
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 from poke_env.battle import Battle
 from poke_env.player import BattleOrder, DefaultBattleOrder, Player
-from poke_env.ps_client import (
-    AccountConfiguration,
-    LocalhostServerConfiguration,
-    ServerConfiguration,
+from poke_env.ps_client import AccountConfiguration, ServerConfiguration
+
+from rotomarena.telemetry.breadcrumbs import (
+    BreadcrumbsRecorder,
+    DecisionSource,
+    PlayerIdentity,
+    TurnBreadcrumb,
 )
-
-from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, TurnBreadcrumb
-
-
-def _format_time_bank(seconds: float) -> str:
-    """Format seconds into M:SS representation."""
-    s = int(max(0, seconds))
-    mins = s // 60
-    secs = s % 60
-    return f"{mins}:{secs:02d}"
 
 
 class BaseBenchmarkPlayer(Player):
-    """Base class for all RotomArena benchmark players with telemetry recording, turn timer, and chess-clock bank."""
+    """Base class for all RotomArena benchmark players with telemetry recording and a hang guard."""
 
     def __init__(
         self,
@@ -34,8 +27,8 @@ class BaseBenchmarkPlayer(Player):
         agent_type: str = "base",
         battle_format: str = "gen9ou",
         team: Optional[str] = None,
-        turn_timeout: float = 120.0,
-        bank_timeout: float = 900.0,
+        turn_timeout: float = 900.0,
+        identity: Optional[PlayerIdentity] = None,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
         breadcrumbs_recorder: Optional[BreadcrumbsRecorder] = None,
@@ -58,9 +51,9 @@ class BaseBenchmarkPlayer(Player):
         self.agent_name = player_name
         self.agent_type = agent_type
         self.turn_timeout = turn_timeout
-        self.bank_timeout = bank_timeout
-        self.time_bank_remaining = bank_timeout
-        self._current_battle_tag: Optional[str] = None
+        self.identity = identity or PlayerIdentity(
+            config_id=player_name, display_name=player_name, agent_type=agent_type
+        )
         self.breadcrumbs_recorder = breadcrumbs_recorder
 
     def set_recorder(self, recorder: BreadcrumbsRecorder) -> None:
@@ -80,6 +73,7 @@ class BaseBenchmarkPlayer(Player):
         battle: Battle,
         chosen_order: BattleOrder,
         reasoning: str = "",
+        decision_source: DecisionSource = "model",
         search_telemetry: Optional[Dict[str, Any]] = None,
         llm_metrics: Optional[Dict[str, Any]] = None,
     ) -> None:
@@ -105,6 +99,7 @@ class BaseBenchmarkPlayer(Player):
             turn=battle.turn,
             agent_name=self.agent_name,
             agent_type=self.agent_type,
+            decision_source=decision_source,
             active_pokemon=active_name,
             active_hp_pct=active_hp,
             opponent_active=opp_name,
@@ -119,90 +114,44 @@ class BaseBenchmarkPlayer(Player):
         self.breadcrumbs_recorder.record_turn(crumb)
 
     def choose_default_order(self, battle: Battle) -> BattleOrder:
-        """Safely picks any available move or switch as fallback."""
+        """The fallback ("Autopilot") move: the first legal move, else the first legal switch."""
         if battle.available_moves:
             return self.create_order(battle.available_moves[0])
         elif battle.available_switches:
             return self.create_order(battle.available_switches[0])
         return DefaultBattleOrder()
 
-    async def _async_choose_move_with_timer(self, battle: Battle) -> BattleOrder:
-        """Wraps move computation with a 45s turn timer and 7min total bank timer."""
-        # Reset bank on new match
-        b_tag = getattr(battle, "battle_tag", "battle-unknown")
-        if self._current_battle_tag != b_tag:
-            self._current_battle_tag = b_tag
-            self.time_bank_remaining = self.bank_timeout
-
-        # Check total time bank
-        if self.time_bank_remaining <= 0.0:
-            await self.send_room_message(
-                battle,
-                "⏰ Match time bank exhausted (0:00)! Auto-selecting fallback move.",
-            )
-            fallback_order = self.choose_default_order(battle)
-            self.record_turn_telemetry(
-                battle=battle,
-                chosen_order=fallback_order,
-                reasoning="[TIME BANK EXHAUSTED] Match time bank depleted. Automated move executed.",
-            )
-            return fallback_order
-
+    async def _choose_move_with_guard(self, battle: Battle) -> BattleOrder:
+        """Runs the agent's decision under the hang guard; failures fall back to the default move."""
         start_time = time.perf_counter()
-        effective_timeout = min(self.turn_timeout, max(0.1, self.time_bank_remaining))
-        bank_display = _format_time_bank(self.time_bank_remaining)
-
-        await self.send_room_message(
-            battle,
-            f"⏳ Deciding turn {battle.turn} (Turn limit: {self.turn_timeout:.0f}s | Bank: {bank_display} remaining)...",
-        )
-
         try:
-            coro_or_order = self._async_choose_move(battle)
-            if asyncio.iscoroutine(coro_or_order):
-                order = await asyncio.wait_for(coro_or_order, timeout=effective_timeout)
-            else:
-                order = coro_or_order
-
+            order = await asyncio.wait_for(self._async_choose_move(battle), timeout=self.turn_timeout)
             elapsed = time.perf_counter() - start_time
-            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
-            new_bank_display = _format_time_bank(self.time_bank_remaining)
-
-            await self.send_room_message(
-                battle,
-                f"✅ Move locked in ({elapsed:.2f}s)! Bank: {new_bank_display}. Waiting for opponent...",
-            )
+            await self.send_room_message(battle, f"Turn {battle.turn}: move locked in after {elapsed:.1f}s.")
             return order
 
         except asyncio.TimeoutError:
-            elapsed = time.perf_counter() - start_time
-            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
-            new_bank_display = _format_time_bank(self.time_bank_remaining)
-
             await self.send_room_message(
                 battle,
-                f"⏰ Turn timed out ({effective_timeout:.1f}s)! Bank: {new_bank_display}. Auto-selecting legal fallback move.",
+                f"Turn {battle.turn}: no decision after {self.turn_timeout:.0f}s. Playing the default move.",
             )
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
                 battle=battle,
                 chosen_order=fallback_order,
-                reasoning=f"[TIMEOUT] Turn calculation exceeded limit ({effective_timeout:.1f}s). Automated move executed.",
+                reasoning=f"[TIMEOUT] No decision within {self.turn_timeout:.0f}s. Default move played.",
+                decision_source="timeout",
             )
             return fallback_order
 
         except Exception as e:
-            elapsed = time.perf_counter() - start_time
-            self.time_bank_remaining = max(0.0, self.time_bank_remaining - elapsed)
-            await self.send_room_message(
-                battle,
-                f"⚠️ Calculation error: {e}. Auto-selecting legal fallback move.",
-            )
+            await self.send_room_message(battle, f"Turn {battle.turn}: agent error ({e}). Playing the default move.")
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
                 battle=battle,
                 chosen_order=fallback_order,
-                reasoning=f"[ERROR] Move selection error: {e}. Automated move executed.",
+                reasoning=f"[ERROR] Move selection error: {e}. Default move played.",
+                decision_source="error",
             )
             return fallback_order
 
@@ -212,4 +161,4 @@ class BaseBenchmarkPlayer(Player):
 
     def choose_move(self, battle: Battle) -> BattleOrder:
         """poke-env entrypoint for move selection."""
-        return self._async_choose_move_with_timer(battle)  # type: ignore
+        return self._choose_move_with_guard(battle)  # type: ignore

@@ -13,6 +13,7 @@ def test_generate_showdown_config():
     assert "exports.forcetimer = false;" in cfg_text
     assert "exports.inactivitytimeout = 0;" in cfg_text
     assert "timer: false" in cfg_text
+    assert "exports.bindaddress = '127.0.0.1';" in cfg_text
 
 
 def test_server_manager_initialization(tmp_path):

@@ -1,6 +1,6 @@
 # ⚡ RotomArena
 
-**RotomArena** is a production-grade, local Pokémon AI battle benchmarking testbed designed for Generation 9 OverUsed (Gen 9 OU) competitive battles. It natively integrates **PokéChamp** (Minimax search tree with heuristic priors and LLM state evaluation), **Direct LLM Agents** (Chain-of-Thought reasoning), a local headless **Pokémon Showdown** server with timers disabled, team management, and complete per-turn reasoning telemetry.
+**RotomArena** is a production-grade, local Pokémon AI battle benchmarking testbed designed for Generation 9 OverUsed (Gen 9 OU) competitive battles. It natively integrates **PokéChamp** (one-turn maximin search with Gen 9 heuristics), **Direct LLM Agents** (Chain-of-Thought reasoning), a local headless **Pokémon Showdown** server with timers disabled, team management, and complete per-turn reasoning telemetry.
 
 ---
 
@@ -11,18 +11,18 @@
    - **Intelligence Layer (Python):** Battle protocols via `poke-env`, tree search via `rotomarena.search`, and provider-agnostic LLM communication.
 
 2. **Modular Agent Backends:**
-   - **PokéChamp Agent:** Minimax tree search with configurable depth ($d=1, 2$), Alpha-Beta pruning, Gen 9 type chart heuristics, and toggleable LLM value priors.
-   - **Direct LLM Agent:** Single-call Chain-of-Thought (CoT) reasoning with structured state serialization and legal action enforcement.
+   - **PokéChamp Agent:** One-turn maximin search over sampled opponent replies, with alpha-beta pruning and Gen 9 type chart heuristics. It uses no LLM, so it is free and serves as a ladder anchor.
+   - **Direct LLM Agent:** One call per turn (`<thought>` + `<decision>`) under a per-turn output-token budget. The decision must name a legal action exactly; otherwise the default move is played and the turn is tagged in telemetry.
    - **Baseline Agents:** Heuristic damage maximizer (`MaxDamagePlayer`) and `RandomPlayer` for zero-cost test validation and baseline calibration.
 
 3. **Provider-Agnostic LLM Layer:**
-   - Pre-configured profiles for **Google Gemini** (Google AI Studio OpenAI endpoint), **OpenRouter**, **Ollama**, and **vLLM**.
+   - Pre-configured profiles for **OpenRouter** (default, with a free test model), **local** llama.cpp servers, **Google Gemini**, **Ollama**, and **vLLM**.
    - Standard OpenAI SDK compatibility with latency and token telemetry.
 
 4. **Team Management & Matchmaker:**
    - Smogon `.txt` export format parser, validator, and Showdown packed team generator.
    - Includes standard Gen 9 OU sample teams (Balance, Hyper Offense, Bulky Offense, Rain).
-   - Automated 1v1 battle series runner with side swapping.
+   - 1v1 battle series runner that alternates sides every game and swaps teams every two games.
 
 5. **Telemetry & Replays:**
    - Standalone interactive HTML replays and raw Showdown protocol dumps.
@@ -82,14 +82,12 @@ uv run rotomarena battle \
   --games 3
 ```
 
-#### 1v1 Matchup: PokéChamp (Depth 2) vs Baseline Heuristic
+#### 1v1 Matchup: a model from the config registry vs PokéChamp
 ```bash
-uv run rotomarena battle \
-  --p1 pokechamp \
-  --p2 heuristic \
-  --p1-depth 2 \
-  --games 5
+uv run rotomarena battle --config config.yaml --p1 bonsai_2_27b --p2 pokechamp --games 4
 ```
+
+Sides alternate every game and the two teams swap every two games, so 4 games cover every combination.
 
 #### Manage Teams
 ```bash

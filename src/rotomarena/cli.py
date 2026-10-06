@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 import typer
+from pydantic import ValidationError
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -304,83 +305,64 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
 # ---------------------------------------------------------------------
 
 
+def _agent_config(app_cfg: AppConfig, choice: str, slot: str, provider: str, model: Optional[str]) -> AgentConfig:
+    """`choice` is a config id from the agents block (e.g. bonsai_local) or a bare agent type."""
+    if choice in app_cfg.agents:
+        return app_cfg.agents[choice]
+    try:
+        return AgentConfig(name=f"{choice}_{slot}", type=choice, provider=provider, model=model)
+    except ValidationError:
+        known = ", ".join(sorted(app_cfg.agents)) or "none"
+        console.print(
+            f"[bold red]Unknown player '{choice}'.[/bold red] Use an agent type "
+            f"(pokechamp, direct_llm, heuristic, max_damage, random) or a config id ({known})."
+        )
+        raise typer.Exit(1)
+
+
 @app.command("battle")
 def run_battle(
-    p1: str = typer.Option("pokechamp", "--p1", help="Player 1 agent type (pokechamp, direct_llm, heuristic, random)"),
-    p2: str = typer.Option("heuristic", "--p2", help="Player 2 agent type"),
-    p1_provider: Optional[str] = typer.Option(None, "--p1-provider", help="LLM Provider for Player 1 (gemini, openrouter, ollama)"),
-    p1_model: Optional[str] = typer.Option(None, "--p1-model", help="LLM Model for Player 1"),
-    p1_depth: int = typer.Option(1, "--p1-depth", help="Minimax depth for Player 1 (PokéChamp)"),
-    p1_llm_prior: bool = typer.Option(False, "--p1-llm-prior", help="Enable LLM value prior for P1 PokéChamp"),
-    p2_provider: Optional[str] = typer.Option(None, "--p2-provider", help="LLM Provider for Player 2 (gemini, openrouter, ollama)"),
-    p2_model: Optional[str] = typer.Option(None, "--p2-model", help="LLM Model for Player 2"),
-    p2_depth: int = typer.Option(1, "--p2-depth", help="Minimax depth for Player 2 (PokéChamp)"),
-    p2_llm_prior: bool = typer.Option(False, "--p2-llm-prior", help="Enable LLM value prior for P2 PokéChamp"),
-    team1: str = typer.Option("balance", "--team1", help="Team for Player 1"),
-    team2: str = typer.Option("hyper_offense", "--team2", help="Team for Player 2"),
-    games: int = typer.Option(1, "--games", "-n", help="Number of games in series"),
-    turn_timeout: float = typer.Option(120.0, "--turn-timeout", "-t", help="Per-turn decision timer in seconds (default: 120s)"),
-    bank_timeout: float = typer.Option(900.0, "--bank-timeout", "-b", help="Total match chess-clock bank in seconds (default: 900s / 15 min)"),
-    provider: str = typer.Option("gemini", "--provider", help="Default LLM Provider if not specified per player"),
-    model: Optional[str] = typer.Option(None, "--model", "-m", help="Default LLM Model override if not specified per player"),
+    p1: str = typer.Option("pokechamp", "--p1", help="Player 1: agent type (pokechamp, direct_llm, heuristic, max_damage, random) or config id"),
+    p2: str = typer.Option("heuristic", "--p2", help="Player 2: agent type or config id"),
+    p1_provider: Optional[str] = typer.Option(None, "--p1-provider", help="LLM provider for player 1 (openrouter, local, gemini, ollama, vllm)"),
+    p1_model: Optional[str] = typer.Option(None, "--p1-model", help="LLM model for player 1"),
+    p2_provider: Optional[str] = typer.Option(None, "--p2-provider", help="LLM provider for player 2"),
+    p2_model: Optional[str] = typer.Option(None, "--p2-model", help="LLM model for player 2"),
+    team1: str = typer.Option("balance", "--team1", help="First team of the series"),
+    team2: str = typer.Option("hyper_offense", "--team2", help="Second team of the series"),
+    games: int = typer.Option(1, "--games", "-n", help="Games in the series; sides alternate every game, teams every two"),
+    provider: str = typer.Option("openrouter", "--provider", help="LLM provider when not set per player"),
+    model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model when not set per player (default: the provider's)"),
     config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
 ):
-    """Run a 1v1 battle series between two configured AI agents."""
+    """Run a 1v1 battle series between two agents."""
     app_cfg = AppConfig.load_from_yaml(config_file) if config_file else AppConfig.default_config()
 
-    # Load teams
-    t1 = load_preset_team(team1).to_showdown_packed()
-    t2 = load_preset_team(team2).to_showdown_packed()
-
-    # Configure agents
-    p1_cfg = AgentConfig(
-        name=f"{p1}_p1",
-        type=p1,
-        depth=p1_depth,
-        use_llm_prior=p1_llm_prior,
-        provider=p1_provider or provider,
-        model=p1_model or model,
-        turn_timeout=turn_timeout,
-        bank_timeout=bank_timeout,
-    )
-    p2_cfg = AgentConfig(
-        name=f"{p2}_p2",
-        type=p2,
-        depth=p2_depth,
-        use_llm_prior=p2_llm_prior,
-        provider=p2_provider or provider,
-        model=p2_model or model,
-        turn_timeout=turn_timeout,
-        bank_timeout=bank_timeout,
-    )
+    first_team = load_preset_team(team1)
+    second_team = load_preset_team(team2)
+    p1_cfg = _agent_config(app_cfg, p1, "p1", p1_provider or provider, p1_model or model)
+    p2_cfg = _agent_config(app_cfg, p2, "p2", p2_provider or provider, p2_model or model)
 
     server_mgr = ShowdownServerManager(app_cfg.server)
-    runner = MatchRunner(telemetry_config=app_cfg.telemetry)
+    runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
 
     async def _execute():
         async with server_mgr.ensure_running():
-            # Check for mirror match to avoid duplicate name collision on Showdown
-            p1_preview = format_bot_display_name(p1_cfg, resolved_model=p1_cfg.model)
-            p2_preview = format_bot_display_name(p2_cfg, resolved_model=p2_cfg.model)
-            is_mirror = (p1_preview.lower() == p2_preview.lower())
-
-            player_1 = create_agent_instance(
-                p1_cfg, app_cfg, team_str=t1, player_tag="1" if is_mirror else None
-            )
-            player_2 = create_agent_instance(
-                p2_cfg, app_cfg, team_str=t2, player_tag="2" if is_mirror else None
-            )
+            # Identical display names would collide on Showdown, so mirror matches get numeric tags
+            is_mirror = format_bot_display_name(p1_cfg).lower() == format_bot_display_name(p2_cfg).lower()
+            player_1 = create_agent_instance(p1_cfg, app_cfg, player_tag="1" if is_mirror else None)
+            player_2 = create_agent_instance(p2_cfg, app_cfg, player_tag="2" if is_mirror else None)
 
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
-            series_res = await runner.run_series(player_1, player_2, n_games=games)
+            series_res = await runner.run_series(player_1, player_2, first_team, second_team, n_games=games)
 
             console.print("\n[bold green]=== Series Finished ===[/bold green]")
-            console.print(f"{player_1.agent_name} Wins: [bold cyan]{series_res.p1_wins}[/bold cyan] ({series_res.p1_win_rate}%)")
-            console.print(f"{player_2.agent_name} Wins: [bold magenta]{series_res.p2_wins}[/bold magenta] ({series_res.p2_win_rate}%)")
+            console.print(f"{player_1.agent_name} Wins: [bold cyan]{series_res.a_wins}[/bold cyan] ({series_res.a_win_rate}%)")
+            console.print(f"{player_2.agent_name} Wins: [bold magenta]{series_res.b_wins}[/bold magenta] ({series_res.b_win_rate}%)")
             console.print(f"Draws: {series_res.draws}")
             if series_res.matches:
                 latest = series_res.matches[-1]
-                console.print(f"\nArtifacts saved in run folder:")
+                console.print("\nArtifacts saved in run folder:")
                 if latest.replay_html_path:
                     console.print(f"  - Replay HTML: [cyan]{latest.replay_html_path}[/cyan]")
                 if latest.breadcrumbs_json_path:

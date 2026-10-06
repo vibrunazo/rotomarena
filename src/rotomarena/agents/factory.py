@@ -5,6 +5,8 @@ from __future__ import annotations
 import re
 from typing import Optional
 
+from poke_env.ps_client import ServerConfiguration
+
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.agents.direct_llm import DirectLLMPlayer
 from rotomarena.agents.heuristic import HeuristicPlayer, MaxDamagePlayer
@@ -12,6 +14,7 @@ from rotomarena.agents.pokechamp import PokeChampPlayer
 from rotomarena.agents.random import RandomBenchmarkPlayer
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.llm.client import LLMClient
+from rotomarena.telemetry.breadcrumbs import PlayerIdentity
 
 
 def clean_llm_model_name(model_str: str) -> str:
@@ -159,7 +162,7 @@ def format_bot_display_name(
     tag: Optional[str] = None,
 ) -> str:
     """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
-    a_type = agent_cfg.type.lower()
+    a_type = agent_cfg.type
 
     if a_type == "direct_llm":
         model = resolved_model or agent_cfg.model or ""
@@ -170,16 +173,13 @@ def format_bot_display_name(
         else:
             base = "Direct LLM"
     elif a_type == "pokechamp":
-        prior = "+L" if agent_cfg.use_llm_prior else ""
-        base = f"PokeChamp D{agent_cfg.depth}{prior}"
+        base = "PokeChamp"
     elif a_type == "max_damage":
         base = "MaxDamage AI"
     elif a_type == "heuristic":
         base = "Heuristic AI"
-    elif a_type == "random":
-        base = "Random AI"
     else:
-        base = agent_cfg.name.title()
+        base = "Random AI"
 
     # Sanitize base for Showdown (only alphanumeric, dot, hyphen, and space)
     base = re.sub(r"[^a-zA-Z0-9. -]", "", base).strip()
@@ -194,80 +194,53 @@ def format_bot_display_name(
 def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
-    team_str: Optional[str] = None,
     player_tag: Optional[str] = None,
 ) -> BaseBenchmarkPlayer:
-    """Factory to instantiate a Benchmark player from its configuration model."""
-    a_type = agent_cfg.type.lower()
-
-    # Resolve LLM client if needed
+    """Builds a benchmark player from its configuration. Teams are assigned per game by the runner."""
     llm_client = None
-    if agent_cfg.provider:
+    resolved_model = None
+    if agent_cfg.type == "direct_llm":
         llm_client = LLMClient.from_provider_name(
-            agent_cfg.provider,
-            providers_dict=app_config.providers,
+            agent_cfg.provider or "openrouter",
+            providers=app_config.providers,
             model_override=agent_cfg.model,
         )
-
-    resolved_model = agent_cfg.model
-    if not resolved_model and llm_client and getattr(llm_client, "default_model", None):
         resolved_model = llm_client.default_model
 
-    unique_player_name = format_bot_display_name(
-        agent_cfg, resolved_model=resolved_model, tag=player_tag
+    display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model, tag=player_tag)
+    identity = PlayerIdentity(
+        config_id=agent_cfg.name,
+        display_name=display_name,
+        agent_type=agent_cfg.type,
+        provider=llm_client.provider_name if llm_client else None,
+        model=resolved_model,
+        quantization=agent_cfg.quantization,
+    )
+    common = dict(
+        player_name=display_name,
+        identity=identity,
+        turn_timeout=app_config.ruleset.turn_timeout,
+        server_configuration=ServerConfiguration(
+            app_config.server.websocket_url,
+            "https://play.pokemonshowdown.com/action.php?",
+        ),
     )
 
-    from poke_env.ps_client import ServerConfiguration
-    server_conf = ServerConfiguration(
-        app_config.server.websocket_url,
-        "https://play.pokemonshowdown.com/action.php?",
-    )
-
-    if a_type == "pokechamp":
-        return PokeChampPlayer(
-            player_name=unique_player_name,
-            depth=agent_cfg.depth,
-            use_llm_prior=agent_cfg.use_llm_prior,
-            llm_client=llm_client,
-            evaluation_weights=agent_cfg.evaluation_weights,
-            team=team_str,
-            turn_timeout=agent_cfg.turn_timeout,
-            bank_timeout=agent_cfg.bank_timeout,
-            server_configuration=server_conf,
-        )
-    elif a_type == "direct_llm":
+    if agent_cfg.type == "direct_llm":
         return DirectLLMPlayer(
-            player_name=unique_player_name,
             llm_client=llm_client,
-            model=agent_cfg.model,
+            model=resolved_model,
             temperature=agent_cfg.temperature,
-            team=team_str,
-            turn_timeout=agent_cfg.turn_timeout,
-            bank_timeout=agent_cfg.bank_timeout,
-            server_configuration=server_conf,
+            max_output_tokens=app_config.ruleset.max_output_tokens,
+            reasoning=app_config.ruleset.reasoning,
+            **common,
         )
-    elif a_type == "max_damage":
-        return MaxDamagePlayer(
-            player_name=unique_player_name,
-            team=team_str,
-            turn_timeout=agent_cfg.turn_timeout,
-            bank_timeout=agent_cfg.bank_timeout,
-            server_configuration=server_conf,
-        )
-    elif a_type == "heuristic":
-        return HeuristicPlayer(
-            player_name=unique_player_name,
-            evaluation_weights=agent_cfg.evaluation_weights,
-            team=team_str,
-            turn_timeout=agent_cfg.turn_timeout,
-            bank_timeout=agent_cfg.bank_timeout,
-            server_configuration=server_conf,
-        )
-    else:
-        return RandomBenchmarkPlayer(
-            player_name=unique_player_name,
-            team=team_str,
-            turn_timeout=agent_cfg.turn_timeout,
-            bank_timeout=agent_cfg.bank_timeout,
-            server_configuration=server_conf,
-        )
+    if agent_cfg.type == "pokechamp":
+        return PokeChampPlayer(evaluation_weights=agent_cfg.evaluation_weights, **common)
+    if agent_cfg.type == "max_damage":
+        return MaxDamagePlayer(**common)
+    if agent_cfg.type == "heuristic":
+        return HeuristicPlayer(evaluation_weights=agent_cfg.evaluation_weights, **common)
+    if agent_cfg.type == "random":
+        return RandomBenchmarkPlayer(**common)
+    raise ValueError(f"Unknown agent type '{agent_cfg.type}'")

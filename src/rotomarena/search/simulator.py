@@ -2,9 +2,67 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional, Tuple
-from poke_env.battle import Battle, Move, MoveCategory, Pokemon, Status
+from typing import Dict, List, Optional
+from poke_env.battle import Battle, Move, MoveCategory, Pokemon, SideCondition, Status
 from rotomarena.search.heuristics import evaluate_battle_state, get_type_effectiveness
+
+
+def _estimate_stat(mon: Pokemon, key: str) -> float:
+    """Level-100 stat from base stats, assuming 31 IVs, 84 EVs and a neutral nature."""
+    base = (mon.base_stats or {}).get(key, 80)
+    if key == "hp":
+        return 2 * base + 31 + 21 + 110
+    return 2 * base + 31 + 21 + 5
+
+
+def _stat(mon: Pokemon, key: str) -> float:
+    """The real stat when known (our own Pokémon), else an estimate (opponents)."""
+    value = (mon.stats or {}).get(key)
+    return float(value) if value else _estimate_stat(mon, key)
+
+
+def _max_hp(mon: Pokemon) -> float:
+    """poke-env reports opposing HP as a percentage (max_hp == 100); only our own Pokémon have real HP."""
+    if (mon.stats or {}).get("atk"):
+        return float(mon.max_hp or _estimate_stat(mon, "hp"))
+    return _estimate_stat(mon, "hp")
+
+
+def _type_names(mon: Pokemon) -> List[str]:
+    return [t.name.upper() for t in mon.types if t]
+
+
+def _boosted(stat: float, stage: int) -> float:
+    return stat * max(2, 2 + stage) / max(2, 2 - stage)
+
+
+def _damage_fraction(
+    power: float,
+    move_type: str,
+    physical: bool,
+    attacker: Pokemon,
+    defender: Pokemon,
+    is_tera: bool = False,
+) -> float:
+    """Fraction of the defender's max HP a hit of this power and type deals (level-100 damage formula)."""
+    type_mult = get_type_effectiveness(move_type, _type_names(defender))
+    if type_mult == 0.0:
+        return 0.0
+
+    stab = 1.0
+    if is_tera and attacker.tera_type and attacker.tera_type.name.upper() == move_type:
+        stab = 2.0
+    elif move_type in _type_names(attacker):
+        stab = 1.5
+
+    atk_key, def_key = ("atk", "def") if physical else ("spa", "spd")
+    atk_stat = _boosted(_stat(attacker, atk_key), attacker.boosts.get(atk_key, 0))
+    def_stat = _boosted(_stat(defender, def_key), defender.boosts.get(def_key, 0))
+    if physical and attacker.status == Status.BRN and attacker.ability != "guts":
+        atk_stat *= 0.5
+
+    raw_damage = (42.0 * power * (atk_stat / max(1.0, def_stat))) / 50.0 + 2.0
+    return min(1.0, max(0.0, raw_damage * stab * type_mult / _max_hp(defender)))
 
 
 def estimate_damage_fraction(
@@ -16,55 +74,48 @@ def estimate_damage_fraction(
     """Estimates the fraction of defender max HP that the given move will inflict."""
     if not move or move.category == MoveCategory.STATUS or move.base_power <= 0:
         return 0.0
-
-    power = float(move.base_power)
     move_type = move.type.name.upper() if move.type else "NORMAL"
+    return _damage_fraction(
+        move.base_power, move_type, move.category == MoveCategory.PHYSICAL, attacker, defender, is_tera
+    )
 
-    # Defending types
-    def_types = [t.name.upper() for t in defender.types if t]
-    type_mult = get_type_effectiveness(move_type, def_types)
-    if type_mult == 0.0:
+
+def estimate_typed_attack(attack_type: str, attacker: Pokemon, defender: Pokemon) -> float:
+    """An unrevealed 80 BP attack of the given type, physical or special by the attacker's better stat."""
+    physical = _stat(attacker, "atk") >= _stat(attacker, "spa")
+    return _damage_fraction(80, attack_type.upper(), physical, attacker, defender)
+
+
+def estimate_best_hit(attacker: Pokemon, defender: Pokemon) -> float:
+    """The attacker's strongest hit: its known damaging moves, else an 80 BP attack of each of its types."""
+    known = [estimate_damage_fraction(m, attacker, defender) for m in attacker.moves.values()]
+    if any(known):
+        return max(known)
+    return max((estimate_typed_attack(t, attacker, defender) for t in _type_names(attacker)), default=0.0)
+
+
+def entry_hazard_damage(battle: Battle, switch_in: Pokemon) -> float:
+    """HP fraction lost to Stealth Rock and Spikes on our side when this Pokémon switches in."""
+    damage = 0.0
+    if SideCondition.STEALTH_ROCK in battle.side_conditions:
+        damage += 0.125 * get_type_effectiveness("ROCK", _type_names(switch_in))
+    layers = battle.side_conditions.get(SideCondition.SPIKES, 0)
+    if layers and "FLYING" not in _type_names(switch_in):
+        damage += {1: 1 / 8, 2: 1 / 6}.get(layers, 1 / 4)
+    return damage
+
+
+def _opponent_attack(battle: Battle, opp_action_type: str, opp_action_target: str, target: Pokemon) -> float:
+    """Damage the opponent's sampled action deals to `target` (0 when the opponent switches)."""
+    opp = battle.opponent_active_pokemon
+    if opp_action_type == "SWITCH":
         return 0.0
-
-    # STAB (Same-Type Attack Bonus)
-    attacker_types = [t.name.upper() for t in attacker.types if t]
-    stab = 1.0
-    if is_tera and attacker.tera_type and attacker.tera_type.name.upper() == move_type:
-        stab = 2.0
-    elif move_type in attacker_types:
-        stab = 1.5
-
-    # Stat approximation (Base level 100)
-    # Physical vs Special
-    if move.category == MoveCategory.PHYSICAL:
-        atk_stat = attacker.stats.get("atk", 300) or 300
-        # Account for boosts
-        atk_boost = attacker.boosts.get("atk", 0)
-        atk_stat = atk_stat * max(2, 2 + atk_boost) / max(2, 2 - atk_boost)
-
-        def_stat = defender.stats.get("def", 250) or 250
-        def_boost = defender.boosts.get("def", 0)
-        def_stat = def_stat * max(2, 2 + def_boost) / max(2, 2 - def_boost)
-
-        if attacker.status == Status.BRN and attacker.ability != "guts":
-            atk_stat *= 0.5
-    else:
-        atk_stat = attacker.stats.get("spa", 300) or 300
-        atk_boost = attacker.boosts.get("spa", 0)
-        atk_stat = atk_stat * max(2, 2 + atk_boost) / max(2, 2 - atk_boost)
-
-        def_stat = defender.stats.get("spd", 250) or 250
-        def_boost = defender.boosts.get("spd", 0)
-        def_stat = def_stat * max(2, 2 + def_boost) / max(2, 2 - def_boost)
-
-    # Standard damage formula: ( (42 * Power * Atk / Def) / 50 + 2 ) * modifiers
-    raw_damage = ((42.0 * power * (atk_stat / max(1.0, def_stat))) / 50.0 + 2.0)
-    final_damage = raw_damage * stab * type_mult
-
-    # Estimate defender HP
-    max_hp = defender.max_hp or 300
-    damage_fraction = final_damage / float(max_hp)
-    return min(1.0, max(0.0, damage_fraction))
+    known_move = opp.moves.get(opp_action_target)
+    if known_move:
+        return estimate_damage_fraction(known_move, opp, target)
+    if opp_action_target.startswith("attack_") and opp_action_target != "attack_neutral":
+        return estimate_typed_attack(opp_action_target[len("attack_"):], opp, target)
+    return estimate_best_hit(opp, target)
 
 
 def simulate_turn_outcome(
@@ -81,58 +132,43 @@ def simulate_turn_outcome(
     returning the estimated resulting state score.
     """
     base_eval = evaluate_battle_state(battle, weights)
-    if not battle.active_pokemon or not battle.opponent_active_pokemon:
+    active = battle.active_pokemon
+    opp = battle.opponent_active_pokemon
+    if not active or not opp:
         return base_eval
 
-    # 1. Player switch action
+    # 1. Player switch: the switch-in takes the opponent's hit and hazards, then threatens next turn.
     if player_action_type == "SWITCH":
-        # Check hazard penalty on switch-in
-        hazard_pen = 0.0
-        if "STEALTH_ROCK" in battle.side_conditions:
-            hazard_pen += 0.125
-        # Opponent free attack on switch-in
-        opp_damage = 0.35  # Approximate neutral hit
-        delta = - (hazard_pen + opp_damage) * 0.3
+        switch_in = next((m for m in battle.available_switches if m.species == player_action_target), None)
+        if switch_in is None:
+            return base_eval
+        incoming = _opponent_attack(battle, opp_action_type, opp_action_target, switch_in)
+        hazards = entry_hazard_damage(battle, switch_in)
+        threat_next_turn = estimate_best_hit(switch_in, opp)
+        delta = 0.4 * (0.5 * threat_next_turn - incoming - hazards)
+        if _opponent_attack(battle, opp_action_type, opp_action_target, active) >= active.current_hp_fraction:
+            delta += 0.2  # staying in would have cost the active Pokémon
         return max(-1.0, min(1.0, base_eval + delta))
 
-    # 2. Player move action
-    player_move = battle.active_pokemon.moves.get(player_action_target)
+    # 2. Player move
+    player_move = active.moves.get(player_action_target)
     if not player_move:
         return base_eval
 
-    player_dmg = estimate_damage_fraction(
-        player_move,
-        battle.active_pokemon,
-        battle.opponent_active_pokemon,
-        is_tera=player_tera,
-    )
+    player_dmg = estimate_damage_fraction(player_move, active, opp, is_tera=player_tera)
+    if opp_action_type == "SWITCH":
+        player_dmg *= 0.5  # the hit lands on a switch-in, likely one that resists it
+    opp_dmg = _opponent_attack(battle, opp_action_type, opp_action_target, active)
 
-    # Opponent response
-    opp_move = battle.opponent_active_pokemon.moves.get(opp_action_target) if battle.opponent_active_pokemon else None
-    if opp_move:
-        opp_dmg = estimate_damage_fraction(
-            opp_move,
-            battle.opponent_active_pokemon,
-            battle.active_pokemon,
-            is_tera=False,
-        )
-    else:
-        opp_dmg = 0.25  # Approximate response damage
-
-    # Speed check
-    player_spe = battle.active_pokemon.stats.get("spe", 250) or 250
-    opp_spe = battle.opponent_active_pokemon.stats.get("spe", 250) or 250
-
-    if player_spe >= opp_spe:
-        # Player moves first: if KO, opp does 0 damage
-        if player_dmg >= battle.opponent_active_pokemon.current_hp_fraction:
-            delta = 0.5  # Major advantage (KO scored)
+    if _stat(active, "spe") >= _stat(opp, "spe"):
+        # Player moves first: a KO means the opponent never attacks
+        if opp_action_type != "SWITCH" and player_dmg >= opp.current_hp_fraction:
+            delta = 0.5
         else:
             delta = (player_dmg - opp_dmg) * 0.4
     else:
-        # Opponent moves first
-        if opp_dmg >= battle.active_pokemon.current_hp_fraction:
-            delta = -0.5  # KO suffered
+        if opp_dmg >= active.current_hp_fraction:
+            delta = -0.5  # KO suffered before moving
         else:
             delta = (player_dmg - opp_dmg) * 0.4
 

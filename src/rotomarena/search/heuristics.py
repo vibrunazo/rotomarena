@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Tuple
-from poke_env.battle import Battle, Pokemon, PokemonType, Status
+import math
+from typing import Dict, List, Optional
+from poke_env.battle import Battle, SideCondition, Status
 
 
 # Gen 9 Type Effectiveness Chart: TYPE_CHART[attacker_type][defender_type] -> float
@@ -94,6 +95,28 @@ def get_type_effectiveness(attack_type: str, defender_types: List[str]) -> float
     return mult
 
 
+# Positive weights burden the side they are on (entry hazards); negative ones help it.
+SIDE_CONDITION_WEIGHTS: Dict[SideCondition, float] = {
+    SideCondition.STEALTH_ROCK: 1.0,
+    SideCondition.SPIKES: 0.6,  # per layer
+    SideCondition.TOXIC_SPIKES: 0.6,  # per layer
+    SideCondition.STICKY_WEB: 0.6,
+    SideCondition.REFLECT: -0.5,
+    SideCondition.LIGHT_SCREEN: -0.5,
+    SideCondition.AURORA_VEIL: -0.8,
+    SideCondition.TAILWIND: -0.5,
+}
+_LAYERED = {SideCondition.SPIKES, SideCondition.TOXIC_SPIKES}
+
+
+def side_condition_load(conditions: Dict[SideCondition, int]) -> float:
+    """How much a side's conditions hurt it: hazards add, screens and Tailwind subtract."""
+    return sum(
+        SIDE_CONDITION_WEIGHTS.get(cond, 0.0) * (value if cond in _LAYERED else 1)
+        for cond, value in conditions.items()
+    )
+
+
 STATUS_PENALTIES: Dict[Optional[Status], float] = {
     Status.TOX: 0.35,
     Status.SLP: 0.40,
@@ -156,10 +179,8 @@ def evaluate_battle_state(
     if battle.opponent_active_pokemon:
         boost_score -= sum(battle.opponent_active_pokemon.boosts.values()) * 0.1
 
-    # 5. Hazards
-    hazard_score = 0.0
-    hazard_score -= len(battle.side_conditions) * 0.15
-    hazard_score += len(battle.opponent_side_conditions) * 0.15
+    # 5. Hazards hurt the side they are on; screens and Tailwind help it
+    hazard_score = 0.15 * (side_condition_load(battle.opponent_side_conditions) - side_condition_load(battle.side_conditions))
 
     # 6. Active matchup advantage
     matchup_score = 0.0
@@ -192,5 +213,4 @@ def evaluate_battle_state(
     )
 
     # Normalize roughly to [-1.0, 1.0] via hyperbolic tangent
-    import math
     return math.tanh(total_score / 3.0)

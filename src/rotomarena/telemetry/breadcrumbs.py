@@ -2,10 +2,31 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
+
+
+# Who actually picked the move: the agent itself, or the fallback after a failure.
+DecisionSource = Literal["model", "timeout", "api_error", "parse_error", "invalid", "error"]
+
+
+class PlayerIdentity(BaseModel):
+    """What a player is: the config entry it came from and, for LLMs, the exact model."""
+
+    config_id: str
+    display_name: str
+    agent_type: str
+    provider: Optional[str] = None
+    model: Optional[str] = None
+    quantization: Optional[str] = None
+
+
+class MatchPlayer(PlayerIdentity):
+    """A player's identity plus its side and team in one match."""
+
+    role: str  # "p1" or "p2", as assigned by Showdown
+    team: str = ""
 
 
 class TurnBreadcrumb(BaseModel):
@@ -14,6 +35,7 @@ class TurnBreadcrumb(BaseModel):
     turn: int
     agent_name: str
     agent_type: str
+    decision_source: DecisionSource = "model"
     active_pokemon: str = ""
     active_hp_pct: float = 100.0
     opponent_active: str = ""
@@ -31,12 +53,15 @@ class MatchTelemetry(BaseModel):
 
     match_id: str
     format: str = "gen9ou"
-    player_1: str
-    player_2: str
+    ruleset: Dict[str, Any] = Field(default_factory=dict)
+    players: List[MatchPlayer] = Field(default_factory=list)
     winner: Optional[str] = None
     total_turns: int = 0
     duration_seconds: float = 0.0
     breadcrumbs: List[TurnBreadcrumb] = Field(default_factory=list)
+
+    def player(self, role: str) -> Optional[MatchPlayer]:
+        return next((p for p in self.players if p.role == role), None)
 
     def save_json(self, output_path: str | Path) -> Path:
         """Serializes telemetry breadcrumbs to a structured JSON file."""
@@ -49,24 +74,29 @@ class MatchTelemetry(BaseModel):
 class BreadcrumbsRecorder:
     """Manages active turn breadcrumbs collection across a match."""
 
-    def __init__(self, match_id: str, p1_name: str, p2_name: str, format_str: str = "gen9ou"):
+    def __init__(self, match_id: str, format_str: str = "gen9ou", ruleset: Optional[Dict[str, Any]] = None):
         self.match_id = match_id
-        self.p1_name = p1_name
-        self.p2_name = p2_name
         self.format_str = format_str
+        self.ruleset = ruleset or {}
         self.breadcrumbs: List[TurnBreadcrumb] = []
 
     def record_turn(self, breadcrumb: TurnBreadcrumb) -> None:
         """Append a breadcrumb record."""
         self.breadcrumbs.append(breadcrumb)
 
-    def finalize(self, winner: Optional[str], total_turns: int, duration_sec: float) -> MatchTelemetry:
+    def finalize(
+        self,
+        players: List[MatchPlayer],
+        winner: Optional[str],
+        total_turns: int,
+        duration_sec: float,
+    ) -> MatchTelemetry:
         """Produce finalized MatchTelemetry object."""
         return MatchTelemetry(
             match_id=self.match_id,
             format=self.format_str,
-            player_1=self.p1_name,
-            player_2=self.p2_name,
+            ruleset=self.ruleset,
+            players=sorted(players, key=lambda p: p.role),
             winner=winner,
             total_turns=total_turns,
             duration_seconds=round(duration_sec, 2),

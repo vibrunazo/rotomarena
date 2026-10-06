@@ -1,17 +1,21 @@
 """Tests for the agent factory and bot display names."""
 
 from rotomarena.agents.factory import clean_llm_model_name, create_agent_instance
-from rotomarena.config import AgentConfig, AppConfig
+import pytest
+from pydantic import ValidationError
+from rotomarena.config import FREE_TEST_MODEL, AgentConfig, AppConfig
 
 
 def test_create_agent_instances():
     app_cfg = AppConfig.default_config()
 
     # PokéChamp
-    cfg_pokechamp = AgentConfig(name="pokechamp_test", type="pokechamp", depth=1)
+    cfg_pokechamp = AgentConfig(name="pokechamp_test", type="pokechamp")
     agent_pc = create_agent_instance(cfg_pokechamp, app_cfg)
-    assert agent_pc.agent_name.startswith("PokeChamp D1")
+    assert agent_pc.agent_name == "PokeChamp"
     assert agent_pc.agent_type == "pokechamp"
+    assert agent_pc.identity.config_id == "pokechamp_test"
+    assert agent_pc.identity.model is None
 
     # Direct LLM with various model versions (no random hashes)
     cfg_llm_37 = AgentConfig(name="llm_test", type="direct_llm", provider="gemini", model="gemini-3.7-flash")
@@ -40,6 +44,30 @@ def test_create_agent_instances():
     agent_heur = create_agent_instance(cfg_heur, app_cfg)
     assert agent_heur.agent_name == "Heuristic AI"
     assert agent_heur.agent_type == "heuristic"
+
+
+def test_llm_agent_identity_and_ruleset():
+    app_cfg = AppConfig.default_config()
+    agent = create_agent_instance(app_cfg.agents["bonsai_local"], app_cfg)
+    assert agent.identity.config_id == "bonsai_local"
+    assert agent.identity.provider == "local"
+    assert agent.identity.model == "bonsai"
+    assert agent.identity.quantization == "PQ2_0"
+    assert agent.max_output_tokens == app_cfg.ruleset.max_output_tokens
+    assert agent.reasoning == "off"
+    assert agent.turn_timeout == app_cfg.ruleset.turn_timeout
+
+
+def test_default_llm_is_the_free_test_model():
+    app_cfg = AppConfig.default_config()
+    agent = create_agent_instance(AgentConfig(name="llm", type="direct_llm"), app_cfg)
+    assert agent.identity.provider == "openrouter"
+    assert agent.identity.model == FREE_TEST_MODEL
+
+
+def test_unknown_agent_type_is_rejected():
+    with pytest.raises(ValidationError):
+        AgentConfig(name="typo", type="direct-llm")
 
 
 def test_clean_llm_model_name():

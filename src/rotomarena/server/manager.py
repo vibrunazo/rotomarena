@@ -184,15 +184,22 @@ class ShowdownServerManager:
             pass
 
         # 4. Generate config/config.js with disabled timers and no-security
-        config_dir = self.server_dir / "config"
-        config_dir.mkdir(parents=True, exist_ok=True)
-        config_js = config_dir / "config.js"
-        config_content = generate_showdown_config(
-            port=self.config.port, no_security=self.config.no_security
-        )
-        config_js.write_text(config_content, encoding="utf-8")
+        self.write_config()
 
         return True, f"Pokémon Showdown setup successfully completed at {self.server_dir}"
+
+    def write_config(self) -> None:
+        """Writes config/config.js from ServerConfig (port, security, bind address)."""
+        config_js = self.server_dir / "config" / "config.js"
+        config_js.parent.mkdir(parents=True, exist_ok=True)
+        config_js.write_text(
+            generate_showdown_config(
+                port=self.config.port,
+                no_security=self.config.no_security,
+                bind_address="127.0.0.1" if self.config.host == "localhost" else self.config.host,
+            ),
+            encoding="utf-8",
+        )
 
     async def is_server_healthy(self, timeout: float = 3.0) -> bool:
         """Check if Showdown WebSocket server is responding."""
@@ -228,16 +235,8 @@ class ShowdownServerManager:
         if self.is_running():
             return True, f"Showdown server is already running (PID: {self.get_pid()})"
 
-        # Ensure config exists
-        config_js = self.server_dir / "config" / "config.js"
-        if not config_js.exists():
-            config_js.parent.mkdir(parents=True, exist_ok=True)
-            config_js.write_text(
-                generate_showdown_config(
-                    port=self.config.port, no_security=self.config.no_security
-                ),
-                encoding="utf-8",
-            )
+        # Rewrite config.js every start so it always matches ServerConfig
+        self.write_config()
 
         # Launch process
         self.log_file.parent.mkdir(parents=True, exist_ok=True)

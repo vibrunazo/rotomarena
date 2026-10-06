@@ -7,7 +7,6 @@ from poke_env.battle import Battle
 from poke_env.player import BattleOrder
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
-from rotomarena.search.heuristics import evaluate_battle_state
 from rotomarena.search.simulator import estimate_damage_fraction, simulate_turn_outcome
 
 

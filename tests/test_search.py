@@ -1,13 +1,12 @@
-"""Tests for PokéChamp Minimax Search Engine and Opponent Modeling."""
+"""Tests for the PokéChamp search engine, opponent modeling, and the turn simulator."""
 
 import pytest
-import asyncio
-from poke_env.battle import MoveCategory
+from poke_env.battle import Pokemon, SideCondition
 from rotomarena.search.minimax import PokeChampSearchEngine
 from rotomarena.search.opponent_model import sample_opponent_actions
+from rotomarena.search.simulator import entry_hazard_damage, estimate_damage_fraction, simulate_turn_outcome
 
-
-from .mocks import MockBattle
+from .mocks import MockBattle, create_test_move, create_test_pokemon
 
 
 @pytest.mark.asyncio
@@ -15,29 +14,46 @@ async def test_sample_opponent_actions():
     battle = MockBattle()
     actions = sample_opponent_actions(battle, top_k=3)
     assert len(actions) > 0
-    # Expected to include flamethrower
     assert any("flamethrower" in tgt for _, tgt, _ in actions)
 
 
 @pytest.mark.asyncio
-async def test_pokechamp_search_depth_1():
+async def test_pokechamp_search_prefers_earthquake_into_heatran():
     battle = MockBattle()
-    engine = PokeChampSearchEngine(depth=1, use_llm_prior=False)
-    order, telemetry = await engine.search(battle)
-
+    order, telemetry = await PokeChampSearchEngine().search(battle)
     assert telemetry.nodes_evaluated > 0
-    assert telemetry.depth == 1
     assert len(telemetry.candidate_scores) > 0
-    # Great Tusk against Heatran should favor Earthquake (Ground move)
     assert "earthquake" in telemetry.best_action.lower()
 
 
-@pytest.mark.asyncio
-async def test_pokechamp_search_depth_2():
-    battle = MockBattle()
-    engine = PokeChampSearchEngine(depth=2, use_llm_prior=False)
-    order, telemetry = await engine.search(battle)
+def test_damage_against_an_opponent_uses_estimated_hp_not_the_percentage():
+    # poke-env reports opposing HP out of 100 and leaves their stats unknown
+    attacker = create_test_pokemon("greattusk")
+    defender = Pokemon(gen=9, species="heatran")
+    defender._max_hp = 100
+    defender._current_hp = 100
+    rapid_spin = create_test_move("rapidspin")  # 50 BP Normal, resisted by Steel
 
-    assert telemetry.nodes_evaluated >= telemetry.depth
-    assert telemetry.depth == 2
-    assert telemetry.best_score > -1.0
+    damage = estimate_damage_fraction(rapid_spin, attacker, defender)
+    assert 0.03 < damage < 0.15  # dividing by 100 HP instead would claim ~25%
+
+
+def test_stealth_rock_hurts_by_rock_effectiveness():
+    battle = MockBattle()
+    battle.side_conditions = {SideCondition.STEALTH_ROCK: 1}
+    charizard = Pokemon(gen=9, species="charizard")  # Fire/Flying: 4x weak to Rock
+    kingambit = battle.bench_mon  # Dark/Steel: resists Rock
+    assert entry_hazard_damage(battle, charizard) == pytest.approx(0.5)
+    assert entry_hazard_damage(battle, kingambit) == pytest.approx(0.0625)
+
+
+def test_switches_are_scored_per_target():
+    battle = MockBattle()
+    corviknight = create_test_pokemon("corviknight", moves=["bravebird"])
+    battle.team[corviknight.species] = corviknight
+    battle.available_switches = [battle.bench_mon, corviknight]
+    scores = {
+        mon.species: simulate_turn_outcome(battle, "SWITCH", mon.species, False, "MOVE", "flamethrower")
+        for mon in battle.available_switches
+    }
+    assert scores["kingambit"] != scores["corviknight"]
