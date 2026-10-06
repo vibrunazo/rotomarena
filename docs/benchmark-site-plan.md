@@ -11,7 +11,8 @@ competitive Pokémon.
 - The name stays **RotomArena**.
 - Season 1 uses only cheap open-weights models, mostly run locally (see section 5).
 - Free sparring partners: **Nemotron** and **Gemma 4**.
-- Phase 0a (removing the tournament and commentary code) is done.
+- Phases 0a (removing dead code) and 0b (fixing the bugs that corrupt results) are done, 6 Oct 2026.
+- Season 1 lineup drafted (section 5): 8 local models, plus the two sparring partners and two anchors.
 
 ---
 
@@ -93,11 +94,11 @@ the same in October as long as the ruleset hasn't changed.
 
 **Ladder design**
 
-- **Anchors:** Heuristic AI and PokéChamp D1. They are free to run and never change. Heuristic = 1500 by
+- **Anchors:** Heuristic AI and PokéChamp. They are free to run and never change. Heuristic = 1500 by
   definition.
 - **Sparring partners:** Nemotron and Gemma 4, free, and permanently in the pool.
 - **Placement for a new model:** 16 games, each set covering 2 teams × 2 sides:
-  - 4 vs Heuristic AI and 4 vs PokéChamp D1 (only the new model pays)
+  - 4 vs Heuristic AI and 4 vs PokéChamp (only the new model pays)
   - 4 vs a free sparring partner (only the new model pays)
   - 4 vs the LLM with the closest provisional rating. This is the only set that costs an incumbent anything.
     Close matchups are the most informative games, and lopsided ones say little.
@@ -129,29 +130,42 @@ the same in October as long as the ruleset hasn't changed.
   local `replay.html` files are regenerated without it, and delete the stale `commentary.json` files.
 - Remove the tests for deleted code, and keep the tests for `factory.py`.
 
-### 0b. Fix the bugs that corrupt results
+### 0b. Fix the bugs that corrupt results (done 6 Oct 2026)
 
-- [ ] Separate fallback turns from model decisions: tag each breadcrumb with `decision_source`
+- [x] Separate fallback turns from model decisions: tag each breadcrumb with `decision_source`
       (`model | timeout | bank | api_error | invalid | parse_error`) instead of parsing reasoning prefixes.
-- [ ] Rewrite the decision parser: require `<decision>`, exact-match against legal action ids (normalized),
+- [x] Rewrite the decision parser: require `<decision>`, exact-match against legal action ids (normalized),
       no substring matching, no "TERA anywhere" check, and a parse failure becomes a recorded `parse_error`.
-- [ ] Fix damage estimates against the opponent (poke-env reports opponent `max_hp` as 100, so damage is
+- [x] Fix damage estimates against the opponent (poke-env reports opponent `max_hp` as 100, so damage is
       overestimated about 3×), the Stealth Rock check (string vs enum), and identical scores for all switches.
       The baselines are now the anchors, so this matters more.
-- [ ] PokéChamp: implement depth > 1 or remove the option; fix the LLM prior (it scores the current state, the
+- [x] PokéChamp: implement depth > 1 or remove the option; fix the LLM prior (it scores the current state, the
       same for every candidate, so it costs N calls per turn and changes nothing).
-- [ ] Unknown agent types must raise (README's `direct-llm` currently runs a Random bot).
-- [ ] Record a `players` block per match: `{config_id, type, provider, model, depth, team, reasoning_effort}`
+- [x] Unknown agent types must raise (README's `direct-llm` currently runs a Random bot).
+- [x] Record a `players` block per match: `{config_id, type, provider, model, depth, team, reasoning_effort}`
       plus `ruleset_version`. Ratings are keyed by `config_id`, never by display name.
-- [ ] `battle --games N` must alternate sides and teams.
-- [ ] Use the same reasoning-effort and prompt settings for every provider.
-- [ ] Replace the wall-clock turn timer and time bank with a per-turn output-token budget. Keep a long
+- [x] `battle --games N` must alternate sides and teams.
+- [x] Use the same reasoning-effort and prompt settings for every provider.
+- [x] Replace the wall-clock turn timer and time bank with a per-turn output-token budget. Keep a long
       wall-clock limit only to catch a hung server (section 5).
-- [ ] Add a `local` provider preset (`http://127.0.0.1:8080/v1`) and record the quantization as part of a
+- [x] Add a `local` provider preset (`http://127.0.0.1:8080/v1`) and record the quantization as part of a
       model's identity.
-- [ ] Default to the free OpenRouter model instead of paid Gemini when no provider is given.
-- [ ] Bind Showdown to `127.0.0.1` instead of `0.0.0.0`.
-- [ ] Escape `</` in everything inlined into `<script>` blocks (raw battle logs), since replays will be public.
+- [x] Default to the free OpenRouter model instead of paid Gemini when no provider is given.
+- [x] Bind Showdown to `127.0.0.1` instead of `0.0.0.0`.
+- [x] Escape `</` in everything inlined into `<script>` blocks (raw battle logs), since replays will be public.
+
+Also done in 0b, since they change the season 1 ruleset:
+
+- The prompt now includes what happened last turn (moves, damage, faints, hazards), the opponent's team
+  from team preview, and readable weather and terrain names.
+- PokéChamp's depth setting and LLM prior are gone: it is a free one-turn maximin search, which is what an
+  anchor should be.
+- `battle --p1/--p2` accepts a config id from the `agents:` registry as well as an agent type.
+- Smoke test: PokéChamp vs Heuristic, 2 games. Sides alternated as scheduled, every turn has a
+  `decision_source`, and both bots now switch Pokémon (they never did before the switch-scoring fix).
+- Smoke test: free Nemotron vs Heuristic, 1 game (lost in 20 turns). 27 of 30 turns were the model's own
+  choice, with no parse errors or illegal moves, 0 hidden reasoning tokens, and a median answer of 151 tokens.
+  The other 3 were OpenRouter returning an error inside an HTTP 200; those are now retried.
 
 ### 0c. Old runs become a feature
 
@@ -261,13 +275,35 @@ the time goes up with them.
   It can be contestant #1 today.
 - The vLLM preset defaults to port 8000, which is the Showdown server's port. Change it.
 
-**Shape of an 8-model lineup**
+**Season 1 lineup (draft)**
 
-- 5 models that fit in VRAM: the fast majority, including Bonsai, and Gemma 4 if a size of it fits.
-- 2 mixture-of-experts models with the experts in system RAM.
-- At most 1 dense model that doesn't fit in VRAM (the overnight model).
-- About 150-250 GB of disk in total.
-- Nemotron (550B) is far too big to run locally, so it stays an OpenRouter sparring partner.
+One model per lab, picked from what's trending and widely downloaded on Hugging Face this week. Quantization
+rule: Q8_0 when the whole model fits in VRAM at Q8, Q4_K_M otherwise, and the publisher's own format where it
+ships one (PQ2_0, MXFP4).
+
+| # | Model | Lab | Size | File | Runs in | License |
+|---|---|---|---|---|---|---|
+| 1 | Ternary-Bonsai-2-27B | PrismML | 27B dense, ternary | PQ2_0, 7.2 GB | VRAM | Apache-2.0 |
+| 2 | Qwen3.8-27B | Alibaba Qwen | 27.8B dense | UD-Q4_K_M, 16.5 GB | mostly VRAM | Apache-2.0 |
+| 3 | gpt-oss-20b | OpenAI | 21B MoE (3.6B active) | MXFP4, 12.1 GB | VRAM | Apache-2.0 |
+| 4 | Granite 4.2 30B | IBM | 30B dense | Q4_K_M, 17.7 GB | mostly VRAM | Apache-2.0 |
+| 5 | Ornith-1.5-35B-A3B | Ornith AI | 35B MoE (3B active) | Q4_K_M, 21.7 GB | experts in RAM | MIT |
+| 6 | Kolibri-1 | Aleph Alpha | 78B MoE (6 of 384 experts) | Q4_K_M, 47.5 GB | experts in RAM | Apache-2.0 |
+| 7 | Ling-3.0-tiny | inclusionAI (Ant Group) | 7.9B MoE | Q8_0, 8.4 GB | VRAM | MIT |
+| 8 | MiniCPM5-2B | OpenBMB | 2.5B dense | Q8_0, 2.7 GB | VRAM | Apache-2.0 |
+
+The first leaderboard adds the two free API sparring partners, Nemotron 3 Ultra 550B (NVIDIA) and Gemma 4 31B
+(Google), and the anchors Heuristic AI and PokéChamp: 12 rows. All 12 are entries in `config.yaml.example`.
+
+- Bonsai is a ternary compression of Qwen3.8-27B (its listed base model), so #1 vs #2 is a built-in
+  experiment. Site line: "Does compressing a model to ternary weights affect its Pokémon? A controlled study."
+- MiniCPM5-2B is the smallest model in the field.
+- Kolibri-1 came out on 2 Oct with a new architecture, and its only GGUF is a community conversion. Confirm
+  llama.cpp loads it before downloading 47.5 GB.
+- gpt-oss can't switch reasoning off completely; "low" is its minimum, and that's what the local provider sends.
+- About 127 GB to download (Bonsai is already on disk).
+- Alternates: Gemma 4 26B-A4B run locally (16.9 GB), Nemotron 3.5 Lightning 30B-A3B, Xing4.0-29B-A4B,
+  K2-Horizon-MoVA-36B-A4B, gpt-oss-120b (about 63 GB, at the limit).
 
 ---
 
@@ -319,7 +355,7 @@ site/
 | `/retracted` | v0 results with a formal retraction notice; Zero-Token Reasoning |
 | `/faq` | "Is this a real benchmark?" "Yes." / "Why Pokémon?" "We were asked to evaluate models on economically valuable tasks and interpreted this broadly." |
 | `/submit` | How to add a model (a PR with a config entry). "Submissions are reviewed by a committee of one." No forms. |
-| `/changelog` | Real fixes in deadpan: "v1.0.1: PokéChamp Depth 2 now searches to depth 2. Previously it did not. Rankings were unaffected, which concerns us." |
+| `/changelog` | Real fixes in deadpan: "v1.0.1: PokéChamp's search depth setting has been removed. It had never been used. Rankings were unaffected, which concerns us." |
 | `404` | "This page fainted." |
 
 **Related work** (real, cite properly): PokéLLMon (Hu et al., 2024), PokéChamp (Karten et al., 2025),
@@ -403,6 +439,6 @@ instead of narrating live in the browser.
 ## 9. Open decisions
 
 1. The domain (keep "Pokémon" out of it).
-2. Which 8 local models. I can research a current shortlist with model file sizes and licenses.
+2. Confirm the 8 local models (draft in section 5), especially Kolibri-1.
 3. Season 1 ruleset: thinking off with a visible `<thought>` (recommended), or thinking on.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
