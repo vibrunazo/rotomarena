@@ -1,4 +1,5 @@
 ---
+import { routes } from '../../lib/routes';
 import Base from '../../layouts/Base.astro';
 import MatchList from '../../components/MatchList.astro';
 import { findings, matchEntries, meta } from '../../lib/data';
@@ -56,7 +57,7 @@ const voided = matches.filter((e) => e.data.void_reason).length;
         {zeroWins.map((w) => (
           <li>
             <code>{w.config_id}</code>{' '}
-            {slugOf.has(w.match_id) ? <a href={`/retracted/${slugOf.get(w.match_id)}/`}>view match</a> : <span class="muted">match file missing</span>}
+            {slugOf.has(w.match_id) ? <a href={routes.retractedMatch(slugOf.get(w.match_id)!)}>view match</a> : <span class="muted">match file missing</span>}
           </li>
         ))}
       </ul>
@@ -64,7 +65,7 @@ const voided = matches.filter((e) => e.data.void_reason).length;
   )}
 
   <h2>All retracted matches</h2>
-  <MatchList matches={matches} base="/retracted/" showReason />
+  <MatchList matches={matches} retracted showReason />
 
   <section class="footnotes">
     <ol>

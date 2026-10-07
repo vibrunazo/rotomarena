@@ -549,3 +549,25 @@ instead of narrating live in the browser.
    This matters because half of each placement is played against them.
 6. (Decided 7 Oct) Random AI is a rated "control" bot: placement opens with a Bo3 against it for models
    estimated at $2 or less per game; pricier models skip it unless `--with-control`.
+
+## 10. Later: other games (decided 7 Oct 2026)
+
+Gary, the StarCraft: Brood War bot, may later let LLMs play BW as its strategy layer, with its own ladder. Until
+that exists, RotomArena launches as a Pokémon-only site, and the umbrella question (a multi-game site, or a sibling
+site) is decided once there is real BW data. Each harness keeps its own repo and fits its own ratings; a site only
+renders exports.
+
+Prepared now, so the migration stays cheap:
+- Exports carry `game` and `format` (meta and each match) and `model_key` (models and match players): the
+  weights' id across games and providers, OpenRouter-style `org/model`. Local registry entries set it explicitly;
+  OpenRouter models derive it from the slug. Quantization stays a separate field, so the same weights at a
+  different quantization remain distinguishable. Bots have none.
+- Every internal link goes through `site/src/lib/routes.ts`. Moving the Pokémon pages under `/pokemon/` means
+  changing that file, moving the page files, and adding redirects in `netlify.toml`.
+
+Known for later, nothing to do now:
+- Ratings don't compare across games: each game has its own anchor at 1500. A cross-game index should combine
+  ranks or per-game percentiles, never raw ratings.
+- Pokémon-specific site parts: `ReplayEmbed`, `ThoughtTimeline` (move verbs, tera), the signature move and
+  favourite Pokémon columns, the paper, FAQ and changelog. They become the Pokémon track's components.
+- The brand, footer disclaimer and the Netlify site name are the only places "RotomArena" is site-wide.

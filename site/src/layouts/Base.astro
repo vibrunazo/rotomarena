@@ -1,4 +1,5 @@
 ---
+import { routes } from '../lib/routes';
 import '../styles/global.css';
 import { meta } from '../lib/data';
 
@@ -10,11 +11,11 @@ const { title, description = 'RotomArena: evaluating frontier language models on
 const fullTitle = title === 'RotomArena' ? title : `${title} | RotomArena`;
 const path = Astro.url.pathname;
 const nav = [
-  ['/leaderboard/', 'Leaderboard'],
-  ['/matches/', 'Matches'],
-  ['/paper/', 'Paper'],
-  ['/faq/', 'FAQ'],
-  ['/retracted/', 'Retracted'],
+  [routes.leaderboard, 'Leaderboard'],
+  [routes.matches, 'Matches'],
+  [routes.paper, 'Paper'],
+  [routes.faq, 'FAQ'],
+  [routes.retracted, 'Retracted'],
 ];
 ---
 <!doctype html>
@@ -39,7 +40,7 @@ const nav = [
   <body>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="wordmark" href="/">Rotom<span>Arena</span></a>
+        <a class="wordmark" href={routes.home}>Rotom<span>Arena</span></a>
         <nav aria-label="Main">
           {nav.map(([href, label]) => (
             <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>
@@ -53,10 +54,10 @@ const nav = [
     <footer class="site-footer">
       <div class="wrap small muted">
         <p class="footer-links">
-          <a href="/changelog/">Changelog</a>
-          <a href="/submit/">Submit a model</a>
-          <a href="/retracted/">Corrections</a>
-          <a href="/paper/#citation">Cite</a>
+          <a href={routes.changelog}>Changelog</a>
+          <a href={routes.submit}>Submit a model</a>
+          <a href={routes.retracted}>Corrections</a>
+          <a href={routes.citation}>Cite</a>
         </p>
         <p>
           RotomArena season {meta.season}. Ratings regenerate after every batch of games; results are final until we

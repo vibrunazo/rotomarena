@@ -87,3 +87,12 @@ def test_clean_llm_model_name():
     assert clean_llm_model_name("minimax/minimax-m3:free") == "MiniMax M3"
     assert clean_llm_model_name("mistralai/mistral-large-2411") == "Mistral Large"
     assert clean_llm_model_name("x-ai/grok-2") == "Grok 2"
+
+
+def test_every_registry_llm_has_a_cross_game_model_key():
+    agents = AppConfig.load("config.yaml").agents
+    keys = {cid: a.canonical_model_key() for cid, a in agents.items() if a.type == "direct_llm"}
+    assert all(keys.values()), [cid for cid, k in keys.items() if not k]
+    assert keys["nemotron_3_ultra"] == "nvidia/nemotron-3-ultra-550b-a55b"  # the OpenRouter slug without ':free'
+    assert len(set(keys.values())) == len(keys)
+    assert agents["pokechamp"].canonical_model_key() is None

@@ -1,12 +1,13 @@
 ---
 // Key findings, one sentence each, filled from findings.json. Findings the exporter marks show: false are skipped.
+import { routes } from '../lib/routes';
 import { findings, fmtPct, fmtRating, modelsById } from '../lib/data';
 
 interface Props { limit?: number }
 const { limit } = Astro.props;
 const models = await modelsById();
 const name = (id: unknown) => models.get(String(id))?.display_name ?? String(id);
-const link = (id: unknown) => (models.has(String(id)) ? `<a href="/models/${id}/">${name(id)}</a>` : name(id));
+const link = (id: unknown) => (models.has(String(id)) ? `<a href="${routes.model(String(id))}">${name(id)}</a>` : name(id));
 
 const text: Record<string, (f: any) => string> = {
   'top-model': (f) =>
@@ -22,7 +23,7 @@ const text: Record<string, (f: any) => string> = {
     `or ${f.times_median}× the field median.`,
   'zero-token-wins': (f) =>
     `${f.wins.length} matches in our pilot study were won by models that produced zero tokens. ` +
-    `These results have been <a href="/retracted/">retracted</a>.`,
+    `These results have been <a href="${routes.retracted}">retracted</a>.`,
   'most-common-signature-move': (f) =>
     `The most common signature move is <strong>${f.move}</strong>, preferred by ${f.models} ${f.models === 1 ? 'model' : 'models'}.`,
   'most-hallucinations': (f) =>

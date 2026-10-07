@@ -1,9 +1,11 @@
 ---
 // A table of matches linking to their replay pages.
+import { routes } from '../lib/routes';
 import { fmtDate, fmtDuration, winner, type MatchEntry } from '../lib/data';
 
-interface Props { matches: MatchEntry[]; base?: string; showReason?: boolean }
-const { matches, base = '/matches/', showReason = false } = Astro.props;
+interface Props { matches: MatchEntry[]; retracted?: boolean; showReason?: boolean }
+const { matches, retracted = false, showReason = false } = Astro.props;
+const href = retracted ? routes.retractedMatch : routes.match;
 ---
 <div class="table-scroll">
   <table>
@@ -32,7 +34,7 @@ const { matches, base = '/matches/', showReason = false } = Astro.props;
             <td class="r num">{m.turns}</td>
             <td class="r num">{fmtDuration(m.duration_seconds)}</td>
             {showReason && <td class="small muted reason">{m.void_reason ?? 'pilot ruleset'}</td>}
-            <td><a href={`${base}${slug}/`}>Replay</a></td>
+            <td><a href={href(slug)}>Replay</a></td>
           </tr>
         );
       })}

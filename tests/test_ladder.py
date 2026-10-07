@@ -128,6 +128,8 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
     app_cfg = AppConfig(telemetry=TelemetryConfig(output_dir=runs))
     app_cfg.ladder.bootstrap_samples = 50
     app_cfg.ladder.anchor = "heuristic"
+    app_cfg.agents["qwen"] = AgentConfig(name="qwen", type="direct_llm", provider="local", model="qwen3.8-27b",
+                                         model_key="qwen/qwen3.8-27b")
 
     counts = export_site(app_cfg, tmp_path / "data")
     assert counts == {"models": 3, "matches": 4, "rated": 3, "void": 1, "retracted": 1}
@@ -143,7 +145,11 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
     void = json.loads((data / "matches" / "match_20261006_100300_a_vs_b_g4.json").read_text(encoding="utf-8"))
     assert "autopilot" in void["void_reason"]
     assert "sk-live" not in (data / "retracted" / "match_20260830_120000_old_g1.json").read_text(encoding="utf-8")
-    assert json.loads((data / "meta.json").read_text(encoding="utf-8"))["retracted_matches"] == 1
+    meta = json.loads((data / "meta.json").read_text(encoding="utf-8"))
+    assert meta["retracted_matches"] == 1 and meta["game"] == "pokemon" and meta["formats"] == ["gen9ou"]
+    # the cross-game identity: set in the registry for local models, absent for bots
+    assert models["qwen"]["model_key"] == "qwen/qwen3.8-27b" and models["heuristic"]["model_key"] is None
+    assert void["game"] == "pokemon" and {p["config_id"]: p["model_key"] for p in void["players"]}["qwen"] == "qwen/qwen3.8-27b"
 
 
 def _fake_gen(monkeypatch, running):

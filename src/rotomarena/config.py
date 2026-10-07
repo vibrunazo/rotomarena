@@ -161,6 +161,14 @@ class LadderConfig(BaseModel):
     )
 
 
+def derived_model_key(agent_type: str, provider: Optional[str], model: Optional[str]) -> Optional[str]:
+    """An OpenRouter slug names the weights ('nvidia/nemotron-3-ultra-550b-a55b:free' -> without ':free');
+    local catalog keys don't, so local models need an explicit model_key."""
+    if agent_type == "direct_llm" and provider == "openrouter" and model:
+        return model.split(":")[0].lower()
+    return None
+
+
 class AgentConfig(BaseModel):
     """Configuration for a benchmark agent."""
 
@@ -186,6 +194,11 @@ class AgentConfig(BaseModel):
     quantization: Optional[str] = Field(
         default=None, description="Weights format for local models (e.g. 'Q4_K_M'); part of the model's identity"
     )
+    model_key: Optional[str] = Field(
+        default=None,
+        description="Canonical id of the weights, OpenRouter-style 'org/model' (e.g. 'qwen/qwen3.8-27b'), so other "
+        "games' benchmarks can recognise the same model. Defaults to the OpenRouter slug without its ':variant'",
+    )
     temperature: float = Field(
         default=0.2, description="LLM temperature override"
     )
@@ -199,6 +212,10 @@ class AgentConfig(BaseModel):
             "matchup": 1.0,
         }
     )
+
+    def canonical_model_key(self) -> Optional[str]:
+        """The cross-game identity of an LLM's weights; None for bots (they belong to one game)."""
+        return self.model_key or derived_model_key(self.type, self.provider, self.model)
 
 
 class LocalLLMConfig(BaseModel):

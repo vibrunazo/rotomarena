@@ -1,13 +1,14 @@
 ---
 // BibTeX block with a copy button.
 import { meta } from '../lib/data';
+import { routes } from '../lib/routes';
 
 const year = meta.generated_at.slice(0, 4);
 const bibtex = `@misc{rotomarena${year},
   title        = {RotomArena: Measuring What Matters in Large Language Models},
   author       = {{The RotomArena Team}},
   year         = {${year}},
-  howpublished = {\\url{${Astro.site?.origin ?? ''}/paper/}},
+  howpublished = {\\url{${new URL(routes.paper, Astro.site).href}}},
   note         = {Season ${meta.season.replace('s', '')}. Not peer reviewed, in the sense that matters}
 }`;
 ---

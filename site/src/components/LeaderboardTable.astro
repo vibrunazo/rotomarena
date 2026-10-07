@@ -1,5 +1,6 @@
 ---
 // The main table. Click a column header to sort. Only rated language models get a rank; bots are scenery.
+import { routes } from '../lib/routes';
 import { fmtInterval, fmtPct, fmtRating, roleLabel, type Model } from '../lib/data';
 
 interface Props { models: Model[]; compact?: boolean }
@@ -29,7 +30,7 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'dire
         <tr>
           <td class="r num" data-value={rank ?? 999}>{rank ?? '—'}</td>
           <td data-value={m.display_name}>
-            <a href={`/models/${m.config_id}/`}>{m.display_name}</a>
+            <a href={routes.model(m.config_id)}>{m.display_name}</a>
             {roleLabel(m.role) && <span class="pill">{roleLabel(m.role)}</span>}
             {m.provisional && <span class="pill warn" title="Fewer games than a full placement">provisional</span>}
             {m.quantization && <span class="muted small"> {m.quantization}</span>}

@@ -1,5 +1,6 @@
 ---
 // One match: who played, the replay, and every decision with its reasoning. Shared by /matches/ and /retracted/.
+import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import ReplayEmbed from './ReplayEmbed.astro';
 import ThoughtTimeline from './ThoughtTimeline.astro';
@@ -15,14 +16,14 @@ const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
 ---
 <Base title={title} description={`${title}: replay and turn-by-turn reasoning.`}>
   <p class="eyebrow">
-    <a href={retracted ? '/retracted/' : '/matches/'}>{retracted ? 'Retracted' : 'Matches'}</a> · {fmtDate(m.date)} · season {m.season ?? '—'}
+    <a href={retracted ? routes.retracted : routes.matches}>{retracted ? 'Retracted' : 'Matches'}</a> · {fmtDate(m.date)} · season {m.season ?? '—'}
   </p>
   <h1>{title}</h1>
 
   {retracted && (
     <div class="retraction" role="note">
       <strong>Retracted.</strong> {m.void_reason ? `This match was voided: ${m.void_reason}.` : 'This match was played under the pilot ruleset.'}
-      {' '}It is kept for transparency and does not count toward any rating. <a href="/retracted/">Why we retracted the pilot study</a>.
+      {' '}It is kept for transparency and does not count toward any rating. <a href={routes.retracted}>Why we retracted the pilot study</a>.
     </div>
   )}
   {!retracted && m.void_reason && (
@@ -34,7 +35,7 @@ const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
       <div class={`player ${p.role === m.winner_role ? 'won' : ''}`}>
         <div class="eyebrow">{p.role === 'p1' ? 'Player 1' : 'Player 2'}{p.role === m.winner_role && ' · winner'}</div>
         <div class="pname">
-          {models.has(p.config_id) ? <a href={`/models/${p.config_id}/`}>{p.display_name}</a> : p.display_name}
+          {models.has(p.config_id) ? <a href={routes.model(p.config_id)}>{p.display_name}</a> : p.display_name}
         </div>
         <div class="small muted">{p.team || 'team not recorded'}</div>
         {p.agent_type === 'direct_llm' && <div class="small muted num">autopilot {fmtPct(p.autopilot_rate)}</div>}

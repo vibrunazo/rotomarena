@@ -9,6 +9,7 @@ const player = z.object({
   agent_type: z.string(),
   provider: z.string().nullable(),
   model: z.string().nullable(),
+  model_key: z.string().nullable(), // the weights' id across games and providers ('org/model'); null for bots
   quantization: z.string().nullable(),
   role: z.string(),
   team: z.string(),
@@ -30,6 +31,8 @@ const decision = z.object({
 
 const match = z.object({
   id: z.string(),
+  game: z.string(),
+  format: z.string(),
   season: z.string().nullable(),
   date: z.string(),
   players: z.array(player),
@@ -52,6 +55,7 @@ const models = defineCollection({
     role: z.string(),
     provider: z.string().nullable(),
     model: z.string().nullable(),
+    model_key: z.string().nullable(),
     quantization: z.string().nullable(),
     rating: z.number().nullable(),
     ci_low: z.number().nullable(),

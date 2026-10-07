@@ -69,6 +69,7 @@ agents:
     model: "google/gemma-4-31b-it:free"
 
   # Season 1 local lineup (draft). model = the Smooth Generator catalog key (gen llm serve --model);
+  # model_key = the original weights ('org/model', OpenRouter-style), shared with other games' benchmarks;
   # each model has its own port so two can run at once. Kolibri-1 was swapped for K2-Horizon (llama.cpp can't load Kolibri yet).
   bonsai_2_27b:
     type: "direct_llm"
@@ -78,6 +79,7 @@ agents:
     model: "bonsai"
     port: 8080
     quantization: "PQ2_0"
+    model_key: "prism-ml/ternary-bonsai-2-27b"
   qwen3_8_27b:
     type: "direct_llm"
     display_name: "Qwen3.8 27B"
@@ -85,6 +87,7 @@ agents:
     model: "qwen3.8-27b"
     port: 8081
     quantization: "UD-Q4_K_M"
+    model_key: "qwen/qwen3.8-27b"
   gpt_oss_20b:
     type: "direct_llm"
     display_name: "GPT-OSS 20B"
@@ -92,6 +95,7 @@ agents:
     model: "gpt-oss-20b"
     port: 8082
     quantization: "MXFP4"
+    model_key: "openai/gpt-oss-20b"
   granite_4_2_30b:
     type: "direct_llm"
     display_name: "Granite 4.2 30B"
@@ -99,6 +103,7 @@ agents:
     model: "granite-4.2-30b"
     port: 8083
     quantization: "Q4_K_M"
+    model_key: "ibm-granite/granite-4.2-30b"
   ornith_1_5_35b_a3b:
     type: "direct_llm"
     display_name: "Ornith 1.5 35B"
@@ -106,6 +111,7 @@ agents:
     model: "ornith-1.5-35b-a3b"
     port: 8084
     quantization: "Q4_K_M"
+    model_key: "ornith-ai/ornith-1.5-35b-a3b"
   k2_horizon_36b_a4b:
     type: "direct_llm"
     display_name: "K2-Horizon 36B"
@@ -113,6 +119,7 @@ agents:
     model: "k2-horizon-36b-a4b"
     port: 8087
     quantization: "Q4_K_M"
+    model_key: "ifm/k2-horizon-mova-36b-a4b"
   ling_3_0_tiny:
     type: "direct_llm"
     display_name: "Ling 3.0 Tiny"
@@ -120,6 +127,7 @@ agents:
     model: "ling-3.0-tiny"
     port: 8085
     quantization: "Q8_0"
+    model_key: "inclusionai/ling-3.0-tiny"
   minicpm5_2b:
     type: "direct_llm"
     display_name: "MiniCPM5 2B"
@@ -127,6 +135,7 @@ agents:
     model: "minicpm5-2b"
     port: 8086
     quantization: "Q8_0"
+    model_key: "openbmb/minicpm5-2b"
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
   random_ai:

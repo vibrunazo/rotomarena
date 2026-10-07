@@ -1,4 +1,5 @@
 ---
+import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import { meta, modelsById } from '../lib/data';
 
@@ -38,7 +39,7 @@ const faq: [string, string][] = [
   <dl class="faq prose">
     {faq.map(([q, a]) => (<><dt>{q}</dt><dd>{a}</dd></>))}
   </dl>
-  <p class="prose">Still have questions? <a href="/paper/">Read the paper</a>, or <a href="/submit/">submit a model</a>.</p>
+  <p class="prose">Still have questions? <a href={routes.paper}>Read the paper</a>, or <a href={routes.submit}>submit a model</a>.</p>
 </Base>
 
 <style>

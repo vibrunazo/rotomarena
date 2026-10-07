@@ -10,14 +10,15 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
-from rotomarena.config import AppConfig
+from rotomarena.config import AppConfig, derived_model_key
 from rotomarena.ladder import SeasonState, season_state
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
-from rotomarena.telemetry.breadcrumbs import MatchTelemetry, TurnBreadcrumb
+from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
 from rotomarena.telemetry.replay_saver import flatten_logs
 
 RETRACTED_SEASON = "v0"
+GAME = "pokemon"  # this harness's game; a multi-game site keys its data folders and rankings by it
 _SECRETS = re.compile(r"sk-[A-Za-z0-9_\-*]{6,}|AIza[0-9A-Za-z_\-]{10,}|Bearer\s+\S+")
 _CHOICE = re.compile(r"/choose (move|switch) (\S+)( terastallize)?")
 _PROPOSED = re.compile(r"'((?:MOVE|SWITCH): [^']*)'")
@@ -96,14 +97,26 @@ def _raw_log(runs_dir: Path, match_id: str) -> List[str]:
     return public_log(flatten_logs(json.loads(path.read_text(encoding="utf-8")).get("raw_logs", [])))
 
 
-def match_record(match: MatchTelemetry, runs_dir: Path, max_autopilot: float) -> Dict[str, Any]:
+def model_key(player: MatchPlayer, app_cfg: AppConfig) -> Optional[str]:
+    """The weights' cross-game id: from the registry, or derived for players that left it (pilot models)."""
+    registry = app_cfg.agents.get(player.config_id)
+    if registry:
+        return registry.canonical_model_key()
+    return derived_model_key(player.agent_type, player.provider, player.model)
+
+
+def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> Dict[str, Any]:
     winner_role = next((p.role for p in match.players if p.display_name == match.winner), None)
+    max_autopilot = app_cfg.ladder.max_autopilot
     return {
         "id": match.match_id,
+        "game": GAME,
+        "format": match.format,
         "season": match.ruleset.get("version"),
         "date": match.match_id.split("_")[1] if match.match_id.count("_") > 1 else "",
         "players": [
-            {**p.model_dump(), "autopilot_rate": round(autopilot_rate(match, p.role), 3)} for p in match.players
+            {**p.model_dump(), "model_key": model_key(p, app_cfg), "autopilot_rate": round(autopilot_rate(match, p.role), 3)}
+            for p in match.players
         ],
         "winner_role": winner_role,
         "turns": match.total_turns,
@@ -238,6 +251,7 @@ def _model_rows(state: SeasonState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
             "role": registry.role if registry else "contestant",
             "provider": identity.provider,
             "model": identity.model,
+            "model_key": model_key(identity, app_cfg),
             "quantization": identity.quantization,
             "rating": rating.rating,
             "ci_low": rating.ci_low,
@@ -271,9 +285,9 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
             stale.unlink()
 
     for m in state.matches:
-        _write_json(out / "matches" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg.ladder.max_autopilot))
+        _write_json(out / "matches" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg))
     for m in retracted:
-        _write_json(out / "retracted" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg.ladder.max_autopilot))
+        _write_json(out / "retracted" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg))
 
     head_to_head: Dict[frozenset, Dict[str, Any]] = {}
     for o in state.outcomes:
@@ -293,6 +307,8 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     _write_json(out / "findings.json", findings(models, state.matches + retracted))
     _write_json(out / "meta.json", {
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+        "game": GAME,
+        "formats": sorted({m.format for m in state.matches}),
         "season": app_cfg.ruleset.version,
         "ruleset": app_cfg.ruleset.model_dump(),
         "ladder": app_cfg.ladder.model_dump(),
