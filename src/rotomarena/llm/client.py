@@ -238,9 +238,16 @@ class LLMClient:
             messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning
         )
         raw_text, metrics = completion.text, completion.metrics
+        hidden = completion.reasoning
+        if "<decision>" not in raw_text.lower() and "<decision>" in hidden.lower():
+            # The server didn't recognise the model's end-of-thinking tag (K2-Horizon's "</ifm|think>"), so the
+            # answer was filed under reasoning: the answer is whatever follows the last closing think tag.
+            ends = list(re.finditer(r"</[^>\s]*think[^>]*>", hidden, re.IGNORECASE))
+            cut = ends[-1].end() if ends else hidden.lower().rfind("<thought>")
+            raw_text, hidden = hidden[max(cut, 0):], hidden[:max(cut, 0)]
         decision = parse_decision(raw_text)
         if decision.parse_error and metrics.finish_reason == "length":
             decision.parse_error = f"answer cut off at the {max_tokens}-token budget ({decision.parse_error})"
         decision.metrics = metrics
-        decision.hidden_reasoning = completion.reasoning
+        decision.hidden_reasoning = hidden
         return decision

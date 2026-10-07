@@ -129,6 +129,21 @@ async def test_response_without_choices_is_retried(monkeypatch):
     assert create.await_count == 2
 
 
+@pytest.mark.asyncio
+async def test_answer_filed_under_reasoning_is_recovered():
+    """llama.cpp didn't know K2-Horizon's end-of-thinking tag and returned its whole output as reasoning."""
+    client = LLMClient.from_provider_name("local")
+    hidden = ("Heatran is Fire/Steel, Ground is 4x. So choose MOVE: earthquake.\n</ifm|think>\n"
+              "<thought>\nEarthquake KOs Heatran.\n</thought>\n<decision>\nMOVE: earthquake\n</decision>")
+    with patch.object(client, "generate_completion", new_callable=AsyncMock) as mock_comp:
+        mock_comp.return_value = Completion("", hidden, LLMUsageMetrics(finish_reason="stop"))
+        decision = await client.generate_cot_decision("dummy state")
+    assert decision.parse_error is None
+    assert (decision.action_type, decision.target) == ("MOVE", "earthquake")
+    assert decision.reasoning == "Earthquake KOs Heatran."
+    assert decision.hidden_reasoning.endswith("</ifm|think>")
+
+
 def test_reasoning_settings_per_provider_style():
     presets = provider_presets()
     openrouter = LLMClient(presets["openrouter"], "openrouter")
