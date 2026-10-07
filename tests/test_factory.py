@@ -11,7 +11,7 @@ def test_create_agent_instances():
 
     # PokéChamp
     cfg_pokechamp = AgentConfig(name="pokechamp_test", type="pokechamp")
-    agent_pc = create_agent_instance(cfg_pokechamp, app_cfg)
+    agent_pc = create_agent_instance(cfg_pokechamp, app_cfg, start_listening=False)
     assert agent_pc.agent_name == "PokeChamp"
     assert agent_pc.agent_type == "pokechamp"
     assert agent_pc.identity.config_id == "pokechamp_test"
@@ -19,21 +19,21 @@ def test_create_agent_instances():
 
     # Direct LLM with various model versions (no random hashes)
     cfg_llm_37 = AgentConfig(name="llm_test", type="direct_llm", provider="gemini", model="gemini-3.7-flash")
-    agent_llm_37 = create_agent_instance(cfg_llm_37, app_cfg)
+    agent_llm_37 = create_agent_instance(cfg_llm_37, app_cfg, start_listening=False)
     assert agent_llm_37.agent_name == "Gemini 3.7 Flash"
     assert agent_llm_37.agent_type == "direct_llm"
 
     cfg_llm_38 = AgentConfig(name="llm_test2", type="direct_llm", provider="gemini", model="gemini-3.8-flash")
-    agent_llm_38 = create_agent_instance(cfg_llm_38, app_cfg)
+    agent_llm_38 = create_agent_instance(cfg_llm_38, app_cfg, start_listening=False)
     assert agent_llm_38.agent_name == "Gemini 3.8 Flash"
 
     cfg_llm_38_pro = AgentConfig(name="llm_test3", type="direct_llm", provider="gemini", model="gemini-3.8-pro")
-    agent_llm_38_pro = create_agent_instance(cfg_llm_38_pro, app_cfg)
+    agent_llm_38_pro = create_agent_instance(cfg_llm_38_pro, app_cfg, start_listening=False)
     assert agent_llm_38_pro.agent_name == "Gemini 3.8 Pro"
 
     # Disambiguation tag (for mirror matches)
-    agent_mirror_1 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="1")
-    agent_mirror_2 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="2")
+    agent_mirror_1 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="1", start_listening=False)
+    agent_mirror_2 = create_agent_instance(cfg_llm_37, app_cfg, player_tag="2", start_listening=False)
     assert agent_mirror_1.agent_name == "Gemini 3.7 Flash 1"
     assert agent_mirror_2.agent_name == "Gemini 3.7 Flash 2"
     assert len(agent_mirror_1.agent_name) <= 18
@@ -41,14 +41,14 @@ def test_create_agent_instances():
 
     # Heuristic
     cfg_heur = AgentConfig(name="heur_test", type="heuristic")
-    agent_heur = create_agent_instance(cfg_heur, app_cfg)
+    agent_heur = create_agent_instance(cfg_heur, app_cfg, start_listening=False)
     assert agent_heur.agent_name == "Heuristic AI"
     assert agent_heur.agent_type == "heuristic"
 
 
 def test_llm_agent_identity_and_ruleset():
     app_cfg = AppConfig.default_config()
-    agent = create_agent_instance(app_cfg.agents["bonsai_2_27b"], app_cfg)
+    agent = create_agent_instance(app_cfg.agents["bonsai_2_27b"], app_cfg, start_listening=False)
     assert agent.identity.config_id == "bonsai_2_27b"
     assert agent.identity.provider == "local"
     assert agent.identity.model == "bonsai"
@@ -60,7 +60,7 @@ def test_llm_agent_identity_and_ruleset():
 
 def test_default_llm_is_the_free_test_model():
     app_cfg = AppConfig.default_config()
-    agent = create_agent_instance(AgentConfig(name="llm", type="direct_llm"), app_cfg)
+    agent = create_agent_instance(AgentConfig(name="llm", type="direct_llm"), app_cfg, start_listening=False)
     assert agent.identity.provider == "openrouter"
     assert agent.identity.model == FREE_TEST_MODEL
 

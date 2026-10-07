@@ -13,7 +13,7 @@ from .mocks import MockBattle
 
 @pytest.mark.asyncio
 async def test_heuristic_player_choice():
-    player = HeuristicPlayer(player_name="TestHeuristic")
+    player = HeuristicPlayer(player_name="TestHeuristic", start_listening=False)
     battle = MockBattle()
     order = await player.choose_move(battle)
     assert order is not None
@@ -23,7 +23,7 @@ async def test_heuristic_player_choice():
 
 @pytest.mark.asyncio
 async def test_max_damage_player_choice():
-    player = MaxDamagePlayer(player_name="TestMaxDmg")
+    player = MaxDamagePlayer(player_name="TestMaxDmg", start_listening=False)
     battle = MockBattle()
     order = await player.choose_move(battle)
     assert order is not None
@@ -33,7 +33,7 @@ async def test_max_damage_player_choice():
 def _llm_player(decision=None, side_effect=None):
     mock_llm = MagicMock(spec=LLMClient)
     mock_llm.generate_cot_decision = AsyncMock(return_value=decision, side_effect=side_effect)
-    player = DirectLLMPlayer(player_name="TestLLM", llm_client=mock_llm)
+    player = DirectLLMPlayer(player_name="TestLLM", llm_client=mock_llm, start_listening=False)
     recorder = BreadcrumbsRecorder("test_match")
     player.set_recorder(recorder)
     return player, recorder
@@ -91,7 +91,7 @@ async def test_hung_turn_times_out_to_the_default_move():
         return ActionDecision(action_type="MOVE", target="earthquake")
 
     mock_llm.generate_cot_decision = _hanging_call
-    player = DirectLLMPlayer(player_name="SlowLLM", llm_client=mock_llm, turn_timeout=0.1)
+    player = DirectLLMPlayer(player_name="SlowLLM", llm_client=mock_llm, turn_timeout=0.1, start_listening=False)
     recorder = BreadcrumbsRecorder("test_match")
     player.set_recorder(recorder)
 

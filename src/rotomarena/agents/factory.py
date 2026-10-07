@@ -195,8 +195,10 @@ def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
     player_tag: Optional[str] = None,
+    start_listening: bool = True,
 ) -> BaseBenchmarkPlayer:
-    """Builds a benchmark player from its configuration. Teams are assigned per game by the runner."""
+    """Builds a benchmark player from its configuration. Teams are assigned per game by the runner.
+    `start_listening=False` skips connecting to Showdown (for tests)."""
     llm_client = None
     resolved_model = None
     if agent_cfg.type == "direct_llm":
@@ -220,6 +222,7 @@ def create_agent_instance(
         player_name=display_name,
         identity=identity,
         turn_timeout=app_config.ruleset.turn_timeout,
+        start_listening=start_listening,
         server_configuration=ServerConfiguration(
             app_config.server.websocket_url,
             "https://play.pokemonshowdown.com/action.php?",
