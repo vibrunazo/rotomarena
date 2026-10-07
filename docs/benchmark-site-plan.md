@@ -398,7 +398,19 @@ whole 2,048-token thinking budget. K2-Horizon needed a fix: llama.cpp doesn't kn
 
 ---
 
-## 6. Phase 2: Astro site
+## 6. Phase 2: Astro site (built 7 Oct 2026)
+
+**Status:** built and committed (d5884d4); not deployed yet. Differences from the sketch below:
+- Head-to-head lives inside `leaderboard.astro`, stats strips inside their pages, and the model card is the page
+  itself. `MatchPage.astro` is shared by `matches/[slug]` and `retracted/[slug]`, and the retracted section has an
+  index page (the Zero-Token Reasoning story) plus one page per match. Figures 2 and 3 are `TokensScatter` and
+  `DecisionSources` (who made each decision, counted from the breadcrumbs).
+- Showdown's replay CSS styles `body.dark`, `.dark a` and `.turn`; `global.css` outranks the first two, and the
+  timeline uses `tl-` class names.
+- The export drops chat, HTML notices and spectator joins from battle logs (`public_log`). The pilot logs held a
+  real spectator username.
+- Still to do: `og.png`, `robots.txt`, connecting the Netlify site, and a re-export after each placement batch
+  (`uv run rotomarena export-site`, then commit `site/src/data`).
 
 **Stack:** current Astro, static output (no adapter needed), Content Layer collections
 (`src/content.config.ts` with `file()` for `models.json` and `glob()` for `matches/*.json`), `@astrojs/mdx` for
