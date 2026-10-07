@@ -28,6 +28,11 @@ ladder:
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
   bootstrap_samples: 1000
 
+# Local models: RotomArena runs `gen llm serve/stop` itself before each series.
+local_llm:
+  gen: "D:/docs/assets/generator/gen.py"
+  manage: true
+
 # Built-in providers: openrouter (default), local (llama.cpp on :8080), gemini, ollama, vllm (:8001).
 # Entries here override or extend them, e.g.:
 # providers:
@@ -48,56 +53,68 @@ agents:
   # Free API sparring partners
   nemotron_3_ultra:
     type: "direct_llm"
+    display_name: "Nemotron 3 Ultra"
     role: "sparring"
     provider: "openrouter"
     model: "nvidia/nemotron-3-ultra-550b-a55b:free"
   gemma_4_31b:
     type: "direct_llm"
+    display_name: "Gemma 4 31B"
     role: "sparring"
     provider: "openrouter"
     model: "google/gemma-4-31b-it:free"
 
-  # Season 1 local lineup (draft). Model names are the llama.cpp server aliases.
+  # Season 1 local lineup (draft). model = the Smooth Generator catalog key (gen llm serve --model);
+  # each model has its own port so two can run at once. Kolibri-1 was dropped: llama.cpp can't load it.
   bonsai_2_27b:
     type: "direct_llm"
+    display_name: "Bonsai 2 27B"
     role: "anchor"
     provider: "local"
     model: "bonsai"
+    port: 8080
     quantization: "PQ2_0"
   qwen3_8_27b:
     type: "direct_llm"
+    display_name: "Qwen3.8 27B"
     provider: "local"
     model: "qwen3.8-27b"
+    port: 8081
     quantization: "UD-Q4_K_M"
   gpt_oss_20b:
     type: "direct_llm"
+    display_name: "GPT-OSS 20B"
     provider: "local"
     model: "gpt-oss-20b"
+    port: 8082
     quantization: "MXFP4"
   granite_4_2_30b:
     type: "direct_llm"
+    display_name: "Granite 4.2 30B"
     provider: "local"
     model: "granite-4.2-30b"
+    port: 8083
     quantization: "Q4_K_M"
   ornith_1_5_35b_a3b:
     type: "direct_llm"
+    display_name: "Ornith 1.5 35B"
     provider: "local"
     model: "ornith-1.5-35b-a3b"
-    quantization: "Q4_K_M"
-  kolibri_1:
-    type: "direct_llm"
-    provider: "local"
-    model: "kolibri-1"
+    port: 8084
     quantization: "Q4_K_M"
   ling_3_0_tiny:
     type: "direct_llm"
+    display_name: "Ling 3.0 Tiny"
     provider: "local"
     model: "ling-3.0-tiny"
+    port: 8085
     quantization: "Q8_0"
   minicpm5_2b:
     type: "direct_llm"
+    display_name: "MiniCPM5 2B"
     provider: "local"
     model: "minicpm5-2b"
+    port: 8086
     quantization: "Q8_0"
 
   # Test bot (not an anchor; only rated if it plays)

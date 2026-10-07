@@ -164,7 +164,9 @@ def format_bot_display_name(
     """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
     a_type = agent_cfg.type
 
-    if a_type == "direct_llm":
+    if agent_cfg.display_name:
+        base = agent_cfg.display_name
+    elif a_type == "direct_llm":
         model = resolved_model or agent_cfg.model or ""
         if model:
             base = clean_llm_model_name(model)
@@ -202,9 +204,14 @@ def create_agent_instance(
     llm_client = None
     resolved_model = None
     if agent_cfg.type == "direct_llm":
+        providers = app_config.providers
+        if agent_cfg.port:
+            local = providers.get(agent_cfg.provider or "openrouter")
+            providers = {**providers, agent_cfg.provider: local.model_copy(
+                update={"base_url": f"http://127.0.0.1:{agent_cfg.port}/v1"})}
         llm_client = LLMClient.from_provider_name(
             agent_cfg.provider or "openrouter",
-            providers=app_config.providers,
+            providers=providers,
             model_override=agent_cfg.model,
         )
         resolved_model = llm_client.default_model

@@ -33,7 +33,9 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 
 2. **Providers:**
    - `openrouter` is the default; its default model is the free Nemotron above.
-   - `local` is a llama.cpp server on `http://127.0.0.1:8080/v1` (the Smooth Generator's `gen llm serve`; Bonsai's alias is `bonsai`).
+   - `local` models run on the Smooth Generator's llama.cpp servers (`gen llm serve --model <catalog key> --port <port>`).
+     Each local registry entry has its own `port`; `battle` and the ladder start the servers a series needs and stop the
+     others (`local_llm.manage` in config.yaml). Weights: `gen llm install --model <key>`.
 
 3. **Pokémon Showdown Server:**
    - Server runs on port `8000` and listens on `127.0.0.1` only.

@@ -142,3 +142,25 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
     assert "autopilot" in void["void_reason"]
     assert "sk-live" not in (data / "retracted" / "match_20260830_120000_old_g1.json").read_text(encoding="utf-8")
     assert json.loads((data / "meta.json").read_text(encoding="utf-8"))["retracted_matches"] == 1
+
+
+def test_local_servers_keep_only_what_the_series_needs(monkeypatch):
+    from rotomarena import local_servers
+
+    calls = []
+    monkeypatch.setattr(local_servers, "running", lambda cfg: {8080: "bonsai", 8083: "granite-4.2-30b"})
+    monkeypatch.setattr(local_servers, "_gen", lambda cfg, *args: calls.append(args) or type("R", (), {"returncode": 0})())
+    players = [
+        AgentConfig(name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", port=8080),
+        AgentConfig(name="qwen", type="direct_llm", provider="local", model="qwen3.8-27b", port=8081),
+    ]
+    local_servers.prepare(players, AppConfig(), log=lambda msg: None)
+    assert calls == [("stop", "--port", "8083"), ("serve", "--model", "qwen3.8-27b", "--port", "8081")]
+
+
+def test_local_model_port_sets_the_endpoint():
+    from rotomarena.agents.factory import create_agent_instance
+
+    app_cfg = AppConfig.default_config()
+    agent = create_agent_instance(app_cfg.agents["bonsai_2_27b"], app_cfg, start_listening=False)
+    assert agent.llm_client.config.base_url == "http://127.0.0.1:8080/v1"

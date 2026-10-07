@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
 
 from rotomarena.agents.factory import create_players
+from rotomarena import local_servers
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
@@ -92,6 +93,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
     if remaining <= 0:
         return 0
+    local_servers.prepare([app_cfg.agents[id_a], app_cfg.agents[id_b]], app_cfg)
     player_a, player_b = create_players(app_cfg.agents[id_a], app_cfg.agents[id_b], app_cfg)
     team_1, team_2 = (load_preset_team(t) for t in app_cfg.ruleset.teams)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)

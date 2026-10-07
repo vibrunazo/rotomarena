@@ -89,7 +89,8 @@ uv run rotomarena battle --p1 bonsai_2_27b --p2 pokechamp --games 4
 
 Sides alternate every game and the two teams swap every two games, so 4 games cover every combination.
 `config.yaml` holds the season's ruleset, the ladder settings and the model registry (`agents:`); API keys
-stay in `.env`.
+stay in `.env`. Local models run on the Smooth Generator's llama.cpp servers, one port per model: before each
+series RotomArena starts the servers it needs (`gen llm serve`) and stops the others.
 
 ### 5. The Ladder (season ratings)
 

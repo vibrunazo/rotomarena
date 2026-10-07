@@ -22,6 +22,7 @@ if sys.platform == "win32":
         pass
 
 from rotomarena.agents.factory import create_players, resolved_model
+from rotomarena import local_servers
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.server.manager import ShowdownServerManager
@@ -362,6 +363,7 @@ def run_battle(
 
     async def _execute():
         async with server_mgr.ensure_running():
+            local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print)
             player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg)
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(player_1, player_2, first_team, second_team, n_games=games)

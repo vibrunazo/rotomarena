@@ -152,6 +152,12 @@ class AgentConfig(BaseModel):
     model: Optional[str] = Field(
         default=None, description="LLM model override"
     )
+    display_name: Optional[str] = Field(
+        default=None, description="Showdown name (max 18 chars); generated from the model id when unset"
+    )
+    port: Optional[int] = Field(
+        default=None, description="For local models: the port of this model's llama.cpp server"
+    )
     quantization: Optional[str] = Field(
         default=None, description="Weights format for local models (e.g. 'Q4_K_M'); part of the model's identity"
     )
@@ -167,6 +173,15 @@ class AgentConfig(BaseModel):
             "hazards": 0.5,
             "matchup": 1.0,
         }
+    )
+
+
+class LocalLLMConfig(BaseModel):
+    """Local models run on the Smooth Generator's llama.cpp servers (`gen llm serve`), one port per model."""
+
+    gen: str = Field(default="D:/docs/assets/generator/gen.py", description="Path to the Smooth Generator's gen.py")
+    manage: bool = Field(
+        default=True, description="Before each series, start the local servers it needs and stop the others"
     )
 
 
@@ -187,6 +202,7 @@ class AppConfig(BaseSettings):
     ladder: LadderConfig = Field(default_factory=LadderConfig)
     providers: Dict[str, ProviderConfig] = Field(default_factory=provider_presets)
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
+    local_llm: LocalLLMConfig = Field(default_factory=LocalLLMConfig)
     telemetry: TelemetryConfig = Field(default_factory=TelemetryConfig)
 
     model_config = SettingsConfigDict(
@@ -231,7 +247,8 @@ class AppConfig(BaseSettings):
                     provider="openrouter", model=FREE_TEST_MODEL,
                 ),
                 "bonsai_2_27b": AgentConfig(
-                    name="bonsai_2_27b", type="direct_llm", role="anchor", provider="local", model="bonsai", quantization="PQ2_0"
+                    name="bonsai_2_27b", type="direct_llm", role="anchor", provider="local", model="bonsai", port=8080,
+                    quantization="PQ2_0",
                 ),
             },
         )
