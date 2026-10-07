@@ -11,7 +11,7 @@ import yaml
 
 
 AgentType = Literal["pokechamp", "direct_llm", "heuristic", "max_damage", "random"]
-AgentRole = Literal["anchor", "sparring", "contestant"]
+AgentRole = Literal["anchor", "sparring", "control", "contestant"]
 ReasoningLevel = Literal["off", "low", "medium", "high"]
 
 # Free OpenRouter model used for tests and as the default LLM (see AGENTS.md).
@@ -155,6 +155,10 @@ class LadderConfig(BaseModel):
         default=0.5, description="A match is void when either side's fallback share of turns exceeds this"
     )
     bootstrap_samples: int = Field(default=1000)
+    control_games: int = Field(default=3, description="Games against each control bot at the start of placement")
+    control_max_cost_per_game_usd: float = Field(
+        default=2.0, description="Models estimated to cost more per game skip the control games unless forced"
+    )
 
 
 class AgentConfig(BaseModel):
@@ -163,7 +167,9 @@ class AgentConfig(BaseModel):
     name: str = Field(default="agent", description="Unique agent identifier (config id)")
     type: AgentType = Field(default="heuristic", description="Agent backend type")
     role: AgentRole = Field(
-        default="contestant", description="anchor: fixed reference; sparring: free standing opponent"
+        default="contestant",
+        description="anchor: fixed reference; sparring: free standing opponent; control: a weak bot (Random AI) "
+        "that cheap models meet first in placement",
     )
     provider: Optional[str] = Field(
         default=None, description="LLM provider key (e.g. 'openrouter', 'local')"

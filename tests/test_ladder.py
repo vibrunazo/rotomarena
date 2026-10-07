@@ -196,3 +196,19 @@ def test_local_model_port_sets_the_endpoint():
     app_cfg = AppConfig.default_config()
     agent = create_agent_instance(app_cfg.agents["bonsai_2_27b"], app_cfg, start_listening=False)
     assert agent.llm_client.config.base_url == "http://127.0.0.1:8080/v1"
+
+
+def test_control_games_only_for_models_under_the_cost_limit(monkeypatch):
+    from rotomarena import ladder
+
+    app = AppConfig(agents={
+        "random_ai": AgentConfig(name="random_ai", type="random", role="control"),
+        "local": AgentConfig(name="local", type="direct_llm", provider="local", model="bonsai"),
+        "pricey": AgentConfig(name="pricey", type="direct_llm", provider="openrouter", model="lab/frontier"),
+    })
+    monkeypatch.setattr(ladder, "estimated_cost_per_game", lambda cfg, app_cfg: 0.0 if cfg.name == "local" else 3.5)
+    quiet = lambda msg: None
+    assert ladder.control_opponents("local", app, log=quiet) == ["random_ai"]
+    assert ladder.control_opponents("pricey", app, log=quiet) == []
+    assert ladder.control_opponents("pricey", app, force=True, log=quiet) == ["random_ai"]
+    assert ladder.control_opponents("random_ai", app, log=quiet) == []

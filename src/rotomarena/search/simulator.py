@@ -7,6 +7,9 @@ from poke_env.battle import Battle, Move, MoveCategory, Pokemon, SideCondition, 
 from rotomarena.search.heuristics import evaluate_battle_state, get_type_effectiveness
 
 
+DEFAULT_SWITCH_COST = 0.1  # sweep vs MaxDamage, 40 games per value: 0 -> 43% wins, 0.1 -> 66% (best for both bots)
+
+
 def _estimate_stat(mon: Pokemon, key: str) -> float:
     """Level-100 stat from base stats, assuming 31 IVs, 84 EVs and a neutral nature."""
     base = (mon.base_stats or {}).get(key, 80)
@@ -145,7 +148,9 @@ def simulate_turn_outcome(
         incoming = _opponent_attack(battle, opp_action_type, opp_action_target, switch_in)
         hazards = entry_hazard_damage(battle, switch_in)
         threat_next_turn = estimate_best_hit(switch_in, opp)
-        delta = 0.4 * (0.5 * threat_next_turn - incoming - hazards)
+        # switch_cost: the tempo a switch gives away; without it the bots switched on half their turns
+        switch_cost = (weights or {}).get("switch_cost", DEFAULT_SWITCH_COST)
+        delta = 0.4 * (0.5 * threat_next_turn - incoming - hazards) - switch_cost
         if _opponent_attack(battle, opp_action_type, opp_action_target, active) >= active.current_hp_fraction:
             delta += 0.2  # staying in would have cost the active Pokémon
         return max(-1.0, min(1.0, base_eval + delta))

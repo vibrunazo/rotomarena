@@ -8,6 +8,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 from rotomarena.agents.factory import create_players
 from rotomarena import local_servers
 from rotomarena.config import AgentConfig, AppConfig
+from rotomarena.costs import estimated_cost_per_game, is_free
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
 from rotomarena.results import Outcome, games_between, load_matches, rated_outcomes, void_reason
@@ -43,9 +44,19 @@ def season_state(app_cfg: AppConfig) -> SeasonState:
     return SeasonState(matches, outcomes, ratings, games_between(outcomes))
 
 
-def is_free(cfg: AgentConfig) -> bool:
-    """Bots, local models and :free API models cost nothing to run."""
-    return cfg.type != "direct_llm" or cfg.provider == "local" or (cfg.model or "").endswith(":free")
+def control_opponents(config_id: str, app_cfg: AppConfig, force: bool = False,
+                      log: Callable[[str], None] = print) -> List[str]:
+    """Control bots (Random AI) a model meets first, unless it is estimated to be too expensive per game."""
+    controls = [k for k, a in app_cfg.agents.items() if a.role == "control" and k != config_id]
+    if not controls or force:
+        return controls
+    cost = estimated_cost_per_game(app_cfg.agents[config_id], app_cfg)
+    limit = app_cfg.ladder.control_max_cost_per_game_usd
+    if cost is None or cost > limit:
+        shown = "unknown" if cost is None else f"${cost:.2f}"
+        log(f"Skipping control games: estimated {shown} per game is over ${limit:.2f} (--with-control to play them)")
+        return []
+    return controls
 
 
 def fixed_placement_opponents(config_id: str, agents: Dict[str, AgentConfig]) -> List[str]:
@@ -103,14 +114,20 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     return remaining
 
 
-async def place(config_id: str, app_cfg: AppConfig, log: Callable[[str], None] = print) -> SeasonState:
-    """Placement: a set against each anchor and a sparring partner, then one against the closest-rated LLM.
+async def place(config_id: str, app_cfg: AppConfig, log: Callable[[str], None] = print,
+                with_control: bool = False) -> SeasonState:
+    """Placement: a short set against the control bot (cheap models only), a set against each anchor and a
+    sparring partner, then one against the closest-rated LLM.
     Sets already played this season are skipped, so an interrupted placement resumes where it stopped."""
     agents = app_cfg.agents
     if config_id not in agents:
         raise ValueError(f"'{config_id}' is not in the agents registry ({', '.join(sorted(agents))})")
 
     state = season_state(app_cfg)
+    for opponent in control_opponents(config_id, app_cfg, force=with_control, log=log):
+        done = state.games(config_id, opponent)
+        log(f"{config_id} vs {opponent} (control): {done}/{app_cfg.ladder.control_games} valid games so far")
+        await play_set(config_id, opponent, app_cfg, done, games=app_cfg.ladder.control_games)
     for opponent in fixed_placement_opponents(config_id, agents):
         done = state.games(config_id, opponent)
         log(f"{config_id} vs {opponent}: {done}/{app_cfg.ladder.games_per_set} valid games so far")

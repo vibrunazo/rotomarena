@@ -434,6 +434,7 @@ def ladder_status(config_file: str = typer.Option("config.yaml", "--config", "-c
 @ladder_app.command("place")
 def ladder_place(
     config_id: str = typer.Argument(..., help="Registry entry to place (from the agents block)"),
+    with_control: bool = typer.Option(False, "--with-control", help="Play the control games even for an expensive model"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
     """Play a model's placement games: a set against each anchor, a sparring partner and the closest-rated LLM.
@@ -445,7 +446,7 @@ def ladder_place(
 
     async def _run():
         async with server_mgr.ensure_running():
-            await place(config_id, app_cfg, log=console.print)
+            await place(config_id, app_cfg, log=console.print, with_control=with_control)
 
     try:
         with local_servers.session(app_cfg):

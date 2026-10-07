@@ -29,6 +29,8 @@ ladder:
   provisional_games: 16     # a full placement
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
   bootstrap_samples: 1000
+  control_games: 3          # vs Random AI, first in placement
+  control_max_cost_per_game_usd: 2.0   # pricier models skip them unless --with-control
 
 # Local models: RotomArena runs `gen llm serve/stop` itself before each series.
 local_llm:
@@ -125,6 +127,11 @@ agents:
     model: "minicpm5-2b"
     port: 8086
     quantization: "Q8_0"
+
+  # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
+  random_ai:
+    type: "random"
+    role: "control"
 
   # Test bot (not an anchor; only rated if it plays)
   heuristic:
