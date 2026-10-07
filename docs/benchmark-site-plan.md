@@ -325,7 +325,7 @@ ships one (PQ2_0, MXFP4).
 | 3 | gpt-oss-20b | OpenAI | 21B MoE (3.6B active) | MXFP4, 12.1 GB | VRAM | Apache-2.0 |
 | 4 | Granite 4.2 30B | IBM | 30B dense | Q4_K_M, 17.7 GB | mostly VRAM | Apache-2.0 |
 | 5 | Ornith-1.5-35B-A3B | Ornith AI | 35B MoE (3B active) | Q4_K_M, 21.7 GB | experts in RAM | MIT |
-| 6 | ~~Kolibri-1~~ (dropped: llama.cpp can't load its `kolibri1` architecture) | Aleph Alpha | | | | |
+| 6 | K2-Horizon-MoVA-36B-A4B (replaces Kolibri-1) | IFM | 36B MoE (4B active) | Q4_K_M, 22.4 GB | experts in RAM | Apache-2.0 |
 | 7 | Ling-3.0-tiny | inclusionAI (Ant Group) | 7.9B MoE | Q8_0, 8.4 GB | VRAM | MIT |
 | 8 | MiniCPM5-2B | OpenBMB | 2.5B dense | Q8_0, 2.7 GB | VRAM | Apache-2.0 |
 
@@ -335,8 +335,8 @@ The first leaderboard adds the two free API sparring partners, Nemotron 3 Ultra 
 - Bonsai is a ternary compression of Qwen3.8-27B (its listed base model), so #1 vs #2 is a built-in
   experiment. Site line: "Does compressing a model to ternary weights affect its Pokémon? A controlled study."
 - MiniCPM5-2B is the smallest model in the field.
-- Kolibri-1 is out: mainline llama.cpp doesn't support its `kolibri1` architecture (checked 7 Oct). The
-  supported replacement of a similar size and a different lab is K2-Horizon-MoVA-36B-A4B (IFM, Apache-2.0, 22.4 GB).
+- Kolibri-1 (Apache-2.0) was swapped for K2-Horizon on 7 Oct: mainline llama.cpp doesn't support its `kolibri1`
+  architecture yet. A community MIT patch exists (llama.cpp at commit 836d571); if mainline adds support, it can come back.
 - gpt-oss can't switch reasoning off completely; "low" is its minimum, and that's what the local provider sends.
 - About 127 GB to download (Bonsai is already on disk).
 - Alternates: Gemma 4 26B-A4B run locally (16.9 GB), Nemotron 3.5 Lightning 30B-A3B, Xing4.0-29B-A4B,
@@ -476,7 +476,7 @@ instead of narrating live in the browser.
 ## 9. Open decisions
 
 1. The domain (keep "Pokémon" out of it).
-2. Confirm the local lineup (section 5): Kolibri-1 is out; K2-Horizon-MoVA-36B-A4B is the suggested replacement.
+2. Confirm the local lineup (section 5). K2-Horizon replaced Kolibri-1 on 7 Oct.
 3. Season 1 ruleset: thinking off with a visible `<thought>` (recommended), or thinking on.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).

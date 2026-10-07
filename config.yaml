@@ -65,7 +65,7 @@ agents:
     model: "google/gemma-4-31b-it:free"
 
   # Season 1 local lineup (draft). model = the Smooth Generator catalog key (gen llm serve --model);
-  # each model has its own port so two can run at once. Kolibri-1 was dropped: llama.cpp can't load it.
+  # each model has its own port so two can run at once. Kolibri-1 was swapped for K2-Horizon (llama.cpp can't load Kolibri yet).
   bonsai_2_27b:
     type: "direct_llm"
     display_name: "Bonsai 2 27B"
@@ -101,6 +101,13 @@ agents:
     provider: "local"
     model: "ornith-1.5-35b-a3b"
     port: 8084
+    quantization: "Q4_K_M"
+  k2_horizon_36b_a4b:
+    type: "direct_llm"
+    display_name: "K2-Horizon 36B"
+    provider: "local"
+    model: "k2-horizon-36b-a4b"
+    port: 8087
     quantization: "Q4_K_M"
   ling_3_0_tiny:
     type: "direct_llm"
