@@ -11,7 +11,8 @@ competitive Pokémon.
 - The name stays **RotomArena**.
 - Season 1 uses only cheap open-weights models, mostly run locally (see section 5).
 - Free sparring partners: **Nemotron** and **Gemma 4**.
-- Phases 0a (removing dead code) and 0b (fixing the bugs that corrupt results) are done, 6 Oct 2026.
+- Phases 0 (dead code, result-integrity fixes, v0 archive) and 1 (ratings, ladder, site export) are done,
+  6 Oct 2026.
 - Season 1 lineup drafted (section 5): 8 local models, plus the two sparring partners and two anchors.
 
 ---
@@ -167,7 +168,7 @@ Also done in 0b, since they change the season 1 ruleset:
   choice, with no parse errors or illegal moves, 0 hidden reasoning tokens, and a median answer of 151 tokens.
   The other 3 were OpenRouter returning an error inside an HTTP 200; those are now retried.
 
-### 0c. Old runs become a feature
+### 0c. Old runs become a feature (done 6 Oct 2026)
 
 The existing 55 runs predate these fixes. Migrate them once into a "Retracted results (v0)" archive instead of
 keeping legacy handling in the exporter. That page holds the best existing data point: *Muse Spark failed to
@@ -176,7 +177,7 @@ this Zero-Token Reasoning."
 
 ---
 
-## 4. Phase 1: ladder and data pipeline (Python)
+## 4. Phase 1: ladder and data pipeline (Python) (done 6 Oct 2026)
 
 The Python package computes everything, and the site renders static JSON without doing any math.
 
@@ -217,6 +218,31 @@ site/src/data/
 ```
 
 The generated JSON is committed. Netlify never runs Python.
+
+**What was built, and where it differs from the sketch above**
+
+- The registry is now the tracked `config.yaml` (it holds no secrets; keys stay in `.env`). Each entry has a
+  `role`: `anchor`, `sparring` or `contestant`. The season's two teams are part of the ruleset, and a new
+  `ladder:` block holds the anchor, set size, provisional threshold and void rule.
+- `rating.py` fits Bradley-Terry by Newton's method (0.2 s for 1,000 bootstrap samples). The intervals come
+  from a **parametric** bootstrap: every game is replayed with its fitted win probability. Resampling the
+  games themselves gave a model that won all 4 of its games a zero-width interval; this gives it 1500 to 1947.
+  A weak prior (one virtual draw each) keeps undefeated and winless models finite.
+- `ladder place` skips sets already played this season, so an interrupted overnight placement resumes. Bare
+  agent types on `battle` reuse the matching registry entry, so ad-hoc games count toward the right rating.
+- `export-site` writes `meta.json`, `models.json`, `head_to_head.json`, `findings.json`, `matches/*.json` and
+  `retracted/*.json`. Each match file has the players, winner, void reason, the raw protocol log for the replay
+  embed, and every decision with its thought, source and tokens.
+- The 55 old runs were migrated once (originals zipped in `runs/v0_original_breadcrumbs.zip`). The archive
+  already produces five zero-token wins, Muse Spark's among them.
+- 55 tests pass. Bot-only end-to-end test in a scratch season: a 12-game placement, an immediate re-run that
+  played nothing, and a 4-game top-up on the most-overlapping pair.
+
+**Found while testing: the anchors are weaker than MaxDamage.** In the test placement, MaxDamage (always
+attacks, never switches voluntarily) beat Heuristic 4-0. Since the switch-scoring fix in 0b, Heuristic switches
+on 50% of its turns and PokéChamp on 38%. That doesn't make ratings wrong (the anchor is only the zero point),
+but an anchor that loses to everything tells us little. Before season 1, either sweep a switch-cost setting with
+about 50 bot games per value (bots are free and take about a second per game), or make MaxDamage an anchor.
 
 ---
 
@@ -442,3 +468,6 @@ instead of narrating live in the browser.
 2. Confirm the 8 local models (draft in section 5), especially Kolibri-1.
 3. Season 1 ruleset: thinking off with a visible `<thought>` (recommended), or thinking on.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
+5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
+6. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
+   the site exists for.
