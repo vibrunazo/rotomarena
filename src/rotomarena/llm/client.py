@@ -17,6 +17,28 @@ from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_
 from rotomarena.llm.schemas import ActionDecision, LLMUsageMetrics
 
 
+class ProviderLimitError(RuntimeError):
+    """The provider will not answer for a while: out of credits (402), a daily quota, or a rate limit that
+    outlasted the backoff. Retrying turn by turn only voids games, so unattended runs stop on it."""
+
+
+# Backoff for HTTP 429 before giving up: about 6.5 minutes in all.
+_RATE_LIMIT_WAITS = [10, 20, 40, 80, 120, 120]
+
+
+def _is_quota(message: str) -> bool:
+    """OpenRouter's free-model cap reads "Rate limit exceeded: free-models-per-day"; waiting minutes won't help."""
+    return bool(re.search(r"per[- ]day|daily|quota|credits", message, re.IGNORECASE))
+
+
+def _error_code(error: Any) -> int:
+    code = error.get("code") if isinstance(error, dict) else getattr(error, "code", None)
+    try:
+        return int(code)
+    except (TypeError, ValueError):
+        return 0
+
+
 @dataclass
 class Completion:
     text: str
@@ -167,7 +189,10 @@ class LLMClient:
             create_kwargs["max_tokens"] = max_tokens
 
         last_err: Optional[Exception] = None
-        for attempt in range(max_retries):
+        attempt = 0  # server and connection failures; rate limits have their own budget
+        limited = 0
+        while True:
+            status, message = 0, ""
             try:
                 if self.config.api_style == "llama.cpp":
                     async with _local_lock():
@@ -178,48 +203,54 @@ class LLMClient:
                     start_time = time.perf_counter()
                     response = await self._client.chat.completions.create(**create_kwargs)
             except openai.APIStatusError as e:
-                last_err = e
-                if e.status_code < 500 and e.status_code != 429:
-                    break  # bad request, auth or unknown model: retrying won't help
-                if attempt < max_retries - 1:
-                    await asyncio.sleep((10 if e.status_code == 429 else 2) * 2**attempt)
-                continue
+                last_err, status, message = e, e.status_code, str(e)
             except (openai.APIConnectionError, openai.APITimeoutError) as e:
                 last_err = e
                 local_servers.forget(self._port)
-                if attempt < max_retries - 1:
-                    await asyncio.sleep(2 * 2**attempt)
-                continue
-
-            if not getattr(response, "choices", None):
+            else:
+                if getattr(response, "choices", None):
+                    break
                 # OpenRouter reports some upstream failures as HTTP 200 with an "error" body and no choices
-                last_err = RuntimeError(f"no choices in response: {getattr(response, 'error', None) or response}")
-                if attempt < max_retries - 1:
-                    await asyncio.sleep(2 * 2**attempt)
+                error = _extra(response, "error")
+                last_err = RuntimeError(f"no choices in response: {error or response}")
+                status, message = _error_code(error), str(error or "")
+
+            if status == 402 or (status == 429 and _is_quota(message)):
+                raise ProviderLimitError(f"{self.provider_name} {target_model}: HTTP {status}: {message}") from last_err
+            if status == 429:
+                if limited == len(_RATE_LIMIT_WAITS):
+                    raise ProviderLimitError(
+                        f"{self.provider_name} {target_model}: still rate limited after "
+                        f"{sum(_RATE_LIMIT_WAITS)} s of backoff: {message}"
+                    ) from last_err
+                await asyncio.sleep(_RATE_LIMIT_WAITS[limited])
+                limited += 1
                 continue
+            attempt += 1
+            if 0 < status < 500 or attempt >= max_retries:  # 4xx: bad request, auth or unknown model
+                raise RuntimeError(f"LLM request failed after {attempt} attempt(s): {last_err}")
+            await asyncio.sleep(2 * 2 ** (attempt - 1))
 
-            latency = (time.perf_counter() - start_time) * 1000.0
-            choice = response.choices[0]
-            usage = response.usage
-            details = getattr(usage, "completion_tokens_details", None) if usage else None
-            cost = _extra(usage, "cost")
-            metrics = LLMUsageMetrics(
-                prompt_tokens=(usage.prompt_tokens or 0) if usage else 0,
-                completion_tokens=(usage.completion_tokens or 0) if usage else 0,
-                reasoning_tokens=(getattr(details, "reasoning_tokens", 0) or 0) if details else 0,
-                total_tokens=(usage.total_tokens or 0) if usage else 0,
-                latency_ms=latency,
-                finish_reason=choice.finish_reason or "",
-                cost_usd=float(cost) if cost else 0.0,
-                model=target_model,
-                provider=self.provider_name,
-            )
-            # Hidden thinking, when the provider returns it: llama.cpp and DeepSeek use reasoning_content,
-            # OpenRouter uses reasoning. Some providers (OpenAI) return none, others a summary.
-            hidden = _extra(choice.message, "reasoning_content") or _extra(choice.message, "reasoning") or ""
-            return Completion(choice.message.content or "", str(hidden), metrics)
-
-        raise RuntimeError(f"LLM request failed after {attempt + 1} attempt(s): {last_err}")
+        latency = (time.perf_counter() - start_time) * 1000.0
+        choice = response.choices[0]
+        usage = response.usage
+        details = getattr(usage, "completion_tokens_details", None) if usage else None
+        cost = _extra(usage, "cost")
+        metrics = LLMUsageMetrics(
+            prompt_tokens=(usage.prompt_tokens or 0) if usage else 0,
+            completion_tokens=(usage.completion_tokens or 0) if usage else 0,
+            reasoning_tokens=(getattr(details, "reasoning_tokens", 0) or 0) if details else 0,
+            total_tokens=(usage.total_tokens or 0) if usage else 0,
+            latency_ms=latency,
+            finish_reason=choice.finish_reason or "",
+            cost_usd=float(cost) if cost else 0.0,
+            model=target_model,
+            provider=self.provider_name,
+        )
+        # Hidden thinking, when the provider returns it: llama.cpp and DeepSeek use reasoning_content,
+        # OpenRouter uses reasoning. Some providers (OpenAI) return none, others a summary.
+        hidden = _extra(choice.message, "reasoning_content") or _extra(choice.message, "reasoning") or ""
+        return Completion(choice.message.content or "", str(hidden), metrics)
 
     async def generate_cot_decision(
         self,

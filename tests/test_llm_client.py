@@ -1,10 +1,11 @@
 """Tests for LLM Client parsing, provider settings, and prompt formatting."""
 
+import openai
 import pytest
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 from rotomarena.config import provider_presets
-from rotomarena.llm.client import Completion, LLMClient, parse_decision
+from rotomarena.llm.client import Completion, LLMClient, ProviderLimitError, parse_decision
 from rotomarena.llm.schemas import LLMUsageMetrics
 from rotomarena.llm.prompts import format_battle_state, format_recent_turns
 from .mocks import MockBattle
@@ -128,6 +129,54 @@ async def test_response_without_choices_is_retried(monkeypatch):
     assert completion.reasoning == "Surf hits Heatran super effectively."  # OpenRouter's hidden reasoning field
     assert completion.metrics.cost_usd == 0.0042 and completion.metrics.reasoning_tokens == 850
     assert create.await_count == 2
+
+
+def _status_error(code: int, message: str) -> openai.APIStatusError:
+    response = SimpleNamespace(status_code=code, headers={}, request=None)  # all the SDK reads from it
+    return openai.APIStatusError(message, response=response, body=None)
+
+
+_GOOD = SimpleNamespace(
+    choices=[SimpleNamespace(finish_reason="stop", message=SimpleNamespace(content="<decision>MOVE: surf</decision>"))],
+    usage=None,
+)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("failure", [
+    _status_error(402, "Insufficient credits"),
+    _status_error(429, "Rate limit exceeded: free-models-per-day"),
+    SimpleNamespace(choices=None, error={"message": "Rate limit exceeded: free-models-per-day", "code": 429}),
+])
+async def test_credit_and_quota_limits_stop_at_once(monkeypatch, failure):
+    client = LLMClient.from_provider_name("openrouter")
+    sleep = AsyncMock()
+    monkeypatch.setattr("rotomarena.llm.client.asyncio.sleep", sleep)
+    create = AsyncMock(side_effect=failure if isinstance(failure, Exception) else [failure])
+    monkeypatch.setattr(client._client.chat.completions, "create", create)
+
+    with pytest.raises(ProviderLimitError):
+        await client.generate_completion([{"role": "user", "content": "hi"}])
+    assert create.await_count == 1 and sleep.await_count == 0
+
+
+@pytest.mark.asyncio
+async def test_rate_limits_back_off_then_give_up(monkeypatch):
+    client = LLMClient.from_provider_name("openrouter")
+    sleep = AsyncMock()
+    monkeypatch.setattr("rotomarena.llm.client.asyncio.sleep", sleep)
+    limited = _status_error(429, "Rate limit exceeded")
+
+    create = AsyncMock(side_effect=[limited, limited, _GOOD])
+    monkeypatch.setattr(client._client.chat.completions, "create", create)
+    completion = await client.generate_completion([{"role": "user", "content": "hi"}], max_retries=1)
+    assert completion.text == "<decision>MOVE: surf</decision>"  # 429s don't use up the server-error retries
+
+    create = AsyncMock(side_effect=limited)
+    monkeypatch.setattr(client._client.chat.completions, "create", create)
+    with pytest.raises(ProviderLimitError, match="still rate limited"):
+        await client.generate_completion([{"role": "user", "content": "hi"}])
+    assert create.await_count == 7  # the first try and six backed-off retries
 
 
 @pytest.mark.asyncio

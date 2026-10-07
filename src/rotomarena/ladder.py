@@ -16,6 +16,11 @@ from rotomarena.teams.presets import load_preset_team
 from rotomarena.telemetry.breadcrumbs import MatchTelemetry
 
 
+class RunHalted(RuntimeError):
+    """Something outside a single game is wrong (a provider limit, games that keep coming out void). The run
+    stops rather than void the rest of its schedule; placement resumes where it stopped."""
+
+
 @dataclass
 class SeasonState:
     matches: List[MatchTelemetry]
@@ -99,6 +104,26 @@ def fill_pairs(state: SeasonState, agents: Dict[str, AgentConfig], free_only: bo
     return [pair for _, pair in sorted(scored, reverse=True)]
 
 
+def _pair_matches(app_cfg: AppConfig, id_a: str, id_b: str) -> List[MatchTelemetry]:
+    """This season's matches between two registry entries, oldest first, void ones included."""
+    pair = {id_a, id_b}
+    return [
+        m for m in load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
+        if m.player("p1") and m.player("p2") and {m.player("p1").config_id, m.player("p2").config_id} == pair
+    ]
+
+
+def check_halt(label: str, players: List, new_matches: List[MatchTelemetry], max_autopilot: float) -> None:
+    """Raises RunHalted when a player hit a provider limit or the last two games of this set were void."""
+    for player in players:
+        limit = getattr(player, "provider_limit", None)
+        if limit:
+            raise RunHalted(f"{label}: provider limit reached: {limit}")
+    reasons = [void_reason(m, max_autopilot) for m in new_matches[-2:]]
+    if len(reasons) == 2 and all(reasons):
+        raise RunHalted(f"{label}: two void games in a row ({reasons[-1]})")
+
+
 async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None) -> int:
     """Plays the rest of a set between two registry entries; returns how many games were played."""
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
@@ -107,10 +132,20 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     player_a, player_b = create_players(app_cfg.agents[id_a], app_cfg.agents[id_b], app_cfg)
     team_1, team_2 = (load_preset_team(t) for t in app_cfg.ruleset.teams)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
+    played_before = len(_pair_matches(app_cfg, id_a, id_b))
+
+    def halt_check() -> None:
+        new = _pair_matches(app_cfg, id_a, id_b)[played_before:]
+        check_halt(f"{id_a} vs {id_b}", [player_a, player_b], new, app_cfg.ladder.max_autopilot)
+
+    def before_game() -> None:
+        halt_check()
+        local_servers.prepare([app_cfg.agents[id_a], app_cfg.agents[id_b]], app_cfg)
+
     await runner.run_series(
-        player_a, player_b, team_1, team_2, n_games=remaining, first_game=already_played,
-        before_game=lambda: local_servers.prepare([app_cfg.agents[id_a], app_cfg.agents[id_b]], app_cfg),
+        player_a, player_b, team_1, team_2, n_games=remaining, first_game=already_played, before_game=before_game,
     )
+    halt_check()
     return remaining
 
 

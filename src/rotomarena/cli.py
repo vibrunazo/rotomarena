@@ -439,7 +439,7 @@ def ladder_place(
 ):
     """Play a model's placement games: a set against each anchor, a sparring partner and the closest-rated LLM.
     Resumes where an interrupted placement stopped."""
-    from rotomarena.ladder import place
+    from rotomarena.ladder import RunHalted, place
 
     app_cfg = AppConfig.load(config_file)
     server_mgr = ShowdownServerManager(app_cfg.server)
@@ -451,10 +451,22 @@ def ladder_place(
     try:
         with local_servers.session(app_cfg):
             asyncio.run(_run())
+    except RunHalted as e:
+        _report_halt(e, app_cfg)
     except ValueError as e:
         console.print(f"[bold red]{e}[/bold red]")
         raise typer.Exit(1)
     _print_ratings(app_cfg)
+
+
+def _report_halt(e: Exception, app_cfg: AppConfig) -> None:
+    """Prints why a ladder run stopped, then the ratings, and exits with status 3."""
+    import datetime
+
+    console.print(f"[bold red]{datetime.datetime.now():%Y-%m-%d %H:%M} RUN HALTED: {e}[/bold red]")
+    console.print("Fix the cause (credits, quota, a broken model), then run the same command again: it resumes.")
+    _print_ratings(app_cfg)
+    raise typer.Exit(3)
 
 
 def _wait_for_idle_cpu(threshold: int = 25, quiet_minutes: int = 5) -> None:
@@ -476,10 +488,11 @@ def ladder_place_all(
     wait_idle: bool = typer.Option(False, "--wait-idle", help="Start only after the CPU has been under 25% for 5 minutes"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
-    """Place several models one after another (an unattended run). Each placement resumes where it stopped,
-    and a failure is logged and skipped so the rest still run."""
+    """Place several models one after another (an unattended run). Each placement resumes where it stopped.
+    A broken model is logged and skipped so the rest still run; a provider limit or repeated void games stop
+    the whole run."""
     import datetime
-    from rotomarena.ladder import place
+    from rotomarena.ladder import RunHalted, place
 
     app_cfg = AppConfig.load(config_file)
     unknown = [c for c in config_ids if c not in app_cfg.agents]
@@ -499,6 +512,8 @@ def ladder_place_all(
         try:
             with local_servers.session(app_cfg):
                 asyncio.run(_run())
+        except RunHalted as e:
+            _report_halt(e, app_cfg)
         except Exception as e:  # keep going: one broken model shouldn't stop a weekend run
             console.print(f"[bold red]Placement of {config_id} failed: {e}[/bold red]")
     console.rule(f"[bold green]{datetime.datetime.now():%Y-%m-%d %H:%M} all placements done[/bold green]")
@@ -512,7 +527,7 @@ def ladder_fill(
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
     """Play extra games between neighbouring models whose ratings still overlap."""
-    from rotomarena.ladder import fill
+    from rotomarena.ladder import RunHalted, fill
 
     app_cfg = AppConfig.load(config_file)
     server_mgr = ShowdownServerManager(app_cfg.server)
@@ -521,8 +536,11 @@ def ladder_fill(
         async with server_mgr.ensure_running():
             await fill(app_cfg, budget, free_only=not include_paid, log=console.print)
 
-    with local_servers.session(app_cfg):
-        asyncio.run(_run())
+    try:
+        with local_servers.session(app_cfg):
+            asyncio.run(_run())
+    except RunHalted as e:
+        _report_halt(e, app_cfg)
     _print_ratings(app_cfg)
 
 

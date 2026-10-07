@@ -9,7 +9,7 @@ from poke_env.battle import Battle
 from poke_env.player import BattleOrder
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
-from rotomarena.llm.client import LLMClient, to_id
+from rotomarena.llm.client import LLMClient, ProviderLimitError, to_id
 from rotomarena.llm.prompts import format_battle_state, format_team_preview
 
 
@@ -43,17 +43,30 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         self.temperature = temperature
         self.max_output_tokens = max_output_tokens
         self.reasoning = reasoning
+        # Set when the provider stops answering (credits, quota, sustained rate limit); the ladder stops on it.
+        self.provider_limit: Optional[ProviderLimitError] = None
 
-    async def _async_choose_move(self, battle: Battle) -> BattleOrder:
-        """Queries the LLM, then plays its action only if it exactly matches a legal one."""
+    async def _ask(self, battle_state_str: str):
+        """One decision from the model. After a provider limit, the rest of the game skips the API: every later
+        turn would fail the same way, only slower."""
+        if self.provider_limit:
+            raise self.provider_limit
         try:
-            decision = await self.llm_client.generate_cot_decision(
-                battle_state_str=format_battle_state(battle),
+            return await self.llm_client.generate_cot_decision(
+                battle_state_str=battle_state_str,
                 model=self.model,
                 temperature=self.temperature,
                 max_tokens=self.max_output_tokens,
                 reasoning=self.reasoning,
             )
+        except ProviderLimitError as e:
+            self.provider_limit = e
+            raise
+
+    async def _async_choose_move(self, battle: Battle) -> BattleOrder:
+        """Queries the LLM, then plays its action only if it exactly matches a legal one."""
+        try:
+            decision = await self._ask(format_battle_state(battle))
         except Exception as e:
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
@@ -117,16 +130,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         members = list(battle.team.values())
         lead, source, note, decision = 0, "model", "", None
         try:
-            decision = await asyncio.wait_for(
-                self.llm_client.generate_cot_decision(
-                    battle_state_str=format_team_preview(battle),
-                    model=self.model,
-                    temperature=self.temperature,
-                    max_tokens=self.max_output_tokens,
-                    reasoning=self.reasoning,
-                ),
-                timeout=self.turn_timeout,
-            )
+            decision = await asyncio.wait_for(self._ask(format_team_preview(battle)), timeout=self.turn_timeout)
         except asyncio.TimeoutError:
             source, note = "timeout", f"[TIMEOUT] No lead chosen within {self.turn_timeout:.0f}s."
         except Exception as e:

@@ -5,7 +5,7 @@ import asyncio
 from unittest.mock import AsyncMock, MagicMock
 from rotomarena.agents.heuristic import MaxDamagePlayer, HeuristicPlayer
 from rotomarena.agents.direct_llm import DirectLLMPlayer
-from rotomarena.llm.client import LLMClient
+from rotomarena.llm.client import LLMClient, ProviderLimitError
 from rotomarena.llm.schemas import ActionDecision, LLMUsageMetrics
 from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder
 from .mocks import MockBattle
@@ -80,6 +80,16 @@ async def test_direct_llm_failures_play_the_default_move(decision, side_effect, 
     order = await player._async_choose_move(battle)
     assert battle.available_moves[0].id in str(order.message).lower()
     assert recorder.breadcrumbs[-1].decision_source == source
+
+
+@pytest.mark.asyncio
+async def test_provider_limit_puts_the_rest_of_the_game_on_autopilot():
+    player, recorder = _llm_player(None, ProviderLimitError("openrouter: HTTP 402: Insufficient credits"))
+    for _ in range(3):
+        await player._async_choose_move(MockBattle())
+    assert isinstance(player.provider_limit, ProviderLimitError)
+    assert player.llm_client.generate_cot_decision.await_count == 1  # later turns don't call the API
+    assert [c.decision_source for c in recorder.breadcrumbs] == ["api_error"] * 3
 
 
 @pytest.mark.asyncio

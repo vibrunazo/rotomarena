@@ -33,6 +33,8 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
      returns it, and OpenRouter's actual cost is logged per turn (`cost_usd`).
    - A cut-off or unparseable answer plays the default move.
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
+   - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429
+     that outlasts ~6.5 minutes of backoff) or on two void games in a row in one set; the same command resumes.
 
 2. **Providers:**
    - `openrouter` is the default; its default model is the free Nemotron above.

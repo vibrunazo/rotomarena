@@ -2,11 +2,13 @@
 
 import json
 import random
+from types import SimpleNamespace
 
+import pytest
 
 from rotomarena.config import AgentConfig, AppConfig, TelemetryConfig
 from rotomarena.export.site import export_site, parse_choice, public_log, scrub
-from rotomarena.ladder import closest_rated_llm, fill_pairs, fixed_placement_opponents
+from rotomarena.ladder import RunHalted, check_halt, closest_rated_llm, fill_pairs, fixed_placement_opponents
 from rotomarena.rating import Rating, compute_ratings
 from rotomarena.results import Outcome, outcome, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
@@ -227,3 +229,15 @@ def test_public_log_keeps_the_battle_and_drops_the_room():
         "|win|Bonsai 2 27B",
     ]
     assert public_log(log) == [log[0], log[1], log[2], log[6], log[8]]
+
+
+def test_run_halts_on_a_provider_limit_or_two_void_games_in_a_row():
+    void = make_match("m1", "alpha", "beta", "beta", p1_sources=("api_error",) * 4)
+    fine = make_match("m2", "alpha", "beta", "beta")
+    healthy = SimpleNamespace(provider_limit=None)
+    check_halt("alpha vs beta", [healthy], [void, fine], 0.5)  # one void game is bad luck
+    check_halt("alpha vs beta", [healthy], [void, fine, void], 0.5)
+    with pytest.raises(RunHalted, match="two void games in a row"):
+        check_halt("alpha vs beta", [healthy], [fine, void, void], 0.5)
+    with pytest.raises(RunHalted, match="alpha vs beta: provider limit reached: HTTP 402"):
+        check_halt("alpha vs beta", [SimpleNamespace(provider_limit="HTTP 402"), healthy], [], 0.5)
