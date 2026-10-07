@@ -53,7 +53,8 @@ def test_switches_are_scored_per_target():
     battle.team[corviknight.species] = corviknight
     battle.available_switches = [battle.bench_mon, corviknight]
     scores = {
-        mon.species: simulate_turn_outcome(battle, "SWITCH", mon.species, False, "MOVE", "flamethrower")
+        mon.species: simulate_turn_outcome(battle, "SWITCH", mon.species, False, "MOVE", "flamethrower",
+                                            weights={"switch_cost": 0.0})  # the losing mock position would clamp both to -1
         for mon in battle.available_switches
     }
     assert scores["kingambit"] != scores["corviknight"]
