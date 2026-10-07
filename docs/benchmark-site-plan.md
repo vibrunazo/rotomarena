@@ -380,6 +380,8 @@ The concise caps were for live video, which isn't the plan anymore; game speed d
 - Models still end with a 2-4 sentence `<thought>` (the site quotes it; not every provider returns its reasoning).
   Hidden reasoning is recorded whenever the provider returns it, and OpenRouter's actual cost is logged per turn.
 - No type-effectiveness hints: Pokémon knowledge is part of what's measured.
+- Models choose their lead at team preview (done 7 Oct). In a probe, 10 of 12 answers were valid leads; the two
+  smallest models named a team member under the wrong keyword once each, which now counts as a lead.
 - Coming later: per-dollar caps (per turn and per model) and adaptive placement for paid models, so they spend
   their budget on close matchups instead of opponents they crush. Cost efficiency is a metric, not a confound:
   typical paid models spent about 3 cents per game in earlier tests.
@@ -529,5 +531,5 @@ instead of narrating live in the browser.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
    This matters because half of each placement is played against them.
-6. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
-   the site exists for.
+6. Random AI: suggested as 2 unrated "control games" per new model (a model that loses one is flagged as
+   probably broken) and a reference row on the site, not part of placement. Waiting on a decision.
