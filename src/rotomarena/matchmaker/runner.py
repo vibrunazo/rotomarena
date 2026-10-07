@@ -178,12 +178,15 @@ class MatchRunner:
         team_1: Team,
         team_2: Team,
         n_games: int = 4,
+        first_game: int = 0,
     ) -> SeriesResult:
-        """Runs a series that alternates sides every game and swaps teams every two games."""
+        """Runs a series that alternates sides every game and swaps teams every two games.
+        `first_game` resumes the schedule after games already played."""
         series = SeriesResult(a_name=player_a.agent_name, b_name=player_b.agent_name, total_games=n_games)
+        schedule = series_schedule(first_game + n_games)[first_game:]
 
         try:
-            for g, (swap_teams, b_challenges) in enumerate(series_schedule(n_games), 1):
+            for g, (swap_teams, b_challenges) in enumerate(schedule, first_game + 1):
                 team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
                 player_a.update_team(team_a.to_showdown_packed())
                 player_b.update_team(team_b.to_showdown_packed())

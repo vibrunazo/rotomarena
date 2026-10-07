@@ -84,10 +84,33 @@ uv run rotomarena battle \
 
 #### 1v1 Matchup: a model from the config registry vs PokéChamp
 ```bash
-uv run rotomarena battle --config config.yaml --p1 bonsai_2_27b --p2 pokechamp --games 4
+uv run rotomarena battle --p1 bonsai_2_27b --p2 pokechamp --games 4
 ```
 
 Sides alternate every game and the two teams swap every two games, so 4 games cover every combination.
+`config.yaml` holds the season's ruleset, the ladder settings and the model registry (`agents:`); API keys
+stay in `.env`.
+
+### 5. The Ladder (season ratings)
+
+Ratings are Bradley-Terry fits on the Elo scale, anchored to the Heuristic bot at 1500, with 95% parametric
+bootstrap intervals. Matches where either side fell back to the default move on more than half its turns are
+void.
+
+```bash
+# Current season's ratings, plus any void matches and why
+uv run rotomarena ladder status
+
+# Placement for a registry entry: 4 games each against the anchors and a sparring partner,
+# then 4 against the closest-rated LLM. Re-running resumes an interrupted placement.
+uv run rotomarena ladder place bonsai_2_27b
+
+# Top-up games between neighbours whose intervals still overlap (free models only by default)
+uv run rotomarena ladder fill --budget 8
+
+# JSON for the website (current season + the retracted v0 archive)
+uv run rotomarena export-site --out site/src/data
+```
 
 #### Manage Teams
 ```bash
@@ -105,7 +128,7 @@ uv run rotomarena teams show balance
 ```
 rotomarena/
 ├── pyproject.toml               # Project packaging & dependencies (uv)
-├── config.yaml.example          # Sample configuration file
+├── config.yaml                  # Ruleset, ladder settings & model registry
 ├── .env.example                 # Environment variables template
 ├── server/                      # Local Pokemon Showdown installation directory
 ├── data/
@@ -124,6 +147,10 @@ rotomarena/
 │       ├── agents/              # Player implementations (PokéChamp, Direct LLM, etc.)
 │       ├── teams/               # Smogon team parser & loader
 │       ├── matchmaker/          # 1v1 battle series runner
+│       ├── results.py           # Loading matches, void rules, outcomes
+│       ├── rating.py            # Bradley-Terry ratings with bootstrap intervals
+│       ├── ladder.py            # Placement and top-up scheduling
+│       ├── export/              # JSON export for the website
 │       └── telemetry/           # Breadcrumb logging, replay HTML saver & reports
 └── tests/                       # Pytest test suite
 ```

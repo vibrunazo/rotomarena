@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from typing import Optional
+from typing import Optional, Tuple
 
 from poke_env.ps_client import ServerConfiguration
 
@@ -244,3 +244,26 @@ def create_agent_instance(
     if agent_cfg.type == "random":
         return RandomBenchmarkPlayer(**common)
     raise ValueError(f"Unknown agent type '{agent_cfg.type}'")
+
+
+def resolved_model(agent_cfg: AgentConfig, app_config: AppConfig) -> Optional[str]:
+    """The model an LLM agent will actually call: its own, else its provider's default."""
+    if agent_cfg.type != "direct_llm":
+        return None
+    if agent_cfg.model:
+        return agent_cfg.model
+    provider = app_config.providers.get(agent_cfg.provider or "openrouter")
+    return provider.default_model if provider else None
+
+
+def create_players(
+    cfg_a: AgentConfig, cfg_b: AgentConfig, app_config: AppConfig
+) -> Tuple[BaseBenchmarkPlayer, BaseBenchmarkPlayer]:
+    """Both players of a series. Identical Showdown names would collide, so they get numeric tags."""
+    name_a = format_bot_display_name(cfg_a, resolved_model=resolved_model(cfg_a, app_config))
+    name_b = format_bot_display_name(cfg_b, resolved_model=resolved_model(cfg_b, app_config))
+    same = name_a.lower() == name_b.lower()
+    return (
+        create_agent_instance(cfg_a, app_config, player_tag="1" if same else None),
+        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None),
+    )

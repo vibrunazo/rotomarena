@@ -13,6 +13,10 @@ uv run rotomarena battle `
   --games 1
 ```
 
+Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`.
+For ladder tests, point `--config` at a scratch config with its own `ruleset.version` and `telemetry.output_dir`
+so test games never land in the real season.
+
 Or for non-LLM testing, prefer fast baseline agents:
 ```powershell
 uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
@@ -21,7 +25,7 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 ---
 
 ## ⚙️ Key System Specifications & Defaults
-1. **Ruleset (season `s1`, `ruleset:` in config.yaml):**
+1. **Ruleset (season `s1`, `ruleset:` in the tracked `config.yaml`, which also holds the `ladder:` settings and the `agents:` model registry):**
    - LLM answers get a **1,024-token output budget per turn**. A cut-off or unparseable answer plays the default move.
    - Hidden reasoning is **off** for every provider; models reason in the visible `<thought>` block (under 200 words).
    - The only clock is a **900s per-turn hang guard**; there is no chess-clock bank (local models must not lose turns to slow hardware).

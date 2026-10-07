@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Dict, Literal, Optional
+from typing import Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
 
 
 AgentType = Literal["pokechamp", "direct_llm", "heuristic", "max_damage", "random"]
+AgentRole = Literal["anchor", "sparring", "contestant"]
 ReasoningLevel = Literal["off", "low", "medium", "high"]
 
 # Free OpenRouter model used for tests and as the default LLM (see AGENTS.md).
@@ -118,6 +119,23 @@ class RulesetConfig(BaseModel):
     reasoning: ReasoningLevel = Field(
         default="off", description="Hidden reasoning level requested from every LLM"
     )
+    teams: List[str] = Field(
+        default_factory=lambda: ["balance", "hyper_offense"],
+        description="The two teams every ladder set uses (each played from both sides)",
+    )
+
+
+class LadderConfig(BaseModel):
+    """How ratings are computed and how many games placement and top-ups play."""
+
+    anchor: str = Field(default="heuristic", description="Config id whose rating is fixed")
+    anchor_rating: float = Field(default=1500.0)
+    games_per_set: int = Field(default=4, description="Games per opponent: 2 teams x 2 sides")
+    provisional_games: int = Field(default=16, description="Valid games before a rating stops being provisional")
+    max_autopilot: float = Field(
+        default=0.5, description="A match is void when either side's fallback share of turns exceeds this"
+    )
+    bootstrap_samples: int = Field(default=1000)
 
 
 class AgentConfig(BaseModel):
@@ -125,6 +143,9 @@ class AgentConfig(BaseModel):
 
     name: str = Field(default="agent", description="Unique agent identifier (config id)")
     type: AgentType = Field(default="heuristic", description="Agent backend type")
+    role: AgentRole = Field(
+        default="contestant", description="anchor: fixed reference; sparring: free standing opponent"
+    )
     provider: Optional[str] = Field(
         default=None, description="LLM provider key (e.g. 'openrouter', 'local')"
     )
@@ -163,6 +184,7 @@ class AppConfig(BaseSettings):
 
     server: ServerConfig = Field(default_factory=ServerConfig)
     ruleset: RulesetConfig = Field(default_factory=RulesetConfig)
+    ladder: LadderConfig = Field(default_factory=LadderConfig)
     providers: Dict[str, ProviderConfig] = Field(default_factory=provider_presets)
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
     telemetry: TelemetryConfig = Field(default_factory=TelemetryConfig)
@@ -194,17 +216,22 @@ class AppConfig(BaseSettings):
         return cls(**data)
 
     @classmethod
+    def load(cls, path: str | Path = "config.yaml") -> "AppConfig":
+        """The project config (the model registry lives in config.yaml); built-in defaults if it's missing."""
+        return cls.load_from_yaml(path) if Path(path).exists() else cls.default_config()
+
+    @classmethod
     def default_config(cls) -> "AppConfig":
         return cls(
             agents={
-                "pokechamp": AgentConfig(name="pokechamp", type="pokechamp"),
-                "heuristic": AgentConfig(name="heuristic", type="heuristic"),
-                "random": AgentConfig(name="random", type="random"),
-                "nemotron_free": AgentConfig(
-                    name="nemotron_free", type="direct_llm", provider="openrouter", model=FREE_TEST_MODEL
+                "heuristic": AgentConfig(name="heuristic", type="heuristic", role="anchor"),
+                "pokechamp": AgentConfig(name="pokechamp", type="pokechamp", role="anchor"),
+                "nemotron_3_ultra": AgentConfig(
+                    name="nemotron_3_ultra", type="direct_llm", role="sparring",
+                    provider="openrouter", model=FREE_TEST_MODEL,
                 ),
-                "bonsai_local": AgentConfig(
-                    name="bonsai_local", type="direct_llm", provider="local", model="bonsai", quantization="PQ2_0"
+                "bonsai_2_27b": AgentConfig(
+                    name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", quantization="PQ2_0"
                 ),
             },
         )

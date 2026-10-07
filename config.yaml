@@ -17,6 +17,16 @@ ruleset:
   max_output_tokens: 1024   # per turn; a cut-off answer plays the default move
   turn_timeout: 900         # seconds; only catches a hung server
   reasoning: "off"          # hidden reasoning: off | low | medium | high
+  teams: ["balance", "hyper_offense"]   # every ladder set plays both, from both sides
+
+# Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
+ladder:
+  anchor: "heuristic"
+  anchor_rating: 1500
+  games_per_set: 4          # 2 teams x 2 sides
+  provisional_games: 16     # a full placement
+  max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
+  bootstrap_samples: 1000
 
 # Built-in providers: openrouter (default), local (llama.cpp on :8080), gemini, ollama, vllm (:8001).
 # Entries here override or extend them, e.g.:
@@ -27,21 +37,26 @@ ruleset:
 #     api_style: "llama.cpp"
 #     default_model: "bonsai"
 
-# Model registry: `rotomarena battle --p1 <config id>` uses these entries.
+# Model registry. `battle --p1 <config id>` and the ladder use these entries.
+# role: anchor (fixed reference), sparring (free standing opponent) or contestant (default).
 agents:
   # Anchors (free, never change)
   heuristic:
     type: "heuristic"
+    role: "anchor"
   pokechamp:
     type: "pokechamp"
+    role: "anchor"
 
   # Free API sparring partners
   nemotron_3_ultra:
     type: "direct_llm"
+    role: "sparring"
     provider: "openrouter"
     model: "nvidia/nemotron-3-ultra-550b-a55b:free"
   gemma_4_31b:
     type: "direct_llm"
+    role: "sparring"
     provider: "openrouter"
     model: "google/gemma-4-31b-it:free"
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -20,7 +21,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from rotomarena.agents.factory import create_agent_instance, format_bot_display_name
+from rotomarena.agents.factory import create_players, resolved_model
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.server.manager import ShowdownServerManager
@@ -35,10 +36,12 @@ app = typer.Typer(
 server_app = typer.Typer(help="Manage local Pokemon Showdown server")
 teams_app = typer.Typer(help="Inspect and manage Gen 9 OU teams")
 replay_app = typer.Typer(help="Inspect and view battle replays and telemetry")
+ladder_app = typer.Typer(help="Season ratings, placement and top-up games")
 
 app.add_typer(server_app, name="server")
 app.add_typer(teams_app, name="teams")
 app.add_typer(replay_app, name="replay")
+app.add_typer(ladder_app, name="ladder")
 
 console = Console(legacy_windows=False)
 
@@ -305,12 +308,13 @@ def replay_refresh(output_dir: str = typer.Option("./runs", "--dir", "-d", help=
 # ---------------------------------------------------------------------
 
 
-def _agent_config(app_cfg: AppConfig, choice: str, slot: str, provider: str, model: Optional[str]) -> AgentConfig:
-    """`choice` is a config id from the agents block (e.g. bonsai_local) or a bare agent type."""
+def _agent_config(app_cfg: AppConfig, choice: str, provider: str, model: Optional[str]) -> AgentConfig:
+    """`choice` is a config id from the agents registry or a bare agent type. A bare type reuses the
+    registry entry for the same bot or the same provider and model, so its games count toward that rating."""
     if choice in app_cfg.agents:
         return app_cfg.agents[choice]
     try:
-        return AgentConfig(name=f"{choice}_{slot}", type=choice, provider=provider, model=model)
+        cfg = AgentConfig(name=choice, type=choice, provider=provider, model=model)
     except ValidationError:
         known = ", ".join(sorted(app_cfg.agents)) or "none"
         console.print(
@@ -318,6 +322,16 @@ def _agent_config(app_cfg: AppConfig, choice: str, slot: str, provider: str, mod
             f"(pokechamp, direct_llm, heuristic, max_damage, random) or a config id ({known})."
         )
         raise typer.Exit(1)
+    target_model = resolved_model(cfg, app_cfg)
+    for entry in app_cfg.agents.values():
+        if entry.type == cfg.type and (
+            cfg.type != "direct_llm"
+            or (entry.provider == cfg.provider and resolved_model(entry, app_cfg) == target_model)
+        ):
+            return entry
+    if cfg.type == "direct_llm":
+        cfg.name = re.sub(r"[^a-z0-9]+", "_", f"{cfg.provider}_{target_model}".lower()).strip("_")
+    return cfg
 
 
 @app.command("battle")
@@ -333,26 +347,22 @@ def run_battle(
     games: int = typer.Option(1, "--games", "-n", help="Games in the series; sides alternate every game, teams every two"),
     provider: str = typer.Option("openrouter", "--provider", help="LLM provider when not set per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model when not set per player (default: the provider's)"),
-    config_file: Optional[str] = typer.Option(None, "--config", "-c", help="Path to config.yaml"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file with the agents registry"),
 ):
     """Run a 1v1 battle series between two agents."""
-    app_cfg = AppConfig.load_from_yaml(config_file) if config_file else AppConfig.default_config()
+    app_cfg = AppConfig.load(config_file)
 
     first_team = load_preset_team(team1)
     second_team = load_preset_team(team2)
-    p1_cfg = _agent_config(app_cfg, p1, "p1", p1_provider or provider, p1_model or model)
-    p2_cfg = _agent_config(app_cfg, p2, "p2", p2_provider or provider, p2_model or model)
+    p1_cfg = _agent_config(app_cfg, p1, p1_provider or provider, p1_model or model)
+    p2_cfg = _agent_config(app_cfg, p2, p2_provider or provider, p2_model or model)
 
     server_mgr = ShowdownServerManager(app_cfg.server)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
 
     async def _execute():
         async with server_mgr.ensure_running():
-            # Identical display names would collide on Showdown, so mirror matches get numeric tags
-            is_mirror = format_bot_display_name(p1_cfg).lower() == format_bot_display_name(p2_cfg).lower()
-            player_1 = create_agent_instance(p1_cfg, app_cfg, player_tag="1" if is_mirror else None)
-            player_2 = create_agent_instance(p2_cfg, app_cfg, player_tag="2" if is_mirror else None)
-
+            player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg)
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(player_1, player_2, first_team, second_team, n_games=games)
 
@@ -371,6 +381,108 @@ def run_battle(
                     console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
 
     asyncio.run(_execute())
+
+
+# ---------------------------------------------------------------------
+# Ladder & Site Export
+# ---------------------------------------------------------------------
+
+
+def _print_ratings(app_cfg: AppConfig) -> None:
+    from rotomarena.ladder import describe_void_matches, season_state
+
+    state = season_state(app_cfg)
+    table = Table(title=f"RotomArena ladder, season {app_cfg.ruleset.version}", show_header=True)
+    for col, justify in (("Rank", "right"), ("Config id", "left"), ("Rating", "right"), ("95% CI", "right"),
+                         ("Games", "right"), ("W-L-D", "center"), ("", "left")):
+        table.add_column(col, justify=justify)
+    ordered = sorted(state.ratings.values(), key=lambda r: (r.rating is None, -(r.rating or 0)))
+    rank = 0
+    for r in ordered:
+        role = app_cfg.agents[r.config_id].role if r.config_id in app_cfg.agents else "not in registry"
+        notes = [role] if role != "contestant" else []
+        if r.games < app_cfg.ladder.provisional_games:
+            notes.append("provisional")
+        if r.ranked:
+            rank += 1
+        table.add_row(
+            str(rank) if r.ranked else "-",
+            r.config_id,
+            f"{r.rating:.0f}" if r.ranked else "unranked",
+            "fixed" if r.config_id == app_cfg.ladder.anchor else (f"{r.ci_low:.0f} to {r.ci_high:.0f}" if r.ranked else ""),
+            str(r.games),
+            f"{r.wins}-{r.losses}-{r.draws}",
+            ", ".join(notes),
+        )
+    console.print(table)
+    console.print(f"{len(state.outcomes)} rated matches, {state.void_count} void.")
+    for match_id, reason in describe_void_matches(state, app_cfg.ladder.max_autopilot):
+        console.print(f"  [dim]void: {match_id} ({reason})[/dim]")
+
+
+@ladder_app.command("status")
+def ladder_status(config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file")):
+    """Show the current season's ratings."""
+    _print_ratings(AppConfig.load(config_file))
+
+
+@ladder_app.command("place")
+def ladder_place(
+    config_id: str = typer.Argument(..., help="Registry entry to place (from the agents block)"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Play a model's placement games: a set against each anchor, a sparring partner and the closest-rated LLM.
+    Resumes where an interrupted placement stopped."""
+    from rotomarena.ladder import place
+
+    app_cfg = AppConfig.load(config_file)
+    server_mgr = ShowdownServerManager(app_cfg.server)
+
+    async def _run():
+        async with server_mgr.ensure_running():
+            await place(config_id, app_cfg, log=console.print)
+
+    try:
+        asyncio.run(_run())
+    except ValueError as e:
+        console.print(f"[bold red]{e}[/bold red]")
+        raise typer.Exit(1)
+    _print_ratings(app_cfg)
+
+
+@ladder_app.command("fill")
+def ladder_fill(
+    budget: int = typer.Option(8, "--budget", "-b", help="Maximum games to play"),
+    include_paid: bool = typer.Option(False, "--include-paid", help="Also schedule paid API models"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Play extra games between neighbouring models whose ratings still overlap."""
+    from rotomarena.ladder import fill
+
+    app_cfg = AppConfig.load(config_file)
+    server_mgr = ShowdownServerManager(app_cfg.server)
+
+    async def _run():
+        async with server_mgr.ensure_running():
+            await fill(app_cfg, budget, free_only=not include_paid, log=console.print)
+
+    asyncio.run(_run())
+    _print_ratings(app_cfg)
+
+
+@app.command("export-site")
+def export_site_command(
+    out: str = typer.Option("site/src/data", "--out", "-o", help="Output directory for the site's JSON"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Export the current season and the retracted v0 archive as JSON for the website."""
+    from rotomarena.export.site import export_site
+
+    counts = export_site(AppConfig.load(config_file), out)
+    console.print(
+        f"[bold green]Exported[/bold green] {counts['models']} models, {counts['matches']} matches "
+        f"({counts['rated']} rated, {counts['void']} void) and {counts['retracted']} retracted matches to [cyan]{out}[/cyan]"
+    )
 
 
 if __name__ == "__main__":

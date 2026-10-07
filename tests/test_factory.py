@@ -48,8 +48,8 @@ def test_create_agent_instances():
 
 def test_llm_agent_identity_and_ruleset():
     app_cfg = AppConfig.default_config()
-    agent = create_agent_instance(app_cfg.agents["bonsai_local"], app_cfg)
-    assert agent.identity.config_id == "bonsai_local"
+    agent = create_agent_instance(app_cfg.agents["bonsai_2_27b"], app_cfg)
+    assert agent.identity.config_id == "bonsai_2_27b"
     assert agent.identity.provider == "local"
     assert agent.identity.model == "bonsai"
     assert agent.identity.quantization == "PQ2_0"

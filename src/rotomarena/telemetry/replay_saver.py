@@ -238,7 +238,7 @@ REPLAY_HTML_TEMPLATE = """<!DOCTYPE html>
 """
 
 
-def _flatten_logs(logs: Any) -> List[str]:
+def flatten_logs(logs: Any) -> List[str]:
     """Recursively flatten raw log items into a list of strings."""
     lines = []
     if isinstance(logs, str):
@@ -273,7 +273,7 @@ def save_battle_replay_html(
     format_str: str = "gen9ou",
 ) -> Path:
     """Renders and saves a standalone animated HTML replay viewer."""
-    lines = _flatten_logs(raw_logs)
+    lines = flatten_logs(raw_logs)
     # Showdown's convention for a log inlined in <script>: every "/" becomes "\/", so the log can never
     # contain "</script>"; replay-embed.js turns them back.
     raw_log_text = Markup("\n".join(lines).replace("/", "\\/"))
