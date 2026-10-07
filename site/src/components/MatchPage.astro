@@ -1,0 +1,67 @@
+---
+// One match: who played, the replay, and every decision with its reasoning. Shared by /matches/ and /retracted/.
+import Base from '../layouts/Base.astro';
+import ReplayEmbed from './ReplayEmbed.astro';
+import ThoughtTimeline from './ThoughtTimeline.astro';
+import { fmtDate, fmtDuration, fmtPct, modelsById, winner, type Match } from '../lib/data';
+
+interface Props { match: Match; retracted?: boolean }
+const { match: m, retracted = false } = Astro.props;
+const w = winner(m);
+const models = await modelsById();
+const title = m.players.map((p) => p.display_name).join(' vs ');
+const tokens = m.decisions.reduce((n, d) => n + d.tokens, 0);
+const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
+---
+<Base title={title} description={`${title}: replay and turn-by-turn reasoning.`}>
+  <p class="eyebrow">
+    <a href={retracted ? '/retracted/' : '/matches/'}>{retracted ? 'Retracted' : 'Matches'}</a> · {fmtDate(m.date)} · season {m.season ?? '—'}
+  </p>
+  <h1>{title}</h1>
+
+  {retracted && (
+    <div class="retraction" role="note">
+      <strong>Retracted.</strong> {m.void_reason ? `This match was voided: ${m.void_reason}.` : 'This match was played under the pilot ruleset.'}
+      {' '}It is kept for transparency and does not count toward any rating. <a href="/retracted/">Why we retracted the pilot study</a>.
+    </div>
+  )}
+  {!retracted && m.void_reason && (
+    <div class="retraction" role="note"><strong>Void.</strong> {m.void_reason}. It does not count toward the ratings.</div>
+  )}
+
+  <div class="players">
+    {m.players.map((p) => (
+      <div class={`player ${p.role === m.winner_role ? 'won' : ''}`}>
+        <div class="eyebrow">{p.role === 'p1' ? 'Player 1' : 'Player 2'}{p.role === m.winner_role && ' · winner'}</div>
+        <div class="pname">
+          {models.has(p.config_id) ? <a href={`/models/${p.config_id}/`}>{p.display_name}</a> : p.display_name}
+        </div>
+        <div class="small muted">{p.team || 'team not recorded'}</div>
+        {p.agent_type === 'direct_llm' && <div class="small muted num">autopilot {fmtPct(p.autopilot_rate)}</div>}
+      </div>
+    ))}
+  </div>
+
+  <p class="small muted summary num">
+    {w ? `${w.display_name} won` : 'Draw'} in {m.turns} turns · {fmtDuration(m.duration_seconds)} wall clock
+    {tokens > 0 && ` · ${tokens.toLocaleString('en-US')} tokens`}
+    {cost > 0 && ` · $${cost.toFixed(3)}`}
+  </p>
+
+  <ReplayEmbed log={m.log} />
+
+  <h2>Decisions</h2>
+  {m.decisions.length
+    ? <ThoughtTimeline match={m} />
+    : <p class="muted">No decisions were recorded for this match.</p>}
+</Base>
+
+<style>
+  .retraction { margin: 1rem 0; padding: 0.8rem 1rem; border: 1px solid var(--bad); border-radius: 8px; color: var(--ink);
+    background: color-mix(in srgb, var(--bad) 8%, var(--surface)); font: 0.95rem/1.5 var(--sans); max-width: var(--measure); }
+  .players { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.8rem; margin: 1.4rem 0 0.6rem; }
+  .player { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.8rem 1rem; font-family: var(--sans); }
+  .player.won { border-color: var(--good); }
+  .pname { font: 600 1.15rem var(--serif); margin: 0.2rem 0; }
+  .summary { font-family: var(--sans); }
+</style>

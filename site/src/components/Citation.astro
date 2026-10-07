@@ -1,0 +1,39 @@
+---
+// BibTeX block with a copy button.
+import { meta } from '../lib/data';
+
+const year = meta.generated_at.slice(0, 4);
+const bibtex = `@misc{rotomarena${year},
+  title        = {RotomArena: Measuring What Matters in Large Language Models},
+  author       = {{The RotomArena Team}},
+  year         = {${year}},
+  howpublished = {\\url{${Astro.site?.origin ?? ''}/paper/}},
+  note         = {Season ${meta.season.replace('s', '')}. Not peer reviewed, in the sense that matters}
+}`;
+---
+<div class="cite">
+  <pre><code>{bibtex}</code></pre>
+  <button type="button" class="copy" data-copy={bibtex}>Copy BibTeX</button>
+</div>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('button[data-copy]')) {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? '');
+        button.textContent = 'Copied';
+      } catch {
+        button.textContent = 'Select and copy manually';
+      }
+      setTimeout(() => (button.textContent = 'Copy BibTeX'), 2000);
+    });
+  }
+</script>
+
+<style>
+  .cite { position: relative; }
+  pre { background: var(--code-bg); border-radius: 8px; padding: 1rem; overflow-x: auto; font: 0.82rem/1.5 var(--mono); }
+  pre code { background: none; padding: 0; }
+  .copy { position: absolute; top: 0.6rem; right: 0.6rem; font: 600 0.78rem var(--sans); padding: 0.35rem 0.6rem; border-radius: 5px;
+    border: 1px solid var(--rule); background: var(--surface); color: var(--ink); cursor: pointer; }
+</style>

@@ -5,7 +5,7 @@ import random
 
 
 from rotomarena.config import AgentConfig, AppConfig, TelemetryConfig
-from rotomarena.export.site import export_site, parse_choice, scrub
+from rotomarena.export.site import export_site, parse_choice, public_log, scrub
 from rotomarena.ladder import closest_rated_llm, fill_pairs, fixed_placement_opponents
 from rotomarena.rating import Rating, compute_ratings
 from rotomarena.results import Outcome, outcome, void_reason
@@ -212,3 +212,18 @@ def test_control_games_only_for_models_under_the_cost_limit(monkeypatch):
     assert ladder.control_opponents("pricey", app, log=quiet) == []
     assert ladder.control_opponents("pricey", app, force=True, log=quiet) == ["random_ai"]
     assert ladder.control_opponents("random_ai", app, log=quiet) == []
+
+
+def test_public_log_keeps_the_battle_and_drops_the_room():
+    log = [
+        "|j|☆Bonsai 2 27B",
+        "|player|p1|Bonsai 2 27B|1|",
+        "|player|p2|Random AI|2|",
+        "|j| somespectator",
+        "|c|☆Bonsai 2 27B|Move locked in",
+        '|html|<div class="message-error">You must be registered to chat</div>',
+        "|move|p1a: Ting-Lu|Earthquake|p2a: Ribombee",
+        "|l| somespectator",
+        "|win|Bonsai 2 27B",
+    ]
+    assert public_log(log) == [log[0], log[1], log[2], log[6], log[8]]

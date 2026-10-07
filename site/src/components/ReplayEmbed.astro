@@ -1,0 +1,63 @@
+---
+// The Showdown replay player, fed the raw battle log. Ported from telemetry/replay_saver.py.
+interface Props { log: string[] }
+const { log } = Astro.props;
+// Showdown's convention for a log inlined in <script>: every "/" becomes "\/", so the log can never contain
+// "</script>"; replay-embed.js turns them back.
+const logText = log.join('\n').replaceAll('/', '\\/');
+---
+<div class="replay-scroll">
+  <div class="wrapper replay-wrapper">
+    <div class="battle"></div>
+    <div class="battle-log"></div>
+    <div class="replay-controls"></div>
+    <div class="replay-controls-2"></div>
+  </div>
+</div>
+<p class="small muted noscript-note">The replay player loads from play.pokemonshowdown.com. The full battle log is below.</p>
+
+<script is:inline>
+  // Showdown's Config routes must exist before replay-embed.js runs, or its effect sprites resolve to this site.
+  window.Config = window.Config || {};
+  window.Config.routes = {
+    root: 'pokemonshowdown.com',
+    client: 'play.pokemonshowdown.com',
+    dex: 'dex.pokemonshowdown.com',
+    replays: 'replay.pokemonshowdown.com',
+  };
+  // Effect images (Stealth Rock, Spikes, Sticky Web) still ask for relative paths; send them to Showdown's fx CDN.
+  document.addEventListener('error', function (e) {
+    var img = e.target;
+    if (!img || img.tagName !== 'IMG' || img.dataset.retried) return;
+    img.dataset.retried = 'true';
+    var file = (img.getAttribute('src') || '').split('/').pop().split('?')[0];
+    if (file && file.endsWith('.png')) img.src = 'https://play.pokemonshowdown.com/fx/' + file;
+  }, true);
+  (function () {
+    var fxBase = 'https://play.pokemonshowdown.com/fx/';
+    function fix() {
+      if (window.Dex) {
+        if (!String(window.Dex.fxPrefix || '').startsWith('http')) window.Dex.fxPrefix = fxBase;
+        if (!String(window.Dex.resourcePrefix || '').startsWith('http')) window.Dex.resourcePrefix = 'https://play.pokemonshowdown.com/';
+      }
+      if (window.BattleEffects) {
+        for (var id in window.BattleEffects) {
+          var fx = window.BattleEffects[id];
+          if (fx && fx.url && !fx.url.startsWith('http') && !fx.url.startsWith('//')) {
+            fx.url = fxBase + fx.url.replace(/^\/?(fx\/)?/, '');
+          }
+        }
+      }
+    }
+    var timer = setInterval(fix, 50);
+    window.addEventListener('load', function () { fix(); setTimeout(function () { clearInterval(timer); }, 10000); });
+  })();
+</script>
+<script is:inline type="text/plain" class="battle-log-data" set:html={logText} />
+<script is:inline src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
+
+<style>
+  .replay-scroll { overflow-x: auto; margin: 1rem 0; }
+  .replay-wrapper { min-width: 640px; max-width: 1180px; margin: 0 auto; font-family: var(--sans); }
+  .noscript-note { margin-top: 0; }
+</style>

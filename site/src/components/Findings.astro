@@ -1,0 +1,42 @@
+---
+// Key findings, one sentence each, filled from findings.json. Findings the exporter marks show: false are skipped.
+import { findings, fmtPct, fmtRating, modelsById } from '../lib/data';
+
+interface Props { limit?: number }
+const { limit } = Astro.props;
+const models = await modelsById();
+const name = (id: unknown) => models.get(String(id))?.display_name ?? String(id);
+const link = (id: unknown) => (models.has(String(id)) ? `<a href="/models/${id}/">${name(id)}</a>` : name(id));
+
+const text: Record<string, (f: any) => string> = {
+  'top-model': (f) =>
+    `${link(f.config_id)} currently leads the season with a rating of ${fmtRating(f.rating)} ` +
+    `(95% interval ${fmtRating(f.ci[0])}–${fmtRating(f.ci[1])}).` +
+    (f.overlaps_bottom
+      ? ` This interval overlaps that of ${link(f.bottom)}, which chooses its moves uniformly at random. We consider the result preliminary.`
+      : ''),
+  'tokens-vs-wins': (f) =>
+    `Across ${f.models} models, tokens spent per turn and win rate correlate at r = ${Number(f.r).toFixed(2)}.`,
+  'most-tokens': (f) =>
+    `${link(f.config_id)} spends the most tokens per decision: ${f.tokens_per_turn.toLocaleString('en-US')}, ` +
+    `or ${f.times_median}× the field median.`,
+  'zero-token-wins': (f) =>
+    `${f.wins.length} matches in our pilot study were won by models that produced zero tokens. ` +
+    `These results have been <a href="/retracted/">retracted</a>.`,
+  'most-common-signature-move': (f) =>
+    `The most common signature move is <strong>${f.move}</strong>, preferred by ${f.models} ${f.models === 1 ? 'model' : 'models'}.`,
+  'most-hallucinations': (f) =>
+    `${link(f.config_id)} attempts actions that do not exist in ${fmtPct(f.rate, 1)} of its turns, for example <code>${f.example}</code>.`,
+};
+
+const shown = Object.values(findings).filter((f) => f.show && text[f.id]).slice(0, limit);
+---
+<ol class="findings">
+  {shown.map((f) => <li set:html={text[f.id](f)} />)}
+</ol>
+
+<style>
+  .findings { padding-left: 1.3rem; max-width: var(--measure); }
+  .findings li { margin: 0.55rem 0; padding-left: 0.3rem; }
+  .findings li::marker { font: 600 0.85rem var(--sans); color: var(--muted); }
+</style>

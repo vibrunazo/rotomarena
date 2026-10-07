@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+import { meta } from '../lib/data';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'RotomArena: evaluating frontier language models on the tasks that actually matter.' } = Astro.props;
+const fullTitle = title === 'RotomArena' ? title : `${title} | RotomArena`;
+const path = Astro.url.pathname;
+const nav = [
+  ['/leaderboard/', 'Leaderboard'],
+  ['/matches/', 'Matches'],
+  ['/paper/', 'Paper'],
+  ['/faq/', 'FAQ'],
+  ['/retracted/', 'Retracted'],
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="wordmark" href="/">Rotom<span>Arena</span></a>
+        <nav aria-label="Main">
+          {nav.map(([href, label]) => (
+            <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap small muted">
+        <p class="footer-links">
+          <a href="/changelog/">Changelog</a>
+          <a href="/submit/">Submit a model</a>
+          <a href="/retracted/">Corrections</a>
+          <a href="/paper/#citation">Cite</a>
+        </p>
+        <p>
+          RotomArena season {meta.season}. Ratings regenerate after every batch of games; results are final until we
+          run more games.
+        </p>
+        <p>
+          A non-commercial fan parody. Pokémon and its characters are trademarks of Nintendo, Creatures and GAME FREAK,
+          published by The Pokémon Company. Battles run on Pokémon Showdown. Model names identify the models tested
+          and imply no endorsement. Not affiliated with any AI lab, Nintendo, Game Freak, Creatures, The Pokémon
+          Company or Smogon, all of whom we assume would prefer it that way.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--rule); background: var(--surface); position: sticky; top: 0; z-index: 10; }
+  .bar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 0.9rem; }
+  .wordmark { font: 600 1.2rem var(--serif); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .wordmark span { color: var(--accent); }
+  nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.2rem; font: 500 0.9rem var(--sans); }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--ink); }
+  nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+  main { padding-block: 2.5rem 3rem; min-height: 60vh; }
+  .site-footer { border-top: 1px solid var(--rule); padding-block: 1.5rem; }
+  .site-footer p { max-width: 80ch; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-family: var(--sans); }
+  .footer-links a { color: var(--muted); }
+</style>

@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import MatchList from '../../components/MatchList.astro';
+import { findings, matchEntries, meta } from '../../lib/data';
+
+const matches = await matchEntries('retracted');
+const zero = findings['zero-token-wins'] as unknown as { show: boolean; wins: { config_id: string; match_id: string }[] } | undefined;
+const zeroWins = zero?.show ? zero.wins : [];
+const slugOf = new Map(matches.map((e) => [e.data.id, e.slug]));
+const voided = matches.filter((e) => e.data.void_reason).length;
+---
+<Base title="Retracted results" description="The RotomArena pilot study, and the discovery of Zero-Token Reasoning.">
+  <p class="eyebrow">Corrections</p>
+  <h1>Retracted results</h1>
+
+  <div class="prose">
+    <p>
+      Before season 1 we ran a pilot study of {meta.retracted_matches} matches. We have retracted all of it. This page
+      explains why, and keeps every retracted match available so that nobody has to take our word for it.
+    </p>
+
+    <h2>Zero-Token Reasoning</h2>
+    <p>
+      During the pilot, {zeroWins.length} matches were won by language models that produced no tokens at all. Not
+      short answers: no answers. On every turn of those games the model either failed to respond or responded with
+      something we could not read, and our harness played its default action instead, which is the first legal move
+      in the list.<sup class="fn-ref"><a href="#fn-first-move">1</a></sup>
+    </p>
+    <p>
+      For a short period this looked like an important result. A model that wins without reasoning is, from a cost
+      perspective, the best model ever evaluated. An early draft of our paper described the effect as Zero-Token
+      Reasoning and proposed it as a direction for future work.
+    </p>
+    <p>
+      The explanation was less interesting. Clicking the top button turns out to be a serviceable strategy against an
+      opponent that is also struggling. We had measured the opponents at least as much as the models.
+    </p>
+
+    <h2>What changed</h2>
+    <ul>
+      <li>A match is now void if either side spends more than {meta.ladder.max_autopilot * 100}% of its turns on autopilot. Autopilot rates are published for every model.</li>
+      <li>Every decision records why it was made: by the model, or by a timeout, provider error, unreadable answer or illegal move.</li>
+      <li>Ratings come from a single season under one fixed ruleset, anchored to a model that runs on our own hardware.</li>
+      <li>A random-move bot plays every new model first, as a control, unless the model costs more than ${meta.ladder.control_max_cost_per_game_usd} a game, on budgetary grounds. A model that cannot beat it is reported as such.</li>
+    </ul>
+    <p>
+      {voided} of the pilot matches would also have been voided under the current rules. The rest were played under a
+      ruleset that no longer exists, and are retracted with them.
+    </p>
+  </div>
+
+  {zeroWins.length > 0 && (
+    <>
+      <h2>The zero-token wins</h2>
+      <ul class="zero">
+        {zeroWins.map((w) => (
+          <li>
+            <code>{w.config_id}</code>{' '}
+            {slugOf.has(w.match_id) ? <a href={`/retracted/${slugOf.get(w.match_id)}/`}>view match</a> : <span class="muted">match file missing</span>}
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  <h2>All retracted matches</h2>
+  <MatchList matches={matches} base="/retracted/" showReason />
+
+  <section class="footnotes">
+    <ol>
+      <li id="fn-first-move">The first legal move is whatever Pokémon Showdown lists first, which is the move in the top slot of the active Pokémon's moveset. Whether team builders tend to put their best move there is a question we have chosen not to investigate.</li>
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .zero { font-family: var(--sans); }
+</style>

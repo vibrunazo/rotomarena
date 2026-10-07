@@ -1,0 +1,10 @@
+---
+import MatchPage from '../../components/MatchPage.astro';
+import { matchEntries, type Match } from '../../lib/data';
+
+export async function getStaticPaths() {
+  return (await matchEntries('retracted')).map((e) => ({ params: { slug: e.slug }, props: { match: e.data } }));
+}
+const { match } = Astro.props as { match: Match };
+---
+<MatchPage match={match} retracted />

@@ -1,0 +1,30 @@
+---
+// Long-form documents (the paper, the changelog): one readable column, numbered headings, paper typography.
+import Base from './Base.astro';
+
+const { frontmatter } = Astro.props as { frontmatter: { title: string; description?: string; eyebrow?: string; byline?: string; numbered?: boolean } };
+---
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <article class:list={['paper', { numbered: frontmatter.numbered !== false }]}>
+    {frontmatter.eyebrow && <p class="eyebrow">{frontmatter.eyebrow}</p>}
+    <h1>{frontmatter.title}</h1>
+    {frontmatter.byline && <p class="byline" set:html={frontmatter.byline} />}
+    <slot />
+  </article>
+</Base>
+
+<style>
+  .paper { max-width: 46rem; }
+  .paper h1 { margin: 0.6rem 0 0.8rem; }
+  .byline { font: 0.95rem/1.5 var(--sans); color: var(--muted); }
+  .numbered :global(h2) { counter-increment: section; }
+  .numbered :global(h2.unnumbered) { counter-increment: none; }
+  .numbered :global(h2:not(.unnumbered))::before { content: counter(section) '. '; color: var(--muted); }
+  .paper :global(.abstract) { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0; }
+  .paper :global(.abstract p:first-child) { margin-top: 0; }
+  .paper :global(.abstract p:last-child) { margin-bottom: 0; }
+  .paper :global(li) { margin: 0.3rem 0; }
+  .paper :global(figure) { margin-inline: 0; }
+  .paper :global(.references) { font-size: 0.9rem; padding-left: 1.4rem; }
+  .paper :global(.references li) { margin: 0.4rem 0; }
+</style>

@@ -1,0 +1,57 @@
+---
+// Figure 1: ratings with 95% bootstrap intervals, drawn at build time. One scale for marks, ticks and labels.
+import type { Model } from '../lib/data';
+
+interface Props { models: Model[]; anchor: string; caption?: string }
+const { models, anchor, caption } = Astro.props;
+
+const ranked = models.filter((m) => m.rating !== null).sort((a, b) => b.rating! - a.rating!);
+const lo = Math.min(...ranked.map((m) => m.ci_low!), 1500);
+const hi = Math.max(...ranked.map((m) => m.ci_high!), 1500);
+const step = 100;
+const min = Math.floor((lo - 25) / step) * step;
+const max = Math.ceil((hi + 25) / step) * step;
+const ticks = Array.from({ length: (max - min) / step + 1 }, (_, i) => min + i * step);
+
+const labelW = 170, plotW = 520, rowH = 30, top = 12, bottom = 34;
+const width = labelW + plotW + 20;
+const height = top + ranked.length * rowH + bottom;
+const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
+---
+{ranked.length > 0 && (
+  <figure>
+    <div class="plot-scroll">
+      <svg viewBox={`0 0 ${width} ${height}`} width={width} role="img" aria-label="Ratings with 95% intervals">
+        {ticks.map((t) => (
+          <g>
+            <line x1={x(t)} x2={x(t)} y1={top - 4} y2={height - bottom + 4} class={t === 1500 ? 'anchor-line' : 'grid'} />
+            <text x={x(t)} y={height - bottom + 20} text-anchor="middle" class="tick">{t}</text>
+          </g>
+        ))}
+        {ranked.map((m, i) => {
+          const y = top + i * rowH + rowH / 2;
+          return (
+            <g>
+              <text x={labelW - 10} y={y + 4} text-anchor="end" class="label">{m.display_name}</text>
+              {m.ci_low !== m.ci_high && <line x1={x(m.ci_low!)} x2={x(m.ci_high!)} y1={y} y2={y} class="ci" />}
+              <circle cx={x(m.rating!)} cy={y} r={m.config_id === anchor ? 4.5 : 5} class={m.config_id === anchor ? 'pt anchor' : 'pt'} />
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+    {caption && <figcaption set:html={caption} />}
+  </figure>
+)}
+
+<style>
+  .plot-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem; }
+  svg { display: block; max-width: none; }
+  .grid { stroke: var(--rule); stroke-width: 1; }
+  .anchor-line { stroke: var(--faint); stroke-dasharray: 3 3; }
+  .tick { font: 11px var(--mono); fill: var(--muted); }
+  .label { font: 13px var(--sans); fill: var(--ink); }
+  .ci { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; }
+  .pt { fill: var(--accent); }
+  .pt.anchor { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+</style>

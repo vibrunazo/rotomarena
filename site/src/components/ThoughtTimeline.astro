@@ -1,0 +1,75 @@
+---
+// Every decision, in order: what the model said it was thinking, what it chose, and what that cost.
+// Class names are prefixed where Showdown's battle.css (loaded by the replay) already styles them, e.g. .turn.
+import type { Match } from '../lib/data';
+
+interface Props { match: Match }
+const { match } = Astro.props;
+const names = Object.fromEntries(match.players.map((p) => [p.role, p.display_name]));
+
+const verb: Record<string, string> = { move: 'used', switch: 'switched to', lead: 'led with' };
+const tags: Record<string, { label: string; cls: string; title: string }> = {
+  timeout: { label: 'autopilot', cls: 'warn', title: 'No answer before the hang guard; default move played' },
+  api_error: { label: 'autopilot', cls: 'warn', title: 'The provider returned an error; default move played' },
+  parse_error: { label: 'autopilot', cls: 'warn', title: 'The answer could not be read; default move played' },
+  error: { label: 'autopilot', cls: 'warn', title: 'Something else went wrong; default move played' },
+  invalid: { label: 'hallucination', cls: 'bad', title: 'Chose an action that was not available; default move played' },
+};
+const pretty = (id: string) => id.replace(/^./, (c) => c.toUpperCase());
+const turns = [...new Set(match.decisions.map((d) => d.turn))];
+---
+<ol class="timeline">
+  {turns.map((turn) => (
+    <li class="tl-turn">
+      <div class="tl-turn-label eyebrow">{turn === 0 ? 'Team preview' : `Turn ${turn}`}</div>
+      {match.decisions.filter((d) => d.turn === turn).map((d) => {
+        const tag = tags[d.source];
+        return (
+          <div class={`decision side-${d.role}`}>
+            <div class="head">
+              <strong>{names[d.role] ?? d.role}</strong>
+              <span class="muted"> {verb[d.action.kind] ?? d.action.kind} </span>
+              <code>{pretty(d.action.target)}</code>
+              {d.action.tera && <span class="pill accent">tera</span>}
+              {tag && <span class={`pill ${tag.cls}`} title={tag.title}>{tag.label}</span>}
+              <span class="meta num muted small">
+                {d.tokens > 0 && `${d.tokens.toLocaleString('en-US')} tok`}
+                {d.latency_ms > 0 && ` · ${(d.latency_ms / 1000).toFixed(1)} s`}
+                {d.cost_usd > 0 && ` · $${d.cost_usd.toFixed(4)}`}
+              </span>
+            </div>
+            {d.thought && <p class="thought">{d.thought}</p>}
+            {d.hidden_reasoning && (
+              <details>
+                <summary class="small">Reasoning trace ({d.hidden_reasoning.split(/\s+/).length.toLocaleString('en-US')} words)</summary>
+                <pre>{d.hidden_reasoning}</pre>
+              </details>
+            )}
+            {d.note && (
+              <details>
+                <summary class="small">Incident report</summary>
+                <pre>{d.note}</pre>
+              </details>
+            )}
+          </div>
+        );
+      })}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline { list-style: none; padding: 0; margin: 1rem 0; }
+  .tl-turn { border-left: 2px solid var(--rule); padding: 0 0 1.2rem 1rem; position: relative; }
+  .tl-turn::before { content: ''; position: absolute; left: -5px; top: 0.2rem; width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .tl-turn-label { margin-bottom: 0.4rem; }
+  .decision { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem 0.8rem; margin-bottom: 0.5rem; }
+  .decision.side-p2 { border-left: 3px solid var(--faint); }
+  .decision.side-p1 { border-left: 3px solid var(--accent); }
+  .head { font: 0.92rem/1.5 var(--sans); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem; }
+  .head .meta { margin-left: auto; }
+  .thought { margin: 0.4rem 0 0; font-size: 0.98rem; }
+  details { margin-top: 0.4rem; }
+  summary { cursor: pointer; color: var(--muted); font-family: var(--sans); }
+  pre { white-space: pre-wrap; word-break: break-word; font: 0.8rem/1.5 var(--mono); background: var(--code-bg); padding: 0.6rem; border-radius: 6px; max-height: 24rem; overflow: auto; }
+</style>

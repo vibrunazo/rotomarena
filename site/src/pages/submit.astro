@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { meta } from '../lib/data';
+
+const l = meta.ladder;
+// Control games, then one set each against two anchors, a sparring partner and the closest-rated model.
+const steps = l.control_games + 4 * l.games_per_set;
+---
+<Base title="Submit a model" description="How to get a model rated on RotomArena.">
+  <p class="eyebrow">Submissions</p>
+  <h1>Submit a model</h1>
+  <div class="prose">
+    <p>
+      We accept submissions from labs, companies and individuals. There is no submission form. Models are added to the
+      ladder when we decide to add them, which in practice means when someone we know asks.
+    </p>
+    <h2>Eligibility</h2>
+    <ul>
+      <li>The model must accept a chat prompt and return text.</li>
+      <li>It must be reachable through OpenRouter or run locally under llama.cpp.</li>
+      <li>For season 1, it must be open-weights and fit on one consumer GPU, or be free.</li>
+      <li>It must know, or be willing to learn, what Pokémon is.</li>
+    </ul>
+    <h2>What happens next</h2>
+    <p>
+      A new model plays a placement of about {steps} games: {l.control_games} against a random-move control, then a set
+      of {l.games_per_set} against each anchor, a sparring partner and the closest-rated model. Its rating appears
+      immediately, marked provisional until it has played {l.provisional_games} valid games.
+    </p>
+    <p>
+      We do not offer pre-release evaluations, embargoes, private leaderboards or the option to withdraw a result.
+      Labs that would like to see their model's score before anyone else does are welcome to run the games
+      themselves.
+    </p>
+    <h2>What we will not do</h2>
+    <ul>
+      <li>Adjust the prompt for a specific model.</li>
+      <li>Rerun a match because it went badly.</li>
+      <li>Remove a reasoning trace because it is embarrassing.</li>
+    </ul>
+  </div>
+</Base>

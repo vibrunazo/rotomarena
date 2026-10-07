@@ -1,0 +1,57 @@
+---
+// Figure 2: tokens per decision against win rate, one point per language model. Log x axis.
+import { allModels } from '../lib/data';
+
+interface Props { caption?: string }
+const { caption } = Astro.props;
+const points = (await allModels()).filter((m) => m.type === 'direct_llm' && m.games > 0 && m.tokens_per_turn);
+
+const W = 640, H = 340, L = 54, R = 20, T = 16, B = 46;
+const toks = points.map((m) => m.tokens_per_turn!);
+const xmin = 10 ** Math.floor(Math.log10(Math.min(...toks, 100)));
+const xmax = 10 ** Math.ceil(Math.log10(Math.max(...toks, 1000)));
+const x = (t: number) => L + ((Math.log10(t) - Math.log10(xmin)) / (Math.log10(xmax) - Math.log10(xmin))) * (W - L - R);
+const y = (w: number) => T + (1 - w) * (H - T - B);
+const xticks = Array.from({ length: Math.log10(xmax / xmin) + 1 }, (_, i) => xmin * 10 ** i);
+const yticks = [0, 0.25, 0.5, 0.75, 1];
+---
+{points.length > 0 && (
+  <figure>
+    <div class="plot-scroll">
+      <svg viewBox={`0 0 ${W} ${H}`} width={W} role="img" aria-label="Tokens per decision against win rate">
+        {yticks.map((t) => (
+          <g>
+            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} class={t === 0.5 ? 'half' : 'grid'} />
+            <text x={L - 8} y={y(t) + 4} text-anchor="end" class="tick">{t * 100}%</text>
+          </g>
+        ))}
+        {xticks.map((t) => (
+          <g>
+            <line x1={x(t)} x2={x(t)} y1={T} y2={H - B} class="grid" />
+            <text x={x(t)} y={H - B + 18} text-anchor="middle" class="tick">{t.toLocaleString('en-US')}</text>
+          </g>
+        ))}
+        <text x={(L + W - R) / 2} y={H - 6} text-anchor="middle" class="axis">Tokens per decision (log scale)</text>
+        <text x={14} y={(T + H - B) / 2} text-anchor="middle" class="axis" transform={`rotate(-90 14 ${(T + H - B) / 2})`}>Win rate</text>
+        {points.map((m) => (
+          <g>
+            <circle cx={x(m.tokens_per_turn!)} cy={y(m.win_rate)} r="5.5" class="pt" />
+            <text x={x(m.tokens_per_turn!) + 9} y={y(m.win_rate) + 4} class="label">{m.display_name}</text>
+          </g>
+        ))}
+      </svg>
+    </div>
+    {caption && <figcaption set:html={caption} />}
+  </figure>
+)}
+
+<style>
+  .plot-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem; }
+  svg { display: block; max-width: none; }
+  .grid { stroke: var(--rule); }
+  .half { stroke: var(--faint); stroke-dasharray: 3 3; }
+  .tick { font: 11px var(--mono); fill: var(--muted); }
+  .axis { font: 12px var(--sans); fill: var(--muted); }
+  .label { font: 12px var(--sans); fill: var(--ink); }
+  .pt { fill: var(--accent); }
+</style>

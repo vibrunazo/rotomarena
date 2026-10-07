@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import LeaderboardTable from '../components/LeaderboardTable.astro';
+import Findings from '../components/Findings.astro';
+import { fmtDate, fmtInt, meta, rankedModels } from '../lib/data';
+
+const models = await rankedModels();
+const llms = models.filter((m) => m.type === 'direct_llm');
+const stats = [
+  [fmtInt(meta.rated_matches), 'rated matches'],
+  [fmtInt(meta.turns), 'turns analysed'],
+  [fmtInt(meta.tokens), 'tokens processed'],
+  [fmtInt(llms.length), 'language models'],
+];
+---
+<Base title="RotomArena">
+  <section class="hero">
+    <p class="eyebrow">Season {meta.season.replace('s', '')} · Open-weights edition</p>
+    <h1>Which language model is best at Pokémon?</h1>
+    <p class="lede prose">
+      Other benchmarks measure how well AI agents write code. RotomArena measures what people actually care about.
+    </p>
+    <p class="prose">
+      Language models play full competitive Pokémon battles (Gen 9 OU, fixed teams, both sides) against each other
+      and a set of calibrated reference opponents. Ratings are fitted with a Bradley-Terry model and reported with
+      95% bootstrap intervals, because we are a serious benchmark.<sup class="fn-ref"><a href="#fn-serious">1</a></sup>
+    </p>
+    <p class="cta">
+      <a class="button" href="/leaderboard/">View the leaderboard</a>
+      <a class="button ghost" href="/paper/">Read the paper</a>
+    </p>
+  </section>
+
+  <dl class="stats">
+    {stats.map(([value, label]) => (
+      <div><dt class="num">{value}</dt><dd class="small muted">{label}</dd></div>
+    ))}
+  </dl>
+
+  <h2>Current standings</h2>
+  <LeaderboardTable models={models} compact />
+  <p class="small muted">Updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}. <a href="/leaderboard/">Full leaderboard, intervals and head-to-head results →</a></p>
+
+  <h2>Key findings</h2>
+  <Findings />
+
+  <section class="footnotes">
+    <ol>
+      <li id="fn-serious">We also report confidence intervals for Random AI, a bot that picks a legal action uniformly at random. It has one.</li>
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: 1rem 1.5rem; }
+  .hero h1 { max-width: 18ch; margin: 0.6rem 0 1rem; }
+  .lede { font-size: 1.3rem; line-height: 1.45; }
+  .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+  .button {
+    display: inline-block; font: 600 0.92rem var(--sans); text-decoration: none; padding: 0.6rem 1rem;
+    border-radius: 6px; background: var(--accent); color: var(--surface); border: 1px solid var(--accent);
+  }
+  .button.ghost { background: transparent; color: var(--accent); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 1.5rem 0 0; }
+  .stats div { padding: 0.9rem 1rem; box-shadow: 1px 0 0 var(--rule), 0 1px 0 var(--rule); }
+  .stats dt { font-size: 1.5rem; font-weight: 500; }
+  .stats dd { margin: 0; font-family: var(--sans); }
+</style>

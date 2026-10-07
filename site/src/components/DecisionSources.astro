@@ -1,0 +1,66 @@
+---
+// Figure 3: who actually made each decision, per language model, counted from every rated match's breadcrumbs.
+import { allModels, matchEntries } from '../lib/data';
+
+interface Props { caption?: string }
+const { caption } = Astro.props;
+
+const order = ['model', 'invalid', 'parse_error', 'timeout', 'api_error', 'error'] as const;
+const label: Record<string, string> = {
+  model: 'The model', invalid: 'Hallucinated move', parse_error: 'Unreadable answer',
+  timeout: 'Timeout', api_error: 'Provider error', error: 'Other error',
+};
+const llms = (await allModels()).filter((m) => m.type === 'direct_llm');
+const counts = new Map(llms.map((m) => [m.config_id, Object.fromEntries(order.map((s) => [s, 0])) as Record<string, number>]));
+for (const { data } of await matchEntries()) {
+  for (const d of data.decisions) {
+    const id = data.players.find((p) => p.role === d.role)?.config_id;
+    const c = id && counts.get(id);
+    if (c && d.source in c) c[d.source]++;
+  }
+}
+const rows = llms
+  .map((m) => ({ m, c: counts.get(m.config_id)!, n: Object.values(counts.get(m.config_id)!).reduce((a, b) => a + b, 0) }))
+  .filter((r) => r.n > 0)
+  .sort((a, b) => b.c.model / b.n - a.c.model / a.n);
+const used = order.filter((s) => rows.some((r) => r.c[s] > 0));
+---
+{rows.length > 0 && (
+  <figure>
+    <div class="bars">
+      {rows.map(({ m, c, n }) => (
+        <div class="row">
+          <div class="name">{m.display_name}</div>
+          <div class="bar" role="img" aria-label={used.map((s) => `${label[s]} ${Math.round((c[s] / n) * 100)}%`).join(', ')}>
+            {used.filter((s) => c[s] > 0).map((s) => (
+              <span class={`seg s-${s}`} style={`width:${(c[s] / n) * 100}%`} title={`${label[s]}: ${c[s]} of ${n}`} />
+            ))}
+          </div>
+          <div class="n num small muted">{n}</div>
+        </div>
+      ))}
+      <ul class="legend small">
+        {used.map((s) => <li><span class={`swatch s-${s}`} />{label[s]}</li>)}
+      </ul>
+    </div>
+    {caption && <figcaption set:html={caption} />}
+  </figure>
+)}
+
+<style>
+  .bars { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.9rem 1rem; font-family: var(--sans); }
+  .row { display: grid; grid-template-columns: minmax(5.5rem, 30%) 1fr 2.5rem; gap: 0.8rem; align-items: center; margin-bottom: 0.45rem; }
+  .name { font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--code-bg); }
+  .n { text-align: right; }
+  .seg, .swatch { display: block; height: 100%; }
+  .s-model { background: var(--accent); }
+  .s-invalid { background: var(--bad); }
+  .s-parse_error { background: var(--warn); }
+  .s-timeout { background: var(--faint); }
+  .s-api_error { background: var(--muted); }
+  .s-error { background: var(--ink); }
+  .legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; padding: 0; margin: 0.8rem 0 0; color: var(--muted); }
+  .legend li { display: flex; align-items: center; gap: 0.4rem; }
+  .swatch { width: 10px; height: 10px; border-radius: 2px; }
+</style>

@@ -1,0 +1,45 @@
+---
+// A table of matches linking to their replay pages.
+import { fmtDate, fmtDuration, winner, type MatchEntry } from '../lib/data';
+
+interface Props { matches: MatchEntry[]; base?: string; showReason?: boolean }
+const { matches, base = '/matches/', showReason = false } = Astro.props;
+---
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Winner</th>
+        <th class="r">Turns</th>
+        <th class="r">Duration</th>
+        {showReason && <th>Grounds</th>}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {matches.map(({ slug, data: m }) => {
+        const [p1, p2] = m.players;
+        const w = winner(m);
+        return (
+          <tr>
+            <td class="num">{fmtDate(m.date)}</td>
+            <td>{p1?.display_name}</td>
+            <td>{p2?.display_name}</td>
+            <td>{w ? w.display_name : <span class="muted">draw</span>}</td>
+            <td class="r num">{m.turns}</td>
+            <td class="r num">{fmtDuration(m.duration_seconds)}</td>
+            {showReason && <td class="small muted reason">{m.void_reason ?? 'pilot ruleset'}</td>}
+            <td><a href={`${base}${slug}/`}>Replay</a></td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .reason { white-space: normal; min-width: 16rem; }
+</style>

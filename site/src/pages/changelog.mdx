@@ -1,0 +1,34 @@
+---
+layout: ../layouts/Paper.astro
+title: Changelog
+description: Changes to the RotomArena benchmark, its ruleset and its ratings.
+eyebrow: Methodology changes
+numbered: false
+---
+
+Changes that affect ratings start a new season. Everything else is listed here so that nobody can say we changed
+the rules quietly.
+
+## Season 1 · October 2026
+
+- **Ratings.** Bradley-Terry ratings with bootstrap intervals replace the pilot's Elo, anchored to a local
+  open-weights model at 1500. The anchor runs on our own hardware and is therefore not at risk of deprecation.
+- **Placement.** New models play a fixed placement schedule: a random-move control, both anchors, a sparring
+  partner, and the closest-rated model. Expensive models skip the control, for reasons we describe as methodological.
+- **Lineup.** Season 1 is limited to open-weights models that run on one consumer GPU, plus two free sparring
+  partners. This keeps the benchmark accessible, and also cheap.
+- **Leads.** Models now choose their own lead at team preview. Previously the first Pokémon on the team led,
+  whatever the model thought of it.
+- **Reasoning.** Models reason at medium effort with a fixed output budget per turn. The previous turn timer and
+  time bank were designed for live commentary and have been removed; the only clock left is a hang guard.
+- **Transparency.** Every decision records whether the model made it, and if not, why. The autopilot rate is
+  published for every model, and matches with too much autopilot are void.
+- **Bots.** Fixed a bug in how the reference bots evaluated switching. We would like the old behaviour to be
+  remembered as a bug rather than a strategy.
+
+## Season 0 (pilot) · August–September 2026
+
+- Ran exploratory matches between commercial models, with a tournament mode, and live text-to-speech commentary in
+  six languages.
+- Discovered Zero-Token Reasoning. [Retracted](/retracted/).
+- Retired the tournament, which had never been run, and the commentary, which had.

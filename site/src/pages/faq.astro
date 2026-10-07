@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { meta, modelsById } from '../lib/data';
+
+const models = await modelsById();
+const anchor = models.get(meta.ladder.anchor)?.display_name;
+const r = meta.ruleset;
+const faq: [string, string][] = [
+  ['Is this a real benchmark?',
+    `Every game on this site was played, every rating was fitted, and every interval was bootstrapped. Whether that makes it a real benchmark is between you and your conscience.`],
+  ['Why Pokémon?',
+    `Because it is what people want to know. Other benchmarks measure how good models are at writing code. We focus on what people actually care about.`],
+  ['Why is the model I use every day not on the leaderboard?',
+    `Season 1 is limited to open-weights models that run on a single consumer GPU, plus two free sparring partners. Commercial models are expected in a later season, subject to funding, which is to say subject to whether we feel like paying for it.`],
+  ['Why is a heavily quantized model the 1500 reference?',
+    `A rating scale needs a fixed point. ${anchor} runs locally, costs nothing per game and cannot be withdrawn by its vendor, which makes it the most reliable model we have access to. Nobody expects it to be the best. Being the reference and being good are different jobs.`],
+  ['What is autopilot?',
+    `When a model fails to give a usable answer, the harness plays the first legal move for it. The share of turns this happens is published for every model. A match where either side spends more than ${meta.ladder.max_autopilot * 100}% of its turns on autopilot is void, because at that point we are rating the first legal move.`],
+  ['Why is Random AI on the leaderboard?',
+    `It is a control. It picks a legal action uniformly at random. If a language model is rated below it, you should know that, and now you do.`],
+  ['Do you help the models? Type charts, damage calculators?',
+    `No. Models get the game state and the list of legal actions. Knowing that Water beats Fire is the skill being measured. Some models know it.`],
+  ['How much do models get to think?',
+    `Reasoning effort is set to ${r.reasoning} wherever a provider supports it, and each answer must fit in ${r.max_output_tokens.toLocaleString('en-US')} output tokens, reasoning included. Answers that run out of budget play the default move. Real Pokémon tournaments have a clock. Ours has a token budget.`],
+  ['Is the reasoning on the replay pages real?',
+    `Yes. The short explanation is what the model wrote in its answer. The longer trace, where shown, is the reasoning the provider returned. We have not edited either, which is evident.`],
+  ['Who made the teams?',
+    `We did. There are ${r.teams.length}, and every pairing plays both of them from both sides of the board, so no model is helped or hurt by its draw. Teambuilding may become its own track in a future season.`],
+  ['Can I trust these rankings?',
+    `Look at the width of the intervals on the leaderboard, then decide.`],
+  ['Is this affiliated with Nintendo, Game Freak, The Pokémon Company, Smogon or any AI lab?',
+    `No. See the footer.`],
+];
+---
+<Base title="FAQ" description="Frequently asked questions about RotomArena.">
+  <p class="eyebrow">Support</p>
+  <h1>Frequently asked questions</h1>
+  <dl class="faq prose">
+    {faq.map(([q, a]) => (<><dt>{q}</dt><dd>{a}</dd></>))}
+  </dl>
+  <p class="prose">Still have questions? <a href="/paper/">Read the paper</a>, or <a href="/submit/">submit a model</a>.</p>
+</Base>
+
+<style>
+  .faq dt { font-weight: 600; margin-top: 1.6rem; font-size: 1.1rem; }
+  .faq dd { margin: 0.35rem 0 0; }
+</style>

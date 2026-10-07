@@ -69,11 +69,31 @@ def _turn_entries(match: MatchTelemetry) -> List[Dict[str, Any]]:
     return entries
 
 
+def _user_id(name: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", name.lower())
+
+
+def public_log(lines: List[str]) -> List[str]:
+    """The battle without its room: drops chat and HTML notices, and joins, leaves and renames by anyone who is not
+    a player (spectators are real people with real usernames)."""
+    players = {_user_id(line.split("|")[3]) for line in lines if line.startswith("|player|") and line.count("|") >= 3}
+    kept = []
+    for line in lines:
+        parts = line.split("|")
+        kind = parts[1] if len(parts) > 1 else ""
+        if kind in ("c", "chat", "c:", "html", "uhtml", "raw"):
+            continue
+        if kind in ("j", "J", "join", "l", "L", "leave", "n", "N", "name") and _user_id(parts[2] if len(parts) > 2 else "") not in players:
+            continue
+        kept.append(line)
+    return kept
+
+
 def _raw_log(runs_dir: Path, match_id: str) -> List[str]:
     path = runs_dir / match_id / "battle_log.json"
     if not path.exists():
         return []
-    return flatten_logs(json.loads(path.read_text(encoding="utf-8")).get("raw_logs", []))
+    return public_log(flatten_logs(json.loads(path.read_text(encoding="utf-8")).get("raw_logs", [])))
 
 
 def match_record(match: MatchTelemetry, runs_dir: Path, max_autopilot: float) -> Dict[str, Any]:
@@ -129,7 +149,7 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
         "autopilot_rate": round((len(turns) - sources.get("model", 0)) / n, 3),
         "decision_sources": dict(sources),
         "hallucinated_move_rate": round(sources.get("invalid", 0) / n, 3),
-        "tokens_per_turn": round(statistics.mean(x.get("total_tokens", 0) for x in metrics)) if metrics else None,
+        "tokens_per_turn": round(statistics.mean(x.get("completion_tokens", 0) for x in metrics)) if metrics else None,
         "cost_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics), 4),
         "cost_per_game_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics) / played, 4) if played else 0.0,
         "switch_rate": round(sum(1 for c in choices if c["kind"] == "switch") / (len(choices) or 1), 3),
@@ -275,8 +295,7 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "season": app_cfg.ruleset.version,
         "ruleset": app_cfg.ruleset.model_dump(),
-        "anchor": app_cfg.ladder.anchor,
-        "anchor_rating": app_cfg.ladder.anchor_rating,
+        "ladder": app_cfg.ladder.model_dump(),
         "matches": len(state.matches),
         "rated_matches": len(state.outcomes),
         "void_matches": state.void_count,

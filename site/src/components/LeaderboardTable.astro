@@ -1,0 +1,83 @@
+---
+// The main table. Click a column header to sort. Only rated language models get a rank; bots are scenery.
+import { fmtInterval, fmtPct, fmtRating, roleLabel, type Model } from '../lib/data';
+
+interface Props { models: Model[]; compact?: boolean }
+const { models, compact = false } = Astro.props;
+let rank = 0;
+const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'direct_llm' ? ++rank : null }));
+---
+<div class="table-scroll">
+  <table class="leaderboard" data-sortable>
+    <thead>
+      <tr>
+        <th class="r" data-sort="num">#</th>
+        <th data-sort="text">Model</th>
+        <th class="r" data-sort="num">Rating</th>
+        <th class="r">95% CI{!compact && <sup class="fn-ref"><a href="#fn-ci">1</a></sup>}</th>
+        <th class="r" data-sort="num">Games</th>
+        <th class="r" data-sort="num">Win rate</th>
+        {!compact && <th class="r" data-sort="num">Autopilot<sup class="fn-ref"><a href="#fn-autopilot">2</a></sup></th>}
+        {!compact && <th class="r" data-sort="num">Hallucinated moves</th>}
+        {!compact && <th class="r" data-sort="num">Tokens / turn</th>}
+        {!compact && <th class="r" data-sort="num">Cost / game</th>}
+        {!compact && <th data-sort="text">Signature move</th>}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(({ m, rank }) => (
+        <tr>
+          <td class="r num" data-value={rank ?? 999}>{rank ?? '—'}</td>
+          <td data-value={m.display_name}>
+            <a href={`/models/${m.config_id}/`}>{m.display_name}</a>
+            {roleLabel(m.role) && <span class="pill">{roleLabel(m.role)}</span>}
+            {m.provisional && <span class="pill warn" title="Fewer games than a full placement">provisional</span>}
+            {m.quantization && <span class="muted small"> {m.quantization}</span>}
+          </td>
+          <td class="r num" data-value={m.rating ?? -1}><strong>{fmtRating(m.rating)}</strong></td>
+          <td class="r num muted">{fmtInterval(m)}</td>
+          <td class="r num" data-value={m.games}>{m.games}</td>
+          <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
+          {!compact && <td class="r num" data-value={m.autopilot_rate}>{m.type === 'direct_llm' ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.hallucinated_move_rate}>{m.type === 'direct_llm' ? fmtPct(m.hallucinated_move_rate, 1) : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
+          {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{m.type === 'direct_llm' ? `$${m.cost_per_game_usd.toFixed(2)}` : '—'}</td>}
+          {!compact && <td data-value={m.signature_move ?? ''}>{m.signature_move ?? '—'}</td>}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Sort by clicking a header; a second click reverses. Rows keep their data-value for numbers.
+  for (const table of document.querySelectorAll<HTMLTableElement>('table[data-sortable]')) {
+    const headers = [...table.tHead!.rows[0].cells];
+    headers.forEach((th, col) => {
+      const kind = th.dataset.sort;
+      if (!kind) return;
+      th.tabIndex = 0;
+      th.style.cursor = 'pointer';
+      let ascending = col <= 1;
+      const sort = () => {
+        const body = table.tBodies[0];
+        const rows = [...body.rows];
+        const key = (row: HTMLTableRowElement) => row.cells[col].dataset.value ?? row.cells[col].textContent ?? '';
+        rows.sort((a, b) => {
+          const [x, y] = [key(a), key(b)];
+          const d = kind === 'num' ? Number(x) - Number(y) : x.localeCompare(y);
+          return ascending ? d : -d;
+        });
+        body.append(...rows);
+        ascending = !ascending;
+      };
+      th.addEventListener('click', sort);
+      th.addEventListener('keydown', (e) => { if (e.key === 'Enter') sort(); });
+    });
+  }
+</script>
+
+<style>
+  .leaderboard td .pill { margin-left: 0.4rem; }
+  .leaderboard td a { font-weight: 500; }
+</style>

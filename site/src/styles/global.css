@@ -1,0 +1,94 @@
+/* RotomArena: an academic paper crossed with a lab leaderboard. One accent (electric blue), cool paper ground. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #14171d;
+  --muted: #5b6372;
+  --faint: #8a92a1;
+  --rule: #dde1e7;
+  --accent: #1d4ed8;
+  --accent-soft: #e6edfd;
+  --good: #15803d;
+  --warn: #b45309;
+  --bad: #b91c1c;
+  --code-bg: #eef0f4;
+
+  --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  --measure: 68ch;
+  --page: 72rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101318; --surface: #171b22; --ink: #e5e8ee; --muted: #9aa3b2; --faint: #6f7888; --rule: #2a313c;
+    --accent: #7aa2ff; --accent-soft: #1b2540; --good: #4ade80; --warn: #fbbf24; --bad: #f87171; --code-bg: #1d222b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101318; --surface: #171b22; --ink: #e5e8ee; --muted: #9aa3b2; --faint: #6f7888; --rule: #2a313c;
+  --accent: #7aa2ff; --accent-soft: #1b2540; --good: #4ade80; --warn: #fbbf24; --bad: #f87171; --code-bg: #1d222b;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+/* Showdown's replay.css loads after this sheet and styles `body.dark`; these selectors outrank it. */
+html body, html body.dark {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 var(--serif);
+}
+img, svg { max-width: 100%; }
+a, html .dark a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: var(--page); margin: 0 auto; padding-inline: 20px; }
+.prose { max-width: var(--measure); }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 600; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; font-weight: 600; margin-top: 2.4rem; margin-bottom: 0.6rem; }
+h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.6rem; margin-bottom: 0.4rem; }
+p { margin: 0.7rem 0; }
+
+.eyebrow {
+  font: 500 0.72rem/1.2 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.small { font-size: 0.86rem; }
+code { font: 0.86em var(--mono); background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+
+/* Footnotes: the main text stays straight; the footnote does the twist. */
+.fn-ref { font: 600 0.7em var(--sans); vertical-align: super; line-height: 0; margin-left: 1px; }
+.fn-ref a { text-decoration: none; }
+.footnotes { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1rem; font-size: 0.86rem; color: var(--muted); }
+.footnotes ol { padding-left: 1.2rem; }
+
+/* Tables */
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font: 0.92rem/1.4 var(--sans); }
+th, td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; white-space: nowrap; }
+th { font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td.r, th.r { text-align: right; }
+
+.pill {
+  display: inline-block; font: 600 0.68rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.28rem 0.45rem; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted);
+}
+.pill.accent { color: var(--accent); border-color: var(--accent); }
+.pill.warn { color: var(--warn); border-color: var(--warn); }
+.pill.bad { color: var(--bad); border-color: var(--bad); }
+
+figure { margin: 1.6rem 0; }
+figcaption { font: 0.86rem/1.5 var(--sans); color: var(--muted); margin-top: 0.5rem; max-width: var(--measure); }
+figcaption strong { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

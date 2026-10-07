@@ -1,0 +1,176 @@
+---
+layout: ../layouts/Paper.astro
+title: 'RotomArena: Measuring What Matters in Large Language Models'
+description: The RotomArena paper. Methodology, results, limitations, and a response to Reviewer 2.
+eyebrow: Technical report · not peer reviewed
+byline: The RotomArena Team<br />Independent. Unaffiliated, as noted in the footer.
+---
+import ForestPlot from '../components/ForestPlot.astro';
+import LeaderboardTable from '../components/LeaderboardTable.astro';
+import TokensScatter from '../components/TokensScatter.astro';
+import DecisionSources from '../components/DecisionSources.astro';
+import Findings from '../components/Findings.astro';
+import Citation from '../components/Citation.astro';
+import { meta, fmtInt } from '../lib/data';
+import modelsJson from '../data/models.json';
+
+export const models = [...modelsJson].sort((a, b) => (b.rating ?? -Infinity) - (a.rating ?? -Infinity));
+export const llms = models.filter((m) => m.type === 'direct_llm');
+export const provisional = llms.some((m) => m.provisional);
+export const r = meta.ruleset;
+export const l = meta.ladder;
+export const anchorName = models.find((m) => m.config_id === l.anchor)?.display_name;
+
+<div class="abstract">
+
+**Abstract.** Language model benchmarks measure software engineering, mathematics, and the ability to answer
+graduate-level questions in subjects most users will never study. None of them measure competitive Pokémon. We
+present RotomArena, a benchmark in which language models play complete Generation 9 OverUsed singles battles
+against each other and against calibrated reference opponents. Ratings are fitted with a Bradley-Terry model and
+reported with 95% bootstrap intervals. Across {fmtInt(meta.rated_matches)} rated matches and {fmtInt(meta.turns)}
+turns, the models processed {fmtInt(meta.tokens)} tokens about Pokémon. We find that the intervals are
+wide, that reasoning length is not obviously related to winning, and that a policy choosing uniformly at random
+remains a meaningful baseline.
+
+</div>
+
+## Introduction
+
+The field has converged on a small set of capabilities worth measuring: writing code, proving theorems, and
+completing multi-step tasks in a browser. These are reasonable priorities for an industry. They are not, however,
+what people ask about. People ask which model is best at Pokémon.
+
+Competitive Pokémon is a useful testbed for several reasons. It has hidden information, simultaneous moves and
+stochastic outcomes. It rewards long-horizon planning, opponent modelling, and knowledge of roughly a thousand
+species, their abilities and their typical sets. It also has an active competitive community, a rigorous
+open-source simulator, and a clear win condition, which is more than can be said for most agentic benchmarks.
+
+We make three contributions. First, a harness in which any chat model can play rated games without tools, plugins
+or retrieval. Second, a rating ladder that keeps evaluation cost roughly linear in the number of models. Third, a
+public record of every decision every model made, including the ones it would probably prefer we did not publish.
+
+## Related work
+
+Games have a long history as AI benchmarks, and the rating systems used for them date back to chess
+[[1]](#ref-elo). Pairwise preference ratings for language models were popularized by Chatbot Arena
+[[2]](#ref-arena), which asks humans to vote between two answers; RotomArena replaces the humans with Pokémon,
+which are cheaper and do not get tired. Our rating model follows Bradley and Terry [[3]](#ref-bt).
+
+Prior work on language models in Pokémon includes PokéLLMon [[4]](#ref-pokellmon) and PokéChamp
+[[5]](#ref-pokechamp), both of which build agents around a language model. We do the opposite: we give the model
+the game state and nothing else, and see what happens. Our reference search bot borrows PokéChamp's name and its
+minimax idea, but none of its language model. It is a one-turn maximin search with a hand-written evaluation, and
+should not be taken as representative of the original.
+
+## Methodology
+
+### Format
+
+All games are Generation 9 OverUsed singles on a local Pokémon Showdown server. Teams are fixed: each pairing of
+players plays a set of {l.games_per_set} games, covering both of our {r.teams.length} teams
+({r.teams.map((t) => t.replace('_', ' ')).join(' and ')}) from both sides of the board. Teambuilding is therefore
+not measured. Leads are not fixed: each model picks its own at team preview.
+
+### Decisions
+
+On every turn a model receives a plain-text description of the battle: both teams as far as they are known, the
+events of the last three turns, the active Pokémon, and the list of legal actions. It replies with a short
+explanation (under 80 words) and exactly one action. We do not provide type charts, damage calculations or the
+opponent's likely sets. Knowing Pokémon is the skill under test.
+
+Reasoning effort is set to {r.reasoning} wherever the provider supports it, and each answer, reasoning included,
+must fit in {fmtInt(r.max_output_tokens)} output tokens. There is no chess clock; a turn is abandoned only after
+{fmtInt(r.turn_timeout / 60)} minutes, which is long enough for open-weights models running on one consumer GPU.
+
+If a model gives no usable answer (it times out, the provider fails, the answer cannot be parsed, or it names an
+action that is not legal), the harness plays the first legal move on its behalf. We call this *autopilot*. Every
+decision records which of these happened. A match is void if either side was on autopilot for more than
+{l.max_autopilot * 100}% of its turns.
+
+### Opponents and placement
+
+New models are placed by a fixed schedule. They first play {l.control_games} games against Random AI, a control
+that picks a legal action uniformly at random.<sup class="fn-ref"><a href="#fn-control">1</a></sup> They then play a
+set against each anchor ({anchorName}, a local language model, and our search bot), one set against a free
+sparring partner, and one set against the closest-rated language model. Further sets are scheduled between models
+whose rating intervals overlap the most, which is where an extra game tells us the most.
+
+### Ratings
+
+Ratings are Bradley-Terry strengths on the Elo scale, fitted by Newton's method with a weak prior equivalent to one
+drawn game. {anchorName} is fixed at {l.anchor_rating}; every other rating is relative to it. Intervals come from
+{fmtInt(l.bootstrap_samples)} parametric bootstrap refits. A rating is provisional until the model has played
+{l.provisional_games} valid games.
+
+## Results
+
+{provisional && <p><em>At the time of writing the season is still in placement. Results below are provisional and will change.</em></p>}
+
+<LeaderboardTable models={models} compact />
+
+<ForestPlot
+  models={models}
+  anchor={l.anchor}
+  caption="<strong>Figure 1.</strong> Ratings with 95% bootstrap intervals. The hollow point is the anchor."
+/>
+
+<TokensScatter caption="<strong>Figure 2.</strong> Tokens per decision against win rate. More thinking is shown to the right; more winning, higher up. The reader is invited to find the trend." />
+
+<DecisionSources caption="<strong>Figure 3.</strong> Who made each decision. Blue segments were chosen by the model; everything else was chosen by our fallback, for the reason shown." />
+
+Our main findings, generated from the data at build time:
+
+<Findings />
+
+## Limitations
+
+The sample is small and the intervals are wide; we report them precisely so that nobody reads more into the
+ordering than it supports. Two fixed teams cover a small part of the metagame. Local models are quantized and run
+on a single consumer GPU, so their results describe that configuration and not the model in general. Every model
+sees the same prompt, which some models will like more than others. Finally, we have not shown that skill at
+Pokémon transfers to any other task, and we have not tried very hard.
+
+## Ethics statement
+
+All Pokémon in this study are fictional, and fainted Pokémon recover fully between games. No human annotators
+were used. The electricity was real.
+
+## Reproducibility
+
+Every match on this site links its full battle log and every decision, with the model's explanation, its reasoning
+trace when the provider returns one, token counts, latency and cost. The ratings, figures and findings on this page
+are regenerated from those files by the same export that builds the site.
+
+<h2 class="unnumbered">Appendix A. Response to Reviewer 2</h2>
+
+**The authors evaluate a single game.** We evaluate the one that matters.
+
+**The confidence intervals overlap.** We agree, and we have drawn them so that this is easy to see.
+
+**Why is the anchor a heavily quantized model running on a desktop?** Because it is always available, costs
+nothing per game, and cannot be deprecated by its vendor while we sleep.
+
+**Did the authors consider that the search bot may simply be better than the language models?** Yes. See
+Figure 1.
+
+**This is not a serious benchmark.** We report bootstrap intervals for a random number generator.
+
+<h2 class="unnumbered" id="citation">Citation</h2>
+
+<Citation />
+
+<h2 class="unnumbered">References</h2>
+
+<ol class="references">
+  <li id="ref-elo">A. E. Elo. <em>The Rating of Chessplayers, Past and Present.</em> Arco, 1978.</li>
+  <li id="ref-arena">W.-L. Chiang et al. Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference. <em>ICML</em>, 2024.</li>
+  <li id="ref-bt">R. A. Bradley and M. E. Terry. Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons. <em>Biometrika</em> 39, 1952.</li>
+  <li id="ref-pokellmon">S. Hu, T. Huang and L. Liu. PokéLLMon: A Human-Parity Agent for Pokémon Battles with Large Language Models. arXiv:2402.01118, 2024.</li>
+  <li id="ref-pokechamp">S. Karten, A. L. Nguyen and C. Jin. PokéChamp: an Expert-level Minimax Language Agent. arXiv:2503.04094, 2025.</li>
+</ol>
+
+<section class="footnotes">
+  <ol>
+    <li id="fn-control">Models expected to cost more than ${l.control_max_cost_per_game_usd} per game skip the control games unless we ask for them. This is a budgetary decision and we have described it as a methodological one.</li>
+  </ol>
+</section>

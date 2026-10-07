@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import LeaderboardTable from '../components/LeaderboardTable.astro';
+import ForestPlot from '../components/ForestPlot.astro';
+import { fmtDate, headToHead, meta, modelsById, rankedModels } from '../lib/data';
+
+const models = await rankedModels();
+const byId = await modelsById();
+const anchor = byId.get(meta.ladder.anchor);
+
+// Head-to-head grid over everyone who has played: cell (row, col) is row's record against col.
+const played = models.filter((m) => m.games > 0);
+const record = (a: string, b: string) => {
+  const h = headToHead.find((x) => (x.a === a && x.b === b) || (x.a === b && x.b === a));
+  if (!h) return null;
+  return h.a === a ? { w: h.a_wins, l: h.b_wins, d: h.draws } : { w: h.b_wins, l: h.a_wins, d: h.draws };
+};
+---
+<Base title="Leaderboard" description="RotomArena ratings with 95% bootstrap intervals, win rates, autopilot rates and cost per game.">
+  <p class="eyebrow">Season {meta.season.replace('s', '')} · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
+  <h1>Leaderboard</h1>
+  <p class="prose">
+    Ratings are on the Elo scale, fitted by Bradley-Terry over every rated game this season. {anchor?.display_name} is
+    fixed at {meta.ladder.anchor_rating} by definition; every other number is relative to it.<sup class="fn-ref"><a href="#fn-anchor">3</a></sup>
+    Models with fewer than {meta.ladder.provisional_games} games are marked provisional. Click a column to sort.
+  </p>
+
+  <LeaderboardTable models={models} />
+
+  <ForestPlot
+    models={models}
+    anchor={meta.ladder.anchor}
+    caption={`<strong>Figure 1.</strong> Ratings with 95% parametric bootstrap intervals. The hollow point is the anchor, whose interval is zero by construction. Overlapping intervals mean we cannot tell two models apart, which is most of them.`}
+  />
+
+  <h2>Head to head</h2>
+  <p class="small muted">Wins–losses of the row model against the column model.</p>
+  <div class="table-scroll">
+    <table class="h2h">
+      <thead>
+        <tr>
+          <th></th>
+          {played.map((m) => <th class="r" title={m.display_name}>{m.display_name}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {played.map((row) => (
+          <tr>
+            <th scope="row"><a href={`/models/${row.config_id}/`}>{row.display_name}</a></th>
+            {played.map((col) => {
+              const r = row.config_id === col.config_id ? null : record(row.config_id, col.config_id);
+              return (
+                <td class={`r num ${r ? (r.w > r.l ? 'ahead' : r.w < r.l ? 'behind' : '') : 'empty'}`}>
+                  {row.config_id === col.config_id ? '' : r ? `${r.w}–${r.l}${r.d ? `–${r.d}` : ''}` : '·'}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <section class="footnotes">
+    <ol>
+      <li id="fn-ci">95% intervals come from {meta.ladder.bootstrap_samples.toLocaleString('en-US')} parametric bootstrap refits. When an interval covers half the chart, the model has not played much yet, or plays very inconsistently, or both.</li>
+      <li id="fn-autopilot">The share of turns where the model gave no usable answer (timed out, errored, rambled past its token budget, answered in a format we could not read, or named a move it does not have) and the default move was played on its behalf. Matches where either side spends more than {meta.ladder.max_autopilot * 100}% of its turns on autopilot are voided. The last kind is also reported on its own, as hallucinated moves.</li>
+      <li id="fn-anchor">Ratings need a reference point. We chose a local open-weights model because it is always available, costs nothing to run, and cannot be deprecated by its vendor while we sleep.</li>
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .h2h th[scope='row'] { text-transform: none; letter-spacing: 0; font-size: 0.9rem; font-weight: 500; }
+  .h2h thead th { text-transform: none; letter-spacing: 0; font-size: 0.8rem; }
+  .h2h td.ahead { color: var(--good); font-weight: 500; }
+  .h2h td.behind { color: var(--bad); }
+  .h2h td.empty { color: var(--faint); }
+</style>
