@@ -128,7 +128,7 @@ class RulesetConfig(BaseModel):
 class LadderConfig(BaseModel):
     """How ratings are computed and how many games placement and top-ups play."""
 
-    anchor: str = Field(default="heuristic", description="Config id whose rating is fixed")
+    anchor: str = Field(default="bonsai_2_27b", description="Config id whose rating is fixed")
     anchor_rating: float = Field(default=1500.0)
     games_per_set: int = Field(default=4, description="Games per opponent: 2 teams x 2 sides")
     provisional_games: int = Field(default=16, description="Valid games before a rating stops being provisional")
@@ -224,14 +224,14 @@ class AppConfig(BaseSettings):
     def default_config(cls) -> "AppConfig":
         return cls(
             agents={
-                "heuristic": AgentConfig(name="heuristic", type="heuristic", role="anchor"),
+                "heuristic": AgentConfig(name="heuristic", type="heuristic"),
                 "pokechamp": AgentConfig(name="pokechamp", type="pokechamp", role="anchor"),
                 "nemotron_3_ultra": AgentConfig(
                     name="nemotron_3_ultra", type="direct_llm", role="sparring",
                     provider="openrouter", model=FREE_TEST_MODEL,
                 ),
                 "bonsai_2_27b": AgentConfig(
-                    name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", quantization="PQ2_0"
+                    name="bonsai_2_27b", type="direct_llm", role="anchor", provider="local", model="bonsai", quantization="PQ2_0"
                 ),
             },
         )

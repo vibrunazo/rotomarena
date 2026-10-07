@@ -125,6 +125,7 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
         m.save_json(runs / m.match_id / "breadcrumbs.json")
     app_cfg = AppConfig(telemetry=TelemetryConfig(output_dir=runs))
     app_cfg.ladder.bootstrap_samples = 50
+    app_cfg.ladder.anchor = "heuristic"
 
     counts = export_site(app_cfg, tmp_path / "data")
     assert counts == {"models": 3, "matches": 4, "rated": 3, "void": 1, "retracted": 1}

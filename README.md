@@ -93,7 +93,7 @@ stay in `.env`.
 
 ### 5. The Ladder (season ratings)
 
-Ratings are Bradley-Terry fits on the Elo scale, anchored to the Heuristic bot at 1500, with 95% parametric
+Ratings are Bradley-Terry fits on the Elo scale, anchored to Ternary-Bonsai-2-27B at 1500, with 95% parametric
 bootstrap intervals. Matches where either side fell back to the default move on more than half its turns are
 void.
 

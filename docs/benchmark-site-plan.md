@@ -11,8 +11,8 @@ competitive Pokémon.
 - The name stays **RotomArena**.
 - Season 1 uses only cheap open-weights models, mostly run locally (see section 5).
 - Free sparring partners: **Nemotron** and **Gemma 4**.
-- Ratings: Bradley-Terry with the Heuristic bot pinned at 1500 and bots in placement, as first planned
-  (confirmed 6 Oct). The anchors' strength therefore matters: see open decision 5.
+- Ratings: Bradley-Terry, as first planned, with **Bonsai pinned at 1500** (changed from the Heuristic bot on
+  7 Oct). Placement anchors: Bonsai and PokéChamp; Heuristic is now a test bot only.
 - Phases 0 (dead code, result-integrity fixes, v0 archive) and 1 (ratings, ladder, site export) are done,
   6 Oct 2026.
 - Season 1 lineup drafted (section 5): 8 local models, plus the two sparring partners and two anchors.
