@@ -370,6 +370,28 @@ the CPU at 100% (part of it runs on the CPU). A game takes 18-40 minutes.
 
 ---
 
+### Season 1 rules: the ladder profile (decided 7 Oct)
+
+The concise caps were for live video, which isn't the plan anymore; game speed doesn't matter, but cost does.
+
+- `ruleset.profile: ladder`: hidden thinking at OpenRouter **medium** effort, **4,096 tokens** per turn in total;
+  local servers stop the thinking at 2,048 tokens and tell the model to answer. A 2-hour hang guard.
+  `profile: concise` keeps the old fast settings for videos and quick tests.
+- Models still end with a 2-4 sentence `<thought>` (the site quotes it; not every provider returns its reasoning).
+  Hidden reasoning is recorded whenever the provider returns it, and OpenRouter's actual cost is logged per turn.
+- No type-effectiveness hints: Pokémon knowledge is part of what's measured.
+- Coming later: per-dollar caps (per turn and per model) and adaptive placement for paid models, so they spend
+  their budget on close matchups instead of opponents they crush. Cost efficiency is a metric, not a confound:
+  typical paid models spent about 3 cents per game in earlier tests.
+
+**Smoke test, one decision per model under these rules:** all 10 finished without a cut-off and gave a legal
+move (8 chose the best move, Earthquake into Heatran; Bonsai and MiniCPM chose Close Combat). Hidden
+reasoning came back for every model, including the free OpenRouter ones. Ling, MiniCPM and gpt-oss used the
+whole 2,048-token thinking budget. K2-Horizon needed a fix: llama.cpp doesn't know its end-of-thinking tag
+(`</ifm|think>`) and filed the whole answer as reasoning.
+
+---
+
 ## 6. Phase 2: Astro site
 
 **Stack:** current Astro, static output (no adapter needed), Content Layer collections
@@ -507,7 +529,5 @@ instead of narrating live in the browser.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
    This matters because half of each placement is played against them.
-6. Should the prompt list each move's type effectiveness against the opponent? The models get type facts wrong;
-   giving them the multipliers tests decisions more and knowledge less.
-7. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
+6. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
    the site exists for.
