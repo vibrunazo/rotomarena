@@ -23,8 +23,8 @@ class LLMUsageMetrics(BaseModel):
 class ActionDecision(BaseModel):
     """An LLM's parsed answer for one turn. `parse_error` is set when the answer has no usable action."""
 
-    action_type: Optional[Literal["MOVE", "SWITCH"]] = Field(
-        default=None, description="MOVE or SWITCH; None when parsing failed"
+    action_type: Optional[Literal["MOVE", "SWITCH", "LEAD"]] = Field(
+        default=None, description="MOVE, SWITCH or (at team preview) LEAD; None when parsing failed"
     )
     target: str = Field(
         default="", description="Showdown id of the move or species (lowercase letters and digits)"

@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+import asyncio
+from types import SimpleNamespace
 from typing import Optional
 from poke_env.battle import Battle
 from poke_env.player import BattleOrder
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.llm.client import LLMClient, to_id
-from rotomarena.llm.prompts import format_battle_state
+from rotomarena.llm.prompts import format_battle_state, format_team_preview
 
 
 class DirectLLMPlayer(BaseBenchmarkPlayer):
@@ -82,7 +84,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             move = next((m for m in battle.available_moves if m.id == decision.target), None)
             if move is not None:
                 chosen_order = self.create_order(move, terastallize=decision.terastallize and battle.can_tera)
-        else:
+        elif decision.action_type == "SWITCH":
             mon = next((m for m in battle.available_switches if to_id(m.species) == decision.target), None)
             if mon is not None:
                 chosen_order = self.create_order(mon)
@@ -108,3 +110,49 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             hidden_reasoning=decision.hidden_reasoning,
         )
         return chosen_order
+
+    async def teampreview(self, battle: Battle) -> str:
+        """The model picks its lead; the rest of the team keeps its order. Failures lead with the first
+        Pokémon, which is what Showdown itself does when a player doesn't choose."""
+        members = list(battle.team.values())
+        lead, source, note, decision = 0, "model", "", None
+        try:
+            decision = await asyncio.wait_for(
+                self.llm_client.generate_cot_decision(
+                    battle_state_str=format_team_preview(battle),
+                    model=self.model,
+                    temperature=self.temperature,
+                    max_tokens=self.max_output_tokens,
+                    reasoning=self.reasoning,
+                ),
+                timeout=self.turn_timeout,
+            )
+        except asyncio.TimeoutError:
+            source, note = "timeout", f"[TIMEOUT] No lead chosen within {self.turn_timeout:.0f}s."
+        except Exception as e:
+            source, note = "api_error", f"[API ERROR] {e}."
+        if decision is not None:
+            if decision.parse_error:
+                source, note = "parse_error", f"[PARSE ERROR] {decision.parse_error}."
+            else:
+                # A lead is the only legal action here, so a team member's name counts whatever the keyword
+                # (small models wrote "MOVE: dragonite"); only the Pokémon has to be right.
+                match = next((i for i, m in enumerate(members) if to_id(m.species) == decision.target), None)
+                if match is None:
+                    source, note = "invalid", f"[INVALID] '{decision.action_type}: {decision.target}' is not a legal lead."
+                else:
+                    lead = match
+
+        order = [lead + 1] + [i + 1 for i in range(len(members)) if i != lead]
+        for mon in members:
+            mon._selected_in_teampreview = True
+        message = "/team " + "".join(str(i) for i in order)
+        self.record_turn_telemetry(
+            battle=battle,
+            chosen_order=SimpleNamespace(message=f"{message} lead={members[lead].species}"),
+            reasoning=decision.reasoning if source == "model" else f"{note} Leading with the first Pokémon.",
+            decision_source=source,
+            llm_metrics=decision.metrics.model_dump() if decision and decision.metrics else None,
+            hidden_reasoning=decision.hidden_reasoning if decision else "",
+        )
+        return message

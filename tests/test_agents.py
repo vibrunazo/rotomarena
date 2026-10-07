@@ -98,3 +98,39 @@ async def test_hung_turn_times_out_to_the_default_move():
     order = await player.choose_move(MockBattle())
     assert hasattr(order, "message")
     assert recorder.breadcrumbs[-1].decision_source == "timeout"
+
+
+@pytest.mark.asyncio
+async def test_model_picks_its_lead_and_the_rest_keep_their_order():
+    player, recorder = _llm_player(ActionDecision(action_type="LEAD", target="kingambit", reasoning="Kingambit walls Heatran."))
+    battle = MockBattle()
+    battle.teampreview_opponent_team = [battle.opponent_active_pokemon]
+    assert await player.teampreview(battle) == "/team 21"
+    crumb = recorder.breadcrumbs[-1]
+    assert crumb.decision_source == "model" and crumb.chosen_action == "/team 21 lead=kingambit"
+    prompt = player.llm_client.generate_cot_decision.call_args.kwargs["battle_state_str"]
+    assert "LEAD: greattusk" in prompt and "heatran" in prompt
+
+
+@pytest.mark.asyncio
+async def test_bad_lead_falls_back_to_team_order():
+    player, recorder = _llm_player(ActionDecision(action_type="LEAD", target="pikachu"))
+    battle = MockBattle()
+    assert await player.teampreview(battle) == "/team 12"
+    assert recorder.breadcrumbs[-1].decision_source == "invalid"
+
+
+@pytest.mark.asyncio
+async def test_lead_during_a_turn_is_invalid():
+    player, recorder = _llm_player(ActionDecision(action_type="LEAD", target="kingambit"))
+    battle = MockBattle()
+    order = await player._async_choose_move(battle)
+    assert battle.available_moves[0].id in str(order.message).lower()
+    assert recorder.breadcrumbs[-1].decision_source == "invalid"
+
+
+@pytest.mark.asyncio
+async def test_team_member_named_with_the_wrong_keyword_still_leads():
+    player, recorder = _llm_player(ActionDecision(action_type="MOVE", target="kingambit"))
+    assert await player.teampreview(MockBattle()) == "/team 21"
+    assert recorder.breadcrumbs[-1].decision_source == "model"

@@ -68,6 +68,7 @@ def test_parse_decision_reads_thought_move_and_tera_tag():
         ("3. SWITCH: landorustherian (89.5% HP)", "SWITCH", "landorustherian"),
         ("**SWITCH:** Landorus-Therian", "SWITCH", "landorustherian"),
         ("- MOVE: U-turn", "MOVE", "uturn"),
+        ("LEAD: Great Tusk", "LEAD", "greattusk"),
     ],
 )
 def test_parse_decision_normalizes_targets_to_showdown_ids(decision_block, kind, target):
@@ -86,7 +87,7 @@ def test_tera_blast_does_not_terastallize_without_the_tag():
     "raw, reason",
     [
         ("I will use Earthquake because it is super effective.", "missing <decision>"),
-        ("<decision>Earthquake, obviously.</decision>", "no MOVE or SWITCH line"),
+        ("<decision>Earthquake, obviously.</decision>", "no MOVE, SWITCH or LEAD line"),
         ("<decision>MOVE: earthquake\nMOVE: closecombat</decision>", "exactly one is allowed"),
         ("<decision>MOVE: [TERA]</decision>", "empty action target"),
     ],

@@ -36,6 +36,9 @@ def scrub(value: Any) -> Any:
 
 def parse_choice(chosen_action: str) -> Dict[str, Any]:
     """'/choose move terablast terastallize' -> {'kind': 'move', 'target': 'terablast', 'tera': True}."""
+    lead = re.search(r"/team \d+ lead=(\S+)", chosen_action or "")
+    if lead:
+        return {"kind": "lead", "target": lead.group(1), "tera": False}
     m = _CHOICE.search(chosen_action or "")
     if not m:
         return {"kind": "default", "target": "", "tera": False}

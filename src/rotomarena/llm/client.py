@@ -41,7 +41,7 @@ def to_id(text: str) -> str:
 
 # One action line, allowing list markers, bold and an "ACTION:" prefix around "MOVE: x" / "SWITCH: x".
 _ACTION_LINE = re.compile(
-    r"^\s*(?:[-*>•]|\d+[.)])?\s*(?:ACTION\s*:\s*)?\**\s*(MOVE|SWITCH)\s*\**\s*:\s*(.+?)\s*$",
+    r"^\s*(?:[-*>•]|\d+[.)])?\s*(?:ACTION\s*:\s*)?\**\s*(MOVE|SWITCH|LEAD)\s*\**\s*:\s*(.+?)\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
 _TERA_TAG = re.compile(r"\[\s*TERA\s*\]", re.IGNORECASE)
@@ -72,7 +72,7 @@ def parse_decision(raw_text: str) -> ActionDecision:
 
     actions = _ACTION_LINE.findall(block.group(1))
     if not actions:
-        return failed("no MOVE or SWITCH line in <decision>")
+        return failed("no MOVE, SWITCH or LEAD line in <decision>")
     if len(actions) > 1:
         return failed(f"{len(actions)} action lines in <decision>; exactly one is allowed")
 

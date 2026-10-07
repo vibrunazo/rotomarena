@@ -254,6 +254,25 @@ def format_battle_state(battle: Battle) -> str:
     return "\n".join(lines)
 
 
+def format_team_preview(battle: Battle) -> str:
+    """Team preview: both teams before the battle; the player picks its lead."""
+    lines = [
+        f"### Team preview (before turn 1) | Format: {battle.format}",
+        "Both teams are shown before the battle starts. No moves can be used yet: the only legal action is "
+        "choosing the Pokémon you lead with (LEAD: <species>). The rest of your team stays in its current order.",
+        "\n#### YOUR TEAM:",
+    ]
+    lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in battle.team.values())
+    lines.append("\n#### OPPONENT'S TEAM:")
+    for mon in getattr(battle, "teampreview_opponent_team", None) or []:
+        types = "/".join(t.name.title() for t in mon.types if t)
+        stats = ", ".join(f"{k.upper()}: {v}" for k, v in (mon.base_stats or {}).items())
+        lines.append(f"- **{mon.species}** ({types}) | Base Stats: [{stats}]")
+    lines.append("\n#### LEGAL ACTIONS THIS TURN:")
+    lines.extend(f"{i}. LEAD: {mon.species}" for i, mon in enumerate(battle.team.values(), 1))
+    return "\n".join(lines)
+
+
 SYSTEM_PROMPT_DIRECT_COT = """You are an expert competitive Pokémon player and Gen 9 OU tournament grandmaster.
 Choose the single best action for this turn.
 
@@ -261,7 +280,7 @@ RULES:
 1. Keep <thought> to 2-4 short sentences (80 words at most). Name the deciding factor: speed, a likely
    knockout, or a bad matchup to switch out of. Do not write out damage formulas or go through every option.
 2. Your <decision> block must contain exactly one action line, copied from LEGAL ACTIONS without its number:
-   MOVE: <move_id>   or   MOVE: <move_id> [TERA]   or   SWITCH: <species>
+   MOVE: <move_id>   or   MOVE: <move_id> [TERA]   or   SWITCH: <species>   (at team preview: LEAD: <species>)
 3. If your action is not in LEGAL ACTIONS, or your answer is cut off, the first legal move is played for you.
 
 Example answer:
