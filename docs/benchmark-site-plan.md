@@ -11,6 +11,8 @@ competitive Pokémon.
 - The name stays **RotomArena**.
 - Season 1 uses only cheap open-weights models, mostly run locally (see section 5).
 - Free sparring partners: **Nemotron** and **Gemma 4**.
+- Ratings: Bradley-Terry with the Heuristic bot pinned at 1500 and bots in placement, as first planned
+  (confirmed 6 Oct). The anchors' strength therefore matters: see open decision 5.
 - Phases 0 (dead code, result-integrity fixes, v0 archive) and 1 (ratings, ladder, site export) are done,
   6 Oct 2026.
 - Season 1 lineup drafted (section 5): 8 local models, plus the two sparring partners and two anchors.
@@ -469,5 +471,6 @@ instead of narrating live in the browser.
 3. Season 1 ruleset: thinking off with a visible `<thought>` (recommended), or thinking on.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
+   This matters because half of each placement is played against them.
 6. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
    the site exists for.
