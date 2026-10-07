@@ -457,6 +457,54 @@ def ladder_place(
     _print_ratings(app_cfg)
 
 
+def _wait_for_idle_cpu(threshold: int = 25, quiet_minutes: int = 5) -> None:
+    """Blocks until the CPU load has stayed under `threshold`% for `quiet_minutes` checks a minute apart."""
+    import time
+
+    quiet = 0
+    while quiet < quiet_minutes:
+        load = local_servers.cpu_load()
+        quiet = quiet + 1 if load is not None and load < threshold else 0
+        console.print(f"[dim]{time.strftime('%H:%M')} CPU {load}% (quiet {quiet}/{quiet_minutes} min)[/dim]")
+        if quiet < quiet_minutes:
+            time.sleep(60)
+
+
+@ladder_app.command("place-all")
+def ladder_place_all(
+    config_ids: List[str] = typer.Argument(..., help="Registry entries to place, in this order"),
+    wait_idle: bool = typer.Option(False, "--wait-idle", help="Start only after the CPU has been under 25% for 5 minutes"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Place several models one after another (an unattended run). Each placement resumes where it stopped,
+    and a failure is logged and skipped so the rest still run."""
+    import datetime
+    from rotomarena.ladder import place
+
+    app_cfg = AppConfig.load(config_file)
+    unknown = [c for c in config_ids if c not in app_cfg.agents]
+    if unknown:
+        console.print(f"[bold red]Not in the registry: {', '.join(unknown)}[/bold red]")
+        raise typer.Exit(1)
+    if wait_idle:
+        _wait_for_idle_cpu()
+    for config_id in config_ids:
+        console.rule(f"[bold cyan]{datetime.datetime.now():%Y-%m-%d %H:%M} placing {config_id}[/bold cyan]")
+        server_mgr = ShowdownServerManager(app_cfg.server)
+
+        async def _run():
+            async with server_mgr.ensure_running():
+                await place(config_id, app_cfg, log=console.print)
+
+        try:
+            with local_servers.session(app_cfg):
+                asyncio.run(_run())
+        except Exception as e:  # keep going: one broken model shouldn't stop a weekend run
+            console.print(f"[bold red]Placement of {config_id} failed: {e}[/bold red]")
+    console.rule(f"[bold green]{datetime.datetime.now():%Y-%m-%d %H:%M} all placements done[/bold green]")
+    _print_ratings(app_cfg)
+
+
 @ladder_app.command("fill")
 def ladder_fill(
     budget: int = typer.Option(8, "--budget", "-b", help="Maximum games to play"),
