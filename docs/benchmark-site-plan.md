@@ -344,6 +344,32 @@ The first leaderboard adds the two free API sparring partners, Nemotron 3 Ultra 
 
 ---
 
+### Debug run: Qwen3.8-27B vs Bonsai, Bo3 (7 Oct)
+
+**Result: Bonsai 2-1** (17-turn loss for Qwen, 22-turn win, 35-turn loss). All 186 decisions were the
+models' own choices: no fallbacks, cut-offs or illegal moves. A scratch season, so not rated.
+
+Getting there took four attempts; each found a bug, now fixed:
+
+- Interrupted runs left battles open on Showdown (timers are off) and new bots with the same names rejoined
+  them. Each run now starts a fresh Showdown server, and the runner follows its own battle.
+- Loading Bonsai next to Qwen crashed Qwen's server (out of VRAM); servers stopped from a killed run kept
+  generating; two models answering at once fought over the CPU (Qwen at 0.5 tok/s); Windows spilled a second
+  server's buffers into PCIe memory. Now: one request at a time, servers reset per run, and **swap mode** loads
+  only the model whose turn it is when two don't fit together (5-17 s per swap).
+- Answers ran 260-370 words against a 200-word limit and 22% hit the token budget. The prompt now asks for
+  2-4 sentences with an example: answers fell to a median of about 45 words.
+
+**What the models did:** Qwen switched constantly (27 of 40 decisions in game 3, 13 switch-backs within 3
+turns). Both models state type facts that are wrong ("Ogerpon-Wellspring is 4x weak to Dark", "Kingambit is
+faster than Ogerpon"; Qwen called Samurott-Hisui Dark-resistant one turn and 4x weak to Dark the next). Good
+site material; also an open design question below.
+
+**Speed:** Bonsai 44 tok/s, about 4 s per turn. Qwen 9 s per turn on a quiet machine, 72 s when another job had
+the CPU at 100% (part of it runs on the CPU). A game takes 18-40 minutes.
+
+---
+
 ## 6. Phase 2: Astro site
 
 **Stack:** current Astro, static output (no adapter needed), Content Layer collections
@@ -481,5 +507,7 @@ instead of narrating live in the browser.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
    This matters because half of each placement is played against them.
-6. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
+6. Should the prompt list each move's type effectiveness against the opponent? The models get type facts wrong;
+   giving them the multipliers tests decisions more and knowledge less.
+7. Add Random AI as a contestant? It is free, and a random bot outranking an LLM is the kind of finding
    the site exists for.
