@@ -386,6 +386,10 @@ The concise caps were for live video, which isn't the plan anymore; game speed d
   their budget on close matchups instead of opponents they crush. Cost efficiency is a metric, not a confound:
   typical paid models spent about 3 cents per game in earlier tests.
 
+- Bot fix (7 Oct): the switch-scoring fix made the heuristic bots switch on half their turns. A switch cost of
+  0.1, chosen by a sweep of 40 games per value against MaxDamage, raised their win rate from 43% to 66%.
+  (The earlier 0-4 losses to MaxDamage were mostly luck: 4 games say almost nothing.)
+
 **Smoke test, one decision per model under these rules:** all 10 finished without a cut-off and gave a legal
 move (8 chose the best move, Earthquake into Heatran; Bonsai and MiniCPM chose Close Combat). Hidden
 reasoning came back for every model, including the free OpenRouter ones. Ling, MiniCPM and gpt-oss used the
@@ -531,5 +535,5 @@ instead of narrating live in the browser.
 4. Publish the retracted v0 archive (recommended, it has the best story) or drop it.
 5. Anchors for season 1: tune the Heuristic/PokéChamp switching, or add MaxDamage as an anchor (section 4).
    This matters because half of each placement is played against them.
-6. Random AI: suggested as 2 unrated "control games" per new model (a model that loses one is flagged as
-   probably broken) and a reference row on the site, not part of placement. Waiting on a decision.
+6. (Decided 7 Oct) Random AI is a rated "control" bot: placement opens with a Bo3 against it for models
+   estimated at $2 or less per game; pricier models skip it unless `--with-control`.
