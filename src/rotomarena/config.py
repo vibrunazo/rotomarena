@@ -185,6 +185,11 @@ class LocalLLMConfig(BaseModel):
     )
     ctx: int = Field(default=8192, description="Context per slot for arena servers (a turn needs about 3k tokens)")
     slots: int = Field(default=1, description="Parallel slots per arena server (each player sends one request at a time)")
+    vram_budget_gb: float = Field(
+        default=12.5,
+        description="Two local models stay loaded together when their files add up to at most this; otherwise "
+        "they swap, loading whichever one's turn it is (a dense model squeezed into the leftover VRAM ran at 1-2 tok/s)",
+    )
 
 
 class TelemetryConfig(BaseModel):

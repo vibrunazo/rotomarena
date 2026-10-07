@@ -5,10 +5,12 @@ from __future__ import annotations
 import asyncio
 import re
 import time
+from urllib.parse import urlparse
 from typing import Any, Dict, List, Optional, Tuple
 import openai
 from openai import AsyncOpenAI
 
+from rotomarena import local_servers
 from rotomarena.config import ProviderConfig, provider_presets
 from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE
 from rotomarena.llm.schemas import ActionDecision, LLMUsageMetrics
@@ -79,6 +81,7 @@ class LLMClient:
         self.provider_name = provider_name
         self.default_model = provider_config.default_model
         self.temperature = provider_config.temperature
+        self._port = urlparse(provider_config.base_url).port
 
         headers = None
         if provider_config.api_style == "openrouter":
@@ -149,7 +152,8 @@ class LLMClient:
             try:
                 if self.config.api_style == "llama.cpp":
                     async with _local_lock():
-                        start_time = time.perf_counter()  # latency excludes the wait for the other model
+                        await local_servers.ensure_loaded(self._port)  # swap mode: load this model first
+                        start_time = time.perf_counter()  # latency excludes the wait and the load
                         response = await self._client.chat.completions.create(**create_kwargs)
                 else:
                     start_time = time.perf_counter()
@@ -163,6 +167,7 @@ class LLMClient:
                 continue
             except (openai.APIConnectionError, openai.APITimeoutError) as e:
                 last_err = e
+                local_servers.forget(self._port)
                 if attempt < max_retries - 1:
                     await asyncio.sleep(2 * 2**attempt)
                 continue

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 from poke_env.battle import Battle, Pokemon
 
 
@@ -171,63 +171,70 @@ def _format_event(msg: List[str], role: Optional[str]) -> Optional[str]:
     return None
 
 
-def format_recent_events(battle: Battle, max_lines: int = 16) -> List[str]:
-    """What happened since the start of the previous turn, read from the battle's protocol log."""
+def format_recent_turns(battle: Battle, turns: int = 3, max_lines: int = 40) -> List[str]:
+    """The last few turns of the battle, grouped by turn, read from the battle's protocol log.
+    Events after `|turn|k` are the resolution of turn k; turn 0 is the leads coming in."""
     data = getattr(battle, "_replay_data", None) or []
-    turn_marks = [i for i, m in enumerate(data) if len(m) > 2 and m[1] == "turn"]
-    start = turn_marks[-2] + 1 if len(turn_marks) >= 2 else 0
     role = getattr(battle, "player_role", None)
-    lines = [line for line in (_format_event(m, role) for m in data[start:]) if line]
+    groups: Dict[int, List[str]] = {}
+    turn = 0
+    for msg in data:
+        if len(msg) > 2 and msg[1] == "turn":
+            turn = int(msg[2])
+            continue
+        line = _format_event(msg, role)
+        if line:
+            groups.setdefault(turn, []).append(line)
+    lines: List[str] = []
+    for t in sorted(groups):
+        if t >= battle.turn - turns:
+            lines.append(f"Turn {t}:" if t else "Leads:")
+            lines.extend(f"- {e}" for e in groups[t])
     return lines[-max_lines:]
 
 
 def format_battle_state(battle: Battle) -> str:
-    """Serializes the current poke-env Battle state into a structured context string."""
-    lines = [
-        f"### Turn {battle.turn} | Format: {battle.format} | Weather: {_condition_names(battle.weather)}"
-        f" | Field: {_condition_names(battle.fields)}",
-    ]
-
-    events = format_recent_events(battle)
-    if events:
-        lines.append("\n#### LAST TURN:")
-        lines.extend(f"- {e}" for e in events)
-
-    lines.append("\n#### YOUR TEAM:")
-    lines.append(f"Active Pokémon:\n{format_pokemon_summary(battle.active_pokemon, is_active=True, is_opponent=False)}")
-
+    """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
+    turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn."""
+    lines = ["#### YOUR BENCH:"]
     bench = [mon for mon in battle.team.values() if mon != battle.active_pokemon]
-    lines.append("\nBench Pokémon:")
     if bench:
-        for mon in bench:
-            lines.append(format_pokemon_summary(mon, is_active=False, is_opponent=False))
+        lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in bench)
     else:
         lines.append("- (No bench Pokémon remaining)")
 
-    side_conds = [k.name.title() for k in battle.side_conditions.keys()]
-    lines.append(f"\nYour Side Hazards / Conditions: {', '.join(side_conds) if side_conds else 'None'}")
-    lines.append(f"Terastallization Available: {'Yes' if battle.can_tera else 'No'}")
-
-    lines.append("\n#### OPPONENT TEAM:")
-    lines.append(f"Active Pokémon:\n{format_pokemon_summary(battle.opponent_active_pokemon, is_active=True, is_opponent=True)}")
-
+    lines.append("\n#### OPPONENT'S REVEALED BENCH:")
     opp_bench = [mon for mon in battle.opponent_team.values() if mon != battle.opponent_active_pokemon]
-    lines.append("\nRevealed Opponent Bench:")
     if opp_bench:
-        for mon in opp_bench:
-            lines.append(format_pokemon_summary(mon, is_active=False, is_opponent=True))
+        lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=True) for mon in opp_bench)
     else:
         lines.append("- (No other Pokémon revealed yet)")
-
     seen = {mon.species for mon in battle.opponent_team.values()}
     preview = [mon.species for mon in getattr(battle, "teampreview_opponent_team", None) or []]
     unseen = [s for s in preview if s not in seen]
     if unseen:
         lines.append(f"Not yet seen in battle (from team preview): {', '.join(unseen)}")
 
+    lines.append(
+        f"\n### Turn {battle.turn} | Format: {battle.format} | Weather: {_condition_names(battle.weather)}"
+        f" | Field: {_condition_names(battle.fields)}"
+    )
+    recent = format_recent_turns(battle)
+    if recent:
+        lines.append("\n#### RECENT TURNS:")
+        lines.extend(recent)
+
+    lines.append("\n#### YOUR ACTIVE POKÉMON:")
+    lines.append(format_pokemon_summary(battle.active_pokemon, is_active=True, is_opponent=False))
+    side_conds = [k.name.title() for k in battle.side_conditions.keys()]
+    lines.append(f"Your side hazards / conditions: {', '.join(side_conds) if side_conds else 'None'}")
+    lines.append(f"Terastallization available: {'Yes' if battle.can_tera else 'No'}")
+
+    lines.append("\n#### OPPONENT'S ACTIVE POKÉMON:")
+    lines.append(format_pokemon_summary(battle.opponent_active_pokemon, is_active=True, is_opponent=True))
     opp_side_conds = [k.name.title() for k in battle.opponent_side_conditions.keys()]
-    lines.append(f"\nOpponent Side Hazards / Conditions: {', '.join(opp_side_conds) if opp_side_conds else 'None'}")
-    lines.append(f"Opponent Terastallized: {'Yes' if getattr(battle, 'opponent_used_tera', False) else 'No'}")
+    lines.append(f"Opponent side hazards / conditions: {', '.join(opp_side_conds) if opp_side_conds else 'None'}")
+    lines.append(f"Opponent terastallized: {'Yes' if getattr(battle, 'opponent_used_tera', False) else 'No'}")
 
     lines.append("\n#### LEGAL ACTIONS THIS TURN:")
     legal_actions = []
@@ -241,7 +248,6 @@ def format_battle_state(battle: Battle) -> str:
         for s in battle.available_switches:
             s_hp = round(s.current_hp_fraction * 100, 1)
             legal_actions.append(f"SWITCH: {s.species} ({s_hp}% HP)")
-
     for i, act in enumerate(legal_actions, 1):
         lines.append(f"{i}. {act}")
 
@@ -249,20 +255,21 @@ def format_battle_state(battle: Battle) -> str:
 
 
 SYSTEM_PROMPT_DIRECT_COT = """You are an expert competitive Pokémon player and Gen 9 OU tournament grandmaster.
-Analyze the battle state and choose the single best action for this turn.
+Choose the single best action for this turn.
 
 RULES:
-1. Keep your <thought> under 200 words. Focus on the decisive factor (speed tier, knockout threshold, or switch need).
+1. Keep <thought> to 2-4 short sentences (80 words at most). Name the deciding factor: speed, a likely
+   knockout, or a bad matchup to switch out of. Do not write out damage formulas or go through every option.
 2. Your <decision> block must contain exactly one action line, copied from LEGAL ACTIONS without its number:
    MOVE: <move_id>   or   MOVE: <move_id> [TERA]   or   SWITCH: <species>
 3. If your action is not in LEGAL ACTIONS, or your answer is cut off, the first legal move is played for you.
 
-Output format:
+Example answer:
 <thought>
-Your concise reasoning.
+Heatran is 4x weak to Ground and slower than Great Tusk, so Headlong Rush should knock it out before it moves.
 </thought>
 <decision>
-MOVE: move_id
+MOVE: headlongrush
 </decision>
 """
 

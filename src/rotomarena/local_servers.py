@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import re
 import subprocess
 import sys
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, Dict, Iterator, List
+from typing import Callable, Dict, Iterator, List, Optional
 
 from rotomarena.config import AgentConfig, AppConfig
 
@@ -36,17 +37,68 @@ def catalog_sizes(app_cfg: AppConfig) -> Dict[str, float]:
     return {k: v.get("size_gb", 0.0) for k, v in models.items() if isinstance(v, dict)}
 
 
+def cpu_load() -> Optional[int]:
+    """Current CPU load in percent (Windows), or None if it can't be read."""
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-Command", "(Get-CimInstance Win32_Processor | Measure-Object LoadPercentage -Average).Average"],
+            capture_output=True, text=True, timeout=20, check=False,
+        ).stdout.strip()
+        return int(float(out))
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        return None
+
+
 @contextmanager
 def session(app_cfg: AppConfig) -> Iterator[None]:
     """Stops every local server before and after a run. A server left from an interrupted run keeps generating
     the answer its dead client asked for (minutes at 1 tok/s), and the new run's requests queue behind it."""
     if app_cfg.local_llm.manage:
         _gen(app_cfg, "stop")
+        load = cpu_load()
+        if load is not None and load > 30:
+            print(f"Warning: the CPU is already {load}% busy. Local models that don't fit in VRAM run partly on the "
+                  "CPU and will be much slower (Qwen fell from 7 to 0.4 tok/s next to another heavy job).")
     try:
         yield
     finally:
         if app_cfg.local_llm.manage:
             _gen(app_cfg, "stop")
+
+
+# Swap mode: {port: model} of a pair too big to share the GPU, and which of them is loaded right now.
+_swap: Dict[int, str] = {}
+_swap_cfg: Optional[AppConfig] = None
+_loaded: Optional[int] = None
+
+
+def swapping() -> bool:
+    return bool(_swap)
+
+
+async def ensure_loaded(port: int) -> None:
+    """In swap mode, makes the server on `port` the one that is loaded. Call it while holding the local
+    inference lock; the subprocess runs in a thread so the event loop (and the Showdown connection) keeps going."""
+    global _loaded
+    if port not in _swap or _loaded == port:
+        return
+    if _loaded is not None:
+        await asyncio.to_thread(_gen, _swap_cfg, "stop", "--port", str(_loaded))
+        _loaded = None
+    result = await asyncio.to_thread(
+        _gen, _swap_cfg, "serve", "--model", _swap[port], "--port", str(port),
+        "--ctx", str(_swap_cfg.local_llm.ctx), "--slots", str(_swap_cfg.local_llm.slots),
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"gen llm serve --model {_swap[port]} --port {port} failed:\n{result.stdout}{result.stderr}")
+    _loaded = port
+
+
+def forget(port: int) -> None:
+    """After a failed request: reload the server next time instead of assuming it is up."""
+    global _loaded
+    if _loaded == port:
+        _loaded = None
 
 
 def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:
@@ -56,15 +108,25 @@ def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:
 def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str], None] = print) -> None:
     """Leaves exactly the servers these players need running: stops the rest (to free memory), then starts
     any that are missing or crashed, smallest model first, so it gets the VRAM and the bigger one fits around it."""
+    global _swap, _swap_cfg, _loaded
     if not app_cfg.local_llm.manage:
         return
     needed = {a.port: a.model for a in local_agents(players)}
+    sizes = catalog_sizes(app_cfg)
     current = running(app_cfg)
+    if len(needed) == 2 and sum(sizes.get(m, 99.0) for m in needed.values()) > app_cfg.local_llm.vram_budget_gb:
+        for port, model in current.items():
+            log(f"Stopping local server {model} on port {port}")
+            _gen(app_cfg, "stop", "--port", str(port))
+        if _swap != needed:
+            log(f"{' and '.join(needed.values())} don't fit on the GPU together: loading whichever one's turn it is")
+        _swap, _swap_cfg, _loaded = dict(needed), app_cfg, None
+        return
+    _swap, _swap_cfg, _loaded = {}, None, None
     for port, model in current.items():
         if needed.get(port) != model:
             log(f"Stopping local server {model} on port {port}")
             _gen(app_cfg, "stop", "--port", str(port))
-    sizes = catalog_sizes(app_cfg)
     for port, model in sorted(needed.items(), key=lambda item: sizes.get(item[1], 0.0)):
         if current.get(port) == model:
             continue

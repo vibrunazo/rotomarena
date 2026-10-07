@@ -144,22 +144,48 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
     assert json.loads((data / "meta.json").read_text(encoding="utf-8"))["retracted_matches"] == 1
 
 
-def test_local_servers_keep_only_what_the_series_needs(monkeypatch):
+def _fake_gen(monkeypatch, running):
     from rotomarena import local_servers
 
     calls = []
-    monkeypatch.setattr(local_servers, "running", lambda cfg: {8083: "granite-4.2-30b"})
-    monkeypatch.setattr(local_servers, "catalog_sizes", lambda cfg: {"bonsai": 7.2, "qwen3.8-27b": 16.5})
+    monkeypatch.setattr(local_servers, "running", lambda cfg: dict(running))
+    monkeypatch.setattr(local_servers, "catalog_sizes",
+                        lambda cfg: {"bonsai": 7.2, "minicpm5-2b": 2.7, "qwen3.8-27b": 16.5})
     monkeypatch.setattr(local_servers, "_gen", lambda cfg, *args: calls.append(args) or type("R", (), {"returncode": 0})())
-    players = [  # the bigger model is listed first, but the smaller one must start first
-        AgentConfig(name="qwen", type="direct_llm", provider="local", model="qwen3.8-27b", port=8081),
-        AgentConfig(name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", port=8080),
-    ]
-    local_servers.prepare(players, AppConfig(), log=lambda msg: None)
+    return local_servers, calls
+
+
+BONSAI = AgentConfig(name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", port=8080)
+MINICPM = AgentConfig(name="minicpm", type="direct_llm", provider="local", model="minicpm5-2b", port=8086)
+QWEN = AgentConfig(name="qwen", type="direct_llm", provider="local", model="qwen3.8-27b", port=8081)
+
+
+def test_a_pair_that_fits_stays_loaded_smallest_first(monkeypatch):
+    local_servers, calls = _fake_gen(monkeypatch, {8083: "granite-4.2-30b"})
+    local_servers.prepare([BONSAI, MINICPM], AppConfig(), log=lambda msg: None)
     serves = [c for c in calls if c[0] == "serve"]
     assert calls[0] == ("stop", "--port", "8083")
-    assert [c[2] for c in serves] == ["bonsai", "qwen3.8-27b"]
+    assert [c[2] for c in serves] == ["minicpm5-2b", "bonsai"]
     assert serves[0][-4:] == ("--ctx", "8192", "--slots", "1")
+    assert not local_servers.swapping()
+
+
+def test_a_pair_too_big_for_the_gpu_swaps_per_request(monkeypatch):
+    import asyncio
+
+    local_servers, calls = _fake_gen(monkeypatch, {8080: "bonsai"})
+    local_servers.prepare([QWEN, BONSAI], AppConfig(), log=lambda msg: None)
+    assert local_servers.swapping()
+    assert [c for c in calls if c[0] == "serve"] == []  # nothing loaded until someone asks
+
+    calls.clear()
+    asyncio.run(local_servers.ensure_loaded(8081))
+    asyncio.run(local_servers.ensure_loaded(8081))  # already loaded: no-op
+    asyncio.run(local_servers.ensure_loaded(8080))
+    assert [c[:3] for c in calls] == [("serve", "--model", "qwen3.8-27b"), ("stop", "--port", "8081"),
+                                      ("serve", "--model", "bonsai")]
+    local_servers.prepare([BONSAI], AppConfig(), log=lambda msg: None)
+    assert not local_servers.swapping()
 
 
 def test_local_model_port_sets_the_endpoint():

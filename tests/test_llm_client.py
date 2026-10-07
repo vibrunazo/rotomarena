@@ -6,41 +6,47 @@ from unittest.mock import AsyncMock, patch
 from rotomarena.config import provider_presets
 from rotomarena.llm.client import LLMClient, parse_decision
 from rotomarena.llm.schemas import LLMUsageMetrics
-from rotomarena.llm.prompts import format_battle_state, format_recent_events
+from rotomarena.llm.prompts import format_battle_state, format_recent_turns
 from .mocks import MockBattle
 
 
 def test_format_battle_state():
     battle = MockBattle()
     state_str = format_battle_state(battle)
-    assert "YOUR TEAM:" in state_str
+    assert "YOUR BENCH:" in state_str and "YOUR ACTIVE POKÉMON:" in state_str
     assert "greattusk" in state_str.lower()
-    assert "OPPONENT TEAM:" in state_str
+    assert "OPPONENT'S ACTIVE POKÉMON:" in state_str
+    # the benches, which rarely change, come before the turn-specific sections
+    assert state_str.index("YOUR BENCH:") < state_str.index("### Turn") < state_str.index("LEGAL ACTIONS")
     assert "heatran" in state_str.lower()
     assert "LEGAL ACTIONS THIS TURN:" in state_str
     assert "earthquake" in state_str.lower()
     assert "Weather: None" in state_str
 
 
-def test_recent_events_cover_the_previous_turn_from_our_side():
+def test_recent_turns_are_grouped_and_seen_from_our_side():
     battle = MockBattle()
     battle.player_role = "p1"
+    battle.turn = 5
     battle._replay_data = [
+        ["", "switch", "p1a: Great Tusk", "Great Tusk, L100", "100/100"],
         ["", "turn", "1"],
         ["", "move", "p1a: Great Tusk", "Headlong Rush", "p2a: Heatran"],
         ["", "turn", "2"],
+        ["", "switch", "p2a: Corviknight", "Corviknight, L100", "100/100"],
+        ["", "turn", "3"],
+        ["", "switch", "p2a: Heatran", "Heatran, L100", "70/100"],
+        ["", "turn", "4"],
         ["", "move", "p2a: Heatran", "Magma Storm", "p1a: Great Tusk"],
         ["", "-supereffective", "p1a: Great Tusk"],
-        ["", "-damage", "p1a: Great Tusk", "120/357"],
         ["", "-sidestart", "p1: Bot", "move: Stealth Rock"],
-        ["", "turn", "3"],
+        ["", "turn", "5"],
     ]
-    events = format_recent_events(battle)
-    assert events == [
-        "Opposing Heatran used Magma Storm",
-        "It was super effective",
-        "Your Great Tusk is at 120/357 HP",
-        "Stealth Rock set on your side",
+    assert format_recent_turns(battle) == [
+        "Turn 2:", "- Opposing Corviknight came in",
+        "Turn 3:", "- Opposing Heatran came in",
+        "Turn 4:", "- Opposing Heatran used Magma Storm", "- It was super effective",
+        "- Stealth Rock set on your side",
     ]
 
 
