@@ -6,8 +6,9 @@ import json
 import re
 import subprocess
 import sys
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, Dict, List
+from typing import Callable, Dict, Iterator, List
 
 from rotomarena.config import AgentConfig, AppConfig
 
@@ -33,6 +34,19 @@ def catalog_sizes(app_cfg: AppConfig) -> Dict[str, float]:
     except (OSError, ValueError):
         return {}
     return {k: v.get("size_gb", 0.0) for k, v in models.items() if isinstance(v, dict)}
+
+
+@contextmanager
+def session(app_cfg: AppConfig) -> Iterator[None]:
+    """Stops every local server before and after a run. A server left from an interrupted run keeps generating
+    the answer its dead client asked for (minutes at 1 tok/s), and the new run's requests queue behind it."""
+    if app_cfg.local_llm.manage:
+        _gen(app_cfg, "stop")
+    try:
+        yield
+    finally:
+        if app_cfg.local_llm.manage:
+            _gen(app_cfg, "stop")
 
 
 def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:

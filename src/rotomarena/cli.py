@@ -384,7 +384,8 @@ def run_battle(
                 if latest.report_md_path:
                     console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
 
-    asyncio.run(_execute())
+    with local_servers.session(app_cfg):
+        asyncio.run(_execute())
 
 
 # ---------------------------------------------------------------------
@@ -447,7 +448,8 @@ def ladder_place(
             await place(config_id, app_cfg, log=console.print)
 
     try:
-        asyncio.run(_run())
+        with local_servers.session(app_cfg):
+            asyncio.run(_run())
     except ValueError as e:
         console.print(f"[bold red]{e}[/bold red]")
         raise typer.Exit(1)
@@ -470,7 +472,8 @@ def ladder_fill(
         async with server_mgr.ensure_running():
             await fill(app_cfg, budget, free_only=not include_paid, log=console.print)
 
-    asyncio.run(_run())
+    with local_servers.session(app_cfg):
+        asyncio.run(_run())
     _print_ratings(app_cfg)
 
 

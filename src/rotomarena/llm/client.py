@@ -26,6 +26,17 @@ _ACTION_LINE = re.compile(
 )
 _TERA_TAG = re.compile(r"\[\s*TERA\s*\]", re.IGNORECASE)
 
+# Local llama.cpp servers share one GPU, CPU and memory bus. Two models generating at once (both players
+# answer the same turn) ran Qwen at 0.5 tok/s instead of 11.5, so local requests take turns.
+_local_inference: Optional[asyncio.Lock] = None
+
+
+def _local_lock() -> asyncio.Lock:
+    global _local_inference
+    if _local_inference is None:
+        _local_inference = asyncio.Lock()
+    return _local_inference
+
 
 def parse_decision(raw_text: str) -> ActionDecision:
     """Parses '<thought>…</thought><decision>MOVE: id [TERA]</decision>' strictly: exactly one action line."""
@@ -135,9 +146,14 @@ class LLMClient:
 
         last_err: Optional[Exception] = None
         for attempt in range(max_retries):
-            start_time = time.perf_counter()
             try:
-                response = await self._client.chat.completions.create(**create_kwargs)
+                if self.config.api_style == "llama.cpp":
+                    async with _local_lock():
+                        start_time = time.perf_counter()  # latency excludes the wait for the other model
+                        response = await self._client.chat.completions.create(**create_kwargs)
+                else:
+                    start_time = time.perf_counter()
+                    response = await self._client.chat.completions.create(**create_kwargs)
             except openai.APIStatusError as e:
                 last_err = e
                 if e.status_code < 500 and e.status_code != 429:
