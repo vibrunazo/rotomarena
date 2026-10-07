@@ -6,7 +6,7 @@ import datetime
 import re
 import time
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Callable, List, Optional, Tuple
 from pydantic import BaseModel, Field
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
@@ -91,11 +91,18 @@ class MatchRunner:
         challenger.set_recorder(recorder)
         opponent.set_recorder(recorder)
 
+        known_battles = set(challenger.battles)
         start_time = time.perf_counter()
         await challenger.battle_against(opponent, n_battles=1)
         duration = time.perf_counter() - start_time
 
-        battle = list(challenger.battles.values())[-1]
+        new_battles = [b for tag, b in challenger.battles.items() if tag not in known_battles]
+        if len(new_battles) != 1 or not new_battles[0].finished:
+            raise RuntimeError(
+                f"Expected one finished battle from this challenge, got {len(new_battles)} new "
+                f"({sum(b.finished for b in new_battles)} finished). Was another battle with these bots still open?"
+            )
+        battle = new_battles[0]
         challenger_role = battle.player_role or "p1"
         opponent_role = "p2" if challenger_role == "p1" else "p1"
         players = [
@@ -179,6 +186,7 @@ class MatchRunner:
         team_2: Team,
         n_games: int = 4,
         first_game: int = 0,
+        before_game: Optional[Callable[[], None]] = None,
     ) -> SeriesResult:
         """Runs a series that alternates sides every game and swaps teams every two games.
         `first_game` resumes the schedule after games already played."""
@@ -187,6 +195,8 @@ class MatchRunner:
 
         try:
             for g, (swap_teams, b_challenges) in enumerate(schedule, first_game + 1):
+                if before_game:
+                    before_game()  # e.g. restart a local model server that crashed in the last game
                 team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
                 player_a.update_team(team_a.to_showdown_packed())
                 player_b.update_team(team_b.to_showdown_packed())

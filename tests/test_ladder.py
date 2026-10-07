@@ -148,14 +148,18 @@ def test_local_servers_keep_only_what_the_series_needs(monkeypatch):
     from rotomarena import local_servers
 
     calls = []
-    monkeypatch.setattr(local_servers, "running", lambda cfg: {8080: "bonsai", 8083: "granite-4.2-30b"})
+    monkeypatch.setattr(local_servers, "running", lambda cfg: {8083: "granite-4.2-30b"})
+    monkeypatch.setattr(local_servers, "catalog_sizes", lambda cfg: {"bonsai": 7.2, "qwen3.8-27b": 16.5})
     monkeypatch.setattr(local_servers, "_gen", lambda cfg, *args: calls.append(args) or type("R", (), {"returncode": 0})())
-    players = [
-        AgentConfig(name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", port=8080),
+    players = [  # the bigger model is listed first, but the smaller one must start first
         AgentConfig(name="qwen", type="direct_llm", provider="local", model="qwen3.8-27b", port=8081),
+        AgentConfig(name="bonsai_2_27b", type="direct_llm", provider="local", model="bonsai", port=8080),
     ]
     local_servers.prepare(players, AppConfig(), log=lambda msg: None)
-    assert calls == [("stop", "--port", "8083"), ("serve", "--model", "qwen3.8-27b", "--port", "8081")]
+    serves = [c for c in calls if c[0] == "serve"]
+    assert calls[0] == ("stop", "--port", "8083")
+    assert [c[2] for c in serves] == ["bonsai", "qwen3.8-27b"]
+    assert serves[0][-4:] == ("--ctx", "8192", "--slots", "1")
 
 
 def test_local_model_port_sets_the_endpoint():

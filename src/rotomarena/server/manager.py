@@ -326,21 +326,22 @@ class ShowdownServerManager:
 
     @asynccontextmanager
     async def ensure_running(self) -> AsyncIterator[ShowdownServerManager]:
-        """Async context manager to ensure server is running during test execution."""
-        started_by_us = False
-        if not await self.is_server_healthy(timeout=1.0):
-            ok, msg = self.start()
-            if not ok:
-                raise RuntimeError(f"Could not start Showdown server: {msg}")
-            ready = await self.wait_until_ready(max_wait=15.0)
-            if not ready:
-                raise RuntimeError(
-                    f"Showdown server failed health check at {self.config.websocket_url}"
-                )
-            started_by_us = True
-
+        """Runs a fresh Showdown server for the duration of a run. A server that is already running may hold
+        battles abandoned by an earlier, interrupted run (timers are off, so they never end), and bots logging
+        in with the same names would rejoin those instead of playing their own game."""
+        if self.is_running():
+            self.stop()
+            await asyncio.sleep(1.0)
+        if await self.is_server_healthy(timeout=1.0):
+            raise RuntimeError(
+                f"A Showdown server that RotomArena didn't start is answering on port {self.config.port}; stop it first."
+            )
+        ok, msg = self.start()
+        if not ok:
+            raise RuntimeError(f"Could not start Showdown server: {msg}")
+        if not await self.wait_until_ready(max_wait=30.0):
+            raise RuntimeError(f"Showdown server failed health check at {self.config.websocket_url}")
         try:
             yield self
         finally:
-            if started_by_us:
-                self.stop()
+            self.stop()

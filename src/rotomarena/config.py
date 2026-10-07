@@ -181,8 +181,10 @@ class LocalLLMConfig(BaseModel):
 
     gen: str = Field(default="D:/docs/assets/generator/gen.py", description="Path to the Smooth Generator's gen.py")
     manage: bool = Field(
-        default=True, description="Before each series, start the local servers it needs and stop the others"
+        default=True, description="Before each game, start the local servers it needs and stop the others"
     )
+    ctx: int = Field(default=8192, description="Context per slot for arena servers (a turn needs about 3k tokens)")
+    slots: int = Field(default=1, description="Parallel slots per arena server (each player sends one request at a time)")
 
 
 class TelemetryConfig(BaseModel):
