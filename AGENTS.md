@@ -26,9 +26,12 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 
 ## ⚙️ Key System Specifications & Defaults
 1. **Ruleset (season `s1`, `ruleset:` in the tracked `config.yaml`, which also holds the `ladder:` settings and the `agents:` model registry):**
-   - LLM answers get a **1,024-token output budget per turn**. A cut-off or unparseable answer plays the default move.
-   - Hidden reasoning is **off** for every provider; models reason in the visible `<thought>` block (under 200 words).
-   - The only clock is a **900s per-turn hang guard**; there is no chess-clock bank (local models must not lose turns to slow hardware).
+   - `profile: ladder` (default): hidden thinking at OpenRouter **medium** effort, a **4,096-token** cap per turn on
+     everything the model writes (local servers stop the thinking at 2,048 and let the model answer), and a
+     **2-hour** hang guard. `profile: concise`: thinking off, 1,024 tokens, 15 minutes (fast games, videos).
+   - Models keep a short visible `<thought>` (2-4 sentences); the hidden reasoning is recorded too when the provider
+     returns it, and OpenRouter's actual cost is logged per turn (`cost_usd`).
+   - A cut-off or unparseable answer plays the default move.
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
 
 2. **Providers:**

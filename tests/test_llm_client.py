@@ -4,7 +4,7 @@ import pytest
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 from rotomarena.config import provider_presets
-from rotomarena.llm.client import LLMClient, parse_decision
+from rotomarena.llm.client import Completion, LLMClient, parse_decision
 from rotomarena.llm.schemas import LLMUsageMetrics
 from rotomarena.llm.prompts import format_battle_state, format_recent_turns
 from .mocks import MockBattle
@@ -102,7 +102,7 @@ async def test_cut_off_answer_reports_the_token_budget():
     client = LLMClient.from_provider_name("openrouter")
     metrics = LLMUsageMetrics(completion_tokens=1024, finish_reason="length")
     with patch.object(client, "generate_completion", new_callable=AsyncMock) as mock_comp:
-        mock_comp.return_value = ("<thought>Let me think about every possible line of play", metrics)
+        mock_comp.return_value = Completion("<thought>Let me think about every possible line of play", "", metrics)
         decision = await client.generate_cot_decision("dummy state", max_tokens=1024)
     assert "cut off at the 1024-token budget" in decision.parse_error
     assert decision.metrics.finish_reason == "length"
@@ -114,14 +114,18 @@ async def test_response_without_choices_is_retried(monkeypatch):
     monkeypatch.setattr("rotomarena.llm.client.asyncio.sleep", AsyncMock())
     error_body = SimpleNamespace(choices=None, error={"message": "Provider returned error", "code": 502})
     good = SimpleNamespace(
-        choices=[SimpleNamespace(finish_reason="stop", message=SimpleNamespace(content="<decision>MOVE: surf</decision>"))],
-        usage=None,
+        choices=[SimpleNamespace(finish_reason="stop", message=SimpleNamespace(
+            content="<decision>MOVE: surf</decision>", reasoning="Surf hits Heatran super effectively."))],
+        usage=SimpleNamespace(prompt_tokens=1800, completion_tokens=900, total_tokens=2700,
+                              completion_tokens_details=SimpleNamespace(reasoning_tokens=850), cost=0.0042),
     )
     create = AsyncMock(side_effect=[error_body, good])
     monkeypatch.setattr(client._client.chat.completions, "create", create)
 
-    text, metrics = await client.generate_completion([{"role": "user", "content": "hi"}])
-    assert text == "<decision>MOVE: surf</decision>"
+    completion = await client.generate_completion([{"role": "user", "content": "hi"}])
+    assert completion.text == "<decision>MOVE: surf</decision>"
+    assert completion.reasoning == "Surf hits Heatran super effectively."  # OpenRouter's hidden reasoning field
+    assert completion.metrics.cost_usd == 0.0042 and completion.metrics.reasoning_tokens == 850
     assert create.await_count == 2
 
 
@@ -131,8 +135,8 @@ def test_reasoning_settings_per_provider_style():
     local = LLMClient(presets["local"], "local")
     gemini = LLMClient(presets["gemini"], "gemini")
 
-    assert openrouter._reasoning_kwargs("off") == {"extra_body": {"reasoning": {"enabled": False}}}
-    assert openrouter._reasoning_kwargs("high") == {"extra_body": {"reasoning": {"effort": "high"}}}
+    assert openrouter._reasoning_kwargs("off") == {"extra_body": {"reasoning": {"enabled": False}, "usage": {"include": True}}}
+    assert openrouter._reasoning_kwargs("medium") == {"extra_body": {"reasoning": {"effort": "medium"}, "usage": {"include": True}}}
     assert local._reasoning_kwargs("off") == {
         "extra_body": {"chat_template_kwargs": {"enable_thinking": False, "reasoning_effort": "low"}}
     }

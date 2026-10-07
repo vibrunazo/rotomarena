@@ -166,7 +166,9 @@ def test_a_pair_that_fits_stays_loaded_smallest_first(monkeypatch):
     serves = [c for c in calls if c[0] == "serve"]
     assert calls[0] == ("stop", "--port", "8083")
     assert [c[2] for c in serves] == ["minicpm5-2b", "bonsai"]
-    assert serves[0][-4:] == ("--ctx", "8192", "--slots", "1")
+    first = list(serves[0])
+    assert first[first.index("--ctx") + 1] == "8192" and first[first.index("--slots") + 1] == "1"
+    assert first[first.index("--reasoning-budget") + 1] == "2048"  # half the ladder's 4096-token cap
     assert not local_servers.swapping()
 
 

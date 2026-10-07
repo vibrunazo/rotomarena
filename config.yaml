@@ -14,9 +14,11 @@ server:
 # changing any of them starts a new season.
 ruleset:
   version: "s1"
-  max_output_tokens: 1024   # per turn; a cut-off answer plays the default move
-  turn_timeout: 900         # seconds; only catches a hung server
-  reasoning: "off"          # hidden reasoning: off | low | medium | high
+  # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
+  #         local servers stop thinking at half), 2-hour hang guard
+  # concise: no hidden thinking, 1,024 tokens, 15-minute guard (fast games for videos and quick tests)
+  # Any of reasoning / max_output_tokens / turn_timeout set here overrides the profile.
+  profile: "ladder"
   teams: ["balance", "hyper_offense"]   # every ladder set plays both, from both sides
 
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.

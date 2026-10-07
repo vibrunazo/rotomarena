@@ -43,6 +43,7 @@ class TurnBreadcrumb(BaseModel):
     legal_actions: List[str] = Field(default_factory=list)
     chosen_action: str = ""
     reasoning: str = ""
+    hidden_reasoning: str = ""
     search_telemetry: Optional[Dict[str, Any]] = None
     llm_metrics: Optional[Dict[str, Any]] = None
     timestamp: str = ""

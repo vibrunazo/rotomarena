@@ -85,10 +85,7 @@ async def ensure_loaded(port: int) -> None:
     if _loaded is not None:
         await asyncio.to_thread(_gen, _swap_cfg, "stop", "--port", str(_loaded))
         _loaded = None
-    result = await asyncio.to_thread(
-        _gen, _swap_cfg, "serve", "--model", _swap[port], "--port", str(port),
-        "--ctx", str(_swap_cfg.local_llm.ctx), "--slots", str(_swap_cfg.local_llm.slots),
-    )
+    result = await asyncio.to_thread(_gen, _swap_cfg, *_serve_args(_swap_cfg, _swap[port], port))
     if result.returncode != 0:
         raise RuntimeError(f"gen llm serve --model {_swap[port]} --port {port} failed:\n{result.stdout}{result.stderr}")
     _loaded = port
@@ -99,6 +96,17 @@ def forget(port: int) -> None:
     global _loaded
     if _loaded == port:
         _loaded = None
+
+
+def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
+    """`gen llm serve` arguments for an arena server under the season's ruleset."""
+    args = ["serve", "--model", model, "--port", str(port),
+            "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.local_llm.slots)]
+    if app_cfg.ruleset.reasoning == "off":
+        return args + ["--reasoning", "off"]
+    # Thinking on (each request asks for it); at half the output cap llama.cpp tells the model to stop
+    # thinking, which leaves the other half for the answer instead of cutting it off.
+    return args + ["--reasoning", "auto", "--reasoning-budget", str(app_cfg.ruleset.max_output_tokens // 2)]
 
 
 def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:
@@ -132,7 +140,6 @@ def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str],
             continue
         _gen(app_cfg, "stop", "--port", str(port))  # clears a crashed server's leftovers
         log(f"Starting local server {model} on port {port}")
-        result = _gen(app_cfg, "serve", "--model", model, "--port", str(port),
-                      "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.local_llm.slots))
+        result = _gen(app_cfg, *_serve_args(app_cfg, model, port))
         if result.returncode != 0:
             raise RuntimeError(f"gen llm serve --model {model} --port {port} failed:\n{result.stdout}{result.stderr}")

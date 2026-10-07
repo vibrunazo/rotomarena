@@ -54,7 +54,7 @@ def test_llm_agent_identity_and_ruleset():
     assert agent.identity.model == "bonsai"
     assert agent.identity.quantization == "PQ2_0"
     assert agent.max_output_tokens == app_cfg.ruleset.max_output_tokens
-    assert agent.reasoning == "off"
+    assert agent.reasoning == "medium"  # ladder profile
     assert agent.turn_timeout == app_cfg.ruleset.turn_timeout
 
 

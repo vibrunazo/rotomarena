@@ -74,6 +74,7 @@ class BaseBenchmarkPlayer(Player):
         chosen_order: BattleOrder,
         reasoning: str = "",
         decision_source: DecisionSource = "model",
+        hidden_reasoning: str = "",
         search_telemetry: Optional[Dict[str, Any]] = None,
         llm_metrics: Optional[Dict[str, Any]] = None,
     ) -> None:
@@ -107,6 +108,7 @@ class BaseBenchmarkPlayer(Player):
             legal_actions=legal_acts,
             chosen_action=str(chosen_order.message) if hasattr(chosen_order, "message") else str(chosen_order),
             reasoning=reasoning,
+            hidden_reasoning=hidden_reasoning,
             search_telemetry=search_telemetry,
             llm_metrics=llm_metrics,
             timestamp=datetime.datetime.now().isoformat(),

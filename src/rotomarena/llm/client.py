@@ -5,8 +5,9 @@ from __future__ import annotations
 import asyncio
 import re
 import time
+from dataclasses import dataclass
 from urllib.parse import urlparse
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 import openai
 from openai import AsyncOpenAI
 
@@ -14,6 +15,23 @@ from rotomarena import local_servers
 from rotomarena.config import ProviderConfig, provider_presets
 from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE
 from rotomarena.llm.schemas import ActionDecision, LLMUsageMetrics
+
+
+@dataclass
+class Completion:
+    text: str
+    reasoning: str  # hidden thinking, empty when the provider doesn't return it
+    metrics: LLMUsageMetrics
+
+
+def _extra(obj: Any, name: str) -> Any:
+    """A field the OpenAI SDK doesn't declare (provider extensions), if present."""
+    if obj is None:
+        return None
+    value = getattr(obj, name, None)
+    if value is None and getattr(obj, "model_extra", None):
+        value = obj.model_extra.get(name)
+    return value
 
 
 def to_id(text: str) -> str:
@@ -116,7 +134,8 @@ class LLMClient:
         style = self.config.api_style
         if style == "openrouter":
             setting = {"enabled": False} if reasoning == "off" else {"effort": reasoning}
-            return {"extra_body": {"reasoning": setting}}
+            # usage.include: OpenRouter reports what each request cost
+            return {"extra_body": {"reasoning": setting, "usage": {"include": True}}}
         if style == "llama.cpp":
             # Chat templates read these: Qwen-style models use enable_thinking; gpt-oss uses
             # reasoning_effort, whose lowest level is "low".
@@ -135,7 +154,7 @@ class LLMClient:
         max_tokens: Optional[int] = None,
         reasoning: str = "off",
         max_retries: int = 3,
-    ) -> Tuple[str, LLMUsageMetrics]:
+    ) -> Completion:
         """Calls the chat completions API, retrying server errors and rate limits."""
         target_model = model or self.default_model
         create_kwargs: Dict[str, Any] = {
@@ -183,6 +202,7 @@ class LLMClient:
             choice = response.choices[0]
             usage = response.usage
             details = getattr(usage, "completion_tokens_details", None) if usage else None
+            cost = _extra(usage, "cost")
             metrics = LLMUsageMetrics(
                 prompt_tokens=(usage.prompt_tokens or 0) if usage else 0,
                 completion_tokens=(usage.completion_tokens or 0) if usage else 0,
@@ -190,10 +210,14 @@ class LLMClient:
                 total_tokens=(usage.total_tokens or 0) if usage else 0,
                 latency_ms=latency,
                 finish_reason=choice.finish_reason or "",
+                cost_usd=float(cost) if cost else 0.0,
                 model=target_model,
                 provider=self.provider_name,
             )
-            return choice.message.content or "", metrics
+            # Hidden thinking, when the provider returns it: llama.cpp and DeepSeek use reasoning_content,
+            # OpenRouter uses reasoning. Some providers (OpenAI) return none, others a summary.
+            hidden = _extra(choice.message, "reasoning_content") or _extra(choice.message, "reasoning") or ""
+            return Completion(choice.message.content or "", str(hidden), metrics)
 
         raise RuntimeError(f"LLM request failed after {attempt + 1} attempt(s): {last_err}")
 
@@ -210,11 +234,13 @@ class LLMClient:
             {"role": "system", "content": SYSTEM_PROMPT_DIRECT_COT},
             {"role": "user", "content": USER_PROMPT_DIRECT_COT_TEMPLATE.format(battle_state=battle_state_str)},
         ]
-        raw_text, metrics = await self.generate_completion(
+        completion = await self.generate_completion(
             messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning
         )
+        raw_text, metrics = completion.text, completion.metrics
         decision = parse_decision(raw_text)
         if decision.parse_error and metrics.finish_reason == "length":
             decision.parse_error = f"answer cut off at the {max_tokens}-token budget ({decision.parse_error})"
         decision.metrics = metrics
+        decision.hidden_reasoning = completion.reasoning
         return decision

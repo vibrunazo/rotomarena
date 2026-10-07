@@ -73,6 +73,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 f"Raw answer:\n{decision.raw_response[-2000:]}",
                 decision_source="parse_error",
                 llm_metrics=llm_metrics,
+                hidden_reasoning=decision.hidden_reasoning,
             )
             return fallback_order
 
@@ -95,6 +96,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 f"Default move played.\nOriginal reasoning:\n{decision.reasoning}",
                 decision_source="invalid",
                 llm_metrics=llm_metrics,
+                hidden_reasoning=decision.hidden_reasoning,
             )
             return fallback_order
 
@@ -103,5 +105,6 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             chosen_order=chosen_order,
             reasoning=decision.reasoning,
             llm_metrics=llm_metrics,
+            hidden_reasoning=decision.hidden_reasoning,
         )
         return chosen_order

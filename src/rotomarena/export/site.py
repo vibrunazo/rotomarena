@@ -57,9 +57,11 @@ def _turn_entries(match: MatchTelemetry) -> List[Dict[str, Any]]:
             "action": parse_choice(crumb.chosen_action),
             "source": crumb.decision_source,
             "thought": _thought(crumb),
+            "hidden_reasoning": crumb.hidden_reasoning,
             "note": crumb.reasoning if crumb.decision_source != "model" else "",
             "tokens": metrics.get("total_tokens", 0),
             "latency_ms": round(metrics.get("latency_ms", 0.0)),
+            "cost_usd": metrics.get("cost_usd", 0.0),
         })
     return entries
 
@@ -125,6 +127,8 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
         "decision_sources": dict(sources),
         "hallucinated_move_rate": round(sources.get("invalid", 0) / n, 3),
         "tokens_per_turn": round(statistics.mean(x.get("total_tokens", 0) for x in metrics)) if metrics else None,
+        "cost_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics), 4),
+        "cost_per_game_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics) / played, 4) if played else 0.0,
         "switch_rate": round(sum(1 for c in choices if c["kind"] == "switch") / (len(choices) or 1), 3),
         "signature_move": moves.most_common(1)[0][0] if moves else None,
         "favorite_pokemon": Counter(b.active_pokemon for b in turns).most_common(1)[0][0] if turns else None,

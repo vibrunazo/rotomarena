@@ -15,6 +15,7 @@ class LLMUsageMetrics(BaseModel):
     total_tokens: int = 0
     latency_ms: float = 0.0
     finish_reason: str = ""
+    cost_usd: float = 0.0  # as reported by the provider (OpenRouter); 0 for local models
     model: str = ""
     provider: str = ""
 
@@ -35,5 +36,6 @@ class ActionDecision(BaseModel):
         default="", description="Contents of the <thought> block"
     )
     parse_error: Optional[str] = None
+    hidden_reasoning: str = ""
     raw_response: str = ""
     metrics: Optional[LLMUsageMetrics] = None

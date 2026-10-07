@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 from typing import Dict, List, Literal, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
 
@@ -106,23 +106,42 @@ def provider_presets() -> Dict[str, ProviderConfig]:
     }
 
 
+# Ruleset profiles. ladder: models think (OpenRouter "medium") within a total token cap, and the clock only
+# catches hung servers. concise: no hidden thinking and short answers, for fast games (videos, quick tests).
+RULESET_PROFILES = {
+    "ladder": {"reasoning": "medium", "max_output_tokens": 4096, "turn_timeout": 7200.0},
+    "concise": {"reasoning": "off", "max_output_tokens": 1024, "turn_timeout": 900.0},
+}
+
+
 class RulesetConfig(BaseModel):
-    """Rules shared by every player in a season. Recorded in every match; changing them starts a new season."""
+    """Rules shared by every player in a season. Recorded in every match; changing them starts a new season.
+    `profile` fills in reasoning, max_output_tokens and turn_timeout unless they are set explicitly."""
 
     version: str = Field(default="s1", description="Season / ruleset identifier")
-    max_output_tokens: int = Field(
-        default=1024, description="Per-turn output budget for LLM players; a cut-off answer forfeits the turn"
+    profile: Literal["ladder", "concise"] = Field(default="ladder")
+    reasoning: Optional[ReasoningLevel] = Field(
+        default=None, description="Hidden reasoning requested from every LLM (OpenRouter effort levels)"
     )
-    turn_timeout: float = Field(
-        default=900.0, description="Wall-clock limit per turn in seconds; only catches hung servers"
+    max_output_tokens: Optional[int] = Field(
+        default=None,
+        description="Per-turn cap on everything an LLM writes, thinking included; a cut-off answer forfeits the turn. "
+        "Local servers get half of it as their thinking budget",
     )
-    reasoning: ReasoningLevel = Field(
-        default="off", description="Hidden reasoning level requested from every LLM"
+    turn_timeout: Optional[float] = Field(
+        default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],
         description="The two teams every ladder set uses (each played from both sides)",
     )
+
+    @model_validator(mode="after")
+    def _apply_profile(self) -> "RulesetConfig":
+        for key, value in RULESET_PROFILES[self.profile].items():
+            if getattr(self, key) is None:
+                setattr(self, key, value)
+        return self
 
 
 class LadderConfig(BaseModel):
