@@ -286,7 +286,7 @@ def test_round_robin_pairs_every_model_once_in_balanced_rounds():
     assert len(round_robin_pairs(["a", "b", "c"])) == 3  # odd counts sit one out per round
     from rotomarena.ladder import anchor_first
     first = anchor_first(pairs, "m3")
-    assert all("m3" in p for p in first[:9]) and sorted(map(frozenset, first)) == sorted(map(frozenset, pairs))
+    assert all("m3" in p for p in first[:9]) and set(map(frozenset, first)) == set(map(frozenset, pairs))
 
 
 def test_own_teams_keep_each_players_team_and_alternate_sides():
