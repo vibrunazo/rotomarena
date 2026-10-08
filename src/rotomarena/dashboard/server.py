@@ -1,10 +1,13 @@
-"""The run monitor's web server: the page and /api/status (cached for a few seconds, since every page on the LAN
-polls it). Read-only."""
+"""The run monitor's web server: the page, /api/status (cached for a few seconds, since every page on the LAN
+polls it), and live battles: /watch/<room> plays a battle in Showdown's player and /api/battle/<room> hands it the
+new log lines. Read-only."""
 
 from __future__ import annotations
 
 import asyncio
+import html
 import json
+import re
 import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -12,15 +15,36 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 from rotomarena.config import AppConfig
+from rotomarena.dashboard.relay import relay
 from rotomarena.dashboard.status import live_battles, status
 
 PAGE = Path(__file__).with_name("page.html")
+WATCH = Path(__file__).with_name("watch.html")
+ROOM = re.compile(r"^battle-[a-z0-9]+-\d+$")
 CACHE_SECONDS = 10
 
 
 def serve(config_file: str, host: str, port: int) -> None:
     lock = threading.Lock()
     cache: Dict[str, Tuple[float, bytes]] = {}
+    battles = relay(AppConfig.load(config_file).server.websocket_url)
+
+    def watch_page(room: str) -> bytes:
+        lines, _, joined = battles.lines(room)
+        for _ in range(30):  # the first ask joins the room; wait for its log
+            if joined:
+                break
+            time.sleep(0.1)
+            lines, _, joined = battles.lines(room)
+        players = {l.split("|")[2]: l.split("|")[3] for l in lines if l.startswith("|player|") and len(l.split("|")) > 3}
+        title = " vs ".join(players.get(p, "?") for p in ("p1", "p2")) if players else room
+        page = (WATCH.read_text(encoding="utf-8")
+                .replace("__TITLE__", html.escape(title))
+                .replace("__ROOM_JSON__", json.dumps(room))
+                .replace("__COUNT__", str(len(lines)))
+                # Showdown's convention for a log inlined in <script>: "/" becomes "\/", so it can't close the tag
+                .replace("__LOG__", "\n".join(lines).replace("/", "\\/")))
+        return page.encode("utf-8")
 
     def current() -> bytes:
         with lock:
@@ -39,6 +63,13 @@ def serve(config_file: str, host: str, port: int) -> None:
             path = self.path.split("?")[0].rstrip("/")
             if path in ("", "/index.html"):
                 self._send(200, "text/html; charset=utf-8", PAGE.read_bytes())
+            elif path.startswith("/watch/") and ROOM.match(path[len("/watch/"):]):
+                self._send(200, "text/html; charset=utf-8", watch_page(path[len("/watch/"):]))
+            elif path.startswith("/api/battle/") and ROOM.match(path[len("/api/battle/"):]):
+                query = self.path.partition("?")[2]
+                start = int(m.group(1)) if (m := re.search(r"(?:^|&)from=(\d+)", query)) else 0
+                lines, ended, _ = battles.lines(path[len("/api/battle/"):], start)
+                self._send(200, "application/json", json.dumps({"lines": lines, "ended": ended}).encode("utf-8"))
             elif path == "/api/status":
                 try:
                     self._send(200, "application/json", current())
