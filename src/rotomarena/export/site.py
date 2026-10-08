@@ -1,4 +1,4 @@
-"""Exports the current season (and the retracted v0 archive) as JSON for the Astro site."""
+"""Exports every benchmark's games and ratings (and the retracted v0 archive) as JSON for the Astro site."""
 
 from __future__ import annotations
 
@@ -12,7 +12,8 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
 from rotomarena.config import AppConfig, derived_model_key
-from rotomarena.ladder import SeasonState, seasons_state
+from rotomarena.ladder import LadderState, versions_state
+from rotomarena.rulesets import stored_rules
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
@@ -115,7 +116,7 @@ def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> D
         "id": match.match_id,
         "game": GAME,
         "format": match.format,
-        "season": match.ruleset.get("version"),
+        "version": match.ruleset.get("version"),
         "date": match.match_id.split("_")[1] if match.match_id.count("_") > 1 else "",
         "players": [
             {**p.model_dump(), "model_key": model_key(p, app_cfg), "autopilot_rate": round(autopilot_rate(match, p.role), 3)}
@@ -136,7 +137,7 @@ def _median(values: Iterable[float]) -> Optional[float]:
 
 
 def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]:
-    """Behaviour across every match a model played this season, rated or not."""
+    """Behaviour across every match a model played in the exported versions, rated or not."""
     turns: List[TurnBreadcrumb] = []
     tera_turns, played = [], 0
     for m in matches:
@@ -213,7 +214,7 @@ def findings(models: List[Dict[str, Any]], all_matches: List[MatchTelemetry]) ->
         out.append({"id": "most-tokens", "show": False})
 
     zero_token_wins = [
-        {"config_id": p.config_id, "match_id": m.match_id, "season": m.ruleset.get("version")}
+        {"config_id": p.config_id, "match_id": m.match_id, "version": m.ruleset.get("version")}
         for m in all_matches for p in m.players
         if p.username == m.winner and p.agent_type == "direct_llm" and autopilot_rate(m, p.role) == 1.0
     ]
@@ -273,7 +274,7 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
     return rows
 
 
-def _board_rating(state: SeasonState, config_id: str, app_cfg: AppConfig) -> Optional[Dict[str, Any]]:
+def _board_rating(state: LadderState, config_id: str, app_cfg: AppConfig) -> Optional[Dict[str, Any]]:
     """One model's standing on one leaderboard, or None if it has no rated game there."""
     rating: Optional[Rating] = state.ratings.get(config_id)
     if not rating or not rating.games:
@@ -286,7 +287,7 @@ def _board_rating(state: SeasonState, config_id: str, app_cfg: AppConfig) -> Opt
     }
 
 
-def _head_to_head(state: SeasonState) -> List[Dict[str, Any]]:
+def _head_to_head(state: LadderState) -> List[Dict[str, Any]]:
     rows: Dict[frozenset, Dict[str, Any]] = {}
     for o in state.outcomes:
         a, b = sorted((o.p1, o.p2))
@@ -302,7 +303,7 @@ def _head_to_head(state: SeasonState) -> List[Dict[str, Any]]:
     return sorted(rows.values(), key=lambda r: (r["a"], r["b"]))
 
 
-def _model_rows(state: SeasonState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
+def _model_rows(state: LadderState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
     identities = {}
     for m in state.matches:
         for p in m.players:
@@ -345,10 +346,10 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     out = Path(out_dir)
     runs_dir = Path(app_cfg.telemetry.output_dir)
     boards = app_cfg.boards()
-    states = {b.id: seasons_state(app_cfg, b.seasons) for b in boards}
-    # every season any board shows, rated together: model stats, match pages and findings come from this
-    all_seasons = list(dict.fromkeys(s for b in boards for s in b.seasons))
-    state = states[boards[0].id] if set(boards[0].seasons) == set(all_seasons) else seasons_state(app_cfg, all_seasons)
+    states = {b.id: versions_state(app_cfg, b.versions) for b in boards}
+    # every version any board shows, rated together: model stats, match pages and findings come from this
+    all_versions = list(dict.fromkeys(s for b in boards for s in b.versions))
+    state = states[boards[0].id] if set(boards[0].versions) == set(all_versions) else versions_state(app_cfg, all_versions)
     retracted = load_matches(runs_dir, RETRACTED_SEASON)
     models = _model_rows(state, app_cfg)
     for row in models:  # each model's standing on every board; top-level rating fields are the main board's
@@ -375,8 +376,10 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "game": GAME,
         "formats": sorted({m.format for m in state.matches}),
-        "season": app_cfg.ruleset.version,
-        "seasons": all_seasons,
+        "version": app_cfg.ruleset.version,
+        "versions": all_versions,
+        "rulesets": {v: stored_rules(v) for v in all_versions},
+        "rules_mismatch": state.rules_mismatch,
         "leaderboards": [{**b.model_dump(), "rated_matches": len(states[b.id].outcomes),
                           "models": sum(1 for r in states[b.id].ratings.values() if r.games)} for b in boards],
         "ruleset": app_cfg.ruleset.model_dump(),

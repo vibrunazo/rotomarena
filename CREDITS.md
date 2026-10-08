@@ -35,15 +35,15 @@ first test battle was rejected by Showdown ("Roaring Moon is tagged Uber, which 
 replaced Roaring Moon with Samurott-Hisui and, in the same pass, Archaludon with Zapdos (steps 446 to 462). The sets
 reflect what Smogon's players developed for the format; they do not match Smogon's current SV OU sample-team thread.
 
-Season 1 still plays two of these teams. Two other sources of teams exist since 8 October 2026:
+The Gen 9 OU fixed-teams benchmark (version s1) plays two of these teams. Two other sources of teams exist since 8 October 2026:
 
 - **Reference teams** (`data/teams/smogon/`): the 21 teams of Smogon's SV OU Sample Teams thread (hosted by the OU
   Room and forum staff, updated 13 July 2026), downloaded as posted from their pokepast.es links with each builder's
   name; `index.json` records title, archetype, builder, link and whether Showdown's validator accepts it as posted
-  (18 do; 3 list alternatives). Used for testing the harness and for any fixed-team season.
+  (18 do; 3 list alternatives). Used for testing the harness and for fixed-team benchmarks.
 - **Model-built teams** (`data/drafts/`): `rotomarena teams draft` gives a model the format's rules (clauses, bans
   and the legal Pokémon, read from Showdown) and lets Showdown's validator referee, with up to five attempts; a
-  team still illegal after that is repaired with middling replacements (`repair_team.js`). Season 2 plays these.
+  team still illegal after that is repaired with middling replacements (`repair_team.js`). The Gen 9 OU own-teams benchmark (version s2) plays these.
 
 ## Smogon
 

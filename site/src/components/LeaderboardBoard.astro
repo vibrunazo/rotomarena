@@ -39,6 +39,29 @@ const record = (a: string, b: string) => {
 
   <LeaderboardTable models={models} />
 
+  <details class="rules">
+    <summary>Rules{board.versions.length > 1 ? ` of the ${board.versions.length} versions counted here` : ''}</summary>
+    <p class="small muted">Every game records the rules it was played under; a board only rates games that match their version's stored rules.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Version</th><th>Format</th><th>Teams</th><th>Thinking</th><th class="r">Tokens per turn</th><th>Prompt</th></tr></thead>
+        <tbody>
+          {board.versions.map((v) => {
+            const r = (meta.rulesets as Record<string, any>)[v];
+            return r ? (
+              <tr>
+                <td class="num">{v}</td><td class="num">{r.format}</td>
+                <td>{r.team_mode === 'draft' ? 'own (drafted)' : `fixed: ${r.teams.join(', ')}`}</td>
+                <td>{r.reasoning}</td><td class="r num">{r.max_output_tokens.toLocaleString('en-US')}</td>
+                <td class="num muted">{r.battle_prompt}{r.draft_prompt ? ` · draft ${r.draft_prompt}` : ''}</td>
+              </tr>
+            ) : <tr><td class="num">{v}</td><td colspan="5" class="muted">rules not stored</td></tr>;
+          })}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
   <ForestPlot
     models={models}
     anchor={meta.ladder.anchor}
@@ -83,6 +106,8 @@ const record = (a: string, b: string) => {
 </Base>
 
 <style>
+  .rules { margin: 1rem 0; }
+  .rules summary { cursor: pointer; font: 600 0.85rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
   .tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0.4rem; }
   .tabs a {
     font: 600 0.85rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;

@@ -16,7 +16,7 @@ const voided = matches.filter((e) => e.data.void_reason).length;
 
   <div class="prose">
     <p>
-      Before season 1 we ran a pilot study of {meta.retracted_matches} matches. We have retracted all of it. This page
+      Before the first benchmark we ran a pilot study of {meta.retracted_matches} matches. We have retracted all of it. This page
       explains why, and keeps every retracted match available so that nobody has to take our word for it.
     </p>
 
@@ -41,7 +41,7 @@ const voided = matches.filter((e) => e.data.void_reason).length;
     <ul>
       <li>A match is now void if either side spends more than {meta.ladder.max_autopilot * 100}% of its turns on autopilot. Autopilot rates are published for every model.</li>
       <li>Every decision records why it was made: by the model, or by a timeout, provider error, unreadable answer or illegal move.</li>
-      <li>Ratings come from a single season under one fixed ruleset, anchored to a model that runs on our own hardware.</li>
+      <li>Every game records the exact rules it was played under, and a benchmark only rates games played under its stored rules, anchored to a model that runs on our own hardware.</li>
       <li>A random-move bot plays every new model first, as a control, unless the model costs more than ${meta.ladder.control_max_cost_per_game_usd} a game, on budgetary grounds. A model that cannot beat it is reported as such.</li>
     </ul>
     <p>

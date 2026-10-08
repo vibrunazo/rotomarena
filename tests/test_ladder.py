@@ -96,8 +96,8 @@ def test_fill_prefers_overlapping_free_neighbours(tmp_path):
         "local_b": AgentConfig(name="local_b", type="direct_llm", provider="local", model="b"),
         "paid": AgentConfig(name="paid", type="direct_llm", provider="openrouter", model="lab/paid-model"),
     }
-    from rotomarena.ladder import SeasonState
-    state = SeasonState([], [], {
+    from rotomarena.ladder import LadderState
+    state = LadderState([], [], {
         "heuristic": Rating("heuristic", 1500, 1500, 1500, 8, 4, 4, 0),
         "local_a": Rating("local_a", 1600, 1450, 1750, 8, 5, 3, 0),
         "local_b": Rating("local_b", 1650, 1500, 1800, 8, 5, 3, 0),
@@ -308,3 +308,18 @@ def test_own_teams_keep_each_players_team_and_alternate_sides():
         asyncio.run(runner.run_game(a, b, team("A's team"), team("B's team"), g, own_teams=True))
     assert [c[0] for c in calls] == ["A", "B", "A", "B"]
     assert all(dict(zip((c[0], "A" if c[0] == "B" else "B"), c[1]))["A"] == "A's team" for c in calls)
+
+
+def test_a_version_stores_its_rules_and_refuses_changed_ones(tmp_path):
+    from rotomarena.rulesets import RulesChanged, register, same_rules, stored_rules
+
+    cfg = AppConfig()
+    rules = register(cfg, rulesets_dir=tmp_path)  # first run stores them
+    assert stored_rules(cfg.ruleset.version, tmp_path) == rules and "battle_prompt" in rules and rules["format"] == "gen9ou"
+    assert register(cfg, rulesets_dir=tmp_path) == rules  # same rules: fine
+    cfg.ruleset.max_output_tokens = 1024
+    with pytest.raises(RulesChanged, match="max_output_tokens"):
+        register(cfg, rulesets_dir=tmp_path)
+    # games are judged on what they recorded: older games lack the prompt fingerprints
+    assert same_rules({"version": "s1", "max_output_tokens": 4096}, rules)
+    assert not same_rules({"version": "s1", "max_output_tokens": 1024}, rules)

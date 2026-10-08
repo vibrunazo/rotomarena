@@ -6,11 +6,11 @@ import datetime
 import re
 import time
 from pathlib import Path
-from typing import Callable, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 from pydantic import BaseModel, Field
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
-from rotomarena.config import RulesetConfig, TelemetryConfig
+from rotomarena.config import TelemetryConfig
 from rotomarena.teams.loader import Team
 from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, MatchPlayer
 from rotomarena.telemetry.replay_saver import save_battle_raw_json, save_battle_replay_html
@@ -62,10 +62,10 @@ class MatchRunner:
     def __init__(
         self,
         telemetry_config: Optional[TelemetryConfig] = None,
-        ruleset: Optional[RulesetConfig] = None,
+        rules: Optional[Dict[str, Any]] = None,
     ):
         self.telemetry_config = telemetry_config or TelemetryConfig()
-        self.ruleset = ruleset or RulesetConfig()
+        self.rules = rules or {}  # the version's rules (rulesets.current_rules), recorded in every match
         self.output_dir = Path(self.telemetry_config.output_dir)
 
     async def run_single_battle(
@@ -86,7 +86,7 @@ class MatchRunner:
         recorder = BreadcrumbsRecorder(
             match_id=match_id,
             format_str=challenger.format,
-            ruleset=self.ruleset.model_dump(),
+            ruleset=self.rules,
         )
         challenger.set_recorder(recorder)
         opponent.set_recorder(recorder)

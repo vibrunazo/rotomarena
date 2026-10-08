@@ -1,41 +1,79 @@
 {
-  "generated_at": "2026-10-08T14:22:22+00:00",
+  "generated_at": "2026-10-08T14:42:09+00:00",
   "game": "pokemon",
   "formats": [
     "gen9ou"
   ],
-  "season": "s2",
-  "seasons": [
-    "s1",
-    "s2"
+  "version": "s2",
+  "versions": [
+    "s2",
+    "s1"
   ],
+  "rulesets": {
+    "s2": {
+      "version": "s2",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "draft",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965",
+      "draft_prompt": "3a8760325e8d"
+    },
+    "s1": {
+      "version": "s1",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "fixed",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965"
+    }
+  },
+  "rules_mismatch": 0,
   "leaderboards": [
     {
       "id": "overall",
       "title": "Overall",
-      "description": "Every rated game, whatever the teams: how good each model is at Pokémon.",
-      "seasons": [
-        "s1",
-        "s2"
+      "description": "Every rated game in every benchmark: how good each model is overall.",
+      "kind": "overall",
+      "category": null,
+      "versions": [
+        "s2",
+        "s1"
       ],
       "rated_matches": 47,
       "models": 10
     },
     {
-      "id": "own-teams",
-      "title": "Own teams",
-      "description": "Season 2: each model plays the team it built itself.",
-      "seasons": [
+      "id": "gen9ou-own-teams",
+      "title": "Gen 9 OU · own teams",
+      "description": "Each model plays the Gen 9 OverUsed team it built itself from the rules of the format.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "versions": [
         "s2"
       ],
       "rated_matches": 7,
       "models": 8
     },
     {
-      "id": "fixed-teams",
-      "title": "Fixed teams",
-      "description": "Season 1: every pairing plays the same two teams from both sides; teambuilding not measured.",
-      "seasons": [
+      "id": "gen9ou-fixed-teams",
+      "title": "Gen 9 OU · fixed teams",
+      "description": "Every pairing plays the same two Gen 9 OverUsed teams from both sides; teambuilding not measured.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "versions": [
         "s1"
       ],
       "rated_matches": 40,

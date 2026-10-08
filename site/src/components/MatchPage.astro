@@ -16,7 +16,7 @@ const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
 ---
 <Base title={title} description={`${title}: replay and turn-by-turn reasoning.`}>
   <p class="eyebrow">
-    <a href={retracted ? routes.retracted : routes.matches}>{retracted ? 'Retracted' : 'Matches'}</a> · {fmtDate(m.date)} · season {m.season ?? '—'}
+    <a href={retracted ? routes.retracted : routes.matches}>{retracted ? 'Retracted' : 'Matches'}</a> · {fmtDate(m.date)} · rules version {m.version ?? '—'}
   </p>
   <h1>{title}</h1>
 

@@ -60,7 +60,7 @@ it means something.
 
 **It is a fixed yardstick.** Ratings only mean something relative to opponents whose strength does not change.
 Our PokéChamp never updates, never gets deprecated and costs nothing to run, so every model added to the ladder,
-in this season or a later one, plays the same set of games against the same program. That is what makes a rating
+now or later, plays the same set of games against the same program. That is what makes a rating
 from one month comparable with a rating from the next.
 
 **It sits where the interesting comparisons are.** Random AI marks the floor: a model that loses to it is broken.

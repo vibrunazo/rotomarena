@@ -13,8 +13,8 @@ server:
 # Rules shared by every player in a season. They are recorded in every match;
 # changing any of them starts a new season.
 ruleset:
-  # Season 2: every model plays the team it built itself. Season 1 (fixed teams, placement paused on 8 Oct with
-  # Ling's set against Bonsai): version "s1", team_mode "fixed".
+  # The version being played now: Gen 9 OU with each model's own team ("s2"). The fixed-teams benchmark's version
+  # is "s1" with team_mode "fixed" (its placement paused on 8 Oct with Ling's set against Bonsai).
   version: "s2"
   team_mode: "draft"
   # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
@@ -24,21 +24,20 @@ ruleset:
   profile: "ladder"
   teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
 
-# Rankings on the site, each fitted over the rated games of some seasons (games are played once; boards are views).
-# The first is the main one. New formats or modes get their own season and can join "overall".
-leaderboards:
-  - id: "overall"
-    title: "Overall"
-    description: "Every rated game, whatever the teams: how good each model is at Pokémon."
-    seasons: ["s1", "s2"]
-  - id: "own-teams"
-    title: "Own teams"
-    description: "Season 2: each model plays the team it built itself."
-    seasons: ["s2"]
-  - id: "fixed-teams"
-    title: "Fixed teams"
-    description: "Season 1: every pairing plays the same two teams from both sides; teambuilding not measured."
-    seasons: ["s1"]
+# The benchmarks the site ranks. Each lists the ruleset versions whose games count; a version id names exact rules,
+# stored in data/rulesets/<version>.json on its first run (change a rule and the next run demands a new version).
+# Boards are generated: Overall (every benchmark), one per category once there are several, and one per benchmark.
+benchmarks:
+  - id: "gen9ou-own-teams"
+    title: "Gen 9 OU · own teams"
+    category: "Pokémon"
+    description: "Each model plays the Gen 9 OverUsed team it built itself from the rules of the format."
+    versions: ["s2"]
+  - id: "gen9ou-fixed-teams"
+    title: "Gen 9 OU · fixed teams"
+    category: "Pokémon"
+    description: "Every pairing plays the same two Gen 9 OverUsed teams from both sides; teambuilding not measured."
+    versions: ["s1"]
 
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
 ladder:

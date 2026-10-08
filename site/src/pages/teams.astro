@@ -26,7 +26,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
       Pokémon Showdown's validator then checks the team, exactly as it checks a human player's. An illegal team is
       sent back with the validator's own messages, and the model gets up to five attempts in total. A model that
       never gets there still plays: its last team is repaired by replacing only what the validator rejected, with
-      deliberately unremarkable choices, so the mistake costs it something without costing it the season. Every
+      deliberately unremarkable choices, so the mistake costs it something without costing it its place. Every
       attempt and every repair is published below.
     </p>
     {unanimous.length > 0 && (
@@ -50,7 +50,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
 
   <h2>Reference teams</h2>
   <p class="prose">
-    For testing the harness, and for any season played with fixed teams, we use sample teams from Smogon's
+    For testing the harness, and for benchmarks played with fixed teams, we use sample teams from Smogon's
     <a href="https://www.smogon.com/forums/threads/sv-ou-sample-teams-new-samples-added-post-spl-and-tera-blast-ban.3712513/">SV OU Sample Teams</a>
     thread, hosted by the OU Room and forum staff. Each was built by the player named below.
   </p>
@@ -67,7 +67,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
       </tbody>
     </table>
   </div>
-  <p class="small muted">Season 1 itself uses two older teams written by the AI assistant that set up the project; see the <a href={routes.faq}>FAQ</a>.</p>
+  <p class="small muted">The fixed-teams benchmark uses two older teams written by the AI assistant that set up the project; see the <a href={routes.faq}>FAQ</a>.</p>
 </Base>
 
 <style>

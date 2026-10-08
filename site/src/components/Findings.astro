@@ -11,7 +11,7 @@ const link = (id: unknown) => (models.has(String(id)) ? `<a href="${routes.model
 
 const text: Record<string, (f: any) => string> = {
   'top-model': (f) =>
-    `${link(f.config_id)} currently leads the season with a rating of ${fmtRating(f.rating)} ` +
+    `${link(f.config_id)} currently leads the overall ranking with a rating of ${fmtRating(f.rating)} ` +
     `(95% CI ${fmtRating(f.ci[0])}–${fmtRating(f.ci[1])}).` +
     (f.overlaps_bottom
       ? ` This interval overlaps that of ${link(f.bottom)}, which chooses its moves uniformly at random. We consider the result preliminary.`

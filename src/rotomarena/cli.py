@@ -27,6 +27,7 @@ from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.server.manager import ShowdownServerManager
 from rotomarena.teams.loader import load_team_file
+from rotomarena.rulesets import RulesChanged, current_rules, register
 from rotomarena.teams.presets import list_available_teams, load_preset_team
 
 app = typer.Typer(
@@ -401,7 +402,7 @@ def run_battle(
     p2_cfg = _agent_config(app_cfg, p2, p2_provider or provider, p2_model or model)
 
     server_mgr = ShowdownServerManager(app_cfg.server)
-    runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
+    runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
 
     async def _execute():
         async with server_mgr.ensure_running():
@@ -436,10 +437,10 @@ def run_battle(
 
 
 def _print_ratings(app_cfg: AppConfig) -> None:
-    from rotomarena.ladder import describe_void_matches, season_state
+    from rotomarena.ladder import describe_void_matches, version_state
 
-    state = season_state(app_cfg)
-    table = Table(title=f"RotomArena ladder, season {app_cfg.ruleset.version}", show_header=True)
+    state = version_state(app_cfg)
+    table = Table(title=f"RotomArena ladder, version {app_cfg.ruleset.version}", show_header=True)
     for col, justify in (("Rank", "right"), ("Config id", "left"), ("Rating", "right"), ("95% CI", "right"),
                          ("Games", "right"), ("W-L-D", "center"), ("", "left")):
         table.add_column(col, justify=justify)
@@ -469,7 +470,7 @@ def _print_ratings(app_cfg: AppConfig) -> None:
 
 @ladder_app.command("status")
 def ladder_status(config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file")):
-    """Show the current season's ratings."""
+    """Show the ratings of the ruleset version being played."""
     _print_ratings(AppConfig.load(config_file))
 
 
@@ -484,6 +485,7 @@ def ladder_place(
     from rotomarena.ladder import RunHalted, place
 
     app_cfg = AppConfig.load(config_file)
+    _register_rules(app_cfg)
     server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
@@ -499,6 +501,15 @@ def ladder_place(
         console.print(f"[bold red]{e}[/bold red]")
         raise typer.Exit(1)
     _print_ratings(app_cfg)
+
+
+def _register_rules(app_cfg: AppConfig) -> None:
+    """Stores this version's rules on its first run; refuses to play under changed rules (see rulesets.py)."""
+    try:
+        register(app_cfg)
+    except RulesChanged as e:
+        console.print(f"[bold red]{e}[/bold red]")
+        raise typer.Exit(1)
 
 
 def _report_halt(e: Exception, app_cfg: AppConfig) -> None:
@@ -537,6 +548,7 @@ def ladder_place_all(
     from rotomarena.ladder import RunHalted, place
 
     app_cfg = AppConfig.load(config_file)
+    _register_rules(app_cfg)
     unknown = [c for c in config_ids if c not in app_cfg.agents]
     if unknown:
         console.print(f"[bold red]Not in the registry: {', '.join(unknown)}[/bold red]")
@@ -572,6 +584,7 @@ def ladder_round_robin(
     from rotomarena.ladder import RunHalted, round_robin
 
     app_cfg = AppConfig.load(config_file)
+    _register_rules(app_cfg)
     server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
@@ -596,6 +609,7 @@ def ladder_fill(
     from rotomarena.ladder import RunHalted, fill
 
     app_cfg = AppConfig.load(config_file)
+    _register_rules(app_cfg)
     server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
@@ -615,7 +629,7 @@ def export_site_command(
     out: str = typer.Option("site/src/data", "--out", "-o", help="Output directory for the site's JSON"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
-    """Export the current season and the retracted v0 archive as JSON for the website."""
+    """Export every benchmark's games and ratings, and the retracted v0 archive, as JSON for the website."""
     from rotomarena.export.site import export_site
 
     counts = export_site(AppConfig.load(config_file), out)

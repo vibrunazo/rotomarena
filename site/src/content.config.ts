@@ -33,7 +33,7 @@ const match = z.object({
   id: z.string(),
   game: z.string(),
   format: z.string(),
-  season: z.string().nullable(),
+  version: z.string().nullable(), // the ruleset version the game was played under
   date: z.string(),
   players: z.array(player),
   winner_role: z.string().nullable(),

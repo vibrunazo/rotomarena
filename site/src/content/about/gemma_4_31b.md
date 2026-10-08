@@ -12,7 +12,7 @@ dense model that reads text and images, with a configurable thinking mode. We ca
 
 ## What it does here
 
-Gemma is the season's **second sparring partner**. It plays the full placement like any contestant: the control
+Gemma is the **second sparring partner**. It plays the full placement like any contestant: the control
 games against Random AI, a set against each anchor, and a set against Nemotron, the first sparring partner. Its
 main job is to give Nemotron a free, strong, language-model opponent of its own, so that the sparring partner is
 itself measured against more than the anchors.

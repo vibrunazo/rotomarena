@@ -12,14 +12,14 @@ layers. We call it through [OpenRouter](https://openrouter.ai/nvidia/nemotron-3-
 
 ## What it does here
 
-Nemotron is the season's **sparring partner**: every new model plays a set of four games against it during
+Nemotron is the **sparring partner**: every new model plays a set of four games against it during
 placement, alongside the two fixed references (Bonsai and PokéChamp) and the closest-rated model.
 
 ## Why it is the sparring partner
 
 - **It is free.** A sparring partner meets every model ever added to the ladder, so it has to cost nothing per
   game.
-- **It is strong.** It is by far the largest model in season 1, and the anchors alone cannot tell apart two models
+- **It is strong.** It is by far the largest model in the current lineup, and the anchors alone cannot tell apart two models
   that both beat them comfortably. A strong opponent that everyone plays gives the top of the table something to
   be measured against.
 - **It is a language model.** Its games are the closest thing in placement to the question the benchmark asks:

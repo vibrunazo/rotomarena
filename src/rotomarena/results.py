@@ -20,12 +20,12 @@ class Outcome:
     score_p1: float
 
 
-def load_matches(runs_dir: str | Path, season: Optional[str] = None) -> List[MatchTelemetry]:
+def load_matches(runs_dir: str | Path, version: Optional[str] = None) -> List[MatchTelemetry]:
     """All recorded matches in `runs_dir`, optionally only those played under one ruleset version."""
     matches = []
     for path in sorted(Path(runs_dir).glob("*/breadcrumbs.json")):
         match = MatchTelemetry.model_validate(json.loads(path.read_text(encoding="utf-8")))
-        if season is None or match.ruleset.get("version") == season:
+        if version is None or match.ruleset.get("version") == version:
             matches.append(match)
     return matches
 

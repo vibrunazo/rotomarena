@@ -120,7 +120,7 @@ def forget(port: int) -> None:
 
 
 def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
-    """`gen llm serve` arguments for an arena server under the season's ruleset."""
+    """`gen llm serve` arguments for an arena server under the ruleset being played."""
     args = ["serve", "--model", model, "--port", str(port),
             "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.ladder.parallel_games)]
     if app_cfg.ruleset.reasoning == "off":

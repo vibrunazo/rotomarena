@@ -15,13 +15,18 @@ uv run rotomarena battle `
 
 Teambuilding: `uv run rotomarena teams draft <config id>` has a model build its own Gen 9 OU team from the format's
 rules (read from Showdown), with Showdown's validator as referee and up to 5 attempts; a team still illegal after
-that is repaired with middling replacements. Results go to `data/drafts/gen9ou/`. Season 2 (`ruleset.team_mode:
+that is repaired with middling replacements. Results go to `data/drafts/gen9ou/`. The own-teams benchmark (`ruleset.team_mode:
 draft`) plays these teams: `uv run rotomarena ladder round-robin` has every LLM play every other one. It refuses to start local models while other local servers run (a ladder run may own them).
-Credited Smogon sample teams for tests and fixed-team seasons live in `data/teams/smogon/` (`index.json` has builders).
+Credited Smogon sample teams for tests and fixed-team benchmarks live in `data/teams/smogon/` (`index.json` has builders).
+
+Benchmarks and versions: `benchmarks:` in config.yaml lists what the site ranks; each lists ruleset versions. A
+version's exact rules (ruleset, format, prompt fingerprints) are stored in `data/rulesets/<version>.json` on its first
+run; ladder commands refuse to play if the configuration no longer matches, so a rule change needs a new
+`ruleset.version`. The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.
 
 Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`.
 For ladder tests, point `--config` at a scratch config with its own `ruleset.version` and `telemetry.output_dir`
-so test games never land in the real season.
+so test games never land in a real benchmark.
 
 Or for non-LLM testing, prefer fast baseline agents:
 ```powershell
@@ -31,7 +36,7 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
 ---
 
 ## ⚙️ Key System Specifications & Defaults
-1. **Ruleset (season `s1`, `ruleset:` in the tracked `config.yaml`, which also holds the `ladder:` settings and the `agents:` model registry):**
+1. **Ruleset (the version being played, `ruleset:` in the tracked `config.yaml`, which also holds the `ladder:` settings and the `agents:` model registry):**
    - `profile: ladder` (default): hidden thinking at OpenRouter **medium** effort, a **4,096-token** cap per turn on
      everything the model writes (local servers stop the thinking at 2,048 and let the model answer), and a
      **2-hour** hang guard. `profile: concise`: thinking off, 1,024 tokens, 15 minutes (fast games, videos).

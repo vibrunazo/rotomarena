@@ -1,4 +1,4 @@
-"""The ladder: season ratings, placement games for new models, and top-up games where ratings overlap."""
+"""The ladder: ratings per ruleset version, placement games for new models, and top-up games where ratings overlap."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.costs import estimated_cost_per_game, is_free
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
+from rotomarena.rulesets import current_rules, same_rules, stored_rules
 from rotomarena.results import Outcome, games_between, load_matches, rated_outcomes, void_reason
 from rotomarena.teams.draft import load_drafts, playable_team
 from rotomarena.teams.loader import Team, parse_smogon_team
@@ -25,11 +26,12 @@ class RunHalted(RuntimeError):
 
 
 @dataclass
-class SeasonState:
+class LadderState:
     matches: List[MatchTelemetry]
     outcomes: List[Outcome]
     ratings: Dict[str, Rating]
     pair_games: Dict[frozenset, int]
+    rules_mismatch: int = 0  # games left out because their recorded rules differ from their version's
 
     def games(self, a: str, b: str) -> int:
         return self.pair_games.get(frozenset((a, b)), 0)
@@ -39,14 +41,22 @@ class SeasonState:
         return len(self.matches) - len(self.outcomes)
 
 
-def season_state(app_cfg: AppConfig) -> SeasonState:
-    """Every match of the current season, rated."""
-    return seasons_state(app_cfg, [app_cfg.ruleset.version])
+def version_state(app_cfg: AppConfig) -> LadderState:
+    """Every match of the ruleset version being played, rated."""
+    return versions_state(app_cfg, [app_cfg.ruleset.version])
 
 
-def seasons_state(app_cfg: AppConfig, seasons: List[str]) -> SeasonState:
-    """Every match of these seasons, rated together (a leaderboard)."""
-    matches = [m for s in seasons for m in load_matches(app_cfg.telemetry.output_dir, s)]
+def versions_state(app_cfg: AppConfig, versions: List[str]) -> LadderState:
+    """Every match of these ruleset versions, rated together (a leaderboard). A game whose recorded rules differ
+    from its version's stored rules is left out and counted."""
+    matches, mismatch = [], 0
+    for version in versions:
+        stored = stored_rules(version)
+        for m in load_matches(app_cfg.telemetry.output_dir, version):
+            if stored is None or same_rules(m.ruleset, stored):
+                matches.append(m)
+            else:
+                mismatch += 1
     outcomes = rated_outcomes(matches, app_cfg.ladder.max_autopilot)
     ratings = compute_ratings(
         outcomes,
@@ -54,7 +64,7 @@ def seasons_state(app_cfg: AppConfig, seasons: List[str]) -> SeasonState:
         anchor_rating=app_cfg.ladder.anchor_rating,
         bootstrap_samples=app_cfg.ladder.bootstrap_samples,
     )
-    return SeasonState(matches, outcomes, ratings, games_between(outcomes))
+    return LadderState(matches, outcomes, ratings, games_between(outcomes), mismatch)
 
 
 def control_opponents(config_id: str, app_cfg: AppConfig, force: bool = False,
@@ -95,7 +105,7 @@ def closest_rated_llm(
     return min(candidates, key=lambda k: abs(ratings[k].rating - me.rating))
 
 
-def fill_pairs(state: SeasonState, agents: Dict[str, AgentConfig], free_only: bool = True) -> List[Tuple[str, str]]:
+def fill_pairs(state: LadderState, agents: Dict[str, AgentConfig], free_only: bool = True) -> List[Tuple[str, str]]:
     """Neighbouring models whose confidence intervals overlap, most overlap per game played first."""
     ranked = sorted(
         (r for r in state.ratings.values() if r.ranked and r.config_id in agents),
@@ -113,7 +123,7 @@ def fill_pairs(state: SeasonState, agents: Dict[str, AgentConfig], free_only: bo
 
 
 def _pair_matches(app_cfg: AppConfig, id_a: str, id_b: str) -> List[MatchTelemetry]:
-    """This season's matches between two registry entries, oldest first, void ones included."""
+    """This version's matches between two registry entries, oldest first, void ones included."""
     pair = {id_a, id_b}
     return [
         m for m in load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
@@ -174,7 +184,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm"]
     pairs = anchor_first(round_robin_pairs(ids), app_cfg.ladder.anchor)
     for i, (a, b) in enumerate(pairs, 1):
-        done = season_state(app_cfg).games(a, b)
+        done = version_state(app_cfg).games(a, b)
         if done >= games_per_pair:
             continue
         log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
@@ -201,7 +211,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     own = app_cfg.ruleset.team_mode == "draft"
     team_1, team_2 = ((own_team(agent_a), own_team(agent_b)) if own
                       else (load_preset_team(t) for t in app_cfg.ruleset.teams))
-    runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
+    runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
     played_before = len(_pair_matches(app_cfg, id_a, id_b))
 
     def halt_check() -> None:
@@ -229,15 +239,15 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
 
 
 async def place(config_id: str, app_cfg: AppConfig, log: Callable[[str], None] = print,
-                with_control: bool = False) -> SeasonState:
+                with_control: bool = False) -> LadderState:
     """Placement: a short set against the control bot (cheap models only), a set against each anchor and a
     sparring partner, then one against the closest-rated LLM.
-    Sets already played this season are skipped, so an interrupted placement resumes where it stopped."""
+    Sets already played under this version are skipped, so an interrupted placement resumes where it stopped."""
     agents = app_cfg.agents
     if config_id not in agents:
         raise ValueError(f"'{config_id}' is not in the agents registry ({', '.join(sorted(agents))})")
 
-    state = season_state(app_cfg)
+    state = version_state(app_cfg)
     for opponent in control_opponents(config_id, app_cfg, force=with_control, log=log):
         done = state.games(config_id, opponent)
         log(f"{config_id} vs {opponent} (control): {done}/{app_cfg.ladder.control_games} valid games so far")
@@ -247,7 +257,7 @@ async def place(config_id: str, app_cfg: AppConfig, log: Callable[[str], None] =
         log(f"{config_id} vs {opponent}: {done}/{app_cfg.ladder.games_per_set} valid games so far")
         await play_set(config_id, opponent, app_cfg, done)
 
-    state = season_state(app_cfg)
+    state = version_state(app_cfg)
     rival = closest_rated_llm(config_id, agents, state.ratings, exclude=fixed_placement_opponents(config_id, agents))
     if rival is None:
         log("No other ranked LLM yet, so placement ends after the fixed opponents.")
@@ -255,14 +265,14 @@ async def place(config_id: str, app_cfg: AppConfig, log: Callable[[str], None] =
     done = state.games(config_id, rival)
     log(f"Closest-rated LLM: {rival} ({state.ratings[rival].rating:.0f}). {done}/{app_cfg.ladder.games_per_set} played so far")
     await play_set(config_id, rival, app_cfg, done)
-    return season_state(app_cfg)
+    return version_state(app_cfg)
 
 
 async def fill(app_cfg: AppConfig, budget: int, free_only: bool = True, log: Callable[[str], None] = print) -> int:
     """Spends up to `budget` games on the pairs whose ratings are least separated. Returns games played."""
     played = 0
     while played < budget:
-        state = season_state(app_cfg)
+        state = version_state(app_cfg)
         pairs = fill_pairs(state, app_cfg.agents, free_only)
         if not pairs:
             log("No overlapping pairs to play.")
@@ -274,5 +284,5 @@ async def fill(app_cfg: AppConfig, budget: int, free_only: bool = True, log: Cal
     return played
 
 
-def describe_void_matches(state: SeasonState, max_autopilot: float) -> List[Tuple[str, str]]:
+def describe_void_matches(state: LadderState, max_autopilot: float) -> List[Tuple[str, str]]:
     return [(m.match_id, reason) for m in state.matches if (reason := void_reason(m, max_autopilot))]

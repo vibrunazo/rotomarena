@@ -115,7 +115,7 @@ RULESET_PROFILES = {
 
 
 class RulesetConfig(BaseModel):
-    """Rules shared by every player in a season. Recorded in every match; changing them starts a new season.
+    """Rules shared by every player of a benchmark version. Recorded in every match; changing them needs a new season.
     `profile` fills in reasoning, max_output_tokens and turn_timeout unless they are set explicitly."""
 
     version: str = Field(default="s1", description="Season / ruleset identifier")
@@ -258,14 +258,27 @@ class TelemetryConfig(BaseModel):
     save_reports: bool = Field(default=True)
 
 
+class BenchmarkConfig(BaseModel):
+    """One benchmark: a game format played under one kind of rules (say, Gen 9 OU with each model's own team).
+    `versions` are the ruleset.version ids whose games count; each id names exact rules (see rulesets.py)."""
+
+    id: str
+    title: str
+    category: str = Field(description="Group of benchmarks, e.g. Pokémon; categories get their own aggregate board")
+    description: str = ""
+    versions: List[str]
+
+
 class LeaderboardConfig(BaseModel):
-    """A ranking: Bradley-Terry ratings fitted over the rated games of some seasons. Games are only ever played
-    once; leaderboards are views over them, recomputed on every export."""
+    """A ranking: Bradley-Terry ratings fitted over the rated games of some ruleset versions. Games are played once;
+    boards are views over them (Overall, a category, one benchmark), recomputed on every export."""
 
     id: str
     title: str
     description: str = ""
-    seasons: List[str] = Field(description="Ruleset versions whose rated games count")
+    kind: Literal["overall", "category", "benchmark"] = "benchmark"
+    category: Optional[str] = None
+    versions: List[str]
 
 
 class AppConfig(BaseSettings):
@@ -278,14 +291,27 @@ class AppConfig(BaseSettings):
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
     local_llm: LocalLLMConfig = Field(default_factory=LocalLLMConfig)
     telemetry: TelemetryConfig = Field(default_factory=TelemetryConfig)
-    leaderboards: List[LeaderboardConfig] = Field(
-        default_factory=list,
-        description="Rankings the site shows, the first being the main one; empty = just the current season",
+    benchmarks: List[BenchmarkConfig] = Field(
+        default_factory=list, description="The benchmarks the site ranks; empty = just the current ruleset version",
     )
 
     def boards(self) -> List[LeaderboardConfig]:
-        return self.leaderboards or [LeaderboardConfig(id=self.ruleset.version, title=f"Season {self.ruleset.version}",
-                                                       seasons=[self.ruleset.version])]
+        """Overall (every benchmark) first, then one board per category if there is more than one, then one per
+        benchmark."""
+        benchmarks = self.benchmarks or [BenchmarkConfig(id=self.ruleset.version, title=self.ruleset.version,
+                                                         category="Pokémon", versions=[self.ruleset.version])]
+        boards = [LeaderboardConfig(id="overall", title="Overall", kind="overall",
+                                    description="Every rated game in every benchmark: how good each model is overall.",
+                                    versions=[v for b in benchmarks for v in b.versions])]
+        categories = list(dict.fromkeys(b.category for b in benchmarks))
+        if len(categories) > 1:
+            boards += [LeaderboardConfig(id=c.lower().replace(" ", "-"), title=c, kind="category", category=c,
+                                         description=f"Every {c} benchmark together.",
+                                         versions=[v for b in benchmarks if b.category == c for v in b.versions])
+                       for c in categories]
+        boards += [LeaderboardConfig(id=b.id, title=b.title, kind="benchmark", category=b.category,
+                                     description=b.description, versions=b.versions) for b in benchmarks]
+        return boards
 
     model_config = SettingsConfigDict(
         env_file=".env",

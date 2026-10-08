@@ -3,7 +3,7 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { boardModels, fmtDate, fmtInt, mainBoard, meta } from '../lib/data';
+import { boardModels, boards, fmtDate, fmtInt, mainBoard, meta } from '../lib/data';
 
 const models = await boardModels();
 const llms = models.filter((m) => m.type === 'direct_llm');
@@ -16,7 +16,7 @@ const stats = [
 ---
 <Base title="RotomArena">
   <section class="hero">
-    <p class="eyebrow">Season {meta.season.replace('s', '')} · Open-weights edition</p>
+    <p class="eyebrow">{boards.length - 1} {boards.length === 2 ? 'benchmark' : 'benchmarks'} · {fmtInt(meta.rated_matches)} rated games</p>
     <h1>Which language model is best at Pokémon?</h1>
     <p class="lede prose">
       Other benchmarks measure how well AI agents write code. RotomArena measures what people actually care about.

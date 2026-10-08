@@ -88,18 +88,18 @@ uv run rotomarena battle --p1 bonsai_2_27b --p2 pokechamp --games 4
 ```
 
 Sides alternate every game and the two teams swap every two games, so 4 games cover every combination.
-`config.yaml` holds the season's ruleset, the ladder settings and the model registry (`agents:`); API keys
+`config.yaml` holds the ruleset version being played, the benchmarks the site ranks, the ladder settings and the model registry (`agents:`); API keys
 stay in `.env`. Local models run on the Smooth Generator's llama.cpp servers, one port per model: before each
 series RotomArena starts the servers it needs (`gen llm serve`) and stops the others.
 
-### 5. The Ladder (season ratings)
+### 5. The Ladder (ratings per benchmark)
 
 Ratings are Bradley-Terry fits on the Elo scale, anchored to Ternary-Bonsai-2-27B at 1500, with 95% parametric
 bootstrap intervals. Matches where either side fell back to the default move on more than half its turns are
 void.
 
 ```bash
-# Current season's ratings, plus any void matches and why
+# Ratings of the version being played, plus any void matches and why
 uv run rotomarena ladder status
 
 # Placement for a registry entry: 4 games each against the anchors and a sparring partner,
@@ -109,7 +109,7 @@ uv run rotomarena ladder place bonsai_2_27b
 # Top-up games between neighbours whose intervals still overlap (free models only by default)
 uv run rotomarena ladder fill --budget 8
 
-# JSON for the website (current season + the retracted v0 archive)
+# JSON for the website (every benchmark + the retracted v0 archive)
 uv run rotomarena export-site --out site/src/data
 ```
 

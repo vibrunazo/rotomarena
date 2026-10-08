@@ -41,9 +41,9 @@ Choosing an anchor only decides where the numbers sit, not the gaps between them
 Bonsai is not expected to be the best model here, and its rating says nothing about that: being the reference and
 being good are different jobs. It is a 27-billion-parameter model compressed to fit on a laptop.
 
-## A comparison built into the season
+## A comparison built into the lineup
 
-Qwen3.8 27B, the model Bonsai was made from, is also in the season 1 lineup, in a conventional 4-bit
+Qwen3.8 27B, the model Bonsai was made from, is also in the lineup, in a conventional 4-bit
 quantization. Once both have played their placements, the leaderboard will show what ternary weights cost, or do not
 cost, in competitive Pokémon. Prism ML did not ask us to test this, and we did not ask them first.
 

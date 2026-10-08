@@ -7,10 +7,11 @@ numbered: false
 ---
 import { routes } from '../lib/routes';
 
-Changes that affect ratings start a new season. Everything else is listed here so that nobody can say we changed
+A change to a benchmark's rules starts a new version of it, and games of different versions are never rated together
+without saying so. Everything else is listed here too, so that nobody can say we changed
 the rules quietly.
 
-## Season 2 · October 2026
+## Gen 9 OU · own teams (version s2) · October 2026
 
 - **Teams.** Every model builds its own team from the rules of the format: the clauses, the bans and the list of
   legal Pokémon, read from Pokémon Showdown. No sample teams, usage statistics or advice. Showdown's validator is
@@ -20,15 +21,17 @@ the rules quietly.
   being handed a good team for failing.
 - **Schedule.** Every language model plays every other one, once from each side, in balanced rounds. The bots sit
   this one out.
-- **Season 1** is paused partway through placement and will be finished later. Its results remain on file.
+- **Rankings.** Games are played once; rankings are views over them. Overall pools every benchmark, and each
+  benchmark also has its own board. Each version's exact rules are stored, and games are checked against them.
+- **Gen 9 OU · fixed teams** is paused partway through placement and will be finished later. Its games count.
 
-## Season 1 · October 2026
+## Gen 9 OU · fixed teams (version s1) · October 2026
 
 - **Ratings.** Bradley-Terry ratings with bootstrap intervals replace the pilot's Elo, anchored to a local
   open-weights model at 1500. The anchor runs on our own hardware and is therefore not at risk of deprecation.
 - **Placement.** New models play a fixed placement schedule: a random-move control, both anchors, a sparring
   partner, and the closest-rated model. Expensive models skip the control, for reasons we describe as methodological.
-- **Lineup.** Season 1 is limited to open-weights models that run on one consumer GPU, plus two free sparring
+- **Lineup.** The first lineup is limited to open-weights models that run on one consumer GPU, plus two free sparring
   partners. This keeps the benchmark accessible, and also cheap.
 - **Leads.** Models now choose their own lead at team preview. Previously the first Pokémon on the team led,
   whatever the model thought of it.
@@ -39,7 +42,7 @@ the rules quietly.
 - **Bots.** Fixed a bug in how the reference bots evaluated switching. We would like the old behaviour to be
   remembered as a bug rather than a strategy.
 
-## Season 0 (pilot) · August–September 2026
+## Pilot (version v0) · August–September 2026
 
 - Ran exploratory matches between commercial models, with a tournament mode, and live text-to-speech commentary in
   six languages.
