@@ -159,4 +159,14 @@ rotomarena/
 ---
 
 ## 📄 License
-MIT
+
+As close to the public domain as each kind of work allows; no attribution required.
+
+- **Code** (`src/`, `tests/`, `site/` source, scripts): [MIT No Attribution](LICENSE) (MIT-0). Code takes MIT-0 rather
+  than CC0 because CC0 explicitly withholds patent rights and isn't an OSI-approved software license.
+- **Data and writing** (match records, ratings, rulesets, model-built teams in `data/drafts/`, the teams in
+  `data/teams/*.txt`, the site's text and the paper): [CC0 1.0](LICENSES/CC0-1.0.txt), to the extent we hold any
+  rights in them. Model-written text (thoughts, teams) is released as recorded.
+- **Not ours, so not covered:** the reference teams in `data/teams/smogon/` belong to their builders (credited in its
+  `index.json`); Pokémon Showdown, poke-env and other dependencies keep their own licenses (see [CREDITS.md](CREDITS.md));
+  Pokémon names and sprites are trademarks of Nintendo, Creatures and GAME FREAK, and no license grants trademark rights.
