@@ -71,6 +71,17 @@ _ACTION_LINE = re.compile(
 )
 _TERA_TAG = re.compile(r"\[\s*TERA\s*\]", re.IGNORECASE)
 
+def recover_answer(text: str, reasoning: str, marker: str) -> Tuple[str, str]:
+    """(answer, reasoning). If the answer's marker tag is missing from the answer but present in the reasoning, the
+    server didn't recognise the model's end-of-thinking tag (K2-Horizon's "</ifm|think>") and filed the answer under
+    reasoning: the answer is whatever follows the last closing think tag."""
+    if marker.lower() in (text or "").lower() or marker.lower() not in (reasoning or "").lower():
+        return text, reasoning
+    ends = list(re.finditer(r"</[^>\s]*think[^>]*>", reasoning, re.IGNORECASE))
+    cut = max(ends[-1].end() if ends else reasoning.lower().rfind("<thought>"), 0)
+    return reasoning[cut:], reasoning[:cut]
+
+
 class _LocalGate:
     """Local llama.cpp servers share one GPU, CPU and memory bus. Two different models generating at once ran Qwen at
     0.5 tok/s instead of 11.5, so one model generates at a time. Requests to the same model go together: its server
@@ -316,14 +327,8 @@ class LLMClient:
         completion = await self.generate_completion(
             messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning
         )
-        raw_text, metrics = completion.text, completion.metrics
-        hidden = completion.reasoning
-        if "<decision>" not in raw_text.lower() and "<decision>" in hidden.lower():
-            # The server didn't recognise the model's end-of-thinking tag (K2-Horizon's "</ifm|think>"), so the
-            # answer was filed under reasoning: the answer is whatever follows the last closing think tag.
-            ends = list(re.finditer(r"</[^>\s]*think[^>]*>", hidden, re.IGNORECASE))
-            cut = ends[-1].end() if ends else hidden.lower().rfind("<thought>")
-            raw_text, hidden = hidden[max(cut, 0):], hidden[:max(cut, 0)]
+        metrics = completion.metrics
+        raw_text, hidden = recover_answer(completion.text, completion.reasoning, "<decision>")
         decision = parse_decision(raw_text)
         if decision.parse_error and metrics.finish_reason == "length":
             decision.parse_error = f"answer cut off at the {max_tokens}-token budget ({decision.parse_error})"

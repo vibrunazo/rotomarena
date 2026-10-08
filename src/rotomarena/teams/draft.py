@@ -24,9 +24,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from rotomarena.agents.factory import llm_client_for
 from rotomarena.config import AgentConfig, AppConfig
+from rotomarena.llm.client import recover_answer
 
 FORMAT = "gen9ou"
-PROMPT_VERSION = "draft-2"
+PROMPT_VERSION = "draft-3"  # draft-2: retries carried every failed answer and overflowed local context
 ATTEMPTS = 5  # per stage
 DRAFTS_DIR = Path("data/drafts")
 _RULES_SCRIPT = Path(__file__).with_name("format_rules.js")
@@ -121,13 +122,13 @@ def repair_team(app_cfg: AppConfig, team_text: str, seed: str, fmt: str = FORMAT
     return _node(app_cfg, _REPAIR_SCRIPT, fmt, seed, stdin=team_text or "")
 
 
-def system_prompt(rules: Dict[str, Any]) -> str:
+def system_prompt(rules: Dict[str, Any], with_species: bool = True) -> str:
     clause_lines = "\n".join(f"- {c.split(': ', 1)[0]}: {c.split(': ', 1)[1].replace('&eacute;', 'é')}" for c in rules["clauses"])
     banned = rules["banned"]
     return DRAFT_SYSTEM_PROMPT.format(
         format=rules["format"], clauses=clause_lines, abilities=", ".join(banned["abilities"]) or "none",
         moves=", ".join(banned["moves"]) or "none", items=", ".join(banned["items"]) or "none",
-        species=", ".join(rules["species"]),
+        species=", ".join(rules["species"]) if with_species else "(you have already picked yours)",
     )
 
 
@@ -179,19 +180,19 @@ def team_species(team_text: str) -> List[str]:
         return []
 
 
-def _attempt_record(attempt: int, completion, extra: Dict[str, Any]) -> Dict[str, Any]:
-    return {"attempt": attempt, "answer": completion.text, "reasoning": completion.reasoning,
-            "thought": _tag(completion.text, "thought"), **extra, "tokens": completion.metrics.total_tokens,
-            "latency_ms": round(completion.metrics.latency_ms), "cost_usd": completion.metrics.cost_usd,
-            "finish_reason": completion.metrics.finish_reason}
+def _attempt_record(attempt: int, completion, text: str, reasoning: str, extra: Dict[str, Any]) -> Dict[str, Any]:
+    return {"attempt": attempt, "answer": text, "reasoning": reasoning, "thought": _tag(text, "thought"), **extra,
+            "tokens": completion.metrics.total_tokens, "latency_ms": round(completion.metrics.latency_ms),
+            "cost_usd": completion.metrics.cost_usd, "finish_reason": completion.metrics.finish_reason}
 
 
 async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATTEMPTS,
                      log=print) -> Dict[str, Any]:
-    """Asks one model for its six picks, then for their sets, feeding back the problems at each stage."""
+    """Asks one model for its six picks, then for their sets, feeding back the problems at each stage. Each request
+    carries the stage's prompt and only the latest rejected answer, so retries fit a local model's context window
+    (8,192 tokens per game); stage 2 leaves out the legal list, which only stage 1 needs."""
     rules = format_rules(app_cfg)
     client = llm_client_for(agent, app_cfg)
-    messages = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": PICK_PROMPT}]
     record: Dict[str, Any] = {
         "config_id": agent.name, "model": client.default_model, "provider": client.provider_name,
         "model_key": agent.canonical_model_key(), "quantization": agent.quantization,
@@ -201,46 +202,60 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         "attempts": [], "legal": False, "team": None, "thought": None, "repaired": False, "repairs": [],
     }
 
-    async def ask(stage: List[Dict[str, Any]], attempt: int):
+    async def ask(messages: List[Dict[str, str]], stage: List[Dict[str, Any]], attempt: int, marker: str):
+        """(completion, answer, reasoning), or None when the provider fails (the stage ends; the record says why)."""
         try:
-            return await client.generate_completion(
+            completion = await client.generate_completion(
                 messages, max_tokens=app_cfg.ruleset.max_output_tokens, reasoning=app_cfg.ruleset.reasoning)
-        except Exception as e:  # a provider failure ends the stage; the record says why
+        except Exception as e:
             stage.append({"attempt": attempt, "error": str(e)[:500], "problems": []})
             log(f"  attempt {attempt}: provider error: {str(e)[:120]}")
             return None
+        return (completion, *recover_answer(completion.text, completion.reasoning, marker))
+
+    def retry(answer: str, template: str, problems: List[str]) -> List[Dict[str, str]]:
+        return [{"role": "assistant", "content": answer},
+                {"role": "user", "content": template.format(problems="\n".join(f"- {p}" for p in problems))}]
 
     # Stage 1: six Pokémon from the legal list
+    base = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": PICK_PROMPT}]
     picks: List[str] = []
+    plan: Optional[str] = None
+    last: List[Dict[str, str]] = []
     for attempt in range(1, attempts + 1):
-        completion = await ask(record["picks"]["attempts"], attempt)
-        if completion is None:
+        reply = await ask(base + last, record["picks"]["attempts"], attempt, "<pokemon>")
+        if reply is None:
             break
-        picks, problems = check_picks(_tag(completion.text, "pokemon"), rules, completion.metrics.finish_reason == "length")
-        record["picks"]["attempts"].append(_attempt_record(attempt, completion, {"pokemon": picks, "problems": problems}))
+        completion, answer, reasoning = reply
+        picks, problems = check_picks(_tag(answer, "pokemon"), rules, completion.metrics.finish_reason == "length")
+        record["picks"]["attempts"].append(_attempt_record(attempt, completion, answer, reasoning,
+                                                           {"pokemon": picks, "problems": problems}))
         log(f"  picks {attempt}: " + (", ".join(picks) if not problems else f"{len(problems)} problem(s): {problems[0][:100]}"))
-        messages.append({"role": "assistant", "content": completion.text})
+        plan = _tag(answer, "thought") or plan
         if not problems:
             record["picks"]["legal"] = True
             break
-        messages.append({"role": "user", "content": RETRY_PICK.format(problems="\n".join(f"- {p}" for p in problems))})
+        last = retry(answer, RETRY_PICK, problems)
     if not record["picks"]["legal"]:  # keep the legal picks, fill the rest with middling Pokémon
         stub = "\n\n".join(f"{p}\n- Protect" for p in picks) + "\n"
         filled = repair_team(app_cfg, stub, seed=agent.name)
         picks = team_species(filled["team"])
         record["picks"]["repairs"] = [c for c in filled["changes"] if "replaced by" in c or "filled with" in c]
-        if messages[-1]["role"] == "user":
-            messages.pop()  # the last retry request: stage 2 starts from the repaired picks instead
         log(f"  picks repaired: {', '.join(picks)}")
     record["picks"]["species"] = picks
 
-    # Stage 2: the sets, with each pick's legal abilities and moves
-    messages.append({"role": "user", "content": BUILD_PROMPT.format(options=options_text(species_options(app_cfg, picks)))})
+    # Stage 2: the sets, given each pick's legal abilities and moves, in a fresh conversation without the legal list
+    intro = f"Step 1 is done. Your six Pokémon: {', '.join(picks)}." + (f" Your plan: {plan}" if plan else "")
+    base = [{"role": "system", "content": system_prompt(rules, with_species=False)},
+            {"role": "user", "content": intro + "\n\n" + BUILD_PROMPT.format(
+                options=options_text(species_options(app_cfg, picks)))}]
+    last = []
     for attempt in range(1, attempts + 1):
-        completion = await ask(record["attempts"], attempt)
-        if completion is None:
+        reply = await ask(base + last, record["attempts"], attempt, "<team>")
+        if reply is None:
             break
-        team = _tag(completion.text, "team")
+        completion, answer, reasoning = reply
+        team = _tag(answer, "team")
         if team is None:
             problems = ["No <team>...</team> block found" + (" (the answer was cut off at the token budget)."
                                                              if completion.metrics.finish_reason == "length" else ".")]
@@ -248,13 +263,12 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
             strays = [s for s in team_species(team) if _id(s) not in {_id(p) for p in picks}]
             problems = ([f"{', '.join(strays)} {'is' if len(strays) == 1 else 'are'} not among the six Pokémon you "
                          f"picked ({', '.join(picks)})."] if strays else []) + validate_team(app_cfg, team + "\n")
-        record["attempts"].append(_attempt_record(attempt, completion, {"team": team, "problems": problems}))
+        record["attempts"].append(_attempt_record(attempt, completion, answer, reasoning, {"team": team, "problems": problems}))
         log(f"  sets {attempt}: " + ("legal team" if not problems else f"{len(problems)} problem(s): {problems[0][:100]}"))
         if not problems:
-            record.update(team=team, thought=_tag(completion.text, "thought"))
+            record.update(team=team, thought=_tag(answer, "thought"))
             break
-        messages += [{"role": "assistant", "content": completion.text},
-                     {"role": "user", "content": RETRY_BUILD.format(problems="\n".join(f"- {p}" for p in problems))}]
+        last = retry(answer, RETRY_BUILD, problems)
     if record["team"] is None:
         last = next((a.get("team") for a in reversed(record["attempts"]) if a.get("team")), "")
         fixed = repair_team(app_cfg, (last or "\n\n".join(f"{p}\n- Protect" for p in picks)) + "\n", seed=agent.name)

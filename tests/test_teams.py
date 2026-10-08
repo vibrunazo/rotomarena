@@ -162,3 +162,14 @@ def test_draft_picks_six_then_builds_their_sets(monkeypatch):
     assert "Roaring Moon is not a legal" in seen[1]  # the problems go back to the model
     assert "Kingambit (Normal)" in seen[2]  # stage 2 lists each pick's options
     assert "Garchomp is not among the six" in seen[3]
+
+
+def test_answers_filed_under_reasoning_are_recovered_and_stage_two_drops_the_list():
+    from rotomarena.llm.client import recover_answer
+    from rotomarena.teams.draft import system_prompt
+
+    text, reasoning = recover_answer("", "Let me think.</ifm|think><pokemon>Kingambit</pokemon>", "<pokemon>")
+    assert text == "<pokemon>Kingambit</pokemon>" and reasoning == "Let me think.</ifm|think>"
+    assert recover_answer("<team>x</team>", "<team>y</team>", "<team>") == ("<team>x</team>", "<team>y</team>")
+    assert "Ogerpon-Wellspring" in system_prompt(RULES)
+    assert "Ogerpon-Wellspring" not in system_prompt(RULES, with_species=False)  # stage 2 keeps the context small
