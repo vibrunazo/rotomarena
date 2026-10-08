@@ -49,3 +49,9 @@ def test_turn_options_are_the_legal_actions_an_llm_sees():
     battle = SimpleNamespace(available_moves=[move], available_switches=[mon], can_tera=True)
     assert list(turn_options(battle)) == ["MOVE: earthquake", "MOVE: earthquake [TERA]", "SWITCH: corviknight"]
     assert turn_options(battle)["MOVE: earthquake [TERA]"] == (move, True)
+
+
+def test_a_question_with_one_option_is_not_sent():
+    client, sent = _client(lambda q: sorted(q["criteria"])[0])
+    answers, usage = asyncio.run(client.choose("state", {"ability": Question("Which?", {"Good as Gold": ""})}))
+    assert answers["ability"].choice == "Good as Gold" and sent == [] and usage.requests == 0

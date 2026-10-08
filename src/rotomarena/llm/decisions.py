@@ -124,8 +124,13 @@ class DecisionClient:
 
     async def choose(self, state: Any, questions: Dict[str, Question]) -> Tuple[Dict[str, Choice], Usage]:
         """Answers every question (independent of each other) in one request, or two when a question has more
-        than MAX_OPTIONS options: its chunks are asked side by side, then a final among the chunks' picks."""
-        plans = {name: _Plan(q, _chunks(q.options)) for name, q in questions.items()}
+        than MAX_OPTIONS options: its chunks are asked side by side, then a final among the chunks' picks.
+        A question with one option has nothing to decide (and OpenAI's endpoint refuses it): it is answered here."""
+        out: Dict[str, Choice] = {name: Choice(next(iter(q.options)), {next(iter(q.options)): 1.0}, 1.0)
+                                  for name, q in questions.items() if len(q.options) == 1}
+        plans = {name: _Plan(q, _chunks(q.options)) for name, q in questions.items() if name not in out}
+        if not plans:
+            return out, Usage()
         first: Dict[str, Dict[str, Any]] = {}
         for name, plan in plans.items():
             for i, chunk in enumerate(plan.chunks):
@@ -133,7 +138,6 @@ class DecisionClient:
                 first[key] = _choice_question(plan.question.instructions, chunk)
         answers, usage = await self._post(state, first)
 
-        out: Dict[str, Choice] = {}
         finals: Dict[str, Dict[str, Any]] = {}
         for name, plan in plans.items():
             if len(plan.chunks) == 1:

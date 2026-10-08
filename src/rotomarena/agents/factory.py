@@ -223,7 +223,8 @@ def create_agent_instance(
     resolved_model = (llm_client.default_model if llm_client
                       else decision_client.model if decision_client else None)
 
-    display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
+    # The Showdown username is cut to 18 characters; the name recorded for the site isn't.
+    display_name = agent_cfg.display_name or format_bot_display_name(agent_cfg, resolved_model=resolved_model)
     tag = " ".join(t for t in (player_tag, str(lane) if lane > 1 else None) if t)
     username = format_bot_display_name(agent_cfg, resolved_model=resolved_model, tag=tag or None)
     identity = PlayerIdentity(
