@@ -7,10 +7,10 @@ from rotomarena.telemetry.replay_saver import save_battle_replay_html
 from rotomarena.telemetry.reporter import generate_match_markdown_report
 
 PLAYERS = [
-    MatchPlayer(role="p2", config_id="nemotron_free", display_name="Nemotron 3 550B",
+    MatchPlayer(role="p2", config_id="nemotron_free", display_name="Nemotron 3 550B", username="Nemotron 3 550B",
                 agent_type="direct_llm", provider="openrouter", model="nvidia/nemotron-3-ultra-550b-a55b:free",
                 team="Gen9Ou Rain"),
-    MatchPlayer(role="p1", config_id="pokechamp", display_name="PokeChamp", agent_type="pokechamp",
+    MatchPlayer(role="p1", config_id="pokechamp", display_name="PokeChamp", username="PokeChamp", agent_type="pokechamp",
                 team="Gen9Ou Balance"),
 ]
 

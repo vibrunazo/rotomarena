@@ -35,6 +35,9 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
    - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429
      that outlasts ~6.5 minutes of backoff) or on two void games in a row in one set; the same command resumes.
+   - The ladder plays up to `ladder.parallel_games` (4) games of a set at once, each by its own pair of players;
+     lanes after the first get a number in their Showdown name only (`username`), display names stay clean.
+     Two different local models never generate at once; one model's requests are batched by its server.
 
 2. **Providers:**
    - `openrouter` is the default; its default model is the free Nemotron above.

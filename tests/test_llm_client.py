@@ -1,5 +1,7 @@
 """Tests for LLM Client parsing, provider settings, and prompt formatting."""
 
+import asyncio
+
 import openai
 import pytest
 from types import SimpleNamespace
@@ -212,3 +214,29 @@ def test_reasoning_settings_per_provider_style():
 def test_unknown_provider_is_rejected():
     with pytest.raises(ValueError, match="Unknown LLM provider"):
         LLMClient.from_provider_name("openruoter")
+
+
+@pytest.mark.asyncio
+async def test_local_gate_batches_one_model_and_takes_turns_between_models():
+    from rotomarena.llm.client import _local_gate
+
+    gate, events = _local_gate(), []
+
+    async def request(port: int, name: str, hold: float):
+        async with gate.use(port):
+            events.append(("start", name))
+            await asyncio.sleep(hold)
+            events.append(("end", name))
+
+    first = asyncio.create_task(request(8081, "qwen-1", 0.05))
+    await asyncio.sleep(0)
+    others = [asyncio.create_task(request(8081, "qwen-2", 0.05)),  # joins the batch already running
+              asyncio.create_task(request(8080, "bonsai-1", 0.01)),  # waits for qwen's batch
+              asyncio.create_task(request(8081, "qwen-3", 0.01))]  # arrived after bonsai: waits its turn
+    await asyncio.gather(first, *others)
+
+    starts = [name for kind, name in events if kind == "start"]
+    assert starts == ["qwen-1", "qwen-2", "bonsai-1", "qwen-3"]
+    assert events.index(("start", "qwen-2")) < events.index(("end", "qwen-1"))  # overlapped
+    assert events.index(("start", "bonsai-1")) > events.index(("end", "qwen-2"))  # never two models at once
+    assert events.index(("start", "qwen-3")) > events.index(("end", "bonsai-1"))

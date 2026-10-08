@@ -5,9 +5,10 @@ from __future__ import annotations
 import asyncio
 import re
 import time
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from urllib.parse import urlparse
-from typing import Any, Dict, List, Optional
+from typing import Any, AsyncIterator, Dict, List, Optional, Tuple
 import openai
 from openai import AsyncOpenAI
 
@@ -68,16 +69,59 @@ _ACTION_LINE = re.compile(
 )
 _TERA_TAG = re.compile(r"\[\s*TERA\s*\]", re.IGNORECASE)
 
-# Local llama.cpp servers share one GPU, CPU and memory bus. Two models generating at once (both players
-# answer the same turn) ran Qwen at 0.5 tok/s instead of 11.5, so local requests take turns.
-_local_inference: Optional[asyncio.Lock] = None
+class _LocalGate:
+    """Local llama.cpp servers share one GPU, CPU and memory bus. Two different models generating at once ran Qwen at
+    0.5 tok/s instead of 11.5, so one model generates at a time. Requests to the same model go together: its server
+    batches them, which is where games played in parallel gain (2.4x for GPT-OSS at four at once).
+    Requests are served in arrival order, so a model can't keep the GPU while another one waits."""
+
+    def __init__(self) -> None:
+        self._cond = asyncio.Condition()
+        self._queue: List[Tuple[object, int]] = []
+        self._port: Optional[int] = None
+        self._active = 0
+
+    def _may_enter(self, entry: Tuple[object, int]) -> bool:
+        port = entry[1]
+        if self._port not in (None, port):
+            return False
+        for queued in self._queue:  # only the run of same-model requests at the front of the queue
+            if queued is entry:
+                return True
+            if queued[1] != port:
+                return False
+        return False
+
+    @asynccontextmanager
+    async def use(self, port: int) -> AsyncIterator[None]:
+        entry = (object(), port)
+        async with self._cond:
+            self._queue.append(entry)
+            await self._cond.wait_for(lambda: self._may_enter(entry))
+            self._queue.remove(entry)
+            self._port, self._active = port, self._active + 1
+            self._cond.notify_all()  # same-model requests behind this one may go too
+        try:
+            yield
+        finally:
+            async with self._cond:
+                self._active -= 1
+                if not self._active:
+                    self._port = None
+                self._cond.notify_all()
 
 
-def _local_lock() -> asyncio.Lock:
-    global _local_inference
-    if _local_inference is None:
-        _local_inference = asyncio.Lock()
-    return _local_inference
+# asyncio primitives bind to the event loop they first wait in, and `ladder place-all` runs one loop per model.
+_gate: Optional[_LocalGate] = None
+_gate_loop: Optional[asyncio.AbstractEventLoop] = None
+
+
+def _local_gate() -> _LocalGate:
+    global _gate, _gate_loop
+    loop = asyncio.get_running_loop()
+    if _gate is None or _gate_loop is not loop:
+        _gate, _gate_loop = _LocalGate(), loop
+    return _gate
 
 
 def parse_decision(raw_text: str) -> ActionDecision:
@@ -195,7 +239,7 @@ class LLMClient:
             status, message = 0, ""
             try:
                 if self.config.api_style == "llama.cpp":
-                    async with _local_lock():
+                    async with _local_gate().use(self._port):
                         await local_servers.ensure_loaded(self._port)  # swap mode: load this model first
                         start_time = time.perf_counter()  # latency excludes the wait and the load
                         response = await self._client.chat.completions.create(**create_kwargs)

@@ -106,8 +106,10 @@ class MatchRunner:
         challenger_role = battle.player_role or "p1"
         opponent_role = "p2" if challenger_role == "p1" else "p1"
         players = [
-            MatchPlayer(**challenger.identity.model_dump(), role=challenger_role, team=team_names[0]),
-            MatchPlayer(**opponent.identity.model_dump(), role=opponent_role, team=team_names[1]),
+            MatchPlayer(**challenger.identity.model_dump(), username=challenger.agent_name, role=challenger_role,
+                        team=team_names[0]),
+            MatchPlayer(**opponent.identity.model_dump(), username=opponent.agent_name, role=opponent_role,
+                        team=team_names[1]),
         ]
         names = {challenger_role: challenger.agent_name, opponent_role: opponent.agent_name}
 
@@ -178,6 +180,18 @@ class MatchRunner:
             report_md_path=report_md_path,
         )
 
+    async def run_game(
+        self, player_a: BaseBenchmarkPlayer, player_b: BaseBenchmarkPlayer, team_1: Team, team_2: Team, game: int
+    ) -> MatchResult:
+        """Game `game` (0-based) of a set: who challenges and who gets which team follow series_schedule."""
+        swap_teams, b_challenges = series_schedule(game + 1)[game]
+        team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
+        player_a.update_team(team_a.to_showdown_packed())
+        player_b.update_team(team_b.to_showdown_packed())
+        if b_challenges:
+            return await self.run_single_battle(player_b, player_a, (team_b.name, team_a.name), game + 1)
+        return await self.run_single_battle(player_a, player_b, (team_a.name, team_b.name), game + 1)
+
     async def run_series(
         self,
         player_a: BaseBenchmarkPlayer,
@@ -191,19 +205,12 @@ class MatchRunner:
         """Runs a series that alternates sides every game and swaps teams every two games.
         `first_game` resumes the schedule after games already played."""
         series = SeriesResult(a_name=player_a.agent_name, b_name=player_b.agent_name, total_games=n_games)
-        schedule = series_schedule(first_game + n_games)[first_game:]
 
         try:
-            for g, (swap_teams, b_challenges) in enumerate(schedule, first_game + 1):
+            for g in range(first_game, first_game + n_games):
                 if before_game:
                     before_game()  # e.g. restart a local model server that crashed in the last game
-                team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
-                player_a.update_team(team_a.to_showdown_packed())
-                player_b.update_team(team_b.to_showdown_packed())
-                if b_challenges:
-                    match_res = await self.run_single_battle(player_b, player_a, (team_b.name, team_a.name), g)
-                else:
-                    match_res = await self.run_single_battle(player_a, player_b, (team_a.name, team_b.name), g)
+                match_res = await self.run_game(player_a, player_b, team_1, team_2, g)
                 series.matches.append(match_res)
 
                 if match_res.winner == player_a.agent_name:

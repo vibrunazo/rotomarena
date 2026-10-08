@@ -197,9 +197,12 @@ def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
     player_tag: Optional[str] = None,
+    lane: int = 1,
     start_listening: bool = True,
 ) -> BaseBenchmarkPlayer:
     """Builds a benchmark player from its configuration. Teams are assigned per game by the runner.
+    Showdown names must be unique, so a mirror match tags both sides and lanes after the first (games of a set
+    played at once) add their number; the display name stays the model's own.
     `start_listening=False` skips connecting to Showdown (for tests)."""
     llm_client = None
     resolved_model = None
@@ -216,7 +219,9 @@ def create_agent_instance(
         )
         resolved_model = llm_client.default_model
 
-    display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model, tag=player_tag)
+    display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
+    tag = " ".join(t for t in (player_tag, str(lane) if lane > 1 else None) if t)
+    username = format_bot_display_name(agent_cfg, resolved_model=resolved_model, tag=tag or None)
     identity = PlayerIdentity(
         config_id=agent_cfg.name,
         display_name=display_name,
@@ -226,7 +231,7 @@ def create_agent_instance(
         quantization=agent_cfg.quantization,
     )
     common = dict(
-        player_name=display_name,
+        player_name=username,
         identity=identity,
         turn_timeout=app_config.ruleset.turn_timeout,
         start_listening=start_listening,
@@ -267,13 +272,14 @@ def resolved_model(agent_cfg: AgentConfig, app_config: AppConfig) -> Optional[st
 
 
 def create_players(
-    cfg_a: AgentConfig, cfg_b: AgentConfig, app_config: AppConfig
+    cfg_a: AgentConfig, cfg_b: AgentConfig, app_config: AppConfig, lane: int = 1
 ) -> Tuple[BaseBenchmarkPlayer, BaseBenchmarkPlayer]:
-    """Both players of a series. Identical Showdown names would collide, so they get numeric tags."""
+    """Both players of a series (or of one lane of a parallel set). Identical Showdown names would collide, so a
+    mirror match gets numeric tags."""
     name_a = format_bot_display_name(cfg_a, resolved_model=resolved_model(cfg_a, app_config))
     name_b = format_bot_display_name(cfg_b, resolved_model=resolved_model(cfg_b, app_config))
     same = name_a.lower() == name_b.lower()
     return (
-        create_agent_instance(cfg_a, app_config, player_tag="1" if same else None),
-        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None),
+        create_agent_instance(cfg_a, app_config, player_tag="1" if same else None, lane=lane),
+        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None, lane=lane),
     )

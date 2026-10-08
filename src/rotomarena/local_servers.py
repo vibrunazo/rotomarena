@@ -76,11 +76,32 @@ def swapping() -> bool:
     return bool(_swap)
 
 
+_load_lock: Optional[asyncio.Lock] = None
+_load_lock_loop: Optional[asyncio.AbstractEventLoop] = None
+
+
+def _loading() -> asyncio.Lock:
+    """One load at a time, per event loop (`ladder place-all` runs one loop per model)."""
+    global _load_lock, _load_lock_loop
+    loop = asyncio.get_running_loop()
+    if _load_lock is None or _load_lock_loop is not loop:
+        _load_lock, _load_lock_loop = asyncio.Lock(), loop
+    return _load_lock
+
+
 async def ensure_loaded(port: int) -> None:
-    """In swap mode, makes the server on `port` the one that is loaded. Call it while holding the local
-    inference lock; the subprocess runs in a thread so the event loop (and the Showdown connection) keeps going."""
-    global _loaded
+    """In swap mode, makes the server on `port` the one that is loaded. Call it inside the local gate (only one
+    model's requests run at a time); parallel requests for that model wait for a single load. The subprocess runs
+    in a thread so the event loop (and the Showdown connections) keep going."""
     if port not in _swap or _loaded == port:
+        return
+    async with _loading():
+        await _load(port)
+
+
+async def _load(port: int) -> None:
+    global _loaded
+    if _loaded == port:
         return
     if _loaded is not None:
         await asyncio.to_thread(_gen, _swap_cfg, "stop", "--port", str(_loaded))
@@ -101,7 +122,7 @@ def forget(port: int) -> None:
 def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
     """`gen llm serve` arguments for an arena server under the season's ruleset."""
     args = ["serve", "--model", model, "--port", str(port),
-            "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.local_llm.slots)]
+            "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.ladder.parallel_games)]
     if app_cfg.ruleset.reasoning == "off":
         return args + ["--reasoning", "off"]
     # Thinking on (each request asks for it); at half the output cap llama.cpp tells the model to stop

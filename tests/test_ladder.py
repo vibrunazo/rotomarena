@@ -16,8 +16,10 @@ from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBr
 
 def make_match(match_id, p1, p2, winner, p1_sources=("model",) * 4, p2_sources=("model",) * 4, season="s1"):
     players = [
-        MatchPlayer(role="p1", config_id=p1, display_name=p1.title(), agent_type="direct_llm", team="Balance"),
-        MatchPlayer(role="p2", config_id=p2, display_name=p2.title(), agent_type="direct_llm", team="Rain"),
+        MatchPlayer(role="p1", config_id=p1, display_name=p1.title(), username=p1.title(), agent_type="direct_llm",
+                    team="Balance"),
+        MatchPlayer(role="p2", config_id=p2, display_name=p2.title(), username=p2.title(), agent_type="direct_llm",
+                    team="Rain"),
     ]
     crumbs = [
         TurnBreadcrumb(turn=i + 1, agent_name=pl.display_name, agent_type="direct_llm", decision_source=src,
@@ -175,7 +177,7 @@ def test_a_pair_that_fits_stays_loaded_smallest_first(monkeypatch):
     assert calls[0] == ("stop", "--port", "8083")
     assert [c[2] for c in serves] == ["minicpm5-2b", "bonsai"]
     first = list(serves[0])
-    assert first[first.index("--ctx") + 1] == "8192" and first[first.index("--slots") + 1] == "1"
+    assert first[first.index("--ctx") + 1] == "8192" and first[first.index("--slots") + 1] == "4"  # one per parallel game
     assert first[first.index("--reasoning-budget") + 1] == "2048"  # half the ladder's 4096-token cap
     assert not local_servers.swapping()
 
@@ -189,7 +191,11 @@ def test_a_pair_too_big_for_the_gpu_swaps_per_request(monkeypatch):
     assert [c for c in calls if c[0] == "serve"] == []  # nothing loaded until someone asks
 
     calls.clear()
-    asyncio.run(local_servers.ensure_loaded(8081))
+
+    async def two_lanes_ask_at_once():
+        await asyncio.gather(local_servers.ensure_loaded(8081), local_servers.ensure_loaded(8081))
+
+    asyncio.run(two_lanes_ask_at_once())  # one load, not two
     asyncio.run(local_servers.ensure_loaded(8081))  # already loaded: no-op
     asyncio.run(local_servers.ensure_loaded(8080))
     assert [c[:3] for c in calls] == [("serve", "--model", "qwen3.8-27b"), ("stop", "--port", "8081"),
@@ -247,3 +253,12 @@ def test_run_halts_on_a_provider_limit_or_two_void_games_in_a_row():
         check_halt("alpha vs beta", [healthy], [fine, void, void], 0.5)
     with pytest.raises(RunHalted, match="alpha vs beta: provider limit reached: HTTP 402"):
         check_halt("alpha vs beta", [SimpleNamespace(provider_limit="HTTP 402"), healthy], [], 0.5)
+
+
+def test_parallel_rounds_keep_the_set_schedule():
+    from rotomarena.ladder import rounds
+
+    assert rounds(0, 4, 4) == [[0, 1, 2, 3]]
+    assert rounds(1, 3, 4) == [[1, 2, 3]]  # resuming after one game
+    assert rounds(0, 4, 3) == [[0, 1, 2], [3]]
+    assert rounds(0, 3, 1) == [[0], [1], [2]]  # parallel_games: 1 plays one game at a time

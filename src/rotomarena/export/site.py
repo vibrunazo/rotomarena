@@ -51,7 +51,7 @@ def _thought(crumb: TurnBreadcrumb) -> str:
 
 
 def _turn_entries(match: MatchTelemetry) -> List[Dict[str, Any]]:
-    roles = {p.display_name: p.role for p in match.players}
+    roles = {p.username: p.role for p in match.players}
     entries = []
     for crumb in match.breadcrumbs:
         metrics = crumb.llm_metrics or {}
@@ -106,7 +106,7 @@ def model_key(player: MatchPlayer, app_cfg: AppConfig) -> Optional[str]:
 
 
 def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> Dict[str, Any]:
-    winner_role = next((p.role for p in match.players if p.display_name == match.winner), None)
+    winner_role = next((p.role for p in match.players if p.username == match.winner), None)
     max_autopilot = app_cfg.ladder.max_autopilot
     return {
         "id": match.match_id,
@@ -212,7 +212,7 @@ def findings(models: List[Dict[str, Any]], all_matches: List[MatchTelemetry]) ->
     zero_token_wins = [
         {"config_id": p.config_id, "match_id": m.match_id, "season": m.ruleset.get("version")}
         for m in all_matches for p in m.players
-        if p.display_name == m.winner and p.agent_type == "direct_llm" and autopilot_rate(m, p.role) == 1.0
+        if p.username == m.winner and p.agent_type == "direct_llm" and autopilot_rate(m, p.role) == 1.0
     ]
     out.append({"id": "zero-token-wins", "show": bool(zero_token_wins), "wins": zero_token_wins})
 

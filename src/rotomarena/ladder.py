@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -124,28 +125,48 @@ def check_halt(label: str, players: List, new_matches: List[MatchTelemetry], max
         raise RunHalted(f"{label}: two void games in a row ({reasons[-1]})")
 
 
+def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
+    """The games of a set (0-based, as in series_schedule) grouped into rounds played at once."""
+    games = list(range(first_game, first_game + n_games))
+    return [games[i:i + parallel] for i in range(0, len(games), parallel)]
+
+
 async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None) -> int:
-    """Plays the rest of a set between two registry entries; returns how many games were played."""
+    """Plays the rest of a set between two registry entries; returns how many games were played.
+    Up to ladder.parallel_games games run at once, each by its own pair of players (a lane). Between rounds the
+    run checks for halts and restarts crashed local servers, as it did between games when they ran one by one."""
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
     if remaining <= 0:
         return 0
-    player_a, player_b = create_players(app_cfg.agents[id_a], app_cfg.agents[id_b], app_cfg)
+    agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
+    lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
+             for k in range(min(app_cfg.ladder.parallel_games, remaining))]
+    players = [p for lane in lanes for p in lane]
     team_1, team_2 = (load_preset_team(t) for t in app_cfg.ruleset.teams)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
     played_before = len(_pair_matches(app_cfg, id_a, id_b))
 
     def halt_check() -> None:
         new = _pair_matches(app_cfg, id_a, id_b)[played_before:]
-        check_halt(f"{id_a} vs {id_b}", [player_a, player_b], new, app_cfg.ladder.max_autopilot)
+        check_halt(f"{id_a} vs {id_b}", players, new, app_cfg.ladder.max_autopilot)
 
-    def before_game() -> None:
+    try:
+        for round_games in rounds(already_played, remaining, len(lanes)):
+            halt_check()
+            local_servers.prepare([agent_a, agent_b], app_cfg)
+            try:
+                async with asyncio.TaskGroup() as group:  # one failed game cancels the round; the set resumes later
+                    for (player_a, player_b), game in zip(lanes, round_games):
+                        group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game))
+            except ExceptionGroup as failed:
+                raise failed.exceptions[0] from failed  # the run log shows the actual error
         halt_check()
-        local_servers.prepare([app_cfg.agents[id_a], app_cfg.agents[id_b]], app_cfg)
-
-    await runner.run_series(
-        player_a, player_b, team_1, team_2, n_games=remaining, first_game=already_played, before_game=before_game,
-    )
-    halt_check()
+    finally:
+        for player in players:
+            try:
+                await player.ps_client.stop_listening()
+            except Exception:
+                pass
     return remaining
 
 

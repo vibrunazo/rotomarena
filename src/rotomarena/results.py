@@ -32,7 +32,7 @@ def load_matches(runs_dir: str | Path, season: Optional[str] = None) -> List[Mat
 
 def player_turns(match: MatchTelemetry, role: str) -> List[TurnBreadcrumb]:
     player = match.player(role)
-    return [b for b in match.breadcrumbs if player and b.agent_name == player.display_name]
+    return [b for b in match.breadcrumbs if player and b.agent_name == player.username]
 
 
 def autopilot_rate(match: MatchTelemetry, role: str) -> float:
@@ -61,9 +61,9 @@ def void_reason(match: MatchTelemetry, max_autopilot: float) -> Optional[str]:
 
 def outcome(match: MatchTelemetry) -> Outcome:
     p1, p2 = match.player("p1"), match.player("p2")
-    if match.winner == p1.display_name:
+    if match.winner == p1.username:
         score = 1.0
-    elif match.winner == p2.display_name:
+    elif match.winner == p2.username:
         score = 0.0
     else:
         score = 0.5

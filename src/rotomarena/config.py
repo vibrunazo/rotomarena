@@ -149,6 +149,11 @@ class LadderConfig(BaseModel):
 
     anchor: str = Field(default="bonsai_2_27b", description="Config id whose rating is fixed")
     anchor_rating: float = Field(default=1500.0)
+    parallel_games: int = Field(
+        default=4, ge=1,
+        description="Games of a set played at once, each by its own pair of players. Local servers get this many "
+        "slots and batch the requests (GPT-OSS 2.4x, Qwen 1.6x, Bonsai 1x at four); remote and bot games just overlap",
+    )
     games_per_set: int = Field(default=4, description="Games per opponent: 2 teams x 2 sides")
     provisional_games: int = Field(default=16, description="Valid games before a rating stops being provisional")
     max_autopilot: float = Field(
@@ -225,8 +230,8 @@ class LocalLLMConfig(BaseModel):
     manage: bool = Field(
         default=True, description="Before each game, start the local servers it needs and stop the others"
     )
-    ctx: int = Field(default=8192, description="Context per slot for arena servers (a turn needs about 3k tokens)")
-    slots: int = Field(default=1, description="Parallel slots per arena server (each player sends one request at a time)")
+    ctx: int = Field(default=8192, description="Context per slot for arena servers (a turn needs about 3k tokens); "
+                     "servers get one slot per parallel game (ladder.parallel_games)")
     vram_budget_gb: float = Field(
         default=12.5,
         description="Two local models stay loaded together when their files add up to at most this; otherwise "

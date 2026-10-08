@@ -25,6 +25,9 @@ class PlayerIdentity(BaseModel):
 class MatchPlayer(PlayerIdentity):
     """A player's identity plus its side and team in one match."""
 
+    # The Showdown name it played under; breadcrumbs and the winner refer to it. It differs from display_name when
+    # several games of a set run at once (lane 2 is "Qwen3.8 27B 2") or in a mirror match.
+    username: str
     role: str  # "p1" or "p2", as assigned by Showdown
     team: str = ""
 

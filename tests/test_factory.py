@@ -38,6 +38,13 @@ def test_create_agent_instances():
     assert agent_mirror_2.agent_name == "Gemini 3.7 Flash 2"
     assert len(agent_mirror_1.agent_name) <= 18
     assert len(agent_mirror_2.agent_name) <= 18
+    assert agent_mirror_1.identity.display_name == "Gemini 3.7 Flash"  # tags are for Showdown only
+
+    # Lanes of a parallel set: lane 1 keeps the plain name, the others add their number within 18 characters
+    long_name = AgentConfig(name="nemotron", type="direct_llm", display_name="Nemotron 3 Ultra")
+    lane_3 = create_agent_instance(long_name, app_cfg, lane=3, start_listening=False)
+    assert lane_3.agent_name == "Nemotron 3 Ultra 3" and lane_3.identity.display_name == "Nemotron 3 Ultra"
+    assert create_agent_instance(long_name, app_cfg, start_listening=False).agent_name == "Nemotron 3 Ultra"
 
     # Heuristic
     cfg_heur = AgentConfig(name="heur_test", type="heuristic")

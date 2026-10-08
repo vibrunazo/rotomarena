@@ -26,6 +26,7 @@ ladder:
   anchor: "bonsai_2_27b"    # fixed at anchor_rating; every placement plays it
   anchor_rating: 1500
   games_per_set: 4          # 2 teams x 2 sides
+  parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
   provisional_games: 16     # a full placement
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
   bootstrap_samples: 1000
