@@ -24,6 +24,7 @@ class ShowdownServerManager:
         self.config = config or ServerConfig()
         self.server_dir = Path(self.config.server_dir).resolve()
         self.pid_file = self.server_dir.parent / "showdown.pid"
+        self.run_file = self.server_dir.parent / "showdown.run"  # the PID of the run playing on the server
         self.log_file = self.server_dir.parent / "showdown_server.log"
         self._process: Optional[subprocess.Popen] = None
         self._ensure_node_on_path()
@@ -328,7 +329,14 @@ class ShowdownServerManager:
     async def ensure_running(self) -> AsyncIterator[ShowdownServerManager]:
         """Runs a fresh Showdown server for the duration of a run. A server that is already running may hold
         battles abandoned by an earlier, interrupted run (timers are off, so they never end), and bots logging
-        in with the same names would rejoin those instead of playing their own game."""
+        in with the same names would rejoin those instead of playing their own game.
+        A server another live run is playing on is left alone: restarting it would void that run's games."""
+        owner = self._live_run()
+        if owner and owner != os.getpid():
+            raise RuntimeError(
+                f"Another RotomArena run (PID {owner}) is playing on the Showdown server; restarting it would void "
+                f"that run's games. Wait for it to finish, or stop it first."
+            )
         if self.is_running():
             self.stop()
             await asyncio.sleep(1.0)
@@ -341,7 +349,28 @@ class ShowdownServerManager:
             raise RuntimeError(f"Could not start Showdown server: {msg}")
         if not await self.wait_until_ready(max_wait=30.0):
             raise RuntimeError(f"Showdown server failed health check at {self.config.websocket_url}")
+        self.run_file.write_text(str(os.getpid()), encoding="utf-8")
         try:
             yield self
         finally:
             self.stop()
+            self.run_file.unlink(missing_ok=True)
+
+    def _live_run(self) -> Optional[int]:
+        """The PID of the run playing on the server, if that process is still alive."""
+        try:
+            pid = int(self.run_file.read_text(encoding="utf-8").strip())
+        except (OSError, ValueError):
+            return None
+        return pid if _alive(pid) else None
+
+
+def _alive(pid: int) -> bool:
+    if sys.platform == "win32":
+        out = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True, text=True, check=False)
+        return str(pid) in out.stdout
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False

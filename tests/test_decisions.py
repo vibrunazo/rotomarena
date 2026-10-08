@@ -55,3 +55,4 @@ def test_a_question_with_one_option_is_not_sent():
     client, sent = _client(lambda q: sorted(q["criteria"])[0])
     answers, usage = asyncio.run(client.choose("state", {"ability": Question("Which?", {"Good as Gold": ""})}))
     assert answers["ability"].choice == "Good as Gold" and sent == [] and usage.requests == 0
+
