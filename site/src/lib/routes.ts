@@ -1,0 +1,16 @@
+// Every internal link goes through here. Moving the Pokémon pages under a game prefix later (a multi-game site)
+// means changing these paths, moving the page files, and adding redirects in netlify.toml.
+export const routes = {
+  home: '/',
+  leaderboard: '/leaderboard/',
+  matches: '/matches/',
+  retracted: '/retracted/',
+  paper: '/paper/',
+  citation: '/paper/#citation',
+  faq: '/faq/',
+  submit: '/submit/',
+  changelog: '/changelog/',
+  model: (configId: string) => `/models/${configId}/`,
+  match: (slug: string) => `/matches/${slug}/`,
+  retractedMatch: (slug: string) => `/retracted/${slug}/`,
+};
