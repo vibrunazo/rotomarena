@@ -284,6 +284,9 @@ def test_round_robin_pairs_every_model_once_in_balanced_rounds():
     for r in range(9):  # each round of 5 games has every model exactly once
         assert sorted(x for p in pairs[r * 5:(r + 1) * 5] for x in p) == sorted(ids)
     assert len(round_robin_pairs(["a", "b", "c"])) == 3  # odd counts sit one out per round
+    from rotomarena.ladder import anchor_first
+    first = anchor_first(pairs, "m3")
+    assert all("m3" in p for p in first[:9]) and sorted(map(frozenset, first)) == sorted(map(frozenset, pairs))
 
 
 def test_own_teams_keep_each_players_team_and_alternate_sides():

@@ -156,12 +156,18 @@ def round_robin_pairs(ids: List[str]) -> List[Tuple[str, str]]:
     return pairs
 
 
+def anchor_first(pairs: List[Tuple[str, str]], anchor: str) -> List[Tuple[str, str]]:
+    """The anchor's pairs first: a model only gets a rating once its games connect it to the anchor, so this rates
+    every model after the anchor's games instead of after several rounds."""
+    return [p for p in pairs if anchor in p] + [p for p in pairs if anchor not in p]
+
+
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
     """Every language model plays every other one, pair by pair in balanced rounds, so coverage grows evenly.
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
     for two local models costs about one game's time instead of two. Resumable."""
     ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm"]
-    pairs = round_robin_pairs(ids)
+    pairs = anchor_first(round_robin_pairs(ids), app_cfg.ladder.anchor)
     for i, (a, b) in enumerate(pairs, 1):
         done = season_state(app_cfg).games(a, b)
         if done >= games_per_pair:
