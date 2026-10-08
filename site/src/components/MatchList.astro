@@ -30,7 +30,10 @@ const href = retracted ? routes.retractedMatch : routes.match;
             <td class="num">{fmtDate(m.date)}</td>
             <td>{p1?.display_name}</td>
             <td>{p2?.display_name}</td>
-            <td>{w ? w.display_name : <span class="muted">draw</span>}</td>
+            <td>
+              {w ? w.display_name : <span class="muted">draw</span>}
+              {!retracted && m.void_reason && <span class="pill bad" title={m.void_reason}>void</span>}
+            </td>
             <td class="r num">{m.turns}</td>
             <td class="r num">{fmtDuration(m.duration_seconds)}</td>
             {showReason && <td class="small muted reason">{m.void_reason ?? 'pilot ruleset'}</td>}
@@ -44,4 +47,5 @@ const href = retracted ? routes.retractedMatch : routes.match;
 
 <style>
   .reason { white-space: normal; min-width: 16rem; }
+  td .pill { margin-left: 0.4rem; }
 </style>
