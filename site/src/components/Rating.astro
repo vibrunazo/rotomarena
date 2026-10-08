@@ -1,0 +1,22 @@
+---
+// A rating with its 95% bootstrap interval as margins, the way papers report an estimate: 1891 with +243 above
+// −301. Bootstrap intervals are rarely symmetric, so both margins are shown. The anchor's rating is fixed.
+import type { Model } from '../lib/data';
+
+interface Props { model: Pick<Model, 'rating' | 'ci_low' | 'ci_high'> }
+const { rating, ci_low, ci_high } = Astro.props.model;
+const r = rating === null ? null : Math.round(rating);
+const fixed = r !== null && ci_low === ci_high;
+const up = r !== null && ci_high !== null ? Math.round(ci_high) - r : 0;
+const down = r !== null && ci_low !== null ? r - Math.round(ci_low) : 0;
+---
+{r === null
+  ? <span class="rating">—</span>
+  : (
+    <span class="rating" title={fixed ? 'Fixed by definition' : `95% interval ${Math.round(ci_low!)}–${Math.round(ci_high!)}`}>
+      <strong>{r}</strong>
+      {fixed
+        ? <span class="fixed">fixed</span>
+        : <span class="margins" aria-label={`plus ${up}, minus ${down}`}><span>+{up}</span><span>−{down}</span></span>}
+    </span>
+  )}

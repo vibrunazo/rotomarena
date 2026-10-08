@@ -28,19 +28,29 @@ const nav = [
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#04060e" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Rajdhani:wght@500;600;700&display=swap"
     />
   </head>
   <body>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="wordmark" href={routes.home}>Rotom<span>Arena</span></a>
+        <a class="brand" href={routes.home}>
+          <span class="brand-emblem" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M13.5 2 5 13.5h5.5L9 22l9-12h-5.6z" fill="currentColor" /></svg>
+          </span>
+          <span>
+            <span class="brand-title">RotomArena</span>
+            <span class="brand-subtitle">LLM benchmark &bull; season {meta.season.replace('s', '')}</span>
+          </span>
+        </a>
         <nav aria-label="Main">
           {nav.map(([href, label]) => (
             <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>
@@ -75,17 +85,42 @@ const nav = [
 </html>
 
 <style>
-  .site-header { border-bottom: 1px solid var(--rule); background: var(--surface); position: sticky; top: 0; z-index: 10; }
-  .bar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 0.9rem; }
-  .wordmark { font: 600 1.2rem var(--serif); color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
-  .wordmark span { color: var(--accent); }
-  nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.2rem; font: 500 0.9rem var(--sans); }
-  nav a { color: var(--muted); text-decoration: none; }
-  nav a:hover, nav a[aria-current='page'] { color: var(--ink); }
-  nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 6px; }
+  /* the generator's top bar: dark glass with a glowing cyan-to-violet rule along the bottom edge */
+  .site-header {
+    position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(10, 14, 32, 0.95), rgba(6, 9, 22, 0.85));
+  }
+  .site-header::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; opacity: 0.7;
+    background: linear-gradient(90deg, transparent, var(--cyan) 25%, var(--violet) 75%, transparent);
+    box-shadow: 0 0 12px rgba(62, 230, 255, 0.6);
+  }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1.5rem; padding-block: 0.8rem; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand:hover { text-shadow: none; }
+  .brand-emblem {
+    display: grid; place-items: center; width: 38px; height: 38px; flex: none; color: #fff;
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    background: var(--grad-primary); filter: drop-shadow(0 0 10px rgba(62, 230, 255, 0.6));
+  }
+  .brand-title {
+    display: block; font: 700 1.35rem/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 10px rgba(62, 230, 255, 0.35));
+  }
+  .brand-subtitle { display: block; margin-top: 3px; font-size: 0.72rem; color: var(--text-faint); white-space: nowrap; }
+  /* the generator's tab strip: uppercase display labels, a glowing gradient indicator under the active one */
+  nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.4rem; font: 600 0.95rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; }
+  nav a { position: relative; padding-block: 0.3rem; color: var(--text-dim); text-decoration: none; }
+  nav a:hover { color: var(--text); text-shadow: none; }
+  nav a[aria-current='page'] { color: #fff; text-shadow: var(--glow-text); }
+  nav a[aria-current='page']::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 3px; border-radius: 3px 3px 0 0;
+    background: var(--grad-primary); box-shadow: 0 0 12px rgba(62, 230, 255, 0.8), 0 0 24px rgba(155, 107, 255, 0.5);
+  }
   main { padding-block: 2.5rem 3rem; min-height: 60vh; }
-  .site-footer { border-top: 1px solid var(--rule); padding-block: 1.5rem; }
+  .site-footer { border-top: 1px solid var(--line); padding-block: 1.5rem; background: rgba(4, 6, 14, 0.6); }
   .site-footer p { max-width: 80ch; }
-  .footer-links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-family: var(--sans); }
-  .footer-links a { color: var(--muted); }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; font-family: var(--font-body); }
+  .footer-links a { color: var(--text-dim); }
 </style>

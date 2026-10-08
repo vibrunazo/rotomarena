@@ -58,11 +58,11 @@ const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
 </Base>
 
 <style>
-  .retraction { margin: 1rem 0; padding: 0.8rem 1rem; border: 1px solid var(--bad); border-radius: 8px; color: var(--ink);
-    background: color-mix(in srgb, var(--bad) 8%, var(--surface)); font: 0.95rem/1.5 var(--sans); max-width: var(--measure); }
+  .retraction { margin: 1rem 0; padding: 0.8rem 1rem; border: 1px solid var(--red); border-radius: 8px; color: var(--text);
+    background: color-mix(in srgb, var(--red) 8%, var(--panel-solid)); font: 0.95rem/1.5 var(--font-body); max-width: var(--measure); }
   .players { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.8rem; margin: 1.4rem 0 0.6rem; }
-  .player { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.8rem 1rem; font-family: var(--sans); }
-  .player.won { border-color: var(--good); }
-  .pname { font: 600 1.15rem var(--serif); margin: 0.2rem 0; }
-  .summary { font-family: var(--sans); }
+  .player { background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.8rem 1rem; font-family: var(--font-body); }
+  .player.won { border-color: var(--green); }
+  .pname { font: 600 1.15rem var(--font-display); margin: 0.2rem 0; }
+  .summary { font-family: var(--font-body); }
 </style>

@@ -12,7 +12,7 @@ const link = (id: unknown) => (models.has(String(id)) ? `<a href="${routes.model
 const text: Record<string, (f: any) => string> = {
   'top-model': (f) =>
     `${link(f.config_id)} currently leads the season with a rating of ${fmtRating(f.rating)} ` +
-    `(95% interval ${fmtRating(f.ci[0])}–${fmtRating(f.ci[1])}).` +
+    `(95% CI ${fmtRating(f.ci[0])}–${fmtRating(f.ci[1])}).` +
     (f.overlaps_bottom
       ? ` This interval overlaps that of ${link(f.bottom)}, which chooses its moves uniformly at random. We consider the result preliminary.`
       : ''),
@@ -39,5 +39,5 @@ const shown = Object.values(findings).filter((f) => f.show && text[f.id]).slice(
 <style>
   .findings { padding-left: 1.3rem; max-width: var(--measure); }
   .findings li { margin: 0.55rem 0; padding-left: 0.3rem; }
-  .findings li::marker { font: 600 0.85rem var(--sans); color: var(--muted); }
+  .findings li::marker { font: 600 0.85rem var(--font-body); color: var(--text-dim); }
 </style>

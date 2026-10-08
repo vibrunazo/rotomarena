@@ -1,94 +1,188 @@
-/* RotomArena: an academic paper crossed with a lab leaderboard. One accent (electric blue), cool paper ground. */
+/* RotomArena wears the Smooth Generator's "hi-fi game HUD" look: deep navy, cyan-to-violet gradients, glass
+   panels with gradient edges, a faint HUD grid. Tokens and names follow the generator's frontend/src/styles.scss;
+   components use these tokens instead of their own hex values. Dark only, like the generator. */
 :root {
-  --bg: #f6f7f9;
-  --surface: #ffffff;
-  --ink: #14171d;
-  --muted: #5b6372;
-  --faint: #8a92a1;
-  --rule: #dde1e7;
-  --accent: #1d4ed8;
-  --accent-soft: #e6edfd;
-  --good: #15803d;
-  --warn: #b45309;
-  --bad: #b91c1c;
-  --code-bg: #eef0f4;
+  /* surfaces, back to front */
+  --bg-0: #04060e;
+  --bg-1: #080c1a;
+  --panel-solid: #0d1328;
+  --panel-raised: #131b38;
+  --inset: rgba(3, 5, 14, 0.6);
 
-  --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
-  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  /* lines */
+  --line: rgba(120, 150, 255, 0.13);
+  --line-strong: rgba(120, 150, 255, 0.26);
 
-  --measure: 68ch;
-  --page: 72rem;
-  color-scheme: light;
-}
+  /* text */
+  --text: #e7ecff;
+  --text-dim: #9aa5c9;
+  --text-faint: #5d6890;
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #101318; --surface: #171b22; --ink: #e5e8ee; --muted: #9aa3b2; --faint: #6f7888; --rule: #2a313c;
-    --accent: #7aa2ff; --accent-soft: #1b2540; --good: #4ade80; --warn: #fbbf24; --bad: #f87171; --code-bg: #1d222b;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #101318; --surface: #171b22; --ink: #e5e8ee; --muted: #9aa3b2; --faint: #6f7888; --rule: #2a313c;
-  --accent: #7aa2ff; --accent-soft: #1b2540; --good: #4ade80; --warn: #fbbf24; --bad: #f87171; --code-bg: #1d222b;
+  /* accents */
+  --cyan: #3ee6ff;
+  --cyan-soft: rgba(62, 230, 255, 0.08);
+  --blue: #4f7dff;
+  --violet: #9b6bff;
+  --magenta: #ff4fd8;
+  --green: #3dffa8;
+  --amber: #ffb547;
+  --red: #ff5470;
+
+  /* gradients */
+  --grad-primary: linear-gradient(135deg, #22d3ee 0%, #4f7dff 50%, #9b6bff 100%);
+  --grad-primary-hot: linear-gradient(135deg, #67e8f9 0%, #6d93ff 50%, #b48cff 100%);
+  --grad-panel: linear-gradient(180deg, rgba(22, 30, 62, 0.82) 0%, rgba(9, 13, 30, 0.9) 100%);
+  --grad-edge: linear-gradient(135deg, rgba(62, 230, 255, 0.5), rgba(79, 125, 255, 0.12) 35%,
+      rgba(255, 255, 255, 0.04) 65%, rgba(155, 107, 255, 0.45));
+  --grad-text: linear-gradient(90deg, #ffffff 0%, #a5f3fc 45%, #c4b5fd 100%);
+  /* a glass panel: use with `border: 1px solid transparent` so the edge gradient shows in the border */
+  --hud-panel: var(--grad-panel) padding-box, var(--grad-edge) border-box;
+
+  /* depth */
+  --shadow-panel: 0 18px 40px -12px rgba(0, 0, 0, 0.75), 0 2px 6px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --glow-cyan: 0 0 0 1px rgba(62, 230, 255, 0.45), 0 0 18px rgba(62, 230, 255, 0.35);
+  --glow-text: 0 0 12px rgba(62, 230, 255, 0.55);
+
+  /* shape and type */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --font-body: 'Inter', system-ui, 'Segoe UI', sans-serif;
+  --font-display: 'Rajdhani', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --measure: 70ch;
+  --page: 74rem;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-/* Showdown's replay.css loads after this sheet and styles `body.dark`; these selectors outrank it. */
+/* `html body` outranks Showdown's replay.css (loaded later), which styles body and body.dark */
 html body, html body.dark {
   margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 17px/1.6 var(--serif);
+  color: var(--text);
+  font: 16px/1.6 var(--font-body);
+  background:
+    radial-gradient(1100px 620px at 8% -12%, rgba(124, 58, 237, 0.24), transparent 62%),
+    radial-gradient(900px 620px at 108% 6%, rgba(34, 211, 238, 0.15), transparent 60%),
+    radial-gradient(900px 520px at 50% 118%, rgba(236, 72, 153, 0.1), transparent 60%),
+    var(--bg-0);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
+/* faint HUD grid that fades out towards the bottom */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(120, 150, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 150, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 20%, transparent 80%);
+}
+::selection { background: rgba(62, 230, 255, 0.3); }
+
 img, svg { max-width: 100%; }
-a, html .dark a { color: var(--accent); text-underline-offset: 2px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a, html .dark a { color: var(--cyan); text-underline-offset: 3px; text-decoration-color: rgba(62, 230, 255, 0.4); }
+a:hover { text-decoration-color: var(--cyan); text-shadow: var(--glow-text); }
+a:focus-visible, button:focus-visible, th:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 
 .wrap { max-width: var(--page); margin: 0 auto; padding-inline: 20px; }
 .prose { max-width: var(--measure); }
 
-h1, h2, h3 { font-family: var(--serif); line-height: 1.15; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 600; letter-spacing: -0.01em; }
-h2 { font-size: 1.55rem; font-weight: 600; margin-top: 2.4rem; margin-bottom: 0.6rem; }
-h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.6rem; margin-bottom: 0.4rem; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: 0.02em; }
+h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px rgba(62, 230, 255, 0.25));
+}
+h2 { font-size: 1.7rem; font-weight: 700; margin-top: 2.6rem; margin-bottom: 0.7rem; }
+h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.6rem; margin-bottom: 0.4rem; }
 p { margin: 0.7rem 0; }
 
+/* small uppercase label (the generator's .hud-label without the rule) */
 .eyebrow {
-  font: 500 0.72rem/1.2 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  font: 600 0.8rem/1.2 var(--font-display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan);
 }
-.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.muted { color: var(--muted); }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--text-dim); }
 .small { font-size: 0.86rem; }
-code { font: 0.86em var(--mono); background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+code { font: 0.86em var(--font-mono); background: var(--inset); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; }
+
+/* glass panel with a gradient edge, as in the generator */
+.hud-panel {
+  border: 1px solid transparent; border-radius: var(--radius-lg); background: var(--hud-panel);
+  box-shadow: var(--shadow-panel); backdrop-filter: blur(14px);
+}
 
 /* Footnotes: the main text stays straight; the footnote does the twist. */
-.fn-ref { font: 600 0.7em var(--sans); vertical-align: super; line-height: 0; margin-left: 1px; }
+.fn-ref { font: 600 0.7em var(--font-body); vertical-align: super; line-height: 0; margin-left: 1px; }
 .fn-ref a { text-decoration: none; }
-.footnotes { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1rem; font-size: 0.86rem; color: var(--muted); }
+.footnotes { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; font-size: 0.86rem; color: var(--text-dim); }
 .footnotes ol { padding-left: 1.2rem; }
 
 /* Tables */
-.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; font: 0.92rem/1.4 var(--sans); }
-th, td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; white-space: nowrap; }
-th { font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.table-scroll {
+  overflow-x: auto; border: 1px solid transparent; border-radius: var(--radius); background: var(--hud-panel);
+  box-shadow: var(--shadow-panel);
+}
+table { border-collapse: collapse; width: 100%; font: 0.92rem/1.4 var(--font-body); }
+th, td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; white-space: nowrap; }
+th {
+  font: 600 0.78rem/1.2 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim);
+  background: rgba(8, 12, 26, 0.5);
+}
+tbody tr { transition: background 0.2s var(--ease); }
+tbody tr:hover { background: rgba(62, 230, 255, 0.04); }
 tr:last-child td { border-bottom: 0; }
 td.r, th.r { text-align: right; }
 
+/* mono tag, as the generator's .hud-tag */
 .pill {
-  display: inline-block; font: 600 0.68rem/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 0.28rem 0.45rem; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted);
+  display: inline-flex; align-items: center; padding: 2px 7px; border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm); background: var(--inset); color: var(--text-dim);
+  font: 500 0.68rem/1.3 var(--font-mono); white-space: nowrap; vertical-align: middle;
 }
-.pill.accent { color: var(--accent); border-color: var(--accent); }
-.pill.warn { color: var(--warn); border-color: var(--warn); }
-.pill.bad { color: var(--bad); border-color: var(--bad); }
+.pill.accent { color: var(--cyan); border-color: rgba(62, 230, 255, 0.35); background: rgba(62, 230, 255, 0.07); }
+.pill.violet { color: #c4b0ff; border-color: rgba(155, 107, 255, 0.45); background: rgba(155, 107, 255, 0.1); }
+.pill.warn { color: var(--amber); border-color: rgba(255, 181, 71, 0.4); background: rgba(255, 181, 71, 0.08); }
+.pill.bad { color: #ff8da1; border-color: rgba(255, 84, 112, 0.45); background: rgba(255, 84, 112, 0.1); }
+
+/* buttons: the generator's call to action and compact secondary button */
+.hud-cta, .hud-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+  font-family: var(--font-display); text-transform: uppercase; cursor: pointer;
+  transition: transform 0.15s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s, filter 0.2s;
+}
+.hud-cta {
+  height: 44px; padding: 0 26px; border: 0; border-radius: var(--radius); background: var(--grad-primary);
+  color: #fff; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 26px -8px rgba(79, 125, 255, 0.9), 0 0 24px rgba(62, 230, 255, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+}
+.hud-cta:hover { transform: translateY(-1px); filter: brightness(1.1); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+.hud-btn {
+  height: 44px; padding: 0 20px; border: 1px solid var(--line-strong); border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(30, 40, 80, 0.8), rgba(14, 20, 44, 0.8)); color: var(--text);
+  font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em;
+}
+.hud-btn:hover { border-color: rgba(62, 230, 255, 0.6); box-shadow: 0 0 14px rgba(62, 230, 255, 0.25); text-shadow: none; }
+.hud-btn.small { height: 30px; padding: 0 12px; font-size: 0.8rem; border-radius: var(--radius-sm); }
+
+/* A rating with its 95% interval as paper-style margins: 1891 with +243 over -301. */
+.rating { display: inline-flex; align-items: center; gap: 0.2em; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.rating .margins { display: inline-flex; flex-direction: column; font-size: 0.72em; line-height: 1.05; color: var(--text-dim); text-align: left; }
+.rating strong { font-size: 1.05em; color: var(--text); }
+.rating .fixed { font-size: 0.7em; color: var(--text-faint); font-family: var(--font-body); }
 
 figure { margin: 1.6rem 0; }
-figcaption { font: 0.86rem/1.5 var(--sans); color: var(--muted); margin-top: 0.5rem; max-width: var(--measure); }
-figcaption strong { color: var(--ink); }
+figcaption { font: 0.86rem/1.5 var(--font-body); color: var(--text-dim); margin-top: 0.6rem; max-width: var(--measure); }
+figcaption strong { color: var(--text); font-family: var(--font-display); letter-spacing: 0.04em; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

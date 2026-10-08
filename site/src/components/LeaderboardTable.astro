@@ -1,7 +1,8 @@
 ---
 // The main table. Click a column header to sort. Only rated language models get a rank; bots are scenery.
 import { routes } from '../lib/routes';
-import { fmtInterval, fmtPct, fmtRating, roleLabel, type Model } from '../lib/data';
+import Rating from './Rating.astro';
+import { fmtPct, roleLabel, type Model } from '../lib/data';
 
 interface Props { models: Model[]; compact?: boolean }
 const { models, compact = false } = Astro.props;
@@ -14,8 +15,7 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'dire
       <tr>
         <th class="r" data-sort="num">#</th>
         <th data-sort="text">Model</th>
-        <th class="r" data-sort="num">Rating</th>
-        <th class="r">95% CI{!compact && <sup class="fn-ref"><a href="#fn-ci">1</a></sup>}</th>
+        <th class="r" data-sort="num">Rating (95% CI){!compact && <sup class="fn-ref"><a href="#fn-ci">1</a></sup>}</th>
         <th class="r" data-sort="num">Games</th>
         <th class="r" data-sort="num">Win rate</th>
         {!compact && <th class="r" data-sort="num">Autopilot<sup class="fn-ref"><a href="#fn-autopilot">2</a></sup></th>}
@@ -35,8 +35,7 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'dire
             {m.provisional && <span class="pill warn" title="Fewer games than a full placement">provisional</span>}
             {m.quantization && <span class="muted small"> {m.quantization}</span>}
           </td>
-          <td class="r num" data-value={m.rating ?? -1}><strong>{fmtRating(m.rating)}</strong></td>
-          <td class="r num muted">{fmtInterval(m)}</td>
+          <td class="r" data-value={m.rating ?? -1}><Rating model={m} /></td>
           <td class="r num" data-value={m.games}>{m.games}</td>
           <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
           {!compact && <td class="r num" data-value={m.autopilot_rate}>{m.type === 'direct_llm' ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}

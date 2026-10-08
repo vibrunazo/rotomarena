@@ -48,19 +48,19 @@ const used = order.filter((s) => rows.some((r) => r.c[s] > 0));
 )}
 
 <style>
-  .bars { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.9rem 1rem; font-family: var(--sans); }
+  .bars { background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.9rem 1rem; font-family: var(--font-body); }
   .row { display: grid; grid-template-columns: minmax(5.5rem, 30%) 1fr 2.5rem; gap: 0.8rem; align-items: center; margin-bottom: 0.45rem; }
   .name { font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--code-bg); }
+  .bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--inset); }
   .n { text-align: right; }
   .seg, .swatch { display: block; height: 100%; }
-  .s-model { background: var(--accent); }
-  .s-invalid { background: var(--bad); }
-  .s-parse_error { background: var(--warn); }
-  .s-timeout { background: var(--faint); }
-  .s-api_error { background: var(--muted); }
-  .s-error { background: var(--ink); }
-  .legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; padding: 0; margin: 0.8rem 0 0; color: var(--muted); }
+  .s-model { background: var(--cyan); }
+  .s-invalid { background: var(--red); }
+  .s-parse_error { background: var(--amber); }
+  .s-timeout { background: var(--text-faint); }
+  .s-api_error { background: var(--text-dim); }
+  .s-error { background: var(--text); }
+  .legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; padding: 0; margin: 0.8rem 0 0; color: var(--text-dim); }
   .legend li { display: flex; align-items: center; gap: 0.4rem; }
   .swatch { width: 10px; height: 10px; border-radius: 2px; }
 </style>

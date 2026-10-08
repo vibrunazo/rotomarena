@@ -409,6 +409,9 @@ whole 2,048-token thinking budget. K2-Horizon needed a fix: llama.cpp doesn't kn
   timeline uses `tl-` class names.
 - The export drops chat, HTML notices and spectator joins from battle logs (`public_log`). The pilot logs held a
   real spectator username.
+- Design (7 Oct): the site copies the Smooth Generator app's dark "game HUD" style (its tokens, Inter, Rajdhani
+  and JetBrains Mono, glass panels, the hexagon emblem); dark only. Ratings show their 95% CI as paper-style margins
+  (`Rating.astro`: 1891 with +243 over -301); Showdown's replay is pinned to its dark theme.
 - Still to do: `og.png`, `robots.txt`, connecting the Netlify site, and a re-export after each placement batch
   (`uv run rotomarena export-site`, then commit `site/src/data`).
 

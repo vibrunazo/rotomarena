@@ -27,8 +27,8 @@ const stats = [
       95% bootstrap intervals, because we are a serious benchmark.<sup class="fn-ref"><a href="#fn-serious">1</a></sup>
     </p>
     <p class="cta">
-      <a class="button" href={routes.leaderboard}>View the leaderboard</a>
-      <a class="button ghost" href={routes.paper}>Read the paper</a>
+      <a class="hud-cta" href={routes.leaderboard}>View the leaderboard</a>
+      <a class="hud-btn" href={routes.paper}>Read the paper</a>
     </p>
   </section>
 
@@ -54,17 +54,12 @@ const stats = [
 
 <style>
   .hero { padding-block: 1rem 1.5rem; }
-  .hero h1 { max-width: 18ch; margin: 0.6rem 0 1rem; }
-  .lede { font-size: 1.3rem; line-height: 1.45; }
+  .hero h1 { max-width: 16ch; margin: 0.6rem 0 1rem; }
+  .lede { font-size: 1.3rem; line-height: 1.45; color: var(--text); }
   .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
-  .button {
-    display: inline-block; font: 600 0.92rem var(--sans); text-decoration: none; padding: 0.6rem 1rem;
-    border-radius: 6px; background: var(--accent); color: var(--surface); border: 1px solid var(--accent);
-  }
-  .button.ghost { background: transparent; color: var(--accent); }
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); background: var(--surface);
-    border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 1.5rem 0 0; }
-  .stats div { padding: 0.9rem 1rem; box-shadow: 1px 0 0 var(--rule), 0 1px 0 var(--rule); }
-  .stats dt { font-size: 1.5rem; font-weight: 500; }
-  .stats dd { margin: 0; font-family: var(--sans); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); background: var(--hud-panel);
+    border: 1px solid transparent; border-radius: var(--radius-lg); overflow: hidden; margin: 2rem 0 0; box-shadow: var(--shadow-panel); }
+  .stats div { padding: 1rem 1.2rem; box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line); }
+  .stats dt { font-size: 1.7rem; font-weight: 500; color: var(--cyan); text-shadow: var(--glow-text); }
+  .stats dd { margin: 0.2rem 0 0; font: 600 0.75rem/1.2 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 </style>

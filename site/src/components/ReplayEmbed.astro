@@ -55,9 +55,19 @@ const logText = log.join('\n').replaceAll('/', '\\/');
 </script>
 <script is:inline type="text/plain" class="battle-log-data" set:html={logText} />
 <script is:inline src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
+<script is:inline>
+  // The site is dark only. Showdown picks its theme from the system scheme (body.dark) and resets it when the
+  // scheme changes, so pin its dark theme after it does.
+  (function () {
+    function pin() { document.body.classList.add('dark'); }
+    pin();
+    window.addEventListener('load', pin);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { setTimeout(pin); });
+  })();
+</script>
 
 <style>
   .replay-scroll { overflow-x: auto; margin: 1rem 0; }
-  .replay-wrapper { min-width: 640px; max-width: 1180px; margin: 0 auto; font-family: var(--sans); }
+  .replay-wrapper { min-width: 640px; max-width: 1180px; margin: 0 auto; font-family: var(--font-body); }
   .noscript-note { margin-top: 0; }
 </style>

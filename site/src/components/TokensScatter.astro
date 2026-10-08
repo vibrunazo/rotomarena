@@ -46,12 +46,12 @@ const yticks = [0, 0.25, 0.5, 0.75, 1];
 )}
 
 <style>
-  .plot-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem; }
+  .plot-scroll { overflow-x: auto; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.6rem; }
   svg { display: block; max-width: none; }
-  .grid { stroke: var(--rule); }
-  .half { stroke: var(--faint); stroke-dasharray: 3 3; }
-  .tick { font: 11px var(--mono); fill: var(--muted); }
-  .axis { font: 12px var(--sans); fill: var(--muted); }
-  .label { font: 12px var(--sans); fill: var(--ink); }
-  .pt { fill: var(--accent); }
+  .grid { stroke: var(--line); }
+  .half { stroke: var(--text-faint); stroke-dasharray: 3 3; }
+  .tick { font: 11px var(--font-mono); fill: var(--text-dim); }
+  .axis { font: 12px var(--font-body); fill: var(--text-dim); }
+  .label { font: 12px var(--font-body); fill: var(--text); }
+  .pt { fill: var(--cyan); }
 </style>

@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import MatchList from '../../components/MatchList.astro';
-import { allModels, fmtInterval, fmtPct, fmtRating, matchEntries, meta, rankedModels, roleLabel, type Model } from '../../lib/data';
+import Rating from '../../components/Rating.astro';
+import { allModels, fmtPct, matchEntries, meta, rankedModels, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -21,8 +22,6 @@ const kind: Record<string, string> = {
   heuristic: 'Rule-based bot',
 };
 const facts: [string, string][] = [
-  ['Rating', fmtRating(m.rating)],
-  ['95% interval', fmtInterval(m)],
   ['Rank', llm && rank ? `${rank} of ${ranked.length}` : '—'],
   ['Record', `${m.wins}–${m.losses}${m.draws ? `–${m.draws}` : ''}`],
   ['Win rate', fmtPct(m.win_rate)],
@@ -57,6 +56,7 @@ const facts: [string, string][] = [
   )}
 
   <dl class="facts">
+    <div><dt class="small muted">Rating (95% CI)</dt><dd><Rating model={m} /></dd></div>
     {facts.map(([k, v]) => (<div><dt class="small muted">{k}</dt><dd class="num">{v}</dd></div>))}
   </dl>
 
@@ -96,18 +96,18 @@ const facts: [string, string][] = [
 </Base>
 
 <style>
-  .id-line { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: baseline; margin-top: 0.6rem; font-family: var(--sans); }
-  .note { border-left: 3px solid var(--accent); padding-left: 0.8rem; color: var(--muted); }
-  .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); background: var(--surface);
-    border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+  .id-line { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: baseline; margin-top: 0.6rem; font-family: var(--font-body); }
+  .note { border-left: 3px solid var(--cyan); padding-left: 0.8rem; color: var(--text-dim); }
+  .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); background: var(--hud-panel);
+    border: 1px solid transparent; border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0; box-shadow: var(--shadow-panel); }
   /* Cell rules as shadows: the ones on the outer edge are clipped, and empty trailing cells stay blank. */
-  .facts div { padding: 0.7rem 0.9rem; box-shadow: 1px 0 0 var(--rule), 0 1px 0 var(--rule); }
-  .facts dt { font-family: var(--sans); }
-  .facts dd { margin: 0.15rem 0 0; font-size: 1.15rem; }
+  .facts div { padding: 0.7rem 0.9rem; box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line); }
+  .facts dt { font: 600 0.75rem/1.2 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; }
+  .facts dd { margin: 0.25rem 0 0; font: 1.15rem var(--font-mono); }
   .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 0 2.5rem; }
-  .style { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; font-family: var(--sans); }
-  .style dt { color: var(--muted); }
+  .style { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; font-family: var(--font-body); }
+  .style dt { color: var(--text-dim); }
   .style dd { margin: 0; font-weight: 500; }
   .quote { margin: 0.8rem 0 1.2rem; }
-  blockquote { margin: 0; padding: 0.7rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; font-style: italic; }
+  blockquote { margin: 0; padding: 0.7rem 1rem; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; font-style: italic; }
 </style>

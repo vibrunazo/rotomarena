@@ -16,11 +16,11 @@ const { frontmatter } = Astro.props as { frontmatter: { title: string; descripti
 <style>
   .paper { max-width: 46rem; }
   .paper h1 { margin: 0.6rem 0 0.8rem; }
-  .byline { font: 0.95rem/1.5 var(--sans); color: var(--muted); }
+  .byline { font: 0.95rem/1.5 var(--font-body); color: var(--text-dim); }
   .numbered :global(h2) { counter-increment: section; }
   .numbered :global(h2.unnumbered) { counter-increment: none; }
-  .numbered :global(h2:not(.unnumbered))::before { content: counter(section) '. '; color: var(--muted); }
-  .paper :global(.abstract) { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0; }
+  .numbered :global(h2:not(.unnumbered))::before { content: counter(section) '. '; color: var(--text-dim); }
+  .paper :global(.abstract) { background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0; }
   .paper :global(.abstract p:first-child) { margin-top: 0; }
   .paper :global(.abstract p:last-child) { margin-bottom: 0; }
   .paper :global(li) { margin: 0.3rem 0; }

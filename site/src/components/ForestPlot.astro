@@ -45,13 +45,13 @@ const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
 )}
 
 <style>
-  .plot-scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 0.6rem; }
+  .plot-scroll { overflow-x: auto; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.6rem; }
   svg { display: block; max-width: none; }
-  .grid { stroke: var(--rule); stroke-width: 1; }
-  .anchor-line { stroke: var(--faint); stroke-dasharray: 3 3; }
-  .tick { font: 11px var(--mono); fill: var(--muted); }
-  .label { font: 13px var(--sans); fill: var(--ink); }
-  .ci { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; }
-  .pt { fill: var(--accent); }
-  .pt.anchor { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .grid { stroke: var(--line); stroke-width: 1; }
+  .anchor-line { stroke: var(--text-faint); stroke-dasharray: 3 3; }
+  .tick { font: 11px var(--font-mono); fill: var(--text-dim); }
+  .label { font: 13px var(--font-body); fill: var(--text); }
+  .ci { stroke: var(--cyan); stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; }
+  .pt { fill: var(--cyan); }
+  .pt.anchor { fill: var(--panel-solid); stroke: var(--text); stroke-width: 2; }
 </style>
