@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import MatchList from '../../components/MatchList.astro';
+import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import { allModels, fmtPct, matchEntries, meta, rankedModels, roleLabel, type Model } from '../../lib/data';
 
@@ -13,6 +14,8 @@ const llm = m.type === 'direct_llm';
 const ranked = (await rankedModels()).filter((x) => x.rating !== null && x.type === 'direct_llm');
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
+const about = (await getCollection('about')).find((entry) => entry.id === m.config_id); // most models have none
+const About = about ? (await render(about)).Content : null;
 const pretty = (id: string | null) => (id ? id.replace(/^./, (c) => c.toUpperCase()) : '—');
 
 const kind: Record<string, string> = {
@@ -51,14 +54,18 @@ const facts: [string, string][] = [
   {m.config_id === meta.ladder.anchor && (
     <p class="prose note">This model is the anchor. Its rating is {meta.ladder.anchor_rating} by definition and has never been in doubt.</p>
   )}
-  {m.role === 'control' && (
-    <p class="prose note">This is a control. It picks a legal action uniformly at random. Any model rated below it should be read with that in mind.</p>
-  )}
 
   <dl class="facts">
     <div><dt class="small muted">Rating (95% CI)</dt><dd><Rating model={m} /></dd></div>
     {facts.map(([k, v]) => (<div><dt class="small muted">{k}</dt><dd class="num">{v}</dd></div>))}
   </dl>
+
+  {About && (
+    <section class="about prose">
+      <h2>{about!.data.title}</h2>
+      <About />
+    </section>
+  )}
 
   <div class="cols">
     <section>
@@ -109,5 +116,10 @@ const facts: [string, string][] = [
   .style dt { color: var(--text-dim); }
   .style dd { margin: 0; font-weight: 500; }
   .quote { margin: 0.8rem 0 1.2rem; }
+  .about :global(h2) { font-size: 1.3rem; margin-top: 1.8rem; }
+  .about > h2 { font-size: 1.7rem; margin-top: 2.6rem; }
+  .about :global(ol) { padding-left: 1.3rem; }
+  .about :global(li) { margin: 0.45rem 0; }
+  .about :global(strong) { color: var(--text); }
   blockquote { margin: 0; padding: 0.7rem 1rem; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; font-style: italic; }
 </style>

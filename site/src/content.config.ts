@@ -84,4 +84,10 @@ const models = defineCollection({
 const matches = defineCollection({ loader: glob({ pattern: '*.json', base: './src/data/matches' }), schema: match });
 const retracted = defineCollection({ loader: glob({ pattern: '*.json', base: './src/data/retracted' }), schema: match });
 
-export const collections = { models, matches, retracted };
+// Hand-written explanations shown on a model's page, one Markdown file per config id (src/content/about).
+const about = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/about' }),
+  schema: z.object({ title: z.string() }),
+});
+
+export const collections = { models, matches, retracted, about };
