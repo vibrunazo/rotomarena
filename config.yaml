@@ -113,6 +113,7 @@ agents:
     port: 8080
     quantization: "PQ2_0"
     model_key: "prism-ml/ternary-bonsai-2-27b"
+    max_parallel_games: 1    # its ternary kernels batch badly: 45 tok/s alone, 13.5 each with two requests at once
   qwen3_8_27b:
     active: false            # retired from play on 8 Oct (too slow here); its games still count
     type: "direct_llm"

@@ -181,10 +181,21 @@ def round_robin_pairs(ids: List[str]) -> List[Tuple[str, str]]:
     return pairs
 
 
-def anchor_first(pairs: List[Tuple[str, str]], anchor: str) -> List[Tuple[str, str]]:
-    """The anchor's pairs first: a model only gets a rating once its games connect it to the anchor, so this rates
-    every model after the anchor's games instead of after several rounds."""
-    return [p for p in pairs if anchor in p] + [p for p in pairs if anchor not in p]
+def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[Tuple[str, str]]:
+    """The quickest pairs first, so most models are rated early: a local model's game takes tens of minutes, an API
+    model's a few. A model is rated once its games connect it to the anchor, so the anchor's pairs with API models
+    open, then API models among themselves, then pairs with one local model, the anchor's with local models, and
+    local against local last. Within a tier the balanced rounds keep their order."""
+    anchor = app_cfg.ladder.anchor
+
+    def tier(pair: Tuple[str, str]) -> int:
+        local = [x for x in pair if app_cfg.agents[x].provider == "local"]
+        others = [x for x in local if x != anchor]
+        if anchor in pair:
+            return 0 if not others else 3
+        return {0: 1, 1: 2}.get(len(local), 4)
+
+    return sorted(pairs, key=tier)
 
 
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
@@ -197,7 +208,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
         for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
             log(f"{k} sits out: no team of its own under {app_cfg.ruleset.version} yet (rotomarena teams draft {k})")
             ids.remove(k)
-    pairs = anchor_first(round_robin_pairs(ids), app_cfg.ladder.anchor)
+    pairs = quick_pairs_first(round_robin_pairs(ids), app_cfg)
     for i, (a, b) in enumerate(pairs, 1):
         done = version_state(app_cfg).games(a, b)
         if done >= games_per_pair:

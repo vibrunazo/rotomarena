@@ -6,7 +6,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from rotomarena.config import AgentConfig, AppConfig, TelemetryConfig
+from rotomarena.config import AgentConfig, AppConfig, LadderConfig, TelemetryConfig
 from rotomarena.export.site import export_site, parse_choice, public_log, scrub
 from rotomarena.ladder import RunHalted, check_halt, closest_rated_llm, fill_pairs, fixed_placement_opponents
 from rotomarena.rating import Rating, compute_ratings
@@ -295,9 +295,24 @@ def test_round_robin_pairs_every_model_once_in_balanced_rounds():
     for r in range(9):  # each round of 5 games has every model exactly once
         assert sorted(x for p in pairs[r * 5:(r + 1) * 5] for x in p) == sorted(ids)
     assert len(round_robin_pairs(["a", "b", "c"])) == 3  # odd counts sit one out per round
-    from rotomarena.ladder import anchor_first
-    first = anchor_first(pairs, "m3")
-    assert all("m3" in p for p in first[:9]) and set(map(frozenset, first)) == set(map(frozenset, pairs))
+
+
+
+def test_quick_pairs_play_first_and_connect_to_the_anchor_early():
+    from rotomarena.ladder import quick_pairs_first, round_robin_pairs
+
+    agents = {"anchor": AgentConfig(name="anchor", type="direct_llm", provider="local", port=8080),
+              "local": AgentConfig(name="local", type="direct_llm", provider="local", port=8081),
+              "local2": AgentConfig(name="local2", type="direct_llm", provider="local", port=8082),
+              "api": AgentConfig(name="api", type="direct_llm", provider="openrouter"),
+              "jev": AgentConfig(name="jev", type="decision", provider="openrouter")}
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="anchor"))
+    pairs = round_robin_pairs(list(agents))
+    order = [frozenset(p) for p in quick_pairs_first(pairs, app_cfg)]
+    assert set(order[:2]) == {frozenset({"anchor", "api"}), frozenset({"anchor", "jev"})}
+    assert order[2] == frozenset({"api", "jev"})
+    assert set(order[-3:]) == {frozenset({"local", "local2"}), frozenset({"anchor", "local"}), frozenset({"anchor", "local2"})}
+    assert order[-1] == frozenset({"local", "local2"}) and set(order) == {frozenset(p) for p in pairs}
 
 
 def test_own_teams_keep_each_players_team_and_alternate_sides():
