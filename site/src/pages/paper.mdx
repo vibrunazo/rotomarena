@@ -57,10 +57,12 @@ Games have a long history as AI benchmarks, and the rating systems used for them
 which are cheaper and do not get tired. Our rating model follows Bradley and Terry [[3]](#ref-bt).
 
 Prior work on language models in Pokémon includes PokéLLMon [[4]](#ref-pokellmon) and PokéChamp
-[[5]](#ref-pokechamp), both of which build agents around a language model. We do the opposite: we give the model
-the game state and nothing else, and see what happens. Our reference search bot borrows PokéChamp's name and its
-minimax idea, but none of its language model. It is a one-turn maximin search with a hand-written evaluation, and
-should not be taken as representative of the original.
+[[5]](#ref-pokechamp), both of which build agents around a language model; PokéChamp places one inside a minimax
+search and reaches expert-level play. The PokéAgent Challenge [[6]](#ref-pokeagent) turned Pokémon into a shared
+competition for such agents. This benchmark is built directly on that line of work. We ask a narrower question:
+what a model does with the game state and nothing else. Our reference search bot is derived from PokéChamp with
+its language model removed, so that the search alone serves as a fixed yardstick; it should not be taken as
+representative of the original, whose results are reported in [[5]](#ref-pokechamp).
 
 ## Methodology
 
@@ -141,6 +143,14 @@ Every match on this site links its full battle log and every decision, with the 
 trace when the provider returns one, token counts, latency and cost. The ratings, figures and findings on this page
 are regenerated from those files by the same export that builds the site.
 
+<h2 class="unnumbered">Acknowledgements</h2>
+
+This benchmark stands on other people's work. We thank Seth Karten, Andy Luu Nguyen and Chi Jin for PokéChamp,
+whose code, design and data our reference bot is derived from; the organizers of the PokéAgent Challenge for
+making Pokémon a serious research environment; Guangcong Luo and the contributors to Pokémon Showdown, which runs
+every battle on this site; and Haris Sahovic and the contributors to poke-env, which connects our players to it.
+Any mistakes in how we use their work are ours.
+
 <h2 class="unnumbered">Appendix A. Response to Reviewer 2</h2>
 
 **The authors evaluate a single game.** We evaluate the one that matters.
@@ -166,7 +176,8 @@ Figure 1.
   <li id="ref-arena">W.-L. Chiang et al. Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference. <em>ICML</em>, 2024.</li>
   <li id="ref-bt">R. A. Bradley and M. E. Terry. Rank Analysis of Incomplete Block Designs: I. The Method of Paired Comparisons. <em>Biometrika</em> 39, 1952.</li>
   <li id="ref-pokellmon">S. Hu, T. Huang and L. Liu. PokéLLMon: A Human-Parity Agent for Pokémon Battles with Large Language Models. arXiv:2402.01118, 2024.</li>
-  <li id="ref-pokechamp">S. Karten, A. L. Nguyen and C. Jin. PokéChamp: an Expert-level Minimax Language Agent. arXiv:2503.04094, 2025.</li>
+  <li id="ref-pokechamp">S. Karten, A. L. Nguyen and C. Jin. PokéChamp: an Expert-level Minimax Language Agent. <em>ICML</em>, 2025. arXiv:2503.04094. <a href="https://github.com/sethkarten/pokechamp">Code</a>.</li>
+  <li id="ref-pokeagent">S. Karten, J. Grigsby, S. Milani, K. Vodrahalli, A. Zhang, F. Fang, Y. Zhu and C. Jin. The PokéAgent Challenge: Competitive and Long-Context Learning at Scale. <em>NeurIPS Competition Track</em>, 2025. <a href="https://pokeagent.github.io/">Website</a>.</li>
 </ol>
 
 <section class="footnotes">

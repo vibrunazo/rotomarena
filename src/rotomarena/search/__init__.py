@@ -1,4 +1,8 @@
-"""Search, heuristics, and forward simulation package for PokéChamp."""
+"""Search, heuristics, and forward simulation for the PokéChamp agent.
+
+Based on PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025, https://github.com/sethkarten/pokechamp),
+MIT-licensed; see THIRD_PARTY_NOTICES.md. This version has no language model: actions, opponent replies and
+positions come from hand-written rules instead."""
 
 from rotomarena.search.heuristics import (
     TYPE_CHART,

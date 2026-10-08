@@ -1,4 +1,7 @@
-"""PokéChamp search agent (no LLM): one-turn maximin over sampled opponent replies."""
+"""PokéChamp search agent (no LLM): one-turn maximin over sampled opponent replies.
+
+Based on PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025, https://github.com/sethkarten/pokechamp),
+MIT-licensed; see THIRD_PARTY_NOTICES.md."""
 
 from __future__ import annotations
 

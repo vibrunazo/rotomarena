@@ -121,5 +121,11 @@ const facts: [string, string][] = [
   .about :global(ol) { padding-left: 1.3rem; }
   .about :global(li) { margin: 0.45rem 0; }
   .about :global(strong) { color: var(--text); }
+  .about :global(.credit) {
+    margin: 1rem 0 0; padding: 0.9rem 1.1rem; border: 1px solid transparent; border-radius: var(--radius);
+    background: var(--grad-panel) padding-box, var(--grad-primary) border-box; box-shadow: 0 0 22px rgba(62, 230, 255, 0.15);
+  }
+  .about :global(.credit p:first-child) { margin-top: 0; }
+  .about :global(.credit p:last-child) { margin-bottom: 0; }
   blockquote { margin: 0; padding: 0.7rem 1rem; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; font-style: italic; }
 </style>
