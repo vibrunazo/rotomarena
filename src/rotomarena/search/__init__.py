@@ -1,8 +1,9 @@
 """Search, heuristics, and forward simulation for the PokéChamp agent.
 
-Based on PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025, https://github.com/sethkarten/pokechamp),
-MIT-licensed; see THIRD_PARTY_NOTICES.md. This version has no language model: actions, opponent replies and
-positions come from hand-written rules instead."""
+Implements the minimax design of PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025,
+https://github.com/sethkarten/pokechamp), written from the paper's description; no code from their repository.
+Where PokéChamp uses a language model, for actions, opponent replies and positions, this uses hand-written rules.
+See CREDITS.md."""
 
 from rotomarena.search.heuristics import (
     TYPE_CHART,

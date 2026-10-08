@@ -22,9 +22,9 @@ speedrunning agents.
 ## The version that plays here
 
 The original PokéChamp is a minimax agent with a language model inside it: the model proposes candidate actions,
-predicts what the opponent will do, and judges the positions the search reaches. What plays on RotomArena is a
-deliberately simplified version of that design **with the language model taken out**: every one of those three
-jobs is done by a hand-written rule instead. We use it as a fixed reference opponent, not as a reproduction of the
+predicts what the opponent will do, and judges the positions the search reaches. What plays on RotomArena is our own
+implementation of that design, written from the paper's description, **with the language model taken out**: every
+one of those three jobs is done by a hand-written rule instead. It contains none of their code. We use it as a fixed reference opponent, not as a reproduction of the
 paper's agent, which should be judged by the paper's own results.
 
 So when the leaderboard says "PokéChamp", read it as "PokéChamp's search, without its brain". It reads no prompt,
@@ -80,5 +80,5 @@ Our PokéChamp has never hallucinated a move, run out of tokens, timed out, or b
 explained a single decision. The autopilot, token and cost columns on the leaderboard are left blank for it,
 which we consider a fair summary of its personality.
 
-<p class="small muted">Our implementation is derived from PokéChamp, which is released under the MIT license with
-an attribution requirement.</p>
+<p class="small muted">The design, the name and the idea are PokéChamp's; the implementation, and any mistakes in it,
+are ours. Their own code is at github.com/sethkarten/pokechamp.</p>

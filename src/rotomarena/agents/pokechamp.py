@@ -1,7 +1,7 @@
 """PokéChamp search agent (no LLM): one-turn maximin over sampled opponent replies.
 
-Based on PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025, https://github.com/sethkarten/pokechamp),
-MIT-licensed; see THIRD_PARTY_NOTICES.md."""
+Implements the minimax design of PokéChamp by Seth Karten, Andy Luu Nguyen and Chi Jin (ICML 2025,
+https://github.com/sethkarten/pokechamp) without its language model; no code from their repository. See CREDITS.md."""
 
 from __future__ import annotations
 

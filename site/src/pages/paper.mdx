@@ -60,8 +60,8 @@ Prior work on language models in Pokémon includes PokéLLMon [[4]](#ref-pokellm
 [[5]](#ref-pokechamp), both of which build agents around a language model; PokéChamp places one inside a minimax
 search and reaches expert-level play. The PokéAgent Challenge [[6]](#ref-pokeagent) turned Pokémon into a shared
 competition for such agents. This benchmark is built directly on that line of work. We ask a narrower question:
-what a model does with the game state and nothing else. Our reference search bot is derived from PokéChamp with
-its language model removed, so that the search alone serves as a fixed yardstick; it should not be taken as
+what a model does with the game state and nothing else. Our reference search bot implements PokéChamp's design
+without its language model, written from the paper's description, so that the search alone serves as a fixed yardstick; it should not be taken as
 representative of the original, whose results are reported in [[5]](#ref-pokechamp).
 
 ## Methodology
@@ -146,7 +146,7 @@ are regenerated from those files by the same export that builds the site.
 <h2 class="unnumbered">Acknowledgements</h2>
 
 This benchmark stands on other people's work. We thank Seth Karten, Andy Luu Nguyen and Chi Jin for PokéChamp,
-whose code, design and data our reference bot is derived from; the organizers of the PokéAgent Challenge for
+whose design our reference bot implements; the organizers of the PokéAgent Challenge for
 making Pokémon a serious research environment; Guangcong Luo and the contributors to Pokémon Showdown, which runs
 every battle on this site; and Haris Sahovic and the contributors to poke-env, which connects our players to it.
 Any mistakes in how we use their work are ours.
