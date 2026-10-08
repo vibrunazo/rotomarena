@@ -27,6 +27,9 @@ ruleset:
   # then answers within the remaining 1,024: reaching the budget ends the thinking, not the answer.
   thinking_budget: 1024
   max_output_tokens: 2048
+  # Drafting writes six full sets in one answer, which needs more than a battle turn's 1,024 answer tokens: the same
+  # 1,024 tokens of thinking, then up to 4,096 for the team.
+  draft_max_output_tokens: 5120
   teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
 
 # The benchmarks the site ranks. Each lists the ruleset versions whose games count; a version id names exact rules,

@@ -192,6 +192,11 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
     for two local models costs about one game's time instead of two. Resumable."""
     ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm" and a.active]
+    if app_cfg.ruleset.team_mode == "draft":  # a model without a team yet (say, its provider was down) joins later
+        drafts = load_drafts(version=app_cfg.ruleset.version)
+        for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
+            log(f"{k} sits out: no team of its own under {app_cfg.ruleset.version} yet (rotomarena teams draft {k})")
+            ids.remove(k)
     pairs = anchor_first(round_robin_pairs(ids), app_cfg.ladder.anchor)
     for i, (a, b) in enumerate(pairs, 1):
         done = version_state(app_cfg).games(a, b)

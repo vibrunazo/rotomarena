@@ -9,7 +9,7 @@ import subprocess
 import sys
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, Dict, Iterator, List, Optional
+from typing import Callable, Dict, Iterator, List, Optional, Tuple
 
 from rotomarena.config import AgentConfig, AppConfig
 
@@ -23,8 +23,21 @@ def _gen(app_cfg: AppConfig, *args: str) -> subprocess.CompletedProcess:
 
 def running(app_cfg: AppConfig) -> Dict[int, str]:
     """{port: model alias} of the servers `gen llm status` reports as ready."""
+    return {port: model for port, (model, _) in _status(app_cfg).items()}
+
+
+def _status(app_cfg: AppConfig) -> Dict[int, Tuple[str, str]]:
+    """{port: (model alias, "reasoning <mode> budget <n>")} of the ready servers."""
     out = _gen(app_cfg, "status").stdout
-    return {int(port): model for port, model in re.findall(r"^port (\d+): (\S+) .*: ready$", out, re.MULTILINE)}
+    return {int(port): (model, settings) for port, model, settings in re.findall(
+        r"^port (\d+): (\S+) .*?(reasoning \S+ budget -?\d+)?, since .*: ready$", out, re.MULTILINE)}
+
+
+def _reasoning_settings(app_cfg: AppConfig) -> str:
+    """How `gen llm status` describes a server started for this ruleset (see _serve_args)."""
+    if app_cfg.ruleset.reasoning == "off":
+        return "reasoning off budget -1"
+    return f"reasoning auto budget {app_cfg.ruleset.thinking_budget or app_cfg.ruleset.max_output_tokens // 2}"
 
 
 def catalog_sizes(app_cfg: AppConfig) -> Dict[str, float]:
@@ -147,7 +160,13 @@ def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str],
         return
     needed = {a.port: a.model for a in local_agents(players)}
     sizes = catalog_sizes(app_cfg)
-    current = running(app_cfg)
+    # A server started under other rules (another thinking budget) counts as the wrong server: it is restarted.
+    current = {port: model for port, (model, settings) in _status(app_cfg).items()
+               if settings == _reasoning_settings(app_cfg)}
+    for port, (model, settings) in _status(app_cfg).items():
+        if port not in current:
+            log(f"Stopping local server {model} on port {port} (started with other thinking settings: {settings or '?'})")
+            _gen(app_cfg, "stop", "--port", str(port))
     if len(needed) == 2 and sum(sizes.get(m, 99.0) for m in needed.values()) > app_cfg.local_llm.vram_budget_gb:
         for port, model in current.items():
             log(f"Stopping local server {model} on port {port}")

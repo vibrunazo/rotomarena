@@ -154,11 +154,11 @@ def test_export_site_writes_the_season_and_the_archive(tmp_path):
     assert void["game"] == "pokemon" and {p["config_id"]: p["model_key"] for p in void["players"]}["qwen"] == "qwen/qwen3.8-27b"
 
 
-def _fake_gen(monkeypatch, running):
+def _fake_gen(monkeypatch, running, settings="reasoning auto budget 2048"):
     from rotomarena import local_servers
 
     calls = []
-    monkeypatch.setattr(local_servers, "running", lambda cfg: dict(running))
+    monkeypatch.setattr(local_servers, "_status", lambda cfg: {port: (model, settings) for port, model in running.items()})
     monkeypatch.setattr(local_servers, "catalog_sizes",
                         lambda cfg: {"bonsai": 7.2, "minicpm5-2b": 2.7, "qwen3.8-27b": 16.5})
     monkeypatch.setattr(local_servers, "_gen", lambda cfg, *args: calls.append(args) or type("R", (), {"returncode": 0})())
@@ -180,6 +180,17 @@ def test_a_pair_that_fits_stays_loaded_smallest_first(monkeypatch):
     assert first[first.index("--ctx") + 1] == "8192" and first[first.index("--slots") + 1] == "4"  # one per parallel game
     assert first[first.index("--reasoning-budget") + 1] == "2048"  # half the ladder's 4096-token cap
     assert not local_servers.swapping()
+
+
+def test_a_server_started_with_another_thinking_budget_is_restarted(monkeypatch):
+    local_servers, calls = _fake_gen(monkeypatch, {8080: "bonsai"}, settings="reasoning auto budget 1024")
+    local_servers.prepare([BONSAI], AppConfig(), log=lambda msg: None)
+    assert calls[0] == ("stop", "--port", "8080") and [c[2] for c in calls if c[0] == "serve"] == ["bonsai"]
+
+    calls.clear()
+    local_servers, calls = _fake_gen(monkeypatch, {8080: "bonsai"})  # same rules: kept as it is
+    local_servers.prepare([BONSAI], AppConfig(), log=lambda msg: None)
+    assert [c for c in calls if c[0] == "serve"] == []
 
 
 def test_a_pair_too_big_for_the_gpu_swaps_per_request(monkeypatch):

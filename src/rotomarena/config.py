@@ -134,6 +134,11 @@ class RulesetConfig(BaseModel):
         description="Per-turn cap on everything an LLM writes, thinking included; a cut-off answer forfeits the turn. "
         "Local servers get half of it as their thinking budget",
     )
+    draft_max_output_tokens: Optional[int] = Field(
+        default=None,
+        description="The same cap for each drafting answer (default: max_output_tokens). Writing six full sets takes "
+        "more room than one battle turn; the thinking budget stays the same",
+    )
     turn_timeout: Optional[float] = Field(
         default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )

@@ -186,6 +186,10 @@ def _attempt_record(attempt: int, completion, text: str, reasoning: str, extra: 
             "cost_usd": completion.metrics.cost_usd, "finish_reason": completion.metrics.finish_reason}
 
 
+class DraftUnavailable(RuntimeError):
+    """The provider failed: no draft is kept, since a repaired team would charge the model for an outage."""
+
+
 async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATTEMPTS,
                      log=print) -> Dict[str, Any]:
     """Asks one model for its six picks, then for their sets, feeding back the problems at each stage. Each request
@@ -202,16 +206,15 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         "attempts": [], "legal": False, "team": None, "thought": None, "repaired": False, "repairs": [],
     }
 
-    async def ask(messages: List[Dict[str, str]], stage: List[Dict[str, Any]], attempt: int, marker: str):
-        """(completion, answer, reasoning), or None when the provider fails (the stage ends; the record says why)."""
+    async def ask(messages: List[Dict[str, str]], attempt: int, marker: str):
+        """(completion, answer, reasoning); raises DraftUnavailable when the provider fails."""
         try:
             completion = await client.generate_completion(
-                messages, max_tokens=app_cfg.ruleset.max_output_tokens, reasoning=app_cfg.ruleset.reasoning,
+                messages, max_tokens=app_cfg.ruleset.draft_max_output_tokens or app_cfg.ruleset.max_output_tokens,
+                reasoning=app_cfg.ruleset.reasoning,
                 thinking_budget=app_cfg.ruleset.thinking_budget)
         except Exception as e:
-            stage.append({"attempt": attempt, "error": str(e)[:500], "problems": []})
-            log(f"  attempt {attempt}: provider error: {str(e)[:120]}")
-            return None
+            raise DraftUnavailable(f"provider error at attempt {attempt}: {str(e)[:300]}") from e
         return (completion, *recover_answer(completion.text, completion.reasoning, marker))
 
     def retry(answer: str, template: str, problems: List[str]) -> List[Dict[str, str]]:
@@ -224,10 +227,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
     plan: Optional[str] = None
     last: List[Dict[str, str]] = []
     for attempt in range(1, attempts + 1):
-        reply = await ask(base + last, record["picks"]["attempts"], attempt, "<pokemon>")
-        if reply is None:
-            break
-        completion, answer, reasoning = reply
+        completion, answer, reasoning = await ask(base + last, attempt, "<pokemon>")
         picks, problems = check_picks(_tag(answer, "pokemon"), rules, completion.metrics.finish_reason == "length")
         record["picks"]["attempts"].append(_attempt_record(attempt, completion, answer, reasoning,
                                                            {"pokemon": picks, "problems": problems}))
@@ -252,10 +252,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
                 options=options_text(species_options(app_cfg, picks)))}]
     last = []
     for attempt in range(1, attempts + 1):
-        reply = await ask(base + last, record["attempts"], attempt, "<team>")
-        if reply is None:
-            break
-        completion, answer, reasoning = reply
+        completion, answer, reasoning = await ask(base + last, attempt, "<team>")
         team = _tag(answer, "team")
         if team is None:
             problems = ["No <team>...</team> block found" + (" (the answer was cut off at the token budget)."

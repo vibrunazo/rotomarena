@@ -135,7 +135,7 @@ def teams_draft(
 ):
     """Each model builds its own Gen 9 OU team from the format's rules; Showdown's validator referees.
     Saves every attempt to data/drafts/<format>/<config id>.json."""
-    from rotomarena.teams.draft import draft_team, save_draft
+    from rotomarena.teams.draft import DraftUnavailable, draft_team, save_draft
 
     app_cfg = AppConfig.load(config_file)
     agents = [app_cfg.agents[c] for c in config_ids if c in app_cfg.agents]
@@ -157,7 +157,11 @@ def teams_draft(
             console.print(f"[bold cyan]{agent.name}[/bold cyan] drafting")
             if agent in local:
                 local_servers.prepare([agent], app_cfg, log=console.print)
-            record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print)
+            try:
+                record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print)
+            except DraftUnavailable as e:
+                console.print(f"  [red]no draft kept[/red] ({e}); run it again when the provider is back")
+                continue
             path = save_draft(record)
             verdict = "[green]legal[/green]" if record["legal"] else f"[yellow]repaired ({len(record['repairs'])} changes)[/yellow]"
             console.print(f"  {verdict} after {len(record['attempts'])} attempt(s) -> {path}")
