@@ -41,7 +41,12 @@ class SeasonState:
 
 def season_state(app_cfg: AppConfig) -> SeasonState:
     """Every match of the current season, rated."""
-    matches = load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
+    return seasons_state(app_cfg, [app_cfg.ruleset.version])
+
+
+def seasons_state(app_cfg: AppConfig, seasons: List[str]) -> SeasonState:
+    """Every match of these seasons, rated together (a leaderboard)."""
+    matches = [m for s in seasons for m in load_matches(app_cfg.telemetry.output_dir, s)]
     outcomes = rated_outcomes(matches, app_cfg.ladder.max_autopilot)
     ratings = compute_ratings(
         outcomes,

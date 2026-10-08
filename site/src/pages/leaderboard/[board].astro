@@ -1,0 +1,10 @@
+---
+import LeaderboardBoard from '../../components/LeaderboardBoard.astro';
+import { boards, type Board } from '../../lib/data';
+
+export function getStaticPaths() {
+  return boards.slice(1).map((board) => ({ params: { board: board.id }, props: { board } }));
+}
+const { board } = Astro.props as { board: Board };
+---
+<LeaderboardBoard board={board} />

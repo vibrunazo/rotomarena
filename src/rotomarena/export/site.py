@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
 from rotomarena.config import AppConfig, derived_model_key
-from rotomarena.ladder import SeasonState, season_state
+from rotomarena.ladder import SeasonState, seasons_state
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
@@ -273,6 +273,35 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
     return rows
 
 
+def _board_rating(state: SeasonState, config_id: str, app_cfg: AppConfig) -> Optional[Dict[str, Any]]:
+    """One model's standing on one leaderboard, or None if it has no rated game there."""
+    rating: Optional[Rating] = state.ratings.get(config_id)
+    if not rating or not rating.games:
+        return None
+    return {
+        "rating": rating.rating, "ci_low": rating.ci_low, "ci_high": rating.ci_high, "games": rating.games,
+        "wins": rating.wins, "losses": rating.losses, "draws": rating.draws,
+        "win_rate": round((rating.wins + 0.5 * rating.draws) / rating.games, 3),
+        "provisional": rating.games < app_cfg.ladder.provisional_games,
+    }
+
+
+def _head_to_head(state: SeasonState) -> List[Dict[str, Any]]:
+    rows: Dict[frozenset, Dict[str, Any]] = {}
+    for o in state.outcomes:
+        a, b = sorted((o.p1, o.p2))
+        row = rows.setdefault(frozenset((a, b)), {"a": a, "b": b, "games": 0, "a_wins": 0, "b_wins": 0, "draws": 0})
+        row["games"] += 1
+        score_a = o.score_p1 if o.p1 == a else 1.0 - o.score_p1
+        if score_a == 1.0:
+            row["a_wins"] += 1
+        elif score_a == 0.0:
+            row["b_wins"] += 1
+        else:
+            row["draws"] += 1
+    return sorted(rows.values(), key=lambda r: (r["a"], r["b"]))
+
+
 def _model_rows(state: SeasonState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
     identities = {}
     for m in state.matches:
@@ -315,9 +344,17 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     """Writes meta, models, head-to-head, findings and per-match files. Returns counts for the CLI."""
     out = Path(out_dir)
     runs_dir = Path(app_cfg.telemetry.output_dir)
-    state = season_state(app_cfg)
+    boards = app_cfg.boards()
+    states = {b.id: seasons_state(app_cfg, b.seasons) for b in boards}
+    # every season any board shows, rated together: model stats, match pages and findings come from this
+    all_seasons = list(dict.fromkeys(s for b in boards for s in b.seasons))
+    state = states[boards[0].id] if set(boards[0].seasons) == set(all_seasons) else seasons_state(app_cfg, all_seasons)
     retracted = load_matches(runs_dir, RETRACTED_SEASON)
     models = _model_rows(state, app_cfg)
+    for row in models:  # each model's standing on every board; top-level rating fields are the main board's
+        row["boards"] = {b.id: r for b in boards if (r := _board_rating(states[b.id], row["config_id"], app_cfg))}
+        main = row["boards"].get(boards[0].id)
+        row.update({k: (main or {}).get(k) for k in ("rating", "ci_low", "ci_high")})
 
     for sub in ("matches", "retracted"):
         for stale in (out / sub).glob("*.json"):
@@ -328,30 +365,20 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     for m in retracted:
         _write_json(out / "retracted" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg))
 
-    head_to_head: Dict[frozenset, Dict[str, Any]] = {}
-    for o in state.outcomes:
-        a, b = sorted((o.p1, o.p2))
-        row = head_to_head.setdefault(frozenset((a, b)), {"a": a, "b": b, "games": 0, "a_wins": 0, "b_wins": 0, "draws": 0})
-        row["games"] += 1
-        score_a = o.score_p1 if o.p1 == a else 1.0 - o.score_p1
-        if score_a == 1.0:
-            row["a_wins"] += 1
-        elif score_a == 0.0:
-            row["b_wins"] += 1
-        else:
-            row["draws"] += 1
-
     _write_json(out / "models.json", models)
     _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts()))
     reference = Path("data/teams/smogon/index.json")  # credited community teams, used for tests and as fallback
     _write_json(out / "reference_teams.json", json.loads(reference.read_text(encoding="utf-8")) if reference.exists() else {"teams": []})
-    _write_json(out / "head_to_head.json", sorted(head_to_head.values(), key=lambda r: (r["a"], r["b"])))
+    _write_json(out / "head_to_head.json", {b.id: _head_to_head(states[b.id]) for b in boards})
     _write_json(out / "findings.json", findings(models, state.matches + retracted))
     _write_json(out / "meta.json", {
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "game": GAME,
         "formats": sorted({m.format for m in state.matches}),
         "season": app_cfg.ruleset.version,
+        "seasons": all_seasons,
+        "leaderboards": [{**b.model_dump(), "rated_matches": len(states[b.id].outcomes),
+                          "models": sum(1 for r in states[b.id].ratings.values() if r.games)} for b in boards],
         "ruleset": app_cfg.ruleset.model_dump(),
         "ladder": app_cfg.ladder.model_dump(),
         "matches": len(state.matches),

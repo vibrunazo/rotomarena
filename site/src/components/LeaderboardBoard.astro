@@ -1,11 +1,15 @@
 ---
+// One leaderboard: tabs to the others, the table, Figure 1 and the head-to-head grid, all over that board's games.
 import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
-import LeaderboardTable from '../components/LeaderboardTable.astro';
-import ForestPlot from '../components/ForestPlot.astro';
-import { fmtDate, headToHead, meta, modelsById, rankedModels } from '../lib/data';
+import LeaderboardTable from './LeaderboardTable.astro';
+import ForestPlot from './ForestPlot.astro';
+import { boardModels, boards, fmtDate, headToHeadFor, mainBoard, meta, modelsById, type Board } from '../lib/data';
 
-const models = await rankedModels();
+interface Props { board: Board }
+const { board } = Astro.props;
+const models = await boardModels(board.id);
+const headToHead = headToHeadFor(board.id);
 const byId = await modelsById();
 const anchor = byId.get(meta.ladder.anchor);
 
@@ -17,11 +21,18 @@ const record = (a: string, b: string) => {
   return h.a === a ? { w: h.a_wins, l: h.b_wins, d: h.draws } : { w: h.b_wins, l: h.a_wins, d: h.draws };
 };
 ---
-<Base title="Leaderboard" description="RotomArena ratings with 95% bootstrap intervals, win rates, autopilot rates and cost per game.">
-  <p class="eyebrow">Season {meta.season.replace('s', '')} · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
+<Base title={board === mainBoard ? 'Leaderboard' : `Leaderboard: ${board.title}`} description="RotomArena ratings with 95% bootstrap intervals, win rates, autopilot rates and cost per game.">
+  <p class="eyebrow">{board.title} · {board.rated_matches} rated games · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
   <h1>Leaderboard</h1>
+  <nav class="tabs" aria-label="Leaderboards">
+    {boards.map((b) => (
+      <a href={routes.board(b.id, b === mainBoard)} aria-current={b.id === board.id ? 'page' : undefined}>{b.title}</a>
+    ))}
+  </nav>
+  <p class="prose"><strong>{board.description}</strong></p>
   <p class="prose">
-    Ratings are on the Elo scale, fitted by Bradley-Terry over every rated game this season. {anchor?.display_name} is
+    Ratings are on the Elo scale, fitted by Bradley-Terry over this board's rated games. Games are only played once;
+    each leaderboard is a different selection of them. {anchor?.display_name} is
     fixed at {meta.ladder.anchor_rating} by definition; every other number is relative to it.<sup class="fn-ref"><a href="#fn-anchor">3</a></sup>
     Models with fewer than {meta.ladder.provisional_games} games are marked provisional. Click a column to sort.
   </p>
@@ -72,6 +83,14 @@ const record = (a: string, b: string) => {
 </Base>
 
 <style>
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0.4rem; }
+  .tabs a {
+    font: 600 0.85rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+    padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--text-dim);
+    background: linear-gradient(180deg, rgba(30, 40, 80, 0.7), rgba(14, 20, 44, 0.7));
+  }
+  .tabs a:hover { color: var(--text); border-color: rgba(62, 230, 255, 0.55); text-shadow: none; }
+  .tabs a[aria-current='page'] { color: #fff; border-color: transparent; background: var(--grad-primary) padding-box, var(--grad-primary-hot) border-box; box-shadow: 0 0 18px rgba(62, 230, 255, 0.35); }
   .h2h th[scope='row'] { text-transform: none; letter-spacing: 0; font-size: 0.9rem; font-weight: 500; }
   .h2h thead th { text-transform: none; letter-spacing: 0; font-size: 0.8rem; }
   .h2h td.ahead { color: var(--green); font-weight: 500; }

@@ -258,6 +258,16 @@ class TelemetryConfig(BaseModel):
     save_reports: bool = Field(default=True)
 
 
+class LeaderboardConfig(BaseModel):
+    """A ranking: Bradley-Terry ratings fitted over the rated games of some seasons. Games are only ever played
+    once; leaderboards are views over them, recomputed on every export."""
+
+    id: str
+    title: str
+    description: str = ""
+    seasons: List[str] = Field(description="Ruleset versions whose rated games count")
+
+
 class AppConfig(BaseSettings):
     """Top-level application settings."""
 
@@ -268,6 +278,14 @@ class AppConfig(BaseSettings):
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
     local_llm: LocalLLMConfig = Field(default_factory=LocalLLMConfig)
     telemetry: TelemetryConfig = Field(default_factory=TelemetryConfig)
+    leaderboards: List[LeaderboardConfig] = Field(
+        default_factory=list,
+        description="Rankings the site shows, the first being the main one; empty = just the current season",
+    )
+
+    def boards(self) -> List[LeaderboardConfig]:
+        return self.leaderboards or [LeaderboardConfig(id=self.ruleset.version, title=f"Season {self.ruleset.version}",
+                                                       seasons=[self.ruleset.version])]
 
     model_config = SettingsConfigDict(
         env_file=".env",

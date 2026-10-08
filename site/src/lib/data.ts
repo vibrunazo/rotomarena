@@ -13,7 +13,14 @@ export async function allDrafts(): Promise<Draft[]> {
 }
 
 export const meta = metaJson;
-export const headToHead = headToHeadJson as { a: string; b: string; games: number; a_wins: number; b_wins: number; draws: number }[];
+type H2H = { a: string; b: string; games: number; a_wins: number; b_wins: number; draws: number };
+/** Head-to-head records on one leaderboard. */
+export const headToHeadFor = (board: string): H2H[] => (headToHeadJson as Record<string, H2H[]>)[board] ?? [];
+
+export type Board = { id: string; title: string; description: string; seasons: string[]; rated_matches: number; models: number };
+/** The rankings, the first being the main one; each is fitted over the rated games of some seasons. */
+export const boards = meta.leaderboards as Board[];
+export const mainBoard = boards[0];
 
 type Finding = { id: string; show: boolean; [key: string]: unknown };
 export const findings: Record<string, Finding> = Object.fromEntries(
@@ -24,9 +31,12 @@ export async function allModels(): Promise<Model[]> {
   return (await getCollection('models')).map((e) => e.data);
 }
 
-/** Ranked models first (by rating), then unranked ones. */
-export async function rankedModels(): Promise<Model[]> {
-  return (await allModels()).sort((a, b) => (b.rating ?? -Infinity) - (a.rating ?? -Infinity));
+/** The models on one leaderboard, with that board's rating fields, best first; unrated ones last. */
+export async function boardModels(board: string = mainBoard.id): Promise<Model[]> {
+  return (await allModels())
+    .filter((m) => m.boards[board])
+    .map((m) => ({ ...m, ...m.boards[board] }))
+    .sort((a, b) => (b.rating ?? -Infinity) - (a.rating ?? -Infinity));
 }
 
 export async function modelsById(): Promise<Map<string, Model>> {

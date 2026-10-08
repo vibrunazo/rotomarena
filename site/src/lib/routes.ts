@@ -3,6 +3,7 @@
 export const routes = {
   home: '/',
   leaderboard: '/leaderboard/',
+  board: (id: string, main: boolean) => (main ? '/leaderboard/' : `/leaderboard/${id}/`),
   matches: '/matches/',
   teams: '/teams/',
   retracted: '/retracted/',

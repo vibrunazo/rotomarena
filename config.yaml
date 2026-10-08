@@ -24,6 +24,22 @@ ruleset:
   profile: "ladder"
   teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
 
+# Rankings on the site, each fitted over the rated games of some seasons (games are played once; boards are views).
+# The first is the main one. New formats or modes get their own season and can join "overall".
+leaderboards:
+  - id: "overall"
+    title: "Overall"
+    description: "Every rated game, whatever the teams: how good each model is at Pokémon."
+    seasons: ["s1", "s2"]
+  - id: "own-teams"
+    title: "Own teams"
+    description: "Season 2: each model plays the team it built itself."
+    seasons: ["s2"]
+  - id: "fixed-teams"
+    title: "Fixed teams"
+    description: "Season 1: every pairing plays the same two teams from both sides; teambuilding not measured."
+    seasons: ["s1"]
+
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
 ladder:
   anchor: "bonsai_2_27b"    # fixed at anchor_rating; every placement plays it

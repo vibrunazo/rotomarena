@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, fmtPct, matchEntries, meta, rankedModels, roleLabel, type Model } from '../../lib/data';
+import { allModels, boardModels, boards, fmtPct, matchEntries, meta, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { model: m } = Astro.props as { model: Model };
 const llm = m.type === 'direct_llm';
-const ranked = (await rankedModels()).filter((x) => x.rating !== null && x.type === 'direct_llm');
+const ranked = (await boardModels()).filter((x) => x.rating !== null && x.type === 'direct_llm');
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
 const draft = (await getCollection('drafts')).find((entry) => entry.id === m.config_id)?.data;
@@ -66,6 +66,30 @@ const facts: [string, string][] = [
     <section class="about prose">
       <h2>{about!.data.title}</h2>
       <About />
+    </section>
+  )}
+
+  {Object.keys(m.boards).length > 1 && (
+    <section>
+      <h2>By leaderboard</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Leaderboard</th><th class="r">Rating (95% CI)</th><th class="r">Games</th><th class="r">Record</th></tr></thead>
+          <tbody>
+            {boards.filter((b) => m.boards[b.id]).map((b) => {
+              const s = m.boards[b.id];
+              return (
+                <tr>
+                  <td><a href={b === boards[0] ? '/leaderboard/' : `/leaderboard/${b.id}/`}>{b.title}</a></td>
+                  <td class="r"><Rating model={s} /></td>
+                  <td class="r num">{s.games}</td>
+                  <td class="r num">{s.wins}–{s.losses}{s.draws ? `–${s.draws}` : ''}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </section>
   )}
 

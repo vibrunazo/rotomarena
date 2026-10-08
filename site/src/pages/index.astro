@@ -3,9 +3,9 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { fmtDate, fmtInt, meta, rankedModels } from '../lib/data';
+import { boardModels, fmtDate, fmtInt, mainBoard, meta } from '../lib/data';
 
-const models = await rankedModels();
+const models = await boardModels();
 const llms = models.filter((m) => m.type === 'direct_llm');
 const stats = [
   [fmtInt(meta.rated_matches), 'rated matches'],
@@ -39,6 +39,7 @@ const stats = [
   </dl>
 
   <h2>Current standings</h2>
+  <p class="small muted">{mainBoard.title}: {mainBoard.description}</p>
   <LeaderboardTable models={models} compact />
   <p class="small muted">Updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}. <a href={routes.leaderboard}>Full leaderboard, intervals and head-to-head results →</a></p>
 

@@ -78,6 +78,11 @@ const models = defineCollection({
     longest_thought: z.string().nullable(),
     shortest_thought: z.string().nullable(),
     hallucinations: z.array(z.object({ action: z.string(), count: z.number() })),
+    // standing on each leaderboard it has played on (rating fields above are the main board's)
+    boards: z.record(z.string(), z.object({
+      rating: z.number().nullable(), ci_low: z.number().nullable(), ci_high: z.number().nullable(), games: z.number(),
+      wins: z.number(), losses: z.number(), draws: z.number(), win_rate: z.number(), provisional: z.boolean(),
+    })),
   }),
 });
 
