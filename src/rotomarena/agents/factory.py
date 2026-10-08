@@ -193,6 +193,17 @@ def format_bot_display_name(
     return base[:18].strip()
 
 
+def llm_client_for(agent_cfg: AgentConfig, app_config: AppConfig) -> LLMClient:
+    """The LLM client a registry entry plays (or drafts) with; local models point at their own server's port."""
+    providers = app_config.providers
+    if agent_cfg.port:
+        local = providers.get(agent_cfg.provider or "openrouter")
+        providers = {**providers, agent_cfg.provider: local.model_copy(
+            update={"base_url": f"http://127.0.0.1:{agent_cfg.port}/v1"})}
+    return LLMClient.from_provider_name(agent_cfg.provider or "openrouter", providers=providers,
+                                        model_override=agent_cfg.model)
+
+
 def create_agent_instance(
     agent_cfg: AgentConfig,
     app_config: AppConfig,
@@ -204,20 +215,8 @@ def create_agent_instance(
     Showdown names must be unique, so a mirror match tags both sides and lanes after the first (games of a set
     played at once) add their number; the display name stays the model's own.
     `start_listening=False` skips connecting to Showdown (for tests)."""
-    llm_client = None
-    resolved_model = None
-    if agent_cfg.type == "direct_llm":
-        providers = app_config.providers
-        if agent_cfg.port:
-            local = providers.get(agent_cfg.provider or "openrouter")
-            providers = {**providers, agent_cfg.provider: local.model_copy(
-                update={"base_url": f"http://127.0.0.1:{agent_cfg.port}/v1"})}
-        llm_client = LLMClient.from_provider_name(
-            agent_cfg.provider or "openrouter",
-            providers=providers,
-            model_override=agent_cfg.model,
-        )
-        resolved_model = llm_client.default_model
+    llm_client = llm_client_for(agent_cfg, app_config) if agent_cfg.type == "direct_llm" else None
+    resolved_model = llm_client.default_model if llm_client else None
 
     display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
     tag = " ".join(t for t in (player_tag, str(lane) if lane > 1 else None) if t)

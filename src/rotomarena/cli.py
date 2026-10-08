@@ -125,6 +125,47 @@ def server_status():
 # ---------------------------------------------------------------------
 
 
+@teams_app.command("draft")
+def teams_draft(
+    config_ids: List[str] = typer.Argument(..., help="Registry entries that build their own team"),
+    attempts: int = typer.Option(3, "--attempts", "-a", help="Tries, with Showdown's validator messages fed back"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Each model builds its own Gen 9 OU team from the format's rules; Showdown's validator referees.
+    Saves every attempt to data/drafts/<format>/<config id>.json."""
+    from rotomarena.teams.draft import draft_team, save_draft
+
+    app_cfg = AppConfig.load(config_file)
+    agents = [app_cfg.agents[c] for c in config_ids if c in app_cfg.agents]
+    unknown = [c for c in config_ids if c not in app_cfg.agents]
+    if unknown:
+        console.print(f"[bold red]Not in the registry: {', '.join(unknown)}[/bold red]")
+        raise typer.Exit(1)
+    local = local_servers.local_agents(agents)
+    if local and app_cfg.local_llm.manage:
+        # Local servers are shared with ladder runs: starting ours would stop theirs mid-game.
+        others = {port: m for port, m in local_servers.running(app_cfg).items() if port not in {a.port for a in local}}
+        if others:
+            console.print(f"[bold red]Other local servers are running ({', '.join(others.values())}); a ladder run may be "
+                          "using them. Draft local models when it is idle.[/bold red]")
+            raise typer.Exit(1)
+
+    async def _run():
+        for agent in agents:
+            console.print(f"[bold cyan]{agent.name}[/bold cyan] drafting")
+            if agent in local:
+                local_servers.prepare([agent], app_cfg, log=console.print)
+            record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print)
+            path = save_draft(record)
+            verdict = "[green]legal[/green]" if record["legal"] else "[red]no legal team[/red]"
+            console.print(f"  {verdict} after {len(record['attempts'])} attempt(s) -> {path}")
+
+    asyncio.run(_run())
+    if local and app_cfg.local_llm.manage:
+        for agent in local:
+            local_servers.stop(app_cfg, agent.port)
+
+
 @teams_app.command("list")
 def teams_list():
     """List all available Gen 9 OU sample and custom teams."""

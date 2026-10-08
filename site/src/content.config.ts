@@ -73,7 +73,7 @@ const models = defineCollection({
     cost_per_game_usd: z.number(),
     switch_rate: z.number(),
     signature_move: z.string().nullable(),
-    favorite_pokemon: z.string().nullable(),
+    most_used_pokemon: z.string().nullable(),
     median_tera_turn: z.number().nullable(),
     longest_thought: z.string().nullable(),
     shortest_thought: z.string().nullable(),
@@ -84,10 +84,31 @@ const models = defineCollection({
 const matches = defineCollection({ loader: glob({ pattern: '*.json', base: './src/data/matches' }), schema: match });
 const retracted = defineCollection({ loader: glob({ pattern: '*.json', base: './src/data/retracted' }), schema: match });
 
+// Teams the models built themselves from the format's rules (rotomarena teams draft), refereed by Showdown.
+const member = z.object({
+  species: z.string(), sprite: z.string().nullable(), item: z.string(), ability: z.string(), tera_type: z.string(),
+  nature: z.string(), evs: z.record(z.string(), z.number()), moves: z.array(z.string()),
+});
+const drafts = defineCollection({
+  loader: file('src/data/drafts.json', {
+    parser: (text) => JSON.parse(text).map((d: { config_id: string }) => ({ id: d.config_id, ...d })),
+  }),
+  schema: z.object({
+    config_id: z.string(), display_name: z.string(), model: z.string().nullable(), model_key: z.string().nullable(),
+    format: z.string(), prompt_version: z.string(), drafted_at: z.string(), legal: z.boolean(),
+    thought: z.string().nullable(), team_text: z.string().nullable(), members: z.array(member),
+    attempts: z.array(z.object({
+      attempt: z.number(), problems: z.array(z.string()), error: z.string().nullable().optional(),
+      thought: z.string().nullable().optional(), team_text: z.string().nullable().optional(), tokens: z.number(),
+      cost_usd: z.number(), finish_reason: z.string().nullable().optional(),
+    })),
+  }),
+});
+
 // Hand-written explanations shown on a model's page, one Markdown file per config id (src/content/about).
 const about = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/about' }),
   schema: z.object({ title: z.string() }),
 });
 
-export const collections = { models, matches, retracted, about };
+export const collections = { models, matches, retracted, about, drafts };

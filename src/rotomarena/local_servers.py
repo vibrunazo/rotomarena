@@ -130,6 +130,10 @@ def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
     return args + ["--reasoning", "auto", "--reasoning-budget", str(app_cfg.ruleset.max_output_tokens // 2)]
 
 
+def stop(app_cfg: AppConfig, port: int) -> None:
+    _gen(app_cfg, "stop", "--port", str(port))
+
+
 def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:
     return [a for a in agents if a.type == "direct_llm" and a.provider == "local" and a.port]
 

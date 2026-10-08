@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
+import DraftedTeam from '../../components/DraftedTeam.astro';
 import { allModels, fmtPct, matchEntries, meta, rankedModels, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
@@ -14,6 +15,7 @@ const llm = m.type === 'direct_llm';
 const ranked = (await rankedModels()).filter((x) => x.rating !== null && x.type === 'direct_llm');
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
+const draft = (await getCollection('drafts')).find((entry) => entry.id === m.config_id)?.data;
 const about = (await getCollection('about')).find((entry) => entry.id === m.config_id); // most models have none
 const About = about ? (await render(about)).Content : null;
 const pretty = (id: string | null) => (id ? id.replace(/^./, (c) => c.toUpperCase()) : '—');
@@ -72,7 +74,7 @@ const facts: [string, string][] = [
       <h2>Style</h2>
       <dl class="style">
         <dt>Signature move</dt><dd>{pretty(m.signature_move)}</dd>
-        <dt>Favourite Pokémon</dt><dd>{pretty(m.favorite_pokemon)}</dd>
+        <dt>Most time on the field</dt><dd>{pretty(m.most_used_pokemon)}</dd>
       </dl>
       {m.hallucinations.length > 0 && (
         <>
@@ -97,6 +99,14 @@ const facts: [string, string][] = [
       </section>
     )}
   </div>
+
+  {draft && (
+    <>
+      <h2>Its own team</h2>
+      <p class="prose small muted">Built by the model itself from the rules of the format. <a href="/teams/">How teams are built</a>.</p>
+      <DraftedTeam draft={draft} />
+    </>
+  )}
 
   <h2>Matches</h2>
   {matches.length ? <MatchList matches={matches} /> : <p class="muted">No rated matches yet.</p>}

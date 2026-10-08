@@ -6,6 +6,11 @@ import headToHeadJson from '../data/head_to_head.json';
 
 export type Model = CollectionEntry<'models'>['data'];
 export type Match = CollectionEntry<'matches'>['data'];
+export type Draft = CollectionEntry<'drafts'>['data'];
+
+export async function allDrafts(): Promise<Draft[]> {
+  return (await getCollection('drafts')).map((e) => e.data);
+}
 
 export const meta = metaJson;
 export const headToHead = headToHeadJson as { a: string; b: string; games: number; a_wins: number; b_wins: number; draws: number }[];

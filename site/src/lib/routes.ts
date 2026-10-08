@@ -4,6 +4,7 @@ export const routes = {
   home: '/',
   leaderboard: '/leaderboard/',
   matches: '/matches/',
+  teams: '/teams/',
   retracted: '/retracted/',
   paper: '/paper/',
   citation: '/paper/#citation',

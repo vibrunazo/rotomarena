@@ -1,0 +1,71 @@
+---
+// A team a model built itself: its plan, the six Pokémon with sprites, and every attempt Showdown's validator saw.
+// Sprites load from play.pokemonshowdown.com, like the replay player.
+import type { Draft } from '../lib/data';
+
+interface Props { draft: Draft; heading?: boolean }
+const { draft: d, heading = false } = Astro.props;
+const evText = (evs: Record<string, number>) =>
+  Object.entries(evs).map(([k, v]) => `${v} ${({ hp: 'HP', atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe' } as Record<string, string>)[k] ?? k}`).join(' / ');
+const failed = d.attempts.filter((a) => a.problems.length || a.error);
+---
+<div class="draft hud-panel">
+  <div class="draft-head">
+    {heading && <h3><a href={`/models/${d.config_id}/`}>{d.display_name}</a></h3>}
+    {d.legal
+      ? <span class:list={['pill', d.attempts.length === 1 ? 'accent' : 'warn']}>legal on attempt {d.attempts.length}</span>
+      : <span class="pill bad">no legal team after {d.attempts.length} attempts</span>}
+  </div>
+  {d.thought && <p class="plan">"{d.thought}"</p>}
+  {d.members.length > 0 && (
+    <ul class="mons">
+      {d.members.map((m) => (
+        <li>
+          {m.sprite && <img src={`https://play.pokemonshowdown.com/sprites/gen5/${m.sprite}.png`} alt="" width="96" height="96" />}
+          <strong>{m.species}</strong>
+          <span class="small muted">{m.item}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+  {d.members.length > 0 && (
+    <details>
+      <summary class="small">Full sets</summary>
+      <div class="sets">
+        {d.members.map((m) => (
+          <div class="set">
+            <strong>{m.species}</strong> @ {m.item}<br />
+            <span class="muted small">{m.ability} · Tera {m.tera_type} · {m.nature} · {evText(m.evs)}</span>
+            <ul>{m.moves.map((mv) => <li>{mv}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </details>
+  )}
+  {failed.length > 0 && (
+    <details>
+      <summary class="small">Rejected attempts ({failed.length})</summary>
+      {failed.map((a) => (
+        <div class="attempt">
+          <p class="small"><strong>Attempt {a.attempt}</strong>{a.error ? ': the provider failed' : ''}</p>
+          <ul class="problems small">{(a.problems.length ? a.problems : [a.error]).map((p) => <li>{p}</li>)}</ul>
+        </div>
+      ))}
+    </details>
+  )}
+</div>
+
+<style>
+  .draft { padding: 1rem 1.2rem; margin: 1rem 0; }
+  .draft-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+  .draft-head h3 { margin: 0; }
+  .plan { font-style: italic; color: var(--text-dim); max-width: var(--measure); }
+  .mons { list-style: none; padding: 0; margin: 0.6rem 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.4rem; }
+  .mons li { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.4rem; border-radius: var(--radius); background: var(--inset); border: 1px solid var(--line); font-family: var(--font-body); font-size: 0.9rem; }
+  .mons img { width: 80px; height: 80px; image-rendering: pixelated; filter: drop-shadow(0 0 6px rgba(62, 230, 255, 0.25)); }
+  .sets { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 0.6rem; margin-top: 0.6rem; font-family: var(--font-body); font-size: 0.9rem; }
+  .set ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+  details { margin-top: 0.5rem; }
+  summary { cursor: pointer; color: var(--text-dim); font-family: var(--font-body); }
+  .problems { color: #ff8da1; font-family: var(--font-mono); }
+</style>

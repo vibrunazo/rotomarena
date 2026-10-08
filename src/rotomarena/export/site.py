@@ -6,6 +6,7 @@ import datetime
 import json
 import re
 import statistics
+import subprocess
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
@@ -15,6 +16,8 @@ from rotomarena.ladder import SeasonState, season_state
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
+from rotomarena.teams.draft import load_drafts
+from rotomarena.teams.loader import parse_smogon_team
 from rotomarena.telemetry.replay_saver import flatten_logs
 
 RETRACTED_SEASON = "v0"
@@ -167,7 +170,7 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
         "cost_per_game_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics) / played, 4) if played else 0.0,
         "switch_rate": round(sum(1 for c in choices if c["kind"] == "switch") / (len(choices) or 1), 3),
         "signature_move": moves.most_common(1)[0][0] if moves else None,
-        "favorite_pokemon": Counter(b.active_pokemon for b in turns).most_common(1)[0][0] if turns else None,
+        "most_used_pokemon": Counter(b.active_pokemon for b in turns).most_common(1)[0][0] if turns else None,
         "median_tera_turn": _median(tera_turns),
         "longest_thought": max(thoughts, key=lambda t: len(t.split()), default=None),
         "shortest_thought": min(thoughts, key=lambda t: len(t.split()), default=None),
@@ -232,6 +235,41 @@ def findings(models: List[Dict[str, Any]], all_matches: List[MatchTelemetry]) ->
     else:
         out.append({"id": "most-hallucinations", "show": False})
     return out
+
+
+def _sprite_ids(app_cfg: AppConfig, names: List[str]) -> Dict[str, Optional[str]]:
+    """Showdown sprite ids for species names, from the local Showdown install."""
+    if not names:
+        return {}
+    script = Path(__file__).resolve().parent.parent / "teams" / "sprite_ids.js"
+    result = subprocess.run(["node", str(script), *names], cwd=Path(app_cfg.server.server_dir).resolve(),
+                            capture_output=True, text=True, encoding="utf-8", check=True)
+    return json.loads(result.stdout)
+
+
+def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
+    verdict. Raw answers and reasoning traces stay in data/drafts."""
+    parsed = {cid: parse_smogon_team(d["team"]).members if d.get("team") else [] for cid, d in drafts.items()}
+    sprites = _sprite_ids(app_cfg, sorted({m.species for members in parsed.values() for m in members}))
+    rows = []
+    for cid, d in sorted(drafts.items()):
+        registry = app_cfg.agents.get(cid)
+        rows.append({
+            "config_id": cid,
+            "display_name": (registry.display_name if registry and registry.display_name else cid),
+            "model": d.get("model"), "model_key": d.get("model_key"), "format": d["format"],
+            "prompt_version": d["prompt_version"], "drafted_at": d["drafted_at"],
+            "legal": d["legal"], "thought": d.get("thought"), "team_text": d.get("team"),
+            "members": [{"species": m.species, "sprite": sprites.get(m.species), "item": m.item, "ability": m.ability,
+                         "tera_type": m.tera_type, "nature": m.nature,
+                         "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves} for m in parsed[cid]],
+            "attempts": [{"attempt": a["attempt"], "problems": a.get("problems") or [], "error": a.get("error"),
+                          "thought": a.get("thought"), "team_text": a.get("team"), "tokens": a.get("tokens", 0),
+                          "cost_usd": a.get("cost_usd", 0.0), "finish_reason": a.get("finish_reason")}
+                         for a in d["attempts"]],
+        })
+    return rows
 
 
 def _model_rows(state: SeasonState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
@@ -303,6 +341,9 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
             row["draws"] += 1
 
     _write_json(out / "models.json", models)
+    _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts()))
+    reference = Path("data/teams/smogon/index.json")  # credited community teams, used for tests and as fallback
+    _write_json(out / "reference_teams.json", json.loads(reference.read_text(encoding="utf-8")) if reference.exists() else {"teams": []})
     _write_json(out / "head_to_head.json", sorted(head_to_head.values(), key=lambda r: (r["a"], r["b"])))
     _write_json(out / "findings.json", findings(models, state.matches + retracted))
     _write_json(out / "meta.json", {

@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import DraftedTeam from '../components/DraftedTeam.astro';
+import { allDrafts } from '../lib/data';
+import { routes } from '../lib/routes';
+import reference from '../data/reference_teams.json';
+
+const drafts = (await allDrafts()).sort((a, b) => Number(b.legal) - Number(a.legal) || a.attempts.length - b.attempts.length);
+const legal = drafts.filter((d) => d.legal);
+const picks = Object.entries(
+  legal.flatMap((d) => d.members.map((m) => m.species)).reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
+).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const unanimous = picks.filter(([, n]) => legal.length > 1 && n === legal.length).map(([s]) => s);
+const refs = (reference.teams as { title: string; archetype: string; builder: string; url: string; legal: boolean }[]);
+---
+<Base title="Teambuilding" description="The teams language models built for themselves, and the validator that judged them.">
+  <p class="eyebrow">Teambuilding</p>
+  <h1>Teams</h1>
+  <div class="prose">
+    <p>
+      Every model is asked to build its own Gen 9 OverUsed team. It is given the rules of the format, the way a player
+      is given the legal moves in a battle: the clauses, the banned abilities, moves and items, and the list of legal
+      Pokémon. It is not given usage statistics, sample teams or advice. What it builds is up to it.
+    </p>
+    <p>
+      Pokémon Showdown's validator then checks the team, exactly as it checks a human player's. An illegal team is
+      sent back with the validator's own messages, and the model gets up to three attempts in total. Every
+      attempt is published below, including the ones the validator rejected.
+    </p>
+    {unanimous.length > 0 && (
+      <p>
+        So far, {legal.length === 2 ? 'both' : `all ${legal.length}`} models that built a legal team chose
+        {' '}{unanimous.join(', ').replace(/, ([^,]*)$/, ' and $1')}. Whether this reflects the metagame or a shared memory of it
+        is a question we have chosen not to investigate.
+      </p>
+    )}
+  </div>
+
+  {picks.length > 0 && (
+    <>
+      <h2>Most drafted Pokémon</h2>
+      <ol class="picks">{picks.slice(0, 12).map(([s, n]) => <li><span>{s}</span><span class="num muted">{n} of {legal.length}</span></li>)}</ol>
+    </>
+  )}
+
+  <h2>The teams</h2>
+  {drafts.length ? drafts.map((d) => <DraftedTeam draft={d} heading />) : <p class="muted">No model has drafted yet.</p>}
+
+  <h2>Reference teams</h2>
+  <p class="prose">
+    When a model has not built a team, and for testing the harness, we use sample teams from Smogon's
+    <a href="https://www.smogon.com/forums/threads/sv-ou-sample-teams-new-samples-added-post-spl-and-tera-blast-ban.3712513/">SV OU Sample Teams</a>
+    thread, hosted by the OU Room and forum staff. Each was built by the player named below.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Team</th><th>Style</th><th>Built by</th><th></th></tr></thead>
+      <tbody>
+        {refs.map((t) => (
+          <tr>
+            <td>{t.title}</td><td class="muted">{t.archetype}</td><td>{t.builder}</td>
+            <td><a href={t.url}>Team</a>{!t.legal && <span class="pill warn" title="As posted, lists alternatives Showdown cannot play">options</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">Season 1 itself uses two older teams written by the AI assistant that set up the project; see the <a href={routes.faq}>FAQ</a>.</p>
+</Base>
+
+<style>
+  .picks { padding-left: 1.4rem; max-width: 28rem; font-family: var(--font-body); }
+  .picks li { padding: 0.15rem 0; }
+  .picks li span:first-child { display: inline-block; min-width: 12rem; }
+  td .pill { margin-left: 0.4rem; }
+</style>
