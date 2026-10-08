@@ -8,20 +8,25 @@ const { draft: d, heading = false } = Astro.props;
 const evText = (evs: Record<string, number>) =>
   Object.entries(evs).map(([k, v]) => `${v} ${({ hp: 'HP', atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe' } as Record<string, string>)[k] ?? k}`).join(' / ');
 const failed = d.attempts.filter((a) => a.problems.length || a.error);
+const failedPicks = d.picks.attempts.filter((a) => a.problems.length || a.error);
+const repairs = [...d.picks.repairs, ...d.repairs];
 ---
 <div class="draft hud-panel">
   <div class="draft-head">
     {heading && <h3><a href={`/models/${d.config_id}/`}>{d.display_name}</a></h3>}
-    {d.legal
-      ? <span class:list={['pill', d.attempts.length === 1 ? 'accent' : 'warn']}>legal on attempt {d.attempts.length}</span>
-      : <span class="pill bad">repaired after {d.attempts.length} rejected attempts</span>}
+    {d.picks.attempts.length > 0 && (d.picks.legal
+      ? <span class:list={['pill', d.picks.attempts.length === 1 ? 'accent' : 'warn']}>six picked on attempt {d.picks.attempts.length}</span>
+      : <span class="pill bad">picks repaired after {d.picks.attempts.length} attempts</span>)}
+    {d.repairs.length === 0
+      ? <span class:list={['pill', d.attempts.length === 1 ? 'accent' : 'warn']}>{d.picks.attempts.length ? 'sets' : 'team'} legal on attempt {d.attempts.length}</span>
+      : <span class="pill bad">{d.picks.attempts.length ? 'sets' : 'team'} repaired after {d.attempts.length} attempts</span>}
   </div>
   {d.thought && <p class="plan">"{d.thought}"</p>}
-  {d.repaired && (
+  {repairs.length > 0 && (
     <div class="repairs">
-      <p class="small"><strong>Repaired by the referee.</strong> Its last team was made legal by replacing only what the
-      validator rejected, with deliberately unremarkable choices: a handicap for the mistake, not a punishment.</p>
-      <ul class="small">{d.repairs.map((r) => <li>{r}</li>)}</ul>
+      <p class="small"><strong>Repaired by the referee.</strong> Its last answer was made legal by replacing only what
+      was rejected, with deliberately unremarkable choices: a handicap for the mistake, not a punishment.</p>
+      <ul class="small">{repairs.map((r) => <li>{r}</li>)}</ul>
     </div>
   )}
   {d.members.length > 0 && (
@@ -49,9 +54,20 @@ const failed = d.attempts.filter((a) => a.problems.length || a.error);
       </div>
     </details>
   )}
+  {failedPicks.length > 0 && (
+    <details>
+      <summary class="small">Rejected picks ({failedPicks.length})</summary>
+      {failedPicks.map((a) => (
+        <div class="attempt">
+          <p class="small"><strong>Attempt {a.attempt}</strong>{a.pokemon.length ? `: ${a.pokemon.join(', ')}` : ''}{a.error ? ': the provider failed' : ''}</p>
+          <ul class="problems small">{(a.problems.length ? a.problems : [a.error]).map((p) => <li>{p}</li>)}</ul>
+        </div>
+      ))}
+    </details>
+  )}
   {failed.length > 0 && (
     <details>
-      <summary class="small">Rejected attempts ({failed.length})</summary>
+      <summary class="small">Rejected {d.picks.attempts.length ? 'sets' : 'teams'} ({failed.length})</summary>
       {failed.map((a) => (
         <div class="attempt">
           <p class="small"><strong>Attempt {a.attempt}</strong>{a.error ? ': the provider failed' : ''}</p>

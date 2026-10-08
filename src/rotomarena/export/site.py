@@ -266,6 +266,11 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
             "members": [{"species": m.species, "sprite": sprites.get(m.species), "item": m.item, "ability": m.ability,
                          "tera_type": m.tera_type, "nature": m.nature,
                          "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves} for m in parsed[cid]],
+            "picks": {"legal": d.get("picks", {}).get("legal", True), "species": d.get("picks", {}).get("species", []),
+                      "repairs": d.get("picks", {}).get("repairs", []),
+                      "attempts": [{"attempt": a["attempt"], "problems": a.get("problems") or [], "error": a.get("error"),
+                                    "pokemon": a.get("pokemon", []), "thought": a.get("thought"), "tokens": a.get("tokens", 0)}
+                                   for a in d.get("picks", {}).get("attempts", [])]},
             "attempts": [{"attempt": a["attempt"], "problems": a.get("problems") or [], "error": a.get("error"),
                           "thought": a.get("thought"), "team_text": a.get("team"), "tokens": a.get("tokens", 0),
                           "cost_usd": a.get("cost_usd", 0.0), "finish_reason": a.get("finish_reason")}

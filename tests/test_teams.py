@@ -93,21 +93,40 @@ def test_load_preset_team_by_name():
     assert any(m.species == "Great Tusk" for m in team.members)
 
 
-RULES = {"format": "[Gen 9] OU", "id": "gen9ou", "species": ["Great Tusk", "Kingambit"],
+
+
+SIX = ["Great Tusk", "Kingambit", "Gholdengo", "Dragapult", "Toxapex", "Corviknight"]
+RULES = {"format": "[Gen 9] OU", "id": "gen9ou", "species": SIX + ["Ogerpon", "Ogerpon-Wellspring"],
+         "base": {**{s: s for s in SIX}, "Ogerpon": "Ogerpon", "Ogerpon-Wellspring": "Ogerpon"},
          "clauses": ["Species Clause: Prevents teams from having more than one Pok&eacute;mon from the same species"],
          "banned": {"abilities": ["Moody"], "moves": ["Baton Pass"], "items": ["King's Rock"]}}
 
 
-def test_draft_prompt_states_the_rules_not_strategy():
-    from rotomarena.teams.draft import system_prompt
+def test_draft_prompts_state_the_rules_not_strategy():
+    from rotomarena.teams.draft import BUILD_PROMPT, PICK_PROMPT, options_text, system_prompt
 
     prompt = system_prompt(RULES)
     assert "Great Tusk, Kingambit" in prompt and "Baton Pass" in prompt and "King's Rock" in prompt
     assert "Pokémon from the same species" in prompt  # HTML entity decoded
-    assert "Species @ Item" in prompt  # the format example names no real Pokémon
+    assert "Species @ Item" in BUILD_PROMPT and "<pokemon>" in PICK_PROMPT  # format examples name no real Pokémon
+    options = options_text({"Kingambit": {"name": "Kingambit", "types": ["Dark", "Steel"],
+                                          "abilities": ["Defiant", "Supreme Overlord"], "moves": ["Kowtow Cleave", "Sucker Punch"]}})
+    assert "Kingambit (Dark/Steel)" in options and "Abilities: Defiant, Supreme Overlord" in options
 
 
-def test_draft_feeds_back_the_validator_until_the_team_is_legal(monkeypatch):
+def test_picks_are_checked_against_the_list_and_species_clause():
+    from rotomarena.teams.draft import check_picks
+
+    picks, problems = check_picks("1. Great Tusk\n- kingambit\nGholdengo @ Leftovers\nDragapult\nToxapex\nCorviknight", RULES)
+    assert picks == SIX and problems == []  # list markers, case and stray items are tolerated
+    picks, problems = check_picks("Great Tusk\nOgerpon\nOgerpon-Wellspring\nRoaring Moon\nToxapex", RULES)
+    assert picks == ["Great Tusk", "Ogerpon", "Toxapex"]
+    assert any("Roaring Moon is not a legal" in p for p in problems)
+    assert any("same species" in p for p in problems) and any("listed 5" in p for p in problems)
+    assert "cut off" in check_picks(None, RULES, cut_off=True)[1][0]
+
+
+def test_draft_picks_six_then_builds_their_sets(monkeypatch):
     import asyncio
     from types import SimpleNamespace
     from unittest.mock import AsyncMock
@@ -116,19 +135,30 @@ def test_draft_feeds_back_the_validator_until_the_team_is_legal(monkeypatch):
     from rotomarena.llm.schemas import LLMUsageMetrics
     from rotomarena.teams import draft
 
-    answers = ["<thought>Too long, never finished", "<thought>Hazards.</thought><team>Roaring Moon @ Leftovers</team>",
-               "<thought>Hazards.</thought><team>Great Tusk @ Leftovers</team>"]
-    client = SimpleNamespace(default_model="m", provider_name="openrouter", generate_completion=AsyncMock(side_effect=[
-        Completion(a, "", LLMUsageMetrics(total_tokens=100, finish_reason="length" if i == 0 else "stop"))
-        for i, a in enumerate(answers)]))
+    team = "\n\n".join(f"{s} @ Leftovers\nAbility: Pressure\n- Protect" for s in SIX)
+    answers = [
+        "<thought>Hazards.</thought><pokemon>Roaring Moon\n" + "\n".join(SIX[1:]) + "</pokemon>",  # a banned pick
+        "<thought>Hazards.</thought><pokemon>" + "\n".join(SIX) + "</pokemon>",
+        "<thought>Sets.</thought><team>" + team.replace("Corviknight", "Garchomp") + "</team>",  # not one of the six
+        "<thought>Sets.</thought><team>" + team + "</team>",
+    ]
+    seen, replies = [], iter(answers)
+
+    async def complete(messages, **kwargs):  # the conversation keeps growing: note what each call was asked
+        seen.append(messages[-1]["content"])
+        return Completion(next(replies), "", LLMUsageMetrics(total_tokens=100, finish_reason="stop"))
+
+    client = SimpleNamespace(default_model="m", provider_name="openrouter", generate_completion=complete)
     monkeypatch.setattr(draft, "format_rules", lambda app_cfg: RULES)
     monkeypatch.setattr(draft, "llm_client_for", lambda agent, app_cfg: client)
-    monkeypatch.setattr(draft, "validate_team", lambda app_cfg, text: ["Roaring Moon is tagged Uber, which is banned."]
-                        if "Roaring Moon" in text else [])
+    monkeypatch.setattr(draft, "species_options", lambda app_cfg, names: {n: {"name": n, "types": ["Normal"],
+                        "abilities": ["Pressure"], "moves": ["Protect"]} for n in names})
+    monkeypatch.setattr(draft, "validate_team", lambda app_cfg, text: [])
 
     record = asyncio.run(draft.draft_team(AgentConfig(name="x", type="direct_llm"), AppConfig(), log=lambda m: None))
-    assert record["legal"] and record["team"] == "Great Tusk @ Leftovers" and record["thought"] == "Hazards."
-    assert [len(a["problems"]) for a in record["attempts"]] == [1, 1, 0]
-    assert "cut off at the token budget" in record["attempts"][0]["problems"][0]
-    retry = client.generate_completion.await_args_list[2].args[0][-1]["content"]
-    assert "Roaring Moon is tagged Uber" in retry  # the validator's own words go back to the model
+    assert record["legal"] and not record["repaired"] and record["picks"]["species"] == SIX
+    assert [len(a["problems"]) for a in record["picks"]["attempts"]] == [1, 0]
+    assert [len(a["problems"]) for a in record["attempts"]] == [1, 0] and record["thought"] == "Sets."
+    assert "Roaring Moon is not a legal" in seen[1]  # the problems go back to the model
+    assert "Kingambit (Normal)" in seen[2]  # stage 2 lists each pick's options
+    assert "Garchomp is not among the six" in seen[3]

@@ -36,7 +36,8 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
              "battle_prompt": _sha(SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE)}
     if app_cfg.ruleset.team_mode == "draft":
         from rotomarena.teams import draft  # imported here: drafting imports the agent factory
-        rules["draft_prompt"] = _sha(draft.DRAFT_SYSTEM_PROMPT, draft.RETRY_PROMPT, draft.PROMPT_VERSION, str(draft.ATTEMPTS))
+        rules["draft_prompt"] = _sha(draft.DRAFT_SYSTEM_PROMPT, draft.PICK_PROMPT, draft.BUILD_PROMPT, draft.RETRY_PICK,
+                                     draft.RETRY_BUILD, draft.PROMPT_VERSION, str(draft.ATTEMPTS))
     return rules
 
 

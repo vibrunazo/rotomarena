@@ -16,6 +16,7 @@ const ruleTable = Dex.formats.getRuleTable(format);
 // Formes that need an item (Arceus-Fire, Giratina-Origin) get it, so the validator judges the forme itself.
 const BANNED = /is tagged .+ which is banned|is banned\.|does not exist|is unreleased|not obtainable|isn't available/;
 const legal = [];
+const base = {};
 for (const species of dex.species.all()) {
   if (species.battleOnly || species.isNonstandard) continue;
   const set = {
@@ -24,7 +25,10 @@ for (const species of dex.species.all()) {
     evs: {hp: 4, atk: 0, def: 0, spa: 0, spd: 0, spe: 0}, ivs: {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31},
   };
   const problems = validator.validateTeam([set]) || [];
-  if (!problems.some((p) => BANNED.test(p) && !p.startsWith(`${species.name}'s`))) legal.push(species.name);
+  if (!problems.some((p) => BANNED.test(p) && !p.startsWith(`${species.name}'s`))) {
+    legal.push(species.name);
+    base[species.name] = species.baseSpecies;  // Species Clause counts base species (Ogerpon and Ogerpon-Wellspring)
+  }
 }
 
 const clauses = [];
@@ -44,4 +48,4 @@ for (const [rule] of ruleTable) {
   }
 }
 
-process.stdout.write(JSON.stringify({format: format.name, id: format.id, species: legal, clauses, banned}));
+process.stdout.write(JSON.stringify({format: format.name, id: format.id, species: legal, base, clauses, banned}));

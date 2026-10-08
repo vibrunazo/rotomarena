@@ -13,9 +13,9 @@ server:
 # Rules shared by every player in a season. They are recorded in every match;
 # changing any of them starts a new season.
 ruleset:
-  # The version being played now: Gen 9 OU with each model's own team ("s2"). The fixed-teams benchmark's version
-  # is "s1" with team_mode "fixed" (its placement paused on 8 Oct with Ling's set against Bonsai).
-  version: "s2"
+  # The version being played now: Gen 9 OU with each model's own team, drafted in two stages ("s3"). Other
+  # versions: "s2" (own teams, one-step draft, retired) and "s1" (team_mode "fixed", placement paused on 8 Oct).
+  version: "s3"
   team_mode: "draft"
   # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
   #         local servers stop thinking at half), 2-hour hang guard
@@ -31,13 +31,18 @@ benchmarks:
   - id: "gen9ou-own-teams"
     title: "Gen 9 OU · own teams"
     category: "Pokémon"
-    description: "Each model plays the Gen 9 OverUsed team it built itself from the rules of the format."
-    versions: ["s2"]
+    description: "Each model plays the Gen 9 OverUsed team it built itself: six Pokémon from the legal list, then their sets from their legal abilities and moves."
+    versions: ["s3"]
   - id: "gen9ou-fixed-teams"
     title: "Gen 9 OU · fixed teams"
     category: "Pokémon"
     description: "Every pairing plays the same two Gen 9 OverUsed teams from both sides; teambuilding not measured."
     versions: ["s1"]
+  - id: "gen9ou-own-teams-v1"
+    title: "Gen 9 OU · own teams (v1)"
+    category: "Pokémon"
+    description: "The first own-teams version (retired): teams drafted in one step from the legal Pokémon list alone, so most models were judged on remembering movepools."
+    versions: ["s2"]
 
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
 ladder:

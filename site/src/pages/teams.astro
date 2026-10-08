@@ -18,13 +18,16 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
   <h1>Teams</h1>
   <div class="prose">
     <p>
-      Every model is asked to build its own Gen 9 OverUsed team. It is given the rules of the format, the way a player
-      is given the legal moves in a battle: the clauses, the banned abilities, moves and items, and the list of legal
-      Pokémon. It is not given usage statistics, sample teams or advice. What it builds is up to it.
+      Every model builds its own Gen 9 OverUsed team, in two steps. First it picks six Pokémon, given the rules of the
+      format: the clauses, the banned abilities, moves and items, and the list of legal Pokémon. Then it gets the
+      abilities and moves each of its six can legally have, and builds their sets. That is the same kind of help a
+      player gets in a battle, where the legal moves are listed: rules, not strategy. It is not given usage
+      statistics, sample teams or advice. What it builds is up to it.
     </p>
     <p>
-      Pokémon Showdown's validator then checks the team, exactly as it checks a human player's. An illegal team is
-      sent back with the validator's own messages, and the model gets up to five attempts in total. A model that
+      Each step is checked, the picks against the list and the finished team by Pokémon Showdown's validator, exactly
+      as it checks a human player's. Anything illegal is sent back with the exact problems, and the model gets up to
+      five attempts per step. A model that
       never gets there still plays: its last team is repaired by replacing only what the validator rejected, with
       deliberately unremarkable choices, so the mistake costs it something without costing it its place. Every
       attempt and every repair is published below.

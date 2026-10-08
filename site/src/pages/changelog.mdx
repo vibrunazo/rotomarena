@@ -11,7 +11,19 @@ A change to a benchmark's rules starts a new version of it, and games of differe
 without saying so. Everything else is listed here too, so that nobody can say we changed
 the rules quietly.
 
-## Gen 9 OU · own teams (version s2) · October 2026
+## Gen 9 OU · own teams, version s3 · October 2026
+
+- **Drafting in two steps.** Models first pick six Pokémon from the legal list, then get the abilities and moves
+  those six can legally have and build their sets. In the first version, most rejected teams were Pokémon given
+  moves they cannot learn or abilities they cannot have (117 of 168 problems), which measured memory of movepools
+  more than teambuilding. The legal options are rules, like the legal moves listed in a battle.
+- **Every version's rules are stored** and every game is checked against them, so a benchmark only ever rates
+  games played under the same rules. The earlier one-step version stays on the site as "own teams (v1)" and its
+  games count in Overall.
+- **Faster pairs.** Both games of a pair run at once, each model's requests are answered together, and the
+  anchor's games come first so every model is rated as early as possible.
+
+## Gen 9 OU · own teams, version s2 (v1, retired) · October 2026
 
 - **Teams.** Every model builds its own team from the rules of the format: the clauses, the bans and the list of
   legal Pokémon, read from Pokémon Showdown. No sample teams, usage statistics or advice. Showdown's validator is
