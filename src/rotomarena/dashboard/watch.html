@@ -110,7 +110,7 @@
           var flag = d.source !== 'model' ? ' <span class="flag">▲ ' + esc(d.source.replace('_', ' ')) + ': default move</span>' : '';
           return '<div><span class="who">' + esc(d.player) + '</span><span class="side">' + esc(side[d.player] || '') + '</span> · <span class="act">' +
             esc(action(d.action)) + '</span>' + flag + '<div class="meta">' + (d.seconds ? d.seconds + ' s' : '') +
-            (d.thinking_tokens ? ' · ' + d.thinking_tokens + ' thinking tokens' : '') + '</div><p class="thought">' + esc(d.thought) + '</p></div>';
+            (d.thinking_tokens ? ' · ' + d.thinking_tokens + ' thinking tokens' : '') + '</div><p class="thought">' + (d.thought ? esc(d.thought) : '<span class="meta">(no thought written)</span>') + '</p></div>';
         }).join('') + '</div></div>';
     }).join('');
   }
