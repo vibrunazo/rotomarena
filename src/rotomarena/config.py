@@ -115,13 +115,19 @@ RULESET_PROFILES = {
 
 
 class RulesetConfig(BaseModel):
-    """Rules shared by every player of a benchmark version. Recorded in every match; changing them needs a new season.
+    """Rules shared by every player of a benchmark version. Recorded in every match; changing them needs a new version.
     `profile` fills in reasoning, max_output_tokens and turn_timeout unless they are set explicitly."""
 
-    version: str = Field(default="s1", description="Season / ruleset identifier")
+    version: str = Field(default="s1", description="Ruleset version id: names one exact set of rules (see rulesets.py)")
     profile: Literal["ladder", "concise"] = Field(default="ladder")
     reasoning: Optional[ReasoningLevel] = Field(
         default=None, description="Hidden reasoning requested from every LLM (OpenRouter effort levels)"
+    )
+    thinking_budget: Optional[int] = Field(
+        default=None, ge=1,
+        description="Tokens of hidden thinking per turn, the same for every model: OpenRouter's reasoning.max_tokens "
+        "(instead of an effort level) and llama.cpp's --reasoning-budget. The answer gets max_output_tokens minus "
+        "this, so reaching the budget ends the thinking, not the answer",
     )
     max_output_tokens: Optional[int] = Field(
         default=None,
@@ -208,6 +214,13 @@ class AgentConfig(BaseModel):
         default=None, ge=1,
         description="At most this many of its games at once (ladder.parallel_games otherwise). For free APIs with a "
         "per-minute token quota: four lanes of Gemma 4 on OpenRouter's free tier went over Google's 16k tokens/min",
+    )
+    active: bool = Field(
+        default=True, description="Plays new games; retired models keep their games and ratings, but sit out schedules",
+    )
+    max_games: Optional[int] = Field(
+        default=None, ge=0, description="At most this many games in total, across every version (a spending cap for "
+        "paid models); schedules skip it once reached",
     )
     model_key: Optional[str] = Field(
         default=None,

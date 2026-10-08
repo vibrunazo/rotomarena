@@ -148,9 +148,19 @@ def lane_count(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, r
     return min(n for n in limits if n is not None)
 
 
-def own_team(agent: AgentConfig) -> Team:
-    """The team a model built itself (draft mode): its legal team, or the repaired one."""
-    record = load_drafts().get(agent.name)
+def games_played(app_cfg: AppConfig, config_id: str) -> int:
+    """Every game this registry entry has played, in any version (each one cost tokens)."""
+    return sum(1 for m in load_matches(app_cfg.telemetry.output_dir)
+               if any(p.config_id == config_id for p in m.players))
+
+
+def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
+    return max(agent.max_games - games_played(app_cfg, agent.name), 0) if agent.max_games is not None else 10**9
+
+
+def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:
+    """The team a model built itself (draft mode) under this ruleset version: its legal team, or the repaired one."""
+    record = load_drafts(version=app_cfg.ruleset.version).get(agent.name)
     text = playable_team(record) if record else None
     if not text:
         raise ValueError(f"{agent.name} has no team of its own yet: run `rotomarena teams draft {agent.name}`")
@@ -181,11 +191,15 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     """Every language model plays every other one, pair by pair in balanced rounds, so coverage grows evenly.
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
     for two local models costs about one game's time instead of two. Resumable."""
-    ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm"]
+    ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm" and a.active]
     pairs = anchor_first(round_robin_pairs(ids), app_cfg.ladder.anchor)
     for i, (a, b) in enumerate(pairs, 1):
         done = version_state(app_cfg).games(a, b)
         if done >= games_per_pair:
+            continue
+        capped = [x for x in (a, b) if games_left(app_cfg, app_cfg.agents[x]) <= 0]
+        if capped:
+            log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: {', '.join(capped)} reached its game cap")
             continue
         log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
         await play_set(a, b, app_cfg, done, games=games_per_pair)
@@ -202,14 +216,15 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     Up to ladder.parallel_games games run at once, each by its own pair of players (a lane). Between rounds the
     run checks for halts and restarts crashed local servers, as it did between games when they ran one by one."""
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
+    agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
+    remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
     if remaining <= 0:
         return 0
-    agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
     lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
              for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
     players = [p for lane in lanes for p in lane]
     own = app_cfg.ruleset.team_mode == "draft"
-    team_1, team_2 = ((own_team(agent_a), own_team(agent_b)) if own
+    team_1, team_2 = ((own_team(agent_a, app_cfg), own_team(agent_b, app_cfg)) if own
                       else (load_preset_team(t) for t in app_cfg.ruleset.teams))
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
     played_before = len(_pair_matches(app_cfg, id_a, id_b))

@@ -127,7 +127,8 @@ def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
         return args + ["--reasoning", "off"]
     # Thinking on (each request asks for it); at half the output cap llama.cpp tells the model to stop
     # thinking, which leaves the other half for the answer instead of cutting it off.
-    return args + ["--reasoning", "auto", "--reasoning-budget", str(app_cfg.ruleset.max_output_tokens // 2)]
+    budget = app_cfg.ruleset.thinking_budget or app_cfg.ruleset.max_output_tokens // 2
+    return args + ["--reasoning", "auto", "--reasoning-budget", str(budget)]
 
 
 def stop(app_cfg: AppConfig, port: int) -> None:

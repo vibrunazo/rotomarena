@@ -196,7 +196,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
     record: Dict[str, Any] = {
         "config_id": agent.name, "model": client.default_model, "provider": client.provider_name,
         "model_key": agent.canonical_model_key(), "quantization": agent.quantization,
-        "format": rules["id"], "prompt_version": PROMPT_VERSION,
+        "format": rules["id"], "prompt_version": PROMPT_VERSION, "ruleset_version": app_cfg.ruleset.version,
         "drafted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "picks": {"attempts": [], "legal": False, "species": [], "repairs": []},
         "attempts": [], "legal": False, "team": None, "thought": None, "repaired": False, "repairs": [],
@@ -206,7 +206,8 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         """(completion, answer, reasoning), or None when the provider fails (the stage ends; the record says why)."""
         try:
             completion = await client.generate_completion(
-                messages, max_tokens=app_cfg.ruleset.max_output_tokens, reasoning=app_cfg.ruleset.reasoning)
+                messages, max_tokens=app_cfg.ruleset.max_output_tokens, reasoning=app_cfg.ruleset.reasoning,
+                thinking_budget=app_cfg.ruleset.thinking_budget)
         except Exception as e:
             stage.append({"attempt": attempt, "error": str(e)[:500], "problems": []})
             log(f"  attempt {attempt}: provider error: {str(e)[:120]}")
@@ -286,12 +287,14 @@ def playable_team(record: Dict[str, Any]) -> Optional[str]:
 
 
 def save_draft(record: Dict[str, Any], drafts_dir: Path = DRAFTS_DIR) -> Path:
-    path = drafts_dir / record["format"] / record["prompt_version"] / f"{record['config_id']}.json"
+    """Drafts are kept per ruleset version: the version's rules (thinking budget included) shaped them."""
+    path = drafts_dir / record["format"] / record["ruleset_version"] / f"{record['config_id']}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
 
 
-def load_drafts(drafts_dir: Path = DRAFTS_DIR, fmt: str = FORMAT, version: str = PROMPT_VERSION) -> Dict[str, Dict[str, Any]]:
-    """{config id: draft record} for every model that has drafted in this format under this draft version."""
+def load_drafts(drafts_dir: Path = DRAFTS_DIR, fmt: str = FORMAT, version: str = "") -> Dict[str, Dict[str, Any]]:
+    """{config id: draft record} for every model that drafted in this format under this ruleset version (older
+    folders are named by draft version: draft-1 for s2, draft-2 and draft-3 from before drafts followed versions)."""
     return {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((drafts_dir / fmt / version).glob("*.json"))}

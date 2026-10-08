@@ -210,11 +210,15 @@ class LLMClient:
             config = config.model_copy(update={"default_model": model_override})
         return cls(provider_config=config, provider_name=name)
 
-    def _reasoning_kwargs(self, reasoning: str) -> Dict[str, Any]:
-        """Translates the ruleset's reasoning level into this provider's request fields."""
+    def _reasoning_kwargs(self, reasoning: str, thinking_budget: Optional[int] = None) -> Dict[str, Any]:
+        """Translates the ruleset's reasoning level (or explicit thinking budget) into this provider's request fields.
+        llama.cpp servers get the budget at startup (--reasoning-budget), not per request."""
         style = self.config.api_style
         if style == "openrouter":
-            setting = {"enabled": False} if reasoning == "off" else {"effort": reasoning}
+            if reasoning == "off":
+                setting = {"enabled": False}
+            else:
+                setting = {"max_tokens": thinking_budget} if thinking_budget else {"effort": reasoning}
             # usage.include: OpenRouter reports what each request cost
             return {"extra_body": {"reasoning": setting, "usage": {"include": True}}}
         if style == "llama.cpp":
@@ -235,6 +239,7 @@ class LLMClient:
         max_tokens: Optional[int] = None,
         reasoning: str = "off",
         max_retries: int = 3,
+        thinking_budget: Optional[int] = None,
     ) -> Completion:
         """Calls the chat completions API, retrying server errors and rate limits."""
         target_model = model or self.default_model
@@ -242,7 +247,7 @@ class LLMClient:
             "model": target_model,
             "messages": messages,
             "temperature": temperature if temperature is not None else self.temperature,
-            **self._reasoning_kwargs(reasoning),
+            **self._reasoning_kwargs(reasoning, thinking_budget),
         }
         if max_tokens:
             create_kwargs["max_tokens"] = max_tokens
@@ -318,6 +323,7 @@ class LLMClient:
         temperature: Optional[float] = None,
         max_tokens: Optional[int] = None,
         reasoning: str = "off",
+        thinking_budget: Optional[int] = None,
     ) -> ActionDecision:
         """Asks for one turn's decision and parses it. API failures raise; bad answers set parse_error."""
         messages = [
@@ -325,7 +331,8 @@ class LLMClient:
             {"role": "user", "content": USER_PROMPT_DIRECT_COT_TEMPLATE.format(battle_state=battle_state_str)},
         ]
         completion = await self.generate_completion(
-            messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning
+            messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning,
+            thinking_budget=thinking_budget,
         )
         metrics = completion.metrics
         raw_text, hidden = recover_answer(completion.text, completion.reasoning, "<decision>")

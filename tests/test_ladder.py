@@ -323,3 +323,25 @@ def test_a_version_stores_its_rules_and_refuses_changed_ones(tmp_path):
     # games are judged on what they recorded: older games lack the prompt fingerprints
     assert same_rules({"version": "s1", "max_output_tokens": 4096}, rules)
     assert not same_rules({"version": "s1", "max_output_tokens": 1024}, rules)
+
+
+def test_thinking_budget_replaces_the_effort_level():
+    from rotomarena.llm.client import LLMClient
+
+    client = LLMClient.from_provider_name("openrouter")
+    assert client._reasoning_kwargs("medium")["extra_body"]["reasoning"] == {"effort": "medium"}
+    assert client._reasoning_kwargs("medium", 1024)["extra_body"]["reasoning"] == {"max_tokens": 1024}
+    assert client._reasoning_kwargs("off", 1024)["extra_body"]["reasoning"] == {"enabled": False}
+
+
+def test_capped_models_stop_at_their_game_limit(tmp_path):
+    from rotomarena.ladder import games_left, games_played
+
+    runs = tmp_path / "runs"
+    for i, season in enumerate(["s1", "s2", "s4"]):  # games count in every version
+        m = make_match(f"match_2026100{i}_x_g1", "haiku", "bonsai", "haiku", season=season)
+        m.save_json(runs / m.match_id / "breadcrumbs.json")
+    app_cfg = AppConfig(telemetry=TelemetryConfig(output_dir=runs))
+    haiku = AgentConfig(name="haiku", type="direct_llm", max_games=8)
+    assert games_played(app_cfg, "haiku") == 3 and games_left(app_cfg, haiku) == 5
+    assert games_left(app_cfg, AgentConfig(name="bonsai", type="direct_llm")) > 1000  # uncapped

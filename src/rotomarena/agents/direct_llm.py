@@ -27,6 +27,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         temperature: float = 0.2,
         max_output_tokens: int = 1024,
         reasoning: str = "off",
+        thinking_budget: Optional[int] = None,
         battle_format: str = "gen9ou",
         team: Optional[str] = None,
         **kwargs,
@@ -43,6 +44,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         self.temperature = temperature
         self.max_output_tokens = max_output_tokens
         self.reasoning = reasoning
+        self.thinking_budget = thinking_budget
         # Set when the provider stops answering (credits, quota, sustained rate limit); the ladder stops on it.
         self.provider_limit: Optional[ProviderLimitError] = None
 
@@ -58,6 +60,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 temperature=self.temperature,
                 max_tokens=self.max_output_tokens,
                 reasoning=self.reasoning,
+                thinking_budget=self.thinking_budget,
             )
         except ProviderLimitError as e:
             self.provider_limit = e

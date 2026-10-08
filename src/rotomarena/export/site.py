@@ -372,7 +372,7 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
         _write_json(out / "retracted" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg))
 
     _write_json(out / "models.json", models)
-    _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts()))
+    _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts(version=app_cfg.ruleset.version)))
     reference = Path("data/teams/smogon/index.json")  # credited community teams, used for tests and as fallback
     _write_json(out / "reference_teams.json", json.loads(reference.read_text(encoding="utf-8")) if reference.exists() else {"teams": []})
     _write_json(out / "head_to_head.json", {b.id: _head_to_head(states[b.id]) for b in boards})

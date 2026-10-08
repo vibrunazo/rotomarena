@@ -53,8 +53,9 @@ function fixSet(set) {
   const note = (what) => changes.push(`${species.name}: ${what}`);
 
   const evs = Object.values(set.evs || {});
-  if (!set.evs || evs.some((v) => v > 252) || evs.reduce((a, b) => a + b, 0) > 510) {
-    set.evs = {...EVEN_EVS}; note('EV spread replaced by an even 84 in every stat');
+  const total = evs.reduce((a, b) => a + b, 0);
+  if (!set.evs || evs.some((v) => v > 252) || total > 510 || total === 0) {
+    set.evs = {...EVEN_EVS}; note(total === 0 ? 'given an even 84 EVs in every stat, having none' : 'EV spread replaced by an even 84 in every stat');
   }
   if (!dex.natures.get(set.nature || '').exists) { set.nature = 'Serious'; note('nature set to Serious'); }
   const abilities = Object.values(species.abilities);
@@ -66,7 +67,12 @@ function fixSet(set) {
   if (has('Terastal') || has('Tera Type')) { note(`Tera Type replaced by ${species.types[0]}`); set.teraType = species.types[0]; }
 
   const pool = (randomSets[species.id] || randomSets[toId(species.baseSpecies)] || {sets: []}).sets.flatMap((s) => s.movepool);
-  const moves = [...new Set((set.moves || []).filter((m) => dex.moves.get(m).exists))];
+  let moves = [...new Set((set.moves || []).filter((m) => dex.moves.get(m).exists))];
+  if (moves.length > 4) {  // keep the first four it can legally use
+    const legal = moves.filter((m) => !problemsOf({...set, moves: [m]}).some((p) => p.includes(dex.moves.get(m).name)));
+    note(`kept 4 of its ${moves.length} moves`);
+    moves = (legal.length ? legal : moves).slice(0, 4);
+  }
   set.moves = moves;
   for (const move of moves) {
     if (!problemsOf(set).some((p) => p.includes(dex.moves.get(move).name))) continue;

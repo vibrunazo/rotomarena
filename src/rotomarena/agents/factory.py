@@ -247,6 +247,7 @@ def create_agent_instance(
             temperature=agent_cfg.temperature,
             max_output_tokens=app_config.ruleset.max_output_tokens,
             reasoning=app_config.ruleset.reasoning,
+            thinking_budget=app_config.ruleset.thinking_budget,
             **common,
         )
     if agent_cfg.type == "pokechamp":
