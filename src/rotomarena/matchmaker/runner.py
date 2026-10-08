@@ -181,11 +181,13 @@ class MatchRunner:
         )
 
     async def run_game(
-        self, player_a: BaseBenchmarkPlayer, player_b: BaseBenchmarkPlayer, team_1: Team, team_2: Team, game: int
+        self, player_a: BaseBenchmarkPlayer, player_b: BaseBenchmarkPlayer, team_1: Team, team_2: Team, game: int,
+        own_teams: bool = False,
     ) -> MatchResult:
-        """Game `game` (0-based) of a set: who challenges and who gets which team follow series_schedule."""
+        """Game `game` (0-based) of a set: who challenges and who gets which team follow series_schedule.
+        With `own_teams`, team_1 is A's and team_2 is B's in every game; only the sides alternate."""
         swap_teams, b_challenges = series_schedule(game + 1)[game]
-        team_a, team_b = (team_2, team_1) if swap_teams else (team_1, team_2)
+        team_a, team_b = (team_2, team_1) if swap_teams and not own_teams else (team_1, team_2)
         player_a.update_team(team_a.to_showdown_packed())
         player_b.update_team(team_b.to_showdown_packed())
         if b_challenges:

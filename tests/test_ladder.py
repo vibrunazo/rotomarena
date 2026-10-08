@@ -273,3 +273,35 @@ def test_a_rate_limited_api_plays_fewer_games_at_once():
     assert lane_count(nemotron, AgentConfig(name="pokechamp", type="pokechamp"), app_cfg, remaining=4) == 4
     assert lane_count(nemotron, gemma, app_cfg, remaining=4) == 1
     assert lane_count(nemotron, nemotron, app_cfg, remaining=3) == 3
+
+
+def test_round_robin_pairs_every_model_once_in_balanced_rounds():
+    from rotomarena.ladder import round_robin_pairs
+
+    ids = [f"m{i}" for i in range(10)]
+    pairs = round_robin_pairs(ids)
+    assert len(pairs) == 45 and len({frozenset(p) for p in pairs}) == 45
+    for r in range(9):  # each round of 5 games has every model exactly once
+        assert sorted(x for p in pairs[r * 5:(r + 1) * 5] for x in p) == sorted(ids)
+    assert len(round_robin_pairs(["a", "b", "c"])) == 3  # odd counts sit one out per round
+
+
+def test_own_teams_keep_each_players_team_and_alternate_sides():
+    import asyncio
+    from types import SimpleNamespace
+    from rotomarena.matchmaker.runner import MatchRunner
+
+    calls = []
+    runner = MatchRunner()
+
+    async def fake_battle(challenger, opponent, team_names, game):
+        calls.append((challenger.agent_name, team_names))
+
+    runner.run_single_battle = fake_battle
+    team = lambda n: SimpleNamespace(name=n, to_showdown_packed=lambda: n)
+    a = SimpleNamespace(agent_name="A", update_team=lambda t: None)
+    b = SimpleNamespace(agent_name="B", update_team=lambda t: None)
+    for g in range(4):
+        asyncio.run(runner.run_game(a, b, team("A's team"), team("B's team"), g, own_teams=True))
+    assert [c[0] for c in calls] == ["A", "B", "A", "B"]
+    assert all(dict(zip((c[0], "A" if c[0] == "B" else "B"), c[1]))["A"] == "A's team" for c in calls)

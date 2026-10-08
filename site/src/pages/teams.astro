@@ -24,8 +24,10 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
     </p>
     <p>
       Pokémon Showdown's validator then checks the team, exactly as it checks a human player's. An illegal team is
-      sent back with the validator's own messages, and the model gets up to three attempts in total. Every
-      attempt is published below, including the ones the validator rejected.
+      sent back with the validator's own messages, and the model gets up to five attempts in total. A model that
+      never gets there still plays: its last team is repaired by replacing only what the validator rejected, with
+      deliberately unremarkable choices, so the mistake costs it something without costing it the season. Every
+      attempt and every repair is published below.
     </p>
     {unanimous.length > 0 && (
       <p>
@@ -48,7 +50,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
 
   <h2>Reference teams</h2>
   <p class="prose">
-    When a model has not built a team, and for testing the harness, we use sample teams from Smogon's
+    For testing the harness, and for any season played with fixed teams, we use sample teams from Smogon's
     <a href="https://www.smogon.com/forums/threads/sv-ou-sample-teams-new-samples-added-post-spl-and-tera-blast-ban.3712513/">SV OU Sample Teams</a>
     thread, hosted by the OU Room and forum staff. Each was built by the player named below.
   </p>

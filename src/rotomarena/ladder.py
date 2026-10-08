@@ -13,6 +13,8 @@ from rotomarena.costs import estimated_cost_per_game, is_free
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
 from rotomarena.results import Outcome, games_between, load_matches, rated_outcomes, void_reason
+from rotomarena.teams.draft import load_drafts, playable_team
+from rotomarena.teams.loader import Team, parse_smogon_team
 from rotomarena.teams.presets import load_preset_team
 from rotomarena.telemetry.breadcrumbs import MatchTelemetry
 
@@ -131,6 +133,43 @@ def lane_count(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, r
     return min(n for n in limits if n is not None)
 
 
+def own_team(agent: AgentConfig) -> Team:
+    """The team a model built itself (draft mode): its legal team, or the repaired one."""
+    record = load_drafts().get(agent.name)
+    text = playable_team(record) if record else None
+    if not text:
+        raise ValueError(f"{agent.name} has no team of its own yet: run `rotomarena teams draft {agent.name}`")
+    return parse_smogon_team(text, name=f"{agent.display_name or agent.name}'s team")
+
+
+def round_robin_pairs(ids: List[str]) -> List[Tuple[str, str]]:
+    """Every pair once, in rounds where each model plays at most one game (the circle method), so a run stopped
+    halfway has given every model about the same number of games."""
+    players: List[Optional[str]] = list(ids) + ([None] if len(ids) % 2 else [])
+    n, pairs = len(players), []
+    for r in range(n - 1):
+        for i in range(n // 2):
+            a, b = players[i], players[n - 1 - i]
+            if a and b:
+                pairs.append((a, b) if r % 2 == 0 else (b, a))
+        players = [players[0], players[-1], *players[1:-1]]
+    return pairs
+
+
+async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
+    """Every language model plays every other one. Games are played in passes, one game per pair per pass (the
+    first pass in balanced rounds, sides alternating by pass), so coverage grows evenly; resumable."""
+    ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm"]
+    pairs = round_robin_pairs(ids)
+    for game in range(1, games_per_pair + 1):
+        for i, (a, b) in enumerate(pairs, 1):
+            done = season_state(app_cfg).games(a, b)
+            if done >= game:
+                continue
+            log(f"pass {game}/{games_per_pair}, pair {i}/{len(pairs)}: {a} vs {b} ({done} valid games so far)")
+            await play_set(a, b, app_cfg, done, games=game)
+
+
 def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
     """The games of a set (0-based, as in series_schedule) grouped into rounds played at once."""
     games = list(range(first_game, first_game + n_games))
@@ -148,7 +187,9 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
              for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
     players = [p for lane in lanes for p in lane]
-    team_1, team_2 = (load_preset_team(t) for t in app_cfg.ruleset.teams)
+    own = app_cfg.ruleset.team_mode == "draft"
+    team_1, team_2 = ((own_team(agent_a), own_team(agent_b)) if own
+                      else (load_preset_team(t) for t in app_cfg.ruleset.teams))
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)
     played_before = len(_pair_matches(app_cfg, id_a, id_b))
 
@@ -163,7 +204,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
             try:
                 async with asyncio.TaskGroup() as group:  # one failed game cancels the round; the set resumes later
                     for (player_a, player_b), game in zip(lanes, round_games):
-                        group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game))
+                        group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game, own_teams=own))
             except ExceptionGroup as failed:
                 raise failed.exceptions[0] from failed  # the run log shows the actual error
         halt_check()

@@ -131,9 +131,14 @@ class RulesetConfig(BaseModel):
     turn_timeout: Optional[float] = Field(
         default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )
+    team_mode: Literal["fixed", "draft"] = Field(
+        default="fixed",
+        description="fixed: every set plays the two `teams`, each from both sides. draft: each model plays the team it "
+        "built itself (rotomarena teams draft; repaired if it never got a legal one)",
+    )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],
-        description="The two teams every ladder set uses (each played from both sides)",
+        description="The two teams every ladder set uses in fixed mode (each played from both sides)",
     )
 
     @model_validator(mode="after")

@@ -13,13 +13,16 @@ server:
 # Rules shared by every player in a season. They are recorded in every match;
 # changing any of them starts a new season.
 ruleset:
-  version: "s1"
+  # Season 2: every model plays the team it built itself. Season 1 (fixed teams, placement paused on 8 Oct with
+  # Ling's set against Bonsai): version "s1", team_mode "fixed".
+  version: "s2"
+  team_mode: "draft"
   # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
   #         local servers stop thinking at half), 2-hour hang guard
   # concise: no hidden thinking, 1,024 tokens, 15-minute guard (fast games for videos and quick tests)
   # Any of reasoning / max_output_tokens / turn_timeout set here overrides the profile.
   profile: "ladder"
-  teams: ["balance", "hyper_offense"]   # every ladder set plays both, from both sides
+  teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
 
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
 ladder:

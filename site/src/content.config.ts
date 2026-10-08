@@ -96,6 +96,7 @@ const drafts = defineCollection({
   schema: z.object({
     config_id: z.string(), display_name: z.string(), model: z.string().nullable(), model_key: z.string().nullable(),
     format: z.string(), prompt_version: z.string(), drafted_at: z.string(), legal: z.boolean(),
+    repaired: z.boolean(), repairs: z.array(z.string()),
     thought: z.string().nullable(), team_text: z.string().nullable(), members: z.array(member),
     attempts: z.array(z.object({
       attempt: z.number(), problems: z.array(z.string()), error: z.string().nullable().optional(),

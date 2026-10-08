@@ -70,10 +70,11 @@ representative of the original, whose results are reported in [[5]](#ref-pokecha
 
 ### Format
 
-All games are Generation 9 OverUsed singles on a local Pokémon Showdown server. Teams are fixed: each pairing of
-players plays a set of {l.games_per_set} games, covering both of our {r.teams.length} teams
-({r.teams.map((t) => t.replace('_', ' ')).join(' and ')}) from both sides of the board. Teambuilding is therefore
-not measured. Leads are not fixed: each model picks its own at team preview.
+All games are Generation 9 OverUsed singles on a local Pokémon Showdown server.
+{r.team_mode === 'draft'
+  ? <span>Each model plays the team it built itself, from the rules of the format alone, with Pokémon Showdown's validator as referee; a model that fails five times plays a repaired version of its last attempt (see <a href="/teams/">Teams</a>). Every language model plays every other one, once from each side of the board. Teambuilding is therefore part of what is measured, which we consider fair, since the models chose to build those teams.</span>
+  : <span>Teams are fixed: each pairing of players plays a set of {l.games_per_set} games, covering both of our {r.teams.length} teams ({r.teams.map((t) => t.replace('_', ' ')).join(' and ')}) from both sides of the board. Teambuilding is therefore not measured.</span>}
+Leads are not fixed: each model picks its own at team preview.
 
 ### Decisions
 

@@ -14,9 +14,16 @@ const failed = d.attempts.filter((a) => a.problems.length || a.error);
     {heading && <h3><a href={`/models/${d.config_id}/`}>{d.display_name}</a></h3>}
     {d.legal
       ? <span class:list={['pill', d.attempts.length === 1 ? 'accent' : 'warn']}>legal on attempt {d.attempts.length}</span>
-      : <span class="pill bad">no legal team after {d.attempts.length} attempts</span>}
+      : <span class="pill bad">repaired after {d.attempts.length} rejected attempts</span>}
   </div>
   {d.thought && <p class="plan">"{d.thought}"</p>}
+  {d.repaired && (
+    <div class="repairs">
+      <p class="small"><strong>Repaired by the referee.</strong> Its last team was made legal by replacing only what the
+      validator rejected, with deliberately unremarkable choices: a handicap for the mistake, not a punishment.</p>
+      <ul class="small">{d.repairs.map((r) => <li>{r}</li>)}</ul>
+    </div>
+  )}
   {d.members.length > 0 && (
     <ul class="mons">
       {d.members.map((m) => (
@@ -68,4 +75,6 @@ const failed = d.attempts.filter((a) => a.problems.length || a.error);
   details { margin-top: 0.5rem; }
   summary { cursor: pointer; color: var(--text-dim); font-family: var(--font-body); }
   .problems { color: #ff8da1; font-family: var(--font-mono); }
+  .repairs { border-left: 3px solid var(--amber); padding: 0.1rem 0 0.1rem 0.8rem; margin: 0.6rem 0; }
+  .repairs ul { margin: 0.3rem 0; padding-left: 1.1rem; font-family: var(--font-mono); color: var(--amber); }
 </style>

@@ -14,9 +14,10 @@ uv run rotomarena battle `
 ```
 
 Teambuilding: `uv run rotomarena teams draft <config id>` has a model build its own Gen 9 OU team from the format's
-rules (read from Showdown), with Showdown's validator as referee and up to 3 attempts; results go to
-`data/drafts/gen9ou/`. It refuses to start local models while other local servers run (a ladder run may own them).
-Credited Smogon sample teams for tests and fallback live in `data/teams/smogon/` (`index.json` has builders).
+rules (read from Showdown), with Showdown's validator as referee and up to 5 attempts; a team still illegal after
+that is repaired with middling replacements. Results go to `data/drafts/gen9ou/`. Season 2 (`ruleset.team_mode:
+draft`) plays these teams: `uv run rotomarena ladder round-robin` has every LLM play every other one. It refuses to start local models while other local servers run (a ladder run may own them).
+Credited Smogon sample teams for tests and fixed-team seasons live in `data/teams/smogon/` (`index.json` has builders).
 
 Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`.
 For ladder tests, point `--config` at a scratch config with its own `ruleset.version` and `telemetry.output_dir`

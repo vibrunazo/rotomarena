@@ -3,7 +3,9 @@
 The model gets the rules of the format (its clauses, its bans and the list of legal Pokémon), the way a player in
 a battle gets the list of legal moves: rules, not strategy. Showdown's validator checks the team; an illegal team
 goes back to the model with the validator's own messages, as Showdown's teambuilder shows them to a human, for a
-few attempts. Every attempt is recorded and published.
+few attempts. Every attempt is recorded and published. A model that never gets there plays anyway, with its last
+team repaired by replacing only what the validator rejected with deliberately middling choices (repair_team.js): a
+handicap for the mistake, not a punishment and not an upgrade.
 """
 
 from __future__ import annotations
@@ -20,8 +22,10 @@ from rotomarena.config import AgentConfig, AppConfig
 
 FORMAT = "gen9ou"
 PROMPT_VERSION = "draft-1"
+ATTEMPTS = 5
 DRAFTS_DIR = Path("data/drafts")
 _RULES_SCRIPT = Path(__file__).with_name("format_rules.js")
+_REPAIR_SCRIPT = Path(__file__).with_name("repair_team.js")
 
 DRAFT_SYSTEM_PROMPT = """You are building a team for competitive Pokémon battles on Pokémon Showdown, in the format {format}. \
 You will play this team yourself, against other players, in a series of rated battles.
@@ -79,6 +83,13 @@ def validate_team(app_cfg: AppConfig, team_text: str, fmt: str = FORMAT) -> List
     return [line.strip() for line in (result.stdout + result.stderr).splitlines() if line.strip()] or ["Invalid team."]
 
 
+def repair_team(app_cfg: AppConfig, team_text: str, seed: str, fmt: str = FORMAT) -> Dict[str, Any]:
+    """{team, changes, problems}: the team made legal by replacing only what the validator rejects."""
+    result = subprocess.run(["node", str(_REPAIR_SCRIPT.resolve()), fmt, seed], input=team_text or "",
+                            cwd=_showdown_dir(app_cfg), capture_output=True, text=True, encoding="utf-8", check=True)
+    return json.loads(result.stdout)
+
+
 def system_prompt(rules: Dict[str, Any]) -> str:
     clause_lines = "\n".join(f"- {c.split(': ', 1)[0]}: {c.split(': ', 1)[1].replace('&eacute;', 'é')}" for c in rules["clauses"])
     banned = rules["banned"]
@@ -94,7 +105,7 @@ def _tag(text: str, name: str) -> Optional[str]:
     return m.group(1).strip() if m else None
 
 
-async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = 3,
+async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATTEMPTS,
                      log=print) -> Dict[str, Any]:
     """Asks one model for a team, feeding back Showdown's validator messages, and returns the full record."""
     rules = format_rules(app_cfg)
@@ -106,7 +117,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = 3,
         "model_key": agent.canonical_model_key(), "quantization": agent.quantization,
         "format": rules["id"], "prompt_version": PROMPT_VERSION,
         "drafted_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
-        "attempts": [], "legal": False, "team": None, "thought": None,
+        "attempts": [], "legal": False, "team": None, "thought": None, "repaired": False, "repairs": [],
     }
     for attempt in range(1, attempts + 1):
         try:
@@ -133,7 +144,18 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = 3,
             break
         messages += [{"role": "assistant", "content": answer},
                      {"role": "user", "content": RETRY_PROMPT.format(problems="\n".join(f"- {p}" for p in problems))}]
+    if not record["legal"]:
+        last = next((a.get("team") for a in reversed(record["attempts"]) if a.get("team")), "")
+        fixed = repair_team(app_cfg, (last or "") + "\n", seed=agent.name)
+        record.update(repaired=True, team=fixed["team"], repairs=fixed["changes"],
+                      thought=next((a.get("thought") for a in reversed(record["attempts"]) if a.get("thought")), None))
+        log(f"  repaired with {len(fixed['changes'])} change(s)" + (f"; still: {fixed['problems']}" if fixed["problems"] else ""))
     return record
+
+
+def playable_team(record: Dict[str, Any]) -> Optional[str]:
+    """The team a model plays: its own legal team, or its repaired one."""
+    return record.get("team")
 
 
 def save_draft(record: Dict[str, Any], drafts_dir: Path = DRAFTS_DIR) -> Path:

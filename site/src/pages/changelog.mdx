@@ -10,6 +10,18 @@ import { routes } from '../lib/routes';
 Changes that affect ratings start a new season. Everything else is listed here so that nobody can say we changed
 the rules quietly.
 
+## Season 2 · October 2026
+
+- **Teams.** Every model builds its own team from the rules of the format: the clauses, the bans and the list of
+  legal Pokémon, read from Pokémon Showdown. No sample teams, usage statistics or advice. Showdown's validator is
+  the referee, and an illegal team goes back to the model with its exact messages, up to five times.
+- **Repairs.** A model that never builds a legal team still plays, with its last team repaired: only what the
+  validator rejected is replaced, by unremarkable choices. This was judged fairer than both disqualification and
+  being handed a good team for failing.
+- **Schedule.** Every language model plays every other one, once from each side, in balanced rounds. The bots sit
+  this one out.
+- **Season 1** is paused partway through placement and will be finished later. Its results remain on file.
+
 ## Season 1 · October 2026
 
 - **Ratings.** Bradley-Terry ratings with bootstrap intervals replace the pilot's Elo, anchored to a local

@@ -40,9 +40,10 @@ Season 1 still plays two of these teams. Two other sources of teams exist since 
 - **Reference teams** (`data/teams/smogon/`): the 21 teams of Smogon's SV OU Sample Teams thread (hosted by the OU
   Room and forum staff, updated 13 July 2026), downloaded as posted from their pokepast.es links with each builder's
   name; `index.json` records title, archetype, builder, link and whether Showdown's validator accepts it as posted
-  (18 do; 3 list alternatives). Used for tests and as the fallback when a model has no team of its own.
+  (18 do; 3 list alternatives). Used for testing the harness and for any fixed-team season.
 - **Model-built teams** (`data/drafts/`): `rotomarena teams draft` gives a model the format's rules (clauses, bans
-  and the legal Pokémon, read from Showdown) and lets Showdown's validator referee, with up to three attempts.
+  and the legal Pokémon, read from Showdown) and lets Showdown's validator referee, with up to five attempts; a
+  team still illegal after that is repaired with middling replacements (`repair_team.js`). Season 2 plays these.
 
 ## Smogon
 

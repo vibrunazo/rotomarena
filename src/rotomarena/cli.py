@@ -128,7 +128,8 @@ def server_status():
 @teams_app.command("draft")
 def teams_draft(
     config_ids: List[str] = typer.Argument(..., help="Registry entries that build their own team"),
-    attempts: int = typer.Option(3, "--attempts", "-a", help="Tries, with Showdown's validator messages fed back"),
+    attempts: int = typer.Option(5, "--attempts", "-a", help="Tries, with Showdown's validator messages fed back; "
+                                 "after the last, the team is repaired with middling replacements"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
     """Each model builds its own Gen 9 OU team from the format's rules; Showdown's validator referees.
@@ -157,7 +158,7 @@ def teams_draft(
                 local_servers.prepare([agent], app_cfg, log=console.print)
             record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print)
             path = save_draft(record)
-            verdict = "[green]legal[/green]" if record["legal"] else "[red]no legal team[/red]"
+            verdict = "[green]legal[/green]" if record["legal"] else f"[yellow]repaired ({len(record['repairs'])} changes)[/yellow]"
             console.print(f"  {verdict} after {len(record['attempts'])} attempt(s) -> {path}")
 
     asyncio.run(_run())
@@ -558,6 +559,30 @@ def ladder_place_all(
         except Exception as e:  # keep going: one broken model shouldn't stop a weekend run
             console.print(f"[bold red]Placement of {config_id} failed: {e}[/bold red]")
     console.rule(f"[bold green]{datetime.datetime.now():%Y-%m-%d %H:%M} all placements done[/bold green]")
+    _print_ratings(app_cfg)
+
+
+@ladder_app.command("round-robin")
+def ladder_round_robin(
+    games_per_pair: int = typer.Option(2, "--games-per-pair", "-g", help="Games each pair plays, one side each"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Every language model plays every other one, in passes of one game per pair (balanced rounds), so a run
+    stopped early still covers every model evenly. Resumes where it stopped."""
+    from rotomarena.ladder import RunHalted, round_robin
+
+    app_cfg = AppConfig.load(config_file)
+    server_mgr = ShowdownServerManager(app_cfg.server)
+
+    async def _run():
+        async with server_mgr.ensure_running():
+            await round_robin(app_cfg, games_per_pair, log=console.print)
+
+    try:
+        with local_servers.session(app_cfg):
+            asyncio.run(_run())
+    except RunHalted as e:
+        _report_halt(e, app_cfg)
     _print_ratings(app_cfg)
 
 
