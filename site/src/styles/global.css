@@ -115,10 +115,11 @@ p { margin: 0.7rem 0; }
 .small { font-size: 0.86rem; }
 code { font: 0.86em var(--font-mono); background: var(--inset); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; }
 
-/* glass panel with a gradient edge, as in the generator */
+/* glass panel with a gradient edge, as in the generator. No backdrop blur: the panel is nearly opaque, and a page of
+   blurred panels over the fixed background was slow to paint. */
 .hud-panel {
   border: 1px solid transparent; border-radius: var(--radius-lg); background: var(--hud-panel);
-  box-shadow: var(--shadow-panel); backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-panel);
 }
 
 /* Footnotes: the main text stays straight; the footnote does the twist. */

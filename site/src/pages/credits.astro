@@ -1,0 +1,123 @@
+---
+// Who and what this benchmark is built on. Model makers come from the export (model_key's organisation), so the
+// list grows with the ladder; everything else is the software and work every battle depends on.
+import Base from '../layouts/Base.astro';
+import { allModels } from '../lib/data';
+import { routes } from '../lib/routes';
+
+const llms = (await allModels()).filter((m) => m.type === 'direct_llm' && m.model_key);
+const makers = Object.entries(
+  llms.reduce<Record<string, string[]>>((acc, m) => {
+    const org = m.model_key!.split('/')[0];
+    (acc[org] ??= []).push(m.display_name);
+    return acc;
+  }, {}),
+).sort(([a], [b]) => a.localeCompare(b));
+---
+<Base title="Credits" description="The people and software RotomArena is built on.">
+  <p class="eyebrow">Acknowledgements</p>
+  <h1>Credits</h1>
+  <p class="prose">
+    RotomArena is a small layer on top of other people's work: a battle engine, a Python bridge to it, a search agent
+    from a research paper, and the models themselves. This page says who made what, and what we use it for.
+  </p>
+
+  <div class="credits">
+    <section class="hud-panel card">
+      <h2>PokéChamp</h2>
+      <p class="who">Seth Karten, Andy Luu Nguyen and Chi Jin · ICML 2025 · MIT license</p>
+      <p>
+        A minimax agent with a language model inside its search. Our reference bot is derived from it with the
+        language model removed: the same one-turn search, with hand-written rules where the original uses a model.
+        It is a fixed yardstick, not a reproduction of their agent. <a href={routes.model('pokechamp')}>How we use it</a>.
+      </p>
+      <p class="links">
+        <a href="https://sites.google.com/view/pokechamp-llm">Project</a>
+        <a href="https://arxiv.org/abs/2503.04094">Paper</a>
+        <a href="https://github.com/sethkarten/pokechamp">Code</a>
+        <a href="https://pokeagent.github.io/">PokéAgent Challenge</a>
+      </p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>Pokémon Showdown</h2>
+      <p class="who">Guangcong Luo and contributors · MIT license</p>
+      <p>
+        Every battle on this site runs on a local Pokémon Showdown server: its engine applies the rules, damage,
+        abilities, items and randomness, and its Gen 9 OU format supplies the clauses. The replay player on each
+        match page, with its sprites and battle effects, loads from play.pokemonshowdown.com.
+      </p>
+      <p class="links">
+        <a href="https://pokemonshowdown.com/">Website</a>
+        <a href="https://github.com/smogon/pokemon-showdown">Code</a>
+      </p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>poke-env</h2>
+      <p class="who">Haris Sahovic and contributors · MIT license</p>
+      <p>
+        The Python library that connects our players to Showdown: it reads the battle protocol into battle state,
+        lists the legal actions every player chooses from, and sends their choices back.
+      </p>
+      <p class="links"><a href="https://github.com/hsahovic/poke-env">Code</a></p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>Smogon</h2>
+      <p class="who">The Smogon competitive community</p>
+      <p>
+        The OverUsed tier our battles are played in, its banlist and clauses, and the team export format our teams
+        are written in, are Smogon's.
+      </p>
+      <p class="links"><a href="https://www.smogon.com/">Website</a></p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>The models</h2>
+      <p class="who">Open weights, unless noted on their pages</p>
+      <p>Every rated language model is somebody's work. So far:</p>
+      <ul class="makers">
+        {makers.map(([org, names]) => (<li><code>{org}</code> {names.join(', ')}</li>))}
+      </ul>
+      <p class="small muted">
+        Local models run on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT), Bonsai on
+        <a href="https://github.com/PrismML-Eng/llama.cpp">Prism ML's fork</a>; API models through
+        <a href="https://openrouter.ai/">OpenRouter</a>. Each model's page credits its makers and links their work.
+      </p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>Methods</h2>
+      <p class="who">Ideas we use, with thanks</p>
+      <p>
+        Ratings are a Bradley-Terry model (Bradley and Terry, 1952) on the Elo scale (Elo, 1978); pairwise ratings
+        for language models were popularized by Chatbot Arena (Chiang et al., 2024). Full references are in the
+        <a href={routes.paper}>paper</a>.
+      </p>
+    </section>
+
+    <section class="hud-panel card">
+      <h2>This site</h2>
+      <p class="who">Built with Astro · hosted on Netlify</p>
+      <p>
+        Typeset in Inter, Rajdhani and JetBrains Mono, served by Google Fonts under the SIL Open Font License.
+      </p>
+    </section>
+  </div>
+
+  <p class="prose small muted">
+    Missing someone? If we use your work and have not said so here, that is our mistake.
+  </p>
+</Base>
+
+<style>
+  .credits { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); gap: 1rem; margin: 1.8rem 0; }
+  .card { padding: 1.1rem 1.3rem; }
+  .card h2 { margin: 0 0 0.2rem; font-size: 1.4rem; }
+  .who { margin: 0 0 0.6rem; font: 600 0.75rem/1.4 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); }
+  .card p { font-size: 0.94rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font: 600 0.85rem var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; }
+  .makers { padding-left: 1.1rem; font-size: 0.92rem; }
+  .makers li { margin: 0.25rem 0; }
+</style>

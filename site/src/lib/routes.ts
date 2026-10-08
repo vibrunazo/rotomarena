@@ -10,6 +10,7 @@ export const routes = {
   faq: '/faq/',
   submit: '/submit/',
   changelog: '/changelog/',
+  credits: '/credits/',
   model: (configId: string) => `/models/${configId}/`,
   match: (slug: string) => `/matches/${slug}/`,
   retractedMatch: (slug: string) => `/retracted/${slug}/`,
