@@ -13,6 +13,18 @@
   #live { color: var(--dim); font-size: 0.9rem; }
   .replay-scroll { overflow-x: auto; padding: 12px 0; }
   .replay-wrapper { min-width: 640px; max-width: 1180px; margin: 0 auto; }
+  .thoughts { max-width: 1180px; margin: 0 auto; padding: 4px 16px 40px; }
+  .thoughts h2 { font: 700 0.95rem/1.2 'Rajdhani', 'Inter', sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 8px 0; }
+  .turn-block { border-top: 1px solid var(--line); padding: 10px 0; }
+  .turn-label { color: var(--dim); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .decisions { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 10px 20px; margin-top: 6px; }
+  .who { font-weight: 600; }
+  .side { color: var(--dim); font-size: 0.78rem; margin-left: 4px; }
+  .act { color: var(--cyan); font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace; font-size: 0.85rem; }
+  .meta { color: var(--dim); font-size: 0.8rem; }
+  .thought { margin: 4px 0 0; white-space: pre-wrap; font-size: 0.92rem; }
+  .flag { color: #ffb547; font-size: 0.8rem; }
+  #nothoughts { color: var(--dim); font-size: 0.9rem; }
 </style>
 </head>
 <body class="dark">
@@ -29,6 +41,11 @@
     <div class="replay-controls-2"></div>
   </div>
 </div>
+<section class="thoughts">
+  <h2>Thoughts, newest first</h2>
+  <p id="nothoughts">Each player's thought appears here as soon as it decides (games started before this feature have none).</p>
+  <div id="thoughts"></div>
+</section>
 <script>
   // As in the site's ReplayEmbed: Showdown's routes must exist before replay-embed.js runs, and its effect images
   // need absolute URLs, or they resolve to this server.
@@ -63,6 +80,40 @@
 <script>
   var room = __ROOM_JSON__;
   var next = __COUNT__;
+  var tnext = 0;
+  var decisions = [];
+
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
+  function sides() {  // username -> "p1" / "p2", from the log's |player| lines
+    var out = {};
+    ((window.Replays && Replays.battle && Replays.battle.stepQueue) || []).forEach(function (l) {
+      var m = /^\|player\|(p[12])\|([^|]+)/.exec(l);
+      if (m) out[m[2]] = m[1];
+    });
+    return out;
+  }
+  function action(a) {
+    var m = /^\/choose (move|switch) (.+)$/.exec(a || '');
+    if (m) return (m[1] === 'switch' ? 'switch to ' : '') + m[2];
+    m = /lead=(.+)$/.exec(a || '');
+    return m ? 'lead ' + m[1] : a;
+  }
+  function renderThoughts() {
+    if (!decisions.length) return;
+    document.getElementById('nothoughts').style.display = 'none';
+    var side = sides(), byTurn = {};
+    decisions.forEach(function (d) { (byTurn[d.turn] = byTurn[d.turn] || []).push(d); });
+    var turns = Object.keys(byTurn).map(Number).sort(function (a, b) { return b - a; });
+    document.getElementById('thoughts').innerHTML = turns.map(function (t) {
+      return '<div class="turn-block"><div class="turn-label">' + (t === 0 ? 'Team preview' : 'Turn ' + t) + '</div><div class="decisions">' +
+        byTurn[t].map(function (d) {
+          var flag = d.source !== 'model' ? ' <span class="flag">▲ ' + esc(d.source.replace('_', ' ')) + ': default move</span>' : '';
+          return '<div><span class="who">' + esc(d.player) + '</span><span class="side">' + esc(side[d.player] || '') + '</span> · <span class="act">' +
+            esc(action(d.action)) + '</span>' + flag + '<div class="meta">' + (d.seconds ? d.seconds + ' s' : '') +
+            (d.thinking_tokens ? ' · ' + d.thinking_tokens + ' thinking tokens' : '') + '</div><p class="thought">' + esc(d.thought) + '</p></div>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
   var live = document.getElementById('live');
   function pinDark() { document.body.classList.add('dark'); }
   window.addEventListener('load', pinDark);
@@ -80,10 +131,11 @@
     var ended = false;
     async function poll() {
       try {
-        var r = await fetch('../api/battle/' + encodeURIComponent(room) + '?from=' + next, {cache: 'no-store'});
+        var r = await fetch('../api/battle/' + encodeURIComponent(room) + '?from=' + next + '&tfrom=' + tnext, {cache: 'no-store'});
         var d = await r.json();
         d.lines.forEach(function (line) { battle.add(line); });
         next += d.lines.length;
+        if (d.thoughts.length) { decisions = decisions.concat(d.thoughts); tnext += d.thoughts.length; renderThoughts(); }
         ended = d.ended;
         live.textContent = (ended ? 'Battle over' : '● Live') + ' · turn ' + (battle.turn || 0) + ' · ' + new Date().toLocaleTimeString();
       } catch (e) {

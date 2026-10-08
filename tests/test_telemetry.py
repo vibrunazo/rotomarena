@@ -95,3 +95,20 @@ def test_generate_match_markdown_report(tmp_path):
 def test_series_schedule_covers_both_sides_and_both_team_assignments():
     assert series_schedule(4) == [(False, False), (False, True), (True, False), (True, True)]
     assert series_schedule(6)[4:] == series_schedule(2)
+
+
+def test_each_decision_is_written_live_for_its_battle(tmp_path):
+    import json
+
+    from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, TurnBreadcrumb
+
+    live = tmp_path / "live"
+    live.mkdir()
+    (live / "battle-gen9ou-7.jsonl").write_text('{"stale": true}\n')  # an old battle with the same tag
+    recorder = BreadcrumbsRecorder("m", live_dir=live)
+    for turn, who in ((1, "A"), (1, "B")):
+        recorder.record_turn(TurnBreadcrumb(turn=turn, agent_name=who, agent_type="direct_llm", reasoning=f"{who} thinks",
+                                            chosen_action="/choose move tackle", timestamp="t",
+                                            llm_metrics={"latency_ms": 2500, "reasoning_tokens": 300}), "battle-gen9ou-7")
+    rows = [json.loads(l) for l in (live / "battle-gen9ou-7.jsonl").read_text().splitlines()]
+    assert [r["player"] for r in rows] == ["A", "B"] and rows[0]["thought"] == "A thinks" and rows[0]["seconds"] == 2.5

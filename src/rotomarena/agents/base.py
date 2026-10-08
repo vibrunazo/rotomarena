@@ -113,7 +113,7 @@ class BaseBenchmarkPlayer(Player):
             llm_metrics=llm_metrics,
             timestamp=datetime.datetime.now().isoformat(),
         )
-        self.breadcrumbs_recorder.record_turn(crumb)
+        self.breadcrumbs_recorder.record_turn(crumb, battle.battle_tag)
 
     def choose_default_order(self, battle: Battle) -> BattleOrder:
         """The fallback ("Autopilot") move: the first legal move, else the first legal switch."""

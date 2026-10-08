@@ -27,7 +27,23 @@ CACHE_SECONDS = 10
 def serve(config_file: str, host: str, port: int) -> None:
     lock = threading.Lock()
     cache: Dict[str, Tuple[float, bytes]] = {}
-    battles = relay(AppConfig.load(config_file).server.websocket_url)
+    app = AppConfig.load(config_file)
+    battles = relay(app.server.websocket_url)
+    live_dir = Path(app.telemetry.output_dir) / "live"
+
+    def thoughts(room: str, start: int) -> list:
+        """The players' decisions in this battle so far (written by the run as it plays), from `start`."""
+        try:
+            rows = (live_dir / f"{room}.jsonl").read_text(encoding="utf-8").splitlines()
+        except OSError:
+            return []
+        out = []
+        for row in rows[start:]:
+            try:
+                out.append(json.loads(row))
+            except ValueError:
+                break  # a line still being written: fetch it next time
+        return out
 
     def watch_page(room: str) -> bytes:
         lines, _, joined = battles.lines(room)
@@ -68,8 +84,11 @@ def serve(config_file: str, host: str, port: int) -> None:
             elif path.startswith("/api/battle/") and ROOM.match(path[len("/api/battle/"):]):
                 query = self.path.partition("?")[2]
                 start = int(m.group(1)) if (m := re.search(r"(?:^|&)from=(\d+)", query)) else 0
-                lines, ended, _ = battles.lines(path[len("/api/battle/"):], start)
-                self._send(200, "application/json", json.dumps({"lines": lines, "ended": ended}).encode("utf-8"))
+                tstart = int(m.group(1)) if (m := re.search(r"(?:^|&)tfrom=(\d+)", query)) else 0
+                room = path[len("/api/battle/"):]
+                lines, ended, _ = battles.lines(room, start)
+                body = {"lines": lines, "ended": ended, "thoughts": thoughts(room, tstart)}
+                self._send(200, "application/json", json.dumps(body).encode("utf-8"))
             elif path == "/api/status":
                 try:
                     self._send(200, "application/json", current())

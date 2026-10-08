@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
@@ -81,15 +83,38 @@ class MatchTelemetry(BaseModel):
 class BreadcrumbsRecorder:
     """Manages active turn breadcrumbs collection across a match."""
 
-    def __init__(self, match_id: str, format_str: str = "gen9ou", ruleset: Optional[Dict[str, Any]] = None):
+    def __init__(self, match_id: str, format_str: str = "gen9ou", ruleset: Optional[Dict[str, Any]] = None,
+                 live_dir: Optional[Path] = None):
         self.match_id = match_id
         self.format_str = format_str
         self.ruleset = ruleset or {}
         self.breadcrumbs: List[TurnBreadcrumb] = []
+        # Each decision is also appended to <live_dir>/<battle tag>.jsonl as it is made, for watching a game live.
+        # Files of games over a day old are removed when a new game starts; the saved game has everything.
+        self.live_dir = live_dir
+        self.live_files: List[Path] = []
+        if live_dir is not None and live_dir.exists():
+            for old in live_dir.glob("*.jsonl"):
+                if time.time() - old.stat().st_mtime > 86400:
+                    old.unlink(missing_ok=True)
 
-    def record_turn(self, breadcrumb: TurnBreadcrumb) -> None:
-        """Append a breadcrumb record."""
+    def record_turn(self, breadcrumb: TurnBreadcrumb, battle_tag: Optional[str] = None) -> None:
+        """Append a breadcrumb record (and its live line, when the battle is known)."""
         self.breadcrumbs.append(breadcrumb)
+        if self.live_dir is None or not battle_tag:
+            return
+        path = self.live_dir / f"{battle_tag}.jsonl"
+        first = path not in self.live_files
+        if first:  # a new game: start the file over, in case an old battle had the same tag
+            self.live_files.append(path)
+            path.parent.mkdir(parents=True, exist_ok=True)
+        metrics = breadcrumb.llm_metrics or {}
+        line = {"turn": breadcrumb.turn, "player": breadcrumb.agent_name, "source": breadcrumb.decision_source,
+                "action": breadcrumb.chosen_action, "thought": breadcrumb.reasoning,
+                "seconds": round((metrics.get("latency_ms") or 0) / 1000, 1),
+                "thinking_tokens": metrics.get("reasoning_tokens") or 0}
+        with open(path, "w" if first else "a", encoding="utf-8") as f:
+            f.write(json.dumps(line, ensure_ascii=False) + "\n")
 
     def finalize(
         self,

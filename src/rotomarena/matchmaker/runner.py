@@ -87,6 +87,7 @@ class MatchRunner:
             match_id=match_id,
             format_str=challenger.format,
             ruleset=self.rules,
+            live_dir=self.output_dir / "live",
         )
         challenger.set_recorder(recorder)
         opponent.set_recorder(recorder)
