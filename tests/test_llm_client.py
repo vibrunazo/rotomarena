@@ -174,6 +174,13 @@ async def test_rate_limits_back_off_then_give_up(monkeypatch):
     completion = await client.generate_completion([{"role": "user", "content": "hi"}], max_retries=1)
     assert completion.text == "<decision>MOVE: surf</decision>"  # 429s don't use up the server-error retries
 
+    # Google's per-minute token limit says "quota" too, but clears: back off, don't stop
+    per_minute = _status_error(429, "You exceeded your current quota. Quota exceeded for metric: "
+                                    "generate_content_paid_tier_input_token_count, limit: 16000")
+    create = AsyncMock(side_effect=[per_minute, _GOOD])
+    monkeypatch.setattr(client._client.chat.completions, "create", create)
+    assert (await client.generate_completion([{"role": "user", "content": "hi"}])).text
+
     create = AsyncMock(side_effect=limited)
     monkeypatch.setattr(client._client.chat.completions, "create", create)
     with pytest.raises(ProviderLimitError, match="still rate limited"):

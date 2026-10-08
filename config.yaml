@@ -68,6 +68,7 @@ agents:
     role: "sparring"
     provider: "openrouter"
     model: "google/gemma-4-31b-it:free"
+    max_parallel_games: 1   # Google's 16k input tokens/min on the free tier: 4 lanes at once hit it on turn 2
 
   # Season 1 local lineup (draft). model = the Smooth Generator catalog key (gen llm serve --model);
   # model_key = the original weights ('org/model', OpenRouter-style), shared with other games' benchmarks;

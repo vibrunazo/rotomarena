@@ -28,8 +28,10 @@ _RATE_LIMIT_WAITS = [10, 20, 40, 80, 120, 120]
 
 
 def _is_quota(message: str) -> bool:
-    """OpenRouter's free-model cap reads "Rate limit exceeded: free-models-per-day"; waiting minutes won't help."""
-    return bool(re.search(r"per[- ]day|daily|quota|credits", message, re.IGNORECASE))
+    """A daily cap or empty credits, where waiting minutes won't help: OpenRouter's free-model cap reads "Rate limit
+    exceeded: free-models-per-day". Not the word "quota" alone: Google says "exceeded your current quota" for its
+    per-minute token limit too, and that one clears with the backoff."""
+    return bool(re.search(r"per[- _]day|daily|credits", message, re.IGNORECASE))
 
 
 def _error_code(error: Any) -> int:

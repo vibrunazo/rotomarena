@@ -125,6 +125,12 @@ def check_halt(label: str, players: List, new_matches: List[MatchTelemetry], max
         raise RunHalted(f"{label}: two void games in a row ({reasons[-1]})")
 
 
+def lane_count(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, remaining: int) -> int:
+    """Games of a set played at once: the ladder's setting, capped by either player's own limit."""
+    limits = [app_cfg.ladder.parallel_games, remaining, agent_a.max_parallel_games, agent_b.max_parallel_games]
+    return min(n for n in limits if n is not None)
+
+
 def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
     """The games of a set (0-based, as in series_schedule) grouped into rounds played at once."""
     games = list(range(first_game, first_game + n_games))
@@ -140,7 +146,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
         return 0
     agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
     lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
-             for k in range(min(app_cfg.ladder.parallel_games, remaining))]
+             for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
     players = [p for lane in lanes for p in lane]
     team_1, team_2 = (load_preset_team(t) for t in app_cfg.ruleset.teams)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, ruleset=app_cfg.ruleset)

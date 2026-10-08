@@ -199,6 +199,11 @@ class AgentConfig(BaseModel):
     quantization: Optional[str] = Field(
         default=None, description="Weights format for local models (e.g. 'Q4_K_M'); part of the model's identity"
     )
+    max_parallel_games: Optional[int] = Field(
+        default=None, ge=1,
+        description="At most this many of its games at once (ladder.parallel_games otherwise). For free APIs with a "
+        "per-minute token quota: four lanes of Gemma 4 on OpenRouter's free tier went over Google's 16k tokens/min",
+    )
     model_key: Optional[str] = Field(
         default=None,
         description="Canonical id of the weights, OpenRouter-style 'org/model' (e.g. 'qwen/qwen3.8-27b'), so other "

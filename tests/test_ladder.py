@@ -262,3 +262,14 @@ def test_parallel_rounds_keep_the_set_schedule():
     assert rounds(1, 3, 4) == [[1, 2, 3]]  # resuming after one game
     assert rounds(0, 4, 3) == [[0, 1, 2], [3]]
     assert rounds(0, 3, 1) == [[0], [1], [2]]  # parallel_games: 1 plays one game at a time
+
+
+def test_a_rate_limited_api_plays_fewer_games_at_once():
+    from rotomarena.ladder import lane_count
+
+    app_cfg = AppConfig()
+    nemotron = AgentConfig(name="nemotron", type="direct_llm")
+    gemma = AgentConfig(name="gemma", type="direct_llm", max_parallel_games=1)
+    assert lane_count(nemotron, AgentConfig(name="pokechamp", type="pokechamp"), app_cfg, remaining=4) == 4
+    assert lane_count(nemotron, gemma, app_cfg, remaining=4) == 1
+    assert lane_count(nemotron, nemotron, app_cfg, remaining=3) == 3
