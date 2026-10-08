@@ -45,6 +45,8 @@ def autopilot_rate(match: MatchTelemetry, role: str) -> float:
 
 def void_reason(match: MatchTelemetry, max_autopilot: float) -> Optional[str]:
     """Why a match can't be rated, or None when it counts."""
+    if match.voided:
+        return match.voided
     p1, p2 = match.player("p1"), match.player("p2")
     if not p1 or not p2:
         return "missing player records"

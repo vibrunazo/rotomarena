@@ -103,3 +103,21 @@ def test_every_registry_llm_has_a_cross_game_model_key():
     assert keys["nemotron_3_ultra"] == "nvidia/nemotron-3-ultra-550b-a55b"  # the OpenRouter slug without ':free'
     assert len(set(keys.values())) == len(keys)
     assert agents["pokechamp"].canonical_model_key() is None
+
+
+def test_a_thinking_exception_sends_its_effort_instead_of_the_budget():
+    from rotomarena.config import AgentConfig, RulesetConfig
+
+    ruleset = RulesetConfig(thinking_budget=1024, max_output_tokens=2048)
+    assert AgentConfig(name="x", type="direct_llm").thinking(ruleset) == ("medium", 1024)
+    assert AgentConfig(name="muse", type="direct_llm", thinking_effort="minimal").thinking(ruleset) == ("minimal", None)
+
+
+def test_a_voided_game_is_not_rated():
+    from rotomarena.results import void_reason
+    from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry
+
+    players = [MatchPlayer(role=r, config_id=c, display_name=c, agent_type="direct_llm", username=c)
+               for r, c in (("p1", "a"), ("p2", "b"))]
+    m = MatchTelemetry(match_id="m", players=players, total_turns=10, voided="played before its thinking exception")
+    assert void_reason(m, 0.5) == "played before its thinking exception"

@@ -16,11 +16,15 @@
     ],
     "format": "gen9ou",
     "battle_prompt": "ba3dda5d9965",
+    "thinking_exceptions": {
+      "muse_spark_1_3": "minimal"
+    },
     "decision_prompt": "5869c554b249",
     "draft_prompt": "63c78295eef1",
     "decision_draft_prompt": "bad10b3b4a9e"
   },
   "amended": [
-    "2026-10-08: decision_prompt and decision_draft_prompt added when decision models joined; every rule the language models play by is unchanged"
+    "2026-10-08: decision_prompt and decision_draft_prompt added when decision models joined; every rule the language models play by is unchanged",
+    "2026-10-08: thinking_exceptions added: muse_spark_1_3 gets effort 'minimal' instead of the budget, which Meta's endpoint ignores (its 2 earlier games are voided); every other model's rules are unchanged"
   ]
 }

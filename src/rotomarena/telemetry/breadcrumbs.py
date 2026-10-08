@@ -63,6 +63,9 @@ class MatchTelemetry(BaseModel):
     total_turns: int = 0
     duration_seconds: float = 0.0
     breadcrumbs: List[TurnBreadcrumb] = Field(default_factory=list)
+    voided: Optional[str] = Field(
+        default=None, description="Why this game was voided after it was played (set by hand); a voided game is not rated"
+    )
 
     def player(self, role: str) -> Optional[MatchPlayer]:
         return next((p for p in self.players if p.role == role), None)

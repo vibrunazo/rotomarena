@@ -252,8 +252,8 @@ def create_agent_instance(
             model=resolved_model,
             temperature=agent_cfg.temperature,
             max_output_tokens=app_config.ruleset.max_output_tokens,
-            reasoning=app_config.ruleset.reasoning,
-            thinking_budget=app_config.ruleset.thinking_budget,
+            reasoning=agent_cfg.thinking(app_config.ruleset)[0],
+            thinking_budget=agent_cfg.thinking(app_config.ruleset)[1],
             **common,
         )
     if agent_cfg.type == "decision":

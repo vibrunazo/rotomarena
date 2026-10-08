@@ -34,6 +34,8 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
     """Everything that decides how a game of this version is played, as recorded in every match."""
     rules = {**app_cfg.ruleset.model_dump(), "format": FORMAT,
              "battle_prompt": _sha(SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE)}
+    # Models whose provider ignores the thinking budget, and the effort level each gets instead
+    rules["thinking_exceptions"] = {k: a.thinking_effort for k, a in sorted(app_cfg.agents.items()) if a.thinking_effort}
     from rotomarena.agents import decision  # imported here, like the drafts below
     rules["decision_prompt"] = _sha(decision.TURN_INSTRUCTIONS, decision.LEAD_INSTRUCTIONS)
     if app_cfg.ruleset.team_mode == "draft":

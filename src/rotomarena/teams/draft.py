@@ -211,8 +211,8 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         try:
             completion = await client.generate_completion(
                 messages, max_tokens=app_cfg.ruleset.draft_max_output_tokens or app_cfg.ruleset.max_output_tokens,
-                reasoning=app_cfg.ruleset.reasoning,
-                thinking_budget=app_cfg.ruleset.thinking_budget)
+                reasoning=agent.thinking(app_cfg.ruleset)[0],
+                thinking_budget=agent.thinking(app_cfg.ruleset)[1])
         except Exception as e:
             raise DraftUnavailable(f"provider error at attempt {attempt}: {str(e)[:300]}") from e
         return (completion, *recover_answer(completion.text, completion.reasoning, marker))

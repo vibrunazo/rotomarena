@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Dict, List, Literal, Optional
+from typing import Dict, List, Literal, Optional, Tuple
 from pydantic import BaseModel, Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
@@ -15,7 +15,7 @@ AgentType = Literal["pokechamp", "direct_llm", "decision", "heuristic", "max_dam
 # text; decision models answer typed questions with probabilities (OpenRouter's Decisions API).
 MODEL_TYPES = ("direct_llm", "decision")
 AgentRole = Literal["anchor", "sparring", "control", "contestant"]
-ReasoningLevel = Literal["off", "low", "medium", "high"]
+ReasoningLevel = Literal["off", "minimal", "low", "medium", "high"]
 
 # Free OpenRouter model used for tests and as the default LLM (see AGENTS.md).
 FREE_TEST_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
@@ -226,6 +226,12 @@ class AgentConfig(BaseModel):
     active: bool = Field(
         default=True, description="Plays new games; retired models keep their games and ratings, but sit out schedules",
     )
+    thinking_effort: Optional[ReasoningLevel] = Field(
+        default=None,
+        description="For a model whose provider ignores the ruleset's thinking budget (it keeps thinking until the "
+        "answer is cut off): this effort level is sent instead of the budget, the strongest one that stays within it. "
+        "Recorded in the rules as an exception",
+    )
     max_games: Optional[int] = Field(
         default=None, ge=0, description="At most this many games in total, across every version (a spending cap for "
         "paid models); schedules skip it once reached",
@@ -248,6 +254,12 @@ class AgentConfig(BaseModel):
             "matchup": 1.0,
         }
     )
+
+    def thinking(self, ruleset: "RulesetConfig") -> Tuple[Optional[str], Optional[int]]:
+        """(reasoning level, thinking budget) this model is asked for: the ruleset's, unless it has an exception."""
+        if self.thinking_effort:
+            return self.thinking_effort, None
+        return ruleset.reasoning, ruleset.thinking_budget
 
     @property
     def is_model(self) -> bool:
