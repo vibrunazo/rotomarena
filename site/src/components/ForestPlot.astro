@@ -1,5 +1,6 @@
 ---
-// Figure 1: ratings with 95% bootstrap intervals, drawn at build time. One scale for marks, ticks and labels.
+// Figure 1: ratings with 95% bootstrap intervals as capped error bars, drawn at build time. One color per model,
+// shape by kind (circle: language model, square: bot); the anchor is hollow and sits on the reference line.
 import type { Model } from '../lib/data';
 
 interface Props { models: Model[]; anchor: string; caption?: string }
@@ -8,15 +9,18 @@ const { models, anchor, caption } = Astro.props;
 const ranked = models.filter((m) => m.rating !== null).sort((a, b) => b.rating! - a.rating!);
 const lo = Math.min(...ranked.map((m) => m.ci_low!), 1500);
 const hi = Math.max(...ranked.map((m) => m.ci_high!), 1500);
-const step = 100;
+const step = hi - lo > 1000 ? 200 : 100; // labels stay legible at 520 px
 const min = Math.floor((lo - 25) / step) * step;
 const max = Math.ceil((hi + 25) / step) * step;
 const ticks = Array.from({ length: (max - min) / step + 1 }, (_, i) => min + i * step);
 
-const labelW = 170, plotW = 520, rowH = 30, top = 12, bottom = 34;
-const width = labelW + plotW + 20;
-const height = top + ranked.length * rowH + bottom;
+const palette = ['var(--cyan)', 'var(--violet)', 'var(--magenta)', 'var(--green)', 'var(--amber)', 'var(--blue)', 'var(--red)'];
+const labelW = 170, plotW = 520, rowH = 38, top = 14, axisH = 30, legendH = 30, cap = 7, size = 6;
+const width = labelW + plotW + 24;
+const plotBottom = top + ranked.length * rowH;
+const height = plotBottom + axisH + legendH;
 const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
+const isBot = (m: Model) => m.type !== 'direct_llm';
 ---
 {ranked.length > 0 && (
   <figure>
@@ -24,20 +28,41 @@ const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
       <svg viewBox={`0 0 ${width} ${height}`} width={width} role="img" aria-label="Ratings with 95% intervals">
         {ticks.map((t) => (
           <g>
-            <line x1={x(t)} x2={x(t)} y1={top - 4} y2={height - bottom + 4} class={t === 1500 ? 'anchor-line' : 'grid'} />
-            <text x={x(t)} y={height - bottom + 20} text-anchor="middle" class="tick">{t}</text>
+            <line x1={x(t)} x2={x(t)} y1={top - 6} y2={plotBottom} class="grid" />
+            <text x={x(t)} y={plotBottom + 20} text-anchor="middle" class="tick">{t}</text>
           </g>
         ))}
+        <line x1={x(1500)} x2={x(1500)} y1={top - 6} y2={plotBottom} class="reference" />
+        <line x1={labelW} x2={labelW + plotW} y1={plotBottom} y2={plotBottom} class="axis" />
         {ranked.map((m, i) => {
           const y = top + i * rowH + rowH / 2;
+          const cx = x(m.rating!);
+          const hollow = m.config_id === anchor;
           return (
-            <g>
-              <text x={labelW - 10} y={y + 4} text-anchor="end" class="label">{m.display_name}</text>
-              {m.ci_low !== m.ci_high && <line x1={x(m.ci_low!)} x2={x(m.ci_high!)} y1={y} y2={y} class="ci" />}
-              <circle cx={x(m.rating!)} cy={y} r={m.config_id === anchor ? 4.5 : 5} class={m.config_id === anchor ? 'pt anchor' : 'pt'} />
+            <g style={`--c: ${palette[i % palette.length]}`}>
+              <line x1={labelW} x2={labelW + plotW} y1={y} y2={y} class="row-rule" />
+              <text x={labelW - 12} y={y + 4} text-anchor="end" class="label">{m.display_name}</text>
+              {m.ci_low !== m.ci_high && (
+                <g class="bar">
+                  <line x1={x(m.ci_low!)} x2={x(m.ci_high!)} y1={y} y2={y} />
+                  <line x1={x(m.ci_low!)} x2={x(m.ci_low!)} y1={y - cap} y2={y + cap} />
+                  <line x1={x(m.ci_high!)} x2={x(m.ci_high!)} y1={y - cap} y2={y + cap} />
+                </g>
+              )}
+              {isBot(m)
+                ? <rect x={cx - size} y={y - size} width={size * 2} height={size * 2} rx="1.5" class:list={['pt', { hollow }]} />
+                : <circle cx={cx} cy={y} r={size + 0.5} class:list={['pt', { hollow }]} />}
             </g>
           );
         })}
+        <g class="legend" transform={`translate(${labelW}, ${plotBottom + axisH + 14})`}>
+          <circle cx="6" cy="0" r={size} class="key" />
+          <text x="18" y="4">language model</text>
+          <rect x="140" y={-size} width={size * 2} height={size * 2} rx="1.5" class="key" />
+          <text x="158" y="4">bot</text>
+          <circle cx="216" cy="0" r={size} class="key hollow" />
+          <text x="228" y="4">anchor (fixed at 1500)</text>
+        </g>
       </svg>
     </div>
     {caption && <figcaption set:html={caption} />}
@@ -45,13 +70,18 @@ const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
 )}
 
 <style>
-  .plot-scroll { overflow-x: auto; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.6rem; }
+  .plot-scroll { overflow-x: auto; background: var(--hud-panel); border: 1px solid transparent; border-radius: var(--radius); padding: 0.8rem 0.6rem 0.4rem; box-shadow: var(--shadow-panel); }
   svg { display: block; max-width: none; }
   .grid { stroke: var(--line); stroke-width: 1; }
-  .anchor-line { stroke: var(--text-faint); stroke-dasharray: 3 3; }
+  .row-rule { stroke: var(--line); stroke-width: 1; }
+  .reference { stroke: var(--text-faint); stroke-width: 3; opacity: 0.8; }
+  .axis { stroke: var(--line-strong); }
   .tick { font: 11px var(--font-mono); fill: var(--text-dim); }
-  .label { font: 13px var(--font-body); fill: var(--text); }
-  .ci { stroke: var(--cyan); stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; }
-  .pt { fill: var(--cyan); }
-  .pt.anchor { fill: var(--panel-solid); stroke: var(--text); stroke-width: 2; }
+  .label { font: 600 14px var(--font-display); letter-spacing: 0.04em; fill: var(--text); }
+  .bar line { stroke: var(--c); stroke-width: 2.5; stroke-linecap: square; filter: drop-shadow(0 0 3px var(--c)); }
+  .pt { fill: var(--c); stroke: var(--bg-0); stroke-width: 1.5; filter: drop-shadow(0 0 5px var(--c)); }
+  .pt.hollow { fill: var(--bg-0); stroke: var(--c); stroke-width: 2.5; }
+  .legend text { font: 12px var(--font-body); fill: var(--text-dim); }
+  .legend .key { fill: var(--text-dim); }
+  .legend .key.hollow { fill: none; stroke: var(--text-dim); stroke-width: 2; }
 </style>
