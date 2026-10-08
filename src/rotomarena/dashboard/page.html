@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RotomArena run monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* The site's HUD tokens (site/src/styles/global.css); dark only, like the site */
+  :root {
+    --bg-0: #04060e; --bg-1: #080c1a; --panel: #0d1328; --inset: rgba(3, 5, 14, 0.6);
+    --line: rgba(120, 150, 255, 0.13); --line-strong: rgba(120, 150, 255, 0.26);
+    --text: #e7ecff; --text-dim: #9aa5c9; --text-faint: #5d6890;
+    --cyan: #3ee6ff; --violet: #9b6bff; --track: rgba(120, 150, 255, 0.14);
+    --good: #3dffa8; --warn: #ffb547; --bad: #ff5470;
+    --grad-panel: linear-gradient(180deg, rgba(22, 30, 62, 0.82) 0%, rgba(9, 13, 30, 0.9) 100%);
+    --grad-edge: linear-gradient(135deg, rgba(62, 230, 255, 0.5), rgba(79, 125, 255, 0.12) 35%, rgba(255, 255, 255, 0.04) 65%, rgba(155, 107, 255, 0.45));
+    --font-body: 'Inter', system-ui, 'Segoe UI', sans-serif;
+    --font-display: 'Rajdhani', 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(1200px 600px at 20% -10%, #101a3a 0%, var(--bg-0) 60%) fixed, var(--bg-0);
+         color: var(--text); font: 15px/1.5 var(--font-body); }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 20px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 18px; }
+  h1 { margin: 0; font: 700 1.7rem/1.1 var(--font-display); letter-spacing: 0.04em; text-transform: uppercase; }
+  h1 span { color: var(--cyan); }
+  h2 { margin: 0 0 10px; font: 700 0.95rem/1.2 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+  .muted { color: var(--text-dim); } .faint { color: var(--text-faint); } .small { font-size: 0.85rem; }
+  .mono { font-family: var(--font-mono); font-size: 0.85em; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-strong);
+          font: 600 0.8rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; }
+  .pill.good { color: var(--good); } .pill.warn { color: var(--warn); } .pill.bad { color: var(--bad); }
+  .spacer { flex: 1; }
+  .grid { display: grid; gap: 14px; }
+  .tiles { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin-bottom: 14px; }
+  .cols { grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); margin-bottom: 14px; }
+  .panel { background: var(--grad-panel) padding-box, var(--grad-edge) border-box; border: 1px solid transparent; border-radius: 14px;
+           padding: 14px 16px; min-width: 0; }
+  .tile .value { font: 700 2rem/1.1 var(--font-display); letter-spacing: 0.02em; }
+  .tile .value small { font-size: 1.1rem; color: var(--text-dim); font-weight: 600; }
+  .tile .label { font: 600 0.78rem var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+  .tile .sub { margin-top: 6px; font-size: 0.85rem; color: var(--text-dim); }
+  /* progress track: one hue on a recessive track, rounded data end */
+  .track { position: relative; height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; margin-top: 8px; }
+  .track > i { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--cyan); }
+  .track.thin { height: 6px; margin-top: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { text-align: left; font: 600 0.72rem var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint);
+       padding: 0 8px 6px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-cell { width: 34%; min-width: 7rem; }
+  .bar-cell .row { display: flex; align-items: center; gap: 8px; }
+  .bar-cell .row .track { flex: 1; }
+  .bar-cell .row span { font-variant-numeric: tabular-nums; color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; }
+  .chip { display: inline-block; padding: 1px 7px; border-radius: 6px; border: 1px solid var(--line-strong); color: var(--text-dim);
+          font: 600 0.7rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; }
+  .game { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .game:last-child { border-bottom: 0; }
+  .vs { color: var(--text-faint); padding: 0 4px; }
+  .turn { font: 700 1.3rem var(--font-display); color: var(--cyan); }
+  ol.next { margin: 0; padding-left: 1.4rem; } ol.next li { padding: 3px 0; }
+  .err { white-space: pre-wrap; font: 0.78rem/1.4 var(--font-mono); color: var(--text-dim); max-height: 12rem; overflow: auto; }
+  details summary { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; }
+  .scroll { overflow-x: auto; }
+  a { color: var(--cyan); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Rotom<span>Arena</span> run monitor</h1>
+    <span id="state" class="pill">Loading</span>
+    <span class="spacer"></span>
+    <span class="small faint" id="updated"></span>
+  </header>
+
+  <section class="grid tiles" id="tiles"></section>
+
+  <section class="grid cols">
+    <div class="panel"><h2>Now playing</h2><div id="now"></div></div>
+    <div class="panel"><h2>Up next</h2><div id="next"></div></div>
+  </section>
+
+  <section class="panel" style="margin-bottom:14px">
+    <h2>Models</h2>
+    <div class="scroll"><table id="models"></table></div>
+    <p class="small faint" id="models-note" style="margin:8px 0 0"></p>
+  </section>
+
+  <section class="grid cols">
+    <div class="panel"><h2>Recent games</h2><div class="scroll"><table id="recent"></table></div></div>
+    <div class="panel"><h2>Machinery</h2><div id="machinery"></div></div>
+  </section>
+
+  <section class="panel">
+    <details><summary>Every pair in the schedule</summary><div class="scroll" style="margin-top:10px"><table id="plan"></table></div></details>
+  </section>
+</div>
+
+<script>
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const pct = (a, b) => (b ? Math.max(0, Math.min(100, (100 * a) / b)) : 0);
+const bar = (a, b, cls = '') => `<div class="track ${cls}" role="progressbar" aria-valuenow="${a}" aria-valuemax="${b}" title="${a} of ${b}"><i style="width:${pct(a, b)}%"></i></div>`;
+const time = (iso) => (iso ? new Date(iso).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '—');
+const day = (iso) => {
+  if (!iso) return '—';
+  const d = new Date(iso), today = new Date();
+  return d.toDateString() === today.toDateString() ? time(iso) : d.toLocaleDateString([], {weekday: 'short'}) + ' ' + time(iso);
+};
+
+function render(s) {
+  const n = s.names;
+  const state = document.getElementById('state');
+  if (!s.run.running) { state.className = 'pill bad'; state.textContent = '■ Stopped'; }
+  else if (s.run.idle_minutes >= 20) { state.className = 'pill warn'; state.textContent = `▲ No activity for ${s.run.idle_minutes} min`; }
+  else { state.className = 'pill good'; state.textContent = '● Running'; }
+  document.getElementById('updated').textContent = `Version ${s.version} · updated ${time(s.now)} · refreshes every 15 s`;
+
+  const t = s.totals;
+  document.getElementById('tiles').innerHTML = `
+    <div class="panel tile"><div class="label">Games</div><div class="value">${t.games_done} <small>/ ${t.games_planned}</small></div>
+      ${bar(t.games_done, t.games_planned)}<div class="sub">${t.void_games ? t.void_games + ' void (replayed) · ' : ''}${Math.round(pct(t.games_done, t.games_planned))}% done</div></div>
+    <div class="panel tile"><div class="label">Pairs</div><div class="value">${t.pairs_done} <small>/ ${t.pairs_planned}</small></div>
+      ${bar(t.pairs_done, t.pairs_planned)}<div class="sub">${t.pairs_skipped} more skipped: a paid model reached its game cap</div></div>
+    <div class="panel tile"><div class="label">Finishes around</div><div class="value">${day(s.eta.finish)}</div>
+      <div class="sub">≈ ${s.eta.remaining_hours} h left. Rough: ${s.eta.turns_per_game} turns a game, measured seconds per turn for ${s.eta.measured_models} models</div></div>
+    <div class="panel tile"><div class="label">Spent this version</div><div class="value">$${s.spend_usd.toFixed(3)}</div>
+      <div class="sub">OpenRouter's reported cost, all models</div></div>`;
+
+  const c = s.current;
+  let now = c ? `<p style="margin:0 0 6px">Pair <b>${c.index}</b> of ${s.plan.length} in the schedule: <b>${esc(n[c.a])}</b><span class="vs">vs</span><b>${esc(n[c.b])}</b>
+    <span class="muted">· ${c.done} of ${c.planned} games done</span></p>` : '<p class="muted">Nothing left to play.</p>';
+  const live = s.live || [];
+  now += live.length ? live.map((g) => `<div class="game"><span class="turn">Turn ${g.turn}</span><span>${esc(g.p1)}<span class="vs">vs</span>${esc(g.p2)}</span>
+      <span class="faint small mono">${esc(g.room)}</span></div>`).join('')
+    : `<p class="small muted">${s.run.showdown_running ? 'No battle open right now (between games, or a model is loading).' : 'The Showdown server is not running.'}</p>`;
+  if (s.in_progress.length) now += `<p class="small faint" style="margin:8px 0 0">${s.in_progress.map((g) => `Game started ${time(g.started)} (${g.minutes} min ago)`).join(' · ')}</p>`;
+  if (s.sitting_out.length) now += `<p class="small faint" style="margin:6px 0 0">Sitting out, no team yet: ${s.sitting_out.map((k) => esc(n[k] || k)).join(', ')}</p>`;
+  document.getElementById('now').innerHTML = now;
+
+  document.getElementById('next').innerHTML = s.next.length
+    ? `<ol class="next" start="${s.next[0].index}">${s.next.map((p) => `<li value="${p.index}">${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])} <span class="faint small">· ${p.planned - p.done} game${p.planned - p.done === 1 ? '' : 's'}</span></li>`).join('')}</ol>`
+    : '<p class="muted">Nothing after the current pair.</p>';
+
+  document.getElementById('models').innerHTML = `<thead><tr><th>Model</th><th>Kind</th><th class="bar-cell">Games played</th><th class="num">W–L</th><th class="num">s / turn</th><th class="num">Cost</th></tr></thead><tbody>` +
+    s.models.map((m) => `<tr><td>${esc(m.name)}${m.cap != null ? ` <span class="faint small">cap ${m.cap}</span>` : ''}</td>
+      <td><span class="chip">${m.kind === 'api' ? 'API' : m.kind}</span></td>
+      <td class="bar-cell"><div class="row">${bar(m.done, m.planned, 'thin')}<span>${m.done} / ${m.planned}</span></div></td>
+      <td class="num">${m.wins}–${m.losses}${m.void ? ` <span class="faint">(${m.void} void)</span>` : ''}</td>
+      <td class="num">${m.sec_per_turn ?? '—'}</td><td class="num">${m.cost_usd ? '$' + m.cost_usd.toFixed(3) : '—'}</td></tr>`).join('') + '</tbody>';
+  document.getElementById('models-note').textContent = 'Games played counts this version’s rated games; planned is what the schedule still gives each model under its cap.';
+
+  document.getElementById('recent').innerHTML = s.recent.length
+    ? `<thead><tr><th>Game</th><th>Winner</th><th class="num">Turns</th><th class="num">Min</th></tr></thead><tbody>` +
+      s.recent.map((g) => `<tr><td>${esc(g.players[0])}<span class="vs">vs</span>${esc(g.players[1])}${g.void ? ` <span class="chip">void</span>` : ''}</td>
+        <td>${esc(g.winner || '—')}</td><td class="num">${g.turns}</td><td class="num">${g.minutes}</td></tr>`).join('') + '</tbody>'
+    : '<tbody><tr><td class="muted">No finished games in this version yet.</td></tr></tbody>';
+
+  const rows = [
+    ['Run', s.run.running ? `running since ${day(s.run.started)} (PID ${s.run.driver_pid})` : 'not running'],
+    ['Showdown', s.run.showdown_running ? `up (PID ${s.run.showdown_pid})` : 'down'],
+    ['Last activity', `${day(s.run.last_activity)} (${s.run.idle_minutes} min ago)`],
+    ...s.local_servers.map((v) => [`Local: ${esc(v.model)}`, `port ${v.port} · ${v.tok_s ? v.tok_s.toFixed(1) + ' tok/s last turn' : 'no turn yet'}`]),
+    ['Site publish', esc((s.publisher.filter((l) => l.includes('published') || l.includes('nothing new')).pop() || 'not yet this run').replace(/\(commit.*$/, ''))],
+  ];
+  document.getElementById('machinery').innerHTML = `<table><tbody>${rows.map(([k, v]) => `<tr><td class="muted" style="width:9rem">${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>` +
+    (s.errors.length ? `<h2 style="margin-top:12px">Errors this run</h2><div class="err">${esc(s.errors.join('\n'))}</div>` : '');
+
+  document.getElementById('plan').innerHTML = `<thead><tr><th class="num">#</th><th>Pair</th><th class="bar-cell">Games</th><th>Status</th></tr></thead><tbody>` +
+    s.plan.map((p) => `<tr><td class="num faint">${p.index}</td><td>${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])}</td>
+      <td class="bar-cell"><div class="row">${bar(p.done, p.planned || 2, 'thin')}<span>${p.done} / ${p.planned}</span></div></td>
+      <td class="small">${!p.planned ? '<span class="faint">skipped (cap)</span>' : p.done >= p.planned ? '✓ done' : c && p.index === c.index ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
+}
+
+async function refresh() {
+  try {
+    const r = await fetch('api/status', {cache: 'no-store'});
+    render(await r.json());
+  } catch (e) {
+    const state = document.getElementById('state');
+    state.className = 'pill bad'; state.textContent = '■ Monitor unreachable';
+  }
+}
+refresh();
+setInterval(refresh, 15000);
+</script>
+</body>
+</html>

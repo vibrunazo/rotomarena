@@ -630,6 +630,19 @@ def ladder_fill(
     _print_ratings(app_cfg)
 
 
+@app.command("dashboard")
+def dashboard(
+    host: str = typer.Option("0.0.0.0", "--host", help="Address to listen on (0.0.0.0: every device on the LAN)"),
+    port: int = typer.Option(8765, "--port", "-p", help="Port to listen on"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """A read-only web page with the round robin's progress, the games being played, finish time and spending."""
+    from rotomarena.dashboard.server import serve
+
+    console.print(f"[cyan]Run monitor on http://{host}:{port}/ (Ctrl+C stops it)[/cyan]")
+    serve(config_file, host, port)
+
+
 @app.command("export-site")
 def export_site_command(
     out: str = typer.Option("site/src/data", "--out", "-o", help="Output directory for the site's JSON"),
