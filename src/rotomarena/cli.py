@@ -567,8 +567,8 @@ def ladder_round_robin(
     games_per_pair: int = typer.Option(2, "--games-per-pair", "-g", help="Games each pair plays, one side each"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
 ):
-    """Every language model plays every other one, in passes of one game per pair (balanced rounds), so a run
-    stopped early still covers every model evenly. Resumes where it stopped."""
+    """Every language model plays every other one, pair by pair in balanced rounds (a pair's games run at once),
+    so a run stopped early still covers every model evenly. Resumes where it stopped."""
     from rotomarena.ladder import RunHalted, round_robin
 
     app_cfg = AppConfig.load(config_file)

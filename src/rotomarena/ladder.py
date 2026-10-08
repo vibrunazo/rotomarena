@@ -157,17 +157,17 @@ def round_robin_pairs(ids: List[str]) -> List[Tuple[str, str]]:
 
 
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
-    """Every language model plays every other one. Games are played in passes, one game per pair per pass (the
-    first pass in balanced rounds, sides alternating by pass), so coverage grows evenly; resumable."""
+    """Every language model plays every other one, pair by pair in balanced rounds, so coverage grows evenly.
+    A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
+    for two local models costs about one game's time instead of two. Resumable."""
     ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm"]
     pairs = round_robin_pairs(ids)
-    for game in range(1, games_per_pair + 1):
-        for i, (a, b) in enumerate(pairs, 1):
-            done = season_state(app_cfg).games(a, b)
-            if done >= game:
-                continue
-            log(f"pass {game}/{games_per_pair}, pair {i}/{len(pairs)}: {a} vs {b} ({done} valid games so far)")
-            await play_set(a, b, app_cfg, done, games=game)
+    for i, (a, b) in enumerate(pairs, 1):
+        done = season_state(app_cfg).games(a, b)
+        if done >= games_per_pair:
+            continue
+        log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
+        await play_set(a, b, app_cfg, done, games=games_per_pair)
 
 
 def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
