@@ -3,8 +3,9 @@
   base = "site"
   command = "npm run build"
   publish = "dist"
-  # Rebuild only when the site or its data changed, not on harness-only commits.
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+  # Rebuild only when the site or its data changed, not on harness-only commits. On the first build both refs are
+  # the same commit, which would read as "no changes", so that one always builds (exit 1 = build).
+  ignore = "if [ \"$CACHED_COMMIT_REF\" = \"$COMMIT_REF\" ]; then exit 1; fi; git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
 
 [build.environment]
   NODE_VERSION = "22"
