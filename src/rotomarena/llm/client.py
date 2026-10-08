@@ -75,24 +75,25 @@ class _LocalGate:
     """Local llama.cpp servers share one GPU, CPU and memory bus. Two different models generating at once ran Qwen at
     0.5 tok/s instead of 11.5, so one model generates at a time. Requests to the same model go together: its server
     batches them, which is where games played in parallel gain (2.4x for GPT-OSS at four at once).
-    Requests are served in arrival order, so a model can't keep the GPU while another one waits."""
+    When the GPU frees up, the model that has waited longest goes next with every request queued for it, so the
+    parallel games' requests batch instead of alternating (in swap mode, alternating also reloaded the model for
+    every request). A model can't keep the GPU while another waits: newcomers only join while nobody else waits."""
 
     def __init__(self) -> None:
         self._cond = asyncio.Condition()
         self._queue: List[Tuple[object, int]] = []
         self._port: Optional[int] = None
         self._active = 0
+        self._batch: set = set()  # ids of the queued requests admitted together when the GPU last freed up
 
     def _may_enter(self, entry: Tuple[object, int]) -> bool:
         port = entry[1]
-        if self._port not in (None, port):
-            return False
-        for queued in self._queue:  # only the run of same-model requests at the front of the queue
-            if queued is entry:
-                return True
-            if queued[1] != port:
-                return False
-        return False
+        if self._port is None and not self._batch and self._queue:
+            oldest = self._queue[0][1]
+            self._batch = {id(q) for q in self._queue if q[1] == oldest}
+        if id(entry) in self._batch:
+            return self._port in (None, port)
+        return self._port == port and all(q[1] == port for q in self._queue)
 
     @asynccontextmanager
     async def use(self, port: int) -> AsyncIterator[None]:
@@ -101,8 +102,9 @@ class _LocalGate:
             self._queue.append(entry)
             await self._cond.wait_for(lambda: self._may_enter(entry))
             self._queue.remove(entry)
+            self._batch.discard(id(entry))
             self._port, self._active = port, self._active + 1
-            self._cond.notify_all()  # same-model requests behind this one may go too
+            self._cond.notify_all()  # the rest of its batch may go too
         try:
             yield
         finally:

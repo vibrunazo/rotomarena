@@ -247,3 +247,26 @@ async def test_local_gate_batches_one_model_and_takes_turns_between_models():
     assert events.index(("start", "qwen-2")) < events.index(("end", "qwen-1"))  # overlapped
     assert events.index(("start", "bonsai-1")) > events.index(("end", "qwen-2"))  # never two models at once
     assert events.index(("start", "qwen-3")) > events.index(("end", "bonsai-1"))
+
+
+@pytest.mark.asyncio
+async def test_local_gate_batches_interleaved_requests_from_parallel_games():
+    from rotomarena.llm.client import _LocalGate
+
+    gate, events = _LocalGate(), []
+
+    async def request(port: int, name: str, hold: float):
+        async with gate.use(port):
+            events.append(("start", name))
+            await asyncio.sleep(hold)
+            events.append(("end", name))
+
+    first = asyncio.create_task(request(8081, "qwen-1", 0.05))
+    await asyncio.sleep(0)
+    others = [asyncio.create_task(request(8084, "ornith-1", 0.02)), asyncio.create_task(request(8081, "qwen-2", 0.02)),
+              asyncio.create_task(request(8084, "ornith-2", 0.02))]
+    await asyncio.gather(first, *others)
+
+    starts = [name for kind, name in events if kind == "start"]
+    assert starts == ["qwen-1", "ornith-1", "ornith-2", "qwen-2"]  # one batch per model, not four swaps
+    assert events.index(("start", "ornith-2")) < events.index(("end", "ornith-1"))  # batched together
