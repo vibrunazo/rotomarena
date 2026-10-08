@@ -1,6 +1,6 @@
 // Prints a Showdown format's rules as JSON, read from the local Showdown install (run with cwd = its directory):
 // the legal species (each checked with the real validator), the clauses with their descriptions, and the banned
-// abilities, moves and items. Usage: node format_rules.js gen9ou
+// abilities, moves and items, and the items, natures and Tera Types a set can use. Usage: node format_rules.js gen9ou
 'use strict';
 const path = require('path');
 const {Dex, TeamValidator} = require(path.join(process.cwd(), 'dist', 'sim'));
@@ -48,4 +48,10 @@ for (const [rule] of ruleTable) {
   }
 }
 
-process.stdout.write(JSON.stringify({format: format.name, id: format.id, species: legal, base, clauses, banned}));
+// What a set can hold, for players that pick from lists (decision models): the format's items, natures and Tera Types.
+const items = dex.items.all().filter((i) => !i.isNonstandard && !banned.items.includes(i.name)).map((i) => i.name).sort();
+const STAT = {atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe'};
+const natures = dex.natures.all().map((n) => ({name: n.name, plus: STAT[n.plus] || null, minus: STAT[n.minus] || null}));
+const types = dex.types.names();  // Stellar included
+
+process.stdout.write(JSON.stringify({format: format.name, id: format.id, species: legal, base, clauses, banned, items, natures, types}));

@@ -8,11 +8,13 @@ from typing import Optional, Tuple
 from poke_env.ps_client import ServerConfiguration
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
+from rotomarena.agents.decision import DecisionPlayer
 from rotomarena.agents.direct_llm import DirectLLMPlayer
 from rotomarena.agents.heuristic import HeuristicPlayer, MaxDamagePlayer
 from rotomarena.agents.pokechamp import PokeChampPlayer
 from rotomarena.agents.random import RandomBenchmarkPlayer
 from rotomarena.config import AgentConfig, AppConfig
+from rotomarena.llm.decisions import DecisionClient
 from rotomarena.llm.client import LLMClient
 from rotomarena.telemetry.breadcrumbs import PlayerIdentity
 
@@ -166,7 +168,7 @@ def format_bot_display_name(
 
     if agent_cfg.display_name:
         base = agent_cfg.display_name
-    elif a_type == "direct_llm":
+    elif agent_cfg.is_model:
         model = resolved_model or agent_cfg.model or ""
         if model:
             base = clean_llm_model_name(model)
@@ -216,7 +218,10 @@ def create_agent_instance(
     played at once) add their number; the display name stays the model's own.
     `start_listening=False` skips connecting to Showdown (for tests)."""
     llm_client = llm_client_for(agent_cfg, app_config) if agent_cfg.type == "direct_llm" else None
-    resolved_model = llm_client.default_model if llm_client else None
+    decision_client = (DecisionClient.for_model(agent_cfg.model, app_config, agent_cfg.provider or "openrouter")
+                       if agent_cfg.type == "decision" else None)
+    resolved_model = (llm_client.default_model if llm_client
+                      else decision_client.model if decision_client else None)
 
     display_name = format_bot_display_name(agent_cfg, resolved_model=resolved_model)
     tag = " ".join(t for t in (player_tag, str(lane) if lane > 1 else None) if t)
@@ -225,7 +230,7 @@ def create_agent_instance(
         config_id=agent_cfg.name,
         display_name=display_name,
         agent_type=agent_cfg.type,
-        provider=llm_client.provider_name if llm_client else None,
+        provider=llm_client.provider_name if llm_client else decision_client.provider_name if decision_client else None,
         model=resolved_model,
         quantization=agent_cfg.quantization,
     )
@@ -250,6 +255,8 @@ def create_agent_instance(
             thinking_budget=app_config.ruleset.thinking_budget,
             **common,
         )
+    if agent_cfg.type == "decision":
+        return DecisionPlayer(client=decision_client, **common)
     if agent_cfg.type == "pokechamp":
         return PokeChampPlayer(evaluation_weights=agent_cfg.evaluation_weights, **common)
     if agent_cfg.type == "max_damage":
@@ -263,7 +270,7 @@ def create_agent_instance(
 
 def resolved_model(agent_cfg: AgentConfig, app_config: AppConfig) -> Optional[str]:
     """The model an LLM agent will actually call: its own, else its provider's default."""
-    if agent_cfg.type != "direct_llm":
+    if not agent_cfg.is_model:
         return None
     if agent_cfg.model:
         return agent_cfg.model

@@ -28,7 +28,7 @@ def openrouter_prices() -> Dict[str, Dict[str, float]]:
 
 def is_free(cfg: AgentConfig) -> bool:
     """Bots, local models and :free API models cost nothing to run."""
-    return cfg.type != "direct_llm" or cfg.provider == "local" or (cfg.model or "").endswith(":free")
+    return not cfg.is_model or cfg.provider == "local" or (cfg.model or "").endswith(":free")
 
 
 def estimated_cost_per_game(cfg: AgentConfig, app_cfg: AppConfig) -> Optional[float]:

@@ -11,7 +11,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
-from rotomarena.config import AppConfig, derived_model_key
+from rotomarena.config import MODEL_TYPES, AppConfig, derived_model_key
 from rotomarena.ladder import LadderState, versions_state
 from rotomarena.rulesets import stored_rules
 from rotomarena.rating import Rating
@@ -51,7 +51,7 @@ def parse_choice(chosen_action: str) -> Dict[str, Any]:
 
 
 def _thought(crumb: TurnBreadcrumb) -> str:
-    return crumb.reasoning if crumb.decision_source == "model" and crumb.agent_type == "direct_llm" else ""
+    return crumb.reasoning if crumb.decision_source == "model" and crumb.agent_type in MODEL_TYPES else ""
 
 
 def _turn_entries(match: MatchTelemetry) -> List[Dict[str, Any]]:
@@ -187,7 +187,7 @@ def _pearson(xs: List[float], ys: List[float]) -> Optional[float]:
 
 def findings(models: List[Dict[str, Any]], all_matches: List[MatchTelemetry]) -> List[Dict[str, Any]]:
     """Superlatives with real numbers. The site's copy decides how to phrase them; `show` hides empty ones."""
-    llms = [m for m in models if m["type"] == "direct_llm"]
+    llms = [m for m in models if m["type"] in MODEL_TYPES]
     ranked = sorted((m for m in models if m["rating"] is not None and m["role"] != "anchor"),
                     key=lambda m: m["rating"], reverse=True)
     out: List[Dict[str, Any]] = []
@@ -216,7 +216,7 @@ def findings(models: List[Dict[str, Any]], all_matches: List[MatchTelemetry]) ->
     zero_token_wins = [
         {"config_id": p.config_id, "match_id": m.match_id, "version": m.ruleset.get("version")}
         for m in all_matches for p in m.players
-        if p.username == m.winner and p.agent_type == "direct_llm" and autopilot_rate(m, p.role) == 1.0
+        if p.username == m.winner and p.agent_type in MODEL_TYPES and autopilot_rate(m, p.role) == 1.0
     ]
     out.append({"id": "zero-token-wins", "show": bool(zero_token_wins), "wins": zero_token_wins})
 

@@ -10,7 +10,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
 
 
-AgentType = Literal["pokechamp", "direct_llm", "heuristic", "max_damage", "random"]
+AgentType = Literal["pokechamp", "direct_llm", "decision", "heuristic", "max_damage", "random"]
+# The agent types that are models being benchmarked (the rest are scripted bots): direct_llm writes its answer as
+# text; decision models answer typed questions with probabilities (OpenRouter's Decisions API).
+MODEL_TYPES = ("direct_llm", "decision")
 AgentRole = Literal["anchor", "sparring", "control", "contestant"]
 ReasoningLevel = Literal["off", "low", "medium", "high"]
 
@@ -185,7 +188,7 @@ class LadderConfig(BaseModel):
 def derived_model_key(agent_type: str, provider: Optional[str], model: Optional[str]) -> Optional[str]:
     """An OpenRouter slug names the weights ('nvidia/nemotron-3-ultra-550b-a55b:free' -> without ':free');
     local catalog keys don't, so local models need an explicit model_key."""
-    if agent_type == "direct_llm" and provider == "openrouter" and model:
+    if agent_type in MODEL_TYPES and provider == "openrouter" and model:
         return model.split(":")[0].lower()
     return None
 
@@ -245,6 +248,10 @@ class AgentConfig(BaseModel):
             "matchup": 1.0,
         }
     )
+
+    @property
+    def is_model(self) -> bool:
+        return self.type in MODEL_TYPES
 
     def canonical_model_key(self) -> Optional[str]:
         """The cross-game identity of an LLM's weights; None for bots (they belong to one game)."""

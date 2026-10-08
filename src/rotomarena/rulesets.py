@@ -34,10 +34,15 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
     """Everything that decides how a game of this version is played, as recorded in every match."""
     rules = {**app_cfg.ruleset.model_dump(), "format": FORMAT,
              "battle_prompt": _sha(SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE)}
+    from rotomarena.agents import decision  # imported here, like the drafts below
+    rules["decision_prompt"] = _sha(decision.TURN_INSTRUCTIONS, decision.LEAD_INSTRUCTIONS)
     if app_cfg.ruleset.team_mode == "draft":
-        from rotomarena.teams import draft  # imported here: drafting imports the agent factory
+        from rotomarena.teams import draft, draft_decisions  # imported here: drafting imports the agent factory
         rules["draft_prompt"] = _sha(draft.DRAFT_SYSTEM_PROMPT, draft.PICK_PROMPT, draft.BUILD_PROMPT, draft.RETRY_PICK,
                                      draft.RETRY_BUILD, draft.PROMPT_VERSION, str(draft.ATTEMPTS))
+        rules["decision_draft_prompt"] = _sha(
+            draft_decisions.PICK_INSTRUCTIONS, draft_decisions.SET_INSTRUCTIONS, draft_decisions.MOVE_INSTRUCTIONS,
+            json.dumps(draft_decisions.EV_SPREADS), draft_decisions.DECISION_DRAFT_VERSION)
     return rules
 
 

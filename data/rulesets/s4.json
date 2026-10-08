@@ -1,12 +1,13 @@
 {
   "version": "s4",
-  "registered_at": "2026-10-08T16:46:22+00:00",
+  "registered_at": "2026-10-08T17:18:22+00:00",
   "rules": {
     "version": "s4",
     "profile": "ladder",
     "reasoning": "medium",
     "thinking_budget": 1024,
     "max_output_tokens": 2048,
+    "draft_max_output_tokens": 5120,
     "turn_timeout": 7200.0,
     "team_mode": "draft",
     "teams": [
@@ -15,6 +16,11 @@
     ],
     "format": "gen9ou",
     "battle_prompt": "ba3dda5d9965",
-    "draft_prompt": "63c78295eef1"
-  }
+    "decision_prompt": "5869c554b249",
+    "draft_prompt": "63c78295eef1",
+    "decision_draft_prompt": "bad10b3b4a9e"
+  },
+  "amended": [
+    "2026-10-08: decision_prompt and decision_draft_prompt added when decision models joined; every rule the language models play by is unchanged"
+  ]
 }

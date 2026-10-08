@@ -136,6 +136,7 @@ def teams_draft(
     """Each model builds its own Gen 9 OU team from the format's rules; Showdown's validator referees.
     Saves every attempt to data/drafts/<format>/<config id>.json."""
     from rotomarena.teams.draft import DraftUnavailable, draft_team, save_draft
+    from rotomarena.teams.draft_decisions import draft_team_by_decisions
 
     app_cfg = AppConfig.load(config_file)
     agents = [app_cfg.agents[c] for c in config_ids if c in app_cfg.agents]
@@ -158,7 +159,8 @@ def teams_draft(
             if agent in local:
                 local_servers.prepare([agent], app_cfg, log=console.print)
             try:
-                record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print)
+                build = draft_team_by_decisions if agent.type == "decision" else draft_team
+                record = await build(agent, app_cfg, attempts=attempts, log=console.print)
             except DraftUnavailable as e:
                 console.print(f"  [red]no draft kept[/red] ({e}); run it again when the provider is back")
                 continue

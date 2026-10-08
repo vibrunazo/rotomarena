@@ -204,6 +204,14 @@ agents:
     provider: "openrouter"
     model: "meta/muse-spark-1.3-contributor"
     max_games: 8
+  # Decision models ("System One"): no text, a probability for each option (OpenRouter's Decisions API). Each turn
+  # is one Choice question over the legal actions; teams are drafted one choice at a time (teams/draft_decisions.py).
+  jev_1_13:
+    type: "decision"
+    display_name: "Jev 1.13"
+    provider: "openrouter"
+    model: "typesafe/jev-1.13"
+    max_games: 8
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
   random_ai:

@@ -98,7 +98,7 @@ def closest_rated_llm(
         return None
     candidates = [
         k for k, a in agents.items()
-        if a.type == "direct_llm" and k != config_id and k not in exclude and k in ratings and ratings[k].ranked
+        if a.is_model and k != config_id and k not in exclude and k in ratings and ratings[k].ranked
     ]
     if not candidates:
         return None
@@ -191,7 +191,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     """Every language model plays every other one, pair by pair in balanced rounds, so coverage grows evenly.
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
     for two local models costs about one game's time instead of two. Resumable."""
-    ids = [k for k, a in app_cfg.agents.items() if a.type == "direct_llm" and a.active]
+    ids = [k for k, a in app_cfg.agents.items() if a.is_model and a.active]
     if app_cfg.ruleset.team_mode == "draft":  # a model without a team yet (say, its provider was down) joins later
         drafts = load_drafts(version=app_cfg.ruleset.version)
         for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
