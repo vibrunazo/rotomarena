@@ -129,8 +129,10 @@ function render(s) {
       ${bar(t.games_done, t.games_planned)}<div class="sub">${t.void_games ? t.void_games + ' void (replayed) · ' : ''}${Math.round(pct(t.games_done, t.games_planned))}% done</div></div>
     <div class="panel tile"><div class="label">Pairs</div><div class="value">${t.pairs_done} <small>/ ${t.pairs_planned}</small></div>
       ${bar(t.pairs_done, t.pairs_planned)}<div class="sub">${t.pairs_skipped} more skipped: a paid model reached its game cap</div></div>
-    <div class="panel tile"><div class="label">Finishes around</div><div class="value">${day(s.eta.finish)}</div>
-      <div class="sub">≈ ${s.eta.remaining_hours} h left. Rough: ${s.eta.turns_per_game} turns a game, measured seconds per turn for ${s.eta.measured_models} models</div></div>
+    <div class="panel tile"><div class="label">Time</div><div class="value">${s.eta.low_hours}–${s.eta.high_hours} <small>h left</small></div>
+      <div class="sub">Likely done around <b>${day(s.eta.finish_mid)}</b> (${day(s.eta.finish_low)} to ${day(s.eta.finish_high)}).
+        ${s.eta.elapsed_hours} h elapsed since the first game (${day(s.eta.first_game)}).</div>
+      <div class="sub faint">From ${s.eta.games_measured} games: ${s.eta.turns.low}–${s.eta.turns.high} turns each, at each model's measured pace.${s.eta.unmeasured.length ? ' Not measured yet, guessed: ' + s.eta.unmeasured.map((k) => esc(n[k] || k)).join(', ') + '.' : ''}</div></div>
     <div class="panel tile"><div class="label">Spent this version</div><div class="value">$${s.spend_usd.toFixed(3)}</div>
       <div class="sub">Games and drafting, as OpenRouter reported each call. Games cut short by a restart aren't saved, so they aren't counted</div></div>`;
 

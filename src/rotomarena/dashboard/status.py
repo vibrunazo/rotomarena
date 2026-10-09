@@ -141,14 +141,19 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
                      "skipped": planned < GAMES_PER_PAIR and more < need})
     current = next((p for p in plan if p["done"] < p["planned"]), None)
 
-    # Rough finish time from measured seconds per decision and turns per game
+    # Time left, as a range: each remaining pair's games at its models' measured seconds per turn, for a short,
+    # typical and long game (the 25th, 50th and 75th percentile of game lengths so far)
     secs = _turn_seconds(matches)
-    turns = statistics.median([m.total_turns for m in matches]) if matches else DEFAULT_TURNS
+    lengths = sorted(m.total_turns for m in matches)
+    if len(lengths) >= 4:
+        spread = {k: lengths[round(q * (len(lengths) - 1))] for k, q in (("low", 0.25), ("mid", 0.5), ("high", 0.75))}
+    else:
+        spread = {"low": DEFAULT_TURNS * 0.7, "mid": DEFAULT_TURNS, "high": DEFAULT_TURNS * 1.4}
 
     def turn_time(cid: str) -> float:
         return secs.get(cid) or DEFAULT_TURN_SECONDS[_kind(app_cfg, cid)]
 
-    def pair_seconds(p: Dict[str, Any]) -> float:
+    def pair_seconds(p: Dict[str, Any], turns: float) -> float:
         games = p["planned"] - p["done"]
         if games <= 0:
             return 0.0
@@ -158,7 +163,11 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         lanes = min(x for x in (app_cfg.ladder.parallel_games, games, a.max_parallel_games, b.max_parallel_games) if x)
         return turns * per_turn * math.ceil(games / lanes)
 
-    remaining_s = sum(pair_seconds(p) for p in plan)
+    remaining = {k: sum(pair_seconds(p, t) for p in plan) for k, t in spread.items()}
+    unmeasured = sorted({x for p in plan if p["done"] < p["planned"] for x in (p["a"], p["b"]) if x not in secs})
+    stamps = [datetime.datetime.strptime(m.match_id[6:21], "%Y%m%d_%H%M%S") for m in matches
+              if re.match(r"match_\d{8}_\d{6}", m.match_id)]
+    first_game = min(stamps) if stamps else None
 
     # Processes and servers
     driver_pid = _read_int(RUNS / "roundrobin.pid")
@@ -231,8 +240,11 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
                    "pairs_done": sum(1 for p in plan if p["planned"] and p["done"] >= p["planned"]),
                    "pairs_planned": sum(1 for p in plan if p["planned"]), "pairs_skipped": sum(1 for p in plan if not p["planned"]),
                    "pairs_total": len(plan), "void_games": state.void_count},
-        "eta": {"remaining_hours": round(remaining_s / 3600, 1), "finish": (now + datetime.timedelta(seconds=remaining_s)).isoformat(timespec="minutes"),
-                "turns_per_game": turns, "measured_models": len(secs)},
+        "eta": {**{f"{k}_hours": round(v / 3600, 1) for k, v in remaining.items()},
+                **{f"finish_{k}": (now + datetime.timedelta(seconds=v)).isoformat(timespec="minutes") for k, v in remaining.items()},
+                "turns": spread, "games_measured": len(lengths), "unmeasured": unmeasured,
+                "first_game": first_game.isoformat(timespec="minutes") if first_game else None,
+                "elapsed_hours": round((now - first_game).total_seconds() / 3600, 1) if first_game else 0},
         "current": current,
         "next": [p for p in plan if p["done"] < p["planned"]][1:6],
         "plan": plan,
