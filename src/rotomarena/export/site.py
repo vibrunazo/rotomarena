@@ -357,7 +357,7 @@ def _model_rows(state: LadderState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
         games = rating.games
         rows.append({
             "config_id": config_id,
-            "display_name": identity.display_name,
+            "display_name": registry.display_name if registry and registry.display_name else identity.display_name,
             "type": identity.agent_type,
             "role": registry.role if registry else "contestant",
             "provider": identity.provider,
