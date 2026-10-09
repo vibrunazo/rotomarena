@@ -105,6 +105,7 @@
 
 <script>
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const money = (v) => (v ? v.toFixed(3) : '—');
 const pct = (a, b) => (b ? Math.max(0, Math.min(100, (100 * a) / b)) : 0);
 const bar = (a, b, cls = '') => `<div class="track ${cls}" role="progressbar" aria-valuenow="${a}" aria-valuemax="${b}" title="${a} of ${b}"><i style="width:${pct(a, b)}%"></i></div>`;
 const time = (iso) => (iso ? new Date(iso).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) : '—');
@@ -131,7 +132,7 @@ function render(s) {
     <div class="panel tile"><div class="label">Finishes around</div><div class="value">${day(s.eta.finish)}</div>
       <div class="sub">≈ ${s.eta.remaining_hours} h left. Rough: ${s.eta.turns_per_game} turns a game, measured seconds per turn for ${s.eta.measured_models} models</div></div>
     <div class="panel tile"><div class="label">Spent this version</div><div class="value">$${s.spend_usd.toFixed(3)}</div>
-      <div class="sub">OpenRouter's reported cost, all models</div></div>`;
+      <div class="sub">Games and drafting, as OpenRouter reported each call. Games cut short by a restart aren't saved, so they aren't counted</div></div>`;
 
   const c = s.current;
   let now = c ? `<p style="margin:0 0 6px">Pair <b>${c.index}</b> of ${s.plan.length} in the schedule: <b>${esc(n[c.a])}</b><span class="vs">vs</span><b>${esc(n[c.b])}</b>
@@ -148,12 +149,12 @@ function render(s) {
     ? `<ol class="next" start="${s.next[0].index}">${s.next.map((p) => `<li value="${p.index}">${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])} <span class="faint small">· ${p.planned - p.done} game${p.planned - p.done === 1 ? '' : 's'}</span></li>`).join('')}</ol>`
     : '<p class="muted">Nothing after the current pair.</p>';
 
-  document.getElementById('models').innerHTML = `<thead><tr><th>Model</th><th>Kind</th><th class="bar-cell">Games played</th><th class="num">W–L</th><th class="num">s / turn</th><th class="num">Cost</th></tr></thead><tbody>` +
+  document.getElementById('models').innerHTML = `<thead><tr><th>Model</th><th>Kind</th><th class="bar-cell">Games played</th><th class="num">W–L</th><th class="num">s / turn</th><th class="num">Games $</th><th class="num">Draft $</th><th class="num">Total $</th></tr></thead><tbody>` +
     s.models.map((m) => `<tr><td>${esc(m.name)}${m.cap != null ? ` <span class="faint small">cap ${m.cap}</span>` : ''}</td>
       <td><span class="chip">${m.kind === 'api' ? 'API' : m.kind}</span></td>
       <td class="bar-cell"><div class="row">${bar(m.done, m.planned, 'thin')}<span>${m.done} / ${m.planned}</span></div></td>
       <td class="num">${m.wins}–${m.losses}${m.void ? ` <span class="faint">(${m.void} void)</span>` : ''}</td>
-      <td class="num">${m.sec_per_turn ?? '—'}</td><td class="num">${m.cost_usd ? '$' + m.cost_usd.toFixed(3) : '—'}</td></tr>`).join('') + '</tbody>';
+      <td class="num">${m.sec_per_turn ?? '—'}</td><td class="num">${money(m.games_cost_usd)}</td><td class="num">${money(m.draft_cost_usd)}</td><td class="num"><b>${money(m.cost_usd)}</b></td></tr>`).join('') + '</tbody>';
   document.getElementById('models-note').textContent = 'Games played counts this version’s rated games; planned is what the schedule still gives each model under its cap.';
 
   document.getElementById('recent').innerHTML = s.recent.length

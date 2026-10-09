@@ -283,10 +283,21 @@ def playable_team(record: Dict[str, Any]) -> Optional[str]:
     return record.get("team")
 
 
+def draft_cost(record: Dict[str, Any]) -> float:
+    """What drafting cost this model under this version: every attempt of this draft, plus the drafts it replaced."""
+    attempts = record.get("picks", {}).get("attempts", []) + record.get("attempts", [])
+    return sum(a.get("cost_usd") or 0 for a in attempts) + (record.get("earlier_drafts_cost_usd") or 0)
+
+
 def save_draft(record: Dict[str, Any], drafts_dir: Path = DRAFTS_DIR) -> Path:
-    """Drafts are kept per ruleset version: the version's rules (thinking budget included) shaped them."""
+    """Drafts are kept per ruleset version: the version's rules (thinking budget included) shaped them. A redraft
+    replaces the team but keeps a count and the cost of the drafts before it."""
     path = drafts_dir / record["format"] / record["ruleset_version"] / f"{record['config_id']}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        earlier = json.loads(path.read_text(encoding="utf-8"))
+        record["earlier_drafts"] = (earlier.get("earlier_drafts") or 0) + 1
+        record["earlier_drafts_cost_usd"] = round(draft_cost(earlier), 6)
     path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
 

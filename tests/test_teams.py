@@ -173,3 +173,17 @@ def test_answers_filed_under_reasoning_are_recovered_and_stage_two_drops_the_lis
     assert recover_answer("<team>x</team>", "<team>y</team>", "<team>") == ("<team>x</team>", "<team>y</team>")
     assert "Ogerpon-Wellspring" in system_prompt(RULES)
     assert "Ogerpon-Wellspring" not in system_prompt(RULES, with_species=False)  # stage 2 keeps the context small
+
+
+def test_a_redraft_keeps_the_cost_of_the_drafts_it_replaced(tmp_path):
+    from rotomarena.teams.draft import draft_cost, save_draft
+
+    def record(cost):
+        return {"config_id": "m", "format": "gen9ou", "ruleset_version": "s9",
+                "picks": {"attempts": [{"cost_usd": cost}]}, "attempts": [{"cost_usd": cost}]}
+
+    first, second, third = record(0.001), record(0.002), record(0.004)
+    save_draft(first, tmp_path)
+    save_draft(second, tmp_path)
+    save_draft(third, tmp_path)
+    assert third["earlier_drafts"] == 2 and abs(draft_cost(third) - 0.014) < 1e-9

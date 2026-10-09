@@ -19,7 +19,7 @@ from rotomarena.config import AppConfig
 from rotomarena.ladder import games_left, quick_pairs_first, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
-from rotomarena.teams.draft import load_drafts, playable_team
+from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
 
 RUNS = Path("runs")
 LLAMA_LOGS = Path(r"D:\docs\assets\generator\tools\llm\llamacpp\logs")
@@ -185,14 +185,17 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         mine = [m for m in matches if any(p.config_id == k for p in m.players)]
         valid = [m for m in mine if not void_reason(m, max_autopilot)]
         wins = sum(1 for m in valid if any(p.config_id == k and p.username == m.winner for p in m.players))
-        cost = sum((c.llm_metrics or {}).get("cost_usd") or 0 for m in mine for c in m.breadcrumbs
-                   if any(p.config_id == k and p.username == c.agent_name for p in m.players))
+        # Every game it finished in this version, voided ones too (they were paid for), plus all its drafting
+        games_cost = sum((c.llm_metrics or {}).get("cost_usd") or 0 for m in mine for c in m.breadcrumbs
+                         if any(p.config_id == k and p.username == c.agent_name for p in m.players))
+        drafting = draft_cost(drafts.get(k) or {})
         models.append({
             "id": k, "name": a.display_name or k, "kind": _kind(app_cfg, k),
             "done": sum(p["done"] for p in plan if k in (p["a"], p["b"])),
             "planned": sum(p["planned"] for p in plan if k in (p["a"], p["b"])),
             "wins": wins, "losses": len(valid) - wins, "void": len(mine) - len(valid),
-            "cost_usd": round(cost, 4), "cap": a.max_games, "sec_per_turn": round(secs[k], 1) if k in secs else None,
+            "games_cost_usd": round(games_cost, 4), "draft_cost_usd": round(drafting, 4),
+            "cost_usd": round(games_cost + drafting, 4), "cap": a.max_games, "sec_per_turn": round(secs[k], 1) if k in secs else None,
         })
     models.sort(key=lambda m: (-(m["done"] / m["planned"]) if m["planned"] else 0, m["name"]))
 
