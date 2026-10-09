@@ -136,7 +136,8 @@ CHAMPIONS_TEXT = [
      "in total), a nature, and up to 4 of its moves above.",
      "Each Pokémon needs an item (no two may hold the same item; a Pokémon holding its own Mega Stone can Mega Evolve once "
      "per battle), one of its abilities above, Stat Points written on the EVs line (at most 32 in one stat and 66 in "
-     "total), a nature, and up to 4 of its moves above. There is no Terastallization."),
+     "total), a nature, and up to 4 of its moves above. There is no Terastallization. Champions has far fewer items "
+     "than other games: an item must come from this list (any other is illegal): {items}."),
     ("Tera Type: Type\nEVs: 252 Atk / 4 SpD / 252 Spe", "EVs: 32 Atk / 2 SpD / 32 Spe"),
 ]
 
@@ -291,7 +292,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
     intro = f"Step 1 is done. Your six Pokémon: {', '.join(picks)}." + (f" Your plan: {plan}" if plan else "")
     base = [{"role": "system", "content": system_prompt(rules, with_species=False)},
             {"role": "user", "content": intro + "\n\n" + prompts["build"].format(
-                options=options_text(species_options(app_cfg, picks)))}]
+                options=options_text(species_options(app_cfg, picks)), items=", ".join(rules.get("items", [])))}]
     last = []
     for attempt in range(1, attempts + 1):
         completion, answer, reasoning = await ask(base + last, attempt, "<team>")
