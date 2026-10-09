@@ -94,6 +94,7 @@ const member = z.object({
   species: z.string(), sprite: z.string().nullable(), item: z.string(), ability: z.string(), tera_type: z.string(),
   nature: z.string(), evs: z.record(z.string(), z.number()), moves: z.array(z.string()),
   smogon_teams: z.number(), // how many of Smogon's sample teams use this Pokémon
+  fallback: z.boolean(), // put in by the referee (an empty or illegal slot), not picked by the model
 });
 const drafts = defineCollection({
   loader: file('src/data/drafts.json', {
@@ -111,7 +112,7 @@ const drafts = defineCollection({
       })),
     }),
     thought: z.string().nullable(), team_text: z.string().nullable(), members: z.array(member),
-    meta: z.object({ used: z.number(), of: z.number(), slots: z.number(), sample_teams: z.number() }),
+    meta: z.object({ used: z.number(), of: z.number(), slots: z.number(), fallbacks: z.number(), sample_teams: z.number() }),
     attempts: z.array(z.object({
       attempt: z.number(), problems: z.array(z.string()), error: z.string().nullable().optional(),
       thought: z.string().nullable().optional(), team_text: z.string().nullable().optional(), tokens: z.number(),

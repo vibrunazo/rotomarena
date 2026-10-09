@@ -49,21 +49,24 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
     <>
       <h2>Meta score</h2>
       <p class="prose">
-        How many of each team's six Pokémon appear in at least one of Smogon's {sampleTeams} sample teams (listed under
+        How many of each model's own picks appear in at least one of Smogon's {sampleTeams} sample teams (listed under
         <a href="#reference-teams">Reference teams</a> below), and how many sample-team slots they fill between them.
+        Fallbacks, the Pokémon the referee put in when a model's pick was missing or illegal, aren't its choice and
+        don't count.
         A rough yardstick: it judges the picks, not the sets, and the sample teams are one snapshot of a moving
         metagame. A Pokémon no sample team uses is not necessarily bad, only unusual.
       </p>
       <div class="table-scroll">
         <table class="meta-table">
-          <thead><tr><th>Model</th><th class="r">Meta score</th><th class="r">Sample-team slots</th><th>Pokémon no sample team uses</th></tr></thead>
+          <thead><tr><th>Model</th><th class="r">Meta score</th><th class="r">Sample-team slots</th><th>Own picks no sample team uses</th><th>Fallbacks (not its picks)</th></tr></thead>
           <tbody>
             {byMeta.map((d) => (
               <tr>
                 <td><a href={`/models/${d.config_id}/`}>{d.display_name}</a></td>
                 <td class="r num"><strong>{d.meta.used}</strong><span class="muted">/{d.meta.of}</span></td>
                 <td class="r num">{d.meta.slots}</td>
-                <td class="small">{d.members.filter((m) => !m.smogon_teams).map((m) => m.species).join(', ') || <span class="muted">none</span>}</td>
+                <td class="small">{d.members.filter((m) => !m.fallback && !m.smogon_teams).map((m) => m.species).join(', ') || <span class="muted">none</span>}</td>
+                <td class="small muted">{d.members.filter((m) => m.fallback).map((m) => m.species).join(', ')}</td>
               </tr>
             ))}
           </tbody>

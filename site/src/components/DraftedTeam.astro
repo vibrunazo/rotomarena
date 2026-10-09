@@ -21,7 +21,7 @@ const repairs = [...d.picks.repairs, ...d.repairs];
       ? <span class:list={['pill', d.attempts.length === 1 ? 'accent' : 'warn']} title="Pokémon Showdown's validator accepted the sets on this attempt">{d.picks.attempts.length ? 'sets' : 'team'} legal on attempt {d.attempts.length}</span>
       : <span class="pill bad" title="Showdown rejected every attempt: the illegal parts were swapped for middling legal ones (a handicap, not a fix)">{d.picks.attempts.length ? 'sets' : 'team'} repaired after {d.attempts.length} attempts</span>}
     {d.meta.sample_teams > 0 && d.meta.of > 0 && (
-      <span class="pill" title={`${d.meta.used} of its ${d.meta.of} Pokémon appear in at least one of Smogon's ${d.meta.sample_teams} sample teams (a rough meta yardstick: it judges the picks, not the sets)`}>meta {d.meta.used}/{d.meta.of}</span>
+      <span class="pill" title={`${d.meta.used} of its ${d.meta.of} own picks appear in at least one of Smogon's ${d.meta.sample_teams} sample teams (a rough meta yardstick: it judges the picks, not the sets)${d.meta.fallbacks ? `. Its ${d.meta.fallbacks} fallbacks aren't its picks, so they don't count` : ''}`}>meta {d.meta.used}/{d.meta.of}</span>
     )}
   </div>
   {d.thought && <p class="plan">"{d.thought}"</p>}
@@ -39,11 +39,13 @@ const repairs = [...d.picks.repairs, ...d.repairs];
           {m.sprite && <img src={`https://play.pokemonshowdown.com/sprites/gen5/${m.sprite}.png`} alt="" width="96" height="96" />}
           <strong>{m.species}</strong>
           <span class="small muted">{m.item}</span>
-          {d.meta.sample_teams > 0 && (
-            <span class:list={['small', m.smogon_teams ? 'muted' : 'off-meta']} title={`Used by ${m.smogon_teams} of Smogon's ${d.meta.sample_teams} sample teams`}>
-              {m.smogon_teams ? `in ${m.smogon_teams} of ${d.meta.sample_teams} Smogon teams` : 'in no Smogon team'}
-            </span>
-          )}
+          {m.fallback
+            ? <span class="small muted" title="Put in by the referee when the model's own pick was missing or illegal: not its choice">fallback, not its pick</span>
+            : d.meta.sample_teams > 0 && (
+              <span class:list={['small', m.smogon_teams ? 'muted' : 'off-meta']} title={`Used by ${m.smogon_teams} of Smogon's ${d.meta.sample_teams} sample teams`}>
+                {m.smogon_teams ? `in ${m.smogon_teams} of ${d.meta.sample_teams} Smogon teams` : 'in no Smogon team'}
+              </span>
+            )}
         </li>
       ))}
     </ul>

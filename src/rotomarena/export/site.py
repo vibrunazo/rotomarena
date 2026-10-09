@@ -264,6 +264,15 @@ def smogon_usage(index: Path = REFERENCE_TEAMS) -> Tuple[Dict[str, int], int]:
     return usage, len(teams)
 
 
+_FALLBACK = re.compile(r"^(?:[^:]+ replaced by|empty slot filled with) (.+?)(?: \(.*)?$")
+
+
+def fallbacks(draft: Dict[str, Any]) -> set:
+    """Species ids the referee put in a model's team (a filled empty slot, or a whole Pokémon replaced): not its picks."""
+    repairs = draft.get("picks", {}).get("repairs", []) + draft.get("repairs", [])
+    return {_id(m.group(1)) for r in repairs if (m := _FALLBACK.match(r))}
+
+
 def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
     verdict. Raw answers and reasoning traces stay in data/drafts."""
@@ -274,6 +283,8 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
     for cid, d in sorted(drafts.items()):
         registry = app_cfg.agents.get(cid)
         counts = [usage.get(_id(m.species), 0) for m in parsed[cid]]
+        filler = fallbacks(d)
+        own = [n for m, n in zip(parsed[cid], counts) if _id(m.species) not in filler]
         rows.append({
             "config_id": cid,
             "display_name": (registry.display_name if registry and registry.display_name else cid),
@@ -284,10 +295,11 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
             "members": [{"species": m.species, "sprite": sprites.get(m.species), "item": m.item, "ability": m.ability,
                          "tera_type": m.tera_type, "nature": m.nature,
                          "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves,
-                         "smogon_teams": n} for m, n in zip(parsed[cid], counts)],
-            # The meta score: how many of its Pokémon appear in at least one of Smogon's sample teams
-            "meta": {"used": sum(1 for n in counts if n), "of": len(counts), "slots": sum(counts),
-                     "sample_teams": sample_teams},
+                         "smogon_teams": n, "fallback": _id(m.species) in filler} for m, n in zip(parsed[cid], counts)],
+            # The meta score: how many of its own picks appear in at least one of Smogon's sample teams (the referee's
+            # fallbacks aren't its choice, so they don't count)
+            "meta": {"used": sum(1 for n in own if n), "of": len(own), "slots": sum(own),
+                     "fallbacks": len(counts) - len(own), "sample_teams": sample_teams},
             "picks": {"legal": d.get("picks", {}).get("legal", True), "species": d.get("picks", {}).get("species", []),
                       "repairs": d.get("picks", {}).get("repairs", []),
                       "attempts": [{"attempt": a["attempt"], "problems": a.get("problems") or [], "error": a.get("error"),
