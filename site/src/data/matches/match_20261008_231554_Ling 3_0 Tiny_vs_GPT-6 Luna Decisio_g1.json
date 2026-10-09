@@ -1,0 +1,191 @@
+{
+  "id": "match_20261008_231554_Ling 3_0 Tiny_vs_GPT-6 Luna Decisio_g1",
+  "game": "pokemon",
+  "format": "gen9ou",
+  "version": "s4",
+  "date": "20261008",
+  "players": [
+    {
+      "config_id": "ling_3_0_tiny",
+      "display_name": "Ling 3.0 Tiny",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "ling-3.0-tiny",
+      "quantization": "Q8_0",
+      "username": "Ling 3.0 Tiny",
+      "role": "p1",
+      "team": "Ling 3.0 Tiny's team",
+      "model_key": "inclusionai/ling-3.0-tiny",
+      "autopilot_rate": 0.333
+    },
+    {
+      "config_id": "gpt_6_luna_decisions",
+      "display_name": "GPT-6 Luna Decisions",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna-decisions",
+      "quantization": null,
+      "username": "GPT-6 Luna Decisio",
+      "role": "p2",
+      "team": "GPT-6 Luna Decisions's team",
+      "model_key": "openai/gpt-6-luna-decisions",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 2,
+  "duration_seconds": 83.15,
+  "void_reason": "ling_3_0_tiny played with one Pokémon: its draft closed </team> after the first set and the harness took that as its whole team (Showdown accepts short teams); voided when the check was fixed and its sets redone",
+  "log": [
+    "|init|battle",
+    "|title|Ling 3.0 Tiny vs. GPT-6 Luna Decisio",
+    "|j|☆Ling 3.0 Tiny",
+    "|j|☆GPT-6 Luna Decisio",
+    "|gametype|singles",
+    "|player|p1|Ling 3.0 Tiny|266|",
+    "|player|p2|GPT-6 Luna Decisio|170|",
+    "|gen|9",
+    "|tier|[Gen 9] OU",
+    "|rule|HP Percentage Mod: HP is shown in percentages",
+    "|rule|Endless Battle Clause: Forcing endless battles is banned",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|OHKO Clause: OHKO moves are banned",
+    "|rule|Evasion Items Clause: Evasion items are banned",
+    "|rule|Evasion Moves Clause: Evasion moves are banned",
+    "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+    "|rule|Sleep Moves Clause: Sleep-inducing moves are banned",
+    "|clearpoke",
+    "|poke|p1|Inteleon, M|",
+    "|poke|p2|Great Tusk|",
+    "|poke|p2|Dragapult, F|",
+    "|poke|p2|Gholdengo|",
+    "|poke|p2|Tornadus-Therian, M|",
+    "|poke|p2|Heatran, M|",
+    "|poke|p2|Kingambit, M|",
+    "|teampreview",
+    "|",
+    "|teamsize|p1|1",
+    "|teamsize|p2|6",
+    "|start",
+    "|switch|p1a: Inteleon|Inteleon, M|281/281",
+    "|switch|p2a: Dragapult|Dragapult, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragapult|Thunderbolt|p1a: Inteleon",
+    "|-supereffective|p1a: Inteleon",
+    "|-damage|p1a: Inteleon|35/281",
+    "|move|p1a: Inteleon|Hydro Pump|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|64/100",
+    "|-damage|p1a: Inteleon|7/281|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Dragapult|Thunderbolt|p1a: Inteleon",
+    "|-supereffective|p1a: Inteleon",
+    "|-damage|p1a: Inteleon|0 fnt",
+    "|faint|p1a: Inteleon",
+    "|",
+    "|win|GPT-6 Luna Decisio",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "lead",
+        "target": "dragapult",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "47% LEAD: dragapult, 40% LEAD: tornadustherian, 9% LEAD: greattusk",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1222,
+      "latency_ms": 414,
+      "cost_usd": 0.0001222
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "lead",
+        "target": "inteleon",
+        "tera": false
+      },
+      "source": "invalid",
+      "thought": "",
+      "hidden_reasoning": "Let me analyze the battle state. Inteleon is a Water-type Pokémon with Sniper ability, high Speed (372), and decent Special Attack (257). It has Hydropump (Water/Special, 110 BP) and Darkpulse (Dark/Special, 80 BP).\n\nThe opponent's team:\n- Greattusk: Ground/Fighting, 115 HP, low Speed (87)\n- Dragapult: Dragon/Ghost, 142 Speed\n- Gholdengo: Steel/Ghost, 87 Speed\n- Tornadustherian: Flying, 121 Speed\n- Heatran: Fire/Steel, 77 Speed\n- Kingambit: Dark/Steel, 50 Speed\n\nInteleon's moves: Hydropump (110 BP, Water/Special), Darkpulse (80 BP, Dark/Special), Suckerpunch (70 BP, Dark/Physical), Uturn (Bug/Physical)\n\nKey considerations:\n1. Inteleon is extremely fast (SPE: 372) - it can act before most opponents\n2. Greattusk is Ground/Fighting - weak to Water, but also has decent Attack (131). However, Inteleon's Sniper means it won't miss.\n3. Dragapult is fast (142) and can hit Inteleon with Dragon Dance or other moves\n4. Gholdengo is Steel/Ghost - weak to Water, but also has 95 DEF\n5. Tornadustherian is Flying - weak to Water\n6. Heatran is Fire/Steel - weak to Water, but also has 130 HP\n7. Kingambit is Dark/Steel - can absorb Water moves\n\nWait, Kingambit is Dark/Steel. Water is not super effective against Steel, but it's not super effective against Dark either. Actually, Water is super effective against Steel (1.5x) and neutral against Dark. So Water moves are super effective against Gholdengo and Heatran.\n\nBut Kingambit is a wall - it can absorb Water moves and also has Intimidate. However, Kingambit's Speed is 50, so it's slow.\n\nLet me think about what Inteleon should do:\n\nOption 1: Use Hydropump - super effective against Gholdengo (Steel), Heatran (Fire/Steel), and Tornadustherian (Flying). But Kingambit can absorb it.\n\nOption 2: Use Darkpulse - super effective against Greattusk (Fighting) and Dragapult (Dragon). But Kingambit can absorb it too.\n\nOption 3: Use Suckerpunch - physical, can hit fast threats. But Inteleon's Sniper means it hits 100% of the time.\n\nOption 4: Use Uturn - to switch out and heal.\n\nGiven Inteleon's speed (372), it can act before almost everyone. The key question is what to do.\n\nIf I use Hydropump, it's super effective against Gholdengo (Steel, 1.5x) and Heatran (Fire/Steel, 1.5x). But Kingambit can absorb it.\n\nIf I use Darkpulse, it's super effective against Greattusk (Fighting, 1.5x) and Dragapult (Dragon, 1.5x). But Kingambit can absorb it.\n\nActually, let me reconsider. The opponent has Kingambit which is a wall. Kingambit has 135 ATK and 120 DEF. It can absorb Water and Dark moves.\n\nBut wait - Inteleon has Sniper. So Inteleon never misses.\n\nLet me think about what's most threatening:\n- Hydropump (110 BP) is a strong special move\n- Darkpulse (80 BP) is also strong\n- Suckerpunch (70 BP) is physical\n\nGiven that Inteleon is extremely fast, it can set up a threat. The question is whether to use a special or physical move.\n\nActually, let me reconsider the matchup. Greattusk is Ground/Fighting. Inteleon is Water. Water is super effective against Ground (2x) and Fighting (1.5x). So Hydropump is super effective against Greattusk.\n\nBut Greattusk has 131 ATK, so it can take a hit.\n\nLet me think about what's the best play. Inteleon is very fast and has Sniper. The key is to pressure the opponent.\n\nIf I use Hydropump, it's super effective against GholdengoThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "[INVALID] 'MOVE: hydropump' is not a legal lead. Leading with the first Pokémon.",
+      "tokens": 2019,
+      "latency_ms": 30650,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: thunderbolt, 19% MOVE: uturn, 6% MOVE: dracometeor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1673,
+      "latency_ms": 383,
+      "cost_usd": 0.0001673
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is extremely fast (SPE: 372) and can outpace Dragapult (SPE: 142). Water is super effective on Dragon types, and Hydropump has the highest BP (110) of all available moves, making it the most likely to knock out Dragapult before it can act.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- Inteleon is active with high Speed (372), Water-type, Sniper ability\n- Dragapult is active with high Speed (142), Dragon/Ghost type\n- No hazards or conditions\n- No opponent revealed bench yet\n- Inteleon has Hydropump (Water, 110 BP), Darkpulse (Dark, 80 BP), Suckerpunch (Dark, 70 BP), U-turn (Bug, 70 BP)\n\nKey considerations:\n1. Inteleon is very fast (SPE: 372) and can outpace Dragapult (SPE: 142)\n2. Sniper ability means Inteleon won't switch out if it knocks out an opponent\n3. Dragapult is a fast Pokémon that can hit hard with Dragon/Ghost typing\n4. Inteleon's moves: Hydropump is a strong Water move (110 BP), Darkpulse is a strong Dark move (80 BP), Suckerpunch is a physical Dark move (70 BP), U-turn is a pivot move\n\nThe question is what to do. Inteleon is very fast and can potentially KO Dragapult before it can act. However, Dragapult is also fast and can hit hard.\n\nLet me think about the matchup:\n- Inteleon vs Dragapult: Inteleon is faster and has good offensive options. Hydropump at 110 BP is a strong special attack. Darkpulse at 80 BP is also strong. Suckerpunch at 70 BP is physical.\n- Dragapult is weak to Water and Dark types, but it's also fast and can hit hard.\n\nGiven that Inteleon is very fast (372) and can potentially KO Dragapult before it can act, I should consider using a strong offensive move.\n\nHydropump at 110 BP is the highest BP move available. It's a Water-type special attack. Dragapult is weak to Water types.\n\nHowever, I need to consider if there's a better option. Let me think about what's most likely to win:\n\n1. Hydropump: Strong against Dragapult (Water is super effective on Dragon types? No, Dragon is not weak to Water. Actually, Dragon is weak to Ice, Water, and Fighting. So Water is super effective on Dragon! Yes, Water is super effective on Dragon types.)\n\nWait, let me reconsider. Dragon types are weak to Ice, Water, and Fighting. So Water is super effective on Dragapult.\n\nHydropump at 110 BP would be very effective against Dragapult.\n\nBut I should also consider: Inteleon has Sniper, which means if it knocks out an opponent, it won't switch. This is a big advantage.\n\nAlso, Inteleon's Speed is 372, which is extremely high. It can outpace almost everything.\n\nThe best move seems to be Hydropump - it's the highest BP move, it's super effective against Dragon types, and it can potentially KO Dragapult.\n\nBut wait - I should also consider if U-turn might be better as a pivot move. However, since Inteleon is so fast, it can likely KO Dragapult before it can act.\n\nLet me also consider: Dragapult is a fast Pokémon that can hit hard. If I use a move that's not very effective, I might get hit. But Hydropump is super effective against Dragon.\n\nI think the best move is Hydropump. It's the highest BP move, it's super effective against Dragon types, and it can potentially KO Dragapult.\n\nActually, let me reconsider. The opponent's revealed bench includes Great Tusk, Gholdengo, Tornadustherian, Heatran, Kingambit. These are all potential threats that could be brought in. But since they're not revealed yet, I should focus on the active opponent.\n\nDragapult is the active opponent. It's fast (SPE: 142) and has decent stats. It's weak to Water and Dark.\n\nHydropump is the best choice because:\n1. It's the highest BP move (110)\n2. It's super effective against Dragon types\n3. Inteleon is very fast and can potentially KO Dragapult before it can act\n\nLet me go with Hydropump.\n\nWait, I should also consider if there's a reason to use U-turn. U-turn is a pivot move that can help set up for future turns. But given that Inteleon is so fast, it can likely KO Dragapult before it can act.\n\nI'll go with Hydropump.\n\nActually, let me reconsider one more time. TheThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 1999,
+      "latency_ms": 26723,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "87% MOVE: thunderbolt, 4% MOVE: dracometeor, 2% MOVE: thunderbolt [TERA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1764,
+      "latency_ms": 391,
+      "cost_usd": 0.0001764
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is at 2.5% HP with a Life Orb, and none of its moves are super effective against Dragapult. Sniper doubles damage but halves Inteleon's own damage taken. Using a damaging move will only chip away at Dragapult's HP without a KO, and U-turn is the safest play to preserve Inteleon for a future turn.",
+      "hidden_reasoning": "The user is playing as Inteleon in Gen 9 OU. Let me analyze the situation:\n\n- Inteleon is at 7/281 HP (2.5%) with a Life Orb\n- It has Sniper ability (doubles damage to hit, but also halves its own damage if hit)\n- It has access to: Hydro Pump, Dark Pulse, Sucker Punch, U-turn\n- Opponent is Dragapult with Thunderbolt\n- Dragapult is at 64% HP\n\nKey considerations:\n1. Inteleon is very fast (SPE 372) but has low HP\n2. Dragapult is a fast Dragon/Ghost type with Thunderbolt\n3. Dragapult is not weak to Water or Dark moves specifically, but it's a Dragon/Ghost type\n4. Dragapult's STAB is Dragon, and it has Thunderbolt (Electric)\n5. Inteleon's moves: Hydro Pump (Water, 110 BP), Dark Pulse (Dark, 80 BP), Sucker Punch (Dark, 70 BP), U-turn\n\nDragapult is weak to Water (1x) and Dark (1x). It's not weak to Bug.\n\nIf I use Hydro Pump, it's super effective against Dragapult (Water is 1x effective against Dragon/Ghost, wait... Dragon is 1x, Ghost is 1x. Water is 1x against Dragon, 1x against Ghost. So Water is not super effective against Dragapult).\n\nWait, let me reconsider. Dragapult is Dragon/Ghost.\n- Water: 1x vs Dragon, 1x vs Ghost → 1x overall\n- Dark: 1x vs Dragon, 1x vs Ghost → 1x overall\n- Bug: 1x vs Dragon, 1x vs Ghost → 1x overall\n\nSo none of Inteleon's moves are super effective against Dragapult.\n\nBut wait, Dragapult has Thunderbolt which is Electric. Inteleon is Water type, so Water is not super effective against Electric.\n\nHmm, but Inteleon is at 7/281 HP. If it uses a move and doesn't KO, it'll be at 7 + damage - 0.5 (Sniper doubles damage to hit, but also halves damage taken if hit). Actually, Sniper doubles the damage of the move, but if the move hits, Inteleon takes half damage.\n\nWait, Sniper: \"Doubles the damage of a move that hits.\" So if Inteleon uses a move and it hits, the damage is doubled, but Inteleon takes half damage.\n\nIf Inteleon uses Hydro Pump (110 BP) on Dragapult (64% HP):\n- Base damage: 110 * 1.0 * 0.31 * (1/0.64) * 1.0 * 1.0 * 1.0 * 1.0 = 110 * 0.31 * 1.5625 = 54.06\n- With Sniper: damage doubled = 108.12, but Inteleon takes half = 54.06\n- That's not enough to KO Dragapult (64% HP, need ~100% to KO)\n\nActually, let me recalculate. Dragapult is at 64% HP. To KO, need 100% damage.\n\nHydro Pump on Dragapult:\n- Base damage = 110 * 1.0 * 0.31 * (100/64) * 1.0 * 1.0 * 1.0 * 1.0 = 110 * 0.31 * 1.5625 = 54.06\n- With Sniper: 108.12, but Inteleon takes half = 54.06\n- Not enough to KO\n\nDark Pulse on Dragapult:\n- Base damage = 80 * 1.0 * 0.31 * 1.5625 = 39.06\n- With Sniper: 78.12, half taken = 39.06\n- Not enough\n\nSucker Punch on Dragapult:\n- Base damage = 70 * 1.0 * 0.31 * 1.5625 = 34.06\n- With Sniper: 68.12, half taken = 34.06\n- Not enough\n\nU-turn: This is a status move, no damage.\n\nThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 2100,
+      "latency_ms": 25765,
+      "cost_usd": 0.0
+    }
+  ]
+}

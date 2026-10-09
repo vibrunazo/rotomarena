@@ -132,10 +132,12 @@ def teams_draft(
     attempts: int = typer.Option(5, "--attempts", "-a", help="Tries, with Showdown's validator messages fed back; "
                                  "after the last, the team is repaired with middling replacements"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+    keep_picks: bool = typer.Option(False, "--keep-picks", help="Keep each model's six picks from its current draft "
+                                    "and redo only the sets (when the harness, not the model, spoiled them)"),
 ):
     """Each model builds its own Gen 9 OU team from the format's rules; Showdown's validator referees.
     Saves every attempt to data/drafts/<format>/<config id>.json."""
-    from rotomarena.teams.draft import DraftUnavailable, draft_team, save_draft
+    from rotomarena.teams.draft import DraftUnavailable, draft_team, load_drafts, save_draft
     from rotomarena.teams.draft_decisions import draft_team_by_decisions
 
     app_cfg = AppConfig.load(config_file)
@@ -159,8 +161,12 @@ def teams_draft(
             if agent in local:
                 local_servers.prepare([agent], app_cfg, log=console.print)
             try:
-                build = draft_team_by_decisions if agent.type == "decision" else draft_team
-                record = await build(agent, app_cfg, attempts=attempts, log=console.print)
+                if agent.type == "decision":
+                    record = await draft_team_by_decisions(agent, app_cfg, attempts=attempts, log=console.print)
+                else:
+                    earlier = load_drafts(version=app_cfg.ruleset.version).get(agent.name) if keep_picks else None
+                    record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print,
+                                              keep_picks=earlier["picks"] if earlier else None)
             except DraftUnavailable as e:
                 console.print(f"  [red]no draft kept[/red] ({e}); run it again when the provider is back")
                 continue

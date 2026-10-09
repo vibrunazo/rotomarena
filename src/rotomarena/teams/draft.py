@@ -191,7 +191,7 @@ class DraftUnavailable(RuntimeError):
 
 
 async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATTEMPTS,
-                     log=print) -> Dict[str, Any]:
+                     log=print, keep_picks: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """Asks one model for its six picks, then for their sets, feeding back the problems at each stage. Each request
     carries the stage's prompt and only the latest rejected answer, so retries fit a local model's context window
     (8,192 tokens per game); stage 2 leaves out the legal list, which only stage 1 needs."""
@@ -221,12 +221,18 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         return [{"role": "assistant", "content": answer},
                 {"role": "user", "content": template.format(problems="\n".join(f"- {p}" for p in problems))}]
 
-    # Stage 1: six Pokémon from the legal list
+    # Stage 1: six Pokémon from the legal list. `keep_picks` (an earlier draft's picks stage) skips it, for redoing
+    # only the sets when the harness, not the model, spoiled them
     base = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": PICK_PROMPT}]
     picks: List[str] = []
     plan: Optional[str] = None
     last: List[Dict[str, str]] = []
-    for attempt in range(1, attempts + 1):
+    if keep_picks:
+        record["picks"] = json.loads(json.dumps(keep_picks))
+        picks = list(keep_picks["species"])
+        plan = next((a.get("thought") for a in reversed(keep_picks["attempts"]) if a.get("thought")), None)
+        log(f"  picks kept from the earlier draft: {', '.join(picks)}")
+    for attempt in range(1, attempts + 1 if not keep_picks else 1):
         completion, answer, reasoning = await ask(base + last, attempt, "<pokemon>")
         picks, problems = check_picks(_tag(answer, "pokemon"), rules, completion.metrics.finish_reason == "length")
         record["picks"]["attempts"].append(_attempt_record(attempt, completion, answer, reasoning,
@@ -258,9 +264,15 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
             problems = ["No <team>...</team> block found" + (" (the answer was cut off at the token budget)."
                                                              if completion.metrics.finish_reason == "length" else ".")]
         else:
-            strays = [s for s in team_species(team) if _id(s) not in {_id(p) for p in picks}]
+            built = team_species(team)
+            strays = [s for s in built if _id(s) not in {_id(p) for p in picks}]
+            # Showdown accepts a team of fewer than six, so the six have to be checked here: Ling once closed
+            # </team> after its first set and played with a lone Inteleon
+            missing = [p for p in picks if _id(p) not in {_id(s) for s in built}]
             problems = ([f"{', '.join(strays)} {'is' if len(strays) == 1 else 'are'} not among the six Pokémon you "
-                         f"picked ({', '.join(picks)})."] if strays else []) + validate_team(app_cfg, team + "\n")
+                         f"picked ({', '.join(picks)})."] if strays else []) + \
+                ([f"Your <team> block has {len(built)} Pokémon; it needs all six you picked, inside one <team>...</team> "
+                  f"block. Missing: {', '.join(missing)}."] if missing else []) + validate_team(app_cfg, team + "\n")
         record["attempts"].append(_attempt_record(attempt, completion, answer, reasoning, {"team": team, "problems": problems}))
         log(f"  sets {attempt}: " + ("legal team" if not problems else f"{len(problems)} problem(s): {problems[0][:100]}"))
         if not problems:

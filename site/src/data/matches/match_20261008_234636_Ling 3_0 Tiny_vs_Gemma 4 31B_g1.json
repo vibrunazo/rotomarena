@@ -1,0 +1,252 @@
+{
+  "id": "match_20261008_234636_Ling 3_0 Tiny_vs_Gemma 4 31B_g1",
+  "game": "pokemon",
+  "format": "gen9ou",
+  "version": "s4",
+  "date": "20261008",
+  "players": [
+    {
+      "config_id": "ling_3_0_tiny",
+      "display_name": "Ling 3.0 Tiny",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "ling-3.0-tiny",
+      "quantization": "Q8_0",
+      "username": "Ling 3.0 Tiny",
+      "role": "p1",
+      "team": "Ling 3.0 Tiny's team",
+      "model_key": "inclusionai/ling-3.0-tiny",
+      "autopilot_rate": 0.25
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it:free",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 3,
+  "duration_seconds": 28.68,
+  "void_reason": "ling_3_0_tiny played with one Pokémon: its draft closed </team> after the first set and the harness took that as its whole team (Showdown accepts short teams); voided when the check was fixed and its sets redone",
+  "log": [
+    "|init|battle",
+    "|title|Ling 3.0 Tiny vs. Gemma 4 31B",
+    "|j|☆Ling 3.0 Tiny",
+    "|j|☆Gemma 4 31B",
+    "|gametype|singles",
+    "|player|p1|Ling 3.0 Tiny|266|",
+    "|player|p2|Gemma 4 31B|266|",
+    "|gen|9",
+    "|tier|[Gen 9] OU",
+    "|rule|HP Percentage Mod: HP is shown in percentages",
+    "|rule|Endless Battle Clause: Forcing endless battles is banned",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|OHKO Clause: OHKO moves are banned",
+    "|rule|Evasion Items Clause: Evasion items are banned",
+    "|rule|Evasion Moves Clause: Evasion moves are banned",
+    "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+    "|rule|Sleep Moves Clause: Sleep-inducing moves are banned",
+    "|clearpoke",
+    "|poke|p1|Inteleon, M|",
+    "|poke|p2|Great Tusk|",
+    "|poke|p2|Gholdengo|",
+    "|poke|p2|Kingambit, F|",
+    "|poke|p2|Iron Valiant|",
+    "|poke|p2|Slowking-Galar, M|",
+    "|poke|p2|Ogerpon-Wellspring, F|",
+    "|teampreview",
+    "|",
+    "|teamsize|p1|1",
+    "|teamsize|p2|6",
+    "|start",
+    "|switch|p1a: Inteleon|Inteleon, M|281/281",
+    "|switch|p2a: Great Tusk|Great Tusk|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Inteleon|Hydro Pump|p2a: Great Tusk",
+    "|-supereffective|p2a: Great Tusk",
+    "|-damage|p2a: Great Tusk|0 fnt",
+    "|faint|p2a: Great Tusk",
+    "|-end|p2a: Great Tusk|Protosynthesis|[silent]",
+    "|-damage|p1a: Inteleon|253/281|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Ogerpon|Ogerpon-Wellspring, F|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Inteleon|Dark Pulse|p2a: Ogerpon",
+    "|-damage|p2a: Ogerpon|72/100",
+    "|-damage|p1a: Inteleon|225/281|[from] item: Life Orb",
+    "|move|p2a: Ogerpon|Ivy Cudgel|p1a: Inteleon|[anim] Ivy Cudgel Water",
+    "|-resisted|p1a: Inteleon",
+    "|-damage|p1a: Inteleon|77/281",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Inteleon|Hydro Pump|p2a: Ogerpon",
+    "|-heal|p2a: Ogerpon|97/100|[from] ability: Water Absorb|[of] p1a: Inteleon",
+    "|move|p2a: Ogerpon|Ivy Cudgel|p1a: Inteleon|[anim] Ivy Cudgel Water",
+    "|-resisted|p1a: Inteleon",
+    "|-damage|p1a: Inteleon|0 fnt",
+    "|faint|p1a: Inteleon",
+    "|",
+    "|win|Gemma 4 31B",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "lead",
+        "target": "greattusk",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Great Tusk is the most reliable lead for setting Stealth Rock and handling common lead options, providing essential utility for the rest of the game.",
+      "hidden_reasoning": "The opponent has Inteleon, a fast special attacker. Great Tusk is a strong lead for setting Stealth Rock and handling common leads, while Iron Valiant provides speed and offensive pressure. Great Tusk is the most reliable lead for this team composition to establish hazards early.\n\nDeciding factor: Hazard setup and general utility.",
+      "note": "",
+      "tokens": 1573,
+      "latency_ms": 4157,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "lead",
+        "target": "inteleon",
+        "tera": false
+      },
+      "source": "invalid",
+      "thought": "",
+      "hidden_reasoning": "Let me analyze the battle state. It's Gen 9 OU, and I'm leading Inteleon with Sniper, Hydropump, Darkpulse, Suckerpunch, and Uturn.\n\nThe opponent has:\n- Greattusk (Ground/Fighting) - 115 HP, 131 ATK, 131 DEF, 87 SPD\n- Gholdengo (Steel/Ghost) - 87 HP, 95 DEF, 133 SPA, 84 SPD\n- Kingambit (Dark/Steel) - 100 HP, 120 DEF, 60 SPA, 85 SPD, 50 SPE\n- Ironvaliant (Fairy/Fighting) - 74 HP, 90 DEF, 120 SPA, 60 SPD, 116 SPE\n- Slowkinggalar (Poison/Psychic) - 95 HP, 80 DEF, 110 SPA, 110 SPD, 30 SPE\n- Ogerponwellspring (Grass/Water) - 80 HP, 84 DEF, 60 SPA, 96 SPD, 110 SPE\n\nInteleon's moves:\n- Hydropump: Water/Special, BP 110, PP 8\n- Darkpulse: Dark/Special, BP 80, PP 24\n- Suckerpunch: Dark/Physical, BP 70, PP 8\n- Uturn: Bug/Physical, BP 70, PP 32\n\nInteleon's stats: HP 281, ATK 269, DEF 166, SPA 257, SPD 167, SPE 372\n\nKey considerations:\n1. Inteleon is a fast sweeper with 372 SPE. It can outspeed most threats.\n2. Sniper sets up for priority, but Inteleon has no priority moves.\n3. Hydropump is a strong special move with 110 BP.\n4. Darkpulse is also strong at 80 BP.\n5. Suckerpunch is physical and can hit Ghost types.\n6. Uturn is a recovery/switch move.\n\nLet me think about what's the best play:\n\n- Greattusk is a Ground/Fighting type. It's slow (87 SPD) and has decent defense. Inteleon can outspeed it with Hydropump (Water is super effective against Ground) or Darkpulse (Dark is super effective against Fighting).\n- Gholdengo is Steel/Ghost. Inteleon can hit it with Darkpulse (Dark is super effective against Ghost) or Suckerpunch (physical).\n- Kingambit is a defensive wall. Inteleon can't really threaten it.\n- Ironvaliant is Fairy/Fighting. Inteleon can hit it with Darkpulse (Dark is super effective against Fairy) or Suckerpunch.\n- Slowkinggalar is Poison/Psychic. Inteleon can hit it with Hydropump (Water is super effective against Poison) or Darkpulse.\n- Ogerponwellspring is Grass/Water. Inteleon can hit it with Darkpulse (Dark is super effective against Grass) or Suckerpunch.\n\nInteleon is very fast and can outspeed most of the team. The key question is what move to use.\n\nHydropump at 110 BP is a very strong move. It's super effective against Ground (Greattusk), Poison (Slowkinggalar), and Water (Ogerponwellspring). It's not super effective against Fighting (Ironvaliant) or Ghost (Gholdengo).\n\nDarkpulse at 80 BP is super effective against Fighting (Greattusk, Ironvaliant) and Ghost (Gholdengo). It's not super effective against Water (Ogerponwellspring) or Poison (Slowkinggalar).\n\nSuckerpunch at 70 BP is physical and can hit Ghost types (Gholdengo).\n\nGiven that Inteleon is a fast sweeper, the best move might be Hydropump to hit multiple threats, or Darkpulse to hit Fighting and Ghost types.\n\nActually, let me think about this more carefully. The opponent has:\n- Greattusk (Ground/Fighting) - 115 HP, 131 DEF. Inteleon can hit it with Hydropump (super effective) or Darkpulse (super effective).\n- Gholdengo (Steel/Ghost) - 87 HP, 95 DEF. Inteleon can hit it with DarkpThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "[INVALID] 'MOVE: hydropump' is not a legal lead. Leading with the first Pokémon.",
+      "tokens": 2019,
+      "latency_ms": 6490,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is very frail and Great Tusk's Knock Off deals significant damage while removing its item. This is the most effective way to pressure the opponent on turn 1.",
+      "hidden_reasoning": "Inteleon is very fast and frail, but Great Tusk is bulky. Knock Off is the best move here to remove Inteleon's item (likely Life Orb or Choice Specs) and deal significant damage.\n\nDeciding factor: a likely knockout or heavy damage.",
+      "note": "",
+      "tokens": 1832,
+      "latency_ms": 3863,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is 372 Speed vs Great Tusk's 87 Speed, so Inteleon will act first. Great Tusk is weak to Water and Dark moves. Hydropump is a strong Water move that is super effective against Ground, and Inteleon has Sniper to double the damage. Darkpulse is also super effective. I'll go with Hydropump as it's the most effective against a Ground type.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Inteleon is active with 281/281 HP, Sniper ability, and high Speed (372).\n- Opponent's Great Tusk is active with 100% HP, Protosynthesis ability (speed boost in sun, but no sun here), and 87 Speed.\n- No weather or field effects.\n- Great Tusk has no revealed moves yet.\n- I have no bench Pokémon.\n- I can use Tera Stallization.\n\nKey considerations:\n1. Inteleon is very fast (372) and has Sniper (doubles damage from moves used by opponents).\n2. Great Tusk has Protosynthesis, which boosts speed in sun, but there's no sun. So it's not boosted.\n3. Great Tusk's base Speed is 87, which is slower than Inteleon's 372.\n4. Inteleon's moves: Hydropump (Water, 110 BP), Darkpulse (Dark, 80 BP), Suckerpunch (Dark, 70 BP), Uturn (Bug, 70 BP).\n5. Great Tusk is a Ground/Fighting type. It's weak to Water and Dark moves.\n6. Great Tusk has no revealed moves yet, so I don't know what it might use.\n\nWait, Great Tusk is a Ground/Fighting type. It's weak to Water and Dark. It's also weak to Electric, Ice, and Grass.\n\nInteleon has Water and Dark moves available. Hydropump and Darkpulse would be effective.\n\nBut I need to consider:\n- Great Tusk's Protosynthesis: This boosts speed in sun. No sun, so no boost.\n- Great Tusk's base Speed is 87, which is slower than Inteleon's 372.\n- Inteleon is already at 100% HP, so it can't switch out.\n\nThe key question is: what should I do?\n\nOptions:\n1. Use a move to damage Great Tusk.\n2. Use Uturn to switch back to bench (but no bench).\n3. Use Tera Stallization to change type.\n\nWait, I have no bench. If I use Uturn, I'd have to switch to a Pokémon that's not on my bench. But I have no bench Pokémon. So Uturn would be useless unless I have a Pokémon on my bench.\n\nActually, looking at the rules: \"Your side hazards / conditions: None\" and \"Your bench: (No bench Pokémon remaining)\". So I have no bench Pokémon.\n\nIf I use Uturn, I'd need to switch to a Pokémon that's not on my bench. But I don't have any. So Uturn would be a problem.\n\nWait, actually, Uturn is a move that allows you to switch out. But if I have no bench Pokémon, I can't switch to a Pokémon that's not on my bench. So Uturn would be a bad move.\n\nActually, let me reconsider. In Pokémon, Uturn lets you switch out to a Pokémon that's not on your bench. But if you have no bench Pokémon, you can't use Uturn because you have nowhere to switch to.\n\nWait, actually, Uturn is a move that lets you switch out to a Pokémon that's not currently on your bench. If you have no bench Pokémon, you can't use Uturn.\n\nSo Uturn is not a good option.\n\nNow, what about Tera Stallization? I can Tera Stallize to change my type. If I Tera Stallize to Water, I'd be a Water type. Great Tusk is Ground/Fighting. Water is super effective against Ground. But Fighting is not super effective against Water.\n\nIf I Tera Stallize to Dark, I'd be a Dark type. Great Tusk is Ground/Fighting. Dark is super effective against Ground. Fighting is not super effective against Dark.\n\nHmm, but Tera Stallization is a move that changes your type. It's a powerful move.\n\nBut wait, I need to consider what Great Tusk might do. Great Tusk has no revealed moves yet. It could use any move.\n\nLet me think about what's the best move:\n\n1. Hydropump (Water, 110 BP): Super effective against Great Tusk (Ground type). Great Tusk is weak to Water.\n2. Darkpulse (Dark, 80 BP): Super effective against Great Tusk (Ground type). Great Tusk is weak to Dark.\n3. Suckerpunch (DarkThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 2027,
+      "latency_ms": 6416,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Ogerpon",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1729,
+      "latency_ms": 2926,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "ivycudgel",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Ogerpon-Wellspring is faster than Inteleon and Ivy Cudgel is a strong Grass-type move that will easily knock out the frail Inteleon.",
+      "hidden_reasoning": "The deciding factor is a likely knockout. Ogerpon-Wellspring is significantly faster than Inteleon (350 vs 120 base speed equivalent/actual stats provided) and Ivy Cudgel (Grass) will easily OHKO the frail Inteleon.",
+      "note": "",
+      "tokens": 1906,
+      "latency_ms": 4031,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Ogerpon-Wellspring has Water Absorb, so any Water move (Hydropump) will heal it — avoid that. Suckerpunch is a physical move that can deal significant damage, but Darkpulse is a strong special move with 80 BP. Since Ogerpon-Wellspring is not particularly weak to Dark moves, both are viable, but Darkpulse's special nature and higher base power make it the better choice to maximize damage.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Inteleon is at 253/281 HP (90%) with Life Orb\n- Opponent's Ogerpon-Wellspring is at 100% HP\n- Ogerpon-Wellspring has Water Absorb, so it heals when hit by Water moves\n- Ogerpon-Wellspring is Grass/Water type\n- Inteleon is Water type\n- Ogerpon-Wellspring is weak to Electric and Ground moves, but not particularly weak to Water\n- Ogerpon-Wellspring has Water Absorb, so Water moves will heal it\n\nKey considerations:\n1. If I use a Water move (Hydropump), Ogerpon-Wellspring will heal via Water Absorb. That's bad.\n2. If I use a Dark move (Darkpulse or Suckerpunch), Ogerpon-Wellspring won't be healed. But Dark moves are not super effective against Grass/Water.\n3. If I use Uturn, I switch out and save my HP, but then I lose my offensive pressure.\n4. Terastallization is available - I could Terastallize to become Steel type, which is super effective against Ogerpon-Wellspring's Grass/Water type.\n\nWait, let me check the legal actions. Terastallization is not listed in the legal actions. The legal actions are only the 8 moves listed.\n\nSo I can't Terastallize this turn. I need to choose from the 8 moves.\n\nLet me think about what's best:\n- Hydropump: Water move, Ogerpon-Wellspring has Water Absorb, so it will heal. Bad idea.\n- Darkpulse: Not super effective, but it's a Dark move. Ogerpon-Wellspring is Grass/Water, so Dark is not super effective. But it's not great either.\n- Suckerpunch: Physical Dark move, not super effective. Ogerpon-Wellspring is weak to Electric and Ground.\n- Uturn: Switch out, but then I'm not doing anything offensive.\n\nActually, wait. Let me reconsider. Ogerpon-Wellspring is a Grass/Water type. It's weak to Electric and Ground. But I don't have Electric or Ground moves available.\n\nThe best move seems to be Darkpulse or Suckerpunch. But which one?\n\nDarkpulse is a special move with 80 BP. Suckerpunch is physical with 70 BP.\n\nActually, let me think about this differently. Ogerpon-Wellspring has Water Absorb, so Water moves heal it. I should avoid Water moves.\n\nBetween Darkpulse and Suckerpunch:\n- Darkpulse is special, 80 BP, 1.0 accuracy\n- Suckerpunch is physical, 70 BP, 1.0 accuracy\n\nSuckerpunch is a strong physical move against Ogerpon-Wellspring. But Darkpulse is also good.\n\nActually, I should consider: if I use Suckerpunch, I deal damage and don't heal Ogerpon-Wellspring. If I use Darkpulse, I also deal damage.\n\nBut wait - Ogerpon-Wellspring is at 100% HP. If I use Suckerpunch, I'll deal damage. If I use Darkpulse, I'll also deal damage.\n\nLet me think about what's more effective. Ogerpon-Wellspring is a Grass/Water type. It's not particularly weak to Dark moves (not super effective, not 2x weak). But it's also not particularly strong.\n\nActually, I think the best move is Suckerpunch. It's a physical move that can deal significant damage. But Darkpulse is also good.\n\nHmm, let me reconsider. The key issue is that Ogerpon-Wellspring has Water Absorb, so any Water move will heal it. I should avoid Water moves.\n\nBetween Darkpulse and Suckerpunch:\n- Darkpulse is a special move, 80 BP\n- Suckerpunch is a physical move, 70 BP\n\nSuckerpunch is generally more reliable for physical attacks, but Darkpulse is also strong.\n\nActually, I think I should go with Suckerpunch. It's a physical move that can deal significant damage to Ogerpon-Wellspring.\n\nWait, but let me reconsider. Ogerpon-Wellspring is a Grass/Water type. It's weak to Electric and Ground. But I don't have those moves.\n\nActually, I think the best move is Darkpulse. Here's why:\n- ItThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 2179,
+      "latency_ms": 6473,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "ivycudgel",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is at 28% HP and Ogerpon-Wellspring is faster. Ivy Cudgel will easily secure the knockout.",
+      "hidden_reasoning": "The opponent's Inteleon is at 28% HP. Ogerpon-Wellspring is faster (Spe 350 vs Inteleon's base 120, which is roughly 250-300 depending on investment). Any attacking move should secure the knockout. Ivy Cudgel is the strongest reliable option.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 2028,
+      "latency_ms": 4648,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is fast (SPE 372) with Sniper, and Hydro Pump is super effective against Ogerpon's Grass type. Ogerpon's Water Absorb will heal 50% of max HP, but the damage will still be significant. Hydro Pump is the clear best move to finish off Ogerpon.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- **Inteleon** (Water, Sniper): 77/281 HP (27.4%), Life Orb\n- **Ogerpon-Wellspring** (Grass/Water): 72% HP, Water Absorb\n- Ogerpon has only Ivy Cudgel revealed\n- Inteleon has Hydro Pump, Dark Pulse, Suckerpunch, U-turn\n\nKey considerations:\n1. Inteleon is weak to Grass (4x) and Water (2x). Ogerpon is Grass/Water.\n2. Inteleon is fast (SPE: 372) and has Sniper (2x damage to target with lower Speed).\n3. Ogerpon has Water Absorb, so it will heal from Water moves.\n4. Inteleon's best move against Ogerpon: Hydro Pump is super effective (Water/Grass) and has high power (110). Dark Pulse is not very effective against Grass. Suckerpunch is not very effective against Grass. U-turn is a good move for pivoting.\n5. Inteleon is at 27.4% HP with Life Orb, so it can afford a few hits.\n6. Ogerpon is at 72% HP.\n\nThe best move is Hydro Pump - it's super effective against Grass, has high power (110), and will likely take down Ogerpon.\n\nWait, but Ogerpon has Water Absorb. Hydro Pump is Water type, so it will be super effective (Water/Grass = 2x) but Ogerpon will heal 50% of its max HP. With Life Orb, the damage is multiplied by 1.5x, but the heal is still 50% of max HP.\n\nLet me think about this more carefully:\n- Hydro Pump is super effective (2x) against Ogerpon\n- Ogerpon has Water Absorb, so it heals 50% of max HP (80 HP)\n- With Life Orb, the damage is 1.5x the base damage\n- Base damage calculation: 110 * 2 * 0.8 * 0.01 * (257 * 257 / (100 * 100)) * (1 + 0.3 * 0.3) ... this is getting complicated\n\nActually, let me just think about the overall strategy:\n- Hydro Pump is super effective and has high power, so it should be the best move\n- Even with Water Absorb, the damage should be significant\n- Ogerpon is at 72% HP, so it can take a hit\n\nBut wait - Inteleon has Sniper, which doubles damage to targets with lower Speed. Inteleon's SPE is 372, Ogerpon's SPE is 110. So Inteleon is faster, and Sniper applies.\n\nAlso, Inteleon has U-turn which is good for pivoting.\n\nLet me consider the options:\n1. Hydro Pump - super effective, high power, but Ogerpon heals\n2. Dark Pulse - not very effective against Grass\n3. Suckerpunch - not very effective against Grass\n4. U-turn - pivots, but doesn't deal damage\n\nHydro Pump seems like the clear choice. It's super effective, has the highest power, and even with Water Absorb, the damage should be significant.\n\nActually, let me reconsider. Ogerpon's Water Absorb means it heals 50% of max HP. Ogerpon's max HP is 80. So it heals 40 HP. With Life Orb, the damage is 1.5x.\n\nLet me calculate: Hydro Pump base power is 110. With Water/Grass being 2x effective, that's 220. With Life Orb (1.5x), that's 330. But we need to consider the accuracy and other factors.\n\nActually, I think the best move is Hydro Pump. It's the clear answer.\n\nWait, but I should also consider: is there a reason to use U-turn? U-turn is a good move for pivoting, but since Ogerpon is at 72% HP and Inteleon is at 27.4%, Inteleon can likely take a hit and still be relevant.\n\nLet me also consider: Inteleon has Sniper, which doubles damage to targets with lower Speed. Ogerpon's Speed is 110, Inteleon's Speed is 372. So Sniper applies.\n\nI'll go with Hydro Pump.\n\nActually, wait. Let me reconsider the SThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 2254,
+      "latency_ms": 6356,
+      "cost_usd": 0.0
+    }
+  ]
+}

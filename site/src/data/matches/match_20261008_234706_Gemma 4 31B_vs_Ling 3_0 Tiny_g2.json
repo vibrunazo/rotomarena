@@ -1,0 +1,208 @@
+{
+  "id": "match_20261008_234706_Gemma 4 31B_vs_Ling 3_0 Tiny_g2",
+  "game": "pokemon",
+  "format": "gen9ou",
+  "version": "s4",
+  "date": "20261008",
+  "players": [
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it:free",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p1",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "ling_3_0_tiny",
+      "display_name": "Ling 3.0 Tiny",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "ling-3.0-tiny",
+      "quantization": "Q8_0",
+      "username": "Ling 3.0 Tiny",
+      "role": "p2",
+      "team": "Ling 3.0 Tiny's team",
+      "model_key": "inclusionai/ling-3.0-tiny",
+      "autopilot_rate": 0.333
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 2,
+  "duration_seconds": 23.44,
+  "void_reason": "ling_3_0_tiny played with one Pokémon: its draft closed </team> after the first set and the harness took that as its whole team (Showdown accepts short teams); voided when the check was fixed and its sets redone",
+  "log": [
+    "|init|battle",
+    "|title|Gemma 4 31B vs. Ling 3.0 Tiny",
+    "|j|☆Gemma 4 31B",
+    "|j|☆Ling 3.0 Tiny",
+    "|gametype|singles",
+    "|player|p1|Gemma 4 31B|266|",
+    "|player|p2|Ling 3.0 Tiny|266|",
+    "|gen|9",
+    "|tier|[Gen 9] OU",
+    "|rule|HP Percentage Mod: HP is shown in percentages",
+    "|rule|Endless Battle Clause: Forcing endless battles is banned",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|OHKO Clause: OHKO moves are banned",
+    "|rule|Evasion Items Clause: Evasion items are banned",
+    "|rule|Evasion Moves Clause: Evasion moves are banned",
+    "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+    "|rule|Sleep Moves Clause: Sleep-inducing moves are banned",
+    "|clearpoke",
+    "|poke|p1|Great Tusk|",
+    "|poke|p1|Gholdengo|",
+    "|poke|p1|Kingambit, F|",
+    "|poke|p1|Iron Valiant|",
+    "|poke|p1|Slowking-Galar, F|",
+    "|poke|p1|Ogerpon-Wellspring, F|",
+    "|poke|p2|Inteleon, F|",
+    "|teampreview",
+    "|",
+    "|teamsize|p1|6",
+    "|teamsize|p2|1",
+    "|start",
+    "|switch|p1a: Great Tusk|Great Tusk|434/434",
+    "|switch|p2a: Inteleon|Inteleon, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Inteleon|Hydro Pump|p1a: Great Tusk",
+    "|-supereffective|p1a: Great Tusk",
+    "|-damage|p1a: Great Tusk|0 fnt",
+    "|faint|p1a: Great Tusk",
+    "|-end|p1a: Great Tusk|Protosynthesis|[silent]",
+    "|-damage|p2a: Inteleon|91/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo|315/315",
+    "|turn|2",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Inteleon",
+    "|-crit|p2a: Inteleon",
+    "|-damage|p2a: Inteleon|0 fnt",
+    "|faint|p2a: Inteleon",
+    "|",
+    "|win|Gemma 4 31B",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "lead",
+        "target": "greattusk",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Great Tusk is the standard lead for this team to set up Stealth Rock and provide early utility. It can handle most of Inteleon's common sets and pressure the opponent.",
+      "hidden_reasoning": "The opponent is leading with Inteleon, a fast special attacker. Great Tusk is a strong lead for setting Stealth Rock and can handle most of Inteleon's common sets, though it's vulnerable to Water moves. However, Gholdengo or Iron Valiant could also be viable. Great Tusk is the standard lead for this team composition to establish hazards early.\n\nDeciding factor: Hazard setup and general utility.",
+      "note": "",
+      "tokens": 1604,
+      "latency_ms": 4928,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "lead",
+        "target": "inteleon",
+        "tera": false
+      },
+      "source": "invalid",
+      "thought": "",
+      "hidden_reasoning": "Let me analyze the situation. I'm leading Inteleon, a Water-type Pokémon with Sniper ability, high Speed (372), and decent Special Attack (257). The opponent has Great Tusk (Ground/Fighting), Gholdengo (Steel/Ghost), Kingambit (Dark/Steel), Iron Valiant (Fairy/Fighting), Slowking Galar (Poison/Psychic), and Ogerpon Wellspring (Grass/Water).\n\nKey considerations:\n- Inteleon is the lead, so I need to choose a move or switch.\n- Sniper means Inteleon ignores the first hit from a non-Superpower move.\n- Inteleon's moves: Hydropump (Water/Special, 110 BP), Darkpulse (Dark/Special, 80 BP), Suckerpunch (Dark/Physical, 70 BP), Uturn (Bug/Physical, 70 BP).\n\nThe opponent has:\n- Great Tusk: Ground/Fighting, low Speed (87), can hit Inteleon with Earthquake or Low Kick. But Inteleon is faster.\n- Gholdengo: Steel/Ghost, 95 DEF, 133 SPA. Can hit Inteleon with Stealth Rock or Psychic.\n- Kingambit: Dark/Steel, 120 DEF, 50 ATK. Can hit Inteleon with Suckerpunch or Darkpulse.\n- Iron Valiant: Fairy/Fighting, 116 SPE, 90 DEF. Can hit Inteleon with Moonblast or Brave Bird.\n- Slowking: Poison/Psychic, 30 SPE. Can hit Inteleon with Psychic.\n- Ogerpon Wellspring: Grass/Water, 110 SPE. Can hit Inteleon with Leaf Blade or Scald.\n\nInteleon is very fast (SPE 372), so it will move first. The key question is what move to use.\n\nHydropump is a strong Water move with 110 BP. It's super effective against many of the opponent's Pokémon. Let me check:\n- Great Tusk: Ground/Fighting - Water is not super effective, but Inteleon is fast enough to KO it.\n- Gholdengo: Steel/Ghost - Water is neutral, but Inteleon is fast.\n- Kingambit: Dark/Steel - Water is neutral.\n- Iron Valiant: Fairy/Fighting - Water is neutral.\n- Slowking: Poison/Psychic - Water is neutral.\n- Ogerpon Wellspring: Grass/Water - Water is neutral.\n\nActually, Hydropump is super effective against... let me think. Water moves are super effective against Ground, Fighting, Steel, Ghost, and Poison. Wait:\n- Great Tusk: Ground/Fighting - Water is super effective against Ground (1.5x) and neutral against Fighting. So overall super effective.\n- Gholdengo: Steel/Ghost - Water is super effective against Steel (1.5x) and neutral against Ghost. So super effective.\n- Kingambit: Dark/Steel - Water is super effective against Steel (1.5x) and neutral against Dark. So super effective.\n- Iron Valiant: Fairy/Fighting - Water is neutral against Fairy and neutral against Fighting. Not super effective.\n- Slowking: Poison/Psychic - Water is super effective against Poison (1.5x) and neutral against Psychic. So super effective.\n- Ogerpon Wellspring: Grass/Water - Water is neutral against Grass and neutral against Water. Not super effective.\n\nSo Hydropump is super effective against 5 out of 6 opponents. It's a strong move.\n\nBut wait - Inteleon has Sniper. Sniper means Inteleon ignores the first hit from a non-Superpower move. So if I use Hydropump, the first hit is ignored by Sniper, but the second hit will deal damage.\n\nActually, let me reconsider. Sniper means Inteleon ignores the first hit from a non-Superpower move. So if I use Hydropump (which is a non-Superpower move), the first hit is ignored. But Hydropump has 110 BP, so it's a strong move.\n\nAlternatively, I could use Darkpulse (Dark/Special, 80 BP). Dark is super effective against Ghost and Psychic.\n- Great Tusk: Ground/Fighting - Dark is neutral.\n- Gholdengo: Steel/Ghost - Dark is super effective against Ghost (2x) and neutral against Steel. So super effective.\n- Kingambit: Dark/Steel - Dark is neutral.\n- Iron Valiant: Fairy/Fighting - DarkThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "[INVALID] 'MOVE: hydropump' is not a legal lead. Leading with the first Pokémon.",
+      "tokens": 2036,
+      "latency_ms": 6271,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is very frail and Great Tusk's Knock Off will deal massive damage while removing its item.",
+      "hidden_reasoning": "Inteleon is a fast special attacker that threatens Great Tusk with Water moves. Knock Off is the best move here to remove its item (likely Life Orb or Choice Specs) and deal significant damage to its low physical defense.\n\nDeciding factor: a likely knockout/heavy damage.",
+      "note": "",
+      "tokens": 1820,
+      "latency_ms": 3629,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Great Tusk is a Ground/Fighting type weak to Water and Dark moves. Inteleon's Speed (372) allows it to outspeed Great Tusk, and Hydropump has the highest BP (110) among its moves, making it the strongest option to deal super-effective damage.",
+      "hidden_reasoning": "The user wants me to choose the best action for Inteleon in this Gen 9 OU battle. Let me analyze the situation:\n\n- Inteleon is a Water-type with Sniper ability, high Speed (372), and decent Special Attack (257).\n- Great Tusk is a Ground/Fighting type with Protosynthesis, low Attack (131), and is currently at 100% HP.\n- Great Tusk has no revealed moves yet.\n- Inteleon has access to Hydropump, DarkPulse, Suckerpunch, and U-turn.\n\nKey considerations:\n1. Great Tusk is a Ground/Fighting type. It's weak to Water and Dark moves.\n2. Inteleon's Speed is extremely high (372), so it can outspeed Great Tusk.\n3. Great Tusk has Protosynthesis, which boosts Speed in sunny/burning weather, but there's no weather.\n4. Great Tusk's Attack is low (131), so physical moves might not be as effective.\n5. Great Tusk's Defense is 131, so it can take some hits.\n6. Great Tusk is at 100% HP, so it's not in a desperate state.\n\nInteleon's options:\n- Hydropump: Water-type, 110 BP, high power. Great Tusk is weak to Water. This is a strong move.\n- DarkPulse: Dark-type, 80 BP. Great Tusk is weak to Dark. Also good.\n- Suckerpunch: Dark/Physical, 70 BP. Great Tusk's Attack is low (131), so physical damage might not be as significant.\n- U-turn: A pivot move, but Great Tusk is already at 100% HP and Inteleon is faster.\n\nThe best move is likely Hydropump because:\n1. Great Tusk is weak to Water (1x weak to Water).\n2. Hydropump has the highest BP (110) among Inteleon's moves.\n3. Inteleon can outspeed Great Tusk with its 372 Speed.\n4. Great Tusk's low Attack means physical moves won't deal as much damage.\n\nWait, let me reconsider. Great Tusk is Ground/Fighting. It's weak to Water and Dark. But it's also weak to Fighting moves (1x weak to Fighting). However, Inteleon is Water-type, so it's weak to Ground. But Great Tusk is Ground, so it's weak to Water.\n\nActually, Great Tusk is weak to Water (1x) and Dark (1x). It's not weak to Bug or Fighting.\n\nSo Hydropump or DarkPulse would be the best moves.\n\nHydropump has 110 BP vs DarkPulse's 80 BP. Hydropump is clearly better.\n\nBut wait - is there a reason to use U-turn? U-turn is a pivot move. If Inteleon uses U-turn, it can switch out and let the opponent switch. But Great Tusk is at 100% HP and has no revealed moves, so it's not in a rush. Also, Inteleon is faster, so it can just hit Great Tusk and then switch.\n\nActually, looking at the legal actions, I need to choose one. The best choice is Hydropump.\n\nWait, let me reconsider the matchup. Great Tusk is Ground/Fighting. Inteleon is Water. Great Tusk is weak to Water. But Inteleon is also weak to Ground. However, Great Tusk is not a Ground type that can hit Inteleon with Ground moves (Inteleon is Water).\n\nSo Hydropump is the clear winner.\n\nBut wait - is there a Terastallization option? The prompt says \"Terastallization available: Yes\" for Inteleon. But Terastallization is a move that transforms the Pokémon. However, looking at the legal actions, I don't see Terastallization listed. The legal actions are only the 8 moves listed.\n\nSo I must choose from the 8 legal actions.\n\nThe best move is Hydropump.\n\nActually, let me double-check: Great Tusk is Ground/Fighting. It's weak to Water (1x) and Dark (1x). It's not weak to Bug. Inteleon is Water. So Water moves are super effective (1.5x) against Great Tusk.\n\nHydropump: Water, 110 BP, 80% accuracy.\nDarkPulse: Dark, 80 BP, 100% accuracy.\n\nHydropThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 1999,
+      "latency_ms": 6186,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Inteleon is a frail special attacker. Gholdengo with Choice Scarf outspeeds it and can potentially knock it out or deal massive damage with Make It Rain.",
+      "hidden_reasoning": "The opponent has an Inteleon, which is a fast special attacker. Gholdengo with a Choice Scarf outspeeds Inteleon and can hit it hard with Make It Rain or Shadow Ball. However, Ogerpon-Wellspring is also a strong option as it resists Water and can threaten Inteleon. Gholdengo is the safest and most immediate threat.\n\nDeciding factor: speed and knockout potential.",
+      "note": "",
+      "tokens": 1790,
+      "latency_ms": 4730,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is Choice Scarfed, ensuring it outspeeds Inteleon. Shadow Ball is a reliable move that will likely knock out the frail Inteleon.",
+      "hidden_reasoning": "The deciding factor is speed. Gholdengo is Choice Scarfed, making it faster than Inteleon (Base 120). Shadow Ball is a reliable, high-damage move that should easily knock out the frail Inteleon.",
+      "note": "",
+      "tokens": 1890,
+      "latency_ms": 3690,
+      "cost_usd": 0.0
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is Steel/Ghost, weak to Water and Dark. Hydro Pump is super effective (1x damage) and with Life Orb deals massive damage. Dark Pulse is also super effective but lower base power. Hydro Pump is the clear choice to finish off Gholdengo.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Inteleon is at 253/281 HP (90%) with Life Orb\n- Opponent's Gholdengo is at 100% HP\n- Gholdengo has Good As Gold (increases Speed by 50% when hit by a Steel-type move)\n- Gholdengo is Steel/Ghost type\n- Inteleon is Water type with Sniper ability\n\nKey considerations:\n1. Gholdengo is weak to Water (1x), but has Good As Gold which boosts its Speed when hit by Steel. However, Inteleon is Water, not Steel.\n2. Inteleon's moves: Hydro Pump (Water, 110 BP), Dark Pulse (Dark, 80 BP), Sucker Punch (Dark, 70 BP), U-turn (Bug, 70 BP)\n3. Gholdengo's moves are not revealed yet, but it's a Steel/Ghost type.\n\nWait, let me think about Gholdengo's weaknesses:\n- Steel/Ghost: Weak to Water (1x), but also weak to... let me think. Ghost is weak to Dark and Ghost. Steel is weak to Water, Ice, Fighting. So Gholdengo is weak to Water (1x) and Dark (1x) and Fighting (1x).\n\nActually, Gholdengo is Steel/Ghost. The types are:\n- Steel: weak to Water, Ice, Fighting\n- Ghost: weak to Dark, Ghost\n\nSo Gholdengo is weak to Water (1x), Dark (1x), Fighting (1x).\n\nInteleon's Hydro Pump is Water type, which is super effective against Gholdengo (1x weak).\n\nBut wait - Gholdengo has Good As Gold. This ability boosts Speed by 50% when hit by a Steel-type move. Since Inteleon is Water, not Steel, Good As Gold doesn't apply here.\n\nSo Hydro Pump would be super effective (1x damage) against Gholdengo.\n\nBut let me also consider:\n- Dark Pulse is 80 BP, super effective against Gholdengo (1x weak)\n- Sucker Punch is 70 BP, not super effective\n- U-turn is a move that doesn't deal damage but switches out\n\nGiven that Hydro Pump is super effective (Water vs Steel/Ghost), and we have Life Orb for the extra damage, this seems like the best move.\n\nHowever, I should also consider:\n- Gholdengo's Speed is 84 base. With Good As Gold, it would be 126 if hit by Steel. But since we're not hitting it with Steel, it stays at 84.\n- Inteleon's Speed is 372 (base 105, with Sniper and Life Orb, it's boosted).\n\nActually, wait. Let me reconsider. Gholdengo is at 100% HP. Inteleon has 90% HP. Hydro Pump is super effective.\n\nBut there's a catch: Gholdengo is a Ghost/Steel type. Let me check if there are any other weaknesses.\n\nGholdengo's weaknesses:\n- Water: 1x (Steel weakness)\n- Dark: 1x (Ghost weakness)\n- Fighting: 1x (Steel weakness)\n\nSo Water is super effective. Hydro Pump is the best move.\n\nBut wait, I should also consider:\n- Can Inteleon use U-turn to set up? No, that doesn't make sense in this context.\n- Can Inteleon use Dark Pulse? It's not super effective (Ghost is 1x weak to Dark, but Gholdengo is Steel/Ghost, so Dark is 1x weak).\n\nActually, let me reconsider Gholdengo's type weaknesses more carefully:\n- Steel: weak to Water, Ice, Fighting\n- Ghost: weak to Dark, Ghost\n\nSo Gholdengo is weak to Water (1x), Dark (1x), and Fighting (1x).\n\nHydro Pump (Water) is super effective (1x damage).\nDark Pulse (Dark) is also super effective (1x damage).\nSucker Punch (Dark) is not super effective (1x damage).\nU-turn (Bug) is not super effective (1x damage).\n\nSo Hydro Pump and Dark Pulse are both super effective.\n\nBetween Hydro Pump and Dark Pulse:\n- Hydro Pump: 110 BP, Water type, super effective\n- Dark Pulse: 80 BP, Dark type, super effective\n\nWith Life Orb, Hydro Pump would do 110 * 2 = 220 damage (assuming 1x super effectiveThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 2137,
+      "latency_ms": 6239,
+      "cost_usd": 0.0
+    }
+  ]
+}

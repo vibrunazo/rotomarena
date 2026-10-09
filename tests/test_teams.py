@@ -158,10 +158,11 @@ def test_draft_picks_six_then_builds_their_sets(monkeypatch):
     record = asyncio.run(draft.draft_team(AgentConfig(name="x", type="direct_llm"), AppConfig(), log=lambda m: None))
     assert record["legal"] and not record["repaired"] and record["picks"]["species"] == SIX
     assert [len(a["problems"]) for a in record["picks"]["attempts"]] == [1, 0]
-    assert [len(a["problems"]) for a in record["attempts"]] == [1, 0] and record["thought"] == "Sets."
+    assert [len(a["problems"]) for a in record["attempts"]] == [2, 0] and record["thought"] == "Sets."
     assert "Roaring Moon is not a legal" in seen[1]  # the problems go back to the model
     assert "Kingambit (Normal)" in seen[2]  # stage 2 lists each pick's options
     assert "Garchomp is not among the six" in seen[3]
+    assert "Missing: Corviknight" in seen[3]  # a team short of the six is sent back too (Showdown would accept it)
 
 
 def test_answers_filed_under_reasoning_are_recovered_and_stage_two_drops_the_list():
