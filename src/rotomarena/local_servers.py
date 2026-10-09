@@ -40,14 +40,24 @@ def _reasoning_settings(app_cfg: AppConfig) -> str:
     return f"reasoning auto budget {app_cfg.ruleset.thinking_budget or app_cfg.ruleset.max_output_tokens // 2}"
 
 
-def catalog_sizes(app_cfg: AppConfig) -> Dict[str, float]:
-    """Model file sizes (GB) from the generator's catalog, used to start the smaller model first."""
+def _catalog(app_cfg: AppConfig) -> Dict[str, Dict]:
     path = Path(app_cfg.local_llm.gen).parent / "tools" / "llm" / "llamacpp" / "models.json"
     try:
         models = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
-    return {k: v.get("size_gb", 0.0) for k, v in models.items() if isinstance(v, dict)}
+    return {k: v for k, v in models.items() if isinstance(v, dict)}
+
+
+def catalog_sizes(app_cfg: AppConfig) -> Dict[str, float]:
+    """Model file sizes (GB) from the generator's catalog, used to start the smaller model first."""
+    return {k: v.get("size_gb", 0.0) for k, v in _catalog(app_cfg).items()}
+
+
+def catalog_moe(app_cfg: AppConfig) -> set:
+    """Mixture-of-experts models in the catalog ("moe": true): only a few billion weights work per token, so they
+    can keep part of themselves in RAM next to another model and still run at tens of tok/s."""
+    return {k for k, v in _catalog(app_cfg).items() if v.get("moe")}
 
 
 def cpu_load() -> Optional[int]:
@@ -167,7 +177,12 @@ def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str],
         if port not in current:
             log(f"Stopping local server {model} on port {port} (started with other thinking settings: {settings or '?'})")
             _gen(app_cfg, "stop", "--port", str(port))
-    if len(needed) == 2 and sum(sizes.get(m, 99.0) for m in needed.values()) > app_cfg.local_llm.vram_budget_gb:
+    # Two models that don't fit the GPU together take turns being loaded, unless the larger is a mixture-of-experts
+    # model, which shares instead: measured on 9 Oct, Ornith ran 22-25 s a turn next to another model but 77 s
+    # swapping (reloading 21.7 GB), and two Bonsai-Ornith games took over two hours each
+    larger = max(needed.values(), key=lambda m: sizes.get(m, 99.0)) if needed else None
+    if (len(needed) == 2 and sum(sizes.get(m, 99.0) for m in needed.values()) > app_cfg.local_llm.vram_budget_gb
+            and larger not in catalog_moe(app_cfg)):
         for port, model in current.items():
             log(f"Stopping local server {model} on port {port}")
             _gen(app_cfg, "stop", "--port", str(port))

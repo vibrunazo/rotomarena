@@ -160,7 +160,8 @@ def _fake_gen(monkeypatch, running, settings="reasoning auto budget 2048"):
     calls = []
     monkeypatch.setattr(local_servers, "_status", lambda cfg: {port: (model, settings) for port, model in running.items()})
     monkeypatch.setattr(local_servers, "catalog_sizes",
-                        lambda cfg: {"bonsai": 7.2, "minicpm5-2b": 2.7, "qwen3.8-27b": 16.5})
+                        lambda cfg: {"bonsai": 7.2, "minicpm5-2b": 2.7, "qwen3.8-27b": 16.5, "ornith": 21.7})
+    monkeypatch.setattr(local_servers, "catalog_moe", lambda cfg: {"ornith"})
     monkeypatch.setattr(local_servers, "_gen", lambda cfg, *args: calls.append(args) or type("R", (), {"returncode": 0})())
     return local_servers, calls
 
@@ -191,6 +192,14 @@ def test_a_server_started_with_another_thinking_budget_is_restarted(monkeypatch)
     local_servers, calls = _fake_gen(monkeypatch, {8080: "bonsai"})  # same rules: kept as it is
     local_servers.prepare([BONSAI], AppConfig(), log=lambda msg: None)
     assert [c for c in calls if c[0] == "serve"] == []
+
+
+def test_a_mixture_of_experts_model_shares_the_gpu_instead_of_swapping(monkeypatch):
+    ornith = AgentConfig(name="ornith", type="direct_llm", provider="local", model="ornith", port=8084)
+    local_servers, calls = _fake_gen(monkeypatch, {})
+    local_servers.prepare([ornith, BONSAI], AppConfig(), log=lambda msg: None)
+    assert not local_servers.swapping()
+    assert [c[2] for c in calls if c[0] == "serve"] == ["bonsai", "ornith"]  # the smaller first, Ornith fitted around it
 
 
 def test_a_pair_too_big_for_the_gpu_swaps_per_request(monkeypatch):

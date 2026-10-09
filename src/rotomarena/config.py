@@ -281,7 +281,8 @@ class LocalLLMConfig(BaseModel):
                      "servers get one slot per parallel game (ladder.parallel_games)")
     vram_budget_gb: float = Field(
         default=12.5,
-        description="Two local models stay loaded together when their files add up to at most this; otherwise "
+        description="Two local models stay loaded together when their files add up to at most this, or when the "
+        "larger is a mixture-of-experts model (\"moe\" in the generator's catalog), which spills to RAM well; otherwise "
         "they swap, loading whichever one's turn it is (a dense model squeezed into the leftover VRAM ran at 1-2 tok/s)",
     )
 
