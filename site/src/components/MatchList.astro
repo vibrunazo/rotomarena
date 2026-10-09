@@ -1,5 +1,5 @@
 ---
-// A table of matches linking to their replay pages.
+// A table of matches linking to their replay pages. Each game reads "Winner > Loser".
 import { routes } from '../lib/routes';
 import { fmtDate, fmtDuration, winner, type MatchEntry } from '../lib/data';
 
@@ -12,9 +12,7 @@ const href = retracted ? routes.retractedMatch : routes.match;
     <thead>
       <tr>
         <th>Date</th>
-        <th>Player 1</th>
-        <th>Player 2</th>
-        <th>Winner</th>
+        <th>Game (winner first)</th>
         <th class="r">Turns</th>
         <th class="r">Duration</th>
         {showReason && <th>Grounds</th>}
@@ -28,10 +26,10 @@ const href = retracted ? routes.retractedMatch : routes.match;
         return (
           <tr>
             <td class="num">{fmtDate(m.date)}</td>
-            <td>{p1?.display_name}</td>
-            <td>{p2?.display_name}</td>
             <td>
-              {w ? w.display_name : <span class="muted">draw</span>}
+              {w
+                ? <><strong>{w.display_name}</strong><span class="beat" aria-label="beat">&gt;</span>{(w === p1 ? p2 : p1)?.display_name}</>
+                : <>{p1?.display_name}<span class="vs muted">vs</span>{p2?.display_name} <span class="muted small">(draw)</span></>}
               {!retracted && m.void_reason && <span class="pill bad" title={m.void_reason}>void</span>}
             </td>
             <td class="r num">{m.turns}</td>
@@ -48,4 +46,6 @@ const href = retracted ? routes.retractedMatch : routes.match;
 <style>
   .reason { white-space: normal; min-width: 16rem; }
   td .pill { margin-left: 0.4rem; }
+  .beat { color: var(--text-dim); font-weight: 600; padding: 0 0.45rem; }
+  .vs { padding: 0 0.4rem; }
 </style>
