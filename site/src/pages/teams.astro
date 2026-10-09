@@ -11,6 +11,10 @@ const picks = Object.entries(
   legal.flatMap((d) => d.members.map((m) => m.species)).reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
 ).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 const unanimous = picks.filter(([, n]) => legal.length > 1 && n === legal.length).map(([s]) => s);
+// The meta score: how many of a team's Pokémon appear in at least one of Smogon's sample teams
+const byMeta = [...drafts].filter((d) => d.meta.of > 0)
+  .sort((a, b) => b.meta.used - a.meta.used || b.meta.slots - a.meta.slots || a.display_name.localeCompare(b.display_name));
+const sampleTeams = drafts[0]?.meta.sample_teams ?? 0;
 const refs = (reference.teams as { title: string; archetype: string; builder: string; url: string; legal: boolean }[]);
 ---
 <Base title="Teambuilding" description="The teams language models built for themselves, and the validator that judged them.">
@@ -41,6 +45,33 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
     )}
   </div>
 
+  {sampleTeams > 0 && byMeta.length > 0 && (
+    <>
+      <h2>Meta score</h2>
+      <p class="prose">
+        How many of each team's six Pokémon appear in at least one of Smogon's {sampleTeams} sample teams (listed under
+        <a href="#reference-teams">Reference teams</a> below), and how many sample-team slots they fill between them.
+        A rough yardstick: it judges the picks, not the sets, and the sample teams are one snapshot of a moving
+        metagame. A Pokémon no sample team uses is not necessarily bad, only unusual.
+      </p>
+      <div class="table-scroll">
+        <table class="meta-table">
+          <thead><tr><th>Model</th><th class="r">Meta score</th><th class="r">Sample-team slots</th><th>Pokémon no sample team uses</th></tr></thead>
+          <tbody>
+            {byMeta.map((d) => (
+              <tr>
+                <td><a href={`/models/${d.config_id}/`}>{d.display_name}</a></td>
+                <td class="r num"><strong>{d.meta.used}</strong><span class="muted">/{d.meta.of}</span></td>
+                <td class="r num">{d.meta.slots}</td>
+                <td class="small">{d.members.filter((m) => !m.smogon_teams).map((m) => m.species).join(', ') || <span class="muted">none</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  )}
+
   {picks.length > 0 && (
     <>
       <h2>Most drafted Pokémon</h2>
@@ -51,7 +82,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
   <h2>The teams</h2>
   {drafts.length ? drafts.map((d) => <DraftedTeam draft={d} heading />) : <p class="muted">No model has drafted yet.</p>}
 
-  <h2>Reference teams</h2>
+  <h2 id="reference-teams">Reference teams</h2>
   <p class="prose">
     For testing the harness, and for benchmarks played with fixed teams, we use sample teams from Smogon's
     <a href="https://www.smogon.com/forums/threads/sv-ou-sample-teams-new-samples-added-post-spl-and-tera-blast-ban.3712513/">SV OU Sample Teams</a>

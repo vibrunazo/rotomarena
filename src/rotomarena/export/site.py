@@ -9,7 +9,7 @@ import statistics
 import subprocess
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from rotomarena.config import MODEL_TYPES, AppConfig, derived_model_key
 from rotomarena.ladder import LadderState, versions_state
@@ -17,7 +17,7 @@ from rotomarena.rulesets import stored_rules
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
-from rotomarena.teams.draft import load_drafts
+from rotomarena.teams.draft import _id, load_drafts, team_species
 from rotomarena.teams.loader import parse_smogon_team
 from rotomarena.telemetry.replay_saver import flatten_logs
 
@@ -248,14 +248,32 @@ def _sprite_ids(app_cfg: AppConfig, names: List[str]) -> Dict[str, Optional[str]
     return json.loads(result.stdout)
 
 
+REFERENCE_TEAMS = Path("data/teams/smogon/index.json")
+
+
+def smogon_usage(index: Path = REFERENCE_TEAMS) -> Tuple[Dict[str, int], int]:
+    """({species id: how many of Smogon's sample teams use it}, how many sample teams there are): a rough meta yardstick."""
+    if not index.exists():
+        return {}, 0
+    teams = json.loads(index.read_text(encoding="utf-8"))["teams"]
+    usage: Dict[str, int] = {}
+    for t in teams:
+        path = index.parents[1] / f"{t['name']}.txt"
+        for species in {_id(s) for s in team_species(path.read_text(encoding="utf-8"))} if path.exists() else ():
+            usage[species] = usage.get(species, 0) + 1
+    return usage, len(teams)
+
+
 def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
     verdict. Raw answers and reasoning traces stay in data/drafts."""
     parsed = {cid: parse_smogon_team(d["team"]).members if d.get("team") else [] for cid, d in drafts.items()}
     sprites = _sprite_ids(app_cfg, sorted({m.species for members in parsed.values() for m in members}))
+    usage, sample_teams = smogon_usage()
     rows = []
     for cid, d in sorted(drafts.items()):
         registry = app_cfg.agents.get(cid)
+        counts = [usage.get(_id(m.species), 0) for m in parsed[cid]]
         rows.append({
             "config_id": cid,
             "display_name": (registry.display_name if registry and registry.display_name else cid),
@@ -265,7 +283,11 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
             "thought": d.get("thought"), "team_text": d.get("team"),
             "members": [{"species": m.species, "sprite": sprites.get(m.species), "item": m.item, "ability": m.ability,
                          "tera_type": m.tera_type, "nature": m.nature,
-                         "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves} for m in parsed[cid]],
+                         "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves,
+                         "smogon_teams": n} for m, n in zip(parsed[cid], counts)],
+            # The meta score: how many of its Pokémon appear in at least one of Smogon's sample teams
+            "meta": {"used": sum(1 for n in counts if n), "of": len(counts), "slots": sum(counts),
+                     "sample_teams": sample_teams},
             "picks": {"legal": d.get("picks", {}).get("legal", True), "species": d.get("picks", {}).get("species", []),
                       "repairs": d.get("picks", {}).get("repairs", []),
                       "attempts": [{"attempt": a["attempt"], "problems": a.get("problems") or [], "error": a.get("error"),
@@ -373,7 +395,7 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
 
     _write_json(out / "models.json", models)
     _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts(version=app_cfg.ruleset.version)))
-    reference = Path("data/teams/smogon/index.json")  # credited community teams, used for tests and as fallback
+    reference = REFERENCE_TEAMS  # credited community teams: tests, fixed-team benchmarks and the meta score
     _write_json(out / "reference_teams.json", json.loads(reference.read_text(encoding="utf-8")) if reference.exists() else {"teams": []})
     _write_json(out / "head_to_head.json", {b.id: _head_to_head(states[b.id]) for b in boards})
     _write_json(out / "findings.json", findings(models, state.matches + retracted))
