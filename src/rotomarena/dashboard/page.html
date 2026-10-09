@@ -63,6 +63,7 @@
   .game { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
   .game:last-child { border-bottom: 0; }
   .vs { color: var(--text-faint); padding: 0 4px; }
+  .beat { color: var(--text-dim); padding: 0 6px; font-weight: 600; }
   .turn { font: 700 1.3rem var(--font-display); color: var(--cyan); }
   ol.next { margin: 0; padding-left: 1.4rem; } ol.next li { padding: 3px 0; }
   .err { white-space: pre-wrap; font: 0.78rem/1.4 var(--font-mono); color: var(--text-dim); max-height: 12rem; overflow: auto; }
@@ -117,6 +118,13 @@
 
 <script>
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+// "Winner > Loser"; a game without a winner (a tie) reads "A vs B"
+const result = (g) => {
+  const [a, b] = g.players;
+  if (!g.winner) return `${esc(a)}<span class="vs">vs</span>${esc(b)}`;
+  const loser = g.winner === a ? b : a;
+  return `<b>${esc(g.winner)}</b><span class="beat" aria-label="beat">&gt;</span>${esc(loser)}`;
+};
 const money = (v) => (v ? v.toFixed(3) : '—');
 const pct = (a, b) => (b ? Math.max(0, Math.min(100, (100 * a) / b)) : 0);
 const bar = (a, b, cls = '') => `<div class="track ${cls}" role="progressbar" aria-valuenow="${a}" aria-valuemax="${b}" title="${a} of ${b}"><i style="width:${pct(a, b)}%"></i></div>`;
@@ -180,9 +188,9 @@ function render(s) {
   document.getElementById('models-note').textContent = 'Games played counts this version’s rated games; planned is what the schedule still gives each model under its cap.';
 
   document.getElementById('recent').innerHTML = s.recent.length
-    ? `<thead><tr><th>Game</th><th>Winner</th><th class="num">Turns</th><th class="num">Min</th></tr></thead><tbody>` +
-      s.recent.map((g) => `<tr><td>${esc(g.players[0])}<span class="vs">vs</span>${esc(g.players[1])}${g.void ? ` <span class="chip">void</span>` : ''}</td>
-        <td>${esc(g.winner || '—')}</td><td class="num">${g.turns}</td><td class="num">${g.minutes}</td></tr>`).join('') + '</tbody>'
+    ? `<thead><tr><th>Game (winner first)</th><th class="num">Turns</th><th class="num">Min</th></tr></thead><tbody>` +
+      s.recent.map((g) => `<tr><td>${result(g)}${g.void ? ` <span class="chip" title="${esc(g.void)}">void</span>` : ''}</td>
+        <td class="num">${g.turns}</td><td class="num">${g.minutes}</td></tr>`).join('') + '</tbody>'
     : '<tbody><tr><td class="muted">No finished games in this version yet.</td></tr></tbody>';
 
   const rows = [
