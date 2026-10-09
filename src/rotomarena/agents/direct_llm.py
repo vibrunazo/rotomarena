@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 from types import SimpleNamespace
 from typing import Optional
 from poke_env.battle import Battle
@@ -10,7 +11,7 @@ from poke_env.player import BattleOrder
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.llm.client import LLMClient, ProviderLimitError, to_id
-from rotomarena.llm.prompts import format_battle_state, format_team_preview
+from rotomarena.llm.prompts import format_battle_state, format_team_preview, system_prompt_for
 
 
 class DirectLLMPlayer(BaseBenchmarkPlayer):
@@ -61,6 +62,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 max_tokens=self.max_output_tokens,
                 reasoning=self.reasoning,
                 thinking_budget=self.thinking_budget,
+                system_prompt=system_prompt_for(self.format, self.pick),
             )
         except ProviderLimitError as e:
             self.provider_limit = e
@@ -129,8 +131,11 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
 
     async def teampreview(self, battle: Battle) -> str:
         """The model picks its lead; the rest of the team keeps its order. Failures lead with the first
-        Pokémon, which is what Showdown itself does when a player doesn't choose."""
+        Pokémon, which is what Showdown itself does when a player doesn't choose. In a bring-N format it picks the
+        N it brings instead (bring_preview)."""
         members = list(battle.team.values())
+        if self.pick and self.pick < len(members):
+            return await self.bring_preview(battle, members)
         lead, source, note, decision = 0, "model", "", None
         try:
             decision = await asyncio.wait_for(self._ask(format_team_preview(battle)), timeout=self.turn_timeout)
@@ -150,14 +155,50 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 else:
                     lead = match
 
-        order = [lead + 1] + [i + 1 for i in range(len(members)) if i != lead]
-        for mon in members:
-            mon._selected_in_teampreview = True
-        message = "/team " + "".join(str(i) for i in order)
+        message = self.bring_order(battle, [lead])
         self.record_turn_telemetry(
             battle=battle,
             chosen_order=SimpleNamespace(message=f"{message} lead={members[lead].species}"),
             reasoning=decision.reasoning if source == "model" else f"{note} Leading with the first Pokémon.",
+            decision_source=source,
+            llm_metrics=decision.metrics.model_dump() if decision and decision.metrics else None,
+            hidden_reasoning=decision.hidden_reasoning if decision else "",
+        )
+        return message
+
+    async def bring_preview(self, battle: Battle, members: list) -> str:
+        """Bring N of the team: the model answers BRING: a, b, c (the first leads). Names it gets wrong or misses
+        are filled from the team's order, and the turn is recorded as invalid; no usable answer brings the first N."""
+        chosen, source, note, decision = [], "model", "", None
+        try:
+            decision = await asyncio.wait_for(self._ask(format_team_preview(battle, self.pick)), timeout=self.turn_timeout)
+        except asyncio.TimeoutError:
+            source, note = "timeout", f"[TIMEOUT] No team chosen within {self.turn_timeout:.0f}s."
+        except Exception as e:
+            source, note = "api_error", f"[API ERROR] {e}."
+        if decision is not None:
+            text = decision.raw_response or ""
+            block = re.search(r"<decision>(.*?)(?:</decision>|$)", text, re.S | re.I)
+            line = re.search(r"BRING\s*:\s*(.+)", block.group(1) if block else text, re.I)
+            if not line:
+                source, note = "parse_error", "[PARSE ERROR] No BRING: line."
+            else:
+                ids = {to_id(m.species): i for i, m in enumerate(members)}
+                names = [n.strip(" *.`") for n in re.split(r"[,/]", line.group(1)) if n.strip(" *.`")]
+                for name in names:
+                    i = ids.get(to_id(name))
+                    if i is not None and i not in chosen and len(chosen) < self.pick:
+                        chosen.append(i)
+                if len(chosen) < self.pick:
+                    source, note = "invalid", (f"[INVALID] 'BRING: {line.group(1).strip()}' names {len(chosen)} of the "
+                                               f"{self.pick} Pokémon it brings; the rest come from the team's order.")
+        message = self.bring_order(battle, chosen)
+        brought = [members[int(c) - 1].species for c in message.split()[1]]
+        self.record_turn_telemetry(
+            battle=battle,
+            chosen_order=SimpleNamespace(message=f"{message} bring={','.join(brought)}"),
+            reasoning=decision.reasoning if source == "model" else
+            f"{note} Bringing {', '.join(brought)}." + (f"\n{decision.reasoning}" if decision and decision.reasoning else ""),
             decision_source=source,
             llm_metrics=decision.metrics.model_dump() if decision and decision.metrics else None,
             hidden_reasoning=decision.hidden_reasoning if decision else "",

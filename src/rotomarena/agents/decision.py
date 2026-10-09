@@ -16,6 +16,8 @@ from rotomarena.llm.prompts import format_battle_state, format_team_preview
 
 TURN_INSTRUCTIONS = ("You are playing a competitive Pokémon battle on Pokémon Showdown as the side the state calls "
                      "YOUR. Which action this turn gives you the best chance to win the battle?")
+BRING_INSTRUCTIONS = ("You bring {pick} of your Pokémon to this battle and have already chosen {chosen}. Which of the "
+                      "rest should you also bring, to give you the best chance to win?")
 LEAD_INSTRUCTIONS = ("You are about to play a competitive Pokémon battle on Pokémon Showdown with YOUR TEAM against "
                      "the OPPONENT'S TEAM. Which of your Pokémon should lead, to give you the best chance to win?")
 
@@ -80,6 +82,8 @@ class DecisionPlayer(BaseBenchmarkPlayer):
 
     async def teampreview(self, battle: Battle) -> str:
         members = list(battle.team.values())
+        if self.pick and self.pick < len(members):
+            return await self.bring_preview(battle, members)
         lead, source, note, choice, usage = 0, "model", "", None, None
         try:
             choice, usage = await asyncio.wait_for(self._ask(
@@ -90,10 +94,7 @@ class DecisionPlayer(BaseBenchmarkPlayer):
             source, note = "timeout", f"[TIMEOUT] No lead chosen within {self.turn_timeout:.0f}s."
         except Exception as e:
             source, note = "api_error", f"[API ERROR] {e}."
-        order = [lead + 1] + [i + 1 for i in range(len(members)) if i != lead]
-        for mon in members:
-            mon._selected_in_teampreview = True
-        message = "/team " + "".join(str(i) for i in order)
+        message = self.bring_order(battle, [lead])
         self.record_turn_telemetry(
             battle=battle,
             chosen_order=SimpleNamespace(message=f"{message} lead={members[lead].species}"),
@@ -101,5 +102,33 @@ class DecisionPlayer(BaseBenchmarkPlayer):
             decision_source=source,
             llm_metrics=usage.metrics(self.client.provider_name).model_dump() if usage else None,
             probabilities=choice.probabilities if choice else None,
+        )
+        return message
+
+    async def bring_preview(self, battle: Battle, members: list) -> str:
+        """Bring N of the team, one Choice question per slot: the leader, then each one after it from those left."""
+        chosen, notes, usage, source, note = [], [], Usage(), "model", ""
+        state = format_team_preview(battle, self.pick)
+        try:
+            for slot in range(self.pick):
+                left = {f"BRING: {m.species}": f"Bring {m.species}." for i, m in enumerate(members) if i not in chosen}
+                instructions = LEAD_INSTRUCTIONS if not chosen else BRING_INSTRUCTIONS.format(
+                    pick=self.pick, chosen=", ".join(members[i].species for i in chosen))
+                choice, used = await asyncio.wait_for(self._ask(state, instructions, left), timeout=self.turn_timeout)
+                usage.add(used)
+                chosen.append(next(i for i, m in enumerate(members) if f"BRING: {m.species}" == choice.choice))
+                notes.append(f"{'Lead' if slot == 0 else f'Pick {slot + 1}'}: {choice.summary()}")
+        except asyncio.TimeoutError:
+            source, note = "timeout", f"[TIMEOUT] No team chosen within {self.turn_timeout:.0f}s."
+        except Exception as e:
+            source, note = "api_error", f"[API ERROR] {e}."
+        message = self.bring_order(battle, chosen)
+        brought = [members[int(c) - 1].species for c in message.split()[1]]
+        self.record_turn_telemetry(
+            battle=battle,
+            chosen_order=SimpleNamespace(message=f"{message} bring={','.join(brought)}"),
+            reasoning="\n".join(notes) if source == "model" else f"{note} Bringing {', '.join(brought)}.",
+            decision_source=source,
+            llm_metrics=usage.metrics(self.client.provider_name).model_dump() if usage.requests else None,
         )
         return message

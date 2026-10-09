@@ -190,7 +190,11 @@ class ShowdownServerManager:
         return True, f"Pokémon Showdown setup successfully completed at {self.server_dir}"
 
     def write_config(self) -> None:
-        """Writes config/config.js from ServerConfig (port, security, bind address)."""
+        """Writes config/config.js from ServerConfig (port, security, bind address), and installs RotomArena's own
+        formats (custom_formats.js) where Showdown merges them into its format list."""
+        custom = self.server_dir / "dist" / "config" / "custom-formats.js"
+        custom.parent.mkdir(parents=True, exist_ok=True)
+        custom.write_text((Path(__file__).with_name("custom_formats.js")).read_text(encoding="utf-8"), encoding="utf-8")
         config_js = self.server_dir / "config" / "config.js"
         config_js.parent.mkdir(parents=True, exist_ok=True)
         config_js.write_text(

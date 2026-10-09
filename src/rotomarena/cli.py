@@ -408,8 +408,9 @@ def run_battle(
     """Run a 1v1 battle series between two agents."""
     app_cfg = AppConfig.load(config_file)
 
-    first_team = load_preset_team(team1)
-    second_team = load_preset_team(team2)
+    random_teams = app_cfg.ruleset.team_mode == "random"  # the format deals the teams
+    first_team = None if random_teams else load_preset_team(team1)
+    second_team = None if random_teams else load_preset_team(team2)
     p1_cfg = _agent_config(app_cfg, p1, p1_provider or provider, p1_model or model)
     p2_cfg = _agent_config(app_cfg, p2, p2_provider or provider, p2_model or model)
 

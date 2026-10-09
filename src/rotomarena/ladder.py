@@ -175,6 +175,8 @@ def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:
 def set_teams(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig) -> Tuple[Team, Team]:
     """The two teams of a set. Draft mode: each model's own team, except that a control bot (which can't build one)
     plays its opponent's, so only the play differs between them. Fixed mode: the ruleset's two teams."""
+    if app_cfg.ruleset.team_mode == "random":
+        return None, None  # the format deals every player a random team
     if app_cfg.ruleset.team_mode != "draft":
         return tuple(load_preset_team(t) for t in app_cfg.ruleset.teams)
     if agent_a.role == "control":

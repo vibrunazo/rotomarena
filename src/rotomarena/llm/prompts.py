@@ -254,12 +254,17 @@ def format_battle_state(battle: Battle) -> str:
     return "\n".join(lines)
 
 
-def format_team_preview(battle: Battle) -> str:
-    """Team preview: both teams before the battle; the player picks its lead."""
+def format_team_preview(battle: Battle, pick: Optional[int] = None) -> str:
+    """Team preview: both teams before the battle; the player picks its lead, or, in a bring-N format, the N
+    Pokémon it brings in order (the first leads)."""
+    choosing = pick is not None and pick < len(battle.team)
     lines = [
         f"### Team preview (before turn 1) | Format: {battle.format}",
-        "Both teams are shown before the battle starts. No moves can be used yet: the only legal action is "
-        "choosing the Pokémon you lead with (LEAD: <species>). The rest of your team stays in its current order.",
+        (f"Both teams are shown before the battle starts. You bring {pick} of your {len(battle.team)} Pokémon (so does "
+         f"your opponent): the only legal action is choosing them, in order (BRING: <species>, <species>, ...). The "
+         f"first one leads; the others wait in the back. The rest sit this battle out." if choosing else
+         "Both teams are shown before the battle starts. No moves can be used yet: the only legal action is "
+         "choosing the Pokémon you lead with (LEAD: <species>). The rest of your team stays in its current order."),
         "\n#### YOUR TEAM:",
     ]
     lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in battle.team.values())
@@ -269,8 +274,27 @@ def format_team_preview(battle: Battle) -> str:
         stats = ", ".join(f"{k.upper()}: {v}" for k, v in (mon.base_stats or {}).items())
         lines.append(f"- **{mon.species}** ({types}) | Base Stats: [{stats}]")
     lines.append("\n#### LEGAL ACTIONS THIS TURN:")
-    lines.extend(f"{i}. LEAD: {mon.species}" for i, mon in enumerate(battle.team.values(), 1))
+    if choosing:
+        lines.append(f"BRING: any {pick} different Pokémon from YOUR TEAM, comma-separated, the leader first "
+                     f"(for example BRING: {', '.join(m.species for m in list(battle.team.values())[:pick])})")
+    else:
+        lines.extend(f"{i}. LEAD: {mon.species}" for i, mon in enumerate(battle.team.values(), 1))
     return "\n".join(lines)
+
+
+# How the battle prompt names a format other than Gen 9 OU (the prompt was written for it)
+FORMAT_NAMES = {"gen9championsrotomarenarandombss": "Pokémon Champions singles (bring 6, pick 3)"}
+
+
+def system_prompt_for(fmt: str, pick: Optional[int] = None) -> str:
+    """The battle system prompt for this format: unchanged for Gen 9 OU."""
+    if fmt == "gen9ou":
+        return SYSTEM_PROMPT_DIRECT_COT
+    prompt = SYSTEM_PROMPT_DIRECT_COT.replace("Gen 9 OU", FORMAT_NAMES.get(fmt, fmt))
+    if pick:
+        prompt = prompt.replace("(at team preview: LEAD: <species>)",
+                                f"(at team preview: BRING: <{pick} species, comma-separated>)")
+    return prompt
 
 
 SYSTEM_PROMPT_DIRECT_COT = """You are an expert competitive Pokémon player and Gen 9 OU tournament grandmaster.

@@ -189,11 +189,13 @@ class MatchRunner:
         With `own_teams`, team_1 is A's and team_2 is B's in every game; only the sides alternate."""
         swap_teams, b_challenges = series_schedule(game + 1)[game]
         team_a, team_b = (team_2, team_1) if swap_teams and not own_teams else (team_1, team_2)
-        player_a.update_team(team_a.to_showdown_packed())
-        player_b.update_team(team_b.to_showdown_packed())
+        for player, team in ((player_a, team_a), (player_b, team_b)):
+            if team is not None:  # None: a random-team format, where the server deals the teams
+                player.update_team(team.to_showdown_packed())
+        name_a, name_b = (team.name if team is not None else "random team" for team in (team_a, team_b))
         if b_challenges:
-            return await self.run_single_battle(player_b, player_a, (team_b.name, team_a.name), game + 1)
-        return await self.run_single_battle(player_a, player_b, (team_a.name, team_b.name), game + 1)
+            return await self.run_single_battle(player_b, player_a, (name_b, name_a), game + 1)
+        return await self.run_single_battle(player_a, player_b, (name_a, name_b), game + 1)
 
     async def run_series(
         self,

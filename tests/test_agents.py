@@ -144,3 +144,23 @@ async def test_team_member_named_with_the_wrong_keyword_still_leads():
     player, recorder = _llm_player(ActionDecision(action_type="MOVE", target="kingambit"))
     assert await player.teampreview(MockBattle()) == "/team 21"
     assert recorder.breadcrumbs[-1].decision_source == "model"
+
+
+def test_a_bring_n_format_sends_only_the_chosen_pokemon_in_order():
+    from types import SimpleNamespace
+
+    from rotomarena.agents.base import BaseBenchmarkPlayer
+
+    battle = SimpleNamespace(team={f"p1: Mon{i}": SimpleNamespace() for i in range(6)})
+    bring3 = SimpleNamespace(pick=3)
+    assert BaseBenchmarkPlayer.bring_order(bring3, battle, [5, 2, 3]) == "/team 634"
+    assert BaseBenchmarkPlayer.bring_order(bring3, battle, [4]) == "/team 512"  # missing picks follow the team order
+    assert BaseBenchmarkPlayer.bring_order(SimpleNamespace(pick=None), battle, [2]) == "/team 312456"
+
+
+def test_the_battle_prompt_names_the_format_and_keeps_gen9ou_unchanged():
+    from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, system_prompt_for
+
+    assert system_prompt_for("gen9ou") is SYSTEM_PROMPT_DIRECT_COT
+    champions = system_prompt_for("gen9championsrotomarenarandombss", pick=3)
+    assert "Pokémon Champions singles" in champions and "BRING: <3 species" in champions and "Gen 9 OU" not in champions

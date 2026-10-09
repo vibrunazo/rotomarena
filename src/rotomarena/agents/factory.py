@@ -239,6 +239,8 @@ def create_agent_instance(
         player_name=username,
         identity=identity,
         turn_timeout=app_config.ruleset.turn_timeout,
+        battle_format=app_config.ruleset.format,
+        pick=app_config.ruleset.pick,
         start_listening=start_listening,
         server_configuration=ServerConfiguration(
             app_config.server.websocket_url,

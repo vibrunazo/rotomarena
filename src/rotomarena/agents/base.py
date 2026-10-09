@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import datetime
 import time
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from poke_env.battle import Battle
 from poke_env.player import BattleOrder, DefaultBattleOrder, Player
 from poke_env.ps_client import AccountConfiguration, ServerConfiguration
@@ -28,6 +28,7 @@ class BaseBenchmarkPlayer(Player):
         battle_format: str = "gen9ou",
         team: Optional[str] = None,
         turn_timeout: float = 900.0,
+        pick: Optional[int] = None,
         identity: Optional[PlayerIdentity] = None,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
@@ -51,6 +52,7 @@ class BaseBenchmarkPlayer(Player):
         self.agent_name = player_name
         self.agent_type = agent_type
         self.turn_timeout = turn_timeout
+        self.pick = pick  # Pokémon brought from team preview (bring-N formats); None: all of them
         self.identity = identity or PlayerIdentity(
             config_id=player_name, display_name=player_name, agent_type=agent_type
         )
@@ -158,6 +160,15 @@ class BaseBenchmarkPlayer(Player):
                 decision_source="error",
             )
             return fallback_order
+
+    def bring_order(self, battle: Battle, chosen: List[int]) -> str:
+        """The /team message for these team indexes (0-based), in order; in a bring-N format only N are sent."""
+        size = len(battle.team)
+        rest = [i for i in range(size) if i not in chosen]
+        order = (chosen + rest)[: self.pick if self.pick and self.pick < size else size]
+        for mon in battle.team.values():
+            mon._selected_in_teampreview = True
+        return "/team " + "".join(str(i + 1) for i in order)
 
     async def _async_choose_move(self, battle: Battle) -> BattleOrder:
         """Subclasses should override this method to compute moves."""

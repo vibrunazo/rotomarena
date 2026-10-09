@@ -324,10 +324,12 @@ class LLMClient:
         max_tokens: Optional[int] = None,
         reasoning: str = "off",
         thinking_budget: Optional[int] = None,
+        system_prompt: Optional[str] = None,
     ) -> ActionDecision:
-        """Asks for one turn's decision and parses it. API failures raise; bad answers set parse_error."""
+        """Asks for one turn's decision and parses it. API failures raise; bad answers set parse_error.
+        `system_prompt` replaces the Gen 9 OU one for another format (prompts.system_prompt_for)."""
         messages = [
-            {"role": "system", "content": SYSTEM_PROMPT_DIRECT_COT},
+            {"role": "system", "content": system_prompt or SYSTEM_PROMPT_DIRECT_COT},
             {"role": "user", "content": USER_PROMPT_DIRECT_COT_TEMPLATE.format(battle_state=battle_state_str)},
         ]
         completion = await self.generate_completion(

@@ -145,10 +145,17 @@ class RulesetConfig(BaseModel):
     turn_timeout: Optional[float] = Field(
         default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )
-    team_mode: Literal["fixed", "draft"] = Field(
+    format: str = Field(default="gen9ou", description="Showdown format id the games are played in")
+    team_mode: Literal["fixed", "draft", "random"] = Field(
         default="fixed",
         description="fixed: every set plays the two `teams`, each from both sides. draft: each model plays the team it "
-        "built itself (rotomarena teams draft; repaired if it never got a legal one)",
+        "built itself (rotomarena teams draft; repaired if it never got a legal one). random: the format deals "
+        "every player a random team (a format with team: 'random')",
+    )
+    pick: Optional[int] = Field(
+        default=None, ge=1,
+        description="How many Pokémon each player brings from team preview, chosen in order, the first leading "
+        "(e.g. 3 for bring-6-pick-3 formats). Unset: all of them, and the player only chooses its lead",
     )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],

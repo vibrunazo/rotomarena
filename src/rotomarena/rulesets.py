@@ -19,7 +19,6 @@ from rotomarena.config import AppConfig
 from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE
 
 RULESETS_DIR = Path("data/rulesets")
-FORMAT = "gen9ou"
 
 
 class RulesChanged(RuntimeError):
@@ -32,7 +31,8 @@ def _sha(*texts: str) -> str:
 
 def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
     """Everything that decides how a game of this version is played, as recorded in every match."""
-    rules = {**app_cfg.ruleset.model_dump(), "format": FORMAT,
+    # A rule left unset isn't recorded, so a new optional setting doesn't change the rules of earlier versions
+    rules = {**{k: v for k, v in app_cfg.ruleset.model_dump().items() if v is not None},
              "battle_prompt": _sha(SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE)}
     # Models whose provider ignores the thinking budget, and the effort level each gets instead
     rules["thinking_exceptions"] = {k: a.thinking_effort for k, a in sorted(app_cfg.agents.items()) if a.thinking_effort}
