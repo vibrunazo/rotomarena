@@ -3,7 +3,8 @@ same legal lists the LLMs get, under the same rules, referee and repair.
 
 Stage 1 picks six Pokémon one by one (options: the legal list, minus species already taken under Species Clause).
 Stage 2 builds each set: its ability, item, Tera Type, nature and EV spread in one request, then its four moves one
-at a time. LLMs write any EVs; a decision model picks one of the common spreads in EV_SPREADS. Showdown validates
+at a time. LLMs write any EVs; a decision model picks one of the common spreads in EV_SPREADS. Under Item
+Clause (Champions) an item a teammate already holds isn't offered, as a species already taken isn't. Showdown validates
 the team; a rejected one is rebuilt with the problems added to the state, and after ATTEMPTS it is repaired."""
 
 from __future__ import annotations
@@ -128,7 +129,9 @@ async def draft_team_by_decisions(agent: AgentConfig, app_cfg: AppConfig, attemp
             answers = await ask(state(), {
                 "ability": Question(SET_INSTRUCTIONS.format(species=species, what="ability"),
                                     {a: a for a in o.get("abilities", [])}),
-                "item": Question(SET_INSTRUCTIONS.format(species=species, what="held item"), {i: i for i in rules["items"]}),
+                # Item Clause (Champions): an item a teammate already holds isn't offered, as taken species aren't
+                "item": Question(SET_INSTRUCTIONS.format(species=species, what="held item"),
+                                 {i: i for i in rules["items"] if not (champions and i in {t.get("item") for t in sets})}),
                 # Champions has no Terastallization: no Tera Type to choose
                 **({} if champions else {"tera": Question(SET_INSTRUCTIONS.format(species=species, what="Tera Type"),
                                                           {t: t for t in rules["types"]})}),
