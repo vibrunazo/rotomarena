@@ -165,7 +165,9 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         return turns * per_turn * math.ceil(games / lanes)
 
     remaining = {k: sum(pair_seconds(p, t) for p in plan) for k, t in spread.items()}
-    unmeasured = sorted({x for p in plan if p["done"] < p["planned"] for x in (p["a"], p["b"]) if x not in secs})
+    # a bot decides instantly, so only models can have a pace still to guess
+    unmeasured = sorted({x for p in plan if p["done"] < p["planned"] for x in (p["a"], p["b"])
+                         if x not in secs and _kind(app_cfg, x) != "bot"})
     stamps = [datetime.datetime.strptime(m.match_id[6:21], "%Y%m%d_%H%M%S") for m in matches
               if re.match(r"match_\d{8}_\d{6}", m.match_id)]
     first_game = min(stamps) if stamps else None
