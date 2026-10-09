@@ -174,6 +174,11 @@ class LadderConfig(BaseModel):
     """How ratings are computed and how many games placement and top-ups play."""
 
     anchor: str = Field(default="bonsai_2_27b", description="Config id whose rating is fixed")
+    play_last: List[str] = Field(
+        default_factory=list,
+        description="Slow models whose pairs play after every other pair (even the anchor's), so the quick games "
+        "fill the rankings first",
+    )
     cap_exempt_pairs: List[List[str]] = Field(
         default_factory=list,
         description="Pairs that play their games even when a player has reached its max_games (the games still "
@@ -250,8 +255,8 @@ class AgentConfig(BaseModel):
         "Recorded in the rules as an exception",
     )
     max_games: Optional[int] = Field(
-        default=None, ge=0, description="At most this many games in total, across every version (a spending cap for "
-        "paid models); schedules skip it once reached",
+        default=None, ge=0, description="At most this many games in each version (a spending cap for paid models); "
+        "schedules skip it once reached",
     )
     model_key: Optional[str] = Field(
         default=None,
@@ -313,12 +318,25 @@ class TelemetryConfig(BaseModel):
     save_reports: bool = Field(default=True)
 
 
-class BenchmarkConfig(BaseModel):
-    """One benchmark: a game format played under one kind of rules (say, Gen 9 OU with each model's own team).
-    `versions` are the ruleset.version ids whose games count; each id names exact rules (see rulesets.py)."""
+class BenchConfig(BaseModel):
+    """A family of leaderboards for one game, presented like SWE-bench's benchmarks: its own page and tab, e.g.
+    Rotom Gen9 Bench (Gen 9 OU) or Rotom Champ Bench (Pokémon Champions singles)."""
 
     id: str
     title: str
+    tagline: str = Field(default="", description="One line: what is played")
+    description: str = ""
+    status: Literal["live", "coming"] = "live"
+
+
+class BenchmarkConfig(BaseModel):
+    """One leaderboard: a game format played under one kind of rules (say, Gen 9 OU with each model's own team).
+    `versions` are the ruleset.version ids whose games count; each id names exact rules (see rulesets.py).
+    `bench` is the family it belongs to; a bench's first benchmark is its main leaderboard, the rest its variants."""
+
+    id: str
+    title: str
+    bench: str = ""
     category: str = Field(description="Group of benchmarks, e.g. Pokémon; categories get their own aggregate board")
     description: str = ""
     versions: List[str]
@@ -333,6 +351,7 @@ class LeaderboardConfig(BaseModel):
     description: str = ""
     kind: Literal["overall", "category", "benchmark"] = "benchmark"
     category: Optional[str] = None
+    bench: Optional[str] = None
     versions: List[str]
 
 
@@ -340,7 +359,12 @@ class AppConfig(BaseSettings):
     """Top-level application settings."""
 
     server: ServerConfig = Field(default_factory=ServerConfig)
-    ruleset: RulesetConfig = Field(default_factory=RulesetConfig)
+    ruleset: RulesetConfig = Field(default_factory=RulesetConfig, description="The version commands play (from play)")
+    rulesets: Dict[str, RulesetConfig] = Field(
+        default_factory=dict, description="Every version that can be played, by version id",
+    )
+    play: Optional[str] = Field(default=None, description="The version ladder and draft commands play by default")
+    benches: List[BenchConfig] = Field(default_factory=list)
     ladder: LadderConfig = Field(default_factory=LadderConfig)
     providers: Dict[str, ProviderConfig] = Field(default_factory=provider_presets)
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)
@@ -364,9 +388,27 @@ class AppConfig(BaseSettings):
                                          description=f"Every {c} benchmark together.",
                                          versions=[v for b in benchmarks if b.category == c for v in b.versions])
                        for c in categories]
-        boards += [LeaderboardConfig(id=b.id, title=b.title, kind="benchmark", category=b.category,
+        boards += [LeaderboardConfig(id=b.id, title=b.title, kind="benchmark", category=b.category, bench=b.bench or None,
                                      description=b.description, versions=b.versions) for b in benchmarks]
         return boards
+
+    @model_validator(mode="after")
+    def _pick_ruleset(self) -> "AppConfig":
+        for version, ruleset in self.rulesets.items():
+            ruleset.version = version
+        if self.play:
+            if self.play not in self.rulesets:
+                raise ValueError(f"play: {self.play!r} is not one of the rulesets ({', '.join(self.rulesets)})")
+            self.ruleset = self.rulesets[self.play]
+        return self
+
+    def playing(self, version: Optional[str]) -> "AppConfig":
+        """This config set to play another version (a command's --version); itself when version is None."""
+        if not version:
+            return self
+        if version not in self.rulesets:
+            raise ValueError(f"No ruleset {version!r} in the config (have: {', '.join(self.rulesets)})")
+        return self.model_copy(update={"ruleset": self.rulesets[version], "play": version})
 
     model_config = SettingsConfigDict(
         env_file=".env",

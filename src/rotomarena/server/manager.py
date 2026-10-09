@@ -192,9 +192,7 @@ class ShowdownServerManager:
     def write_config(self) -> None:
         """Writes config/config.js from ServerConfig (port, security, bind address), and installs RotomArena's own
         formats (custom_formats.js) where Showdown merges them into its format list."""
-        custom = self.server_dir / "dist" / "config" / "custom-formats.js"
-        custom.parent.mkdir(parents=True, exist_ok=True)
-        custom.write_text((Path(__file__).with_name("custom_formats.js")).read_text(encoding="utf-8"), encoding="utf-8")
+        install_custom_formats(self.server_dir)
         config_js = self.server_dir / "config" / "config.js"
         config_js.parent.mkdir(parents=True, exist_ok=True)
         config_js.write_text(
@@ -378,3 +376,13 @@ def _alive(pid: int) -> bool:
         return True
     except OSError:
         return False
+
+
+def install_custom_formats(server_dir: Path) -> None:
+    """Copies RotomArena's formats (custom_formats.js) to where Showdown merges them, for the server and for its
+    command-line validator alike."""
+    custom = Path(server_dir) / "dist" / "config" / "custom-formats.js"
+    source = Path(__file__).with_name("custom_formats.js").read_text(encoding="utf-8")
+    if not custom.exists() or custom.read_text(encoding="utf-8") != source:
+        custom.parent.mkdir(parents=True, exist_ok=True)
+        custom.write_text(source, encoding="utf-8")

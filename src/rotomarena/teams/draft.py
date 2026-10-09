@@ -26,7 +26,6 @@ from rotomarena.agents.factory import llm_client_for
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.llm.client import recover_answer
 
-FORMAT = "gen9ou"
 PROMPT_VERSION = "draft-3"  # draft-2: retries carried every failed answer and overflowed local context
 ATTEMPTS = 5  # per stage
 DRAFTS_DIR = Path("data/drafts")
@@ -89,7 +88,11 @@ Fix the team and answer again in the same format, with the whole team."""
 
 
 def _showdown_dir(app_cfg: AppConfig) -> Path:
-    return Path(app_cfg.server.server_dir).resolve()
+    from rotomarena.server.manager import install_custom_formats  # the validator needs RotomArena's formats too
+
+    path = Path(app_cfg.server.server_dir).resolve()
+    install_custom_formats(path)
+    return path
 
 
 def _node(app_cfg: AppConfig, script: Path, *args: str, stdin: str = "") -> Any:
@@ -98,34 +101,66 @@ def _node(app_cfg: AppConfig, script: Path, *args: str, stdin: str = "") -> Any:
     return json.loads(result.stdout)
 
 
-def format_rules(app_cfg: AppConfig, fmt: str = FORMAT) -> Dict[str, Any]:
-    """The format's legal species (with their base species), clauses and bans, read from the local Showdown."""
-    return _node(app_cfg, _RULES_SCRIPT, fmt)
+def format_rules(app_cfg: AppConfig, fmt: Optional[str] = None) -> Dict[str, Any]:
+    """The format's legal species (with their base species), clauses and bans, read from the local Showdown.
+    `fmt` defaults to the format being played (ruleset.format), as in the helpers below."""
+    return _node(app_cfg, _RULES_SCRIPT, fmt or app_cfg.ruleset.format)
 
 
-def species_options(app_cfg: AppConfig, names: List[str], fmt: str = FORMAT) -> Dict[str, Any]:
+def species_options(app_cfg: AppConfig, names: List[str], fmt: Optional[str] = None) -> Dict[str, Any]:
     """{species: {name, types, abilities, moves}}: what each Pokémon may have in the format."""
-    return _node(app_cfg, _OPTIONS_SCRIPT, fmt, *names)
+    return _node(app_cfg, _OPTIONS_SCRIPT, fmt or app_cfg.ruleset.format, *names)
 
 
-def validate_team(app_cfg: AppConfig, team_text: str, fmt: str = FORMAT) -> List[str]:
+def validate_team(app_cfg: AppConfig, team_text: str, fmt: Optional[str] = None) -> List[str]:
     """Showdown's validator messages for a team in export format; empty when the team is legal."""
-    result = subprocess.run(["node", "pokemon-showdown", "validate-team", fmt], input=team_text,
+    result = subprocess.run(["node", "pokemon-showdown", "validate-team", fmt or app_cfg.ruleset.format], input=team_text,
                             cwd=_showdown_dir(app_cfg), capture_output=True, text=True, encoding="utf-8")
     if result.returncode == 0:
         return []
     return [line.strip() for line in (result.stdout + result.stderr).splitlines() if line.strip()] or ["Invalid team."]
 
 
-def repair_team(app_cfg: AppConfig, team_text: str, seed: str, fmt: str = FORMAT) -> Dict[str, Any]:
+def repair_team(app_cfg: AppConfig, team_text: str, seed: str, fmt: Optional[str] = None) -> Dict[str, Any]:
     """{team, changes, problems}: the team made legal by replacing only what the validator rejects."""
-    return _node(app_cfg, _REPAIR_SCRIPT, fmt, seed, stdin=team_text or "")
+    return _node(app_cfg, _REPAIR_SCRIPT, fmt or app_cfg.ruleset.format, seed, stdin=team_text or "")
+
+
+# Pokémon Champions formats (Showdown's champions mods) build teams differently from Gen 9 OU: level 50, bring 3 of
+# the 6, Stat Points instead of EVs, Item Clause, Mega Evolution instead of Terastallization. The Gen 9 OU prompts
+# are rewritten for them where they state OU's numbers.
+CHAMPIONS_TEXT = [
+    ("- Exactly 6 Pokémon, all level 100.",
+     "- Exactly 6 Pokémon, all level 50. At team preview you bring 3 of your 6 to each battle and choose which."),
+    ("Each Pokémon needs an item, one of its abilities above, a Tera Type (any type), EVs (at most 252 in one stat and 510 "
+     "in total), a nature, and up to 4 of its moves above.",
+     "Each Pokémon needs an item (no two may hold the same item; a Pokémon holding its own Mega Stone can Mega Evolve once "
+     "per battle), one of its abilities above, Stat Points written on the EVs line (at most 32 in one stat and 66 in "
+     "total), a nature, and up to 4 of its moves above. There is no Terastallization."),
+    ("Tera Type: Type\nEVs: 252 Atk / 4 SpD / 252 Spe", "EVs: 32 Atk / 2 SpD / 32 Spe"),
+]
+
+
+def is_champions(fmt: str) -> bool:
+    return fmt.startswith("gen9champions")
+
+
+def prompts_for(fmt: str) -> Dict[str, str]:
+    """The drafting prompts for a format: Gen 9 OU's as written, rewritten for Champions formats."""
+    prompts = {"system": DRAFT_SYSTEM_PROMPT, "pick": PICK_PROMPT, "build": BUILD_PROMPT,
+               "retry_pick": RETRY_PICK, "retry_build": RETRY_BUILD}
+    if is_champions(fmt):
+        for old, new in CHAMPIONS_TEXT:
+            hits = [k for k, v in prompts.items() if old in v]
+            assert len(hits) == 1, f"Champions text no longer matches the prompts: {old[:40]}"
+            prompts[hits[0]] = prompts[hits[0]].replace(old, new)
+    return prompts
 
 
 def system_prompt(rules: Dict[str, Any], with_species: bool = True) -> str:
     clause_lines = "\n".join(f"- {c.split(': ', 1)[0]}: {c.split(': ', 1)[1].replace('&eacute;', 'é')}" for c in rules["clauses"])
     banned = rules["banned"]
-    return DRAFT_SYSTEM_PROMPT.format(
+    return prompts_for(rules["id"])["system"].format(
         format=rules["format"], clauses=clause_lines, abilities=", ".join(banned["abilities"]) or "none",
         moves=", ".join(banned["moves"]) or "none", items=", ".join(banned["items"]) or "none",
         species=", ".join(rules["species"]) if with_species else "(you have already picked yours)",
@@ -223,7 +258,8 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
 
     # Stage 1: six Pokémon from the legal list. `keep_picks` (an earlier draft's picks stage) skips it, for redoing
     # only the sets when the harness, not the model, spoiled them
-    base = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": PICK_PROMPT}]
+    prompts = prompts_for(rules["id"])
+    base = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": prompts["pick"]}]
     picks: List[str] = []
     plan: Optional[str] = None
     last: List[Dict[str, str]] = []
@@ -242,7 +278,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         if not problems:
             record["picks"]["legal"] = True
             break
-        last = retry(answer, RETRY_PICK, problems)
+        last = retry(answer, prompts["retry_pick"], problems)
     if not record["picks"]["legal"]:  # keep the legal picks, fill the rest with middling Pokémon
         stub = "\n\n".join(f"{p}\n- Protect" for p in picks) + "\n"
         filled = repair_team(app_cfg, stub, seed=agent.name)
@@ -254,7 +290,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
     # Stage 2: the sets, given each pick's legal abilities and moves, in a fresh conversation without the legal list
     intro = f"Step 1 is done. Your six Pokémon: {', '.join(picks)}." + (f" Your plan: {plan}" if plan else "")
     base = [{"role": "system", "content": system_prompt(rules, with_species=False)},
-            {"role": "user", "content": intro + "\n\n" + BUILD_PROMPT.format(
+            {"role": "user", "content": intro + "\n\n" + prompts["build"].format(
                 options=options_text(species_options(app_cfg, picks)))}]
     last = []
     for attempt in range(1, attempts + 1):
@@ -278,7 +314,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         if not problems:
             record.update(team=team, thought=_tag(answer, "thought"))
             break
-        last = retry(answer, RETRY_BUILD, problems)
+        last = retry(answer, prompts["retry_build"], problems)
     if record["team"] is None:
         last = next((a.get("team") for a in reversed(record["attempts"]) if a.get("team")), "")
         fixed = repair_team(app_cfg, (last or "\n\n".join(f"{p}\n- Protect" for p in picks)) + "\n", seed=agent.name)
@@ -314,7 +350,7 @@ def save_draft(record: Dict[str, Any], drafts_dir: Path = DRAFTS_DIR) -> Path:
     return path
 
 
-def load_drafts(drafts_dir: Path = DRAFTS_DIR, fmt: str = FORMAT, version: str = "") -> Dict[str, Dict[str, Any]]:
+def load_drafts(drafts_dir: Path = DRAFTS_DIR, fmt: str = "gen9ou", version: str = "") -> Dict[str, Dict[str, Any]]:
     """{config id: draft record} for every model that drafted in this format under this ruleset version (older
     folders are named by draft version: draft-1 for s2, draft-2 and draft-3 from before drafts followed versions)."""
     return {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((drafts_dir / fmt / version).glob("*.json"))}

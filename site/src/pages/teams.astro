@@ -1,20 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
 import DraftedTeam from '../components/DraftedTeam.astro';
-import { allDrafts } from '../lib/data';
+import { allDrafts, benches, type Draft } from '../lib/data';
 import { routes } from '../lib/routes';
 import reference from '../data/reference_teams.json';
 
-const drafts = (await allDrafts()).sort((a, b) => Number(b.legal) - Number(a.legal) || a.attempts.length - b.attempts.length);
-const legal = drafts.filter((d) => d.legal);
-const picks = Object.entries(
-  legal.flatMap((d) => d.members.map((m) => m.species)).reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
-).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-const unanimous = picks.filter(([, n]) => legal.length > 1 && n === legal.length).map(([s]) => s);
-// The meta score: how many of a team's Pokémon appear in at least one of Smogon's sample teams
-const byMeta = [...drafts].filter((d) => d.meta.of > 0)
-  .sort((a, b) => b.meta.used - a.meta.used || b.meta.slots - a.meta.slots || a.display_name.localeCompare(b.display_name));
-const sampleTeams = drafts[0]?.meta.sample_teams ?? 0;
+const all = await allDrafts();
+// One section per benchmark with teams, in the benches' order
+const groups = benches.filter((b) => all.some((d) => d.bench === b.id)).map((bench) => {
+  const drafts = all.filter((d) => d.bench === bench.id)
+    .sort((a, b) => Number(b.legal) - Number(a.legal) || a.attempts.length - b.attempts.length);
+  const legal = drafts.filter((d) => d.legal);
+  const picks = Object.entries(
+    legal.flatMap((d) => d.members.map((m) => m.species)).reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
+  ).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const unanimous = picks.filter(([, n]) => legal.length > 1 && n === legal.length).map(([s]) => s);
+  // The meta score: how many of a team's own picks appear in at least one of Smogon's sample teams (Gen 9 OU only)
+  const byMeta = [...drafts].filter((d) => d.meta.of > 0 && d.meta.sample_teams > 0)
+    .sort((a, b) => b.meta.used - a.meta.used || b.meta.slots - a.meta.slots || a.display_name.localeCompare(b.display_name));
+  return { bench, drafts, legal, picks, unanimous, byMeta, sampleTeams: drafts[0]?.meta.sample_teams ?? 0 };
+});
 const refs = (reference.teams as { title: string; archetype: string; builder: string; url: string; legal: boolean }[]);
 ---
 <Base title="Teambuilding" description="The teams language models built for themselves, and the validator that judged them.">
@@ -22,8 +27,8 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
   <h1>Teams</h1>
   <div class="prose">
     <p>
-      Every model builds its own Gen 9 OverUsed team, in two steps. First it picks six Pokémon, given the rules of the
-      format: the clauses, the banned abilities, moves and items, and the list of legal Pokémon. Then it gets the
+      In every benchmark, each model builds its own team, in two steps. First it picks six Pokémon, given the rules
+      of the format: the clauses, the banned abilities, moves and items, and the list of legal Pokémon. Then it gets the
       abilities and moves each of its six can legally have, and builds their sets. That is the same kind of help a
       player gets in a battle, where the legal moves are listed: rules, not strategy. It is not given usage
       statistics, sample teams or advice. What it builds is up to it.
@@ -36,18 +41,27 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
       deliberately unremarkable choices, so the mistake costs it something without costing it its place. Every
       attempt and every repair is published below.
     </p>
-    {unanimous.length > 0 && (
-      <p>
-        So far, {legal.length === 2 ? 'both' : `all ${legal.length}`} models that built a legal team chose
-        {' '}{unanimous.join(', ').replace(/, ([^,]*)$/, ' and $1')}. Whether this reflects the metagame or a shared memory of it
-        is a question we have chosen not to investigate.
-      </p>
-    )}
   </div>
+
+  {groups.length > 1 && (
+    <nav class="bench-jump" aria-label="Benchmarks">{groups.map((g) => <a href={`#${g.bench.id}`}>{g.bench.title}</a>)}</nav>
+  )}
+
+  {groups.map(({ bench, drafts, legal, picks, unanimous, byMeta, sampleTeams }) => (
+  <section id={bench.id} class="bench-section">
+  <h2 class="bench-title">{bench.title}</h2>
+  <p class="prose muted">{bench.tagline}</p>
+  {unanimous.length > 0 && (
+    <p class="prose">
+      So far, {legal.length === 2 ? 'both' : `all ${legal.length}`} models that built a legal team chose
+      {' '}{unanimous.join(', ').replace(/, ([^,]*)$/, ' and $1')}. Whether this reflects the metagame or a shared memory of it
+      is a question we have chosen not to investigate.
+    </p>
+  )}
 
   {sampleTeams > 0 && byMeta.length > 0 && (
     <>
-      <h2>Meta score</h2>
+      <h3>Meta score</h3>
       <p class="prose">
         How many of each model's own picks appear in at least one of Smogon's {sampleTeams} sample teams (listed under
         <a href="#reference-teams">Reference teams</a> below), and how many sample-team slots they fill between them.
@@ -77,17 +91,19 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
 
   {picks.length > 0 && (
     <>
-      <h2>Most drafted Pokémon</h2>
+      <h3>Most drafted Pokémon</h3>
       <ol class="picks">{picks.slice(0, 12).map(([s, n]) => <li><span>{s}</span><span class="num muted">{n} of {legal.length}</span></li>)}</ol>
     </>
   )}
 
-  <h2>The teams</h2>
+  <h3>The teams</h3>
   {drafts.length ? drafts.map((d) => <DraftedTeam draft={d} heading />) : <p class="muted">No model has drafted yet.</p>}
+  </section>
+  ))}
 
   <h2 id="reference-teams">Reference teams</h2>
   <p class="prose">
-    For testing the harness, and for benchmarks played with fixed teams, we use sample teams from Smogon's
+    For testing the harness, for the Gen 9 meta score and for benchmarks played with fixed teams, we use sample teams from Smogon's
     <a href="https://www.smogon.com/forums/threads/sv-ou-sample-teams-new-samples-added-post-spl-and-tera-blast-ban.3712513/">SV OU Sample Teams</a>
     thread, hosted by the OU Room and forum staff. Each was built by the player named below.
   </p>
@@ -112,4 +128,8 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
   .picks li { padding: 0.15rem 0; }
   .picks li span:first-child { display: inline-block; min-width: 12rem; }
   td .pill { margin-left: 0.4rem; }
+  .bench-jump { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin: 1.4rem 0 0; font: 600 0.9rem var(--font-display);
+    letter-spacing: 0.06em; text-transform: uppercase; }
+  .bench-section { margin-top: 2.2rem; }
+  .bench-title { font-size: 2rem; margin-bottom: 0.2rem; }
 </style>

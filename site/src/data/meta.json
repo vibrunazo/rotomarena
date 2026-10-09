@@ -1,14 +1,15 @@
 {
-  "generated_at": "2026-10-09T18:21:15+00:00",
+  "generated_at": "2026-10-09T22:39:52+00:00",
   "game": "pokemon",
   "formats": [
     "gen9ou"
   ],
-  "version": "s4",
+  "version": "c1",
   "versions": [
     "s4",
     "s1",
-    "s2"
+    "s2",
+    "c1"
   ],
   "rulesets": {
     "s4": {
@@ -62,6 +63,30 @@
       "format": "gen9ou",
       "battle_prompt": "ba3dda5d9965",
       "draft_prompt": "3a8760325e8d"
+    },
+    "c1": {
+      "version": "c1",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "thinking_budget": 1024,
+      "max_output_tokens": 2048,
+      "draft_max_output_tokens": 5120,
+      "turn_timeout": 7200.0,
+      "format": "gen9championsrotomarenabssregmb",
+      "team_mode": "draft",
+      "pick": 3,
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "battle_prompt": "41db2ebeaa2a",
+      "thinking_exceptions": {
+        "muse_spark_1_3": "minimal"
+      },
+      "decision_prompt": "5869c554b249",
+      "draft_prompt": "9fa078c51e6d",
+      "control_team": "opponent's",
+      "decision_draft_prompt": "d7c512fb79a3"
     }
   },
   "rules_mismatch": 0,
@@ -72,10 +97,12 @@
       "description": "Every rated game in every benchmark: how good each model is overall.",
       "kind": "overall",
       "category": null,
+      "bench": null,
       "versions": [
         "s4",
         "s1",
-        "s2"
+        "s2",
+        "c1"
       ],
       "rated_matches": 153,
       "models": 18
@@ -86,6 +113,7 @@
       "description": "Each model plays the Gen 9 OverUsed team it built itself: six Pokémon from the legal list, then their sets from their legal abilities and moves.",
       "kind": "benchmark",
       "category": "Pokémon",
+      "bench": "rotom-gen9-bench",
       "versions": [
         "s4"
       ],
@@ -98,6 +126,7 @@
       "description": "Every pairing plays the same two Gen 9 OverUsed teams from both sides; teambuilding not measured.",
       "kind": "benchmark",
       "category": "Pokémon",
+      "bench": "rotom-gen9-bench",
       "versions": [
         "s1"
       ],
@@ -110,22 +139,79 @@
       "description": "The first own-teams version (retired): teams drafted in one step from the legal Pokémon list alone, so most models were judged on remembering movepools.",
       "kind": "benchmark",
       "category": "Pokémon",
+      "bench": "rotom-gen9-bench",
       "versions": [
         "s2"
       ],
       "rated_matches": 7,
       "models": 8
+    },
+    {
+      "id": "champions-bss-own-teams",
+      "title": "Champions BSS Reg M-B · own teams",
+      "description": "Pokémon Champions singles under Regulation M-B: each model builds six from the regulation's list, with Champions' Stat Points and Mega Stones, and brings three of them to each battle.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "bench": "rotom-champ-bench",
+      "versions": [
+        "c1"
+      ],
+      "rated_matches": 0,
+      "models": 0
+    }
+  ],
+  "benches": [
+    {
+      "id": "rotom-gen9-bench",
+      "title": "Rotom Gen9 Bench",
+      "tagline": "Gen 9 OverUsed singles on Pokémon Showdown: six Pokémon each, level 100, the team each model built.",
+      "description": "Full Gen 9 OverUsed singles, the most played competitive format on Pokémon Showdown. Each model plays the team it built itself from the format's rules: six Pokémon at level 100, with Terastallization. Its variants are the same format with two fixed teams for everyone (s1), and the retired first version of team building (s2).",
+      "status": "live",
+      "boards": [
+        "gen9ou-own-teams",
+        "gen9ou-fixed-teams",
+        "gen9ou-own-teams-v1"
+      ],
+      "main": "gen9ou-own-teams",
+      "rated_matches": 153,
+      "models": 18
+    },
+    {
+      "id": "rotom-champ-bench",
+      "title": "Rotom Champ Bench",
+      "tagline": "Pokémon Champions singles, Regulation M-B: level 50, bring six and pick three, the team each model built.",
+      "description": "Pokémon Champions singles under Regulation M-B, the rules of the game's ranked Battle Stadium Singles. Each model builds six Pokémon from the regulation's list, with Champions' Stat Points (at most 32 in one stat, 66 in all), a different item on each and Mega Evolution instead of Terastallization, then brings three of the six to each battle. Everyone fights at level 50, and games are short.",
+      "status": "live",
+      "boards": [
+        "champions-bss-own-teams"
+      ],
+      "main": "champions-bss-own-teams",
+      "rated_matches": 0,
+      "models": 0
+    },
+    {
+      "id": "rotom-bw-bench",
+      "title": "Rotom BW Bench",
+      "tagline": "Coming later.",
+      "description": "Reserved for the next benchmark.",
+      "status": "coming",
+      "boards": [],
+      "main": null,
+      "rated_matches": 0,
+      "models": 0
     }
   ],
   "ruleset": {
-    "version": "s4",
+    "version": "c1",
     "profile": "ladder",
     "reasoning": "medium",
     "thinking_budget": 1024,
     "max_output_tokens": 2048,
     "draft_max_output_tokens": 5120,
     "turn_timeout": 7200.0,
+    "format": "gen9championsrotomarenabssregmb",
     "team_mode": "draft",
+    "pick": 3,
     "teams": [
       "balance",
       "hyper_offense"
@@ -133,6 +219,10 @@
   },
   "ladder": {
     "anchor": "bonsai_2_27b",
+    "play_last": [
+      "bonsai_2_27b",
+      "ornith_1_5_35b_a3b"
+    ],
     "cap_exempt_pairs": [
       [
         "gpt_6_luna_pro",

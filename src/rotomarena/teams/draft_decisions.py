@@ -14,7 +14,7 @@ from typing import Any, Dict, List, Optional
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.llm.decisions import Choice, DecisionClient, Question, Usage
 from rotomarena.teams.draft import (
-    ATTEMPTS, DraftUnavailable, PROMPT_VERSION, format_rules, repair_team, species_options, system_prompt,
+    ATTEMPTS, DraftUnavailable, PROMPT_VERSION, format_rules, is_champions, repair_team, species_options, system_prompt,
     validate_team,
 )
 
@@ -30,6 +30,22 @@ EV_SPREADS = {
     "252 HP / 4 Def / 252 SpD": "Specially defensive.",
     "252 HP / 128 Def / 128 SpD": "Mixed defensive.",
 }
+# The same spreads in Pokémon Champions Stat Points (at most 32 in a stat, 66 in all)
+CHAMPIONS_SPREADS = {
+    "32 Atk / 2 SpD / 32 Spe": "Fast physical attacker.",
+    "32 SpA / 2 SpD / 32 Spe": "Fast special attacker.",
+    "2 Atk / 32 SpA / 32 Spe": "Fast mixed attacker.",
+    "32 HP / 32 Atk / 2 SpD": "Bulky physical attacker.",
+    "32 HP / 32 SpA / 2 SpD": "Bulky special attacker.",
+    "32 HP / 2 Def / 32 Spe": "Bulky and fast.",
+    "32 HP / 32 Def / 2 SpD": "Physically defensive.",
+    "32 HP / 2 Def / 32 SpD": "Specially defensive.",
+    "32 HP / 17 Def / 17 SpD": "Mixed defensive.",
+}
+
+
+def spreads_for(fmt: str) -> dict:
+    return CHAMPIONS_SPREADS if is_champions(fmt) else EV_SPREADS
 PICK_INSTRUCTIONS = ("You are building a team for competitive Pokémon battles on Pokémon Showdown under the rules in "
                      "the state, and you will play it yourself in rated battles. Which legal Pokémon should be pick "
                      "{n} of 6, to give the team the best chance to win?")
@@ -75,6 +91,7 @@ async def draft_team_by_decisions(agent: AgentConfig, app_cfg: AppConfig, attemp
         return answers
 
     rules_text = system_prompt(rules, with_species=False)
+    champions = is_champions(rules["id"])
 
     # Stage 1: six picks, one at a time; Species Clause is kept by leaving taken species out of the options
     usage, picks, notes = Usage(), [], []
@@ -112,14 +129,16 @@ async def draft_team_by_decisions(agent: AgentConfig, app_cfg: AppConfig, attemp
                 "ability": Question(SET_INSTRUCTIONS.format(species=species, what="ability"),
                                     {a: a for a in o.get("abilities", [])}),
                 "item": Question(SET_INSTRUCTIONS.format(species=species, what="held item"), {i: i for i in rules["items"]}),
-                "tera": Question(SET_INSTRUCTIONS.format(species=species, what="Tera Type"), {t: t for t in rules["types"]}),
+                # Champions has no Terastallization: no Tera Type to choose
+                **({} if champions else {"tera": Question(SET_INSTRUCTIONS.format(species=species, what="Tera Type"),
+                                                          {t: t for t in rules["types"]})}),
                 "nature": Question(SET_INSTRUCTIONS.format(species=species, what="nature"),
                                    {n["name"]: (f"+{n['plus']}, -{n['minus']}" if n["plus"] else "neutral")
                                     for n in rules["natures"]}),
-                "evs": Question(SET_INSTRUCTIONS.format(species=species, what="EV spread"), dict(EV_SPREADS)),
+                "evs": Question(SET_INSTRUCTIONS.format(species=species, what="EV spread"), dict(spreads_for(rules["id"]))),
             }, usage)
-            current.update({k: answers[k].choice for k in ("ability", "item", "tera", "nature", "evs")})
-            notes += [f"{species} {k}: {answers[k].summary()}" for k in ("ability", "item", "tera", "nature", "evs")]
+            current.update({k: answers[k].choice for k in answers})
+            notes += [f"{species} {k}: {answers[k].summary()}" for k in answers]
             for n in range(1, 5):
                 left = {m: m for m in o.get("moves", []) if m not in current["moves"]}
                 if not left:

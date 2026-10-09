@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, boardModels, boards, fmtPct, isModel, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
+import { allModels, benches, boardModels, boards, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -15,7 +15,9 @@ const llm = isModel(m);
 const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x));
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
-const draft = (await getCollection('drafts')).find((entry) => entry.id === m.config_id)?.data;
+// Its own team in each bench (one per bench's current version)
+const drafts = (await getCollection('drafts')).map((e) => e.data).filter((d) => d.config_id === m.config_id);
+const benchTitle = (id: string | null) => benches.find((b) => b.id === id)?.title ?? '';
 const about = (await getCollection('about')).find((entry) => entry.id === m.config_id); // most models have none
 const About = about ? (await render(about)).Content : null;
 const pretty = (id: string | null) => (id ? id.replace(/^./, (c) => c.toUpperCase()) : '—');
@@ -81,7 +83,7 @@ const facts: [string, string][] = [
               const s = m.boards[b.id];
               return (
                 <tr>
-                  <td><a href={b === boards[0] ? '/leaderboard/' : `/leaderboard/${b.id}/`}>{b.title}</a></td>
+                  <td><a href={b.id === mainBoard.id ? '/leaderboard/' : `/leaderboard/${b.id}/`}>{b.title}</a></td>
                   <td class="r"><Rating model={s} /></td>
                   <td class="r num">{s.games}</td>
                   <td class="r num">{s.wins}–{s.losses}{s.draws ? `–${s.draws}` : ''}</td>
@@ -125,11 +127,16 @@ const facts: [string, string][] = [
     )}
   </div>
 
-  {draft && (
+  {drafts.length > 0 && (
     <>
-      <h2>Its own team</h2>
-      <p class="prose small muted">Built by the model itself from the rules of the format. <a href="/teams/">How teams are built</a>.</p>
-      <DraftedTeam draft={draft} />
+      <h2>{drafts.length > 1 ? 'Its own teams' : 'Its own team'}</h2>
+      <p class="prose small muted">Built by the model itself from the rules of each format. <a href="/teams/">How teams are built</a>.</p>
+      {drafts.map((d) => (
+        <>
+          {drafts.length > 1 && <h3 class="bench-team">{benchTitle(d.bench)}</h3>}
+          <DraftedTeam draft={d} />
+        </>
+      ))}
     </>
   )}
 

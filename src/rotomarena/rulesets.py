@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE
+from rotomarena.llm.prompts import USER_PROMPT_DIRECT_COT_TEMPLATE, system_prompt_for
 
 RULESETS_DIR = Path("data/rulesets")
 
@@ -33,19 +33,22 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
     """Everything that decides how a game of this version is played, as recorded in every match."""
     # A rule left unset isn't recorded, so a new optional setting doesn't change the rules of earlier versions
     rules = {**{k: v for k, v in app_cfg.ruleset.model_dump().items() if v is not None},
-             "battle_prompt": _sha(SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE)}
+             # the battle prompt as this format uses it (Gen 9 OU's as written)
+             "battle_prompt": _sha(system_prompt_for(app_cfg.ruleset.format, app_cfg.ruleset.pick),
+                                   USER_PROMPT_DIRECT_COT_TEMPLATE)}
     # Models whose provider ignores the thinking budget, and the effort level each gets instead
     rules["thinking_exceptions"] = {k: a.thinking_effort for k, a in sorted(app_cfg.agents.items()) if a.thinking_effort}
     from rotomarena.agents import decision  # imported here, like the drafts below
     rules["decision_prompt"] = _sha(decision.TURN_INSTRUCTIONS, decision.LEAD_INSTRUCTIONS)
     if app_cfg.ruleset.team_mode == "draft":
         from rotomarena.teams import draft, draft_decisions  # imported here: drafting imports the agent factory
-        rules["draft_prompt"] = _sha(draft.DRAFT_SYSTEM_PROMPT, draft.PICK_PROMPT, draft.BUILD_PROMPT, draft.RETRY_PICK,
-                                     draft.RETRY_BUILD, draft.PROMPT_VERSION, str(draft.ATTEMPTS))
+        p = draft.prompts_for(app_cfg.ruleset.format)  # Gen 9 OU's prompts as written, Champions' rewritten
+        rules["draft_prompt"] = _sha(p["system"], p["pick"], p["build"], p["retry_pick"], p["retry_build"],
+                                     draft.PROMPT_VERSION, str(draft.ATTEMPTS))
         rules["control_team"] = "opponent's"  # a control bot (Chimps at the Zoo) borrows its opponent's own team
         rules["decision_draft_prompt"] = _sha(
             draft_decisions.PICK_INSTRUCTIONS, draft_decisions.SET_INSTRUCTIONS, draft_decisions.MOVE_INSTRUCTIONS,
-            json.dumps(draft_decisions.EV_SPREADS), draft_decisions.DECISION_DRAFT_VERSION)
+            json.dumps(draft_decisions.spreads_for(app_cfg.ruleset.format)), draft_decisions.DECISION_DRAFT_VERSION)
     return rules
 
 

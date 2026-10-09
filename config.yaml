@@ -10,27 +10,59 @@ server:
   no_security: true
   auto_start: true
 
-# Rules shared by every player in a season. They are recorded in every match;
-# changing any of them starts a new season.
-ruleset:
-  # The version being played now: Gen 9 OU with each model's own team, drafted in two stages, and the same
-  # thinking budget for every model ("s4"). Other versions: "s3" (two-stage drafts, effort-level thinking; no games),
-  # "s2" (own teams, one-step draft, retired) and "s1" (team_mode "fixed", placement paused on 8 Oct).
-  version: "s4"
-  team_mode: "draft"
-  # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
-  #         local servers stop thinking at half), 2-hour hang guard
-  # concise: no hidden thinking, 1,024 tokens, 15-minute guard (fast games for videos and quick tests)
-  # Any of reasoning / max_output_tokens / turn_timeout set here overrides the profile.
-  profile: "ladder"
-  # Every model thinks at most 1,024 tokens per turn (OpenRouter reasoning.max_tokens, llama.cpp --reasoning-budget),
-  # then answers within the remaining 1,024: reaching the budget ends the thinking, not the answer.
-  thinking_budget: 1024
-  max_output_tokens: 2048
-  # Drafting writes six full sets in one answer, which needs more than a battle turn's 1,024 answer tokens: the same
-  # 1,024 tokens of thinking, then up to 4,096 for the team.
-  draft_max_output_tokens: 5120
-  teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
+# Rules shared by every player of a version. They are recorded in every match; changing any of them needs a new
+# version id.
+# The version the ladder and draft commands play unless given --version. Every version that can be played is under
+# rulesets, by its version id; a version id names exact rules, stored in data/rulesets/<version>.json on its first run.
+play: "c1"
+
+rulesets:
+  s4:
+    # Rotom Gen9 Bench: Gen 9 OU with each model's own team, drafted in two stages, and the same thinking budget for
+    # every model. Earlier versions: "s3" (two-stage drafts, effort-level thinking; no games), "s2" (own teams,
+    # one-step draft, retired) and "s1" (team_mode "fixed", placement paused on 8 Oct).
+    team_mode: "draft"
+    # ladder: models think (OpenRouter "medium" effort), 4,096 tokens per turn in total (thinking included;
+    #         local servers stop thinking at half), 2-hour hang guard
+    # concise: no hidden thinking, 1,024 tokens, 15-minute guard (fast games for videos and quick tests)
+    # Any of reasoning / max_output_tokens / turn_timeout set here overrides the profile.
+    profile: "ladder"
+    # Every model thinks at most 1,024 tokens per turn (OpenRouter reasoning.max_tokens, llama.cpp --reasoning-budget),
+    # then answers within the remaining 1,024: reaching the budget ends the thinking, not the answer.
+    thinking_budget: 1024
+    max_output_tokens: 2048
+    # Drafting writes six full sets in one answer, which needs more than a battle turn's 1,024 answer tokens: the same
+    # 1,024 tokens of thinking, then up to 4,096 for the team.
+    draft_max_output_tokens: 5120
+    teams: ["balance", "hyper_offense"]   # fixed mode: every ladder set plays both, from both sides
+
+  # Rotom Champ Bench: Pokémon Champions Battle Stadium Singles, Regulation M-B (level 50, bring 6 pick 3, Item
+  # Clause, Stat Points, Mega Evolution), each model playing the team it built; one game, no timer (our copy of the
+  # format, in server/custom_formats.js). The same thinking budget as s4.
+  c1:
+    format: "gen9championsrotomarenabssregmb"
+    team_mode: "draft"
+    pick: 3
+    profile: "ladder"
+    thinking_budget: 1024
+    max_output_tokens: 2048
+    draft_max_output_tokens: 5120
+
+# The benchmark families the site presents like SWE-bench's: each has its own page and leaderboard tab.
+benches:
+  - id: "rotom-gen9-bench"
+    title: "Rotom Gen9 Bench"
+    tagline: "Gen 9 OverUsed singles on Pokémon Showdown: six Pokémon each, level 100, the team each model built."
+    description: "Full Gen 9 OverUsed singles, the most played competitive format on Pokémon Showdown. Each model plays the team it built itself from the format's rules: six Pokémon at level 100, with Terastallization. Its variants are the same format with two fixed teams for everyone (s1), and the retired first version of team building (s2)."
+  - id: "rotom-champ-bench"
+    title: "Rotom Champ Bench"
+    tagline: "Pokémon Champions singles, Regulation M-B: level 50, bring six and pick three, the team each model built."
+    description: "Pokémon Champions singles under Regulation M-B, the rules of the game's ranked Battle Stadium Singles. Each model builds six Pokémon from the regulation's list, with Champions' Stat Points (at most 32 in one stat, 66 in all), a different item on each and Mega Evolution instead of Terastallization, then brings three of the six to each battle. Everyone fights at level 50, and games are short."
+  - id: "rotom-bw-bench"
+    title: "Rotom BW Bench"
+    tagline: "Coming later."
+    description: "Reserved for the next benchmark."
+    status: "coming"
 
 # The benchmarks the site ranks. Each lists the ruleset versions whose games count; a version id names exact rules,
 # stored in data/rulesets/<version>.json on its first run (change a rule and the next run demands a new version).
@@ -38,24 +70,37 @@ ruleset:
 benchmarks:
   - id: "gen9ou-own-teams"
     title: "Gen 9 OU · own teams"
+    bench: "rotom-gen9-bench"
     category: "Pokémon"
     description: "Each model plays the Gen 9 OverUsed team it built itself: six Pokémon from the legal list, then their sets from their legal abilities and moves."
     versions: ["s4"]
   - id: "gen9ou-fixed-teams"
     title: "Gen 9 OU · fixed teams"
+    bench: "rotom-gen9-bench"
     category: "Pokémon"
     description: "Every pairing plays the same two Gen 9 OverUsed teams from both sides; teambuilding not measured."
     versions: ["s1"]
   - id: "gen9ou-own-teams-v1"
     title: "Gen 9 OU · own teams (v1)"
+    bench: "rotom-gen9-bench"
     category: "Pokémon"
     description: "The first own-teams version (retired): teams drafted in one step from the legal Pokémon list alone, so most models were judged on remembering movepools."
     versions: ["s2"]
+
+  - id: "champions-bss-own-teams"
+    title: "Champions BSS Reg M-B · own teams"
+    bench: "rotom-champ-bench"
+    category: "Pokémon"
+    description: "Pokémon Champions singles under Regulation M-B: each model builds six from the regulation's list, with Champions' Stat Points and Mega Stones, and brings three of them to each battle."
+    versions: ["c1"]
 
 # Ratings: Bradley-Terry on the Elo scale, anchored to one registry entry.
 ladder:
   anchor: "bonsai_2_27b"    # fixed at anchor_rating; every placement plays it
   anchor_rating: 1500
+  # Slow local models (about 25 s a turn): their pairs play after every other pair, the anchor's included, so the
+  # quick games fill the rankings first. Ratings appear once the anchor has played.
+  play_last: ["bonsai_2_27b", "ornith_1_5_35b_a3b"]
   # Played even past a paid model's game cap (the games still count toward it): GPT-6 Luna writing its answers
   # against GPT-6 Luna answering with probabilities, the same model family both ways (added 9 Oct, about $0.03)
   cap_exempt_pairs:

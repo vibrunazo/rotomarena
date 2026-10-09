@@ -3,27 +3,30 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { boardModels, boards, fmtDate, fmtInt, isModel, mainBoard, meta } from '../lib/data';
+import { allModels, boardModels, fmtDate, fmtInt, isModel, liveBenches, mainBoard, meta } from '../lib/data';
 
-const models = await boardModels();
-const llms = models.filter((m) => isModel(m));
+const llms = (await allModels()).filter((m) => isModel(m) && m.games > 0);
+// Each benchmark's standings, top five of its main leaderboard
+const standings = await Promise.all(liveBenches.map(async (bench) => ({
+  bench, models: (await boardModels(bench.main!)).filter((m) => m.games > 0).slice(0, 5),
+})));
 const stats = [
   [fmtInt(meta.rated_matches), 'rated matches'],
   [fmtInt(meta.turns), 'turns analysed'],
   [fmtInt(meta.tokens), 'tokens processed'],
-  [fmtInt(llms.length), 'language models'],
+  [fmtInt(llms.length), 'models'],
 ];
 ---
 <Base title="RotomArena">
   <section class="hero">
-    <p class="eyebrow">{boards.length - 1} {boards.length === 2 ? 'benchmark' : 'benchmarks'} · {fmtInt(meta.rated_matches)} rated games</p>
+    <p class="eyebrow">{liveBenches.length} {liveBenches.length === 1 ? 'benchmark' : 'benchmarks'} · {fmtInt(meta.rated_matches)} rated games</p>
     <h1>Which language model is best at Pokémon?</h1>
     <p class="lede prose">
       Other benchmarks measure how well AI agents write code. RotomArena measures what people actually care about.
     </p>
     <p class="prose">
-      Language models play full competitive Pokémon battles (Gen 9 OU, fixed teams, both sides) against each other
-      and a set of calibrated reference opponents. Ratings are fitted with a Bradley-Terry model and reported with
+      Language models play full competitive Pokémon battles against each other, with teams they built themselves, in
+      {liveBenches.map((b) => b.title).join(' and ')}. Ratings are fitted with a Bradley-Terry model and reported with
       95% bootstrap intervals, because we are a serious benchmark.<sup class="fn-ref"><a href="#fn-serious">1</a></sup>
     </p>
     <p class="cta">
@@ -39,9 +42,15 @@ const stats = [
   </dl>
 
   <h2>Current standings</h2>
-  <p class="small muted">{mainBoard.title}: {mainBoard.description}</p>
-  <LeaderboardTable models={models} compact />
-  <p class="small muted">Updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}. <a href={routes.leaderboard}>Full leaderboard, intervals and head-to-head results →</a></p>
+  {standings.map(({ bench, models }) => (
+    <section class="standing">
+      <h3><a href={routes.bench(bench.id)}>{bench.title}</a></h3>
+      <p class="small muted">{bench.tagline}</p>
+      {models.length ? <LeaderboardTable models={models} compact /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
+      <p class="small muted"><a href={routes.board(bench.main!, bench.main === mainBoard.id)}>Full {bench.title} leaderboard →</a></p>
+    </section>
+  ))}
+  <p class="small muted">Updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}.</p>
 
   <h2>Key findings</h2>
   <Findings />
@@ -62,5 +71,8 @@ const stats = [
     border: 1px solid transparent; border-radius: var(--radius-lg); overflow: hidden; margin: 2rem 0 0; box-shadow: var(--shadow-panel); }
   .stats div { padding: 1rem 1.2rem; box-shadow: 1px 0 0 var(--line), 0 1px 0 var(--line); }
   .stats dt { font-size: 1.7rem; font-weight: 500; color: var(--cyan); text-shadow: var(--glow-text); }
+  .standing { margin: 1.4rem 0 1.8rem; }
+  .standing h3 { margin-bottom: 0.1rem; }
+  .standing h3 a { text-decoration: none; }
   .stats dd { margin: 0.2rem 0 0; font: 600 0.75rem/1.2 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 </style>

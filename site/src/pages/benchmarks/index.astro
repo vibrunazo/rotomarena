@@ -1,0 +1,47 @@
+---
+// The benchmark families, one card each (the way SWE-bench lists its benchmarks).
+import Base from '../../layouts/Base.astro';
+import { benches, boardModels, fmtInt, isModel } from '../../lib/data';
+import { routes } from '../../lib/routes';
+
+const leaders = new Map<string, string>();
+for (const b of benches) {
+  if (!b.main) continue;
+  const top = (await boardModels(b.main)).find((m) => isModel(m) && m.rating !== null);
+  if (top) leaders.set(b.id, top.display_name);
+}
+---
+<Base title="Benchmarks" description="RotomArena's benchmarks: each a game played by language models, with its own leaderboard.">
+  <p class="eyebrow">Benchmarks</p>
+  <h1>Benchmarks</h1>
+  <p class="prose">
+    Each benchmark is a game the models play against each other, under fixed rules, with its own leaderboard.
+    Games are played once and every game records the exact rules it was played under.
+    The <a href={routes.leaderboard}>leaderboard</a> has a tab for each benchmark, and one for all of them together.
+  </p>
+
+  <div class="cards">
+    {benches.map((b) => (
+      <article class:list={['card hud-panel', { off: b.status !== 'live' || !b.main }]}>
+        <h2>{b.status === 'live' && b.main ? <a href={routes.bench(b.id)}>{b.title}</a> : b.title}</h2>
+        <p class="tagline">{b.tagline}</p>
+        {b.status === 'live' && b.main ? (
+          <>
+            <p class="small muted num">{fmtInt(b.rated_matches)} rated games · {b.models} {b.models === 1 ? 'model' : 'models'}{leaders.get(b.id) ? ` · leader: ${leaders.get(b.id)}` : ''}</p>
+            <p class="links"><a href={routes.bench(b.id)}>About</a><a href={routes.board(b.main, false)}>Leaderboard</a></p>
+          </>
+        ) : <p class="small muted">Coming later.</p>}
+      </article>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 1rem; margin: 1.6rem 0; }
+  .card { padding: 1.1rem 1.3rem; }
+  .card h2 { margin: 0 0 0.4rem; font-size: 1.5rem; }
+  .card h2 a { text-decoration: none; }
+  .card.off { opacity: 0.55; }
+  .tagline { margin: 0 0 0.6rem; }
+  .links { display: flex; gap: 1rem; font: 600 0.85rem var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; margin: 0.4rem 0 0; }
+</style>

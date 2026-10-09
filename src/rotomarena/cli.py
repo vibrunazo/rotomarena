@@ -132,6 +132,7 @@ def teams_draft(
     attempts: int = typer.Option(5, "--attempts", "-a", help="Tries, with Showdown's validator messages fed back; "
                                  "after the last, the team is repaired with middling replacements"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+    version: Optional[str] = typer.Option(None, "--version", help="Ruleset version to play (default: play in the config)"),
     keep_picks: bool = typer.Option(False, "--keep-picks", help="Keep each model's six picks from its current draft "
                                     "and redo only the sets (when the harness, not the model, spoiled them)"),
 ):
@@ -140,7 +141,7 @@ def teams_draft(
     from rotomarena.teams.draft import DraftUnavailable, draft_team, load_drafts, save_draft
     from rotomarena.teams.draft_decisions import draft_team_by_decisions
 
-    app_cfg = AppConfig.load(config_file)
+    app_cfg = AppConfig.load(config_file).playing(version)
     agents = [app_cfg.agents[c] for c in config_ids if c in app_cfg.agents]
     unknown = [c for c in config_ids if c not in app_cfg.agents]
     if unknown:
@@ -164,7 +165,7 @@ def teams_draft(
                 if agent.type == "decision":
                     record = await draft_team_by_decisions(agent, app_cfg, attempts=attempts, log=console.print)
                 else:
-                    earlier = load_drafts(version=app_cfg.ruleset.version).get(agent.name) if keep_picks else None
+                    earlier = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format).get(agent.name) if keep_picks else None
                     record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print,
                                               keep_picks=earlier["picks"] if earlier else None)
             except DraftUnavailable as e:
@@ -591,12 +592,13 @@ def ladder_place_all(
 def ladder_round_robin(
     games_per_pair: int = typer.Option(2, "--games-per-pair", "-g", help="Games each pair plays, one side each"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+    version: Optional[str] = typer.Option(None, "--version", help="Ruleset version to play (default: play in the config)"),
 ):
     """Every language model plays every other one, pair by pair in balanced rounds (a pair's games run at once),
     so a run stopped early still covers every model evenly. Resumes where it stopped."""
     from rotomarena.ladder import RunHalted, round_robin
 
-    app_cfg = AppConfig.load(config_file)
+    app_cfg = AppConfig.load(config_file).playing(version)
     _register_rules(app_cfg)
     server_mgr = ShowdownServerManager(app_cfg.server)
 

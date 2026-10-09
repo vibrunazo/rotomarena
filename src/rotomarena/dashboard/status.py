@@ -125,7 +125,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     max_autopilot = app_cfg.ladder.max_autopilot
 
     # The schedule, exactly as round_robin builds it
-    drafts = load_drafts(version=version)
+    drafts = load_drafts(version=version, fmt=app_cfg.ruleset.format)
     ids = round_robin_ids(app_cfg)
     sitting_out = [k for k, a in app_cfg.agents.items() if a.is_model and a.active and k not in ids]
     pairs = quick_pairs_first(round_robin_pairs(ids), app_cfg)

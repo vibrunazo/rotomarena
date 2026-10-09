@@ -19,7 +19,12 @@ that is repaired with middling replacements. Results go to `data/drafts/gen9ou/`
 draft`) plays these teams: `uv run rotomarena ladder round-robin` has every LLM play every other one. It refuses to start local models while other local servers run (a ladder run may own them).
 Credited Smogon sample teams for tests and fixed-team benchmarks live in `data/teams/smogon/` (`index.json` has builders).
 
-Benchmarks and versions: `benchmarks:` in config.yaml lists what the site ranks; each lists ruleset versions. A
+Benches and versions: config.yaml has `rulesets:` (every playable version: s4 = Gen 9 OU own teams, c1 = Pokémon
+Champions BSS Reg M-B own teams) and `play:` (the one commands use; `--version` overrides for `teams draft` and
+`ladder round-robin`). `benches:` are the benchmark families the site presents like SWE-bench (Rotom Gen9 Bench,
+Rotom Champ Bench, Rotom BW Bench to come); each `benchmarks:` entry names its bench, the first being the main
+leaderboard. Champions formats are RotomArena's copies in src/rotomarena/server/custom_formats.js (one game, no
+timer). Benchmarks and versions: `benchmarks:` in config.yaml lists what the site ranks; each lists ruleset versions. A
 version's exact rules (ruleset, format, prompt fingerprints) are stored in `data/rulesets/<version>.json` on its first
 run; ladder commands refuse to play if the configuration no longer matches, so a rule change needs a new
 `ruleset.version`. The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.

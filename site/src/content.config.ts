@@ -99,10 +99,11 @@ const member = z.object({
 });
 const drafts = defineCollection({
   loader: file('src/data/drafts.json', {
-    parser: (text) => JSON.parse(text).map((d: { config_id: string }) => ({ id: d.config_id, ...d })),
+    parser: (text) => JSON.parse(text).map((d: { config_id: string; version: string }) => ({ id: `${d.version}-${d.config_id}`, ...d })),
   }),
   schema: z.object({
-    config_id: z.string(), display_name: z.string(), model: z.string().nullable(), model_key: z.string().nullable(),
+    config_id: z.string(), version: z.string(), format: z.string(), bench: z.string().nullable(),
+    display_name: z.string(), model: z.string().nullable(), model_key: z.string().nullable(),
     format: z.string(), prompt_version: z.string(), drafted_at: z.string(), legal: z.boolean(),
     repaired: z.boolean(), repairs: z.array(z.string()),
     picks: z.object({

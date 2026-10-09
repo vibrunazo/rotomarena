@@ -1,7 +1,7 @@
 ---
 import { routes } from '../lib/routes';
 import '../styles/global.css';
-import { boards, meta } from '../lib/data';
+import { liveBenches, meta } from '../lib/data';
 
 interface Props {
   title: string;
@@ -12,6 +12,7 @@ const fullTitle = title === 'RotomArena' ? title : `${title} | RotomArena`;
 const path = Astro.url.pathname;
 const nav = [
   [routes.leaderboard, 'Leaderboard'],
+  [routes.benchmarks, 'Benchmarks'],
   [routes.matches, 'Matches'],
   [routes.teams, 'Teams'],
   [routes.paper, 'Paper'],
@@ -49,7 +50,7 @@ const nav = [
           </span>
           <span>
             <span class="brand-title">RotomArena</span>
-            <span class="brand-subtitle">LLM gaming benchmark &bull; {boards.length - 1} {boards.length === 2 ? 'benchmark' : 'benchmarks'}</span>
+            <span class="brand-subtitle">LLM gaming benchmark &bull; {liveBenches.length} {liveBenches.length === 1 ? 'benchmark' : 'benchmarks'}</span>
           </span>
         </a>
         <nav aria-label="Main">

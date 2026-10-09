@@ -13,7 +13,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from rotomarena.config import MODEL_TYPES, AppConfig, derived_model_key
 from rotomarena.ladder import LadderState, versions_state
-from rotomarena.rulesets import stored_rules
+from rotomarena.rulesets import current_rules, stored_rules
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
@@ -277,12 +277,19 @@ def fallbacks(draft: Dict[str, Any]) -> set:
     return {_id(m.group(1)) for r in repairs if (m := _FALLBACK.match(r))}
 
 
-def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _bench_main(boards, bench: str) -> Optional[str]:
+    """A bench's main leaderboard: its first benchmark."""
+    return next((b.id for b in boards if b.kind == "benchmark" and b.bench == bench), None)
+
+
+def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]], version: str = "", fmt: str = "gen9ou",
+               bench: Optional[str] = None) -> List[Dict[str, Any]]:
     """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
-    verdict. Raw answers and reasoning traces stay in data/drafts."""
+    verdict. Raw answers and reasoning traces stay in data/drafts. The meta score compares against Smogon's Gen 9
+    OU sample teams, so other formats get none."""
     parsed = {cid: parse_smogon_team(d["team"]).members if d.get("team") else [] for cid, d in drafts.items()}
     sprites = _sprite_ids(app_cfg, sorted({m.species for members in parsed.values() for m in members}))
-    usage, sample_teams = smogon_usage()
+    usage, sample_teams = smogon_usage() if fmt == "gen9ou" else ({}, 0)
     rows = []
     for cid, d in sorted(drafts.items()):
         registry = app_cfg.agents.get(cid)
@@ -290,7 +297,7 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]]) -> List[Di
         filler = fallbacks(d)
         own = [n for m, n in zip(parsed[cid], counts) if _id(m.species) not in filler]
         rows.append({
-            "config_id": cid,
+            "config_id": cid, "version": version, "format": fmt, "bench": bench,
             "display_name": (registry.display_name if registry and registry.display_name else cid),
             "model": d.get("model"), "model_key": d.get("model_key"), "format": d["format"],
             "prompt_version": d["prompt_version"], "drafted_at": d["drafted_at"],
@@ -410,7 +417,17 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
         _write_json(out / "retracted" / f"{m.match_id}.json", match_record(m, runs_dir, app_cfg))
 
     _write_json(out / "models.json", models)
-    _write_json(out / "drafts.json", draft_rows(app_cfg, load_drafts(version=app_cfg.ruleset.version)))
+    # Each bench's teams: the drafts of its main board's own-teams versions
+    drafts = []
+    for board in boards:
+        if board.kind != "benchmark" or not board.bench or board.id != _bench_main(boards, board.bench):
+            continue
+        for version in board.versions:
+            rules = stored_rules(version) or (app_cfg.rulesets[version].model_dump() if version in app_cfg.rulesets else {})
+            if rules.get("team_mode") == "draft":
+                fmt = rules.get("format", "gen9ou")
+                drafts += draft_rows(app_cfg, load_drafts(version=version, fmt=fmt), version, fmt, board.bench)
+    _write_json(out / "drafts.json", drafts)
     reference = REFERENCE_TEAMS  # credited community teams: tests, fixed-team benchmarks and the meta score
     _write_json(out / "reference_teams.json", json.loads(reference.read_text(encoding="utf-8")) if reference.exists() else {"teams": []})
     _write_json(out / "head_to_head.json", {b.id: _head_to_head(states[b.id]) for b in boards})
@@ -421,10 +438,19 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
         "formats": sorted({m.format for m in state.matches}),
         "version": app_cfg.ruleset.version,
         "versions": all_versions,
-        "rulesets": {v: stored_rules(v) for v in all_versions},
+        # stored rules, or for a version still waiting for its first game the rules it will be played under
+        "rulesets": {v: stored_rules(v) or (current_rules(app_cfg.playing(v)) if v in app_cfg.rulesets else None)
+                     for v in all_versions},
         "rules_mismatch": state.rules_mismatch,
         "leaderboards": [{**b.model_dump(), "rated_matches": len(states[b.id].outcomes),
                           "models": sum(1 for r in states[b.id].ratings.values() if r.games)} for b in boards],
+        # The bench families (SWE-bench style): each with its leaderboards, the first being its main one
+        "benches": [{**bench.model_dump(), "boards": [b.id for b in boards if b.bench == bench.id],
+                     "main": _bench_main(boards, bench.id),
+                     "rated_matches": sum(len(states[b.id].outcomes) for b in boards if b.bench == bench.id),
+                     "models": len({k for b in boards if b.bench == bench.id
+                                    for k, r in states[b.id].ratings.items() if r.games})}
+                    for bench in app_cfg.benches],
         "ruleset": app_cfg.ruleset.model_dump(),
         "ladder": app_cfg.ladder.model_dump(),
         "matches": len(state.matches),

@@ -373,12 +373,15 @@ def test_capped_models_stop_at_their_game_limit(tmp_path):
     from rotomarena.ladder import games_left, games_played
 
     runs = tmp_path / "runs"
-    for i, season in enumerate(["s1", "s2", "s4"]):  # games count in every version
+    for i, season in enumerate(["s1", "s4", "s4", "c1"]):  # the cap counts the version being played
         m = make_match(f"match_2026100{i}_x_g1", "haiku", "bonsai", "haiku", season=season)
         m.save_json(runs / m.match_id / "breadcrumbs.json")
-    app_cfg = AppConfig(telemetry=TelemetryConfig(output_dir=runs))
+    from rotomarena.config import RulesetConfig
+    app_cfg = AppConfig(telemetry=TelemetryConfig(output_dir=runs), ruleset=RulesetConfig(version="s4"))
     haiku = AgentConfig(name="haiku", type="direct_llm", max_games=8)
-    assert games_played(app_cfg, "haiku") == 3 and games_left(app_cfg, haiku) == 5
+    assert games_played(app_cfg, "haiku") == 2 and games_left(app_cfg, haiku) == 6
+    champ = AppConfig(telemetry=TelemetryConfig(output_dir=runs), ruleset=RulesetConfig(version="c1"))
+    assert games_left(champ, haiku) == 7  # a new benchmark gets its own budget
     assert games_left(app_cfg, AgentConfig(name="bonsai", type="direct_llm")) > 1000  # uncapped
 
 
@@ -401,3 +404,16 @@ def test_a_cap_exempt_pair_plays_past_the_game_cap(tmp_path):
 
     app_cfg = AppConfig(ladder=LadderConfig(cap_exempt_pairs=[["luna", "luna_decisions"]]))
     assert cap_exempt(app_cfg, "luna_decisions", "luna") and not cap_exempt(app_cfg, "luna", "haiku")
+
+
+def test_slow_models_play_last_even_the_anchor():
+    from rotomarena.ladder import quick_pairs_first, round_robin_pairs
+
+    agents = {"anchor": AgentConfig(name="anchor", type="direct_llm", provider="local", port=8080),
+              "fast": AgentConfig(name="fast", type="direct_llm", provider="local", port=8081),
+              "api": AgentConfig(name="api", type="direct_llm", provider="openrouter"),
+              "jev": AgentConfig(name="jev", type="decision", provider="openrouter")}
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="anchor", play_last=["anchor"]))
+    order = [frozenset(p) for p in quick_pairs_first(round_robin_pairs(list(agents)), app_cfg)]
+    assert all("anchor" in p for p in order[-3:]) and not any("anchor" in p for p in order[:3])
+    assert order[0] == frozenset({"api", "jev"})

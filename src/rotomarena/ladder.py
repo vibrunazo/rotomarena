@@ -149,8 +149,9 @@ def lane_count(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, r
 
 
 def games_played(app_cfg: AppConfig, config_id: str) -> int:
-    """Every game this registry entry has played, in any version (each one cost tokens)."""
-    return sum(1 for m in load_matches(app_cfg.telemetry.output_dir)
+    """Every game this registry entry has played in the version being played, voided ones included (each one cost
+    tokens). The cap counts per version, so a new benchmark gets its own budget."""
+    return sum(1 for m in load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
                if any(p.config_id == config_id for p in m.players))
 
 
@@ -165,7 +166,7 @@ def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
 
 def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:
     """The team a model built itself (draft mode) under this ruleset version: its legal team, or the repaired one."""
-    record = load_drafts(version=app_cfg.ruleset.version).get(agent.name)
+    record = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format).get(agent.name)
     text = playable_team(record) if record else None
     if not text:
         raise ValueError(f"{agent.name} has no team of its own yet: run `rotomarena teams draft {agent.name}`")
@@ -193,7 +194,7 @@ def round_robin_ids(app_cfg: AppConfig, log: Callable[[str], None] = lambda msg:
     yet, say its provider was down, joins later), and the active control bots, which borrow their opponent's."""
     ids = [k for k, a in app_cfg.agents.items() if a.is_model and a.active]
     if app_cfg.ruleset.team_mode == "draft":
-        drafts = load_drafts(version=app_cfg.ruleset.version)
+        drafts = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format)
         for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
             log(f"{k} sits out: no team of its own under {app_cfg.ruleset.version} yet (rotomarena teams draft {k})")
             ids.remove(k)
@@ -218,7 +219,8 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
     """The quickest pairs first, so most models are rated early: a local model's game takes tens of minutes, an API
     model's a few. A model is rated once its games connect it to the anchor, so the anchor's pairs with API models
     open, then API models among themselves, then pairs with one local model, the anchor's with local models, and
-    local against local last. Within a tier the balanced rounds keep their order."""
+    local against local last. Within a tier the balanced rounds keep their order. Pairs with a model in
+    ladder.play_last (slow local models) come after all of those, fewest such models first."""
     anchor = app_cfg.ladder.anchor
 
     def tier(pair: Tuple[str, str]) -> int:
@@ -228,7 +230,8 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
             return 0 if not others else 3
         return {0: 1, 1: 2}.get(len(local), 4)
 
-    return sorted(pairs, key=tier)
+    last = set(app_cfg.ladder.play_last)
+    return sorted(pairs, key=lambda pair: (sum(x in last for x in pair), tier(pair)))
 
 
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
