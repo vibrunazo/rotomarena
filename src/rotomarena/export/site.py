@@ -70,6 +70,7 @@ def _turn_entries(match: MatchTelemetry) -> List[Dict[str, Any]]:
             "tokens": metrics.get("total_tokens", 0),
             "latency_ms": round(metrics.get("latency_ms", 0.0)),
             "cost_usd": metrics.get("cost_usd", 0.0),
+            "probabilities": crumb.probabilities,
         })
     return entries
 

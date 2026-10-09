@@ -74,7 +74,8 @@ class DecisionPlayer(BaseBenchmarkPlayer):
         target, tera = options[choice.choice]
         order = self.create_order(target, terastallize=tera)
         self.record_turn_telemetry(battle=battle, chosen_order=order, reasoning=choice.summary(),
-                                   llm_metrics=usage.metrics(self.client.provider_name).model_dump())
+                                   llm_metrics=usage.metrics(self.client.provider_name).model_dump(),
+                                   probabilities=choice.probabilities)
         return order
 
     async def teampreview(self, battle: Battle) -> str:
@@ -99,5 +100,6 @@ class DecisionPlayer(BaseBenchmarkPlayer):
             reasoning=choice.summary() if source == "model" else f"{note} Leading with the first Pokémon.",
             decision_source=source,
             llm_metrics=usage.metrics(self.client.provider_name).model_dump() if usage else None,
+            probabilities=choice.probabilities if choice else None,
         )
         return message

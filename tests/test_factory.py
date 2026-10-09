@@ -121,3 +121,13 @@ def test_a_voided_game_is_not_rated():
                for r, c in (("p1", "a"), ("p2", "b"))]
     m = MatchTelemetry(match_id="m", players=players, total_turns=10, voided="played before its thinking exception")
     assert void_reason(m, 0.5) == "played before its thinking exception"
+
+
+def test_a_battle_name_is_the_showdown_username_and_the_display_name_stays_whole():
+    from rotomarena.agents.factory import format_bot_display_name
+    from rotomarena.config import AgentConfig
+
+    luna = AgentConfig(name="luna_dec", type="decision", display_name="GPT-6 Luna Decisions", battle_name="Luna Decisions")
+    assert format_bot_display_name(luna) == "Luna Decisions"
+    assert format_bot_display_name(luna, tag="2") == "Luna Decisions 2"  # a set's second game: still whole
+    assert luna.display_name == "GPT-6 Luna Decisions"

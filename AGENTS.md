@@ -24,6 +24,11 @@ version's exact rules (ruleset, format, prompt fingerprints) are stored in `data
 run; ladder commands refuse to play if the configuration no longer matches, so a rule change needs a new
 `ruleset.version`. The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.
 
+Game data for videos and analysis: `runs/<match>/` has `breadcrumbs.json` (every decision: thought, action,
+timing, tokens, cost; decision models also `probabilities` for every option), `battle_log.json` and `replay.html`;
+`runs/live/<battle>.jsonl` has the same decisions written as they were made. A model's `battle_name` (16
+characters at most) is its Showdown username; `display_name` is what the site shows.
+
 Long runs: start them from the run monitor (`powershell -File scripts\monitor.ps1`, then its Start run button,
 http://localhost:8765/), never from an agent's shell: the Claude desktop app kills its shells' child processes when it
 restarts or updates, and console windows invite being closed. The monitor shows progress, live battles with the

@@ -231,6 +231,11 @@ class AgentConfig(BaseModel):
     active: bool = Field(
         default=True, description="Plays new games; retired models keep their games and ratings, but sit out schedules",
     )
+    battle_name: Optional[str] = Field(
+        default=None, max_length=16,
+        description="Its Showdown username when display_name is too long: Showdown allows 18 characters and a set's "
+        "second game adds \" 2\", so 16 keep it whole (battle footage showed \"GPT-6 Luna Decisio\")",
+    )
     thinking_effort: Optional[ReasoningLevel] = Field(
         default=None,
         description="For a model whose provider ignores the ruleset's thinking budget (it keeps thinking until the "

@@ -77,6 +77,7 @@ class BaseBenchmarkPlayer(Player):
         hidden_reasoning: str = "",
         search_telemetry: Optional[Dict[str, Any]] = None,
         llm_metrics: Optional[Dict[str, Any]] = None,
+        probabilities: Optional[Dict[str, float]] = None,
     ) -> None:
         """Records a structured breadcrumb entry for this turn."""
         if not self.breadcrumbs_recorder:
@@ -111,6 +112,7 @@ class BaseBenchmarkPlayer(Player):
             hidden_reasoning=hidden_reasoning,
             search_telemetry=search_telemetry,
             llm_metrics=llm_metrics,
+            probabilities=probabilities,
             timestamp=datetime.datetime.now().isoformat(),
         )
         self.breadcrumbs_recorder.record_turn(crumb, battle.battle_tag)

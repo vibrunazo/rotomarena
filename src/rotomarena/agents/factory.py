@@ -166,8 +166,8 @@ def format_bot_display_name(
     """Formats a clean, human-readable bot name (max 18 chars for Showdown)."""
     a_type = agent_cfg.type
 
-    if agent_cfg.display_name:
-        base = agent_cfg.display_name
+    if agent_cfg.battle_name or agent_cfg.display_name:
+        base = agent_cfg.battle_name or agent_cfg.display_name
     elif agent_cfg.is_model:
         model = resolved_model or agent_cfg.model or ""
         if model:

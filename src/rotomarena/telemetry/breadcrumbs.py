@@ -51,6 +51,8 @@ class TurnBreadcrumb(BaseModel):
     hidden_reasoning: str = ""
     search_telemetry: Optional[Dict[str, Any]] = None
     llm_metrics: Optional[Dict[str, Any]] = None
+    # A decision model's probability for every option it was offered ({"MOVE: earthquake": 0.62, ...})
+    probabilities: Optional[Dict[str, float]] = None
     timestamp: str = ""
 
 
@@ -113,6 +115,8 @@ class BreadcrumbsRecorder:
                 "action": breadcrumb.chosen_action, "thought": breadcrumb.reasoning,
                 "seconds": round((metrics.get("latency_ms") or 0) / 1000, 1),
                 "thinking_tokens": metrics.get("reasoning_tokens") or 0}
+        if breadcrumb.probabilities:
+            line["probabilities"] = breadcrumb.probabilities
         with open(path, "w" if first else "a", encoding="utf-8") as f:
             f.write(json.dumps(line, ensure_ascii=False) + "\n")
 

@@ -23,6 +23,7 @@ const decision = z.object({
   source: z.string(),
   thought: z.string(),
   hidden_reasoning: z.string().default(''),
+  probabilities: z.record(z.string(), z.number()).nullable().optional(), // decision models: every option's probability
   note: z.string(),
   tokens: z.number(),
   latency_ms: z.number(),

@@ -112,3 +112,16 @@ def test_each_decision_is_written_live_for_its_battle(tmp_path):
                                             llm_metrics={"latency_ms": 2500, "reasoning_tokens": 300}), "battle-gen9ou-7")
     rows = [json.loads(l) for l in (live / "battle-gen9ou-7.jsonl").read_text().splitlines()]
     assert [r["player"] for r in rows] == ["A", "B"] and rows[0]["thought"] == "A thinks" and rows[0]["seconds"] == 2.5
+
+
+def test_a_decision_models_probabilities_are_kept_and_written_live(tmp_path):
+    import json
+
+    from rotomarena.telemetry.breadcrumbs import BreadcrumbsRecorder, TurnBreadcrumb
+
+    recorder = BreadcrumbsRecorder("m", live_dir=tmp_path)
+    probs = {"MOVE: earthquake": 0.62, "SWITCH: corviknight": 0.38}
+    recorder.record_turn(TurnBreadcrumb(turn=3, agent_name="Jev", agent_type="decision", chosen_action="/choose move earthquake",
+                                        timestamp="t", probabilities=probs), "battle-gen9ou-9")
+    assert recorder.breadcrumbs[0].probabilities == probs
+    assert json.loads((tmp_path / "battle-gen9ou-9.jsonl").read_text())["probabilities"] == probs
