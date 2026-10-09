@@ -40,12 +40,10 @@ const repairs = [...d.picks.repairs, ...d.repairs];
           <strong>{m.species}</strong>
           <span class="small muted">{m.item}</span>
           {m.fallback
-            ? <span class="small muted" title="Put in by the referee when the model's own pick was missing or illegal: not its choice">fallback, not its pick</span>
-            : d.meta.sample_teams > 0 && (
-              <span class:list={['small', m.smogon_teams ? 'muted' : 'off-meta']} title={`Used by ${m.smogon_teams} of Smogon's ${d.meta.sample_teams} sample teams`}>
-                {m.smogon_teams ? `in ${m.smogon_teams} of ${d.meta.sample_teams} Smogon teams` : 'in no Smogon team'}
-              </span>
-            )}
+            ? <span class="pill tiny" title="Put in by the referee when the model's own pick was missing or illegal: not its choice">fallback</span>
+            : d.meta.sample_teams > 0 && (m.smogon_teams
+              ? <span class="pill tiny accent" title={`Meta pick: used by ${m.smogon_teams} of Smogon's ${d.meta.sample_teams} sample teams`}>meta</span>
+              : <span class="pill tiny warn" title={`Off-meta pick: none of Smogon's ${d.meta.sample_teams} sample teams uses it`}>off-meta</span>)}
         </li>
       ))}
     </ul>
@@ -89,7 +87,7 @@ const repairs = [...d.picks.repairs, ...d.repairs];
 </div>
 
 <style>
-  .off-meta { color: var(--amber); }
+  .mons .pill.tiny { margin-top: 0.3rem; font-size: 0.62rem; padding: 0 0.4rem; }
   .draft { padding: 1rem 1.2rem; margin: 1rem 0; }
   .draft-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
   .draft-head h3 { margin: 0; }
