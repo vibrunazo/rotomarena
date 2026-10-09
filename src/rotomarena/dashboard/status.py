@@ -170,7 +170,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     first_game = min(stamps) if stamps else None
 
     # Processes and servers
-    driver_pid = _read_int(RUNS / "roundrobin.pid")
+    driver_pid = _read_int(RUNS / "driver.pid")
     showdown_run = _read_int(Path(app_cfg.server.server_dir).resolve().parent / "showdown.run")
     try:
         servers = running_servers(app_cfg)

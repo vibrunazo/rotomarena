@@ -24,6 +24,12 @@ version's exact rules (ruleset, format, prompt fingerprints) are stored in `data
 run; ladder commands refuse to play if the configuration no longer matches, so a rule change needs a new
 `ruleset.version`. The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.
 
+Long runs: start them from the run monitor (`powershell -File scripts\monitor.ps1`, then its Start run button,
+http://localhost:8765/), never from an agent's shell: the Claude desktop app kills its shells' child processes when it
+restarts or updates, and console windows invite being closed. The monitor shows progress, live battles with the
+models' thoughts, costs and a time range; its Stop run button also stops the Showdown and local model servers.
+While a run plays, don't start another battle or ladder command: it would need the same Showdown server (refused).
+
 Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`.
 For ladder tests, point `--config` at a scratch config with its own `ruleset.version` and `telemetry.output_dir`
 so test games never land in a real benchmark.

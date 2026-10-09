@@ -1,0 +1,73 @@
+"""Runs the round robin and publishes the standings to the site every 45 minutes (export, commit site/src/data,
+push), and once more when it ends. Started by the run monitor's Start button (or `python -m
+rotomarena.dashboard.driver`); stopped by its Stop button. Logs to runs/roundrobin*.log."""
+
+from __future__ import annotations
+
+import datetime
+import os
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+RUNS = ROOT / "runs"
+DRIVER_PID = RUNS / "driver.pid"
+ROUND_ROBIN_PID = RUNS / "roundrobin.pid"
+PUBLISH_EVERY = 45 * 60
+GAMES_PER_PAIR = 2
+NO_WINDOW = 0x08000000 if sys.platform == "win32" else 0  # CREATE_NO_WINDOW: children never open a console
+
+env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}
+uv = shutil.which("uv") or "uv"
+
+
+def say(msg: str) -> None:
+    with open(RUNS / "roundrobin-publisher.log", "a", encoding="utf-8") as log:
+        log.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M} {msg}\n")
+
+
+def run(*cmd: str) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace",
+                          creationflags=NO_WINDOW)
+
+
+def publish(final: bool) -> None:
+    export = run(uv, "run", "rotomarena", "export-site", "--out", "site/src/data")
+    say(f"export: {export.stdout.strip().splitlines()[0] if export.stdout.strip() else export.stderr[-300:]}")
+    run("git", "add", "site/src/data")
+    if run("git", "diff", "--cached", "--quiet").returncode == 0:
+        say("nothing new to publish")
+        return
+    games = export.stdout.split("matches (")[1].split(" rated")[0] if "matches (" in export.stdout else "?"
+    title = f"data: own-teams round robin, {games} rated games overall" + (" (run ended)" if final else "")
+    commit = run("git", "commit", "-q", "-m", title)
+    push = run("git", "push", "-q")
+    say(f"published: {title} (commit {commit.returncode}, push {push.returncode} {push.stderr.strip()[:200]})")
+
+
+def main() -> None:
+    RUNS.mkdir(exist_ok=True)
+    DRIVER_PID.write_text(str(os.getpid()))
+    say("starting round robin")
+    with open(RUNS / "roundrobin.log", "a", encoding="utf-8") as out, \
+            open(RUNS / "roundrobin.err", "a", encoding="utf-8") as err:
+        proc = subprocess.Popen([uv, "run", "rotomarena", "ladder", "round-robin", "--games-per-pair", str(GAMES_PER_PAIR)],
+                                cwd=ROOT, env=env, stdout=out, stderr=err, creationflags=NO_WINDOW)
+        ROUND_ROBIN_PID.write_text(str(proc.pid))
+        last = time.time()
+        while proc.poll() is None:
+            time.sleep(60)
+            if time.time() - last > PUBLISH_EVERY:
+                publish(final=False)
+                last = time.time()
+    say(f"round robin exited with {proc.returncode}")
+    publish(final=True)
+    say("done")
+    DRIVER_PID.unlink(missing_ok=True)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,12 +1,13 @@
 """The run monitor's web server: the page, /api/status (cached for a few seconds, since every page on the LAN
 polls it), and live battles: /watch/<room> plays a battle in Showdown's player and /api/battle/<room> hands it the
-new log lines. Read-only."""
+new log lines. Its buttons POST to /api/run/start, /api/run/stop and /api/monitor/stop."""
 
 from __future__ import annotations
 
 import asyncio
 import html
 import json
+import os
 import re
 import threading
 import time
@@ -15,6 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 from rotomarena.config import AppConfig
+from rotomarena.dashboard.control import start_run, stop_run
 from rotomarena.dashboard.relay import relay
 from rotomarena.dashboard.status import live_battles, status
 
@@ -96,6 +98,21 @@ def serve(config_file: str, host: str, port: int) -> None:
                     self._send(500, "application/json", json.dumps({"error": str(e)}).encode("utf-8"))
             else:
                 self._send(404, "text/plain", b"not found")
+
+        def do_POST(self) -> None:  # noqa: N802
+            path = self.path.split("?")[0].rstrip("/")
+            if path == "/api/run/start":
+                message = start_run()
+            elif path == "/api/run/stop":
+                message = stop_run(AppConfig.load(config_file))
+            elif path == "/api/monitor/stop":
+                message = "The monitor stopped. Start it again with scripts/monitor.ps1."
+                threading.Timer(0.5, lambda: os._exit(0)).start()
+            else:
+                self._send(404, "text/plain", b"not found")
+                return
+            cache.clear()  # the next status shows the change
+            self._send(200, "application/json", json.dumps({"message": message}).encode("utf-8"))
 
         def _send(self, code: int, kind: str, body: bytes) -> None:
             self.send_response(code)

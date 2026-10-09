@@ -69,6 +69,13 @@
   details summary { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; }
   .scroll { overflow-x: auto; }
   a { color: var(--cyan); }
+  .controls { display: inline-flex; gap: 8px; }
+  .controls button { font: 600 0.8rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text);
+                     background: var(--panel); border: 1px solid var(--line-strong); border-radius: 8px; padding: 5px 12px; cursor: pointer; }
+  .controls button:hover { border-color: var(--cyan); }
+  .controls button.danger:hover { border-color: var(--bad); color: var(--bad); }
+  .controls button:disabled { opacity: 0.5; cursor: wait; }
+  #notice { margin: -6px 0 14px; color: var(--text-dim); }
 </style>
 </head>
 <body>
@@ -78,7 +85,12 @@
     <span id="state" class="pill">Loading</span>
     <span class="spacer"></span>
     <span class="small faint" id="updated"></span>
+    <span class="controls">
+      <button id="run-btn" type="button" hidden></button>
+      <button id="monitor-btn" type="button" data-action="monitor/stop" data-confirm="Stop the monitor? The run keeps going; start the monitor again with scripts/monitor.ps1.">Stop monitor</button>
+    </span>
   </header>
+  <p id="notice" class="small" hidden></p>
 
   <section class="grid tiles" id="tiles"></section>
 
@@ -121,6 +133,14 @@ function render(s) {
   if (!s.run.running) { state.className = 'pill bad'; state.textContent = '■ Stopped'; }
   else if (s.run.idle_minutes >= 20) { state.className = 'pill warn'; state.textContent = `▲ No activity for ${s.run.idle_minutes} min`; }
   else { state.className = 'pill good'; state.textContent = '● Running'; }
+  const runBtn = document.getElementById('run-btn');
+  runBtn.hidden = false;
+  if (s.run.running) {
+    runBtn.textContent = 'Stop run'; runBtn.className = 'danger'; runBtn.dataset.action = 'run/stop';
+    runBtn.dataset.confirm = 'Stop the round robin? The games in progress are lost (Start replays them); finished games are kept.';
+  } else {
+    runBtn.textContent = 'Start run'; runBtn.className = ''; runBtn.dataset.action = 'run/start'; runBtn.dataset.confirm = '';
+  }
   document.getElementById('updated').textContent = `Version ${s.version} · updated ${time(s.now)} · refreshes every 15 s`;
 
   const t = s.totals;
@@ -180,6 +200,21 @@ function render(s) {
       <td class="bar-cell"><div class="row">${bar(p.done, p.planned || 2, 'thin')}<span>${p.done} / ${p.planned}</span></div></td>
       <td class="small">${!p.planned ? '<span class="faint">skipped (cap)</span>' : p.done >= p.planned ? '✓ done' : c && p.index === c.index ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
 }
+
+document.querySelectorAll('.controls button').forEach((btn) => btn.addEventListener('click', async () => {
+  if (btn.dataset.confirm && !confirm(btn.dataset.confirm)) return;
+  btn.disabled = true;
+  const notice = document.getElementById('notice');
+  try {
+    const r = await fetch('api/' + btn.dataset.action, {method: 'POST'});
+    notice.textContent = (await r.json()).message;
+  } catch (e) {
+    notice.textContent = 'The monitor did not answer.';
+  }
+  notice.hidden = false;
+  btn.disabled = false;
+  setTimeout(refresh, 1500);
+}));
 
 async function refresh() {
   try {
