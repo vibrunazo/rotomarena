@@ -112,7 +112,7 @@
   </section>
 
   <section class="panel">
-    <details><summary>Every pair in the schedule</summary><div class="scroll" style="margin-top:10px"><table id="plan"></table></div></details>
+    <details><summary id="plan-summary">Every pair in the schedule</summary><div class="scroll" style="margin-top:10px"><table id="plan"></table></div></details>
   </section>
 </div>
 
@@ -203,10 +203,14 @@ function render(s) {
   document.getElementById('machinery').innerHTML = `<table><tbody>${rows.map(([k, v]) => `<tr><td class="muted" style="width:9rem">${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>` +
     (s.errors.length ? `<h2 style="margin-top:12px">Errors this run</h2><div class="err">${esc(s.errors.join('\n'))}</div>` : '');
 
+  // Pairs a game cap rules out entirely are left out; their numbers stay, so the gaps show where they were
+  const played = s.plan.filter((p) => p.planned);
+  document.getElementById('plan-summary').textContent =
+    `Every pair in the schedule (${played.length}${played.length < s.plan.length ? `; ${s.plan.length - played.length} skipped by game caps not shown` : ''})`;
   document.getElementById('plan').innerHTML = `<thead><tr><th class="num">#</th><th>Pair</th><th class="bar-cell">Games</th><th>Status</th></tr></thead><tbody>` +
-    s.plan.map((p) => `<tr><td class="num faint">${p.index}</td><td>${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])}</td>
-      <td class="bar-cell"><div class="row">${bar(p.done, p.planned || 2, 'thin')}<span>${p.done} / ${p.planned}</span></div></td>
-      <td class="small">${!p.planned ? '<span class="faint">skipped (cap)</span>' : p.done >= p.planned ? '✓ done' : c && p.index === c.index ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
+    played.map((p) => `<tr><td class="num faint">${p.index}</td><td>${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])}</td>
+      <td class="bar-cell"><div class="row">${bar(p.done, p.planned, 'thin')}<span>${p.done} / ${p.planned}</span></div></td>
+      <td class="small">${p.done >= p.planned ? '✓ done' : c && p.index === c.index ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
 }
 
 document.querySelectorAll('.controls button').forEach((btn) => btn.addEventListener('click', async () => {
