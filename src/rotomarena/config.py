@@ -167,6 +167,11 @@ class LadderConfig(BaseModel):
     """How ratings are computed and how many games placement and top-ups play."""
 
     anchor: str = Field(default="bonsai_2_27b", description="Config id whose rating is fixed")
+    cap_exempt_pairs: List[List[str]] = Field(
+        default_factory=list,
+        description="Pairs that play their games even when a player has reached its max_games (the games still "
+        "count toward the cap), for a matchup worth paying for: e.g. a model against its own decision variant",
+    )
     anchor_rating: float = Field(default=1500.0)
     parallel_games: int = Field(
         default=4, ge=1,

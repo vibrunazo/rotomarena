@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.ladder import games_left, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
+from rotomarena.ladder import cap_exempt, games_left, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
 from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
@@ -134,7 +134,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     for i, (a, b) in enumerate(pairs, 1):
         done = state.games(a, b)
         need = max(GAMES_PER_PAIR - done, 0)
-        more = min(need, left[a], left[b])
+        more = need if cap_exempt(app_cfg, a, b) else min(need, left[a], left[b])
         left[a] -= more
         left[b] -= more
         planned = done + more

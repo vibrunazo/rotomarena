@@ -393,3 +393,11 @@ def test_the_control_bot_borrows_its_opponents_own_team(monkeypatch):
     assert ladder.set_teams(chimps, model, app_cfg) == ("m's team", "m's team")
     assert ladder.set_teams(model, chimps, app_cfg) == ("m's team", "m's team")
     assert ladder.set_teams(model, other, app_cfg) == ("m's team", "o's team")
+
+
+def test_a_cap_exempt_pair_plays_past_the_game_cap(tmp_path):
+    from rotomarena.config import LadderConfig
+    from rotomarena.ladder import cap_exempt
+
+    app_cfg = AppConfig(ladder=LadderConfig(cap_exempt_pairs=[["luna", "luna_decisions"]]))
+    assert cap_exempt(app_cfg, "luna_decisions", "luna") and not cap_exempt(app_cfg, "luna", "haiku")

@@ -56,6 +56,10 @@ benchmarks:
 ladder:
   anchor: "bonsai_2_27b"    # fixed at anchor_rating; every placement plays it
   anchor_rating: 1500
+  # Played even past a paid model's game cap (the games still count toward it): GPT-6 Luna writing its answers
+  # against GPT-6 Luna answering with probabilities, the same model family both ways (added 9 Oct, about $0.03)
+  cap_exempt_pairs:
+    - ["gpt_6_luna_pro", "gpt_6_luna_decisions"]
   games_per_set: 4          # 2 teams x 2 sides
   parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
   provisional_games: 16     # a full placement

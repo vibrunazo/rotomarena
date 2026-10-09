@@ -154,6 +154,11 @@ def games_played(app_cfg: AppConfig, config_id: str) -> int:
                if any(p.config_id == config_id for p in m.players))
 
 
+def cap_exempt(app_cfg: AppConfig, a: str, b: str) -> bool:
+    """Whether this pair plays even past a player's game cap (ladder.cap_exempt_pairs)."""
+    return any({a, b} == set(pair) for pair in app_cfg.ladder.cap_exempt_pairs)
+
+
 def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
     return max(agent.max_games - games_played(app_cfg, agent.name), 0) if agent.max_games is not None else 10**9
 
@@ -233,7 +238,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
         done = version_state(app_cfg).games(a, b)
         if done >= games_per_pair:
             continue
-        capped = [x for x in (a, b) if games_left(app_cfg, app_cfg.agents[x]) <= 0]
+        capped = [] if cap_exempt(app_cfg, a, b) else [x for x in (a, b) if games_left(app_cfg, app_cfg.agents[x]) <= 0]
         if capped:
             log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: {', '.join(capped)} reached its game cap")
             continue
@@ -253,7 +258,8 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     run checks for halts and restarts crashed local servers, as it did between games when they ran one by one."""
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
     agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
-    remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
+    if not cap_exempt(app_cfg, id_a, id_b):
+        remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
     if remaining <= 0:
         return 0
     lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
