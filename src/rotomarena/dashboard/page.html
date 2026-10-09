@@ -57,7 +57,9 @@
   .bar-cell { width: 34%; min-width: 7rem; }
   .bar-cell .row { display: flex; align-items: center; gap: 8px; }
   .bar-cell .row .track { flex: 1; }
-  .bar-cell .row span { font-variant-numeric: tabular-nums; color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; }
+  /* a fixed-width count, so every bar in a column has the same length */
+  .bar-cell .row span { font-variant-numeric: tabular-nums; color: var(--text-dim); font-size: 0.82rem; white-space: nowrap;
+                        flex: 0 0 4.5em; text-align: right; }
   .chip { display: inline-block; padding: 1px 7px; border-radius: 6px; border: 1px solid var(--line-strong); color: var(--text-dim);
           font: 600 0.7rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; }
   .game { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
