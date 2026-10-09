@@ -167,6 +167,32 @@ def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:
     return parse_smogon_team(text, name=f"{agent.display_name or agent.name}'s team")
 
 
+def set_teams(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig) -> Tuple[Team, Team]:
+    """The two teams of a set. Draft mode: each model's own team, except that a control bot (which can't build one)
+    plays its opponent's, so only the play differs between them. Fixed mode: the ruleset's two teams."""
+    if app_cfg.ruleset.team_mode != "draft":
+        return tuple(load_preset_team(t) for t in app_cfg.ruleset.teams)
+    if agent_a.role == "control":
+        team = own_team(agent_b, app_cfg)
+        return team, team
+    if agent_b.role == "control":
+        team = own_team(agent_a, app_cfg)
+        return team, team
+    return own_team(agent_a, app_cfg), own_team(agent_b, app_cfg)
+
+
+def round_robin_ids(app_cfg: AppConfig, log: Callable[[str], None] = lambda msg: None) -> List[str]:
+    """Who plays the round robin: every active model with a team of its own under this version (a model without one
+    yet, say its provider was down, joins later), and the active control bots, which borrow their opponent's."""
+    ids = [k for k, a in app_cfg.agents.items() if a.is_model and a.active]
+    if app_cfg.ruleset.team_mode == "draft":
+        drafts = load_drafts(version=app_cfg.ruleset.version)
+        for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
+            log(f"{k} sits out: no team of its own under {app_cfg.ruleset.version} yet (rotomarena teams draft {k})")
+            ids.remove(k)
+    return ids + [k for k, a in app_cfg.agents.items() if a.role == "control" and a.active]
+
+
 def round_robin_pairs(ids: List[str]) -> List[Tuple[str, str]]:
     """Every pair once, in rounds where each model plays at most one game (the circle method), so a run stopped
     halfway has given every model about the same number of games."""
@@ -199,16 +225,10 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
 
 
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
-    """Every language model plays every other one, pair by pair in balanced rounds, so coverage grows evenly.
+    """Every model plays every other one (and the control bot), pair by pair in balanced rounds, so coverage grows evenly.
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
     for two local models costs about one game's time instead of two. Resumable."""
-    ids = [k for k, a in app_cfg.agents.items() if a.is_model and a.active]
-    if app_cfg.ruleset.team_mode == "draft":  # a model without a team yet (say, its provider was down) joins later
-        drafts = load_drafts(version=app_cfg.ruleset.version)
-        for k in [k for k in ids if not playable_team(drafts.get(k) or {})]:
-            log(f"{k} sits out: no team of its own under {app_cfg.ruleset.version} yet (rotomarena teams draft {k})")
-            ids.remove(k)
-    pairs = quick_pairs_first(round_robin_pairs(ids), app_cfg)
+    pairs = quick_pairs_first(round_robin_pairs(round_robin_ids(app_cfg, log)), app_cfg)
     for i, (a, b) in enumerate(pairs, 1):
         done = version_state(app_cfg).games(a, b)
         if done >= games_per_pair:
@@ -240,8 +260,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
              for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
     players = [p for lane in lanes for p in lane]
     own = app_cfg.ruleset.team_mode == "draft"
-    team_1, team_2 = ((own_team(agent_a, app_cfg), own_team(agent_b, app_cfg)) if own
-                      else (load_preset_team(t) for t in app_cfg.ruleset.teams))
+    team_1, team_2 = set_teams(agent_a, agent_b, app_cfg)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
     played_before = len(_pair_matches(app_cfg, id_a, id_b))
 

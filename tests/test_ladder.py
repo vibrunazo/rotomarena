@@ -371,3 +371,16 @@ def test_capped_models_stop_at_their_game_limit(tmp_path):
     haiku = AgentConfig(name="haiku", type="direct_llm", max_games=8)
     assert games_played(app_cfg, "haiku") == 3 and games_left(app_cfg, haiku) == 5
     assert games_left(app_cfg, AgentConfig(name="bonsai", type="direct_llm")) > 1000  # uncapped
+
+
+def test_the_control_bot_borrows_its_opponents_own_team(monkeypatch):
+    from rotomarena import ladder
+    from rotomarena.config import RulesetConfig
+
+    monkeypatch.setattr(ladder, "own_team", lambda agent, cfg: f"{agent.name}'s team")
+    app_cfg = AppConfig(ruleset=RulesetConfig(team_mode="draft"))
+    chimps = AgentConfig(name="random_ai", type="random", role="control")
+    model, other = AgentConfig(name="m", type="direct_llm"), AgentConfig(name="o", type="direct_llm")
+    assert ladder.set_teams(chimps, model, app_cfg) == ("m's team", "m's team")
+    assert ladder.set_teams(model, chimps, app_cfg) == ("m's team", "m's team")
+    assert ladder.set_teams(model, other, app_cfg) == ("m's team", "o's team")

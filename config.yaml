@@ -223,8 +223,11 @@ agents:
     model: "openai/gpt-6-luna-decisions"
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
+  # Hans Rosling's chimpanzees, picking answers at random from bananas: a model that loses to them isn't playing.
+  # In own-teams versions they borrow their opponent's team, so the two sides differ only in how they play.
   random_ai:
     type: "random"
+    display_name: "Chimps at the Zoo"
     role: "control"
 
   # Test bot (not an anchor; only rated if it plays)

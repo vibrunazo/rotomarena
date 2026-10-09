@@ -42,6 +42,7 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
         from rotomarena.teams import draft, draft_decisions  # imported here: drafting imports the agent factory
         rules["draft_prompt"] = _sha(draft.DRAFT_SYSTEM_PROMPT, draft.PICK_PROMPT, draft.BUILD_PROMPT, draft.RETRY_PICK,
                                      draft.RETRY_BUILD, draft.PROMPT_VERSION, str(draft.ATTEMPTS))
+        rules["control_team"] = "opponent's"  # a control bot (Chimps at the Zoo) borrows its opponent's own team
         rules["decision_draft_prompt"] = _sha(
             draft_decisions.PICK_INSTRUCTIONS, draft_decisions.SET_INSTRUCTIONS, draft_decisions.MOVE_INSTRUCTIONS,
             json.dumps(draft_decisions.EV_SPREADS), draft_decisions.DECISION_DRAFT_VERSION)

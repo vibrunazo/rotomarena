@@ -119,7 +119,10 @@ def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> D
         "version": match.ruleset.get("version"),
         "date": match.match_id.split("_")[1] if match.match_id.count("_") > 1 else "",
         "players": [
-            {**p.model_dump(), "model_key": model_key(p, app_cfg), "autopilot_rate": round(autopilot_rate(match, p.role), 3)}
+            {**p.model_dump(), "model_key": model_key(p, app_cfg), "autopilot_rate": round(autopilot_rate(match, p.role), 3),
+             # the name it has now (Random AI became Chimps at the Zoo), not the one it played under
+             "display_name": (app_cfg.agents[p.config_id].display_name if p.config_id in app_cfg.agents
+                              and app_cfg.agents[p.config_id].display_name else p.display_name)}
             for p in match.players
         ],
         "winner_role": winner_role,

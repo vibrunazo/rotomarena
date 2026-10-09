@@ -94,8 +94,8 @@ decision records which of these happened. A match is void if either side was on 
 
 ### Opponents and placement
 
-New models are placed by a fixed schedule. They first play {l.control_games} games against Random AI, a control
-that picks a legal action uniformly at random.<sup class="fn-ref"><a href="#fn-control">1</a></sup> They then play a
+New models are placed by a fixed schedule. They first play {l.control_games} games against Chimps at the Zoo, a control
+that picks a legal action uniformly at random, named for Hans Rosling's chimpanzees.<sup class="fn-ref"><a href="#fn-control">1</a></sup> They then play a
 set against each anchor ({anchorName}, a local language model, and our search bot), one set against a free
 sparring partner, and one set against the closest-rated language model. Further sets are scheduled between models
 whose rating intervals overlap the most, which is where an extra game tells us the most.

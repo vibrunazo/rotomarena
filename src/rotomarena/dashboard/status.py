@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.ladder import games_left, quick_pairs_first, round_robin_pairs, version_state
+from rotomarena.ladder import games_left, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
 from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
@@ -24,7 +24,7 @@ from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
 RUNS = Path("runs")
 LLAMA_LOGS = Path(r"D:\docs\assets\generator\tools\llm\llamacpp\logs")
 GAMES_PER_PAIR = 2  # what the round-robin driver asks for
-DEFAULT_TURN_SECONDS = {"local": 25.0, "api": 8.0, "decision": 1.0}
+DEFAULT_TURN_SECONDS = {"local": 25.0, "api": 8.0, "decision": 1.0, "bot": 0.1}
 DEFAULT_TURNS = 25
 
 
@@ -51,6 +51,8 @@ def _read_int(path: Path) -> Optional[int]:
 
 def _kind(app_cfg: AppConfig, cid: str) -> str:
     a = app_cfg.agents[cid]
+    if not a.is_model:
+        return "bot"
     return "decision" if a.type == "decision" else "local" if a.provider == "local" else "api"
 
 
@@ -123,10 +125,9 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     max_autopilot = app_cfg.ladder.max_autopilot
 
     # The schedule, exactly as round_robin builds it
-    ids = [k for k, a in app_cfg.agents.items() if a.is_model and a.active]
     drafts = load_drafts(version=version)
-    sitting_out = [k for k in ids if not playable_team(drafts.get(k) or {})]
-    ids = [k for k in ids if k not in sitting_out]
+    ids = round_robin_ids(app_cfg)
+    sitting_out = [k for k, a in app_cfg.agents.items() if a.is_model and a.active and k not in ids]
     pairs = quick_pairs_first(round_robin_pairs(ids), app_cfg)
     left = {k: games_left(app_cfg, app_cfg.agents[k]) for k in ids}
     plan = []
