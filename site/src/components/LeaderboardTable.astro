@@ -2,12 +2,12 @@
 // The main table. Click a column header to sort. Only rated language models get a rank; bots are scenery.
 import { routes } from '../lib/routes';
 import Rating from './Rating.astro';
-import { fmtPct, roleLabel, type Model } from '../lib/data';
+import { fmtPct, isModel, meta, provisionalTitle, roleLabel, roleTitle, type Model } from '../lib/data';
 
 interface Props { models: Model[]; compact?: boolean }
 const { models, compact = false } = Astro.props;
 let rank = 0;
-const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'direct_llm' ? ++rank : null }));
+const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++rank : null }));
 ---
 <div class="table-scroll">
   <table class="leaderboard" data-sortable>
@@ -31,17 +31,17 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && m.type === 'dire
           <td class="r num" data-value={rank ?? 999}>{rank ?? '—'}</td>
           <td data-value={m.display_name}>
             <a href={routes.model(m.config_id)}>{m.display_name}</a>
-            {roleLabel(m.role) && <span class="pill">{roleLabel(m.role)}</span>}
-            {m.provisional && <span class="pill warn" title="Fewer games than a full placement">provisional</span>}
+            {roleLabel(m.role) && <span class="pill" title={roleTitle(m.role)}>{roleLabel(m.role)}</span>}
+            {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
             {m.quantization && <span class="muted small"> {m.quantization}</span>}
           </td>
           <td class="r" data-value={m.rating ?? -1}><Rating model={m} /></td>
           <td class="r num" data-value={m.games}>{m.games}</td>
           <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
-          {!compact && <td class="r num" data-value={m.autopilot_rate}>{m.type === 'direct_llm' ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
-          {!compact && <td class="r num" data-value={m.hallucinated_move_rate}>{m.type === 'direct_llm' ? fmtPct(m.hallucinated_move_rate, 1) : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.autopilot_rate}>{isModel(m) ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.hallucinated_move_rate}>{isModel(m) ? fmtPct(m.hallucinated_move_rate, 1) : '—'}</td>}
           {!compact && <td class="r num" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
-          {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{m.type === 'direct_llm' ? `$${m.cost_per_game_usd.toFixed(2)}` : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{isModel(m) ? `$${m.cost_per_game_usd.toFixed(2)}` : '—'}</td>}
           {!compact && <td data-value={m.signature_move ?? ''}>{m.signature_move ?? '—'}</td>}
         </tr>
       ))}

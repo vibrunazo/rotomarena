@@ -1,6 +1,6 @@
 ---
 // Figure 3: who actually made each decision, per language model, counted from every rated match's breadcrumbs.
-import { allModels, matchEntries } from '../lib/data';
+import { allModels, isModel, matchEntries } from '../lib/data';
 
 interface Props { caption?: string }
 const { caption } = Astro.props;
@@ -10,7 +10,7 @@ const label: Record<string, string> = {
   model: 'The model', invalid: 'Hallucinated move', parse_error: 'Unreadable answer',
   timeout: 'Timeout', api_error: 'Provider error', error: 'Other error',
 };
-const llms = (await allModels()).filter((m) => m.type === 'direct_llm');
+const llms = (await allModels()).filter((m) => isModel(m));
 const counts = new Map(llms.map((m) => [m.config_id, Object.fromEntries(order.map((s) => [s, 0])) as Record<string, number>]));
 for (const { data } of await matchEntries()) {
   for (const d of data.decisions) {

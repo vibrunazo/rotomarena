@@ -1,10 +1,10 @@
 ---
 // Figure 2: tokens per decision against win rate, one point per language model. Log x axis.
-import { allModels } from '../lib/data';
+import { allModels, isModel } from '../lib/data';
 
 interface Props { caption?: string }
 const { caption } = Astro.props;
-const points = (await allModels()).filter((m) => m.type === 'direct_llm' && m.games > 0 && m.tokens_per_turn);
+const points = (await allModels()).filter((m) => isModel(m) && m.games > 0 && m.tokens_per_turn);
 
 const W = 640, H = 340, L = 54, R = 20, T = 16, B = 46;
 const toks = points.map((m) => m.tokens_per_turn!);

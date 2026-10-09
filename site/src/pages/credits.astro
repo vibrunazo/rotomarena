@@ -2,10 +2,10 @@
 // Who and what this benchmark is built on. Model makers come from the export (model_key's organisation), so the
 // list grows with the ladder; everything else is the software and work every battle depends on.
 import Base from '../layouts/Base.astro';
-import { allModels } from '../lib/data';
+import { allModels, isModel } from '../lib/data';
 import { routes } from '../lib/routes';
 
-const llms = (await allModels()).filter((m) => m.type === 'direct_llm' && m.model_key);
+const llms = (await allModels()).filter((m) => isModel(m) && m.model_key);
 const makers = Object.entries(
   llms.reduce<Record<string, string[]>>((acc, m) => {
     const org = m.model_key!.split('/')[0];

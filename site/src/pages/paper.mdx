@@ -11,11 +11,11 @@ import TokensScatter from '../components/TokensScatter.astro';
 import DecisionSources from '../components/DecisionSources.astro';
 import Findings from '../components/Findings.astro';
 import Citation from '../components/Citation.astro';
-import { meta, fmtInt } from '../lib/data';
+import { meta, fmtInt, isModel } from '../lib/data';
 import modelsJson from '../data/models.json';
 
 export const models = [...modelsJson].sort((a, b) => (b.rating ?? -Infinity) - (a.rating ?? -Infinity));
-export const llms = models.filter((m) => m.type === 'direct_llm');
+export const llms = models.filter((m) => isModel(m));
 export const provisional = llms.some((m) => m.provisional);
 export const r = meta.ruleset;
 export const l = meta.ladder;

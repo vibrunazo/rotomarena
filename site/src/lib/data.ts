@@ -62,6 +62,21 @@ export function roleLabel(role: string): string | null {
   return { anchor: 'anchor', sparring: 'sparring partner', control: 'control group' }[role] ?? null;
 }
 
+/** What a role tag means, for its tooltip. */
+export function roleTitle(role: string): string | undefined {
+  return {
+    anchor: 'The fixed point of the rating scale: pinned at 1500, so every other rating is measured against it',
+    sparring: 'Plays every new model during placement, so the top of the table has a strong common opponent',
+    control: 'Picks random moves. A model that loses to it is probably broken, not just bad',
+  }[role];
+}
+
+export const provisionalTitle = (games: number) =>
+  `Fewer than ${games} rated games: the rating is an early estimate and can still move a lot`;
+
+/** The contestants: language models and decision models (the rest are scripted bots). */
+export const isModel = (m: { type: string }) => m.type === 'direct_llm' || m.type === 'decision';
+
 /** "2026-10-07" from the export's "20261007". */
 export const fmtDate = (d: string) => (d.length === 8 ? `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6)}` : d);
 

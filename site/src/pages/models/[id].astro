@@ -4,15 +4,15 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, boardModels, boards, fmtPct, matchEntries, meta, roleLabel, type Model } from '../../lib/data';
+import { allModels, boardModels, boards, fmtPct, isModel, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
 }
 
 const { model: m } = Astro.props as { model: Model };
-const llm = m.type === 'direct_llm';
-const ranked = (await boardModels()).filter((x) => x.rating !== null && x.type === 'direct_llm');
+const llm = isModel(m);
+const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x));
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
 const draft = (await getCollection('drafts')).find((entry) => entry.id === m.config_id)?.data;
@@ -22,6 +22,7 @@ const pretty = (id: string | null) => (id ? id.replace(/^./, (c) => c.toUpperCas
 
 const kind: Record<string, string> = {
   direct_llm: 'Language model',
+  decision: 'Decision model (answers with probabilities, writes no text)',
   pokechamp: 'Search bot (one-turn minimax)',
   random: 'Uniform random policy',
   heuristic: 'Rule-based bot',
@@ -50,7 +51,7 @@ const facts: [string, string][] = [
     {m.model && <code>{m.model}</code>}
     {m.provider && <span> via {m.provider === 'local' ? 'llama.cpp, on one consumer GPU' : m.provider}</span>}
     {m.quantization && <span> · {m.quantization}</span>}
-    {m.provisional && <span class="pill warn">provisional</span>}
+    {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
   </p>
 
   {m.config_id === meta.ladder.anchor && (

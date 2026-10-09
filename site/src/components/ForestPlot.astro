@@ -1,7 +1,7 @@
 ---
 // Figure 1: ratings with 95% bootstrap intervals as capped error bars, drawn at build time. One color per model,
 // shape by kind (circle: language model, square: bot); the anchor is hollow and sits on the reference line.
-import type { Model } from '../lib/data';
+import { isModel, type Model } from '../lib/data';
 
 interface Props { models: Model[]; anchor: string; caption?: string }
 const { models, anchor, caption } = Astro.props;
@@ -20,7 +20,7 @@ const width = labelW + plotW + 24;
 const plotBottom = top + ranked.length * rowH;
 const height = plotBottom + axisH + legendH;
 const x = (r: number) => labelW + ((r - min) / (max - min)) * plotW;
-const isBot = (m: Model) => m.type !== 'direct_llm';
+const isBot = (m: Model) => !isModel(m);
 ---
 {ranked.length > 0 && (
   <figure>

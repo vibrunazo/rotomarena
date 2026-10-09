@@ -3,10 +3,10 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { boardModels, boards, fmtDate, fmtInt, mainBoard, meta } from '../lib/data';
+import { boardModels, boards, fmtDate, fmtInt, isModel, mainBoard, meta } from '../lib/data';
 
 const models = await boardModels();
-const llms = models.filter((m) => m.type === 'direct_llm');
+const llms = models.filter((m) => isModel(m));
 const stats = [
   [fmtInt(meta.rated_matches), 'rated matches'],
   [fmtInt(meta.turns), 'turns analysed'],

@@ -38,7 +38,7 @@ const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
           {models.has(p.config_id) ? <a href={routes.model(p.config_id)}>{p.display_name}</a> : p.display_name}
         </div>
         <div class="small muted">{p.team || 'team not recorded'}</div>
-        {p.agent_type === 'direct_llm' && <div class="small muted num">autopilot {fmtPct(p.autopilot_rate)}</div>}
+        {(p.agent_type === 'direct_llm' || p.agent_type === 'decision') && <div class="small muted num">autopilot {fmtPct(p.autopilot_rate)}</div>}
       </div>
     ))}
   </div>
