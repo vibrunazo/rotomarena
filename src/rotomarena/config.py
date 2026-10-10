@@ -146,6 +146,16 @@ class RulesetConfig(BaseModel):
         default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )
     format: str = Field(default="gen9ou", description="Showdown format id the games are played in")
+    thinking_exceptions: Dict[str, ReasoningLevel] = Field(
+        default_factory=dict,
+        description="{config id: effort level} for models whose provider ignores the thinking budget: the strongest "
+        "effort level that stays within it is sent instead (Meta's endpoint for Muse Spark)",
+    )
+    provider_routing: Dict[str, List[str]] = Field(
+        default_factory=dict,
+        description="{config id: OpenRouter providers} a model is served by only these, when others ignore the thinking "
+        "budget (DeepSeek V4.1 Flash: 4 of its providers enforce it, 4 think up to the cap)",
+    )
     team_mode: Literal["fixed", "draft", "random"] = Field(
         default="fixed",
         description="fixed: every set plays the two `teams`, each from both sides. draft: each model plays the team it "
@@ -248,12 +258,6 @@ class AgentConfig(BaseModel):
         description="Its Showdown username when display_name is too long: Showdown allows 18 characters and a set's "
         "second game adds \" 2\", so 16 keep it whole (battle footage showed \"GPT-6 Luna Decisio\")",
     )
-    thinking_effort: Optional[ReasoningLevel] = Field(
-        default=None,
-        description="For a model whose provider ignores the ruleset's thinking budget (it keeps thinking until the "
-        "answer is cut off): this effort level is sent instead of the budget, the strongest one that stays within it. "
-        "Recorded in the rules as an exception",
-    )
     max_games: Optional[int] = Field(
         default=None, ge=0, description="At most this many games in each version (a spending cap for paid models); "
         "schedules skip it once reached",
@@ -279,8 +283,8 @@ class AgentConfig(BaseModel):
 
     def thinking(self, ruleset: "RulesetConfig") -> Tuple[Optional[str], Optional[int]]:
         """(reasoning level, thinking budget) this model is asked for: the ruleset's, unless it has an exception."""
-        if self.thinking_effort:
-            return self.thinking_effort, None
+        if self.name in ruleset.thinking_exceptions:
+            return ruleset.thinking_exceptions[self.name], None
         return ruleset.reasoning, ruleset.thinking_budget
 
     @property

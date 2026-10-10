@@ -110,7 +110,8 @@ def test_a_thinking_exception_sends_its_effort_instead_of_the_budget():
 
     ruleset = RulesetConfig(thinking_budget=1024, max_output_tokens=2048)
     assert AgentConfig(name="x", type="direct_llm").thinking(ruleset) == ("medium", 1024)
-    assert AgentConfig(name="muse", type="direct_llm", thinking_effort="minimal").thinking(ruleset) == ("minimal", None)
+    exception = RulesetConfig(thinking_budget=1024, max_output_tokens=2048, thinking_exceptions={"muse": "minimal"})
+    assert AgentConfig(name="muse", type="direct_llm").thinking(exception) == ("minimal", None)
 
 
 def test_a_voided_game_is_not_rated():

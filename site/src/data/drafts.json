@@ -2757,7 +2757,7 @@
   },
   {
     "config_id": "bonsai_2_27b",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Bonsai 2 27B",
@@ -2964,7 +2964,7 @@
   },
   {
     "config_id": "claude_haiku_5_5",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Claude Haiku 5.5",
@@ -3156,20 +3156,41 @@
   },
   {
     "config_id": "deepseek_v4_1_flash",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "DeepSeek V4.1 Flash",
     "model": "deepseek/deepseek-v4.1-flash",
     "model_key": "deepseek/deepseek-v4.1-flash",
     "prompt_version": "draft-3",
-    "drafted_at": "2026-10-09T23:08:48+00:00",
+    "drafted_at": "2026-10-10T01:43:06+00:00",
     "legal": true,
     "repaired": false,
     "repairs": [],
-    "thought": "The team is built as a flexible bring-3 with multiple win conditions: Dragonite and Kingambit provide priority and setup sweeping, Gholdengo and Dragapult offer special offense and speed control, while Garganacl and Rotom-Wash supply defensive utility and pivoting. Items are distributed to avoid Item Clause conflicts, and each set maximizes its role with efficient EV spreads.",
-    "team_text": "Dragonite @ Lum Berry\nAbility: Multiscale\nEVs: 32 Atk / 2 HP / 32 Spe\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nGholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 SpA / 2 HP / 32 Spe\nTimid Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 HP / 2 SpD\nAdamant Nature\n- Swords Dance\n- Sucker Punch\n- Kowtow Cleave\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 SpA / 2 HP / 32 Spe\nTimid Nature\n- Draco Meteor\n- Shadow Ball\n- Fire Blast\n- U-turn\n\nGarganacl @ Leftovers\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Iron Defense\n- Body Press\n\nRotom-Wash @ Expert Belt\nAbility: Levitate\nEVs: 32 SpA / 2 HP / 32 Spe\nModest Nature\n- Nasty Plot\n- Hydro Pump\n- Thunderbolt\n- Volt Switch",
+    "thought": "The sets maximize the hazard-stacking balance plan: Glimmora sets Stealth Rock and Spikes while threatening Toxic Debris, Gholdengo blocks Defog with Good as Gold, and Dragonite/Kingambit provide priority-backed setup sweeping. Garganacl and Annihilape act as durable win conditions with Salt Cure and Rage Fist, respectively. Items are distributed to avoid Item Clause conflicts while supporting each role.",
+    "team_text": "Glimmora @ Focus Sash\nAbility: Toxic Debris\nEVs: 2 HP / 32 SpA / 32 Spe\nTimid Nature\n- Stealth Rock\n- Spikes\n- Mortal Spin\n- Earth Power\n\nDragonite @ Lum Berry\nAbility: Multiscale\nEVs: 2 HP / 32 Atk / 32 Spe\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Ice Spinner\n\nGholdengo @ Wise Glasses\nAbility: Good as Gold\nEVs: 2 HP / 32 SpA / 32 Spe\nTimid Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Swords Dance\n- Sucker Punch\n- Kowtow Cleave\n- Iron Head\n\nGarganacl @ Leftovers\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Iron Defense\n- Body Press\n\nAnnihilape @ Sitrus Berry\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Def\nAdamant Nature\n- Bulk Up\n- Rage Fist\n- Drain Punch\n- Taunt",
     "members": [
+      {
+        "species": "Glimmora",
+        "sprite": "glimmora",
+        "item": "Focus Sash",
+        "ability": "Toxic Debris",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Stealth Rock",
+          "Spikes",
+          "Mortal Spin",
+          "Earth Power"
+        ],
+        "smogon_teams": 0,
+        "fallback": false
+      },
       {
         "species": "Dragonite",
         "sprite": "dragonite",
@@ -3186,7 +3207,7 @@
           "Dragon Dance",
           "Extreme Speed",
           "Earthquake",
-          "Roost"
+          "Ice Spinner"
         ],
         "smogon_teams": 0,
         "fallback": false
@@ -3194,7 +3215,7 @@
       {
         "species": "Gholdengo",
         "sprite": "gholdengo",
-        "item": "Life Orb",
+        "item": "Wise Glasses",
         "ability": "Good as Gold",
         "tera_type": "",
         "nature": "Timid",
@@ -3234,27 +3255,6 @@
         "fallback": false
       },
       {
-        "species": "Dragapult",
-        "sprite": "dragapult",
-        "item": "Choice Scarf",
-        "ability": "Infiltrator",
-        "tera_type": "",
-        "nature": "Timid",
-        "evs": {
-          "hp": 2,
-          "spa": 32,
-          "spe": 32
-        },
-        "moves": [
-          "Draco Meteor",
-          "Shadow Ball",
-          "Fire Blast",
-          "U-turn"
-        ],
-        "smogon_teams": 0,
-        "fallback": false
-      },
-      {
         "species": "Garganacl",
         "sprite": "garganacl",
         "item": "Leftovers",
@@ -3276,22 +3276,22 @@
         "fallback": false
       },
       {
-        "species": "Rotom-Wash",
-        "sprite": "rotom-wash",
-        "item": "Expert Belt",
-        "ability": "Levitate",
+        "species": "Annihilape",
+        "sprite": "annihilape",
+        "item": "Sitrus Berry",
+        "ability": "Defiant",
         "tera_type": "",
-        "nature": "Modest",
+        "nature": "Adamant",
         "evs": {
-          "hp": 2,
-          "spa": 32,
-          "spe": 32
+          "hp": 32,
+          "atk": 32,
+          "def": 2
         },
         "moves": [
-          "Nasty Plot",
-          "Hydro Pump",
-          "Thunderbolt",
-          "Volt Switch"
+          "Bulk Up",
+          "Rage Fist",
+          "Drain Punch",
+          "Taunt"
         ],
         "smogon_teams": 0,
         "fallback": false
@@ -3307,12 +3307,12 @@
     "picks": {
       "legal": true,
       "species": [
+        "Glimmora",
         "Dragonite",
         "Gholdengo",
         "Kingambit",
-        "Dragapult",
         "Garganacl",
-        "Rotom-Wash"
+        "Annihilape"
       ],
       "repairs": [],
       "attempts": [
@@ -3321,15 +3321,15 @@
           "problems": [],
           "error": null,
           "pokemon": [
+            "Glimmora",
             "Dragonite",
             "Gholdengo",
             "Kingambit",
-            "Dragapult",
             "Garganacl",
-            "Rotom-Wash"
+            "Annihilape"
           ],
-          "thought": "A flexible bring-3 team with strong setup sweepers, priority, and defensive utility. Dragonite and Kingambit provide priority and late-game cleaning, Gholdengo and Dragapult give special offense and speed, while Garganacl and Rotom-Wash cover bulky pivoting and check common physical threats.",
-          "tokens": 3356
+          "thought": "A hazard-stacking balance team built around Glimmora’s Toxic Debris and Gholdengo blocking Defog, with Dragonite and Kingambit as priority-backed setup sweepers. Garganacl provides a durable Salt Cure wall, while Annihilape gives another bulky win condition with Rage Fist. The six cover offense, defense, and hazard control well for bring-3 BSS.",
+          "tokens": 4912
         }
       ]
     },
@@ -3338,17 +3338,17 @@
         "attempt": 1,
         "problems": [],
         "error": null,
-        "thought": "The team is built as a flexible bring-3 with multiple win conditions: Dragonite and Kingambit provide priority and setup sweeping, Gholdengo and Dragapult offer special offense and speed control, while Garganacl and Rotom-Wash supply defensive utility and pivoting. Items are distributed to avoid Item Clause conflicts, and each set maximizes its role with efficient EV spreads.",
-        "team_text": "Dragonite @ Lum Berry\nAbility: Multiscale\nEVs: 32 Atk / 2 HP / 32 Spe\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nGholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 SpA / 2 HP / 32 Spe\nTimid Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 HP / 2 SpD\nAdamant Nature\n- Swords Dance\n- Sucker Punch\n- Kowtow Cleave\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 SpA / 2 HP / 32 Spe\nTimid Nature\n- Draco Meteor\n- Shadow Ball\n- Fire Blast\n- U-turn\n\nGarganacl @ Leftovers\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Iron Defense\n- Body Press\n\nRotom-Wash @ Expert Belt\nAbility: Levitate\nEVs: 32 SpA / 2 HP / 32 Spe\nModest Nature\n- Nasty Plot\n- Hydro Pump\n- Thunderbolt\n- Volt Switch",
-        "tokens": 5332,
-        "cost_usd": 0.0019018,
+        "thought": "The sets maximize the hazard-stacking balance plan: Glimmora sets Stealth Rock and Spikes while threatening Toxic Debris, Gholdengo blocks Defog with Good as Gold, and Dragonite/Kingambit provide priority-backed setup sweeping. Garganacl and Annihilape act as durable win conditions with Salt Cure and Rage Fist, respectively. Items are distributed to avoid Item Clause conflicts while supporting each role.",
+        "team_text": "Glimmora @ Focus Sash\nAbility: Toxic Debris\nEVs: 2 HP / 32 SpA / 32 Spe\nTimid Nature\n- Stealth Rock\n- Spikes\n- Mortal Spin\n- Earth Power\n\nDragonite @ Lum Berry\nAbility: Multiscale\nEVs: 2 HP / 32 Atk / 32 Spe\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Ice Spinner\n\nGholdengo @ Wise Glasses\nAbility: Good as Gold\nEVs: 2 HP / 32 SpA / 32 Spe\nTimid Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Swords Dance\n- Sucker Punch\n- Kowtow Cleave\n- Iron Head\n\nGarganacl @ Leftovers\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Iron Defense\n- Body Press\n\nAnnihilape @ Sitrus Berry\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Def\nAdamant Nature\n- Bulk Up\n- Rage Fist\n- Drain Punch\n- Taunt",
+        "tokens": 5341,
+        "cost_usd": 0.0015225,
         "finish_reason": "stop"
       }
     ]
   },
   {
     "config_id": "gemma_4_31b",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Gemma 4 31B",
@@ -3552,7 +3552,7 @@
   },
   {
     "config_id": "gpt_6_luna_decisions",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "GPT-6 Luna Decisions",
@@ -3744,7 +3744,7 @@
   },
   {
     "config_id": "gpt_6_luna_pro",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "GPT-6 Luna Pro",
@@ -3936,7 +3936,7 @@
   },
   {
     "config_id": "gpt_oss_20b",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "GPT-OSS 20B",
@@ -4144,7 +4144,7 @@
   },
   {
     "config_id": "jev_1_13",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Jev 1.13",
@@ -4336,7 +4336,7 @@
   },
   {
     "config_id": "ling_3_0_tiny",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Ling 3.0 Tiny",
@@ -4644,7 +4644,7 @@
   },
   {
     "config_id": "mimo_v2_6_flash",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "MiMo V2.6 Flash",
@@ -4848,7 +4848,7 @@
   },
   {
     "config_id": "minicpm5_2b",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "MiniCPM5 2B",
@@ -5099,7 +5099,7 @@
   },
   {
     "config_id": "muse_spark_1_3",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Muse Spark 1.3",
@@ -5291,7 +5291,7 @@
   },
   {
     "config_id": "ornith_1_5_35b_a3b",
-    "version": "c1",
+    "version": "c2",
     "format": "gen9championsrotomarenabssregmb",
     "bench": "rotom-champ-bench",
     "display_name": "Ornith 1.5 35B",

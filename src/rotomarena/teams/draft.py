@@ -333,7 +333,10 @@ def playable_team(record: Dict[str, Any]) -> Optional[str]:
 
 
 def draft_cost(record: Dict[str, Any]) -> float:
-    """What drafting cost this model under this version: every attempt of this draft, plus the drafts it replaced."""
+    """What drafting cost this model under this version: every attempt of this draft, plus the drafts it replaced. A
+    draft carried over from an earlier version (copied_from_version) was paid for there."""
+    if record.get("copied_from_version"):
+        return 0.0
     attempts = record.get("picks", {}).get("attempts", []) + record.get("attempts", [])
     return sum(a.get("cost_usd") or 0 for a in attempts) + (record.get("earlier_drafts_cost_usd") or 0)
 

@@ -270,3 +270,20 @@ async def test_local_gate_batches_interleaved_requests_from_parallel_games():
     starts = [name for kind, name in events if kind == "start"]
     assert starts == ["qwen-1", "ornith-1", "ornith-2", "qwen-2"]  # one batch per model, not four swaps
     assert events.index(("start", "ornith-2")) < events.index(("end", "ornith-1"))  # batched together
+
+
+def test_provider_routing_is_sent_with_every_request():
+    from rotomarena.llm.client import LLMClient
+
+    client = LLMClient.from_provider_name("openrouter")
+    assert "provider" not in client._reasoning_kwargs("medium", 1024)["extra_body"]
+    client.only_providers = ["Fireworks", "Novita"]
+    assert client._reasoning_kwargs("medium", 1024)["extra_body"]["provider"] == {"only": ["Fireworks", "Novita"]}
+
+
+def test_champions_battles_state_the_level():
+    from rotomarena.llm.prompts import system_prompt_for
+
+    prompt = system_prompt_for("gen9championsrotomarenabssregmb", 3)
+    assert "All Pokémon in this battle are level 50." in prompt and "Pokémon Champions singles" in prompt
+    assert "level 50" not in system_prompt_for("gen9ou")

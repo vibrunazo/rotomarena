@@ -202,8 +202,10 @@ def llm_client_for(agent_cfg: AgentConfig, app_config: AppConfig) -> LLMClient:
         local = providers.get(agent_cfg.provider or "openrouter")
         providers = {**providers, agent_cfg.provider: local.model_copy(
             update={"base_url": f"http://127.0.0.1:{agent_cfg.port}/v1"})}
-    return LLMClient.from_provider_name(agent_cfg.provider or "openrouter", providers=providers,
-                                        model_override=agent_cfg.model)
+    client = LLMClient.from_provider_name(agent_cfg.provider or "openrouter", providers=providers,
+                                          model_override=agent_cfg.model)
+    client.only_providers = app_config.ruleset.provider_routing.get(agent_cfg.name)  # a rule of the version
+    return client
 
 
 def create_agent_instance(

@@ -177,6 +177,7 @@ class LLMClient:
 
     def __init__(self, provider_config: ProviderConfig, provider_name: str = "custom"):
         self.config = provider_config
+        self.only_providers: Optional[List[str]] = None  # OpenRouter: serve this model only by these providers
         self.provider_name = provider_name
         self.default_model = provider_config.default_model
         self.temperature = provider_config.temperature
@@ -220,7 +221,10 @@ class LLMClient:
             else:
                 setting = {"max_tokens": thinking_budget} if thinking_budget else {"effort": reasoning}
             # usage.include: OpenRouter reports what each request cost
-            return {"extra_body": {"reasoning": setting, "usage": {"include": True}}}
+            body = {"reasoning": setting, "usage": {"include": True}}
+            if self.only_providers:
+                body["provider"] = {"only": self.only_providers}
+            return {"extra_body": body}
         if style == "llama.cpp":
             # Chat templates read these: Qwen-style models use enable_thinking; gpt-oss uses
             # reasoning_effort, whose lowest level is "low".

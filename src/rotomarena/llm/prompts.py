@@ -282,8 +282,11 @@ def format_team_preview(battle: Battle, pick: Optional[int] = None) -> str:
     return "\n".join(lines)
 
 
+# Facts of a format the battle prompt states, which a model would otherwise have to guess
+FORMAT_FACTS = {"gen9championsrotomarenabssregmb": "All Pokémon in this battle are level 50."}
 # How the battle prompt names a format other than Gen 9 OU (the prompt was written for it)
-FORMAT_NAMES = {"gen9championsrotomarenarandombss": "Pokémon Champions singles (bring 6, pick 3)"}
+FORMAT_NAMES = {"gen9championsrotomarenarandombss": "Pokémon Champions singles (bring 6, pick 3)",
+                "gen9championsrotomarenabssregmb": "Pokémon Champions singles (bring 6, pick 3)"}
 
 
 def system_prompt_for(fmt: str, pick: Optional[int] = None) -> str:
@@ -291,6 +294,9 @@ def system_prompt_for(fmt: str, pick: Optional[int] = None) -> str:
     if fmt == "gen9ou":
         return SYSTEM_PROMPT_DIRECT_COT
     prompt = SYSTEM_PROMPT_DIRECT_COT.replace("Gen 9 OU", FORMAT_NAMES.get(fmt, fmt))
+    if fmt in FORMAT_FACTS:
+        prompt = prompt.replace("Choose the single best action for this turn.",
+                                f"{FORMAT_FACTS[fmt]} Choose the single best action for this turn.")
     if pick:
         prompt = prompt.replace("(at team preview: LEAD: <species>)",
                                 f"(at team preview: BRING: <{pick} species, comma-separated>)")

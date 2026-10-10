@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-10-10T01:00:19+00:00",
+  "generated_at": "2026-10-10T01:44:10+00:00",
   "game": "pokemon",
   "formats": [
     "gen9championsrotomarenabssregmb",
     "gen9ou"
   ],
-  "version": "c1",
+  "version": "c2",
   "versions": [
     "s4",
     "s1",
     "s2",
+    "c2",
     "c1"
   ],
   "rulesets": {
@@ -65,6 +66,38 @@
       "battle_prompt": "ba3dda5d9965",
       "draft_prompt": "3a8760325e8d"
     },
+    "c2": {
+      "version": "c2",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "thinking_budget": 1024,
+      "max_output_tokens": 2048,
+      "draft_max_output_tokens": 5120,
+      "turn_timeout": 7200.0,
+      "format": "gen9championsrotomarenabssregmb",
+      "thinking_exceptions": {
+        "muse_spark_1_3": "minimal"
+      },
+      "provider_routing": {
+        "deepseek_v4_1_flash": [
+          "Fireworks",
+          "Novita",
+          "DeepInfra",
+          "Together"
+        ]
+      },
+      "team_mode": "draft",
+      "pick": 3,
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "battle_prompt": "d31f03cfb2c2",
+      "decision_prompt": "5869c554b249",
+      "draft_prompt": "b0a500bd511d",
+      "control_team": "opponent's",
+      "decision_draft_prompt": "d7c512fb79a3"
+    },
     "c1": {
       "version": "c1",
       "profile": "ladder",
@@ -103,9 +136,10 @@
         "s4",
         "s1",
         "s2",
+        "c2",
         "c1"
       ],
-      "rated_matches": 201,
+      "rated_matches": 223,
       "models": 18
     },
     {
@@ -155,10 +189,23 @@
       "category": "Pokémon",
       "bench": "rotom-champ-bench",
       "versions": [
+        "c2"
+      ],
+      "rated_matches": 0,
+      "models": 0
+    },
+    {
+      "id": "champions-bss-own-teams-c1",
+      "title": "Champions BSS · own teams (c1)",
+      "description": "The first Champions version (retired after 24 games): the battle prompt didn't say the Pokémon are level 50, and DeepSeek's thinking was cut off by providers that ignore the budget.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "bench": "rotom-champ-bench",
+      "versions": [
         "c1"
       ],
-      "rated_matches": 48,
-      "models": 11
+      "rated_matches": 70,
+      "models": 12
     }
   ],
   "benches": [
@@ -184,11 +231,12 @@
       "description": "Pokémon Champions singles under Regulation M-B, the rules of the game's ranked Battle Stadium Singles. Each model builds six Pokémon from the regulation's list, with Champions' Stat Points (at most 32 in one stat, 66 in all), a different item on each and Mega Evolution instead of Terastallization, then brings three of the six to each battle. Everyone fights at level 50, and games are short.",
       "status": "live",
       "boards": [
-        "champions-bss-own-teams"
+        "champions-bss-own-teams",
+        "champions-bss-own-teams-c1"
       ],
       "main": "champions-bss-own-teams",
-      "rated_matches": 48,
-      "models": 11
+      "rated_matches": 70,
+      "models": 12
     },
     {
       "id": "rotom-bw-bench",
@@ -203,7 +251,7 @@
     }
   ],
   "ruleset": {
-    "version": "c1",
+    "version": "c2",
     "profile": "ladder",
     "reasoning": "medium",
     "thinking_budget": 1024,
@@ -211,6 +259,17 @@
     "draft_max_output_tokens": 5120,
     "turn_timeout": 7200.0,
     "format": "gen9championsrotomarenabssregmb",
+    "thinking_exceptions": {
+      "muse_spark_1_3": "minimal"
+    },
+    "provider_routing": {
+      "deepseek_v4_1_flash": [
+        "Fireworks",
+        "Novita",
+        "DeepInfra",
+        "Together"
+      ]
+    },
     "team_mode": "draft",
     "pick": 3,
     "teams": [
@@ -239,10 +298,10 @@
     "control_games": 3,
     "control_max_cost_per_game_usd": 2.0
   },
-  "matches": 210,
-  "rated_matches": 201,
+  "matches": 232,
+  "rated_matches": 223,
   "void_matches": 9,
   "retracted_matches": 55,
-  "turns": 10413,
-  "tokens": 27479922
+  "turns": 11036,
+  "tokens": 28923633
 }
