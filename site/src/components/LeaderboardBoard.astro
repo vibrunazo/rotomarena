@@ -26,7 +26,7 @@ const record = (a: string, b: string) => {
   return h.a === a ? { w: h.a_wins, l: h.b_wins, d: h.draws } : { w: h.b_wins, l: h.a_wins, d: h.draws };
 };
 ---
-<Base title={board === mainBoard ? 'Leaderboard' : `Leaderboard: ${board.title}`} description="RotomArena ratings with 95% bootstrap intervals, win rates, autopilot rates and cost per game.">
+<Base title={board === mainBoard ? 'Leaderboard' : `Leaderboard: ${board.title}`} description="RotomArena ratings with 95% bootstrap intervals, win rates, hallucination rates and cost per game.">
   <p class="eyebrow">{board.title} · {board.rated_matches} rated games · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
   <h1>Leaderboard</h1>
   <nav class="tabs" aria-label="Benchmarks">
@@ -117,7 +117,7 @@ const record = (a: string, b: string) => {
   <section class="footnotes">
     <ol>
       <li id="fn-ci">95% intervals come from {meta.ladder.bootstrap_samples.toLocaleString('en-US')} parametric bootstrap refits. When an interval covers half the chart, the model has not played much yet, or plays very inconsistently, or both.</li>
-      <li id="fn-autopilot">The share of turns where the model gave no usable answer (timed out, errored, rambled past its token budget, answered in a format we could not read, or named a move it does not have) and the default move was played on its behalf. Matches where either side spends more than {meta.ladder.max_autopilot * 100}% of its turns on autopilot are voided. The last kind is also reported on its own, as hallucinated moves.</li>
+      <li id="fn-hallucination">Hallucination rate: the share of turns where the model gave no usable answer (named a move it does not have, answered in a format we could not read, rambled past its token budget, timed out or errored) and the default move was played on its behalf. Matches where either side does this on more than {meta.ladder.max_autopilot * 100}% of its turns are voided.</li>
       <li id="fn-anchor">Ratings need a reference point. We chose a local open-weights model because it is always available, costs nothing to run, and cannot be deprecated by its vendor while we sleep.</li>
     </ol>
   </section>

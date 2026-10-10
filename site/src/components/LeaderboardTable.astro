@@ -17,12 +17,12 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
         <th data-sort="text">Model</th>
         <th class="r" data-sort="num">Rating (95% CI){!compact && <sup class="fn-ref"><a href="#fn-ci">1</a></sup>}</th>
         <th class="r" data-sort="num">Games</th>
+        {!compact && <th class="r" data-sort="num" title="Wins">W</th>}
+        {!compact && <th class="r" data-sort="num" title="Losses">L</th>}
         <th class="r" data-sort="num">Win rate</th>
-        {!compact && <th class="r" data-sort="num">Autopilot<sup class="fn-ref"><a href="#fn-autopilot">2</a></sup></th>}
-        {!compact && <th class="r" data-sort="num">Hallucinated moves</th>}
+        {!compact && <th class="r" data-sort="num" title="Hallucination rate: turns with no usable answer, played by default">Halluc.<sup class="fn-ref"><a href="#fn-hallucination">2</a></sup></th>}
         {!compact && <th class="r" data-sort="num">Tokens / turn</th>}
         {!compact && <th class="r" data-sort="num">Cost / game</th>}
-        {!compact && <th data-sort="text">Signature move</th>}
       </tr>
     </thead>
     <tbody>
@@ -37,12 +37,12 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
           </td>
           <td class="r" data-value={m.rating ?? -1}><Rating model={m} /></td>
           <td class="r num" data-value={m.games}>{m.games}</td>
+          {!compact && <td class="r num" data-value={m.wins}>{m.wins}</td>}
+          {!compact && <td class="r num" data-value={m.losses}>{m.losses}</td>}
           <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
           {!compact && <td class="r num" data-value={m.autopilot_rate}>{isModel(m) ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
-          {!compact && <td class="r num" data-value={m.hallucinated_move_rate}>{isModel(m) ? fmtPct(m.hallucinated_move_rate, 1) : '—'}</td>}
           {!compact && <td class="r num" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
           {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{isModel(m) ? `$${m.cost_per_game_usd.toFixed(2)}` : '—'}</td>}
-          {!compact && <td data-value={m.signature_move ?? ''}>{m.signature_move ?? '—'}</td>}
         </tr>
       ))}
     </tbody>
