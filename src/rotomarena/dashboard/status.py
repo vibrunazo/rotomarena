@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from rotomarena.config import AppConfig
+from rotomarena.local_servers import local_agents
 from rotomarena.dashboard.driver import GAMES_PER_PAIR
 from rotomarena.ladder import cap_exempt, games_left, pair_target, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
@@ -166,7 +167,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         return turns * per_turn * math.ceil(games / lanes)
 
     # the two streams (pairs with a local model, pairs without) play at once: the longer one sets the time
-    local = {k for k in ids if _kind(app_cfg, k) == "local"}
+    local = {a.name for a in local_agents([app_cfg.agents[k] for k in ids])}  # their pairs need the GPU
     gpu = [p for p in plan if {p["a"], p["b"]} & local]
     api = [p for p in plan if not {p["a"], p["b"]} & local]
     current = [p for p in (next((p for p in part if p["done"] < p["planned"]), None) for part in (gpu, api)) if p]

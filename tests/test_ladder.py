@@ -510,3 +510,11 @@ def test_a_best_of_three_plays_a_deciding_game_only_at_one_all():
     assert cap_exempt(app_cfg, "haiku", "luna")
     assert AgentConfig(name="haiku", type="direct_llm", max_games=8, extra_games={"s1": 3}).cap("s1") == 11
     assert AgentConfig(name="haiku", type="direct_llm", max_games=8, extra_games={"s1": 3}).cap("s4") == 8
+
+
+def test_a_local_decision_model_gets_its_server_like_a_local_llm():
+    from rotomarena import local_servers
+
+    drex = AgentConfig(name="drex", type="decision", provider="local", model="drex-v1.5", port=8090)
+    jev = AgentConfig(name="jev", type="decision", provider="openrouter", model="typesafe/jev-1.13")
+    assert local_servers.local_agents([drex, jev]) == [drex]

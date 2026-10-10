@@ -163,7 +163,8 @@ def stop(app_cfg: AppConfig, port: int) -> None:
 
 
 def local_agents(agents: List[AgentConfig]) -> List[AgentConfig]:
-    return [a for a in agents if a.type == "direct_llm" and a.provider == "local" and a.port]
+    """Registry entries served by a local server (gen llm serve): LLMs and decision models alike."""
+    return [a for a in agents if a.provider == "local" and a.port]
 
 
 def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str], None] = print) -> None:
