@@ -51,3 +51,25 @@ def test_a_run_never_restarts_the_server_another_live_run_plays_on(tmp_path):
     assert manager._live_run() is None  # a dead run's file doesn't block the next one
     manager.run_file.write_text(str(os.getpid()))
     assert manager._live_run() == os.getpid()
+
+
+def test_a_late_completion_on_a_finished_windows_future_is_dropped():
+    import asyncio
+    import sys
+
+    import pytest
+
+    if sys.platform != "win32":
+        pytest.skip("Windows' proactor loop only")
+    import rotomarena  # noqa: F401  (applies the fix)
+    from asyncio import windows_events
+
+    loop = asyncio.new_event_loop()
+    try:
+        future = windows_events._OverlappedFuture(ov=None, loop=loop)
+        future.cancel()
+        future.set_exception(ConnectionResetError("WinError 995"))  # raised InvalidStateError before the fix
+        future.set_result(1)
+        assert future.cancelled()
+    finally:
+        loop.close()
