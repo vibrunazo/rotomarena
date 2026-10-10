@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import re
+import os
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -563,7 +564,11 @@ def _report_halt(e: Exception, app_cfg: AppConfig) -> None:
     console.print(f"[bold red]{datetime.datetime.now():%Y-%m-%d %H:%M} RUN {'STALLED' if stalled else 'HALTED'}: {e}[/bold red]")
     if stalled:
         console.print("Run the same command again: it resumes, replaying the stuck games (the run monitor does this itself).")
-        raise typer.Exit(4)
+        # A stall means poke-env's connection thread is dead, and a normal exit waits on it forever (10 Oct: 10 more
+        # minutes until the watchdog): nothing is left to save, so leave at once.
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(4)
     console.print("Fix the cause (credits, quota, a broken model), then run the same command again: it resumes.")
     _print_ratings(app_cfg)
     raise typer.Exit(3)
