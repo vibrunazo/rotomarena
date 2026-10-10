@@ -293,6 +293,12 @@ agents:
     provider: "openrouter"
     model: "xiaomi/mimo-v2.6-flash"
     max_games: 8
+  glm_5_3_flash:
+    type: "direct_llm"
+    display_name: "GLM 5.3 Flash"
+    provider: "openrouter"
+    model: "z-ai/glm-5.3-flash"
+    max_games: 8
   deepseek_v4_1_flash:
     type: "direct_llm"
     display_name: "DeepSeek V4.1 Flash"
@@ -320,6 +326,12 @@ agents:
     battle_name: "Luna Decisions"
     provider: "openrouter"
     model: "openai/gpt-6-luna-decisions"
+  microsoft_decision_1:
+    type: "decision"
+    display_name: "Microsoft-Decision-1"
+    battle_name: "MS Decision 1"   # Showdown names stop at 16 characters here
+    provider: "openrouter"
+    model: "microsoft/microsoft-decision-1"
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
   # Hans Rosling's chimpanzees, picking answers at random from bananas: a model that loses to them isn't playing.
