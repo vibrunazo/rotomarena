@@ -430,3 +430,66 @@ def test_a_set_with_no_decisions_stalls():
     stuck = [SimpleNamespace(breadcrumbs_recorder=SimpleNamespace(breadcrumbs=[1, 2]))]
     with pytest.raises(RunStalled):
         asyncio.run(stall_guard(stuck, minutes=0.0005, label="a vs b", poll=0.01))
+
+
+def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
+    import asyncio
+
+    from rotomarena import ladder
+
+    agents = {"gemma": AgentConfig(name="gemma", type="direct_llm", provider="local", port=8080),
+              "api": AgentConfig(name="api", type="direct_llm", provider="openrouter", max_games=3),
+              "jev": AgentConfig(name="jev", type="decision", provider="openrouter")}
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="gemma"))
+    played, started, finished = {}, [], []
+    api_played = None
+
+    class State:
+        def games(self, a, b):
+            return played.get(frozenset((a, b)), 0)
+
+    async def fake_set(a, b, cfg, done, games=None, lane_offset=0):
+        started.append((a, b, lane_offset, games))
+        if lane_offset:
+            api_played.set()
+        else:  # a local pair waits for an api pair: played one after the other, this would time out
+            await asyncio.wait_for(api_played.wait(), timeout=1)
+        played[frozenset((a, b))] = games
+        finished.append((a, b))
+        return games - done
+
+    monkeypatch.setattr(ladder, "version_state", lambda cfg: State())
+    monkeypatch.setattr(ladder, "games_played", lambda cfg, x: sum(n for pair, n in played.items() if x in pair))
+    monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
+    monkeypatch.setattr(ladder, "play_set", fake_set)
+
+    async def run():
+        nonlocal api_played
+        api_played = asyncio.Event()
+        await ladder.round_robin(app_cfg, games_per_pair=2, log=lambda m: None)
+
+    asyncio.run(run())
+    gpu = [s for s in started if "gemma" in s[:2]]
+    api = [s for s in started if "gemma" not in s[:2]]
+    assert all(s[2] == 0 for s in gpu) and api and all(s[2] == app_cfg.ladder.parallel_games for s in api)
+    # api's cap of 3 games: the pairs it plays at once never promise more than that between them
+    assert sum(s[3] for s in started if "api" in s[:2]) <= 3
+
+
+def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
+    import asyncio
+
+    from rotomarena import ladder
+
+    agents = {"gemma": AgentConfig(name="gemma", type="direct_llm", provider="local", port=8080),
+              "api": AgentConfig(name="api", type="direct_llm", provider="openrouter")}
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="gemma"))
+
+    async def halting(*args, **kwargs):
+        raise RunHalted("provider limit")
+
+    monkeypatch.setattr(ladder, "version_state", lambda cfg: SimpleNamespace(games=lambda a, b: 0))
+    monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
+    monkeypatch.setattr(ladder, "play_set", halting)
+    with pytest.raises(RunHalted):
+        asyncio.run(ladder.round_robin(app_cfg, games_per_pair=2, log=lambda m: None))

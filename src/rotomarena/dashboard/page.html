@@ -166,9 +166,10 @@ function render(s) {
     <div class="panel tile"><div class="label">Spent this version</div><div class="value">$${s.spend_usd.toFixed(3)}</div>
       <div class="sub">Games and drafting, as OpenRouter reported each call. Games cut short by a restart aren't saved, so they aren't counted</div></div>`;
 
-  const c = s.current;
-  let now = c ? `<p style="margin:0 0 6px">Pair <b>${c.index}</b> of ${s.plan.length} in the schedule: <b>${esc(n[c.a])}</b><span class="vs">vs</span><b>${esc(n[c.b])}</b>
-    <span class="muted">· ${c.done} of ${c.planned} games done</span></p>` : '<p class="muted">Nothing left to play.</p>';
+  // Two streams play at once: the pairs with a local model (GPU) and the rest (APIs only)
+  const playing = new Set(s.current.map((c) => c.index));
+  let now = s.current.length ? s.current.map((c) => `<p style="margin:0 0 6px">Pair <b>${c.index}</b> of ${s.plan.length} in the schedule: <b>${esc(n[c.a])}</b><span class="vs">vs</span><b>${esc(n[c.b])}</b>
+    <span class="muted">· ${c.done} of ${c.planned} games done</span></p>`).join('') : '<p class="muted">Nothing left to play.</p>';
   const live = s.live || [];
   now += live.length ? live.map((g) => `<div class="game"><span class="turn">Turn ${g.turn}</span><span>${esc(g.p1)}<span class="vs">vs</span>${esc(g.p2)}</span>
       <a class="small" href="watch/${encodeURIComponent(g.room)}" target="_blank" rel="noopener">Watch live ↗</a></div>`).join('')
@@ -179,7 +180,7 @@ function render(s) {
 
   document.getElementById('next').innerHTML = s.next.length
     ? `<ol class="next" start="${s.next[0].index}">${s.next.map((p) => `<li value="${p.index}">${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])} <span class="faint small">· ${p.planned - p.done} game${p.planned - p.done === 1 ? '' : 's'}</span></li>`).join('')}</ol>`
-    : '<p class="muted">Nothing after the current pair.</p>';
+    : '<p class="muted">Nothing after the current pairs.</p>';
 
   document.getElementById('models').innerHTML = `<thead><tr><th>Model</th><th>Kind</th><th class="bar-cell">Games played</th><th class="num">W–L</th><th class="num">s / turn</th><th class="num">Games $</th><th class="num">Draft $</th><th class="num">Total $</th></tr></thead><tbody>` +
     s.models.map((m) => `<tr><td>${esc(m.name)}${m.cap != null ? ` <span class="faint small">cap ${m.cap}</span>` : ''}</td>
@@ -212,7 +213,7 @@ function render(s) {
   document.getElementById('plan').innerHTML = `<thead><tr><th class="num">#</th><th>Pair</th><th class="bar-cell">Games</th><th>Status</th></tr></thead><tbody>` +
     played.map((p) => `<tr><td class="num faint">${p.index}</td><td>${esc(n[p.a])}<span class="vs">vs</span>${esc(n[p.b])}</td>
       <td class="bar-cell"><div class="row">${bar(p.done, p.planned, 'thin')}<span>${p.done} / ${p.planned}</span></div></td>
-      <td class="small">${p.done >= p.planned ? '✓ done' : c && p.index === c.index ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
+      <td class="small">${p.done >= p.planned ? '✓ done' : playing.has(p.index) ? '<b>playing</b>' : '<span class="faint">waiting</span>'}</td></tr>`).join('') + '</tbody>';
 }
 
 document.querySelectorAll('.controls button').forEach((btn) => btn.addEventListener('click', async () => {

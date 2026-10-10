@@ -141,7 +141,6 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         planned = done + more
         plan.append({"index": i, "a": a, "b": b, "done": done, "planned": planned,
                      "skipped": planned < GAMES_PER_PAIR and more < need})
-    current = next((p for p in plan if p["done"] < p["planned"]), None)
 
     # Time left, as a range: each remaining pair's games at its models' measured seconds per turn, for a short,
     # typical and long game (the 25th, 50th and 75th percentile of game lengths so far)
@@ -165,7 +164,13 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         lanes = min(x for x in (app_cfg.ladder.parallel_games, games, a.max_parallel_games, b.max_parallel_games) if x)
         return turns * per_turn * math.ceil(games / lanes)
 
-    remaining = {k: sum(pair_seconds(p, t) for p in plan) for k, t in spread.items()}
+    # the two streams (pairs with a local model, pairs without) play at once: the longer one sets the time
+    local = {k for k in ids if _kind(app_cfg, k) == "local"}
+    gpu = [p for p in plan if {p["a"], p["b"]} & local]
+    api = [p for p in plan if not {p["a"], p["b"]} & local]
+    current = [p for p in (next((p for p in part if p["done"] < p["planned"]), None) for part in (gpu, api)) if p]
+    remaining = {k: max(sum(pair_seconds(p, t) for p in gpu), sum(pair_seconds(p, t) for p in api))
+                 for k, t in spread.items()}
     # a bot decides instantly, so only models can have a pace still to guess
     unmeasured = sorted({x for p in plan if p["done"] < p["planned"] for x in (p["a"], p["b"])
                          if x not in secs and _kind(app_cfg, x) != "bot"})
@@ -250,7 +255,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
                 "first_game": first_game.isoformat(timespec="minutes") if first_game else None,
                 "elapsed_hours": round((now - first_game).total_seconds() / 3600, 1) if first_game else 0},
         "current": current,
-        "next": [p for p in plan if p["done"] < p["planned"]][1:6],
+        "next": [p for p in plan if p["done"] < p["planned"] and p not in current][:5],
         "plan": plan,
         "in_progress": in_progress,
         "sitting_out": sitting_out,

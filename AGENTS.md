@@ -65,6 +65,8 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
    - The ladder plays up to `ladder.parallel_games` (4) games of a set at once, each by its own pair of players;
      lanes after the first get a number in their Showdown name only (`username`), display names stay clean.
      Two different local models never generate at once; one model's requests are batched by its server.
+     The round robin plays two streams of pairs at once: the pairs with a local model (GPU) and the rest (APIs,
+     decision models, the chimps); the second gets lane numbers after the first's and never touches the servers.
 
 2. **Providers:**
    - `openrouter` is the default; its default model is the free Nemotron above.

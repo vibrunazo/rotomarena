@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import time
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
@@ -255,21 +256,60 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
     return sorted(pairs, key=lambda pair: (sum(x in last for x in pair), tier(pair)))
 
 
+def split_streams(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> Tuple[list, list]:
+    """(pairs with a local model, the rest), each keeping its order: the first need the GPU, the second only APIs,
+    so the two play side by side."""
+    indexed = list(enumerate(pairs, 1))
+    gpu = [(i, p) for i, p in indexed if local_servers.local_agents([app_cfg.agents[x] for x in p])]
+    return gpu, [(i, p) for i, p in indexed if (i, p) not in gpu]
+
+
 async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
     """Every model plays every other one (and the control bot), pair by pair in balanced rounds, so coverage grows evenly.
     A pair's games (one from each side) run at once: each model's requests are then batched by its server, which
-    for two local models costs about one game's time instead of two. Resumable."""
+    for two local models costs about one game's time instead of two. Pairs with a local model and pairs without
+    one play in two streams at once (the second never touches the GPU). Resumable."""
     pairs = quick_pairs_first(round_robin_pairs(round_robin_ids(app_cfg, log)), app_cfg)
-    for i, (a, b) in enumerate(pairs, 1):
-        done = version_state(app_cfg).games(a, b)
-        if done >= games_per_pair:
-            continue
-        capped = [] if cap_exempt(app_cfg, a, b) else [x for x in (a, b) if games_left(app_cfg, app_cfg.agents[x]) <= 0]
-        if capped:
-            log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: {', '.join(capped)} reached its game cap")
-            continue
-        log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
-        await play_set(a, b, app_cfg, done, games=games_per_pair)
+    gpu, api = split_streams(pairs, app_cfg)
+    playing: Dict[Tuple[str, str], int] = {}  # sets now playing -> the game count each stops at
+
+    def promised(x: str) -> int:
+        """Games of model x the sets now playing will still add, so the other stream leaves them out of its cap."""
+        state = version_state(app_cfg)
+        return sum(max(stop - state.games(*pair), 0) for pair, stop in playing.items() if x in pair)
+
+    # A model limited to one game at a time (Gemma, for its provider's rate limit) plays in one stream at a time
+    single = {k: asyncio.Lock() for k, a in app_cfg.agents.items() if a.max_parallel_games == 1}
+
+    async def stream(items: list, lane_offset: int) -> None:
+        for i, (a, b) in items:
+            async with contextlib.AsyncExitStack() as held:
+                for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
+                    await held.enter_async_context(single[x])
+                done = version_state(app_cfg).games(a, b)
+                if done >= games_per_pair:
+                    continue
+                stop = games_per_pair
+                if not cap_exempt(app_cfg, a, b):
+                    for x in (a, b):
+                        if app_cfg.agents[x].max_games is not None:
+                            stop = min(stop, done + games_left(app_cfg, app_cfg.agents[x]) - promised(x))
+                if stop <= done:
+                    log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a model reached its game cap")
+                    continue
+                log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
+                playing[(a, b)] = stop
+                try:
+                    await play_set(a, b, app_cfg, done, games=stop, lane_offset=lane_offset)
+                finally:
+                    del playing[(a, b)]
+
+    try:
+        async with asyncio.TaskGroup() as group:  # a halt in either stream stops both
+            group.create_task(stream(gpu, 0))
+            group.create_task(stream(api, app_cfg.ladder.parallel_games))
+    except ExceptionGroup as failed:
+        raise failed.exceptions[0] from failed  # callers catch RunHalted itself
 
 
 def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
@@ -278,7 +318,8 @@ def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
     return [games[i:i + parallel] for i in range(0, len(games), parallel)]
 
 
-async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None) -> int:
+async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None,
+                   lane_offset: int = 0) -> int:
     """Plays the rest of a set between two registry entries; returns how many games were played.
     Up to ladder.parallel_games games run at once, each by its own pair of players (a lane). Between rounds the
     run checks for halts and restarts crashed local servers, as it did between games when they ran one by one."""
@@ -288,7 +329,8 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
         remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
     if remaining <= 0:
         return 0
-    lanes = [create_players(agent_a, agent_b, app_cfg, lane=k + 1)
+    # lane numbers after lane_offset: a model playing in both streams at once needs distinct Showdown names
+    lanes = [create_players(agent_a, agent_b, app_cfg, lane=lane_offset + k + 1)
              for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
     players = [p for lane in lanes for p in lane]
     own = app_cfg.ruleset.team_mode == "draft"
@@ -303,7 +345,8 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     try:
         for round_games in rounds(already_played, remaining, len(lanes)):
             halt_check()
-            local_servers.prepare([agent_a, agent_b], app_cfg)
+            if local_servers.local_agents([agent_a, agent_b]):  # an API pair leaves the GPU stream's servers alone
+                local_servers.prepare([agent_a, agent_b], app_cfg)
             try:
                 async with asyncio.TaskGroup() as group:  # one failed game cancels the round; the set resumes later
                     games = [group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game, own_teams=own))
