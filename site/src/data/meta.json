@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-10-10T16:02:06+00:00",
+  "generated_at": "2026-10-10T20:38:47+00:00",
   "game": "pokemon",
   "formats": [
     "gen9championsrotomarenabssregmb",
     "gen9ou"
   ],
-  "version": "c3",
+  "version": "c4",
   "versions": [
     "s4",
     "s1",
     "s2",
+    "c4",
     "c3",
     "c2",
     "c1"
@@ -66,6 +67,41 @@
       "format": "gen9ou",
       "battle_prompt": "ba3dda5d9965",
       "draft_prompt": "3a8760325e8d"
+    },
+    "c4": {
+      "version": "c4",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "thinking_budget": 2048,
+      "max_output_tokens": 4096,
+      "draft_max_output_tokens": 5120,
+      "turn_timeout": 7200.0,
+      "format": "gen9championsrotomarenabssregmb",
+      "thinking_exceptions": {
+        "muse_spark_1_3": "minimal"
+      },
+      "provider_routing": {
+        "deepseek_v4_1_flash": [
+          "Fireworks",
+          "Novita",
+          "DeepInfra",
+          "Together"
+        ]
+      },
+      "team_mode": "draft",
+      "pick": 3,
+      "answer_attempts": 2,
+      "battle_state": 2,
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "battle_prompt": "c6b6787ac85f",
+      "dex_text": "61e96483d90c",
+      "decision_prompt": "5869c554b249",
+      "draft_prompt": "b0a500bd511d",
+      "control_team": "opponent's",
+      "decision_draft_prompt": "d7c512fb79a3"
     },
     "c3": {
       "version": "c3",
@@ -169,12 +205,13 @@
         "s4",
         "s1",
         "s2",
+        "c4",
         "c3",
         "c2",
         "c1"
       ],
-      "rated_matches": 473,
-      "models": 24
+      "rated_matches": 591,
+      "models": 27
     },
     {
       "id": "gen9ou-own-teams",
@@ -223,10 +260,23 @@
       "category": "Pokémon",
       "bench": "rotom-champ-bench",
       "versions": [
+        "c4"
+      ],
+      "rated_matches": 72,
+      "models": 21
+    },
+    {
+      "id": "champions-bss-own-teams-c3",
+      "title": "Champions BSS · own teams (c3)",
+      "description": "The third Champions version (retired): a failed answer played the default move at once, the recent turns left out failed moves, lost turns and what caused a boost, and thinking stopped at 1,024 tokens.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "bench": "rotom-champ-bench",
+      "versions": [
         "c3"
       ],
-      "rated_matches": 213,
-      "models": 20
+      "rated_matches": 259,
+      "models": 21
     },
     {
       "id": "champions-bss-own-teams-c2",
@@ -279,12 +329,13 @@
       "status": "live",
       "boards": [
         "champions-bss-own-teams",
+        "champions-bss-own-teams-c3",
         "champions-bss-own-teams-c2",
         "champions-bss-own-teams-c1"
       ],
       "main": "champions-bss-own-teams",
-      "rated_matches": 319,
-      "models": 20
+      "rated_matches": 437,
+      "models": 23
     },
     {
       "id": "rotom-bw-bench",
@@ -299,11 +350,11 @@
     }
   ],
   "ruleset": {
-    "version": "c3",
+    "version": "c4",
     "profile": "ladder",
     "reasoning": "medium",
-    "thinking_budget": 1024,
-    "max_output_tokens": 2048,
+    "thinking_budget": 2048,
+    "max_output_tokens": 4096,
     "draft_max_output_tokens": 5120,
     "turn_timeout": 7200.0,
     "format": "gen9championsrotomarenabssregmb",
@@ -320,6 +371,8 @@
     },
     "team_mode": "draft",
     "pick": 3,
+    "answer_attempts": 2,
+    "battle_state": 2,
     "teams": [
       "balance",
       "hyper_offense"
@@ -333,12 +386,6 @@
       "ornith_1_5_35b_a3b"
     ],
     "best_of_three": {
-      "c3": [
-        [
-          "gpt_6_luna",
-          "claude_haiku_5_5"
-        ]
-      ],
       "s4": [
         [
           "gpt_6_luna_pro",
@@ -361,10 +408,10 @@
     "control_games": 3,
     "control_max_cost_per_game_usd": 2.0
   },
-  "matches": 482,
-  "rated_matches": 473,
+  "matches": 600,
+  "rated_matches": 591,
   "void_matches": 9,
   "retracted_matches": 55,
-  "turns": 17479,
-  "tokens": 42308388
+  "turns": 20281,
+  "tokens": 48813732
 }
