@@ -134,7 +134,8 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     for i, (a, b) in enumerate(pairs, 1):
         done = state.games(a, b)
         need = max(GAMES_PER_PAIR - done, 0)
-        more = need if cap_exempt(app_cfg, a, b) else min(need, left[a], left[b])
+        # an exempt pair plays past the cap, which can leave a model's budget below zero: never plan negative games
+        more = need if cap_exempt(app_cfg, a, b) else max(0, min(need, left[a], left[b]))
         left[a] -= more
         left[b] -= more
         planned = done + more
