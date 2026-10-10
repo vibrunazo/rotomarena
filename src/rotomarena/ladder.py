@@ -184,12 +184,22 @@ def _pair_matches(app_cfg: AppConfig, id_a: str, id_b: str) -> List[MatchTelemet
     ]
 
 
+class ProviderLimited(RunHalted):
+    """One model's provider stopped answering (credits, a daily quota, a rate limit that outlasted the backoff). The
+    round robin rests that model for the rest of the run and plays on; placement and fill stop."""
+
+    def __init__(self, message: str, config_id: str):
+        super().__init__(message)
+        self.config_id = config_id
+
+
 def check_halt(label: str, players: List, new_matches: List[MatchTelemetry], max_autopilot: float) -> None:
-    """Raises RunHalted when a player hit a provider limit or the last two games of this set were void."""
+    """Raises ProviderLimited when a player hit a provider limit, RunHalted when the last two games of this set were
+    void."""
     for player in players:
         limit = getattr(player, "provider_limit", None)
         if limit:
-            raise RunHalted(f"{label}: provider limit reached: {limit}")
+            raise ProviderLimited(f"{label}: provider limit reached: {limit}", player.identity.config_id)
     reasons = [void_reason(m, max_autopilot) for m in new_matches[-2:]]
     if len(reasons) == 2 and all(reasons):
         raise RunHalted(f"{label}: two void games in a row ({reasons[-1]})")
@@ -325,11 +335,16 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
         state = version_state(app_cfg, rate=False)
         return sum(max(stop - state.games(*pair), 0) for pair, stop in playing.items() if x in pair)
 
+    resting: set = set()  # models whose provider hit a limit during this run (ProviderLimited)
     # A model limited to one game at a time (Gemma, for its provider's rate limit) plays in one stream at a time
     single = {k: asyncio.Lock() for k, a in app_cfg.agents.items() if a.max_parallel_games == 1}
 
     async def stream(items: list) -> None:
         for i, (a, b) in items:
+            if {a, b} & resting:
+                log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: {', '.join(sorted({a, b} & resting))} resting "
+                    "(provider limit); the next run plays it")
+                continue
             async with contextlib.AsyncExitStack() as held:
                 for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
                     await held.enter_async_context(single[x])
@@ -350,6 +365,11 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                     playing[(a, b)] = stop
                     try:
                         await play_set(a, b, app_cfg, done, games=stop)
+                    except ProviderLimited as e:  # one model's provider: it rests, the others play on
+                        resting.add(e.config_id)
+                        log(f"{time.strftime('%Y-%m-%d %H:%M')} {e.config_id} rests for the rest of this run: "
+                            f"{str(e)[:300]}")
+                        break
                     except local_servers.ServerStartFailed as e:  # one model's server: not the whole run
                         log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a local server didn't start "
                             f"({str(e).splitlines()[0]}); the next run plays it")

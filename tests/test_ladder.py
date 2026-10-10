@@ -272,7 +272,8 @@ def test_run_halts_on_a_provider_limit_or_two_void_games_in_a_row():
     with pytest.raises(RunHalted, match="two void games in a row"):
         check_halt("alpha vs beta", [healthy], [fine, void, void], 0.5)
     with pytest.raises(RunHalted, match="alpha vs beta: provider limit reached: HTTP 402"):
-        check_halt("alpha vs beta", [SimpleNamespace(provider_limit="HTTP 402"), healthy], [], 0.5)
+        check_halt("alpha vs beta", [SimpleNamespace(provider_limit="HTTP 402",
+                                                     identity=SimpleNamespace(config_id="alpha")), healthy], [], 0.5)
 
 
 def test_parallel_rounds_keep_the_set_schedule():
@@ -485,7 +486,7 @@ def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
     app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="gemma"))
 
     async def halting(*args, **kwargs):
-        raise RunHalted("provider limit")
+        raise RunHalted("two void games in a row")
 
     monkeypatch.setattr(ladder, "version_state", lambda cfg, rate=True: SimpleNamespace(games=lambda a, b: 0, outcomes=[]))
     monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
@@ -528,3 +529,29 @@ def test_a_model_playing_one_game_keeps_its_plain_showdown_name():
     assert take_lane("luna") == 1  # the plain name is free again
     for config_id, lane in (("luna", 1), ("luna", 2), ("haiku", 1)):
         release_lane(config_id, lane)
+
+
+def test_a_model_out_of_quota_rests_while_the_others_play_on(monkeypatch):
+    import asyncio
+
+    from rotomarena import ladder
+
+    agents = {k: AgentConfig(name=k, type="direct_llm", provider="openrouter") for k in ("gemma", "luna", "haiku")}
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="luna"))
+    played, logs = [], []
+
+    async def fake_set(a, b, cfg, done, games=None):
+        if "gemma" in (a, b):
+            raise ladder.ProviderLimited("gemma vs x: provider limit reached: 429", "gemma")
+        played.append({a, b})
+        return games
+
+    def state(cfg, rate=True):
+        return SimpleNamespace(games=lambda a, b: 3 * played.count({a, b}), outcomes=[])
+
+    monkeypatch.setattr(ladder, "version_state", state)
+    monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
+    monkeypatch.setattr(ladder, "play_set", fake_set)
+    asyncio.run(ladder.round_robin(app_cfg, games_per_pair=3, log=logs.append))
+    assert played == [{"luna", "haiku"}]
+    assert any("gemma rests" in m for m in logs) and any("gemma resting" in m for m in logs)
