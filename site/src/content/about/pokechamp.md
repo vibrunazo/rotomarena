@@ -71,7 +71,7 @@ central point is that the best results come from combining the two.
 
 **It is rated like everyone else.** Its rating is fitted from its games, with its own error bars, on the same
 scale as the models. It is not the fixed point of the scale: that is the anchor model, which sits at 1500 by
-definition. It has no rank number, because the ranking is for language models; it appears on the leaderboard the
+definition. It has no rank number, because the ranking is for models; it appears on the leaderboard the
 way a reference line appears on a chart.
 
 ## Statistics that do not apply

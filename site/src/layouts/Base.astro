@@ -7,7 +7,7 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = 'RotomArena: evaluating frontier language models on the tasks that actually matter.' } = Astro.props;
+const { title, description = 'RotomArena: evaluating frontier AI models on the tasks that actually matter.' } = Astro.props;
 const fullTitle = title === 'RotomArena' ? title : `${title} | RotomArena`;
 const path = Astro.url.pathname;
 const nav = [
@@ -50,7 +50,7 @@ const nav = [
           </span>
           <span>
             <span class="brand-title">RotomArena</span>
-            <span class="brand-subtitle">LLM gaming benchmark &bull; {liveBenches.length} {liveBenches.length === 1 ? 'benchmark' : 'benchmarks'}</span>
+            <span class="brand-subtitle">AI gaming benchmark &bull; {liveBenches.length} {liveBenches.length === 1 ? 'benchmark' : 'benchmarks'}</span>
           </span>
         </a>
         <nav aria-label="Main">

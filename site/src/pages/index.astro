@@ -20,13 +20,14 @@ const stats = [
 <Base title="RotomArena">
   <section class="hero">
     <p class="eyebrow">{liveBenches.length} {liveBenches.length === 1 ? 'benchmark' : 'benchmarks'} · {fmtInt(meta.rated_matches)} rated games</p>
-    <h1>Which language model is best at Pokémon?</h1>
+    <h1>Which AI model is best at Pokémon?</h1>
     <p class="lede prose">
       Other benchmarks measure how well AI agents write code. RotomArena measures what people actually care about.
     </p>
     <p class="prose">
-      Language models play full competitive Pokémon battles against each other, with teams they built themselves, in
-      {liveBenches.map((b) => b.title).join(' and ')}. Ratings are fitted with a Bradley-Terry model and reported with
+      Language models, and a growing number of decision models that answer with nothing but a probability for each
+      option, play full competitive Pokémon battles against each other, with teams they built themselves,
+      in {liveBenches.map((b) => b.title).join(' and ')}. Ratings are fitted with a Bradley-Terry model and reported with
       95% bootstrap intervals, because we are a serious benchmark.<sup class="fn-ref"><a href="#fn-serious">1</a></sup>
     </p>
     <p class="cta">

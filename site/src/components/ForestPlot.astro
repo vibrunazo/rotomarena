@@ -1,6 +1,6 @@
 ---
 // Figure 1: ratings with 95% bootstrap intervals as capped error bars, drawn at build time. One color per model,
-// shape by kind (circle: language model, square: bot); the anchor is hollow and sits on the reference line.
+// shape by kind (circle: model, square: bot); the anchor is hollow and sits on the reference line.
 import { isModel, type Model } from '../lib/data';
 
 interface Props { models: Model[]; anchor: string; caption?: string }
@@ -57,7 +57,7 @@ const isBot = (m: Model) => !isModel(m);
         })}
         <g class="legend" transform={`translate(${labelW}, ${plotBottom + axisH + 14})`}>
           <circle cx="6" cy="0" r={size} class="key" />
-          <text x="18" y="4">language model</text>
+          <text x="18" y="4">model</text>
           <rect x="140" y={-size} width={size * 2} height={size * 2} rx="1.5" class="key" />
           <text x="158" y="4">bot</text>
           <circle cx="216" cy="0" r={size} class="key hollow" />
