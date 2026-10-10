@@ -531,18 +531,20 @@ def test_a_model_playing_one_game_keeps_its_plain_showdown_name():
         release_lane(config_id, lane)
 
 
-def test_a_model_out_of_quota_rests_while_the_others_play_on(monkeypatch):
+def test_an_unavailable_model_sits_out_and_is_tried_again_while_the_others_play_on(monkeypatch, tmp_path):
     import asyncio
 
     from rotomarena import ladder
 
     agents = {k: AgentConfig(name=k, type="direct_llm", provider="openrouter") for k in ("gemma", "luna", "haiku")}
-    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="luna"))
-    played, logs = [], []
+    app_cfg = AppConfig(agents=agents, ladder=LadderConfig(anchor="luna", rest_minutes=0.001, max_rests=2),
+                        telemetry=TelemetryConfig(output_dir=str(tmp_path)))
+    played, tries, logs = [], [], []
 
     async def fake_set(a, b, cfg, done, games=None):
         if "gemma" in (a, b):
-            raise ladder.ProviderLimited("gemma vs x: provider limit reached: 429", "gemma")
+            tries.append({a, b})
+            raise ladder.ModelUnavailable("gemma vs x: provider limit reached: 429", ["gemma"])
         played.append({a, b})
         return games
 
@@ -553,5 +555,16 @@ def test_a_model_out_of_quota_rests_while_the_others_play_on(monkeypatch):
     monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
     monkeypatch.setattr(ladder, "play_set", fake_set)
     asyncio.run(ladder.round_robin(app_cfg, games_per_pair=3, log=logs.append))
-    assert played == [{"luna", "haiku"}]
-    assert any("gemma rests" in m for m in logs) and any("gemma resting" in m for m in logs)
+    assert played == [{"luna", "haiku"}]  # the others played on
+    assert len(tries) == 3  # the first failure and two tries after its rests, then it waits for the next run
+    assert any("gemma sits out" in m for m in logs) and any("still unavailable after 2 rests" in m for m in logs)
+
+
+def test_a_model_whose_games_keep_going_void_is_the_one_that_sits_out():
+    from rotomarena.ladder import ModelUnavailable
+
+    void = make_match("m1", "alpha", "beta", "beta", p1_sources=("api_error",) * 4)
+    void2 = make_match("m2", "alpha", "beta", "beta", p1_sources=("api_error",) * 4)
+    with pytest.raises(ModelUnavailable) as caught:
+        check_halt("alpha vs beta", [SimpleNamespace(provider_limit=None)], [void, void2], 0.5)
+    assert caught.value.config_ids == ["alpha"]

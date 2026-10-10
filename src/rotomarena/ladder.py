@@ -18,7 +18,7 @@ from rotomarena.costs import estimated_cost_per_game, is_free
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
 from rotomarena.rulesets import current_rules, same_rules, stored_rules
-from rotomarena.results import Outcome, games_between, load_matches, rated_outcomes, void_reason
+from rotomarena.results import Outcome, autopilot_rate, games_between, load_matches, rated_outcomes, void_reason
 from rotomarena.teams.draft import load_drafts, playable_team
 from rotomarena.teams.loader import Team, parse_smogon_team
 from rotomarena.teams.presets import load_preset_team
@@ -39,8 +39,8 @@ def watchdog(app_cfg: AppConfig, minutes: float, poll: float = 60.0) -> threadin
     server_logs = Path(app_cfg.local_llm.gen).parent / "tools" / "llm" / "llamacpp" / "logs"
     started = time.time()
 
-    def last_activity() -> float:
-        files = [*live.glob("*.jsonl"), *server_logs.glob("server_*.log")]
+    def last_activity() -> float:  # live/heartbeat: the round robin waiting for resting models on purpose
+        files = [*live.glob("*.jsonl"), live / "heartbeat", *server_logs.glob("server_*.log")]
         return max([started] + [f.stat().st_mtime for f in files if f.exists()])
 
     def watch() -> None:
@@ -184,24 +184,30 @@ def _pair_matches(app_cfg: AppConfig, id_a: str, id_b: str) -> List[MatchTelemet
     ]
 
 
-class ProviderLimited(RunHalted):
-    """One model's provider stopped answering (credits, a daily quota, a rate limit that outlasted the backoff). The
-    round robin rests that model for the rest of the run and plays on; placement and fill stop."""
+class ModelUnavailable(RunHalted):
+    """Models that can't play now: a provider limit (credits, a daily quota, a rate limit that outlasted the backoff),
+    games going void because a model keeps failing (its provider down), or a local server that won't start. The round
+    robin rests them and tries their pairs again later (ladder.rest_minutes); placement and fill stop."""
 
-    def __init__(self, message: str, config_id: str):
+    def __init__(self, message: str, config_ids: List[str]):
         super().__init__(message)
-        self.config_id = config_id
+        self.config_ids = config_ids
 
 
 def check_halt(label: str, players: List, new_matches: List[MatchTelemetry], max_autopilot: float) -> None:
-    """Raises ProviderLimited when a player hit a provider limit, RunHalted when the last two games of this set were
-    void."""
+    """Raises ModelUnavailable when a player hit a provider limit, or the last two games of this set were void
+    because the same model was on autopilot in both; RunHalted when they were void for another reason."""
     for player in players:
         limit = getattr(player, "provider_limit", None)
         if limit:
-            raise ProviderLimited(f"{label}: provider limit reached: {limit}", player.identity.config_id)
-    reasons = [void_reason(m, max_autopilot) for m in new_matches[-2:]]
+            raise ModelUnavailable(f"{label}: provider limit reached: {limit}", [player.identity.config_id])
+    last = new_matches[-2:]
+    reasons = [void_reason(m, max_autopilot) for m in last]
     if len(reasons) == 2 and all(reasons):
+        failing = [{p.config_id for p in m.players if autopilot_rate(m, p.role) > max_autopilot} for m in last]
+        culprits = sorted(failing[0] & failing[1])
+        if culprits:
+            raise ModelUnavailable(f"{label}: two void games in a row ({reasons[-1]})", culprits)
         raise RunHalted(f"{label}: two void games in a row ({reasons[-1]})")
 
 
@@ -335,16 +341,48 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
         state = version_state(app_cfg, rate=False)
         return sum(max(stop - state.games(*pair), 0) for pair, stop in playing.items() if x in pair)
 
-    resting: set = set()  # models whose provider hit a limit during this run (ProviderLimited)
+    rest_until: Dict[str, float] = {}  # models resting (ModelUnavailable) -> when to try them again
+    rests: Dict[str, int] = {}  # how often each has rested this run
+    gave_up: set = set()  # models that rested ladder.max_rests times: their pairs wait for the next run
+    heartbeat = Path(app_cfg.telemetry.output_dir) / "live" / "heartbeat"  # the watchdog: waiting, not hung
+
+    def rest(config_ids: List[str], why: str) -> None:
+        for x in config_ids:
+            rests[x] = rests.get(x, 0) + 1
+            if rests[x] > app_cfg.ladder.max_rests:
+                gave_up.add(x)
+                log(f"{time.strftime('%Y-%m-%d %H:%M')} {x} still unavailable after {app_cfg.ladder.max_rests} rests: "
+                    f"its pairs wait for the next run ({why[:200]})")
+                continue
+            minutes = min(app_cfg.ladder.rest_minutes * 2 ** (rests[x] - 1), 240)
+            rest_until[x] = time.time() + minutes * 60
+            log(f"{time.strftime('%Y-%m-%d %H:%M')} {x} sits out for {minutes:.0f} min, then its pairs are tried "
+                f"again: {why[:300]}")
+
+    def unavailable(pair: Tuple[str, str]) -> set:
+        return {x for x in pair if x in gave_up or rest_until.get(x, 0) > time.time()}
     # A model limited to one game at a time (Gemma, for its provider's rate limit) plays in one stream at a time
     single = {k: asyncio.Lock() for k, a in app_cfg.agents.items() if a.max_parallel_games == 1}
 
     async def stream(items: list) -> None:
-        for i, (a, b) in items:
-            if {a, b} & resting:
-                log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: {', '.join(sorted({a, b} & resting))} resting "
-                    "(provider limit); the next run plays it")
+        queue = list(items)  # pairs still to play; a resting model's pairs wait at the back
+        while queue:
+            queue = [item for item in queue if not set(item[1]) & gave_up]
+            ready = [item for item in queue if not unavailable(item[1])]
+            if not ready:
+                if not queue:
+                    break
+                wake = min(rest_until[x] for _, pair in queue for x in pair if rest_until.get(x, 0) > time.time())
+                log(f"{time.strftime('%Y-%m-%d %H:%M')} only resting models' pairs are left in this stream: waiting "
+                    f"{(wake - time.time()) / 60:.0f} min")
+                while time.time() < wake:
+                    heartbeat.parent.mkdir(parents=True, exist_ok=True)
+                    heartbeat.touch()
+                    await asyncio.sleep(min(60, max(wake - time.time(), 1)))
                 continue
+            item = ready[0]
+            queue.remove(item)
+            i, (a, b) = item
             async with contextlib.AsyncExitStack() as held:
                 for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
                     await held.enter_async_context(single[x])
@@ -365,14 +403,14 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                     playing[(a, b)] = stop
                     try:
                         await play_set(a, b, app_cfg, done, games=stop)
-                    except ProviderLimited as e:  # one model's provider: it rests, the others play on
-                        resting.add(e.config_id)
-                        log(f"{time.strftime('%Y-%m-%d %H:%M')} {e.config_id} rests for the rest of this run: "
-                            f"{str(e)[:300]}")
+                    except ModelUnavailable as e:  # it sits out; the others play on, its pairs come back later
+                        rest(e.config_ids, str(e))
+                        queue.append(item)
                         break
-                    except local_servers.ServerStartFailed as e:  # one model's server: not the whole run
-                        log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a local server didn't start "
-                            f"({str(e).splitlines()[0]}); the next run plays it")
+                    except local_servers.ServerStartFailed as e:  # its local model sits out like an unreachable one
+                        rest([x.name for x in local_servers.local_agents([app_cfg.agents[a], app_cfg.agents[b]])],
+                             f"its local server didn't start ({str(e).splitlines()[0]})")
+                        queue.append(item)
                         break
                     finally:
                         del playing[(a, b)]

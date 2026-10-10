@@ -209,6 +209,15 @@ class LadderConfig(BaseModel):
         description="Slow models whose pairs play after every other pair (even the anchor's), so the quick games "
         "fill the rankings first",
     )
+    rest_minutes: float = Field(
+        default=30, gt=0, description="How long the round robin rests a model that is unavailable (a provider limit, "
+        "its games going void, its local server not starting) before trying its pairs again; doubles each time, up to "
+        "4 hours",
+    )
+    max_rests: int = Field(
+        default=6, ge=1, description="Rests a model gets in one run before the round robin leaves its pairs to the "
+        "next run (6: about 15 hours of trying)",
+    )
     best_of_three: Dict[str, List[List[str]]] = Field(
         default_factory=dict,
         description="Ruleset version -> pairs that play a best of three in its round robin: one game from each side "

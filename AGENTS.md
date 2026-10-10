@@ -69,7 +69,9 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
    - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429
      that outlasts ~6.5 minutes of backoff) or on two void games in a row in one set; the same command resumes.
-     The round robin instead rests a model whose provider hit a limit (its pairs wait for the next run) and plays on.
+     The round robin instead sits out a model that is unavailable (a provider limit, its games going void on autopilot,
+     its local server not starting) and plays on: its pairs are tried again after `ladder.rest_minutes` (30, doubling
+     to 4 h), and after `ladder.max_rests` (6) they wait for the next run.
    - The ladder plays up to `ladder.parallel_games` (4) games of a set at once, each by its own pair of players;
      lanes after the first get a number in their Showdown name only (`username`), display names stay clean.
      Two different local models never generate at once; one model's requests are batched by its server.
