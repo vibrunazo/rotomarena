@@ -1,0 +1,351 @@
+{
+  "id": "match_20261010_024043_MS Decision 1 5_vs_Gemma 4 31B 5_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c3",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1 5",
+      "role": "p1",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it:free",
+      "quantization": null,
+      "username": "Gemma 4 31B 5",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 28.1,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|MS Decision 1 5 vs. Gemma 4 31B 5",
+    "|j|☆MS Decision 1 5",
+    "|j|☆Gemma 4 31B 5",
+    "|gametype|singles",
+    "|player|p1|MS Decision 1 5|169|",
+    "|player|p2|Gemma 4 31B 5|169|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Scizor, L50, F|",
+    "|poke|p1|Greninja, L50, F|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Dragapult|atk|1",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|move|p2a: Incineroar|Fake Out|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|163/183",
+    "|-damage|p2a: Incineroar|87/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Incineroar",
+    "|-supereffective|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|0 fnt",
+    "|faint|p2a: Incineroar",
+    "|-damage|p1a: Garchomp|145/183|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|3",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|-damage|p1a: Garchomp|127/183|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, F|100/100",
+    "|-activate|p2a: Kingambit|ability: Supreme Overlord",
+    "|-start|p2a: Kingambit|fallen2|[silent]",
+    "|turn|4",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|0 fnt",
+    "|faint|p2a: Kingambit",
+    "|-end|p2a: Kingambit|fallen2|[silent]",
+    "|-damage|p1a: Garchomp|109/183|[from] item: Life Orb",
+    "|",
+    "|win|MS Decision 1 5",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 54% BRING: dragapult, 37% BRING: garchomp, 3% BRING: greninja\nPick 2: 84% BRING: garchomp, 10% BRING: gholdengo, 3% BRING: scizor\nPick 3: 69% BRING: gholdengo, 22% BRING: scizor, 8% BRING: greninja",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4794,
+      "latency_ms": 2891,
+      "cost_usd": 0.000201348,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Incineroar provides essential Intimidate and Fake Out support against the opponent's fast physical attackers. Gholdengo handles Dragapult and Gholdengo, while Kingambit serves as a powerful late-game cleaner.",
+      "hidden_reasoning": "The opponent has a fast, offensive team (Dragapult, Greninja, Garchomp). Incineroar is essential for Intimidate and Fake Out to slow them down. Gholdengo provides crucial Steel/Ghost coverage and special offense. Kingambit is a powerful late-game cleaner with Sucker Punch.\n\nDeciding factor: Team synergy and coverage against the opponent's fast attackers.",
+      "note": "",
+      "tokens": 1912,
+      "latency_ms": 5343,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "29% SWITCH: garchomp, 23% MOVE: shadowball, 18% MOVE: suckerpunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1124,
+      "latency_ms": 948,
+      "cost_usd": 4.7208e-05,
+      "probabilities": {
+        "MOVE: hex": 0.07443984508803071,
+        "MOVE: shadowball": 0.22929086507100035,
+        "MOVE: suckerpunch": 0.1785719052684149,
+        "MOVE: uturn": 0.06569293271906422,
+        "SWITCH: garchomp": 0.29441529856548393,
+        "SWITCH: gholdengo": 0.15758915328800596
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "fakeout",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult is significantly faster than Incineroar. Fake Out is the standard lead play to break potential Focus Sashes and flinch the opponent.",
+      "hidden_reasoning": "Dragapult is significantly faster than Incineroar. Fake Out is the standard lead play to break potential Focus Sashes, flinch the opponent, and gain momentum or information.\n\nDeciding factor: Speed (Dragapult outspeeds everything, Fake Out guarantees a hit).",
+      "note": "",
+      "tokens": 1323,
+      "latency_ms": 3920,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: earthquake, 16% MOVE: dracometeor, 9% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1179,
+      "latency_ms": 961,
+      "cost_usd": 4.9518e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.15555461752452251,
+        "MOVE: earthquake": 0.5429389637773876,
+        "MOVE: stealthrock": 0.09434863354126077,
+        "MOVE: swordsdance": 0.0734787896836509,
+        "SWITCH: dragapult": 0.09434863354126077,
+        "SWITCH: gholdengo": 0.039330361931917426
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Incineroar is in a bad matchup against Garchomp and cannot deal significant damage. Parting Shot allows for a safe pivot to a teammate while further reducing Garchomp's Attack.",
+      "hidden_reasoning": "The deciding factor is a bad matchup; Incineroar cannot possibly beat Garchomp and is vulnerable to Earthquake. Parting Shot allows me to pivot to a safer teammate while lowering Garchomp's attack.",
+      "note": "",
+      "tokens": 1420,
+      "latency_ms": 3850,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1371,
+      "latency_ms": 2340,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: earthquake, 19% MOVE: dracometeor, 10% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1329,
+      "latency_ms": 947,
+      "cost_usd": 5.5818e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.18749020932247268,
+        "MOVE: earthquake": 0.5096512290152602,
+        "MOVE: stealthrock": 0.08856411440801222,
+        "MOVE: swordsdance": 0.08856411440801222,
+        "SWITCH: dragapult": 0.10035628923867247,
+        "SWITCH: gholdengo": 0.025374043607570174
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "makeitrain",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is faster than Garchomp (106 vs 102) and Make It Rain deals massive damage to Garchomp, likely securing a knockout or leaving it in range for Kingambit.",
+      "hidden_reasoning": "Gholdengo is faster than Garchomp (106 vs 102). Make It Rain is a powerful Steel-type move that deals significant damage to Garchomp. Garchomp is at 79% HP and is weak to Steel.\n\nDeciding factor: Speed and a likely knockout.",
+      "note": "",
+      "tokens": 1534,
+      "latency_ms": 4561,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Kingambit is the only remaining Pokémon on the team.",
+      "hidden_reasoning": "The opponent has Garchomp active, which just knocked out Gholdengo. I only have Kingambit left. Kingambit is the only legal action.\n\nDeciding factor: Only one Pokémon remaining.",
+      "note": "",
+      "tokens": 1447,
+      "latency_ms": 3077,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "58% MOVE: earthquake, 15% MOVE: dracometeor, 10% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1425,
+      "latency_ms": 466,
+      "cost_usd": 5.985e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.1478406893440669,
+        "MOVE: earthquake": 0.5847213039773559,
+        "MOVE: stealthrock": 0.0479968445715106,
+        "MOVE: swordsdance": 0.0479968445715106,
+        "SWITCH: dragapult": 0.10160932075524391,
+        "SWITCH: gholdengo": 0.06983499678031214
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Kingambit has a significant Attack boost from Supreme Overlord. Kowtow Cleave is the most reliable high-damage move to secure a knockout on Garchomp.",
+      "hidden_reasoning": "Kingambit has a massive Attack boost from Supreme Overlord (2 allies fainted). Garchomp is at 69% HP and is weak to nothing Kingambit has, but Kingambit's raw power is high. Sucker Punch is the only way to move first, but Garchomp likely uses Earthquake again. Kowtow Cleave is the most reliable high-damage move.\n\nDeciding factor: Likely knockout.",
+      "note": "",
+      "tokens": 1562,
+      "latency_ms": 4986,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
