@@ -17,7 +17,7 @@ RUNS = ROOT / "runs"
 DRIVER_PID = RUNS / "driver.pid"
 ROUND_ROBIN_PID = RUNS / "roundrobin.pid"
 PUBLISH_EVERY = 45 * 60
-GAMES_PER_PAIR = 2
+GAMES_PER_PAIR = 3   # every pair plays three games (10 Oct: was 2; a 1-1 told nothing)
 STALLED = 4          # the round robin's exit code when its games stopped making progress
 MAX_RESTARTS = 10    # stalls in a row the driver restarts before giving up
 NO_WINDOW = 0x08000000 if sys.platform == "win32" else 0  # CREATE_NO_WINDOW: children never open a console

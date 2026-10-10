@@ -4,7 +4,10 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
+import os
+import threading
 import time
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -25,6 +28,33 @@ from rotomarena.telemetry.breadcrumbs import MatchTelemetry
 class RunHalted(RuntimeError):
     """Something outside a single game is wrong (a provider limit, games that keep coming out void). The run
     stops rather than void the rest of its schedule; placement resumes where it stopped."""
+
+
+def watchdog(app_cfg: AppConfig, minutes: float, poll: float = 60.0) -> threading.Thread:
+    """A thread that ends the process (exit code 4, which the run monitor's driver restarts) when nothing has moved
+    for `minutes`: no decision written to runs/live and no local server writing its log. It works when the event
+    loop itself is wedged, which stall_guard can't: on 10 Oct a failed server start cancelled the other stream
+    mid-game, poke-env's connection thread died (InvalidStateError) and the process hung for 97 minutes."""
+    live = Path(app_cfg.telemetry.output_dir) / "live"
+    server_logs = Path(app_cfg.local_llm.gen).parent / "tools" / "llm" / "llamacpp" / "logs"
+    started = time.time()
+
+    def last_activity() -> float:
+        files = [*live.glob("*.jsonl"), *server_logs.glob("server_*.log")]
+        return max([started] + [f.stat().st_mtime for f in files if f.exists()])
+
+    def watch() -> None:
+        while True:
+            time.sleep(poll)
+            idle = (time.time() - last_activity()) / 60
+            if idle > minutes:
+                print(f"{time.strftime('%Y-%m-%d %H:%M')} RUN STALLED: nothing moved for {idle:.0f} minutes; "
+                      "exiting so the driver restarts the run", flush=True)
+                os._exit(4)
+
+    thread = threading.Thread(target=watch, name="watchdog", daemon=True)
+    thread.start()
+    return thread
 
 
 class RunStalled(RunHalted):
@@ -195,7 +225,7 @@ def pair_target(app_cfg: AppConfig, state: LadderState, a: str, b: str, games_pe
         return games_per_pair
     games = [o for o in state.outcomes if {o.p1, o.p2} == {a, b}]
     score_a = sum(o.score_p1 if o.p1 == a else 1 - o.score_p1 for o in games)
-    return 3 if len(games) >= 2 and score_a == len(games) / 2 else 2
+    return max(games_per_pair, 3 if len(games) >= 2 and score_a == len(games) / 2 else 2)
 
 
 def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
@@ -320,6 +350,10 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                     playing[(a, b)] = stop
                     try:
                         await play_set(a, b, app_cfg, done, games=stop, lane_offset=lane_offset)
+                    except local_servers.ServerStartFailed as e:  # one model's server: not the whole run
+                        log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a local server didn't start "
+                            f"({str(e).splitlines()[0]}); the next run plays it")
+                        break
                     finally:
                         del playing[(a, b)]
 

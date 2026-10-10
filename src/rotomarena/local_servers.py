@@ -14,6 +14,10 @@ from typing import Callable, Dict, Iterator, List, Optional, Tuple
 from rotomarena.config import AgentConfig, AppConfig
 
 
+class ServerStartFailed(RuntimeError):
+    """A local model's server didn't come up: the pair that needed it is skipped and played on the next run."""
+
+
 def _gen(app_cfg: AppConfig, *args: str) -> subprocess.CompletedProcess:
     return subprocess.run(
         [sys.executable, app_cfg.local_llm.gen, "llm", *args],
@@ -131,7 +135,7 @@ async def _load(port: int) -> None:
         _loaded = None
     result = await asyncio.to_thread(_gen, _swap_cfg, *_serve_args(_swap_cfg, _swap[port], port))
     if result.returncode != 0:
-        raise RuntimeError(f"gen llm serve --model {_swap[port]} --port {port} failed:\n{result.stdout}{result.stderr}")
+        raise ServerStartFailed(f"gen llm serve --model {_swap[port]} --port {port} failed:\n{result.stdout}{result.stderr}")
     _loaded = port
 
 
@@ -202,4 +206,4 @@ def prepare(players: List[AgentConfig], app_cfg: AppConfig, log: Callable[[str],
         log(f"Starting local server {model} on port {port}")
         result = _gen(app_cfg, *_serve_args(app_cfg, model, port))
         if result.returncode != 0:
-            raise RuntimeError(f"gen llm serve --model {model} --port {port} failed:\n{result.stdout}{result.stderr}")
+            raise ServerStartFailed(f"gen llm serve --model {model} --port {port} failed:\n{result.stdout}{result.stderr}")

@@ -157,7 +157,6 @@ ladder:
   cap_exempt_pairs:
     - ["gpt_6_luna_pro", "gpt_6_luna_decisions"]
   best_of_three:
-    c3: [["gpt_6_luna", "claude_haiku_5_5"]]   # the first Anthropic vs OpenAI headliner
     s4: [["gpt_6_luna_pro", "gpt_6_luna_decisions"]]   # 1-1 after the first two: the video needs a decider
   games_per_set: 4          # 2 teams x 2 sides
   parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
@@ -285,14 +284,14 @@ agents:
     provider: "openrouter"
     model: "anthropic/claude-haiku-5.5"
     max_games: 8
-    extra_games: {c3: 27}   # 24 more in c3, and 3 for the best of three against GPT-6 Luna
+    extra_games: {c3: 24}
   gpt_6_luna:
     type: "direct_llm"
     display_name: "GPT-6 Luna"
     provider: "openrouter"
     model: "openai/gpt-6-luna"
     max_games: 8
-    extra_games: {c3: 27}   # 24 more in c3, and 3 for the best of three against Claude Haiku 5.5
+    extra_games: {c3: 24}
   gpt_6_luna_pro:
     type: "direct_llm"
     display_name: "GPT-6 Luna Pro"

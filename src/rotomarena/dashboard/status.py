@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from rotomarena.config import AppConfig
+from rotomarena.dashboard.driver import GAMES_PER_PAIR
 from rotomarena.ladder import cap_exempt, games_left, pair_target, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
@@ -23,7 +24,6 @@ from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
 
 RUNS = Path("runs")
 LLAMA_LOGS = Path(r"D:\docs\assets\generator\tools\llm\llamacpp\logs")
-GAMES_PER_PAIR = 2  # what the round-robin driver asks for
 DEFAULT_TURN_SECONDS = {"local": 25.0, "api": 8.0, "decision": 1.0, "bot": 0.1}
 DEFAULT_TURNS = 25
 

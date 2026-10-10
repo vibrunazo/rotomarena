@@ -597,16 +597,17 @@ def ladder_place_all(
 
 @ladder_app.command("round-robin")
 def ladder_round_robin(
-    games_per_pair: int = typer.Option(2, "--games-per-pair", "-g", help="Games each pair plays, one side each"),
+    games_per_pair: int = typer.Option(3, "--games-per-pair", "-g", help="Games each pair plays, sides alternating"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
     version: Optional[str] = typer.Option(None, "--version", help="Ruleset version to play (default: play in the config)"),
 ):
     """Every language model plays every other one, pair by pair in balanced rounds (a pair's games run at once),
     so a run stopped early still covers every model evenly. Resumes where it stopped."""
-    from rotomarena.ladder import RunHalted, round_robin
+    from rotomarena.ladder import RunHalted, round_robin, watchdog
 
     app_cfg = AppConfig.load(config_file).playing(version)
     _register_rules(app_cfg)
+    watchdog(app_cfg, app_cfg.ladder.stall_minutes + 10)  # the backstop when the event loop itself hangs
     server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
