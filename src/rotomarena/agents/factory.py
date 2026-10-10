@@ -220,8 +220,7 @@ def create_agent_instance(
     played at once) add their number; the display name stays the model's own.
     `start_listening=False` skips connecting to Showdown (for tests)."""
     llm_client = llm_client_for(agent_cfg, app_config) if agent_cfg.type == "direct_llm" else None
-    decision_client = (DecisionClient.for_model(agent_cfg.model, app_config, agent_cfg.provider or "openrouter")
-                       if agent_cfg.type == "decision" else None)
+    decision_client = DecisionClient.for_agent(agent_cfg, app_config) if agent_cfg.type == "decision" else None
     resolved_model = (llm_client.default_model if llm_client
                       else decision_client.model if decision_client else None)
 

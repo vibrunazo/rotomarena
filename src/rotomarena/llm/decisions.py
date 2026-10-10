@@ -12,12 +12,13 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import aiohttp
 
-from rotomarena.config import AppConfig, ProviderConfig
+from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.llm.client import _RATE_LIMIT_WAITS, ProviderLimitError, _is_quota
 from rotomarena.llm.schemas import LLMUsageMetrics
 
 MAX_OPTIONS = 255  # per Choice question
 DECISIONS_PATH = "/api/alpha/decisions"
+LOCAL_DECISIONS_PATH = "/v1/systemone"
 
 
 @dataclass
@@ -70,22 +71,33 @@ class _Plan:
 
 
 class DecisionClient:
-    """Asks a decision model Choice questions through OpenRouter."""
+    """Asks a decision model Choice questions: through OpenRouter's Decisions API, or a local server's
+    POST /v1/systemone (the same request; Drex and Laya serve it)."""
 
-    def __init__(self, provider: ProviderConfig, model: str, provider_name: str = "openrouter"):
-        root = provider.base_url.rstrip("/")
-        self.url = (root[: -len("/api/v1")] if root.endswith("/api/v1") else root) + DECISIONS_PATH
-        self.api_key = provider.get_api_key()
+    def __init__(self, url: str, api_key: Optional[str], model: str, provider_name: str = "openrouter",
+                 extra: Optional[Dict[str, Any]] = None, max_options: int = MAX_OPTIONS):
+        self.url = url
+        self.api_key = api_key
         self.model = model
         self.provider_name = provider_name
+        self.extra = extra or {}  # sent with every request (a local server's settings)
+        self.max_options = max_options
 
     @classmethod
-    def for_model(cls, model: str, app_cfg: AppConfig, provider: str = "openrouter") -> "DecisionClient":
-        return cls(app_cfg.providers[provider], model, provider)
+    def for_agent(cls, agent: AgentConfig, app_cfg: AppConfig) -> "DecisionClient":
+        provider = agent.provider or "openrouter"
+        if agent.port:  # a local server (gen llm serve) on its own port
+            url, api_key = f"http://127.0.0.1:{agent.port}{LOCAL_DECISIONS_PATH}", None
+        else:
+            root = app_cfg.providers[provider].base_url.rstrip("/")
+            url = (root[: -len("/api/v1")] if root.endswith("/api/v1") else root) + DECISIONS_PATH
+            api_key = app_cfg.providers[provider].get_api_key()
+        return cls(url, api_key, agent.model, provider, agent.decision_request,
+                   agent.decision_max_options or MAX_OPTIONS)
 
     async def _post(self, state: Any, questions: Dict[str, Dict[str, Any]]) -> Tuple[Dict[str, Any], Usage]:
-        body = {"model": self.model, "state": state, "questions": questions}
-        headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        body = {"model": self.model, **self.extra, "state": state, "questions": questions}
+        headers = {"Content-Type": "application/json", **({"Authorization": f"Bearer {self.api_key}"} if self.api_key else {})}
         waits = list(_RATE_LIMIT_WAITS)
         errors = 0
         while True:
@@ -124,11 +136,11 @@ class DecisionClient:
 
     async def choose(self, state: Any, questions: Dict[str, Question]) -> Tuple[Dict[str, Choice], Usage]:
         """Answers every question (independent of each other) in one request, or two when a question has more
-        than MAX_OPTIONS options: its chunks are asked side by side, then a final among the chunks' picks.
+        than max_options options: its chunks are asked side by side, then a final among the chunks' picks.
         A question with one option has nothing to decide (and OpenAI's endpoint refuses it): it is answered here."""
         out: Dict[str, Choice] = {name: Choice(next(iter(q.options)), {next(iter(q.options)): 1.0}, 1.0)
                                   for name, q in questions.items() if len(q.options) == 1}
-        plans = {name: _Plan(q, _chunks(q.options)) for name, q in questions.items() if name not in out}
+        plans = {name: _Plan(q, _chunks(q.options, self.max_options)) for name, q in questions.items() if name not in out}
         if not plans:
             return out, Usage()
         first: Dict[str, Dict[str, Any]] = {}
@@ -154,9 +166,9 @@ class DecisionClient:
         return out, usage
 
 
-def _chunks(options: Dict[str, str]) -> List[Dict[str, str]]:
+def _chunks(options: Dict[str, str], max_options: int = MAX_OPTIONS) -> List[Dict[str, str]]:
     items = list(options.items())
-    n = math.ceil(len(items) / MAX_OPTIONS) or 1
+    n = math.ceil(len(items) / max_options) or 1
     size = math.ceil(len(items) / n) or 1
     return [dict(items[i:i + size]) for i in range(0, len(items), size)]
 

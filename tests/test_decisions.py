@@ -1,12 +1,13 @@
 import asyncio
 
-from rotomarena.config import ProviderConfig
+from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.llm.decisions import MAX_OPTIONS, DecisionClient, Question, Usage, _chunks
 
 
-def _client(answer_for):
+def _client(answer_for, **agent):
     """A client whose requests are answered by answer_for(question) -> chosen option; records each request."""
-    client = DecisionClient(ProviderConfig(base_url="https://openrouter.ai/api/v1", default_model="x"), "typesafe/jev-1.13")
+    client = DecisionClient.for_agent(AgentConfig(name="jev", type="decision", model="typesafe/jev-1.13", **agent),
+                                      AppConfig())
     sent = []
 
     async def post(state, questions):
@@ -25,6 +26,15 @@ def _client(answer_for):
 def test_the_decisions_endpoint_sits_next_to_the_openai_one():
     client, _ = _client(lambda q: None)
     assert client.url == "https://openrouter.ai/api/alpha/decisions"
+
+
+def test_a_local_decision_model_gets_its_port_and_its_settings():
+    client, sent = _client(lambda q: sorted(q["criteria"])[0], provider="local", port=8091,
+                           decision_request={"model": "multilingual", "max_len": 8192}, decision_max_options=24)
+    assert client.url == "http://127.0.0.1:8091/v1/systemone" and client.api_key is None
+    assert client.extra == {"model": "multilingual", "max_len": 8192}
+    asyncio.run(client.choose("state", {"pick": Question("Which?", {f"mon{i}": "" for i in range(100)})}))
+    assert len(sent[0]) == 5 and all(len(q["criteria"]) <= 24 for q in sent[0].values())
 
 
 def test_long_option_lists_are_split_then_decided_in_a_final():

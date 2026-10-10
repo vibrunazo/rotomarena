@@ -72,7 +72,7 @@ async def draft_team_by_decisions(agent: AgentConfig, app_cfg: AppConfig, attemp
                                   log=print) -> Dict[str, Any]:
     """The same record as draft_team (picks, attempts, legal, team, repairs), built from Choice answers."""
     rules = format_rules(app_cfg)
-    client = DecisionClient.for_model(agent.model, app_cfg, agent.provider or "openrouter")
+    client = DecisionClient.for_agent(agent, app_cfg)
     record: Dict[str, Any] = {
         "config_id": agent.name, "model": client.model, "provider": client.provider_name,
         "model_key": agent.canonical_model_key(), "quantization": agent.quantization,

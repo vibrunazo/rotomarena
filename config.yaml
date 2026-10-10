@@ -366,6 +366,26 @@ agents:
     display_name: "Mercury Decide"
     provider: "openrouter"
     model: "inception/mercury-decide"   # the paid variant: the free one's daily request limit would stall a run
+  # Local decision models, served by the Smooth Generator (gen llm serve) on POST /v1/systemone
+  drex_v1_5:
+    type: "decision"
+    display_name: "Drex v1.5"
+    provider: "local"
+    model: "drex-v1.5"
+    port: 8090
+    quantization: "Q8_0"
+    model_key: "nace-ai/drex-v1.5"
+  laya:
+    type: "decision"
+    display_name: "Laya"
+    provider: "local"
+    model: "laya"
+    port: 8091
+    model_key: "convaiinnovations/laya"
+    # Its multilingual checkpoint (mmBERT-base, 322M) at its longest reach: a battle state is ~1.5K tokens (up to
+    # ~6K), past the English checkpoint's 512. Options share the head budget, so long lists go 24 at a time.
+    decision_request: {model: "multilingual", max_len: 8192, head_max_len: 1024}
+    decision_max_options: 24
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
   # Hans Rosling's chimpanzees, picking answers at random from bananas: a model that loses to them isn't playing.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Dict, List, Literal, Optional, Tuple
+from typing import Any, Dict, List, Literal, Optional, Tuple
 from pydantic import BaseModel, Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 import yaml
@@ -272,6 +272,14 @@ class AgentConfig(BaseModel):
     max_games: Optional[int] = Field(
         default=None, ge=0, description="At most this many games in each version (a spending cap for paid models); "
         "schedules skip it once reached",
+    )
+    decision_request: Dict[str, Any] = Field(
+        default_factory=dict, description="Decision models: fields sent with every request, e.g. a local server's "
+        "settings (Laya: its checkpoint and token budget)",
+    )
+    decision_max_options: Optional[int] = Field(
+        default=None, ge=2, le=255, description="Decision models: most options in one Choice question (default 255); "
+        "more are asked in chunks, then a final among their picks. For a model whose options share a short budget",
     )
     extra_games: Dict[str, int] = Field(
         default_factory=dict, description="Ruleset version -> games added to max_games in that version only (e.g. "
