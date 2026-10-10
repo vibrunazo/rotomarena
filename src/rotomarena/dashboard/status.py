@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.ladder import cap_exempt, games_left, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
+from rotomarena.ladder import cap_exempt, games_left, pair_target, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
 from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
@@ -133,14 +133,15 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     plan = []
     for i, (a, b) in enumerate(pairs, 1):
         done = state.games(a, b)
-        need = max(GAMES_PER_PAIR - done, 0)
+        target = pair_target(app_cfg, state, a, b, GAMES_PER_PAIR)  # a best of three may need a deciding game
+        need = max(target - done, 0)
         # an exempt pair plays past the cap, which can leave a model's budget below zero: never plan negative games
         more = need if cap_exempt(app_cfg, a, b) else max(0, min(need, left[a], left[b]))
         left[a] -= more
         left[b] -= more
         planned = done + more
         plan.append({"index": i, "a": a, "b": b, "done": done, "planned": planned,
-                     "skipped": planned < GAMES_PER_PAIR and more < need})
+                     "skipped": planned < target and more < need})
 
     # Time left, as a range: each remaining pair's games at its models' measured seconds per turn, for a short,
     # typical and long game (the 25th, 50th and 75th percentile of game lengths so far)

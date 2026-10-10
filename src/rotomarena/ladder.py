@@ -178,8 +178,18 @@ def games_played(app_cfg: AppConfig, config_id: str) -> int:
 
 
 def cap_exempt(app_cfg: AppConfig, a: str, b: str) -> bool:
-    """Whether this pair plays even past a player's game cap (ladder.cap_exempt_pairs)."""
-    return any({a, b} == set(pair) for pair in app_cfg.ladder.cap_exempt_pairs)
+    """Whether this pair plays even past a player's game cap (ladder.cap_exempt_pairs, ladder.best_of_three)."""
+    return any({a, b} == set(pair) for pair in app_cfg.ladder.cap_exempt_pairs + app_cfg.ladder.best_of_three)
+
+
+def pair_target(app_cfg: AppConfig, state: LadderState, a: str, b: str, games_per_pair: int) -> int:
+    """How many valid games this pair plays in the round robin: games_per_pair, or for a best of three
+    (ladder.best_of_three) a deciding third game once its first two stand level."""
+    if not any({a, b} == set(pair) for pair in app_cfg.ladder.best_of_three):
+        return games_per_pair
+    games = [o for o in state.outcomes if {o.p1, o.p2} == {a, b}]
+    score_a = sum(o.score_p1 if o.p1 == a else 1 - o.score_p1 for o in games)
+    return 3 if len(games) >= 2 and score_a == len(games) / 2 else 2
 
 
 def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
@@ -286,23 +296,25 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
             async with contextlib.AsyncExitStack() as held:
                 for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
                     await held.enter_async_context(single[x])
-                done = version_state(app_cfg).games(a, b)
-                if done >= games_per_pair:
-                    continue
-                stop = games_per_pair
-                if not cap_exempt(app_cfg, a, b):
-                    for x in (a, b):
-                        if app_cfg.agents[x].max_games is not None:
-                            stop = min(stop, done + games_left(app_cfg, app_cfg.agents[x]) - promised(x))
-                if stop <= done:
-                    log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a model reached its game cap")
-                    continue
-                log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{games_per_pair} valid games so far)")
-                playing[(a, b)] = stop
-                try:
-                    await play_set(a, b, app_cfg, done, games=stop, lane_offset=lane_offset)
-                finally:
-                    del playing[(a, b)]
+                while True:  # once more for a best of three's deciding game
+                    state = version_state(app_cfg)
+                    done, target = state.games(a, b), pair_target(app_cfg, state, a, b, games_per_pair)
+                    if done >= target:
+                        break
+                    stop = target
+                    if not cap_exempt(app_cfg, a, b):
+                        for x in (a, b):
+                            if app_cfg.agents[x].max_games is not None:
+                                stop = min(stop, done + games_left(app_cfg, app_cfg.agents[x]) - promised(x))
+                    if stop <= done:
+                        log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a model reached its game cap")
+                        break
+                    log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{target} valid games so far)")
+                    playing[(a, b)] = stop
+                    try:
+                        await play_set(a, b, app_cfg, done, games=stop, lane_offset=lane_offset)
+                    finally:
+                        del playing[(a, b)]
 
     try:
         async with asyncio.TaskGroup() as group:  # a halt in either stream stops both

@@ -194,6 +194,11 @@ class LadderConfig(BaseModel):
         description="Slow models whose pairs play after every other pair (even the anchor's), so the quick games "
         "fill the rankings first",
     )
+    best_of_three: List[List[str]] = Field(
+        default_factory=list,
+        description="Pairs that play a best of three in the round robin: one game from each side and, at 1-1, a "
+        "deciding third. Like cap_exempt_pairs they play past a game cap (the games still count toward it)",
+    )
     cap_exempt_pairs: List[List[str]] = Field(
         default_factory=list,
         description="Pairs that play their games even when a player has reached its max_games (the games still "

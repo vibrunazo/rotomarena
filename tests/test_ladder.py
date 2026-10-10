@@ -493,3 +493,18 @@ def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
     monkeypatch.setattr(ladder, "play_set", halting)
     with pytest.raises(RunHalted):
         asyncio.run(ladder.round_robin(app_cfg, games_per_pair=2, log=lambda m: None))
+
+
+def test_a_best_of_three_plays_a_deciding_game_only_at_one_all():
+    from rotomarena.ladder import cap_exempt, pair_target
+
+    app_cfg = AppConfig(ladder=LadderConfig(best_of_three=[["luna", "haiku"]]))
+
+    def state(*scores):
+        return SimpleNamespace(outcomes=[Outcome(f"m{i}", "luna", "haiku", s) for i, s in enumerate(scores)])
+
+    assert pair_target(app_cfg, state(), "haiku", "luna", 2) == 2
+    assert pair_target(app_cfg, state(1, 0), "haiku", "luna", 2) == 3
+    assert pair_target(app_cfg, state(1, 1), "haiku", "luna", 2) == 2  # 2-0: decided
+    assert pair_target(app_cfg, state(1, 0), "luna", "gemma", 2) == 2
+    assert cap_exempt(app_cfg, "haiku", "luna")
