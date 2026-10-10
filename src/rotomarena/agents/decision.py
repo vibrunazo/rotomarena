@@ -73,7 +73,8 @@ class DecisionPlayer(BaseBenchmarkPlayer):
         if not options:
             return self.choose_default_order(battle)
         try:
-            choice, usage = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick),
+            choice, usage = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick,
+                                                                self.full_events),
                                             TURN_INSTRUCTIONS,
                                             {k: _describe(k, t, tera) for k, (t, tera) in options.items()})
         except Exception as e:

@@ -324,6 +324,7 @@ class LLMClient:
             cost_estimated=estimated is not None,
             model=target_model,
             provider=self.provider_name,
+            upstream=str(_extra(response, "provider") or ""),
         )
         # Hidden thinking, when the provider returns it: llama.cpp and DeepSeek use reasoning_content,
         # OpenRouter uses reasoning. Some providers (OpenAI) return none, others a summary.
@@ -339,13 +340,19 @@ class LLMClient:
         reasoning: str = "off",
         thinking_budget: Optional[int] = None,
         system_prompt: Optional[str] = None,
+        retry: Optional[Tuple[str, str]] = None,
     ) -> ActionDecision:
         """Asks for one turn's decision and parses it. API failures raise; bad answers set parse_error.
-        `system_prompt` replaces the Gen 9 OU one for another format (prompts.system_prompt_for)."""
+        `system_prompt` replaces the Gen 9 OU one for another format (prompts.system_prompt_for).
+        `retry` = (the failed answer, what was wrong with it): the conversation continues with both, for a second try."""
         messages = [
             {"role": "system", "content": system_prompt or SYSTEM_PROMPT_DIRECT_COT},
             {"role": "user", "content": USER_PROMPT_DIRECT_COT_TEMPLATE.format(battle_state=battle_state_str)},
         ]
+        if retry:
+            answer, problem = retry
+            messages += [{"role": "assistant", "content": answer.strip() or "(empty reply)"},
+                         {"role": "user", "content": problem}]
         completion = await self.generate_completion(
             messages, model=model, temperature=temperature, max_tokens=max_tokens, reasoning=reasoning,
             thinking_budget=thinking_budget,

@@ -120,14 +120,20 @@ def _event_actor(ident: str, role: Optional[str]) -> str:
     return f"{'Your' if mine else 'Opposing'} {name or side}"
 
 
-def _format_event(msg: List[str], role: Optional[str]) -> Optional[str]:
-    """One protocol message (['', 'move', 'p1a: Great Tusk', 'Earthquake', ...]) as a short sentence."""
+def _format_event(msg: List[str], role: Optional[str], full: bool = False) -> Optional[str]:
+    """One protocol message (['', 'move', 'p1a: Great Tusk', 'Earthquake', ...]) as a short sentence. `full`
+    (ruleset.turn_events) adds the events that explain a turn: failed moves, lost turns, Protect and other
+    activations, Mega Evolution, volatile conditions, and what caused a stat change."""
     if len(msg) < 2:
         return None
     kind, args = msg[1], msg[2:]
     who = _event_actor(args[0], role) if args else ""
     source = next((a for a in args[1:] if a.startswith("[from]")), "")
     source = f" {source}" if source else ""
+    if full:
+        line = _full_event(kind, args, who, source)
+        if line:
+            return line
     if kind == "move" and len(args) >= 2:
         return f"{who} used {args[1]}"
     if kind in ("switch", "drag") and len(args) >= 2:
@@ -171,7 +177,38 @@ def _format_event(msg: List[str], role: Optional[str]) -> Optional[str]:
     return None
 
 
-def format_recent_turns(battle: Battle, turns: int = 3, max_lines: int = 40) -> List[str]:
+def _full_event(kind: str, args: List[str], who: str, source: str) -> Optional[str]:
+    """The events only turn_events "full" reports (and boosts with their cause)."""
+    def effect(text: str) -> str:
+        return text.replace("move: ", "").replace("ability: ", "").replace("item: ", "")
+
+    if kind == "-fail":
+        what = f" ({effect(args[1])})" if len(args) >= 2 and args[1] else ""
+        return f"{who}'s move failed{what}"
+    if kind == "cant" and len(args) >= 2:
+        reasons = {"par": "paralysis", "slp": "sleep", "frz": "freeze", "flinch": "flinched", "recharge": "recharging"}
+        return f"{who} couldn't move ({reasons.get(args[1], effect(args[1]))})"
+    if kind == "-activate" and len(args) >= 2:
+        return f"{who}: {effect(args[1])} activated"
+    if kind == "-mega" and len(args) >= 2:
+        return f"{who} Mega Evolved"
+    if kind in ("-start", "-end") and len(args) >= 2:
+        return f"{who}: {effect(args[1])} {'started' if kind == '-start' else 'ended'}{source}"
+    if kind in ("-boost", "-unboost") and len(args) >= 3:
+        sign = "+" if kind == "-boost" else "-"
+        return f"{who}: {args[1]} {sign}{args[2]}{source}"
+    if kind == "-setboost" and len(args) >= 3:
+        return f"{who}: {args[1]} set to {args[2]}{source}"
+    if kind in ("-clearboost", "-clearallboost", "-clearnegativeboost"):
+        return f"{who}'s stat changes were cleared" if who else "All stat changes were cleared"
+    if kind == "-curestatus" and len(args) >= 2:
+        return f"{who} was cured of {args[1]}"
+    if kind == "-hitcount" and len(args) >= 2:
+        return f"Hit {args[1]} times"
+    return None
+
+
+def format_recent_turns(battle: Battle, turns: int = 3, max_lines: int = 40, full: bool = False) -> List[str]:
     """The last few turns of the battle, grouped by turn, read from the battle's protocol log.
     Events after `|turn|k` are the resolution of turn k; turn 0 is the leads coming in."""
     data = getattr(battle, "_replay_data", None) or []
@@ -182,7 +219,7 @@ def format_recent_turns(battle: Battle, turns: int = 3, max_lines: int = 40) -> 
         if len(msg) > 2 and msg[1] == "turn":
             turn = int(msg[2])
             continue
-        line = _format_event(msg, role)
+        line = _format_event(msg, role, full)
         if line:
             groups.setdefault(turn, []).append(line)
     lines: List[str] = []
@@ -214,7 +251,8 @@ def unseen_line(preview: List[str], seen: set, pick: Optional[int] = None) -> st
             f"{'is' if still == 1 else 'are'} still to come in, from: {', '.join(unseen)}")
 
 
-def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None) -> str:
+def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None,
+                        full_events: bool = False) -> str:
     """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
     turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn."""
     lines = ["#### YOUR BENCH:"]
@@ -241,7 +279,7 @@ def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pic
         f"\n### Turn {battle.turn} | Format: {battle.format} | Weather: {_condition_names(battle.weather)}"
         f" | Field: {_condition_names(battle.fields)}"
     )
-    recent = format_recent_turns(battle)
+    recent = format_recent_turns(battle, full=full_events)
     if recent:
         lines.append("\n#### RECENT TURNS:")
         lines.extend(recent)

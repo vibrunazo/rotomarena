@@ -29,6 +29,8 @@ class BaseBenchmarkPlayer(Player):
         team: Optional[str] = None,
         turn_timeout: float = 900.0,
         pick: Optional[int] = None,
+        answer_attempts: int = 1,
+        full_events: bool = False,
         identity: Optional[PlayerIdentity] = None,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
@@ -54,6 +56,8 @@ class BaseBenchmarkPlayer(Player):
         self.turn_timeout = turn_timeout
         self.pick = pick  # Pokémon brought from team preview (bring-N formats); None: all of them
         self.brought: Dict[str, List[str]] = {}  # battle tag -> the species it brought (bring-N formats)
+        self.answer_attempts = answer_attempts  # tries per decision (ruleset.answer_attempts)
+        self.full_events = full_events  # the battle state's recent turns list every event (ruleset.turn_events)
         self.identity = identity or PlayerIdentity(
             config_id=player_name, display_name=player_name, agent_type=agent_type
         )
@@ -81,6 +85,8 @@ class BaseBenchmarkPlayer(Player):
         search_telemetry: Optional[Dict[str, Any]] = None,
         llm_metrics: Optional[Dict[str, Any]] = None,
         probabilities: Optional[Dict[str, float]] = None,
+        attempts: int = 1,
+        first_try: str = "",
     ) -> None:
         """Records a structured breadcrumb entry for this turn."""
         if not self.breadcrumbs_recorder:
@@ -116,6 +122,8 @@ class BaseBenchmarkPlayer(Player):
             search_telemetry=search_telemetry,
             llm_metrics=llm_metrics,
             probabilities=probabilities,
+            attempts=attempts,
+            first_try=first_try,
             timestamp=datetime.datetime.now().isoformat(),
         )
         self.breadcrumbs_recorder.record_turn(crumb, battle.battle_tag)

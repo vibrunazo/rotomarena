@@ -242,6 +242,8 @@ def create_agent_instance(
         turn_timeout=app_config.ruleset.turn_timeout,
         battle_format=app_config.ruleset.format,
         pick=app_config.ruleset.pick,
+        answer_attempts=app_config.ruleset.answer_attempts or 1,
+        full_events=app_config.ruleset.turn_events == "full",
         start_listening=start_listening,
         server_configuration=ServerConfiguration(
             app_config.server.websocket_url,

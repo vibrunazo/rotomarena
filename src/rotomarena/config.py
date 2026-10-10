@@ -167,6 +167,18 @@ class RulesetConfig(BaseModel):
         description="How many Pokémon each player brings from team preview, chosen in order, the first leading "
         "(e.g. 3 for bring-6-pick-3 formats). Unset: all of them, and the player only chooses its lead",
     )
+    answer_attempts: Optional[int] = Field(
+        default=None, ge=1, le=3,
+        description="Tries an LLM gets for each decision: a failed answer (empty, unreadable, cut off, or naming an "
+        "action that isn't legal) is sent back with what went wrong, and only the last failure plays the default "
+        "move. Unset: one try (versions before c4)",
+    )
+    turn_events: Optional[Literal["full"]] = Field(
+        default=None,
+        description="full: the battle state's recent turns also list failed moves, turns lost to status or flinching, "
+        "Protect and other effects, Mega Evolution, volatile conditions, and what caused each stat change. Unset: "
+        "moves, switches, damage, faints, boosts and the rest only (versions before c4)",
+    )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],
         description="The two teams every ladder set uses in fixed mode (each played from both sides)",

@@ -19,6 +19,21 @@ class LLMUsageMetrics(BaseModel):
     cost_estimated: bool = False  # OpenRouter reported no cost: tokens x its list prices (llm/pricing.py)
     model: str = ""
     provider: str = ""
+    upstream: str = ""  # who served it behind OpenRouter (e.g. "Google AI Studio"), as OpenRouter reports
+
+    def add(self, other: "LLMUsageMetrics") -> "LLMUsageMetrics":
+        """Both requests of a decision that took a second try, as one: tokens, time and cost add up."""
+        return self.model_copy(update={
+            "prompt_tokens": self.prompt_tokens + other.prompt_tokens,
+            "completion_tokens": self.completion_tokens + other.completion_tokens,
+            "reasoning_tokens": self.reasoning_tokens + other.reasoning_tokens,
+            "total_tokens": self.total_tokens + other.total_tokens,
+            "latency_ms": self.latency_ms + other.latency_ms,
+            "cost_usd": self.cost_usd + other.cost_usd,
+            "cost_estimated": self.cost_estimated or other.cost_estimated,
+            "finish_reason": other.finish_reason,
+            "upstream": other.upstream or self.upstream,
+        })
 
 
 class ActionDecision(BaseModel):

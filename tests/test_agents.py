@@ -181,3 +181,44 @@ def test_the_bench_and_the_opponents_still_to_come_follow_what_was_brought():
     assert unseen_line(preview, {"incineroar"}, 3).startswith("The opponent brought 3 of the 6") and "2 more are still" in unseen_line(preview, {"incineroar"}, 3)
     assert "all have been seen" in unseen_line(preview, {"incineroar", "dragonite", "scizor"}, 3)
     assert unseen_line(preview, {"incineroar"}).startswith("Not yet seen in battle")
+
+
+@pytest.mark.asyncio
+async def test_a_failed_answer_gets_a_second_try_told_what_was_wrong():
+    bad = ActionDecision(action_type="MOVE", target="fly", raw_response="<decision>MOVE: fly</decision>",
+                         metrics=LLMUsageMetrics(prompt_tokens=100, cost_usd=0.001))
+    good = ActionDecision(action_type="MOVE", target="earthquake", reasoning="Ground beats Heatran.",
+                          metrics=LLMUsageMetrics(prompt_tokens=120, cost_usd=0.002))
+    player, recorder = _llm_player(side_effect=[bad, good])
+    player.answer_attempts = 2
+    order = await player._async_choose_move(MockBattle())
+    assert "earthquake" in str(order.message).lower()
+    retry = player.llm_client.generate_cot_decision.call_args_list[1].kwargs["retry"]
+    assert retry[0] == "<decision>MOVE: fly</decision>" and "'MOVE: fly' is not a legal action" in retry[1]
+    crumb = recorder.breadcrumbs[-1]
+    assert crumb.decision_source == "model" and crumb.attempts == 2 and crumb.first_try.startswith("'MOVE: fly'")
+    assert crumb.llm_metrics["prompt_tokens"] == 220 and abs(crumb.llm_metrics["cost_usd"] - 0.003) < 1e-9
+
+
+@pytest.mark.asyncio
+async def test_with_one_try_a_failed_answer_plays_the_default_move():
+    empty = ActionDecision(parse_error="missing <decision>...</decision> block", raw_response="")
+    player, recorder = _llm_player(side_effect=[empty, empty])
+    order = await player._async_choose_move(MockBattle())  # answer_attempts defaults to 1 (versions before c4)
+    assert player.llm_client.generate_cot_decision.call_count == 1
+    assert recorder.breadcrumbs[-1].decision_source == "parse_error" and recorder.breadcrumbs[-1].attempts == 1
+    assert order is not None
+
+
+def test_full_turn_events_say_why_a_turn_went_the_way_it_did():
+    from rotomarena.llm.prompts import _format_event
+
+    fail = ["", "-fail", "p1a: Kingambit"]
+    boost = ["", "-boost", "p2a: Annihilape", "atk", "2", "[from] ability: Defiant"]
+    assert _format_event(fail, "p1") is None  # versions before c4 left it out
+    assert _format_event(fail, "p1", full=True) == "Your Kingambit's move failed"
+    assert _format_event(boost, "p1") == "Opposing Annihilape: atk +2"
+    assert _format_event(boost, "p1", full=True) == "Opposing Annihilape: atk +2 [from] ability: Defiant"
+    assert _format_event(["", "cant", "p2a: Garchomp", "par"], "p1", full=True) == "Opposing Garchomp couldn't move (paralysis)"
+    assert _format_event(["", "-activate", "p2a: Toxapex", "move: Protect"], "p1", full=True) == "Opposing Toxapex: Protect activated"
+    assert _format_event(["", "-mega", "p1a: Garchomp", "Garchomp", "Garchompite"], "p1", full=True) == "Your Garchomp Mega Evolved"

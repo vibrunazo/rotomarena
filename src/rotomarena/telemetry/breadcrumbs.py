@@ -53,6 +53,9 @@ class TurnBreadcrumb(BaseModel):
     llm_metrics: Optional[Dict[str, Any]] = None
     # A decision model's probability for every option it was offered ({"MOVE: earthquake": 0.62, ...})
     probabilities: Optional[Dict[str, float]] = None
+    # Tries the decision took (ruleset.answer_attempts), and why the first one failed with what it said
+    attempts: int = 1
+    first_try: str = ""
     timestamp: str = ""
 
 

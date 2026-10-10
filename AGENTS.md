@@ -58,7 +58,9 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
      **2-hour** hang guard. `profile: concise`: thinking off, 1,024 tokens, 15 minutes (fast games, videos).
    - Models keep a short visible `<thought>` (2-4 sentences); the hidden reasoning is recorded too when the provider
      returns it, and OpenRouter's actual cost is logged per turn (`cost_usd`).
-   - A cut-off or unparseable answer plays the default move.
+   - A cut-off, empty, unparseable or illegal answer plays the default move; from c4 (`answer_attempts: 2`) only after
+     a second try that is told what was wrong (breadcrumbs record `attempts` and `first_try`). c4's battle state
+     also lists failed moves, lost turns, Protect, Mega Evolution and what caused each boost (`turn_events: full`).
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
    - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429
      that outlasts ~6.5 minutes of backoff) or on two void games in a row in one set; the same command resumes.
