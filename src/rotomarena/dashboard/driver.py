@@ -18,6 +18,8 @@ DRIVER_PID = RUNS / "driver.pid"
 ROUND_ROBIN_PID = RUNS / "roundrobin.pid"
 PUBLISH_EVERY = 45 * 60
 GAMES_PER_PAIR = 2
+STALLED = 4          # the round robin's exit code when its games stopped making progress
+MAX_RESTARTS = 10    # stalls in a row the driver restarts before giving up
 NO_WINDOW = 0x08000000 if sys.platform == "win32" else 0  # CREATE_NO_WINDOW: children never open a console
 
 env = {**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUNBUFFERED": "1"}
@@ -51,18 +53,22 @@ def publish(final: bool) -> None:
 def main() -> None:
     RUNS.mkdir(exist_ok=True)
     DRIVER_PID.write_text(str(os.getpid()))
-    say("starting round robin")
-    with open(RUNS / "roundrobin.log", "a", encoding="utf-8") as out, \
-            open(RUNS / "roundrobin.err", "a", encoding="utf-8") as err:
-        proc = subprocess.Popen([uv, "run", "rotomarena", "ladder", "round-robin", "--games-per-pair", str(GAMES_PER_PAIR)],
-                                cwd=ROOT, env=env, stdout=out, stderr=err, creationflags=NO_WINDOW)
-        ROUND_ROBIN_PID.write_text(str(proc.pid))
-        last = time.time()
-        while proc.poll() is None:
-            time.sleep(60)
-            if time.time() - last > PUBLISH_EVERY:
-                publish(final=False)
-                last = time.time()
+    last = time.time()
+    for attempt in range(MAX_RESTARTS + 1):
+        say("starting round robin" if attempt == 0 else f"restarting the stalled round robin ({attempt}/{MAX_RESTARTS})")
+        with open(RUNS / "roundrobin.log", "a", encoding="utf-8") as out, \
+                open(RUNS / "roundrobin.err", "a", encoding="utf-8") as err:
+            proc = subprocess.Popen([uv, "run", "rotomarena", "ladder", "round-robin", "--games-per-pair", str(GAMES_PER_PAIR)],
+                                    cwd=ROOT, env=env, stdout=out, stderr=err, creationflags=NO_WINDOW)
+            ROUND_ROBIN_PID.write_text(str(proc.pid))
+            while proc.poll() is None:
+                time.sleep(60)
+                if time.time() - last > PUBLISH_EVERY:
+                    publish(final=False)
+                    last = time.time()
+        if proc.returncode != STALLED:
+            break
+        say("round robin stalled (no decision for ladder.stall_minutes); its stuck games will be replayed")
     say(f"round robin exited with {proc.returncode}")
     publish(final=True)
     say("done")

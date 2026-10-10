@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import time
 from dataclasses import dataclass
 from typing import Callable, Dict, List, Optional, Tuple
 
@@ -23,6 +24,26 @@ from rotomarena.telemetry.breadcrumbs import MatchTelemetry
 class RunHalted(RuntimeError):
     """Something outside a single game is wrong (a provider limit, games that keep coming out void). The run
     stops rather than void the rest of its schedule; placement resumes where it stopped."""
+
+
+class RunStalled(RunHalted):
+    """No player has decided anything for ladder.stall_minutes: the games can't go on. Seen on 9 Oct, when
+    poke-env's connection loop crashed on a Windows socket error ("I/O operation has been aborted") and every player
+    waited for a message that never came. Only a new process recovers, so the run exits (code 4) and its driver
+    restarts it; the stuck games are replayed."""
+
+
+async def stall_guard(players: List, minutes: float, label: str, poll: float = 30.0) -> None:
+    """Raises RunStalled once no player has recorded a decision for `minutes` (a new game counts as progress)."""
+    last, since = None, time.monotonic()
+    while True:
+        await asyncio.sleep(poll)
+        state = tuple((id(p.breadcrumbs_recorder), len(p.breadcrumbs_recorder.breadcrumbs) if p.breadcrumbs_recorder else 0)
+                      for p in players)
+        if state != last:
+            last, since = state, time.monotonic()
+        elif time.monotonic() - since > minutes * 60:
+            raise RunStalled(f"{label}: no decision for {minutes:.0f} minutes; the connection to Showdown is dead")
 
 
 @dataclass
@@ -285,15 +306,18 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
             local_servers.prepare([agent_a, agent_b], app_cfg)
             try:
                 async with asyncio.TaskGroup() as group:  # one failed game cancels the round; the set resumes later
-                    for (player_a, player_b), game in zip(lanes, round_games):
-                        group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game, own_teams=own))
+                    games = [group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game, own_teams=own))
+                             for (player_a, player_b), game in zip(lanes, round_games)]
+                    guard = group.create_task(stall_guard(players, app_cfg.ladder.stall_minutes, f"{id_a} vs {id_b}"))
+                    await asyncio.gather(*games)
+                    guard.cancel()
             except ExceptionGroup as failed:
                 raise failed.exceptions[0] from failed  # the run log shows the actual error
         halt_check()
     finally:
         for player in players:
-            try:
-                await player.ps_client.stop_listening()
+            try:  # bounded: after a stall the connection loop is dead and would never answer
+                await asyncio.wait_for(player.ps_client.stop_listening(), timeout=10)
             except Exception:
                 pass
     return remaining

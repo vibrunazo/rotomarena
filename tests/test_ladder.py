@@ -417,3 +417,16 @@ def test_slow_models_play_last_even_the_anchor():
     order = [frozenset(p) for p in quick_pairs_first(round_robin_pairs(list(agents)), app_cfg)]
     assert all("anchor" in p for p in order[-3:]) and not any("anchor" in p for p in order[:3])
     assert order[0] == frozenset({"api", "jev"})
+
+
+def test_a_set_with_no_decisions_stalls():
+    import asyncio
+    from types import SimpleNamespace
+
+    import pytest
+
+    from rotomarena.ladder import RunStalled, stall_guard
+
+    stuck = [SimpleNamespace(breadcrumbs_recorder=SimpleNamespace(breadcrumbs=[1, 2]))]
+    with pytest.raises(RunStalled):
+        asyncio.run(stall_guard(stuck, minutes=0.0005, label="a vs b", poll=0.01))

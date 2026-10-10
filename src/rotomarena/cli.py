@@ -527,10 +527,17 @@ def _register_rules(app_cfg: AppConfig) -> None:
 
 
 def _report_halt(e: Exception, app_cfg: AppConfig) -> None:
-    """Prints why a ladder run stopped, then the ratings, and exits with status 3."""
+    """Prints why a ladder run stopped, then the ratings, and exits with status 3, or 4 for a stall (which the run
+    monitor's driver restarts by itself)."""
     import datetime
 
-    console.print(f"[bold red]{datetime.datetime.now():%Y-%m-%d %H:%M} RUN HALTED: {e}[/bold red]")
+    from rotomarena.ladder import RunStalled
+
+    stalled = isinstance(e, RunStalled)
+    console.print(f"[bold red]{datetime.datetime.now():%Y-%m-%d %H:%M} RUN {'STALLED' if stalled else 'HALTED'}: {e}[/bold red]")
+    if stalled:
+        console.print("Run the same command again: it resumes, replaying the stuck games (the run monitor does this itself).")
+        raise typer.Exit(4)
     console.print("Fix the cause (credits, quota, a broken model), then run the same command again: it resumes.")
     _print_ratings(app_cfg)
     raise typer.Exit(3)

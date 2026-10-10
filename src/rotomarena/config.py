@@ -184,6 +184,11 @@ class LadderConfig(BaseModel):
     """How ratings are computed and how many games placement and top-ups play."""
 
     anchor: str = Field(default="bonsai_2_27b", description="Config id whose rating is fixed")
+    stall_minutes: float = Field(
+        default=20.0, gt=0,
+        description="A set with no decision from any player for this long is stuck (its connection to Showdown died): "
+        "the run stops with exit code 4 and the run monitor's driver restarts it",
+    )
     play_last: List[str] = Field(
         default_factory=list,
         description="Slow models whose pairs play after every other pair (even the anchor's), so the quick games "
