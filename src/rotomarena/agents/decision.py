@@ -74,7 +74,7 @@ class DecisionPlayer(BaseBenchmarkPlayer):
             return self.choose_default_order(battle)
         try:
             choice, usage = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick,
-                                                                self.full_events),
+                                                                self.battle_state),
                                             TURN_INSTRUCTIONS,
                                             {k: _describe(k, t, tera) for k, (t, tera) in options.items()})
         except Exception as e:
@@ -96,7 +96,7 @@ class DecisionPlayer(BaseBenchmarkPlayer):
         lead, source, note, choice, usage = 0, "model", "", None, None
         try:
             choice, usage = await asyncio.wait_for(self._ask(
-                format_team_preview(battle), LEAD_INSTRUCTIONS,
+                format_team_preview(battle, state=self.battle_state), LEAD_INSTRUCTIONS,
                 {f"LEAD: {m.species}": f"Lead with {m.species}." for m in members}), timeout=self.turn_timeout)
             lead = next(i for i, m in enumerate(members) if f"LEAD: {m.species}" == choice.choice)
         except asyncio.TimeoutError:
@@ -117,7 +117,7 @@ class DecisionPlayer(BaseBenchmarkPlayer):
     async def bring_preview(self, battle: Battle, members: list) -> str:
         """Bring N of the team, one Choice question per slot: the leader, then each one after it from those left."""
         chosen, notes, usage, source, note = [], [], Usage(), "model", ""
-        state = format_team_preview(battle, self.pick)
+        state = format_team_preview(battle, self.pick, self.battle_state)
         try:
             for slot in range(self.pick):
                 left = {f"BRING: {m.species}": f"Bring {m.species}." for i, m in enumerate(members) if i not in chosen}

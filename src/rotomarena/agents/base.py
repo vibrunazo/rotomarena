@@ -30,7 +30,7 @@ class BaseBenchmarkPlayer(Player):
         turn_timeout: float = 900.0,
         pick: Optional[int] = None,
         answer_attempts: int = 1,
-        full_events: bool = False,
+        battle_state: int = 1,
         identity: Optional[PlayerIdentity] = None,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
@@ -57,7 +57,7 @@ class BaseBenchmarkPlayer(Player):
         self.pick = pick  # Pokémon brought from team preview (bring-N formats); None: all of them
         self.brought: Dict[str, List[str]] = {}  # battle tag -> the species it brought (bring-N formats)
         self.answer_attempts = answer_attempts  # tries per decision (ruleset.answer_attempts)
-        self.full_events = full_events  # the battle state's recent turns list every event (ruleset.turn_events)
+        self.battle_state = battle_state  # which battle state the player reads (ruleset.battle_state)
         self.identity = identity or PlayerIdentity(
             config_id=player_name, display_name=player_name, agent_type=agent_type
         )
@@ -96,6 +96,8 @@ class BaseBenchmarkPlayer(Player):
         if battle.available_moves:
             for m in battle.available_moves:
                 legal_acts.append(f"MOVE:{m.id}")
+                if getattr(battle, "can_mega_evolve", False):  # so missed Mega Evolutions can be counted
+                    legal_acts.append(f"MOVE:{m.id} [MEGA]")
         if battle.available_switches:
             for s in battle.available_switches:
                 legal_acts.append(f"SWITCH:{s.species}")

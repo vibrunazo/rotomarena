@@ -2,14 +2,116 @@
 
 from __future__ import annotations
 
+import json
+from functools import lru_cache
+from pathlib import Path
 from typing import Any, Dict, List, Optional
-from poke_env.battle import Battle, Pokemon
+from poke_env.battle import Battle, Move, Pokemon
+
+# Showdown's tooltip texts (scripts/dump_dex_text.js), quoted by battle state 2
+DEX_DIR = Path(__file__).resolve().parents[3] / "data" / "dex"
+STATS = ["hp", "atk", "def", "spa", "spd", "spe"]
+STAT_NAMES = {"hp": "HP", "atk": "Atk", "def": "Def", "spa": "SpA", "spd": "SpD", "spe": "Spe"}
 
 
-def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_opponent: bool = False) -> str:
-    """Format a single Pokemon state for prompt injection with full competitive details."""
+def dex_mod(fmt: str) -> str:
+    """The Showdown data mod a format plays: Champions has its own (moves it changed), the rest Gen 9's."""
+    return "champions" if "champions" in fmt else "gen9"
+
+
+@lru_cache(maxsize=4)
+def _dex(mod: str) -> Dict[str, Any]:
+    return json.loads((DEX_DIR / f"{mod}.json").read_text(encoding="utf-8"))
+
+
+def _desc(kind: str, ident: Optional[str], fmt: str) -> str:
+    """Showdown's one-line description of a move, ability or item ('' when unknown)."""
+    key = "".join(c for c in (ident or "").lower() if c.isalnum())
+    return (_dex(dex_mod(fmt))[kind].get(key) or {}).get("desc", "")
+
+
+def stat_range(mon: Pokemon, stat: str) -> tuple:
+    """(lowest, highest) the stat can be at the Pokemon's level: no investment and a hindering nature, up to full
+    investment (252 EVs; Champions' 32 Stat Points give the same at level 50) and a boosting one. Showdown's tooltip
+    shows the same range for an opposing Pokemon."""
+    base, level = (mon.base_stats or {}).get(stat) or 0, mon.level or 100
+    if stat == "hp":
+        return (2 * base + 31) * level // 100 + level + 10, (2 * base + 31 + 63) * level // 100 + level + 10
+    low = ((2 * base + 31) * level // 100 + 5) * 9 // 10
+    high = ((2 * base + 31 + 63) * level // 100 + 5) * 11 // 10
+    return low, high
+
+
+def _boosted(value: float, stage: int) -> int:
+    return int(value * ((2 + stage) / 2 if stage >= 0 else 2 / (2 - stage)))
+
+
+def speed_line(battle: Battle) -> str:
+    """Who moves first: our active's speed against the opposing one's possible range, both after boosts and
+    paralysis (and reversed under Trick Room). Priority moves go first regardless, as each move's line says."""
+    mine, theirs = battle.active_pokemon, battle.opponent_active_pokemon
+    if not mine or not theirs or mine.fainted or theirs.fainted or not mine.stats or not mine.stats.get("spe"):
+        return ""  # nothing to race (a forced switch after a faint)
+
+    def adjust(value: float, mon: Pokemon) -> int:
+        value = _boosted(value, mon.boosts.get("spe", 0))
+        return value // 2 if mon.status and mon.status.name == "PAR" else value
+
+    me = adjust(mine.stats["spe"], mine)
+    low, high = (adjust(v, theirs) for v in stat_range(theirs, "spe"))
+    trick_room = any("trick" in f.name.lower() for f in (battle.fields or {}))
+    if me > high:
+        verdict = "you move first" if not trick_room else "it moves first (Trick Room)"
+    elif me < low:
+        verdict = "it moves first" if not trick_room else "you move first (Trick Room)"
+    else:
+        verdict = "either could move first, depending on its investment"
+    return (f"Speed: your {mine.species} {me} vs opposing {theirs.species} {low}-{high} (possible range): {verdict}, "
+            f"unless a move has priority.")
+
+
+def _move_line(move: Move, battle: Battle, fmt: str) -> str:
+    """A legal move as battle state 2 lists it: type, category, power, accuracy, priority, effectiveness on the
+    opposing active Pokemon (as Showdown's move buttons show) and its tooltip line."""
+    m_type = move.type.name.title() if move.type else "Normal"
+    cat = move.category.name.title() if move.category else "Status"
+    acc = "never misses" if move.accuracy is True else f"{round(move.accuracy * 100)}% accuracy"
+    parts = [f"{m_type}, {cat}", f"power {move.base_power}" if move.base_power else "", acc]
+    if move.priority:
+        parts.append(f"priority {move.priority:+d}")
+    target = battle.opponent_active_pokemon
+    if target and cat != "Status" and move.type:
+        mult = target.damage_multiplier(move)
+        if mult != 1:
+            parts.append({0: f"no effect on {target.species}", 0.25: f"1/4x on {target.species}",
+                          0.5: f"not very effective on {target.species}", 2: f"super effective on {target.species}",
+                          4: f"4x super effective on {target.species}"}.get(mult, f"{mult}x on {target.species}"))
+    desc = _desc("moves", move.id, fmt)
+    return f"MOVE: {move.id} | {', '.join(p for p in parts if p)}" + (f" | {desc}" if desc else "")
+
+
+def _effects_line(mon: Pokemon, fmt: str, is_opponent: bool) -> str:
+    """The active Pokemon's ability and item, with what they do (an opponent's when revealed, else its possible
+    abilities, as Showdown's tooltip lists them)."""
+    parts = []
+    if mon.ability:
+        parts.append(f"{mon.ability}: {_desc('abilities', mon.ability, fmt)}")
+    elif is_opponent and mon.possible_abilities:
+        parts.append("possible abilities: " + "; ".join(f"{a} ({_desc('abilities', a, fmt)})"
+                                                         for a in mon.possible_abilities))
+    if mon.item and mon.item != "unknown_item":
+        parts.append(f"{mon.item}: {_desc('items', mon.item, fmt)}")
+    return "  Effects: " + " | ".join(parts) if parts else ""
+
+
+def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_opponent: bool = False,
+                           state: int = 1, fmt: str = "gen9ou") -> str:
+    """Format a single Pokemon state for prompt injection with full competitive details. Battle state 2 gives an
+    opponent's stats as their possible range at its level (base stats alone invited comparing them with our real
+    ones), the active Pokemon's ability and item effects, and no Tera type in Champions."""
     if mon is None:
         return "None"
+    champions = state >= 2 and dex_mod(fmt) == "champions"
 
     status_str = f" [{mon.status.name}]" if mon.status else ""
     if mon.fainted:
@@ -25,7 +127,9 @@ def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_o
     is_terad = getattr(mon, "_terastallized", False) or getattr(mon, "is_terastallized", False)
 
     tera_str = ""
-    if is_terad and tera_type_str:
+    if champions:
+        pass  # no Terastallization in Champions
+    elif is_terad and tera_type_str:
         tera_str = f" [TERASTALLIZED: {tera_type_str}]"
     elif tera_type_str:
         tera_str = f" (Tera Type: {tera_type_str})"
@@ -79,7 +183,10 @@ def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_o
         else:
             details.append("Ability: Unknown")
 
-        if mon.base_stats:
+        if mon.base_stats and state >= 2:
+            ranges = [f"{STAT_NAMES[k]} {'-'.join(map(str, stat_range(mon, k)))}" for k in STATS]
+            details.append(f"Stats at level {mon.level} (possible range): [{', '.join(ranges)}]")
+        elif mon.base_stats:
             b_stats = [f"{k.upper()}: {v}" for k, v in mon.base_stats.items() if v is not None]
             if b_stats:
                 details.append(f"Base Stats: [{', '.join(b_stats)}]")
@@ -103,6 +210,10 @@ def format_pokemon_summary(mon: Optional[Pokemon], is_active: bool = False, is_o
         else:
             info += f"\n  Revealed Moves: None yet"
 
+    if state >= 2 and is_active and not mon.fainted:
+        effects = _effects_line(mon, fmt, is_opponent)
+        if effects:
+            info += f"\n{effects}"
     return info
 
 
@@ -132,8 +243,8 @@ def _format_event(msg: List[str], role: Optional[str], full: bool = False) -> Op
     source = f" {source}" if source else ""
     if full:
         line = _full_event(kind, args, who, source)
-        if line:
-            return line
+        if line is not None:
+            return line or None  # "": a message the full events leave out (a faint's "0 fnt" damage line)
     if kind == "move" and len(args) >= 2:
         return f"{who} used {args[1]}"
     if kind in ("switch", "drag") and len(args) >= 2:
@@ -182,6 +293,14 @@ def _full_event(kind: str, args: List[str], who: str, source: str) -> Optional[s
     def effect(text: str) -> str:
         return text.replace("move: ", "").replace("ability: ", "").replace("item: ", "")
 
+    if kind in ("-damage", "-heal") and len(args) >= 2:
+        hp, _, status = args[1].partition(" ")
+        if status == "fnt":
+            return ""  # the faint line says it
+        current, _, top = hp.partition("/")
+        amount = f"{current}%" if who.startswith("Opposing") and top == "100" else f"{hp} HP"
+        verb = "is at" if kind == "-damage" else "healed to"
+        return f"{who} {verb} {amount}{f' ({status})' if status else ''}{source}"
     if kind == "-fail":
         what = f" ({effect(args[1])})" if len(args) >= 2 and args[1] else ""
         return f"{who}'s move failed{what}"
@@ -252,20 +371,23 @@ def unseen_line(preview: List[str], seen: set, pick: Optional[int] = None) -> st
 
 
 def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None,
-                        full_events: bool = False) -> str:
+                        state: int = 1) -> str:
     """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
-    turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn."""
+    turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn.
+    `state` is the ruleset's battle_state version (2: what Showdown's interface shows, see RulesetConfig)."""
+    fmt = battle.format or "gen9ou"
+    champions = state >= 2 and dex_mod(fmt) == "champions"
     lines = ["#### YOUR BENCH:"]
     bench = bench_of(battle, brought)
     if bench:
-        lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in bench)
+        lines.extend(format_pokemon_summary(mon, False, False, state, fmt) for mon in bench)
     else:
         lines.append("- (No bench Pokémon remaining)")
 
     lines.append("\n#### OPPONENT'S REVEALED BENCH:")
     opp_bench = [mon for mon in battle.opponent_team.values() if mon != battle.opponent_active_pokemon]
     if opp_bench:
-        lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=True) for mon in opp_bench)
+        lines.extend(format_pokemon_summary(mon, False, True, state, fmt) for mon in opp_bench)
     else:
         lines.append("- (No other Pokémon revealed yet)")
     seen = {mon.species for mon in battle.opponent_team.values()}
@@ -279,33 +401,45 @@ def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pic
         f"\n### Turn {battle.turn} | Format: {battle.format} | Weather: {_condition_names(battle.weather)}"
         f" | Field: {_condition_names(battle.fields)}"
     )
-    recent = format_recent_turns(battle, full=full_events)
+    recent = format_recent_turns(battle, full=state >= 2)
     if recent:
         lines.append("\n#### RECENT TURNS:")
         lines.extend(recent)
 
     lines.append("\n#### YOUR ACTIVE POKÉMON:")
-    lines.append(format_pokemon_summary(battle.active_pokemon, is_active=True, is_opponent=False))
+    lines.append(format_pokemon_summary(battle.active_pokemon, True, False, state, fmt))
     side_conds = [k.name.title() for k in battle.side_conditions.keys()]
     lines.append(f"Your side hazards / conditions: {', '.join(side_conds) if side_conds else 'None'}")
-    lines.append(f"Terastallization available: {'Yes' if battle.can_tera else 'No'}")
+    mine = battle.active_pokemon.species if battle.active_pokemon else "your Pokemon"
+    if champions:
+        lines.append(f"Mega Evolution available: Yes, {mine} can Mega Evolve this turn (add [MEGA] to a move)"
+                     if battle.can_mega_evolve else "Mega Evolution available: No")
+    else:
+        lines.append(f"Terastallization available: {'Yes' if battle.can_tera else 'No'}")
 
     lines.append("\n#### OPPONENT'S ACTIVE POKÉMON:")
-    lines.append(format_pokemon_summary(battle.opponent_active_pokemon, is_active=True, is_opponent=True))
+    lines.append(format_pokemon_summary(battle.opponent_active_pokemon, True, True, state, fmt))
     opp_side_conds = [k.name.title() for k in battle.opponent_side_conditions.keys()]
     lines.append(f"Opponent side hazards / conditions: {', '.join(opp_side_conds) if opp_side_conds else 'None'}")
-    lines.append(f"Opponent terastallized: {'Yes' if getattr(battle, 'opponent_used_tera', False) else 'No'}")
+    if champions:
+        lines.append(f"Opponent Mega Evolved: {'Yes' if getattr(battle, 'opponent_used_mega_evolve', False) else 'No'}")
+    else:
+        lines.append(f"Opponent terastallized: {'Yes' if getattr(battle, 'opponent_used_tera', False) else 'No'}")
+    if state >= 2 and speed_line(battle):
+        lines.append(speed_line(battle))
 
     lines.append("\n#### LEGAL ACTIONS THIS TURN:")
     legal_actions = []
     if battle.available_moves:
         for m in battle.available_moves:
             m_type = m.type.name.title() if m.type else "Normal"
-            legal_actions.append(f"MOVE: {m.id} (Type: {m_type}, BP: {m.base_power or '-'}, Acc: {m.accuracy or '-'})")
+            legal_actions.append(_move_line(m, battle, fmt) if state >= 2 else
+                                 f"MOVE: {m.id} (Type: {m_type}, BP: {m.base_power or '-'}, Acc: {m.accuracy or '-'})")
             if battle.can_tera:
                 legal_actions.append(f"MOVE: {m.id} [TERA]")
             if battle.can_mega_evolve:  # Champions: Mega Evolve this turn, then use the move
-                legal_actions.append(f"MOVE: {m.id} [MEGA]")
+                legal_actions.append(f"MOVE: {m.id} [MEGA]" + (f" | Mega Evolve {mine} first, then use {m.id}"
+                                                                if state >= 2 else ""))
     if battle.available_switches:
         for s in battle.available_switches:
             s_hp = round(s.current_hp_fraction * 100, 1)
@@ -316,7 +450,7 @@ def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pic
     return "\n".join(lines)
 
 
-def format_team_preview(battle: Battle, pick: Optional[int] = None) -> str:
+def format_team_preview(battle: Battle, pick: Optional[int] = None, state: int = 1) -> str:
     """Team preview: both teams before the battle; the player picks its lead, or, in a bring-N format, the N
     Pokémon it brings in order (the first leads)."""
     choosing = pick is not None and pick < len(battle.team)
@@ -329,12 +463,19 @@ def format_team_preview(battle: Battle, pick: Optional[int] = None) -> str:
          "choosing the Pokémon you lead with (LEAD: <species>). The rest of your team stays in its current order."),
         "\n#### YOUR TEAM:",
     ]
-    lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in battle.team.values())
+    fmt = battle.format or "gen9ou"
+    lines.extend(format_pokemon_summary(mon, False, False, state, fmt) for mon in battle.team.values())
     lines.append("\n#### OPPONENT'S TEAM:")
     for mon in getattr(battle, "teampreview_opponent_team", None) or []:
         types = "/".join(t.name.title() for t in mon.types if t)
-        stats = ", ".join(f"{k.upper()}: {v}" for k, v in (mon.base_stats or {}).items())
-        lines.append(f"- **{mon.species}** ({types}) | Base Stats: [{stats}]")
+        if state >= 2:
+            ranges = ", ".join(f"{STAT_NAMES[k]} {'-'.join(map(str, stat_range(mon, k)))}" for k in STATS)
+            abilities = ", ".join(mon.possible_abilities or [])
+            lines.append(f"- **{mon.species}** ({types}) | Stats at level {mon.level} (possible range): [{ranges}]"
+                         + (f" | Possible abilities: {abilities}" if abilities else ""))
+        else:
+            stats = ", ".join(f"{k.upper()}: {v}" for k, v in (mon.base_stats or {}).items())
+            lines.append(f"- **{mon.species}** ({types}) | Base Stats: [{stats}]")
     lines.append("\n#### LEGAL ACTIONS THIS TURN:")
     if choosing:
         lines.append(f"BRING: any {pick} different Pokémon from YOUR TEAM, comma-separated, the leader first "
@@ -351,11 +492,23 @@ FORMAT_NAMES = {"gen9championsrotomarenarandombss": "Pokémon Champions singles 
                 "gen9championsrotomarenabssregmb": "Pokémon Champions singles (bring 6, pick 3)"}
 
 
-def system_prompt_for(fmt: str, pick: Optional[int] = None) -> str:
-    """The battle system prompt for this format: unchanged for Gen 9 OU."""
+def system_prompt_for(fmt: str, pick: Optional[int] = None, attempts: int = 1, state: int = 1) -> str:
+    """The battle system prompt for this format: unchanged for Gen 9 OU. With a second try (ruleset.answer_attempts)
+    rule 3 says so; battle state 2 gives Champions a Champions example (the Gen 9 OU one named Great Tusk)."""
+    prompt = SYSTEM_PROMPT_DIRECT_COT
+    if attempts > 1:
+        prompt = prompt.replace(
+            "3. If your action is not in LEGAL ACTIONS, or your answer is cut off, the first legal move is played for you.",
+            "3. If your action is not in LEGAL ACTIONS, or your answer is empty or cut off, you get one more try, told\n"
+            "   what was wrong; if that one fails too, the first legal move is played for you.")
     if fmt == "gen9ou":
-        return SYSTEM_PROMPT_DIRECT_COT
-    prompt = SYSTEM_PROMPT_DIRECT_COT.replace("Gen 9 OU", FORMAT_NAMES.get(fmt, fmt))
+        return prompt
+    prompt = prompt.replace("Gen 9 OU", FORMAT_NAMES.get(fmt, fmt))
+    if state >= 2 and dex_mod(fmt) == "champions":
+        prompt = prompt.replace(
+            "Heatran is 4x weak to Ground and slower than Great Tusk, so Headlong Rush should knock it out before it moves.",
+            "Kingambit is 4x weak to Fighting and slower than Annihilape, so Drain Punch should knock it out before it moves.")
+        prompt = prompt.replace("MOVE: headlongrush", "MOVE: drainpunch")
     if fmt in FORMAT_FACTS:
         prompt = prompt.replace("Choose the single best action for this turn.",
                                 f"{FORMAT_FACTS[fmt]} Choose the single best action for this turn.")

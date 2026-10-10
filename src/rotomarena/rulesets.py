@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.llm.prompts import USER_PROMPT_DIRECT_COT_TEMPLATE, system_prompt_for
+from rotomarena.llm.prompts import DEX_DIR, USER_PROMPT_DIRECT_COT_TEMPLATE, dex_mod, system_prompt_for
 
 RULESETS_DIR = Path("data/rulesets")
 
@@ -34,8 +34,11 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
     # A rule left unset isn't recorded, so a new optional setting doesn't change the rules of earlier versions
     rules = {**{k: v for k, v in app_cfg.ruleset.model_dump().items() if v is not None and v != {}},
              # the battle prompt as this format uses it (Gen 9 OU's as written)
-             "battle_prompt": _sha(system_prompt_for(app_cfg.ruleset.format, app_cfg.ruleset.pick),
+             "battle_prompt": _sha(system_prompt_for(app_cfg.ruleset.format, app_cfg.ruleset.pick,
+                                                     app_cfg.ruleset.answer_attempts or 1, app_cfg.ruleset.battle_state or 1),
                                    USER_PROMPT_DIRECT_COT_TEMPLATE)}
+    if (app_cfg.ruleset.battle_state or 1) >= 2:  # the Showdown texts the state quotes
+        rules["dex_text"] = _sha((DEX_DIR / f"{dex_mod(app_cfg.ruleset.format)}.json").read_text(encoding="utf-8"))
     from rotomarena.agents import decision  # imported here, like the drafts below
     rules["decision_prompt"] = _sha(decision.TURN_INSTRUCTIONS, decision.LEAD_INSTRUCTIONS)
     if app_cfg.ruleset.team_mode == "draft":

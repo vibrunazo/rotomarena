@@ -222,3 +222,22 @@ def test_full_turn_events_say_why_a_turn_went_the_way_it_did():
     assert _format_event(["", "cant", "p2a: Garchomp", "par"], "p1", full=True) == "Opposing Garchomp couldn't move (paralysis)"
     assert _format_event(["", "-activate", "p2a: Toxapex", "move: Protect"], "p1", full=True) == "Opposing Toxapex: Protect activated"
     assert _format_event(["", "-mega", "p1a: Garchomp", "Garchomp", "Garchompite"], "p1", full=True) == "Your Garchomp Mega Evolved"
+
+
+def test_battle_state_2_shows_what_showdown_shows_a_player():
+    from rotomarena.llm.prompts import format_battle_state, stat_range, system_prompt_for
+
+    battle = MockBattle()
+    battle.format, battle.can_tera, battle.can_mega_evolve = "gen9championsrotomarenabssregmb", False, False
+    text = format_battle_state(battle, state=2)
+    assert "Mega Evolution available: No" in text and "Terastallization" not in text
+    assert "Stats at level" in text and "Base Stats" not in text
+    assert "MOVE: earthquake | Ground, Physical, power 100" in text and "4x super effective on heatran" in text
+    assert "Speed: your greattusk" in text
+    low, high = stat_range(battle.opponent_active_pokemon, "spe")
+    assert low < high
+    old = MockBattle()
+    assert "Terastallization available" in format_battle_state(old) and "Base Stats" in format_battle_state(old)
+    prompt = system_prompt_for("gen9championsrotomarenabssregmb", 3, attempts=2, state=2)
+    assert "MOVE: drainpunch" in prompt and "one more try" in prompt and "Great Tusk" not in prompt
+    assert system_prompt_for("gen9championsrotomarenabssregmb", 3) != prompt  # c1-c3 keep theirs

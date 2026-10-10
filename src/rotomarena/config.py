@@ -173,11 +173,14 @@ class RulesetConfig(BaseModel):
         "action that isn't legal) is sent back with what went wrong, and only the last failure plays the default "
         "move. Unset: one try (versions before c4)",
     )
-    turn_events: Optional[Literal["full"]] = Field(
-        default=None,
-        description="full: the battle state's recent turns also list failed moves, turns lost to status or flinching, "
-        "Protect and other effects, Mega Evolution, volatile conditions, and what caused each stat change. Unset: "
-        "moves, switches, damage, faints, boosts and the rest only (versions before c4)",
+    battle_state: Optional[int] = Field(
+        default=None, ge=1, le=2,
+        description="Version of the battle state the players read. 2 (c4 on) adds what Showdown's interface shows a "
+        "player: the recent turns list failed moves, turns lost to status or flinching, Protect and other effects, Mega "
+        "Evolution, volatile conditions and each stat change's cause; legal moves carry their tooltip line, priority and "
+        "effectiveness on the opposing Pokémon; abilities and items their descriptions; the opponent's stats are its "
+        "possible range at its level, with a speed comparison; Champions shows Mega Evolution, not Terastallization. "
+        "Unset: 1 (versions before c4)",
     )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],

@@ -69,7 +69,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 max_tokens=self.max_output_tokens,
                 reasoning=self.reasoning,
                 thinking_budget=self.thinking_budget,
-                system_prompt=system_prompt_for(self.format, self.pick),
+                system_prompt=system_prompt_for(self.format, self.pick, self.answer_attempts, self.battle_state),
                 retry=retry,
             )
         except ProviderLimitError as e:
@@ -112,7 +112,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 return f"'{decision.action_type}: {decision.target}' is not a legal action", "invalid", None
             return None, "model", order
 
-        state = format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick, self.full_events)
+        state = format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick, self.battle_state)
         try:
             decision, order, source, problem, metrics, attempts, first_try = await self._decide(state, play)
         except Exception as e:
@@ -176,7 +176,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         lead, source, note, decision, metrics, retried = 0, "model", "", None, None, {}
         try:
             decision, match, source, problem, metrics, attempts, first_try = await asyncio.wait_for(
-                self._decide(format_team_preview(battle), play,
+                self._decide(format_team_preview(battle, state=self.battle_state), play,
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              "<decision>LEAD: one species from YOUR TEAM</decision>."),
                 timeout=self.turn_timeout)
@@ -226,7 +226,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         chosen, source, note, decision, metrics, retried = [], "model", "", None, None, {}
         try:
             decision, chosen, source, problem, metrics, attempts, first_try = await asyncio.wait_for(
-                self._decide(format_team_preview(battle, self.pick), play,
+                self._decide(format_team_preview(battle, self.pick, self.battle_state), play,
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              f"<decision>BRING: {self.pick} different species from YOUR TEAM, comma-separated, the "
                              "leader first</decision>."),

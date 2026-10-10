@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import json
+import os
 import re
 import time
 from contextlib import asynccontextmanager
@@ -358,6 +360,10 @@ class LLMClient:
             thinking_budget=thinking_budget,
         )
         metrics = completion.metrics
+        if os.environ.get("ROTOMARENA_PROMPT_LOG"):  # opt-in: every turn's messages and answer, for prompt work
+            with open(os.environ["ROTOMARENA_PROMPT_LOG"], "a", encoding="utf-8") as log:
+                log.write(json.dumps({"messages": messages, "answer": completion.text, "hidden": completion.reasoning,
+                                      "metrics": metrics.model_dump()}, ensure_ascii=False) + "\n")
         raw_text, hidden = recover_answer(completion.text, completion.reasoning, "<decision>")
         decision = parse_decision(raw_text)
         if decision.parse_error and metrics.finish_reason == "length":

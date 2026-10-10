@@ -59,8 +59,13 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
    - Models keep a short visible `<thought>` (2-4 sentences); the hidden reasoning is recorded too when the provider
      returns it, and OpenRouter's actual cost is logged per turn (`cost_usd`).
    - A cut-off, empty, unparseable or illegal answer plays the default move; from c4 (`answer_attempts: 2`) only after
-     a second try that is told what was wrong (breadcrumbs record `attempts` and `first_try`). c4's battle state
-     also lists failed moves, lost turns, Protect, Mega Evolution and what caused each boost (`turn_events: full`).
+     a second try that is told what was wrong (breadcrumbs record `attempts` and `first_try`).
+   - c4's battle state (`battle_state: 2`) shows what Showdown's interface shows a player, and no more: every turn
+     event (failed moves, lost turns, Protect, Mega Evolution, each boost's cause), each legal move's tooltip line,
+     priority and effectiveness, ability and item effects, the opponent's stats as their possible range with a speed
+     comparison, and Mega Evolution instead of Tera in Champions. No damage calcs or switch-in matchups (Showdown
+     shows none). Tooltip texts: `data/dex/<mod>.json` from `node scripts/dump_dex_text.js <gen9|champions>`.
+   - `ROTOMARENA_PROMPT_LOG=<file.jsonl>` logs every LLM turn's messages and answer (prompt work; use a scratch config).
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
    - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429
      that outlasts ~6.5 minutes of backoff) or on two void games in a row in one set; the same command resumes.
