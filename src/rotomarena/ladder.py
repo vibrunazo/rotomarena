@@ -179,13 +179,18 @@ def games_played(app_cfg: AppConfig, config_id: str) -> int:
 
 def cap_exempt(app_cfg: AppConfig, a: str, b: str) -> bool:
     """Whether this pair plays even past a player's game cap (ladder.cap_exempt_pairs, ladder.best_of_three)."""
-    return any({a, b} == set(pair) for pair in app_cfg.ladder.cap_exempt_pairs + app_cfg.ladder.best_of_three)
+    return any({a, b} == set(pair) for pair in app_cfg.ladder.cap_exempt_pairs + best_of_three(app_cfg))
+
+
+def best_of_three(app_cfg: AppConfig) -> List[List[str]]:
+    """The pairs playing a best of three in the version being played."""
+    return app_cfg.ladder.best_of_three.get(app_cfg.ruleset.version, [])
 
 
 def pair_target(app_cfg: AppConfig, state: LadderState, a: str, b: str, games_per_pair: int) -> int:
     """How many valid games this pair plays in the round robin: games_per_pair, or for a best of three
     (ladder.best_of_three) a deciding third game once its first two stand level."""
-    if not any({a, b} == set(pair) for pair in app_cfg.ladder.best_of_three):
+    if not any({a, b} == set(pair) for pair in best_of_three(app_cfg)):
         return games_per_pair
     games = [o for o in state.outcomes if {o.p1, o.p2} == {a, b}]
     score_a = sum(o.score_p1 if o.p1 == a else 1 - o.score_p1 for o in games)
@@ -193,7 +198,8 @@ def pair_target(app_cfg: AppConfig, state: LadderState, a: str, b: str, games_pe
 
 
 def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
-    return max(agent.max_games - games_played(app_cfg, agent.name), 0) if agent.max_games is not None else 10**9
+    cap = agent.cap(app_cfg.ruleset.version)
+    return max(cap - games_played(app_cfg, agent.name), 0) if cap is not None else 10**9
 
 
 def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:

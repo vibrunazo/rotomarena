@@ -214,7 +214,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
             "planned": sum(p["planned"] for p in plan if k in (p["a"], p["b"])),
             "wins": wins, "losses": len(valid) - wins, "void": len(mine) - len(valid),
             "games_cost_usd": round(games_cost, 4), "draft_cost_usd": round(drafting, 4),
-            "cost_usd": round(games_cost + drafting, 4), "cap": a.max_games, "sec_per_turn": round(secs[k], 1) if k in secs else None,
+            "cost_usd": round(games_cost + drafting, 4), "cap": a.cap(version), "sec_per_turn": round(secs[k], 1) if k in secs else None,
         })
     models.sort(key=lambda m: (-(m["done"] / m["planned"]) if m["planned"] else 0, m["name"]))
 

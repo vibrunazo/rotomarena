@@ -498,7 +498,7 @@ def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
 def test_a_best_of_three_plays_a_deciding_game_only_at_one_all():
     from rotomarena.ladder import cap_exempt, pair_target
 
-    app_cfg = AppConfig(ladder=LadderConfig(best_of_three=[["luna", "haiku"]]))
+    app_cfg = AppConfig(ladder=LadderConfig(best_of_three={"s1": [["luna", "haiku"]]}))
 
     def state(*scores):
         return SimpleNamespace(outcomes=[Outcome(f"m{i}", "luna", "haiku", s) for i, s in enumerate(scores)])
@@ -508,3 +508,5 @@ def test_a_best_of_three_plays_a_deciding_game_only_at_one_all():
     assert pair_target(app_cfg, state(1, 1), "haiku", "luna", 2) == 2  # 2-0: decided
     assert pair_target(app_cfg, state(1, 0), "luna", "gemma", 2) == 2
     assert cap_exempt(app_cfg, "haiku", "luna")
+    assert AgentConfig(name="haiku", type="direct_llm", max_games=8, extra_games={"s1": 3}).cap("s1") == 11
+    assert AgentConfig(name="haiku", type="direct_llm", max_games=8, extra_games={"s1": 3}).cap("s4") == 8

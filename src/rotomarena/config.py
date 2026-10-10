@@ -194,10 +194,11 @@ class LadderConfig(BaseModel):
         description="Slow models whose pairs play after every other pair (even the anchor's), so the quick games "
         "fill the rankings first",
     )
-    best_of_three: List[List[str]] = Field(
-        default_factory=list,
-        description="Pairs that play a best of three in the round robin: one game from each side and, at 1-1, a "
-        "deciding third. Like cap_exempt_pairs they play past a game cap (the games still count toward it)",
+    best_of_three: Dict[str, List[List[str]]] = Field(
+        default_factory=dict,
+        description="Ruleset version -> pairs that play a best of three in its round robin: one game from each side "
+        "and, at 1-1, a deciding third. Like cap_exempt_pairs they play past a game cap (the games still count toward "
+        "it; extra_games can make room)",
     )
     cap_exempt_pairs: List[List[str]] = Field(
         default_factory=list,
@@ -272,6 +273,10 @@ class AgentConfig(BaseModel):
         default=None, ge=0, description="At most this many games in each version (a spending cap for paid models); "
         "schedules skip it once reached",
     )
+    extra_games: Dict[str, int] = Field(
+        default_factory=dict, description="Ruleset version -> games added to max_games in that version only (e.g. "
+        "for a best of three there)",
+    )
     model_key: Optional[str] = Field(
         default=None,
         description="Canonical id of the weights, OpenRouter-style 'org/model' (e.g. 'qwen/qwen3.8-27b'), so other "
@@ -290,6 +295,10 @@ class AgentConfig(BaseModel):
             "matchup": 1.0,
         }
     )
+
+    def cap(self, version: str) -> Optional[int]:
+        """Its game cap in this ruleset version: max_games plus that version's extra_games; None: no cap."""
+        return None if self.max_games is None else self.max_games + self.extra_games.get(version, 0)
 
     def thinking(self, ruleset: "RulesetConfig") -> Tuple[Optional[str], Optional[int]]:
         """(reasoning level, thinking budget) this model is asked for: the ruleset's, unless it has an exception."""
