@@ -1,0 +1,602 @@
+{
+  "id": "match_20261010_191246_Decider V1_1 27B_vs_Gemma 4 31B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it:free",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 80.76,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Decider V1.1 27B vs. Gemma 4 31B",
+    "|j|☆Decider V1.1 27B",
+    "|j|☆Gemma 4 31B",
+    "|gametype|singles",
+    "|player|p1|Decider V1.1 27B|2|",
+    "|player|p2|Gemma 4 31B|2|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p1|Annihilape, L50, F|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Tinkaton, L50, F|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Annihilape, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Annihilape|Annihilape, L50, F|185/185",
+    "|switch|p2a: Incineroar|Incineroar, L50, F|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Annihilape|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p1a: Annihilape|Close Combat|p2a: Incineroar",
+    "|-supereffective|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|28/100",
+    "|-unboost|p1a: Annihilape|def|1",
+    "|-unboost|p1a: Annihilape|spd|1",
+    "|-enditem|p2a: Incineroar|Sitrus Berry|[eat]",
+    "|-heal|p2a: Incineroar|53/100|[from] item: Sitrus Berry",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Annihilape",
+    "|-unboost|p1a: Annihilape|atk|1",
+    "|-unboost|p1a: Annihilape|spa|1",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Tinkaton|Tinkaton, L50, F|160/160",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|65/160",
+    "|-damage|p2a: Gholdengo|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Tinkaton|Knock Off|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|46/100",
+    "|-enditem|p2a: Gholdengo|Life Orb|[from] move: Knock Off|[of] p1a: Tinkaton",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|0 fnt",
+    "|faint|p1a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Annihilape|Annihilape, L50, F|185/185",
+    "|turn|4",
+    "|",
+    "|move|p1a: Annihilape|Earthquake|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|detailschange|p2a: Garchomp|Garchomp-Mega, L50, F",
+    "|-mega|p2a: Garchomp|Garchomp|Garchompite",
+    "|move|p2a: Garchomp|Earthquake|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-crit|p1a: Chandelure",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Annihilape|Annihilape, L50, F|185/185",
+    "|turn|6",
+    "|",
+    "|move|p1a: Annihilape|Ice Punch|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|2",
+    "|-damage|p2a: Garchomp|17/100",
+    "|move|p2a: Garchomp|Earthquake|p1a: Annihilape",
+    "|-damage|p1a: Annihilape|49/185",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p1a: Annihilape|Ice Punch|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|2",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Incineroar|Incineroar, L50, F|53/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Annihilape|atk|1",
+    "|turn|8",
+    "|",
+    "|move|p1a: Annihilape|Ice Punch|p2a: Incineroar",
+    "|-resisted|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|45/100",
+    "|move|p2a: Incineroar|Flare Blitz|p1a: Annihilape",
+    "|-damage|p1a: Annihilape|0 fnt",
+    "|faint|p1a: Annihilape",
+    "|-damage|p2a: Incineroar|37/100|[from] Recoil",
+    "|",
+    "|win|Gemma 4 31B",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 36% BRING: annihilape, 30% BRING: tinkaton, 12% BRING: chandelure\nPick 2: 43% BRING: tinkaton, 26% BRING: chandelure, 12% BRING: incineroar\nPick 3: 51% BRING: chandelure, 21% BRING: palafin, 16% BRING: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5620,
+      "latency_ms": 1374,
+      "cost_usd": 0.0001124,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "The opponent's team features several threats like Palafin and Toxapex. Incineroar provides essential utility with Intimidate and Fake Out, Garchomp (Mega) offers massive offensive pressure against Toxapex and Tinkaton, and Gholdengo handles Annihilape and provides special coverage.",
+      "hidden_reasoning": "The opponent has Palafin, Toxapex, Incineroar, Annihilape, Chandelure, and Tinkaton.\nMy team has Incineroar, Gholdengo, Kingambit, Palafin, Garchomp, and Annihilape.\nI need a strong core to handle their threats. Garchomp (Mega) is a powerhouse, Gholdengo provides essential special offense and status immunity, and Incineroar provides utility (Fake Out, Intimidate, Parting Shot).\nAlternatively, Palafin is great for priority, but Garchomp's raw power and typing are generally more versatile.\nLooking at the opponent's team, Garchomp handles Toxapex, Tinkaton, and Incineroar. Gholdengo handles Annihilape and Tinkaton. Incineroar handles Palafin and provides support.\nWait, Garchomp is Mega. Mega Garchomp is incredibly strong.\nLet's go with Incineroar (lead for Fake Out/Intimidate), Gholdengo, and Garchomp.\nActually, Kingambit is a great closer.\nLet's try Incineroar, Gholdengo, and Garchomp.\nWait, Palafin is a huge threat. Incineroar is the best answer to Palafin.\nGarchomp is the best answer to Toxapex.\nGholdengo is the best answer to Annihilape.\nThis seems like a solid trio.\n\nDeciding factor: Type coverage and utility.",
+      "note": "",
+      "tokens": 2414,
+      "latency_ms": 12195,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "77% MOVE: closecombat, 20% MOVE: earthquake, 2% SWITCH: tinkaton",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1407,
+      "latency_ms": 465,
+      "cost_usd": 2.814e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.7708104112277597,
+        "MOVE: phantomforce": 0.0019838831945010395,
+        "MOVE: earthquake": 0.20382647327581224,
+        "MOVE: icepunch": 0.000665752022483653,
+        "SWITCH: tinkaton": 0.019711153534981714,
+        "SWITCH: chandelure": 0.003002326744461531
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is immune to Fake Out and faster than Incineroar. Parting Shot is the best play to lower its stats and pivot to a safer teammate.",
+      "hidden_reasoning": "Annihilape is a Fighting/Ghost type, making it immune to Fake Out. It is faster than Incineroar. Parting Shot allows me to pivot while further weakening Annihilape's attack, which is crucial since it's a heavy hitter.\n\nDeciding factor: bad matchup/pivot.",
+      "note": "",
+      "tokens": 1613,
+      "latency_ms": 4314,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Incineroar is in a bad matchup against Annihilape and has low HP. Gholdengo is immune to Fighting-type moves, making it the safest and most effective switch-in.",
+      "hidden_reasoning": "Annihilape is a Fighting/Ghost type. Incineroar is at low health and has already used Parting Shot. Gholdengo is a Steel/Ghost type, making it immune to Fighting moves (Close Combat) and capable of hitting Annihilape for neutral or super effective damage (Shadow Ball). Garchomp is also a strong option, but Gholdengo's immunity to Fighting is the deciding factor.\n\nDeciding factor: Bad matchup (Incineroar vs Annihilape) and Gholdengo's immunity to Fighting.",
+      "note": "",
+      "tokens": 1631,
+      "latency_ms": 5952,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "61% SWITCH: tinkaton, 31% SWITCH: chandelure, 8% MOVE: closecombat",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1439,
+      "latency_ms": 434,
+      "cost_usd": 2.878e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.08430782135606583,
+        "SWITCH: tinkaton": 0.6100183492154425,
+        "SWITCH: chandelure": 0.30567382942849153
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape has -2 Attack and -1 SpD, making it extremely fragile. Shadow Ball is super effective and, combined with Life Orb, should secure a knockout or leave it in range for a quick finish.",
+      "hidden_reasoning": "Annihilape has -2 Attack and -1 SpD. Gholdengo is faster or similar in speed. Shadow Ball is super effective and will deal massive damage given the SpD drop and Life Orb.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 1764,
+      "latency_ms": 4160,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "80% MOVE: knockoff, 6% MOVE: swordsdance, 6% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1672,
+      "latency_ms": 430,
+      "cost_usd": 3.344e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.008969215629619779,
+        "MOVE: swordsdance": 0.05916414817132231,
+        "MOVE: stealthrock": 0.053154353316902846,
+        "MOVE: knockoff": 0.8018230392529245,
+        "SWITCH: annihilape": 0.0578135676941614,
+        "SWITCH: chandelure": 0.01907567593506909
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Tinkaton is at 40% HP and is neutral to Ghost-type attacks. Shadow Ball is the most reliable move to secure the knockout this turn.",
+      "hidden_reasoning": "Tinkaton is at 40% HP. Gholdengo's Shadow Ball already did significant damage. Tinkaton is Fairy/Steel, so Shadow Ball (Ghost) is neutral and Make It Rain (Steel) is resisted. Shadow Ball is the most reliable way to secure the knockout.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 1893,
+      "latency_ms": 4325,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Annihilape",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "64% SWITCH: annihilape, 36% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1389,
+      "latency_ms": 445,
+      "cost_usd": 2.778e-05,
+      "probabilities": {
+        "SWITCH: annihilape": 0.6398938441079762,
+        "SWITCH: chandelure": 0.36010615589202377
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "91% MOVE: earthquake, 4% MOVE: phantomforce, 4% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1684,
+      "latency_ms": 475,
+      "cost_usd": 3.368e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.012405717234871166,
+        "MOVE: phantomforce": 0.041043000234704766,
+        "MOVE: earthquake": 0.9099740904544436,
+        "MOVE: icepunch": 0.0006106249408813615,
+        "SWITCH: chandelure": 0.03596656713509929
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is weak to Ghost-type moves and currently has -1 Attack. Shadow Ball is the most effective way to deal damage and potentially secure a knockout.",
+      "hidden_reasoning": "Annihilape is a Ghost/Fighting type, making it weak to Ghost moves. Gholdengo's Shadow Ball is super effective. Annihilape has -1 Atk and -1 SpA from the previous Parting Shot. Gholdengo is at ~47% HP and could be knocked out by a strong Close Combat or Drain Punch.\n\nDeciding factor: likely knockout/damage. Shadow Ball is the most reliable offensive move here.\n\nWait, Annihilape's speed is 99-156. Gholdengo is 106. If Annihilape is faster, Gholdengo might faint. However, switching to Garchomp or Incineroar is an option. Incineroar has Intimidate (though Annihilape might have Inner Focus). Garchomp is a strong switch-in. But Shadow Ball does significant damage.\n\nActually, looking at the stats, Annihilape is at -1 Atk. Gholdengo's Shadow Ball is the best bet to chip or KO before it can deal too much damage.\n\nWait, if Annihilape has Defiant, the Parting Shot actually boosted its Attack by 2. Let's check: \"Opposing Annihilape: atk -1\" was explicitly stated in Turn 1. If it had Defiant, it would have gone to +2. Since the log says \"atk -1\", it does NOT have Defiant.\n\nShadow Ball is the play.",
+      "note": "",
+      "tokens": 2160,
+      "latency_ms": 11221,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is a dangerous physical attacker, but Garchomp resists its Earthquake and can deal significant damage in return. Incineroar is too frail and weak to Fighting moves to be a viable switch-in here.",
+      "hidden_reasoning": "The opponent's Annihilape is active and just knocked out Gholdengo. Annihilape has -1 Atk and -1 SpA from a previous Parting Shot. Garchomp is a strong counter to Annihilape's Earthquake (resists it) and can hit back hard with Dragon Claw or Earthquake. Incineroar is weak to Fighting moves.\n\nDeciding factor: Matchup. Garchomp resists Earthquake and can threaten Annihilape.",
+      "note": "",
+      "tokens": 1785,
+      "latency_ms": 5625,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "63% SWITCH: chandelure, 37% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1503,
+      "latency_ms": 385,
+      "cost_usd": 3.006e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.3742063028213638,
+        "SWITCH: chandelure": 0.6257936971786362
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is faster than Annihilape and can deal heavy neutral damage with Earthquake. Mega Evolving now maximizes the attack power to secure a potential knockout or severe damage.",
+      "hidden_reasoning": "Garchomp is faster than Annihilape. Annihilape is Fighting/Ghost, meaning it's weak to Psychic, Ghost, and Fairy, but Garchomp's best STAB is Earthquake (neutral) or Dragon Claw (neutral). Annihilape has Close Combat and Earthquake. Mega Evolving Garchomp increases its stats. Earthquake is the strongest neutral move.\n\nDeciding factor: speed and likely knockout. Garchomp outspeeds and can deal significant damage with Earthquake. Mega Evolving now maximizes power.",
+      "note": "",
+      "tokens": 1960,
+      "latency_ms": 5665,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Annihilape",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: annihilape": 1.0
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: icepunch, 3% MOVE: closecombat, 0% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1660,
+      "latency_ms": 429,
+      "cost_usd": 3.32e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.02571489488630859,
+        "MOVE: phantomforce": 0.0032722881988665443,
+        "MOVE: earthquake": 0.004364596921092767,
+        "MOVE: icepunch": 0.9666482199937321
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Mega Garchomp is faster than Annihilape (158 vs max 156). Earthquake provides the highest consistent damage to pressure or knock out Annihilape before it can attack.",
+      "hidden_reasoning": "Mega Garchomp is faster than Annihilape (158 vs max 156). Earthquake is a strong neutral hit, but Dragon Claw is also viable. However, Earthquake is the most reliable high-damage move here to pressure or KO Annihilape before it can land a Close Combat.\n\nDeciding factor: speed and likely knockout.",
+      "note": "",
+      "tokens": 1925,
+      "latency_ms": 4739,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: icepunch": 1.0
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Mega Garchomp is faster than Annihilape and Annihilape is at 26% HP; Earthquake will secure the knockout before it can move.",
+      "hidden_reasoning": "Mega Garchomp is faster than Annihilape (158 vs max 156). Annihilape is at 26% HP. Earthquake is a strong STAB move that should easily secure the knockout before Annihilape can attack.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 1893,
+      "latency_ms": 4177,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp has fainted, and Incineroar is the only remaining Pokémon on the team.",
+      "hidden_reasoning": "The opponent's Annihilape is at 26% HP. My Garchomp just fainted. I only have Incineroar left. I must switch to Incineroar.\n\nDeciding factor: Only one Pokémon remaining.",
+      "note": "",
+      "tokens": 1671,
+      "latency_ms": 3356,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: icepunch": 1.0
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flareblitz",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 26% HP and has -1 Attack. Flare Blitz is a powerful STAB move that will easily secure the knockout.",
+      "hidden_reasoning": "Annihilape is at 26% HP and has -1 Attack. Incineroar is slower but has a strong STAB move. Flare Blitz should easily secure the knockout given Annihilape's low remaining health.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 1740,
+      "latency_ms": 3808,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
