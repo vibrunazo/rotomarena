@@ -399,21 +399,46 @@ def run_battle(
     p1_model: Optional[str] = typer.Option(None, "--p1-model", help="LLM model for player 1"),
     p2_provider: Optional[str] = typer.Option(None, "--p2-provider", help="LLM provider for player 2"),
     p2_model: Optional[str] = typer.Option(None, "--p2-model", help="LLM model for player 2"),
-    team1: str = typer.Option("balance", "--team1", help="First team of the series"),
-    team2: str = typer.Option("hyper_offense", "--team2", help="Second team of the series"),
+    team1: str = typer.Option("balance", "--team1", help="First team of the series (fixed-team versions)"),
+    team2: str = typer.Option("hyper_offense", "--team2", help="Second team of the series (fixed-team versions)"),
     games: int = typer.Option(1, "--games", "-n", help="Games in the series; sides alternate every game, teams every two"),
     provider: str = typer.Option("openrouter", "--provider", help="LLM provider when not set per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model when not set per player (default: the provider's)"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file with the agents registry"),
 ):
-    """Run a 1v1 battle series between two agents."""
-    app_cfg = AppConfig.load(config_file)
+    """Run a 1v1 battle series between two agents (a test game: under the version being played, so point --config at
+    a scratch config with its own ruleset version and output folder). Own-teams versions play the players' drafted
+    teams, and a player without one (a bot) borrows its opponent's, as in the ladder."""
+    from rotomarena.ladder import own_team
+    from rotomarena.teams.draft import validate_team
 
-    random_teams = app_cfg.ruleset.team_mode == "random"  # the format deals the teams
-    first_team = None if random_teams else load_preset_team(team1)
-    second_team = None if random_teams else load_preset_team(team2)
+    app_cfg = AppConfig.load(config_file)
     p1_cfg = _agent_config(app_cfg, p1, p1_provider or provider, p1_model or model)
     p2_cfg = _agent_config(app_cfg, p2, p2_provider or provider, p2_model or model)
+    own = app_cfg.ruleset.team_mode == "draft"
+    first_team = second_team = None  # random mode: the format deals the teams
+    if own:
+        teams = {}
+        for cfg in (p1_cfg, p2_cfg):
+            try:
+                teams[cfg.name] = own_team(cfg, app_cfg)
+            except ValueError:
+                pass
+        if not teams:
+            console.print(f"[bold red]{app_cfg.ruleset.version} plays own teams, and neither player has one: "
+                          f"rotomarena teams draft <config id>[/bold red]")
+            raise typer.Exit(1)
+        first_team = teams.get(p1_cfg.name) or teams[p2_cfg.name]
+        second_team = teams.get(p2_cfg.name) or teams[p1_cfg.name]
+    elif app_cfg.ruleset.team_mode != "random":
+        first_team, second_team = load_preset_team(team1), load_preset_team(team2)
+        # Showdown refuses a team the format doesn't allow and the game never starts: say so instead of waiting
+        for team in (first_team, second_team):
+            problems = validate_team(app_cfg, team.to_smogon_text() + "\n")
+            if problems:
+                console.print(f"[bold red]{team.name} isn't legal in {app_cfg.ruleset.format}:[/bold red] "
+                              + " ".join(problems[:4]))
+                raise typer.Exit(1)
 
     server_mgr = ShowdownServerManager(app_cfg.server)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
@@ -425,6 +450,7 @@ def run_battle(
             series_res = await runner.run_series(
                 player_1, player_2, first_team, second_team, n_games=games,
                 before_game=lambda: local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print),
+                own_teams=own,
             )
 
             console.print("\n[bold green]=== Series Finished ===[/bold green]")

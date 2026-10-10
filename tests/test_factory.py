@@ -132,3 +132,7 @@ def test_a_battle_name_is_the_showdown_username_and_the_display_name_stays_whole
     assert format_bot_display_name(luna) == "Luna Decisions"
     assert format_bot_display_name(luna, tag="2") == "Luna Decisions 2"  # a set's second game: still whole
     assert luna.display_name == "GPT-6 Luna Decisions"
+
+
+def test_the_command_line_module_imports():
+    import rotomarena.cli  # noqa: F401  (a syntax slip there escapes every other test)

@@ -448,9 +448,9 @@ def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
         def games(self, a, b):
             return played.get(frozenset((a, b)), 0)
 
-    async def fake_set(a, b, cfg, done, games=None, lane_offset=0):
-        started.append((a, b, lane_offset, games))
-        if lane_offset:
+    async def fake_set(a, b, cfg, done, games=None):
+        started.append((a, b, games))
+        if "gemma" not in (a, b):  # the API stream
             api_played.set()
         else:  # a local pair waits for an api pair: played one after the other, this would time out
             await asyncio.wait_for(api_played.wait(), timeout=1)
@@ -469,11 +469,10 @@ def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
         await ladder.round_robin(app_cfg, games_per_pair=2, log=lambda m: None)
 
     asyncio.run(run())
-    gpu = [s for s in started if "gemma" in s[:2]]
     api = [s for s in started if "gemma" not in s[:2]]
-    assert all(s[2] == 0 for s in gpu) and api and all(s[2] == app_cfg.ladder.parallel_games for s in api)
+    assert api  # it played while the local pairs waited for it (else wait_for above times out)
     # api's cap of 3 games: the pairs it plays at once never promise more than that between them
-    assert sum(s[3] for s in started if "api" in s[:2]) <= 3
+    assert sum(s[2] for s in started if "api" in s[:2]) <= 3
 
 
 def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
@@ -518,3 +517,14 @@ def test_a_local_decision_model_gets_its_server_like_a_local_llm():
     drex = AgentConfig(name="drex", type="decision", provider="local", model="drex-v1.5", port=8090)
     jev = AgentConfig(name="jev", type="decision", provider="openrouter", model="typesafe/jev-1.13")
     assert local_servers.local_agents([drex, jev]) == [drex]
+
+
+def test_a_model_playing_one_game_keeps_its_plain_showdown_name():
+    from rotomarena.ladder import release_lane, take_lane
+
+    assert take_lane("luna") == 1  # its only game: no number
+    assert take_lane("luna") == 2 and take_lane("haiku") == 1  # a second game at once is numbered, others aren't
+    release_lane("luna", 1)
+    assert take_lane("luna") == 1  # the plain name is free again
+    for config_id, lane in (("luna", 1), ("luna", 2), ("haiku", 1)):
+        release_lane(config_id, lane)

@@ -206,16 +206,17 @@ class MatchRunner:
         n_games: int = 4,
         first_game: int = 0,
         before_game: Optional[Callable[[], None]] = None,
+        own_teams: bool = False,
     ) -> SeriesResult:
-        """Runs a series that alternates sides every game and swaps teams every two games.
-        `first_game` resumes the schedule after games already played."""
+        """Runs a series that alternates sides every game and swaps teams every two games (with `own_teams`, each
+        player keeps its own: team_1 is A's, team_2 B's). `first_game` resumes the schedule after games already played."""
         series = SeriesResult(a_name=player_a.agent_name, b_name=player_b.agent_name, total_games=n_games)
 
         try:
             for g in range(first_game, first_game + n_games):
                 if before_game:
                     before_game()  # e.g. restart a local model server that crashed in the last game
-                match_res = await self.run_game(player_a, player_b, team_1, team_2, g)
+                match_res = await self.run_game(player_a, player_b, team_1, team_2, g, own_teams=own_teams)
                 series.matches.append(match_res)
 
                 if match_res.winner == player_a.agent_name:

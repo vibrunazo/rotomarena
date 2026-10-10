@@ -328,7 +328,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     # A model limited to one game at a time (Gemma, for its provider's rate limit) plays in one stream at a time
     single = {k: asyncio.Lock() for k, a in app_cfg.agents.items() if a.max_parallel_games == 1}
 
-    async def stream(items: list, lane_offset: int) -> None:
+    async def stream(items: list) -> None:
         for i, (a, b) in items:
             async with contextlib.AsyncExitStack() as held:
                 for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
@@ -349,7 +349,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                     log(f"pair {i}/{len(pairs)}: {a} vs {b} ({done}/{target} valid games so far)")
                     playing[(a, b)] = stop
                     try:
-                        await play_set(a, b, app_cfg, done, games=stop, lane_offset=lane_offset)
+                        await play_set(a, b, app_cfg, done, games=stop)
                     except local_servers.ServerStartFailed as e:  # one model's server: not the whole run
                         log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a local server didn't start "
                             f"({str(e).splitlines()[0]}); the next run plays it")
@@ -359,10 +359,27 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
 
     try:
         async with asyncio.TaskGroup() as group:  # a halt in either stream stops both
-            group.create_task(stream(gpu, 0))
-            group.create_task(stream(api, app_cfg.ladder.parallel_games))
+            group.create_task(stream(gpu))
+            group.create_task(stream(api))
     except ExceptionGroup as failed:
         raise failed.exceptions[0] from failed  # callers catch RunHalted itself
+
+
+# {config id: the lane numbers its players use right now}. Showdown names must be unique, so a model playing two
+# games at once (lanes of a set, or both streams) numbers all but one; a model playing one game keeps a clean name.
+_lanes_in_use: Dict[str, set] = {}
+
+
+def take_lane(config_id: str) -> int:
+    """The lowest lane number this model isn't using (1: its plain name)."""
+    used = _lanes_in_use.setdefault(config_id, set())
+    lane = next(n for n in range(1, len(used) + 2) if n not in used)
+    used.add(lane)
+    return lane
+
+
+def release_lane(config_id: str, lane: int) -> None:
+    _lanes_in_use.get(config_id, set()).discard(lane)
 
 
 def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
@@ -371,8 +388,7 @@ def rounds(first_game: int, n_games: int, parallel: int) -> List[List[int]]:
     return [games[i:i + parallel] for i in range(0, len(games), parallel)]
 
 
-async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None,
-                   lane_offset: int = 0) -> int:
+async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int, games: Optional[int] = None) -> int:
     """Plays the rest of a set between two registry entries; returns how many games were played.
     Up to ladder.parallel_games games run at once, each by its own pair of players (a lane). Between rounds the
     run checks for halts and restarts crashed local servers, as it did between games when they ran one by one."""
@@ -382,9 +398,14 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
         remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
     if remaining <= 0:
         return 0
-    # lane numbers after lane_offset: a model playing in both streams at once needs distinct Showdown names
-    lanes = [create_players(agent_a, agent_b, app_cfg, lane=lane_offset + k + 1)
-             for k in range(lane_count(agent_a, agent_b, app_cfg, remaining))]
+    taken: List[Tuple[str, int]] = []  # (config id, lane number) this set holds, released when it ends
+    lane_numbers = []
+    for _ in range(lane_count(agent_a, agent_b, app_cfg, remaining)):
+        lane_a = take_lane(id_a)
+        lane_b = lane_a if id_b == id_a else take_lane(id_b)  # a mirror match tags its two sides itself
+        taken += [(id_a, lane_a)] + ([] if id_b == id_a else [(id_b, lane_b)])
+        lane_numbers.append((lane_a, lane_b))
+    lanes = [create_players(agent_a, agent_b, app_cfg, lane=a, lane_b=b) for a, b in lane_numbers]
     players = [p for lane in lanes for p in lane]
     own = app_cfg.ruleset.team_mode == "draft"
     team_1, team_2 = set_teams(agent_a, agent_b, app_cfg)
@@ -416,6 +437,8 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
                 await asyncio.wait_for(player.ps_client.stop_listening(), timeout=10)
             except Exception:
                 pass
+        for config_id, lane in taken:
+            release_lane(config_id, lane)
     return remaining
 
 

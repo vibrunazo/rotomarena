@@ -285,14 +285,15 @@ def resolved_model(agent_cfg: AgentConfig, app_config: AppConfig) -> Optional[st
 
 
 def create_players(
-    cfg_a: AgentConfig, cfg_b: AgentConfig, app_config: AppConfig, lane: int = 1
+    cfg_a: AgentConfig, cfg_b: AgentConfig, app_config: AppConfig, lane: int = 1, lane_b: Optional[int] = None
 ) -> Tuple[BaseBenchmarkPlayer, BaseBenchmarkPlayer]:
-    """Both players of a series (or of one lane of a parallel set). Identical Showdown names would collide, so a
-    mirror match gets numeric tags."""
+    """Both players of a series (or of one lane of a parallel set; `lane_b` when B's lane number differs, see
+    ladder.take_lane). Identical Showdown names would collide, so a mirror match gets numeric tags."""
     name_a = format_bot_display_name(cfg_a, resolved_model=resolved_model(cfg_a, app_config))
     name_b = format_bot_display_name(cfg_b, resolved_model=resolved_model(cfg_b, app_config))
     same = name_a.lower() == name_b.lower()
     return (
         create_agent_instance(cfg_a, app_config, player_tag="1" if same else None, lane=lane),
-        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None, lane=lane),
+        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None,
+                              lane=lane if lane_b is None else lane_b),
     )
