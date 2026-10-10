@@ -458,7 +458,7 @@ def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
         finished.append((a, b))
         return games - done
 
-    monkeypatch.setattr(ladder, "version_state", lambda cfg: State())
+    monkeypatch.setattr(ladder, "version_state", lambda cfg, rate=True: State())
     monkeypatch.setattr(ladder, "games_played", lambda cfg, x: sum(n for pair, n in played.items() if x in pair))
     monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
     monkeypatch.setattr(ladder, "play_set", fake_set)
@@ -488,7 +488,7 @@ def test_a_halt_in_one_stream_reaches_the_caller_as_itself(monkeypatch):
     async def halting(*args, **kwargs):
         raise RunHalted("provider limit")
 
-    monkeypatch.setattr(ladder, "version_state", lambda cfg: SimpleNamespace(games=lambda a, b: 0))
+    monkeypatch.setattr(ladder, "version_state", lambda cfg, rate=True: SimpleNamespace(games=lambda a, b: 0, outcomes=[]))
     monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
     monkeypatch.setattr(ladder, "play_set", halting)
     with pytest.raises(RunHalted):

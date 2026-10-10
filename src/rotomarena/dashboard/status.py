@@ -120,7 +120,7 @@ def _turn_seconds(matches) -> Dict[str, float]:
 def status(app_cfg: AppConfig) -> Dict[str, Any]:
     now = datetime.datetime.now()
     version = app_cfg.ruleset.version
-    state = version_state(app_cfg)
+    state = version_state(app_cfg, rate=False)  # counts only: the page polls this
     matches = state.matches
     max_autopilot = app_cfg.ladder.max_autopilot
 

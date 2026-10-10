@@ -63,14 +63,15 @@ class LadderState:
         return len(self.matches) - len(self.outcomes)
 
 
-def version_state(app_cfg: AppConfig) -> LadderState:
-    """Every match of the ruleset version being played, rated."""
-    return versions_state(app_cfg, [app_cfg.ruleset.version])
+def version_state(app_cfg: AppConfig, rate: bool = True) -> LadderState:
+    """Every match of the ruleset version being played, rated (rate=False: counted only, no ratings)."""
+    return versions_state(app_cfg, [app_cfg.ruleset.version], rate)
 
 
-def versions_state(app_cfg: AppConfig, versions: List[str]) -> LadderState:
+def versions_state(app_cfg: AppConfig, versions: List[str], rate: bool = True) -> LadderState:
     """Every match of these ruleset versions, rated together (a leaderboard). A game whose recorded rules differ
-    from its version's stored rules is left out and counted."""
+    from its version's stored rules is left out and counted. rate=False skips the ratings (and their bootstrap,
+    seconds of CPU) for callers that only count games."""
     matches, mismatch = [], 0
     for version in versions:
         stored = stored_rules(version)
@@ -85,7 +86,7 @@ def versions_state(app_cfg: AppConfig, versions: List[str]) -> LadderState:
         anchor=app_cfg.ladder.anchor,
         anchor_rating=app_cfg.ladder.anchor_rating,
         bootstrap_samples=app_cfg.ladder.bootstrap_samples,
-    )
+    ) if rate else {}
     return LadderState(matches, outcomes, ratings, games_between(outcomes), mismatch)
 
 
@@ -291,7 +292,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
 
     def promised(x: str) -> int:
         """Games of model x the sets now playing will still add, so the other stream leaves them out of its cap."""
-        state = version_state(app_cfg)
+        state = version_state(app_cfg, rate=False)
         return sum(max(stop - state.games(*pair), 0) for pair, stop in playing.items() if x in pair)
 
     # A model limited to one game at a time (Gemma, for its provider's rate limit) plays in one stream at a time
@@ -303,7 +304,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                 for x in sorted({a, b} & set(single)):  # always in the same order: no deadlock
                     await held.enter_async_context(single[x])
                 while True:  # once more for a best of three's deciding game
-                    state = version_state(app_cfg)
+                    state = version_state(app_cfg, rate=False)  # counting only: every pair asks
                     done, target = state.games(a, b), pair_target(app_cfg, state, a, b, games_per_pair)
                     if done >= target:
                         break
