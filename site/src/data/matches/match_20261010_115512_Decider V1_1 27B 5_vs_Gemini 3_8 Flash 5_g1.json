@@ -1,0 +1,306 @@
+{
+  "id": "match_20261010_115512_Decider V1_1 27B 5_vs_Gemini 3_8 Flash 5_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c3",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B 5",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "gemini_3_8_flash",
+      "display_name": "Gemini 3.8 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemini-3.8-flash",
+      "quantization": null,
+      "username": "Gemini 3.8 Flash 5",
+      "role": "p2",
+      "team": "Gemini 3.8 Flash's team",
+      "model_key": "google/gemini-3.8-flash",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 3,
+  "duration_seconds": 13.35,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Decider V1.1 27B 5 vs. Gemini 3.8 Flash 5",
+    "|j|☆Decider V1.1 27B 5",
+    "|j|☆Gemini 3.8 Flash 5",
+    "|gametype|singles",
+    "|player|p1|Decider V1.1 27B 5|169|",
+    "|player|p2|Gemini 3.8 Flash 5|2|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p1|Annihilape, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Tinkaton, L50, F|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Mimikyu, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Volcarona, L50, F|",
+    "|poke|p2|Primarina, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Annihilape|Close Combat|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|45/100",
+    "|-unboost|p1a: Annihilape|def|1",
+    "|-unboost|p1a: Annihilape|spd|1",
+    "|-damage|p1a: Annihilape|162/185|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|move|p2a: Garchomp|Earthquake|p1a: Annihilape",
+    "|-damage|p1a: Annihilape|0 fnt",
+    "|faint|p1a: Annihilape",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|turn|2",
+    "|",
+    "|detailschange|p1a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p1a: Chandelure|Chandelure|Chandelurite",
+    "|move|p2a: Garchomp|Earthquake|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tinkaton|Tinkaton, L50, F|160/160",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Tinkaton",
+    "|-supereffective|p1a: Tinkaton|1",
+    "|-damage|p1a: Tinkaton|0 fnt",
+    "|faint|p1a: Tinkaton",
+    "|",
+    "|win|Gemini 3.8 Flash 5",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 40% BRING: annihilape, 25% BRING: tinkaton, 12% BRING: chandelure\nPick 2: 33% BRING: tinkaton, 33% BRING: chandelure, 16% BRING: incineroar\nPick 3: 46% BRING: chandelure, 24% BRING: incineroar, 21% BRING: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4963,
+      "latency_ms": 1568,
+      "cost_usd": 9.926e-05,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Mega Garchomp has immense offensive pressure against Incineroar, Toxapex, Chandelure, and Tinkaton. Gholdengo provides fast cleanup and status immunity, while Primarina offers defensive stability against Palafin.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1909,
+      "latency_ms": 3576,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "69% MOVE: closecombat, 16% MOVE: icepunch, 8% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1156,
+      "latency_ms": 391,
+      "cost_usd": 2.312e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.6877992700536866,
+        "MOVE: phantomforce": 0.07705135221798834,
+        "MOVE: earthquake": 0.05001319839296255,
+        "MOVE: icepunch": 0.15932800363328542,
+        "SWITCH: tinkaton": 0.016208178576547994,
+        "SWITCH: chandelure": 0.009599997125529301
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Base Garchomp outspeeds Annihilape, whereas Mega Evolving drops Garchomp's speed to base 92, potentially letting a max Speed Annihilape move first with Final Gambit. Earthquake without Mega Evolution deals massive damage safely.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1377,
+      "latency_ms": 3060,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "60% SWITCH: chandelure, 40% SWITCH: tinkaton",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1077,
+      "latency_ms": 377,
+      "cost_usd": 2.154e-05,
+      "probabilities": {
+        "SWITCH: tinkaton": 0.4048056583709737,
+        "SWITCH: chandelure": 0.5951943416290264
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: fireblast [MEGA], 7% MOVE: energyball [MEGA], 7% MOVE: shadowball [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1423,
+      "latency_ms": 391,
+      "cost_usd": 2.846e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.0328046740778821,
+        "MOVE: fireblast [MEGA]": 0.6666618612230371,
+        "MOVE: shadowball": 0.015823867755679837,
+        "MOVE: shadowball [MEGA]": 0.06820721682021358,
+        "MOVE: energyball": 0.04676480574336369,
+        "MOVE: energyball [MEGA]": 0.07246474108864884,
+        "MOVE: calmmind": 0.008773223317183944,
+        "MOVE: calmmind [MEGA]": 0.04587394011626689,
+        "SWITCH: tinkaton": 0.04262566985772423
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Base Garchomp is naturally faster than Chandelure and STAB Earthquake will cleanly knock it out. Staying in base form preserves higher Speed.",
+      "hidden_reasoning": "**Analyzing Speed Discrepancies**\n\nI've been calculating speed stats, specifically comparing Garchomp and Chandelure. Initial findings confirm Garchomp outspeeds Chandelure, but the speed drop upon Mega Evolution changes things. It's a key observation that even the lowered Mega Garchomp speed remains above Chandelure's, unless Chandelure utilizes speed-boosting tactics.\n\n\n",
+      "note": "",
+      "tokens": 1634,
+      "latency_ms": 3384,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: tinkaton",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: tinkaton": 1.0
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigatonhammer",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: gigatonhammer, 7% MOVE: swordsdance, 6% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1075,
+      "latency_ms": 409,
+      "cost_usd": 2.15e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.863837349726776,
+        "MOVE: swordsdance": 0.0666537305814781,
+        "MOVE: stealthrock": 0.057341523250840916,
+        "MOVE: knockoff": 0.012167396440905004
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp naturally outspeeds Tinkaton, whereas Mega Evolving lowers base speed below Tinkaton's. An un-Mega Earthquake easily scores the clean OHKO to win the match.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1691,
+      "latency_ms": 2938,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

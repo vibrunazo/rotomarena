@@ -1,0 +1,578 @@
+{
+  "id": "match_20261010_115230_Decider V1_1 27B 5_vs_Gemma 4 31B 5_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c3",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B 5",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it:free",
+      "quantization": null,
+      "username": "Gemma 4 31B 5",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 78.25,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Decider V1.1 27B 5 vs. Gemma 4 31B 5",
+    "|j|☆Decider V1.1 27B 5",
+    "|j|☆Gemma 4 31B 5",
+    "|gametype|singles",
+    "|player|p1|Decider V1.1 27B 5|169|",
+    "|player|p2|Gemma 4 31B 5|102|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Palafin, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p1|Annihilape, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Tinkaton, L50, F|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Palafin, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Annihilape, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Annihilape|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p2a: Incineroar|Fake Out|p1a: Annihilape",
+    "|-immune|p1a: Annihilape",
+    "|move|p1a: Annihilape|Close Combat|p2a: Incineroar",
+    "|-supereffective|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|21/100",
+    "|-unboost|p1a: Annihilape|def|1",
+    "|-unboost|p1a: Annihilape|spd|1",
+    "|-enditem|p2a: Incineroar|Sitrus Berry|[eat]",
+    "|-heal|p2a: Incineroar|46/100|[from] item: Sitrus Berry",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Annihilape|Close Combat|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Tinkaton|Tinkaton, L50, F|160/160",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|63/160",
+    "|-unboost|p1a: Tinkaton|spd|1",
+    "|-damage|p2a: Gholdengo|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p1a: Tinkaton|Gigaton Hammer|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|54/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|0 fnt",
+    "|faint|p1a: Tinkaton",
+    "|-damage|p2a: Gholdengo|44/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|46/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Chandelure|atk|1",
+    "|detailschange|p1a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p1a: Chandelure|Chandelure|Chandelurite",
+    "|move|p1a: Chandelure|Fire Blast|p2a: Incineroar|[miss]",
+    "|-miss|p1a: Chandelure|p2a: Incineroar",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Chandelure|Shadow Ball|p2a: Incineroar",
+    "|-resisted|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|28/100",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Chandelure",
+    "|-unboost|p1a: Chandelure|atk|1",
+    "|-unboost|p1a: Chandelure|spa|1",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|44/100|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p1a: Chandelure|Energy Ball|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|29/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|-damage|p2a: Gholdengo|20/100y|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|turn|8",
+    "|",
+    "|move|p1a: Annihilape|Close Combat|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Annihilape",
+    "|-supereffective|p1a: Annihilape|1",
+    "|-damage|p1a: Annihilape|0 fnt",
+    "|faint|p1a: Annihilape",
+    "|-damage|p2a: Gholdengo|10/100|[from] item: Life Orb",
+    "|",
+    "|win|Gemma 4 31B 5",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 35% BRING: annihilape, 32% BRING: tinkaton, 15% BRING: chandelure\nPick 2: 35% BRING: chandelure, 31% BRING: tinkaton, 17% BRING: incineroar\nPick 3: 61% BRING: tinkaton, 15% BRING: incineroar, 13% BRING: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4962,
+      "latency_ms": 1565,
+      "cost_usd": 9.924e-05,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "The opponent's team has several threats, but Incineroar, Gholdengo, and Kingambit provide a strong defensive and offensive core. Incineroar handles the lead and disrupts with Intimidate, Gholdengo covers the special side and resists many of their moves, and Kingambit serves as a powerful late-game cleaner.",
+      "hidden_reasoning": "The opponent has a balanced team with Palafin, Toxapex, Incineroar, Annihilape, Chandelure, and Tinkaton. I need a core that can handle these threats. Incineroar is essential for Intimidate and Fake Out. Gholdengo provides strong special offense and resists several of their types. Kingambit is a powerful late-game cleaner.\n\nDeciding factor: Team synergy and coverage against the opponent's core.",
+      "note": "",
+      "tokens": 1950,
+      "latency_ms": 6368,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: closecombat, 13% MOVE: earthquake, 9% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1193,
+      "latency_ms": 551,
+      "cost_usd": 2.386e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.7205912711752165,
+        "MOVE: phantomforce": 0.0892586066454817,
+        "MOVE: earthquake": 0.13406973212698048,
+        "MOVE: icepunch": 0.02838942410298518,
+        "SWITCH: chandelure": 0.016975330811109322,
+        "SWITCH: tinkaton": 0.01071563513822698
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "fakeout",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Fake Out is the standard lead play to guarantee a flinch on Turn 1, breaking the opponent's momentum and providing a safe window to pivot or chip.",
+      "hidden_reasoning": "Opponent lead is Annihilape, which is a huge threat to Incineroar (Fighting moves). Fake Out is the standard lead play to break momentum and guarantee a flinch, allowing for a safe switch or chip damage.\n\nDeciding factor: Momentum/Flinch.",
+      "note": "",
+      "tokens": 1329,
+      "latency_ms": 3843,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: closecombat, 2% SWITCH: tinkaton, 1% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1173,
+      "latency_ms": 416,
+      "cost_usd": 2.346e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.9666466620252179,
+        "SWITCH: chandelure": 0.013797130400768649,
+        "SWITCH: tinkaton": 0.019556207574013572
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is a massive threat to Incineroar and Kingambit. Gholdengo is immune to Fighting moves and can threaten Annihilape with Shadow Ball.",
+      "hidden_reasoning": "Annihilape is a massive threat to Incineroar and Kingambit. Incineroar is already low on HP and cannot take another Close Combat. Gholdengo is immune to Fighting moves and can threaten Annihilape with Shadow Ball.\n\nDeciding factor: bad matchup.",
+      "note": "",
+      "tokens": 1451,
+      "latency_ms": 4141,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "65% SWITCH: tinkaton, 33% SWITCH: chandelure, 2% MOVE: closecombat",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1275,
+      "latency_ms": 486,
+      "cost_usd": 2.55e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.020778739398987375,
+        "SWITCH: chandelure": 0.3253722605432553,
+        "SWITCH: tinkaton": 0.6538490000577574
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape has -1 Special Defense and is weak to Ghost-type moves. Shadow Ball from Life Orb Gholdengo should deal massive damage or secure a knockout.",
+      "hidden_reasoning": "Annihilape is currently at -1 Attack, -1 Defense, and -1 Special Defense due to its own Close Combat usage. Gholdengo is immune to Close Combat and resists/hits neutrally with Shadow Ball. Shadow Ball is super effective against Annihilape (Ghost/Fighting).\n\nDeciding factor: likely knockout. Shadow Ball should deal massive damage to a -1 SPD Annihilape.",
+      "note": "",
+      "tokens": 1526,
+      "latency_ms": 4749,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigatonhammer",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: gigatonhammer, 15% MOVE: stealthrock, 13% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1441,
+      "latency_ms": 489,
+      "cost_usd": 2.882e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.40656672554054646,
+        "MOVE: swordsdance": 0.13489985997052506,
+        "MOVE: stealthrock": 0.1507971018345769,
+        "MOVE: knockoff": 0.08603007529976253,
+        "SWITCH: chandelure": 0.11399405134380411,
+        "SWITCH: annihilape": 0.1077121860107848
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Tinkaton is at 39% HP with a -1 SPD drop, making it very fragile. Shadow Ball should easily secure the knockout this turn.",
+      "hidden_reasoning": "Tinkaton is at 39% HP and has a -1 SPD boost. Gholdengo's Shadow Ball did significant damage previously. Shadow Ball should be a guaranteed knockout given the current HP and SPD drop.\n\nDeciding factor: likely knockout.",
+      "note": "",
+      "tokens": 1573,
+      "latency_ms": 3722,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "65% SWITCH: chandelure, 35% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1339,
+      "latency_ms": 450,
+      "cost_usd": 2.678e-05,
+      "probabilities": {
+        "SWITCH: chandelure": 0.6453207659969635,
+        "SWITCH: annihilape": 0.3546792340030365
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "59% MOVE: fireblast [MEGA], 7% MOVE: energyball [MEGA], 7% MOVE: fireblast",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1572,
+      "latency_ms": 472,
+      "cost_usd": 3.144e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.06943063475624167,
+        "MOVE: fireblast [MEGA]": 0.5928658212897273,
+        "MOVE: shadowball": 0.02435518134409109,
+        "MOVE: shadowball [MEGA]": 0.06798721695840784,
+        "MOVE: energyball": 0.05824329386901887,
+        "MOVE: energyball [MEGA]": 0.07386821974449884,
+        "MOVE: calmmind": 0.009300246528640302,
+        "MOVE: calmmind [MEGA]": 0.03577908025731342,
+        "SWITCH: annihilape": 0.06817030525206036
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Chandelure is a Ghost/Fire type and will likely OHKO Gholdengo with a Fire-type move. Incineroar resists Fire and is the safest switch-in to handle this threat.",
+      "hidden_reasoning": "Opposing Chandelure is a Ghost/Fire type, making it a direct counter to Gholdengo (weak to Fire). Gholdengo is at low HP (44.8%) and cannot survive a strong Fire move. Incineroar resists Fire and is a strong switch-in to handle Chandelure.\n\nDeciding factor: bad matchup.",
+      "note": "",
+      "tokens": 1648,
+      "latency_ms": 4533,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: shadowball, 37% MOVE: energyball, 10% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1424,
+      "latency_ms": 497,
+      "cost_usd": 2.848e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.06272975963617,
+        "MOVE: shadowball": 0.43192657438949084,
+        "MOVE: energyball": 0.36716540674453035,
+        "MOVE: calmmind": 0.03832948015466016,
+        "SWITCH: annihilape": 0.09984877907514869
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Incineroar is outmatched by Chandelure's special attacks. Parting Shot allows me to pivot to Gholdengo or Kingambit while reducing Chandelure's offensive pressure.",
+      "hidden_reasoning": "Opposing Chandelure is a special attacker and is currently facing Incineroar. Incineroar is weak to Fire (though it resists it, Chandelure's Fire Blast is strong). Chandelure is Ghost/Fire, and Incineroar is Fire/Dark. Parting Shot allows me to pivot to a safer teammate while lowering Chandelure's stats. Gholdengo is a better matchup for Chandelure (resists Fire, hits with Shadow Ball).\n\nDeciding factor: Bad matchup/Pivot.\n\n",
+      "note": "",
+      "tokens": 1736,
+      "latency_ms": 5495,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Incineroar is at critical HP and cannot survive another hit from Chandelure. Gholdengo resists Fire and is the best switch-in to handle the weakened Chandelure.",
+      "hidden_reasoning": "The opponent's Chandelure has -1 Special Attack and -2 Attack. Incineroar is very low on HP (28.2%) and cannot survive another strong hit. Gholdengo is a better matchup for Chandelure, as it resists Fire and is neutral to Ghost, while Chandelure's Special Attack is lowered. Kingambit is also an option, but Gholdengo's Steel typing provides better defensive utility here.\n\nDeciding factor: bad matchup/low HP (Incineroar is nearly fainted).",
+      "note": "",
+      "tokens": 1726,
+      "latency_ms": 5653,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "energyball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "32% MOVE: energyball, 26% MOVE: fireblast, 25% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1448,
+      "latency_ms": 464,
+      "cost_usd": 2.896e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.2592599409663731,
+        "MOVE: shadowball": 0.11342755594220642,
+        "MOVE: energyball": 0.3210045161456799,
+        "MOVE: calmmind": 0.05612362238582733,
+        "SWITCH: annihilape": 0.25018436455991333
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is faster than Chandelure and the opponent's Special Attack has been lowered by Parting Shot. Shadow Ball is the best offensive option to pressure Chandelure.",
+      "hidden_reasoning": "The opponent's Chandelure has -1 Special Attack and -2 Attack. Gholdengo is faster (106 vs 90) and has a strong Ghost-type move. Shadow Ball should deal significant damage, but Chandelure is also a Ghost-type. However, with the SpA drop, Gholdengo can likely survive another hit or potentially KO.\n\nDeciding factor: speed and the opponent's Special Attack drop. Shadow Ball is the most reliable offensive move here.",
+      "note": "",
+      "tokens": 1744,
+      "latency_ms": 5432,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Annihilape",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: annihilape": 1.0
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "64% MOVE: closecombat, 19% MOVE: earthquake, 11% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1235,
+      "latency_ms": 748,
+      "cost_usd": 2.47e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.644337155761255,
+        "MOVE: phantomforce": 0.11202967705608882,
+        "MOVE: earthquake": 0.18906388269835026,
+        "MOVE: icepunch": 0.05456928448430591
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is immune to Annihilape's revealed move, Close Combat, while Kingambit is 4x weak to it. Despite low HP, Gholdengo is the safest option to stay in and deal super effective damage with Shadow Ball.",
+      "hidden_reasoning": "Annihilape is a Fighting/Ghost type. Gholdengo is Steel/Ghost. Annihilape likely has Close Combat (revealed) and likely Drain Punch or Shadow Claw/Knock Off. Gholdengo is at very low HP (20.1%) and will be knocked out by almost any attack from Annihilape. Kingambit resists Ghost and is neutral to Fighting (though weak to Fighting, it's bulkier), but Incineroar is the better switch-in to absorb a hit and Intimidate. However, Kingambit is at 100% HP and can potentially trade or set up. Wait, Annihilape is Fighting/Ghost; Gholdengo is Steel/Ghost. Gholdengo is weak to Ghost and Fighting (though Steel resists Fighting? No, Steel is neutral to Fighting? No, Steel is weak to Fighting). Actually, Steel is weak to Fighting. Ghost is immune to Fighting. So Gholdengo is neutral to Fighting and weak to Ghost. But Annihilape's Close Combat is Fighting. Gholdengo's Ghost typing makes it immune to Fighting. So Gholdengo is actually immune to Close Combat. However, Annihilape likely has Ghost moves (Shadow Claw/Drain Punch).\n\nWait, Gholdengo is Steel/Ghost. Fighting moves (Close Combat) are blocked by the Ghost type. Ghost moves are super effective. Annihilape is Fighting/Ghost. Gholdengo's Shadow Ball is super effective. But Gholdengo is at 20% HP. If Annihilape uses a Ghost move, Gholdengo dies. If Annihilape uses Close Combat, it does nothing.\n\nThe safest play is to switch to Kingambit or Incineroar. Kingambit is Dark/Steel, resisting Ghost and taking neutral from Fighting (Wait, Steel is weak to Fighting, Dark is weak to Fighting, so Kingambit is 4x weak to Fighting). Incineroar is Fire/Dark, resisting Ghost and weak to Fighting.\n\nActually, Gholdengo is immune to Close Combat. If I stay in and use Shadow Ball, I might KO or heavily damage Annihilape. But Annihilape is likely to use a Ghost move or Drain Punch.\n\nWait, Kingambit is 4x weak to Fighting. Incineroar is 2x weak. Gholdengo is immune.\n\nIf I switch to Kingambit, I risk a Close Combat KO. If I switch to Incineroar, I risk a Close Combat KO.\n\nGholdengo is the only one immune to Close Combat. But it's at 20% HP.\n\nLet's look at the opponent's revealed moves: Close Combat. If they use Close Combat, Gholdengo takes 0. If they use a Ghost move, Gholdengo dies.\n\nActually, the best play is to switch to Incineroar to Intimidate and potentially tank a hit, or Kingambit if I expect a Ghost move. But Incineroar is also low.\n\nWait, Gholdengo is immune to Close Combat. If I use Shadow Ball, I do huge damage. But Annihilape is bulky.\n\nLet's reconsider: Gholdengo is Steel/Ghost. Annihilape is Fighting/Ghost.\nGholdengo's Shadow Ball is super effective.\nAnnihilape's Close Combat is Fighting -> Gholdengo is immune.\nAnnihilape's Ghost moves -> Gholdengo is weak.\n\nIf I switch to Kingambit, I'm 4x weak to Close Combat.\nIf I switch to Incineroar, I'm 2x weak to Close Combat.\n\nThe deciding factor is the matchup: Gholdengo is immune to the revealed move (Close Combat), but too low to survive a Ghost move. However, switching to Kingambit or Incineroar is suicide against Close Combat.\n\nActually, Gholdengo is the only safe switch/stay against Close Combat. But since it's already in, and at 20%, it's a coin flip. But switching to Kingambit is definitely wrong.\n\nWait, Incineroar has Intimidate.\n\nLet's try Shadow Ball to put pressure.\n\nActually, looking at the HP, Gholdengo is almost dead. If I switch to Kingambit, and they use Close Combat, Kingambit dies. If I switch to Incineroar, and they use Close Combat, Incineroar dies.\n\nGholdengo is the only one who can take a Close Combat.\n\nDecision: Shadow Ball.\n\nWait, if Annihilape uses Drain Punch? Gholdengo is immune to Fighting.\n\nThe only danger is a Ghost move.\n\n<thought>\nGholdengo is immune to Annihilape's revealed move, Close Combat, while Kingambit is 4x weak to it. Despite low HP, Gholdengo is the safest option to stay in and deal super effective damage with Shadow Ball.\n</thought>\n<decision>\nMOVE: shadowball\n</decision>",
+      "note": "",
+      "tokens": 2751,
+      "latency_ms": 33833,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

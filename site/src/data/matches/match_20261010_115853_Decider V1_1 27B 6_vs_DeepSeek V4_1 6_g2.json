@@ -1,0 +1,457 @@
+{
+  "id": "match_20261010_115853_Decider V1_1 27B 6_vs_DeepSeek V4_1 6_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c3",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B 6",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "deepseek_v4_1_flash",
+      "display_name": "DeepSeek V4.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "quantization": null,
+      "username": "DeepSeek V4.1 6",
+      "role": "p2",
+      "team": "DeepSeek V4.1 Flash's team",
+      "model_key": "deepseek/deepseek-v4.1-flash",
+      "autopilot_rate": 0.143
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 28.01,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Decider V1.1 27B 6 vs. DeepSeek V4.1 6",
+    "|j|☆Decider V1.1 27B 6",
+    "|j|☆DeepSeek V4.1 6",
+    "|gametype|singles",
+    "|player|p1|Decider V1.1 27B 6|169|",
+    "|player|p2|DeepSeek V4.1 6|2|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Annihilape, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Tinkaton, L50, F|",
+    "|poke|p2|Glimmora, L50, M|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Garganacl, L50, F|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|switch|p2a: Glimmora|Glimmora, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Annihilape|Close Combat|p2a: Glimmora",
+    "|-damage|p2a: Glimmora|24/100",
+    "|-unboost|p1a: Annihilape|def|1",
+    "|-unboost|p1a: Annihilape|spd|1",
+    "|-activate|p2a: Glimmora|ability: Toxic Debris",
+    "|-sidestart|p1: Decider V1.1 27B 6|move: Toxic Spikes",
+    "|move|p2a: Glimmora|Stealth Rock|p1a: Annihilape",
+    "|-sidestart|p1: Decider V1.1 27B 6|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Annihilape|Close Combat|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Tinkaton|Tinkaton, L50, F|160/160",
+    "|-damage|p1a: Tinkaton|150/160|[from] Stealth Rock",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|71/160",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p1a: Tinkaton|Gigaton Hammer|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|63/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tinkaton",
+    "|-damage|p1a: Tinkaton|0 fnt",
+    "|faint|p1a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|-status|p1a: Chandelure|psn",
+    "|-damage|p1a: Chandelure|102/135 psn|[from] Stealth Rock",
+    "|turn|5",
+    "|",
+    "|detailschange|p1a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p1a: Chandelure|Chandelure|Chandelurite",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-crit|p1a: Chandelure",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|-status|p1a: Annihilape|psn",
+    "|-damage|p1a: Annihilape|174/185 psn|[from] Stealth Rock",
+    "|turn|6",
+    "|",
+    "|move|p1a: Annihilape|Close Combat|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Annihilape",
+    "|-supereffective|p1a: Annihilape|1",
+    "|-damage|p1a: Annihilape|4/185 psn",
+    "|",
+    "|-damage|p1a: Annihilape|0 fnt|[from] psn",
+    "|faint|p1a: Annihilape",
+    "|",
+    "|win|DeepSeek V4.1 6",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 34% BRING: annihilape, 26% BRING: tinkaton, 15% BRING: incineroar\nPick 2: 43% BRING: tinkaton, 23% BRING: chandelure, 15% BRING: palafin\nPick 3: 49% BRING: chandelure, 25% BRING: incineroar, 17% BRING: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4969,
+      "latency_ms": 1344,
+      "cost_usd": 9.938e-05,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "default",
+        "target": "",
+        "tera": false
+      },
+      "source": "parse_error",
+      "thought": "",
+      "hidden_reasoning": "We need answer team preview bring 3. Need decide best. Need think. Format champions rotom arena bss reg mb? Bring 6 pick 3. Need choose 3 from our team vs opponent: Palafin, Toxapex, Incineroar, Annihilape, Chandelure, Tinkaton.\n\nWe need pick strong. Our team: Glimmora, Dragonite, Gholdengo, Kingambit, Garganacl, Annihilape.\n\nNeed choose 3. Need consider opponent likely Palafin (bulky water, Flip Turn/Jet Punch?), Toxapex, Incineroar, Annihilape, Chandelure, Tinkaton. We need cover.\n\nOur best: Dragonite with Multiscale + DD, Gholdengo, Kingambit, Annihilape. Glimmora hazard lead maybe. Garganacl salt cure.\n\nOpponent has Palafin (Water/Fighting? Palafin base form pure Water, Hero form Water; in Champions maybe Palafin Zero to Hero? likely). Toxapex walls physical, Incineroar Intimidate, Chandelure special fire/ghost, Tinkaton fairy/steel, Annihilape.\n\nWe need bring 3. Since opponent can pick 3 after seeing? Both teams shown before battle, simultaneous? We choose 3. Need robust.\n\nGholdengo is great vs Toxapex? Steel/Ghost immune to poison, resists fairy, but weak to fire/ghost/dark. Chandelure threatens. Kingambit dark/steel good vs Chandelure? Sucker Punch. Annihilape good vs Incineroar? Fighting/Ghost.\n\nDragonite with Multiscale and ExtremeSpeed, Earthquake, Ice Spinner. Good vs Palafin? Water/Fighting? Ice Spinner? Dragonite can DD.\n\nGlimmora sets hazards, Focus Sash, Toxic Debris. But opponent Toxapex absorbs? Not poison? Toxapex Poison type absorbs Toxic Spikes? Actually Toxic Debris sets Toxic Spikes on physical hit. Toxapex is Poison so absorbs. Glimmora can set Stealth Rock/Spikes. But frail? Rock/Poison.\n\nGarganacl is bulky Salt Cure, Iron Defense Body Press, good vs Palafin? Water attacks neutral? Salt Cure water? Rock weak to water. But Purifying Salt immune status, ghost resist.\n\nNeed pick 3 likely: Dragonite, Gholdengo, Kingambit? Or Annihilape instead of Kingambit? Let's analyze opponent.\n\nOpponent's likely bring: Palafin, Incineroar, Chandelure? Or Toxapex, Tinkaton, Annihilape. We need cover.\n\nOur Dragonite: Multiscale, Lumberry. Moves DD, ESpeed, EQ, Ice Spinner. Very strong. Weak to Ice, Rock, Dragon, Fairy. Opponent Tinkaton has Fairy/Steel, Play Rough? Ice? Chandelure can burn? Incineroar Intimidate + Darkest Lariat? Palafin Ice Punch? Toxapex Ice Beam? Hmm.\n\nGholdengo: Good as Gold blocks status. Nasty Plot, Make It Rain, Shadow Ball, Recover. Weak to Fire, Ghost, Dark, Ground. Opponent Chandelure (Ghost/Fire) threatens with Shadow Ball/Fire Blast, but Gholdengo faster? Gholdengo speed 149 vs Chandelure base 80, so Gholdengo faster. Shadow Ball likely 2HKO? Chandelure special 145, Gholdengo HP 164, SpD 111. Chandelure Shadow Ball maybe strong. But Gholdengo can Shadow Ball first? Chandelure Ghost/Fire, Shadow Ball super effective? Ghost vs Ghost super effective. Gholdengo Shadow Ball vs Chandelure also super effective. Speed Gholdengo 149 > Chandelure 80, so can KO? Maybe not OHKO due Chandelure SpD 90. But likely 2HKO. Make It Rain? Steel vs Fire not very effective? Steel vs Ghost neutral? Chandelure Fire resists Steel? Fire resists Steel? Actually Fire resists Steel? Yes Fire resists Steel? Wait Steel is super effective vs Ice/Rock/Fairy, not very effective vs Fire/Water/Electric/Steel. So Make It Rain not great vs Chandelure. Shadow Ball better.\n\nKingambit: Dark/Steel, Sucker Punch, Kowtow Cleave, Iron Head, Swords Dance. Supreme Overlord. Good vs Chandelure (Sucker Punch), Tinkaton? Steel vs Fairy super effective? Iron Head vs Tinkaton neutral? Tinkaton Fairy/Steel, Steel vs Steel not very, Fairy vs Dark super effective? Tinkaton can Play Rough? Kingambit weak to Fighting, Ground, Fire. Incineroar Fire/Dark threatens. Palafin Fighting? Palafin Hero Water/Fighting? If Palafin has Fighting moves, threatens Kingambit. Toxapex walls.\n\nAnnihilape: Fighting/Ghost, Bulk Up, Rage Fist, Drain Punch, Taunt. Good vs Incineroar? Fighting vs Dark super effective, but Incineroar Fire/Dark resists? Fighting vs Dark super effective, vs Fire neutral? Actually Fighting vs Fire neutral? Fire resists? Fire does not resist Fighting. So Drain Punch super effective vs Incineroar? Dark weak to Fighting, Fire neutral, so 2x. But Incineroar Intimidate lowers attack. Annihilape Defiant boosts attack on Intimidate! Great. Annihilape also good vs Toxapex? Ghost/Fighting vs Poison/Water: Fighting vs Poison not very? Poison resists Fighting? Poison resists Fighting? Yes Poison resists Fighting? Wait Fighting is super effective vs Normal, Rock, Steel, Ice, Dark; not very effective vs Poison, Flying, Psychic, Bug, Fairy. So Drain Punch vs Toxapex not very. Rage Fist Ghost vs Poison/Water neutral? Ghost vs Poison neutral, vs Water neutral. Toxapex can Haze/Toxic? Annihilape Taunt. But Toxapex walls.\n\nGarganacl: Rock, Purifying Salt, Salt Cure, Recover, Iron Defense, Body Press. Good vs Palafin? Water weak to Rock? Rock vs Water neutral? Water resists? Water is not resistant to Rock? Actually Water resists Steel, Fire, Water, Ice; Rock is neutral vs Water? Rock is super effective vs Flying, Bug, Fire, Ice; not very vs Fighting, Ground, Steel. So Salt Cure neutral vs Palafin. Palafin Water attacks super effective vs Garganacl (Water vs Rock 2x). So bad.\n\nGlimmora: Rock/Poison, Focus Sash, hazards. Good lead. But opponent Toxapex absorbs Toxic Spikes. Stealth Rock/Spikes useful. But Glimmora frail and weak to Water/Ground/Psychic/Steel? Palafin Water super effective. Incineroar Fire? Rock weak? Fire not very vs Rock? Fire vs Rock not very? Actually Fire is not very effective vs Rock? Wait Fire vs Rock: Rock resists Fire? Fire is not very effective against Rock? Yes Fire vs Rock 0.5? Actually Rock is weak to Water, Grass, Fighting, Ground, Steel. Fire is not very effective vs Rock. So Glimmora resists Fire. But Palafin Water 2x. Toxapex Water? Scald? Chandelure Fire? Tinkaton Steel? Fairy? Glimmora Poison weak to Psychic/Ground, Rock weak to Water/Grass/Fighting/Ground/Steel. Tinkaton Steel/Fairy: Steel vs Rock super effective? Steel vs Rock 2x. Fairy vs Poison 0.5? So Tinkaton threatens.\n\nNeed choose 3. Likely Dragonite, Gholdengo, Annihilape? Or Kingambit.\n\nLet's think of opponent's likely bring. They have Palafin, Toxapex, Incineroar, Annihilape, Chandelure, Tinkaton. In BSS, common cores: Palafin, Incineroar, Toxapex? Or Chandelure, Tinkaton, Annihilape. We need pick 3 that can handle most.\n\nDragonite is almost always good. Gholdengo is strong special. Kingambit is strong priority. Annihilape is strong vs Intimidate and bulky. Garganacl is stall. Glimmora is hazard lead.\n\nIf we bring Dragonite, Gholdengo, Kingambit:\n- vs Palafin: Dragonite can DD, but Palafin may have Ice Punch? Palafin Hero has Water/Fighting? Actually Palafin base form pure Water, Hero form Water/Fighting? Wait Palafin Zero to Hero: Palafin (Zero) is Water, Palafin (Hero) is Water/Fighting? Let's recall: Palafin is Water type in Zero form, and Water/Fighting? No, Palafin Hero form is Water type only? Actually Palafin is Water type in both forms? Let's check: Palafin is Water type. Its ability Zero to Hero changes form when switching out, but type remains Water? I think Palafin is Water type only. Wait Palafin Hero form has base stats 100/160/97/106/87/100, type Water. Yes pure Water. So no Fighting. It has Jet Punch, Flip Turn, Wave Crash, Close Combat? Palafin learns Close Combat? Yes Palafin can learn Close Combat? I think",
+      "note": "[PARSE ERROR] No BRING: line. Bringing glimmora, dragonite, gholdengo.",
+      "tokens": 3636,
+      "latency_ms": 10416,
+      "cost_usd": 0.002595312,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: closecombat, 32% MOVE: earthquake, 6% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1157,
+      "latency_ms": 392,
+      "cost_usd": 2.314e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.5638790385629625,
+        "MOVE: phantomforce": 0.055253804492992824,
+        "MOVE: earthquake": 0.31518580467319646,
+        "MOVE: icepunch": 0.04337441974725728,
+        "SWITCH: tinkaton": 0.018503488270408534,
+        "SWITCH: chandelure": 0.0038034442531823627
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Glimmora is faster than Annihilape and holds Focus Sash, so it survives any one hit. Annihilape is a bulky setup threat, so setting Stealth Rock turn 1 pressures its whole team and chips it on switch-ins.",
+      "hidden_reasoning": "Annihilape is Ghost/Fighting. Glimmora is Rock/Poison. Annihilape likely has Drain Punch/Close Combat which hits Glimmora neutrally (Fighting vs Rock/Poison is neutral... actually Fighting vs Rock is 2x, vs Poison 0.5x, so neutral). Ghost moves hit Glimmora neutral too. Glimmora is faster (151 vs 90). Focus Sash means it survives one hit. Best to set hazards turn 1. Stealth Rock is standard lead play.\n\nActually, Mortal Spin could poison and clear... but no hazards on our side. Setting Stealth Rock is best.",
+      "note": "",
+      "tokens": 1314,
+      "latency_ms": 2582,
+      "cost_usd": 0.000154448,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: closecombat, 3% SWITCH: tinkaton, 2% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1111,
+      "latency_ms": 396,
+      "cost_usd": 2.222e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.951904263168945,
+        "SWITCH: tinkaton": 0.02828595713969945,
+        "SWITCH: chandelure": 0.019809779691355514
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Glimmora is at 24% HP and will die to any hit from Annihilape. Gholdengo is immune to Close Combat (Ghost typing) and resists Ghost moves, making it a safe switch-in that also blocks Annihilape's Fighting STAB entirely.",
+      "hidden_reasoning": "Glimmora is at 24% HP, Focus Sash already used? Actually Focus Sash would have activated... it's at 39/160, so sash may have been consumed or it survived. Annihilape used Close Combat, Glimmora survived at 39. Focus Sash likely consumed.\n\nAnnihilape is faster? Annihilape speed 90 base, Glimmora 151 base. Glimmora is faster. But Glimmora at 39 HP will die to any hit. Earth Power could chip Annihilape but won't KO.\n\nBest to switch to Gholdengo? Gholdengo resists Fighting? No, Ghost is immune to Fighting. Gholdengo is Ghost/Steel - immune to Close Combat. Good switch.\n\nActually Annihilape has Ghost typing too, so Close Combat is its main move. Gholdengo immune to Fighting, resists Ghost. Good switch.\n\nBut wait, Annihilape could have Rage Fist (Ghost). Gholdengo resists Ghost. Good.\n\nSwitch to Gholdengo.",
+      "note": "",
+      "tokens": 1518,
+      "latency_ms": 4699,
+      "cost_usd": 0.000577152,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "72% SWITCH: tinkaton, 25% SWITCH: chandelure, 2% MOVE: closecombat",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1213,
+      "latency_ms": 438,
+      "cost_usd": 2.426e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.022955596267668864,
+        "SWITCH: tinkaton": 0.7222941108841713,
+        "SWITCH: chandelure": 0.25475029284815964
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is immune to Close Combat, and Annihilape is at -1 SpD. Shadow Ball is super effective against its Ghost typing and should deal heavy damage or KO before it can retaliate.",
+      "hidden_reasoning": "Gholdengo is immune to Close Combat (Ghost). Annihilape has -1 Def/-1 SpD. Shadow Ball is super effective vs Ghost/Fighting? Annihilape is Fighting/Ghost, Ghost is super effective vs Ghost. Shadow Ball hits for 2x. Make It Rain is Steel, neutral vs Fighting/Ghost? Steel vs Fighting neutral, vs Ghost neutral. Shadow Ball is best.\n\nAnnihilape likely has Rage Fist or Drain Punch. Gholdengo immune to CC. Shadow Ball 2x should do big damage.",
+      "note": "",
+      "tokens": 1425,
+      "latency_ms": 2309,
+      "cost_usd": 0.0002131752,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigatonhammer",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: gigatonhammer, 24% MOVE: swordsdance, 10% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1388,
+      "latency_ms": 475,
+      "cost_usd": 2.776e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.4291152634280443,
+        "MOVE: swordsdance": 0.23784373663644306,
+        "MOVE: stealthrock": 0.09867721816189395,
+        "MOVE: knockoff": 0.08044388785180452,
+        "SWITCH: annihilape": 0.07002102223791912,
+        "SWITCH: chandelure": 0.08389887168389501
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Tinkaton is at 44% HP and slower than Gholdengo (149 vs 94). Shadow Ball should knock it out before it can act, and it avoids Make It Rain's Special Attack drop.",
+      "hidden_reasoning": "Tinkaton at 44% HP, Gholdengo faster (149 vs 94). Shadow Ball should KO. Make It Rain also works but drops SpA. Shadow Ball is safe.",
+      "note": "",
+      "tokens": 1436,
+      "latency_ms": 1324,
+      "cost_usd": 0.0001595104,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: chandelure, 48% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1261,
+      "latency_ms": 389,
+      "cost_usd": 2.522e-05,
+      "probabilities": {
+        "SWITCH: annihilape": 0.48231410035646055,
+        "SWITCH: chandelure": 0.5176858996435395
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: fireblast [MEGA], 7% MOVE: fireblast, 7% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1579,
+      "latency_ms": 719,
+      "cost_usd": 3.158e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.07075844026157421,
+        "MOVE: fireblast [MEGA]": 0.6741654551288696,
+        "MOVE: shadowball": 0.013054622790773119,
+        "MOVE: shadowball [MEGA]": 0.029591880431466,
+        "MOVE: energyball": 0.04505742677589054,
+        "MOVE: energyball [MEGA]": 0.06016208210059247,
+        "MOVE: calmmind": 0.007967583483512543,
+        "MOVE: calmmind [MEGA]": 0.03139249004484439,
+        "SWITCH: annihilape": 0.06785001898247689
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Chandelure is Ghost/Fire, so Shadow Ball is super effective, and Gholdengo is much faster (149 vs 80). Chandelure's 145 SpA threatens a Fire move, so I should KO it now rather than risk a switch.",
+      "hidden_reasoning": "Chandelure is Ghost/Fire, weak to Ghost. Gholdengo's Shadow Ball is super effective. Chandelure has 145 SpA, could threaten with Fire moves. Gholdengo is faster (149 vs 80). Shadow Ball should KO or heavily damage.\n\nChandelure is 75% HP, poisoned. Shadow Ball from 185 SpA with Wise Glasses should KO.",
+      "note": "",
+      "tokens": 1585,
+      "latency_ms": 3233,
+      "cost_usd": 0.000561456,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Annihilape",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: annihilape": 1.0
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: closecombat, 18% MOVE: earthquake, 8% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1250,
+      "latency_ms": 638,
+      "cost_usd": 2.5e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.6681282697041202,
+        "MOVE: phantomforce": 0.06879022317970292,
+        "MOVE: earthquake": 0.1786610475976669,
+        "MOVE: icepunch": 0.08442045951850992
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is Ghost-type, so Shadow Ball is super effective, and Gholdengo outspeeds (149 vs 90). Close Combat threatens Gholdengo, so I want to strike first and likely knock it out before it moves.",
+      "hidden_reasoning": "Annihilape is Ghost/Fighting, weak to Ghost? No, Ghost is neutral vs Ghost... Annihilape is Fighting/Ghost. Shadow Ball (Ghost) is neutral vs Fighting/Ghost? Ghost vs Ghost is super effective? Ghost is super effective against Ghost. Annihilape is Ghost type, so Shadow Ball is super effective. Also Annihilape likely has Rage Fist. Gholdengo is faster (149 vs 90). Shadow Ball should do big damage.\n\nAnnihilape has Close Combat which is super effective vs Steel? Fighting vs Steel is super effective. Gholdengo at 104 HP could be KO'd. But we're faster, so Shadow Ball first.\n\nShadow Ball super effective, likely KOs or heavily damages. Choose shadowball.",
+      "note": "",
+      "tokens": 1718,
+      "latency_ms": 3036,
+      "cost_usd": 0.0002334304,
+      "probabilities": null
+    }
+  ]
+}
