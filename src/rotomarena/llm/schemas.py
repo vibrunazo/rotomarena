@@ -16,6 +16,7 @@ class LLMUsageMetrics(BaseModel):
     latency_ms: float = 0.0
     finish_reason: str = ""
     cost_usd: float = 0.0  # as reported by the provider (OpenRouter); 0 for local models
+    cost_estimated: bool = False  # OpenRouter reported no cost: tokens x its list prices (llm/pricing.py)
     model: str = ""
     provider: str = ""
 

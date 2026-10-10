@@ -14,6 +14,7 @@ from openai import AsyncOpenAI
 
 from rotomarena import local_servers
 from rotomarena.config import ProviderConfig, provider_presets
+from rotomarena.llm import pricing
 from rotomarena.llm.prompts import SYSTEM_PROMPT_DIRECT_COT, USER_PROMPT_DIRECT_COT_TEMPLATE
 from rotomarena.llm.schemas import ActionDecision, LLMUsageMetrics
 
@@ -307,6 +308,11 @@ class LLMClient:
         usage = response.usage
         details = getattr(usage, "completion_tokens_details", None) if usage else None
         cost = _extra(usage, "cost")
+        prompt_tokens = (usage.prompt_tokens or 0) if usage else 0
+        completion_tokens = (usage.completion_tokens or 0) if usage else 0
+        estimated = None
+        if not cost and self.provider_name == "openrouter" and (prompt_tokens or completion_tokens):
+            estimated = await asyncio.to_thread(pricing.estimate, target_model, prompt_tokens, completion_tokens)
         metrics = LLMUsageMetrics(
             prompt_tokens=(usage.prompt_tokens or 0) if usage else 0,
             completion_tokens=(usage.completion_tokens or 0) if usage else 0,
@@ -314,7 +320,8 @@ class LLMClient:
             total_tokens=(usage.total_tokens or 0) if usage else 0,
             latency_ms=latency,
             finish_reason=choice.finish_reason or "",
-            cost_usd=float(cost) if cost else 0.0,
+            cost_usd=float(cost) if cost else (estimated or 0.0),
+            cost_estimated=estimated is not None,
             model=target_model,
             provider=self.provider_name,
         )
