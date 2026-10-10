@@ -193,11 +193,32 @@ def format_recent_turns(battle: Battle, turns: int = 3, max_lines: int = 40) -> 
     return lines[-max_lines:]
 
 
-def format_battle_state(battle: Battle) -> str:
+def bench_of(battle: Battle, brought: Optional[List[str]] = None) -> list:
+    """The player's bench. In a bring-N format poke-env still lists all six from team preview, so only the Pokémon
+    it brought count."""
+    return [mon for mon in battle.team.values()
+            if mon != battle.active_pokemon and (brought is None or mon.species in brought)]
+
+
+def unseen_line(preview: List[str], seen: set, pick: Optional[int] = None) -> str:
+    """The opponent's Pokémon from team preview not seen yet; in a bring-N format, how many of them can still come."""
+    unseen = [s for s in preview if s not in seen]
+    if not unseen:
+        return ""
+    if not pick or pick >= len(preview):
+        return f"Not yet seen in battle (from team preview): {', '.join(unseen)}"
+    still = max(pick - len(seen), 0)
+    if not still:
+        return f"The opponent brought {pick} of the {len(preview)} it showed at team preview: all have been seen."
+    return (f"The opponent brought {pick} of the {len(preview)} it showed at team preview: {still} more "
+            f"{'is' if still == 1 else 'are'} still to come in, from: {', '.join(unseen)}")
+
+
+def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None) -> str:
     """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
     turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn."""
     lines = ["#### YOUR BENCH:"]
-    bench = [mon for mon in battle.team.values() if mon != battle.active_pokemon]
+    bench = bench_of(battle, brought)
     if bench:
         lines.extend(format_pokemon_summary(mon, is_active=False, is_opponent=False) for mon in bench)
     else:
@@ -212,8 +233,9 @@ def format_battle_state(battle: Battle) -> str:
     seen = {mon.species for mon in battle.opponent_team.values()}
     preview = [mon.species for mon in getattr(battle, "teampreview_opponent_team", None) or []]
     unseen = [s for s in preview if s not in seen]
-    if unseen:
-        lines.append(f"Not yet seen in battle (from team preview): {', '.join(unseen)}")
+    line = unseen_line(preview, seen, pick)
+    if line:
+        lines.append(line)
 
     lines.append(
         f"\n### Turn {battle.turn} | Format: {battle.format} | Weather: {_condition_names(battle.weather)}"
@@ -244,6 +266,8 @@ def format_battle_state(battle: Battle) -> str:
             legal_actions.append(f"MOVE: {m.id} (Type: {m_type}, BP: {m.base_power or '-'}, Acc: {m.accuracy or '-'})")
             if battle.can_tera:
                 legal_actions.append(f"MOVE: {m.id} [TERA]")
+            if battle.can_mega_evolve:  # Champions: Mega Evolve this turn, then use the move
+                legal_actions.append(f"MOVE: {m.id} [MEGA]")
     if battle.available_switches:
         for s in battle.available_switches:
             s_hp = round(s.current_hp_fraction * 100, 1)
@@ -300,6 +324,8 @@ def system_prompt_for(fmt: str, pick: Optional[int] = None) -> str:
     if pick:
         prompt = prompt.replace("(at team preview: LEAD: <species>)",
                                 f"(at team preview: BRING: <{pick} species, comma-separated>)")
+    if fmt in FORMAT_FACTS:  # Champions: Mega Evolution, not Terastallization
+        prompt = prompt.replace("MOVE: <move_id> [TERA]", "MOVE: <move_id> [MEGA]")
     return prompt
 
 

@@ -287,3 +287,18 @@ def test_champions_battles_state_the_level():
     prompt = system_prompt_for("gen9championsrotomarenabssregmb", 3)
     assert "All Pokémon in this battle are level 50." in prompt and "Pokémon Champions singles" in prompt
     assert "level 50" not in system_prompt_for("gen9ou")
+
+
+def test_a_mega_tag_is_parsed_like_tera():
+    from rotomarena.llm.client import parse_decision
+
+    d = parse_decision("<thought>Mega now.</thought><decision>MOVE: earthquake [MEGA]</decision>")
+    assert d.target == "earthquake" and d.mega_evolve and not d.terastallize
+    assert not parse_decision("<decision>SWITCH: garchomp [MEGA]</decision>").mega_evolve
+
+
+def test_the_champions_prompt_offers_mega_not_tera():
+    from rotomarena.llm.prompts import system_prompt_for
+
+    p = system_prompt_for("gen9championsrotomarenabssregmb", 3)
+    assert "MOVE: <move_id> [MEGA]" in p and "[TERA]" not in p

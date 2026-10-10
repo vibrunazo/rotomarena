@@ -44,6 +44,7 @@ class MockBattle:
         self.side_conditions = {}
         self.opponent_side_conditions = {}
         self.can_tera = True
+        self.can_mega_evolve = False
         self.opponent_used_tera = False
 
         m1 = create_test_move("earthquake")

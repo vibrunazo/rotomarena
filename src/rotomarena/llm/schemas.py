@@ -29,6 +29,9 @@ class ActionDecision(BaseModel):
     target: str = Field(
         default="", description="Showdown id of the move or species (lowercase letters and digits)"
     )
+    mega_evolve: bool = Field(
+        default=False, description="True only when the action line carries a [MEGA] tag (Mega Evolve, then move)"
+    )
     terastallize: bool = Field(
         default=False, description="True only when the action line carries a [TERA] tag"
     )

@@ -71,7 +71,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
     async def _async_choose_move(self, battle: Battle) -> BattleOrder:
         """Queries the LLM, then plays its action only if it exactly matches a legal one."""
         try:
-            decision = await self._ask(format_battle_state(battle))
+            decision = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick))
         except Exception as e:
             fallback_order = self.choose_default_order(battle)
             self.record_turn_telemetry(
@@ -101,7 +101,8 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         if decision.action_type == "MOVE":
             move = next((m for m in battle.available_moves if m.id == decision.target), None)
             if move is not None:
-                chosen_order = self.create_order(move, terastallize=decision.terastallize and battle.can_tera)
+                chosen_order = self.create_order(move, terastallize=decision.terastallize and battle.can_tera,
+                                                 mega=decision.mega_evolve and battle.can_mega_evolve)
         elif decision.action_type == "SWITCH":
             mon = next((m for m in battle.available_switches if to_id(m.species) == decision.target), None)
             if mon is not None:

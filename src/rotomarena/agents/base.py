@@ -53,6 +53,7 @@ class BaseBenchmarkPlayer(Player):
         self.agent_type = agent_type
         self.turn_timeout = turn_timeout
         self.pick = pick  # Pokémon brought from team preview (bring-N formats); None: all of them
+        self.brought: Dict[str, List[str]] = {}  # battle tag -> the species it brought (bring-N formats)
         self.identity = identity or PlayerIdentity(
             config_id=player_name, display_name=player_name, agent_type=agent_type
         )
@@ -166,6 +167,9 @@ class BaseBenchmarkPlayer(Player):
         size = len(battle.team)
         rest = [i for i in range(size) if i not in chosen]
         order = (chosen + rest)[: self.pick if self.pick and self.pick < size else size]
+        members = list(battle.team.values())
+        if self.pick and self.pick < size:
+            self.brought[battle.battle_tag] = [members[i].species for i in order]
         for mon in battle.team.values():
             mon._selected_in_teampreview = True
         return "/team " + "".join(str(i + 1) for i in order)

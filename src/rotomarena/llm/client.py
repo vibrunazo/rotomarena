@@ -70,6 +70,7 @@ _ACTION_LINE = re.compile(
     re.IGNORECASE | re.MULTILINE,
 )
 _TERA_TAG = re.compile(r"\[\s*TERA\s*\]", re.IGNORECASE)
+_MEGA_TAG = re.compile(r"\[\s*MEGA\s*\]", re.IGNORECASE)
 
 def recover_answer(text: str, reasoning: str, marker: str) -> Tuple[str, str]:
     """(answer, reasoning). If the answer's marker tag is missing from the answer but present in the reasoning, the
@@ -159,7 +160,8 @@ def parse_decision(raw_text: str) -> ActionDecision:
 
     kind, rest = actions[0]
     terastallize = bool(_TERA_TAG.search(rest))
-    target = to_id(re.sub(r"\(.*?\)", "", _TERA_TAG.sub("", rest)))
+    mega = bool(_MEGA_TAG.search(rest))
+    target = to_id(re.sub(r"\(.*?\)", "", _MEGA_TAG.sub("", _TERA_TAG.sub("", rest))))
     if not target:
         return failed("empty action target")
 
@@ -167,6 +169,7 @@ def parse_decision(raw_text: str) -> ActionDecision:
         action_type=kind.upper(),
         target=target,
         terastallize=terastallize and kind.upper() == "MOVE",
+        mega_evolve=mega and kind.upper() == "MOVE",
         reasoning=reasoning,
         raw_response=raw_text,
     )

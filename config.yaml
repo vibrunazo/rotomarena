@@ -14,7 +14,7 @@ server:
 # version id.
 # The version the ladder and draft commands play unless given --version. Every version that can be played is under
 # rulesets, by its version id; a version id names exact rules, stored in data/rulesets/<version>.json on its first run.
-play: "c2"
+play: "c3"
 
 rulesets:
   s4:
@@ -58,7 +58,23 @@ rulesets:
   # Pokémon is level 50 (models did their damage math at level 100), and DeepSeek V4.1 Flash is served only by the
   # OpenRouter providers that enforce the thinking budget (measured 10 Oct: these four thought 365-651 tokens on a
   # heavy team preview; DeepSeek's own, Parasail, Baidu and SiliconFlow ran to the 2,048 cap every time).
-  c2:
+  c2:   # retired 10 Oct: models could not Mega Evolve, and the bench listed the Pokémon left at home (see c3)
+    format: "gen9championsrotomarenabssregmb"
+    team_mode: "draft"
+    pick: 3
+    profile: "ladder"
+    thinking_budget: 1024
+    max_output_tokens: 2048
+    draft_max_output_tokens: 5120
+    thinking_exceptions:
+      muse_spark_1_3: "minimal"
+    provider_routing:
+      deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
+
+  # Rotom Champ Bench as played now: c2's rules, plus Mega Evolution is a legal action ("MOVE: x [MEGA]"; in c1-c2
+  # only the random bot could Mega Evolve, so the models' Mega Stones did nothing), the bench lists only the three
+  # Pokémon brought (poke-env kept all six from team preview), and the opponent's line says how many are still to come.
+  c3:
     format: "gen9championsrotomarenabssregmb"
     team_mode: "draft"
     pick: 3
@@ -115,6 +131,12 @@ benchmarks:
     bench: "rotom-champ-bench"
     category: "Pokémon"
     description: "Pokémon Champions singles under Regulation M-B: each model builds six from the regulation's list, with Champions' Stat Points and Mega Stones, and brings three of them to each battle."
+    versions: ["c3"]
+  - id: "champions-bss-own-teams-c2"
+    title: "Champions BSS · own teams (c2)"
+    bench: "rotom-champ-bench"
+    category: "Pokémon"
+    description: "The second Champions version (retired): models could not Mega Evolve (only the random bot could), and their bench listed the three Pokémon left at home."
     versions: ["c2"]
   - id: "champions-bss-own-teams-c1"
     title: "Champions BSS · own teams (c1)"

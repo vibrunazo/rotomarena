@@ -151,11 +151,12 @@ def test_a_bring_n_format_sends_only_the_chosen_pokemon_in_order():
 
     from rotomarena.agents.base import BaseBenchmarkPlayer
 
-    battle = SimpleNamespace(team={f"p1: Mon{i}": SimpleNamespace() for i in range(6)})
-    bring3 = SimpleNamespace(pick=3)
+    battle = SimpleNamespace(team={f"p1: Mon{i}": SimpleNamespace(species=f"mon{i}") for i in range(6)}, battle_tag="b-1")
+    bring3 = SimpleNamespace(pick=3, brought={})
     assert BaseBenchmarkPlayer.bring_order(bring3, battle, [5, 2, 3]) == "/team 634"
+    assert bring3.brought["b-1"] == ["mon5", "mon2", "mon3"]  # the player keeps what it brought, for the bench
     assert BaseBenchmarkPlayer.bring_order(bring3, battle, [4]) == "/team 512"  # missing picks follow the team order
-    assert BaseBenchmarkPlayer.bring_order(SimpleNamespace(pick=None), battle, [2]) == "/team 312456"
+    assert BaseBenchmarkPlayer.bring_order(SimpleNamespace(pick=None, brought={}), battle, [2]) == "/team 312456"
 
 
 def test_the_battle_prompt_names_the_format_and_keeps_gen9ou_unchanged():
@@ -164,3 +165,19 @@ def test_the_battle_prompt_names_the_format_and_keeps_gen9ou_unchanged():
     assert system_prompt_for("gen9ou") is SYSTEM_PROMPT_DIRECT_COT
     champions = system_prompt_for("gen9championsrotomarenarandombss", pick=3)
     assert "Pokémon Champions singles" in champions and "BRING: <3 species" in champions and "Gen 9 OU" not in champions
+
+
+
+def test_the_bench_and_the_opponents_still_to_come_follow_what_was_brought():
+    from types import SimpleNamespace
+
+    from rotomarena.llm.prompts import bench_of, unseen_line
+
+    a, b, c, d = (SimpleNamespace(species=s) for s in ("garchomp", "gholdengo", "kingambit", "palafin"))
+    battle = SimpleNamespace(team={"1": a, "2": b, "3": c, "4": d}, active_pokemon=a)
+    assert bench_of(battle, ["garchomp", "gholdengo", "kingambit"]) == [b, c]  # Palafin stayed home
+    assert bench_of(battle) == [b, c, d]
+    preview = ["incineroar", "dragonite", "rotomwash", "scizor", "gholdengo", "primarina"]
+    assert unseen_line(preview, {"incineroar"}, 3).startswith("The opponent brought 3 of the 6") and "2 more are still" in unseen_line(preview, {"incineroar"}, 3)
+    assert "all have been seen" in unseen_line(preview, {"incineroar", "dragonite", "scizor"}, 3)
+    assert unseen_line(preview, {"incineroar"}).startswith("Not yet seen in battle")

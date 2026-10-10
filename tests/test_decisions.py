@@ -46,9 +46,11 @@ def test_turn_options_are_the_legal_actions_an_llm_sees():
 
     move = SimpleNamespace(id="earthquake")
     mon = SimpleNamespace(species="corviknight")
-    battle = SimpleNamespace(available_moves=[move], available_switches=[mon], can_tera=True)
+    battle = SimpleNamespace(available_moves=[move], available_switches=[mon], can_tera=True, can_mega_evolve=False)
     assert list(turn_options(battle)) == ["MOVE: earthquake", "MOVE: earthquake [TERA]", "SWITCH: corviknight"]
-    assert turn_options(battle)["MOVE: earthquake [TERA]"] == (move, True)
+    assert turn_options(battle)["MOVE: earthquake [TERA]"] == (move, "tera")
+    champions = SimpleNamespace(available_moves=[move], available_switches=[], can_tera=False, can_mega_evolve=True)
+    assert turn_options(champions)["MOVE: earthquake [MEGA]"] == (move, "mega")
 
 
 def test_a_question_with_one_option_is_not_sent():

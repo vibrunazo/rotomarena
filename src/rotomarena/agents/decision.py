@@ -22,24 +22,31 @@ LEAD_INSTRUCTIONS = ("You are about to play a competitive Pokémon battle on Pok
                      "the OPPONENT'S TEAM. Which of your Pokémon should lead, to give you the best chance to win?")
 
 
-def turn_options(battle: Battle) -> Dict[str, BattleOrder]:
-    """{option key: order}: the same legal actions an LLM is shown, keyed the way it writes them."""
+def turn_options(battle: Battle) -> Dict[str, tuple]:
+    """{option key: (move or Pokémon, "tera" / "mega" / None)}: the same legal actions an LLM is shown, keyed the way
+    it writes them."""
     options: Dict[str, tuple] = {}
     for m in battle.available_moves or []:
-        options[f"MOVE: {m.id}"] = (m, False)
+        options[f"MOVE: {m.id}"] = (m, None)
         if battle.can_tera:
-            options[f"MOVE: {m.id} [TERA]"] = (m, True)
+            options[f"MOVE: {m.id} [TERA]"] = (m, "tera")
+        if battle.can_mega_evolve:
+            options[f"MOVE: {m.id} [MEGA]"] = (m, "mega")
     for s in battle.available_switches or []:
-        options[f"SWITCH: {s.species}"] = (s, False)
+        options[f"SWITCH: {s.species}"] = (s, None)
     return options
 
 
-def _describe(key: str, target, tera: bool) -> str:
+def _describe(key: str, target, special) -> str:
     if key.startswith("SWITCH"):
         return f"Switch to {target.species} ({round(target.current_hp_fraction * 100)}% HP)."
     m_type = target.type.name.title() if target.type else "Normal"
     move = f"use {target.id} ({m_type}, base power {target.base_power or '-'}, accuracy {target.accuracy or '-'})"
-    return f"Terastallize, then {move}." if tera else f"{move[0].upper()}{move[1:]}."
+    if special == "tera":
+        return f"Terastallize, then {move}."
+    if special == "mega":
+        return f"Mega Evolve, then {move}."
+    return f"{move[0].upper()}{move[1:]}."
 
 
 class DecisionPlayer(BaseBenchmarkPlayer):
@@ -66,15 +73,16 @@ class DecisionPlayer(BaseBenchmarkPlayer):
         if not options:
             return self.choose_default_order(battle)
         try:
-            choice, usage = await self._ask(format_battle_state(battle), TURN_INSTRUCTIONS,
+            choice, usage = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick),
+                                            TURN_INSTRUCTIONS,
                                             {k: _describe(k, t, tera) for k, (t, tera) in options.items()})
         except Exception as e:
             fallback = self.choose_default_order(battle)
             self.record_turn_telemetry(battle=battle, chosen_order=fallback,
                                        reasoning=f"[API ERROR] {e}. Default move played.", decision_source="api_error")
             return fallback
-        target, tera = options[choice.choice]
-        order = self.create_order(target, terastallize=tera)
+        target, special = options[choice.choice]
+        order = self.create_order(target, terastallize=special == "tera", mega=special == "mega")
         self.record_turn_telemetry(battle=battle, chosen_order=order, reasoning=choice.summary(),
                                    llm_metrics=usage.metrics(self.client.provider_name).model_dump(),
                                    probabilities=choice.probabilities)
