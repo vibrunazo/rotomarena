@@ -58,6 +58,30 @@ def stored_rules(version: str, rulesets_dir: Path = RULESETS_DIR) -> Optional[Di
     return json.loads(path.read_text(encoding="utf-8"))["rules"] if path.exists() else None
 
 
+# Rules about one model (its thinking exception, its provider routing). A version's rules leave them out: a game
+# counts while each of its players' entries are still the ones configured (settings_current), so changing one model's
+# entry retires and replays only that model's games, not the whole version.
+PER_MODEL_RULES = ("thinking_exceptions", "provider_routing")
+
+
+def _version_rules(rules: Dict[str, Any]) -> Dict[str, Any]:
+    return {k: v for k, v in rules.items() if k not in PER_MODEL_RULES}
+
+
+def model_rules(rules: Dict[str, Any], config_id: str) -> Dict[str, Any]:
+    """This model's entries in the per-model rules ({rule: its entry, or None})."""
+    return {k: (rules.get(k) or {}).get(config_id) for k in PER_MODEL_RULES}
+
+
+def settings_current(match: Any, app_cfg: AppConfig) -> bool:
+    """Whether every player of this game played under the per-model rules its version configures now."""
+    ruleset = app_cfg.rulesets.get((match.ruleset or {}).get("version", ""))
+    if ruleset is None:
+        return True  # a version no longer configured: nothing to compare with
+    now = ruleset.model_dump()
+    return all(model_rules(match.ruleset or {}, p.config_id) == model_rules(now, p.config_id) for p in match.players)
+
+
 def register(app_cfg: AppConfig, rulesets_dir: Path = RULESETS_DIR) -> Dict[str, Any]:
     """Stores this version's rules on its first run; raises RulesChanged if they no longer match."""
     rules = current_rules(app_cfg)
@@ -69,6 +93,7 @@ def register(app_cfg: AppConfig, rulesets_dir: Path = RULESETS_DIR) -> Dict[str,
         path.write_text(json.dumps({"version": version, "registered_at": datetime.datetime.now(datetime.timezone.utc)
                                     .isoformat(timespec="seconds"), "rules": rules}, indent=2) + "\n", encoding="utf-8")
         return rules
+    stored, rules = _version_rules(stored), _version_rules(rules)  # per-model rules change game by game
     changed = sorted(k for k in set(stored) | set(rules) if stored.get(k) != rules.get(k))
     if changed:
         raise RulesChanged(f"the rules of version {version!r} changed ({', '.join(changed)}): give the new rules a new "
@@ -79,4 +104,4 @@ def register(app_cfg: AppConfig, rulesets_dir: Path = RULESETS_DIR) -> Dict[str,
 def same_rules(recorded: Dict[str, Any], stored: Dict[str, Any]) -> bool:
     """A game matches its version if every rule it recorded agrees (games from before a rule was recorded, such as
     the prompt fingerprints, are judged on what they did record)."""
-    return all(stored.get(k) == v for k, v in recorded.items() if k in stored)
+    return all(stored.get(k) == v for k, v in recorded.items() if k in stored and k not in PER_MODEL_RULES)

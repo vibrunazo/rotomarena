@@ -395,6 +395,10 @@ class BenchmarkConfig(BaseModel):
     category: str = Field(description="Group of benchmarks, e.g. Pokémon; categories get their own aggregate board")
     description: str = ""
     versions: List[str]
+    anchor: Optional[str] = Field(
+        default=None, description="Config id fixed at ladder.anchor_rating on this benchmark's board (default: "
+        "ladder.anchor). Each board has its own: a model that plays early and often, never at 0% or 100%",
+    )
 
 
 class LeaderboardConfig(BaseModel):
@@ -408,6 +412,7 @@ class LeaderboardConfig(BaseModel):
     category: Optional[str] = None
     bench: Optional[str] = None
     versions: List[str]
+    anchor: str = ""  # the config id this board's scale is pinned to
 
 
 class AppConfig(BaseSettings):
@@ -434,18 +439,25 @@ class AppConfig(BaseSettings):
         benchmark."""
         benchmarks = self.benchmarks or [BenchmarkConfig(id=self.ruleset.version, title=self.ruleset.version,
                                                          category="Pokémon", versions=[self.ruleset.version])]
-        boards = [LeaderboardConfig(id="overall", title="Overall", kind="overall",
+        boards = [LeaderboardConfig(id="overall", title="Overall", kind="overall", anchor=self.ladder.anchor,
                                     description="Every rated game in every benchmark: how good each model is overall.",
                                     versions=[v for b in benchmarks for v in b.versions])]
         categories = list(dict.fromkeys(b.category for b in benchmarks))
         if len(categories) > 1:
             boards += [LeaderboardConfig(id=c.lower().replace(" ", "-"), title=c, kind="category", category=c,
+                                         anchor=self.ladder.anchor,
                                          description=f"Every {c} benchmark together.",
                                          versions=[v for b in benchmarks if b.category == c for v in b.versions])
                        for c in categories]
         boards += [LeaderboardConfig(id=b.id, title=b.title, kind="benchmark", category=b.category, bench=b.bench or None,
-                                     description=b.description, versions=b.versions) for b in benchmarks]
+                                     description=b.description, versions=b.versions,
+                                     anchor=b.anchor or self.ladder.anchor) for b in benchmarks]
         return boards
+
+    def anchor_for(self, version: Optional[str] = None) -> str:
+        """The anchor of the benchmark that lists this version (default: the version being played)."""
+        version = version or self.ruleset.version
+        return next((b.anchor for b in self.benchmarks if version in b.versions and b.anchor), self.ladder.anchor)
 
     @model_validator(mode="after")
     def _pick_ruleset(self) -> "AppConfig":

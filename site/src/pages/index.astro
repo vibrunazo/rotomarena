@@ -3,7 +3,7 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { allModels, boardModels, fmtDate, fmtInt, isModel, liveBenches, mainBoard, meta } from '../lib/data';
+import { allModels, boardModels, boards, fmtDate, fmtInt, isModel, liveBenches, mainBoard, meta } from '../lib/data';
 
 const llms = (await allModels()).filter((m) => isModel(m) && m.games > 0);
 // Each benchmark's standings, top five of its main leaderboard
@@ -47,7 +47,7 @@ const stats = [
     <section class="standing">
       <h3><a href={routes.bench(bench.id)}>{bench.title}</a></h3>
       <p class="small muted">{bench.tagline}</p>
-      {models.length ? <LeaderboardTable models={models} compact /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
+      {models.length ? <LeaderboardTable models={models} compact anchor={boards.find((b) => b.id === bench.main)?.anchor} /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
       <p class="small muted"><a href={routes.board(bench.main!, bench.main === mainBoard.id)}>Full {bench.title} leaderboard →</a></p>
     </section>
   ))}

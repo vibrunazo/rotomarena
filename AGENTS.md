@@ -27,7 +27,9 @@ leaderboard. Champions formats are RotomArena's copies in src/rotomarena/server/
 timer). Benchmarks and versions: `benchmarks:` in config.yaml lists what the site ranks; each lists ruleset versions. A
 version's exact rules (ruleset, format, prompt fingerprints) are stored in `data/rulesets/<version>.json` on its first
 run; ladder commands refuse to play if the configuration no longer matches, so a rule change needs a new
-`ruleset.version`. The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.
+`ruleset.version` (per-model rules, `thinking_exceptions` and `provider_routing`, are the exception: changing one
+model's entry retires only that model's games, which the round robin replays). Each benchmark has its own `anchor`
+(default `ladder.anchor`, Bonsai; Champions: GPT-OSS 20B). The export only rates games whose recorded rules match. Boards: Overall, categories, benchmarks.
 
 Game data for videos and analysis: `runs/<match>/` has `breadcrumbs.json` (every decision: thought, action,
 timing, tokens, cost; decision models also `probabilities` for every option), `battle_log.json` and `replay.html`;

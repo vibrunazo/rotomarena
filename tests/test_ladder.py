@@ -568,3 +568,23 @@ def test_a_model_whose_games_keep_going_void_is_the_one_that_sits_out():
     with pytest.raises(ModelUnavailable) as caught:
         check_halt("alpha vs beta", [SimpleNamespace(provider_limit=None)], [void, void2], 0.5)
     assert caught.value.config_ids == ["alpha"]
+
+
+def test_changing_one_models_rules_retires_only_its_games():
+    from rotomarena.config import RulesetConfig
+    from rotomarena.rulesets import same_rules, settings_current
+
+    def game(p1, p2, exceptions):
+        m = make_match(f"{p1}-{p2}", p1, p2, p1)
+        m.ruleset = {"version": "c9", "thinking_budget": 2048, "thinking_exceptions": exceptions}
+        return m
+
+    muse_game = game("muse", "luna", {"muse": "minimal"})
+    other_game = game("gemma", "luna", {"muse": "minimal"})
+    stored = {"version": "c9", "thinking_budget": 2048, "thinking_exceptions": {"muse": "minimal"}}
+    assert same_rules(muse_game.ruleset, {**stored, "thinking_exceptions": {}})  # not part of the version's rules
+    before = AppConfig(rulesets={"c9": RulesetConfig(thinking_budget=2048, thinking_exceptions={"muse": "minimal"})})
+    after = AppConfig(rulesets={"c9": RulesetConfig(thinking_budget=2048)})  # Muse's exception dropped
+    assert settings_current(muse_game, before) and settings_current(other_game, before)
+    assert not settings_current(muse_game, after)  # Muse's games are replayed
+    assert settings_current(other_game, after)  # everyone else's stand

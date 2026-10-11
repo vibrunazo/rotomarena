@@ -17,7 +17,7 @@ type H2H = { a: string; b: string; games: number; a_wins: number; b_wins: number
 /** Head-to-head records on one leaderboard. */
 export const headToHeadFor = (board: string): H2H[] => (headToHeadJson as Record<string, H2H[]>)[board] ?? [];
 
-export type Board = { id: string; title: string; description: string; kind: string; category: string | null; bench: string | null; versions: string[]; rated_matches: number; models: number };
+export type Board = { id: string; title: string; description: string; kind: string; category: string | null; bench: string | null; versions: string[]; anchor: string; rated_matches: number; models: number };
 /** The rankings: Overall first, then categories, then each benchmark; each fits the rated games of some ruleset versions. */
 export const boards = meta.leaderboards as Board[];
 

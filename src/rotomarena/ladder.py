@@ -17,7 +17,7 @@ from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.costs import estimated_cost_per_game, is_free
 from rotomarena.matchmaker.runner import MatchRunner
 from rotomarena.rating import Rating, compute_ratings
-from rotomarena.rulesets import current_rules, same_rules, stored_rules
+from rotomarena.rulesets import current_rules, same_rules, settings_current, stored_rules
 from rotomarena.results import Outcome, autopilot_rate, games_between, load_matches, rated_outcomes, void_reason
 from rotomarena.teams.draft import load_drafts, playable_team
 from rotomarena.teams.loader import Team, parse_smogon_team
@@ -84,6 +84,7 @@ class LadderState:
     ratings: Dict[str, Rating]
     pair_games: Dict[frozenset, int]
     rules_mismatch: int = 0  # games left out because their recorded rules differ from their version's
+    superseded: int = 0  # games left out because a player's per-model rules changed since (replayed under the new)
 
     def games(self, a: str, b: str) -> int:
         return self.pair_games.get(frozenset((a, b)), 0)
@@ -94,30 +95,34 @@ class LadderState:
 
 
 def version_state(app_cfg: AppConfig, rate: bool = True) -> LadderState:
-    """Every match of the ruleset version being played, rated (rate=False: counted only, no ratings)."""
-    return versions_state(app_cfg, [app_cfg.ruleset.version], rate)
+    """Every match of the ruleset version being played, rated against its benchmark's anchor (rate=False: counted
+    only, no ratings)."""
+    return versions_state(app_cfg, [app_cfg.ruleset.version], rate, anchor=app_cfg.anchor_for())
 
 
-def versions_state(app_cfg: AppConfig, versions: List[str], rate: bool = True) -> LadderState:
+def versions_state(app_cfg: AppConfig, versions: List[str], rate: bool = True,
+                   anchor: Optional[str] = None) -> LadderState:
     """Every match of these ruleset versions, rated together (a leaderboard). A game whose recorded rules differ
     from its version's stored rules is left out and counted. rate=False skips the ratings (and their bootstrap,
     seconds of CPU) for callers that only count games."""
-    matches, mismatch = [], 0
+    matches, mismatch, superseded = [], 0, 0
     for version in versions:
         stored = stored_rules(version)
         for m in load_matches(app_cfg.telemetry.output_dir, version):
-            if stored is None or same_rules(m.ruleset, stored):
-                matches.append(m)
-            else:
+            if stored is not None and not same_rules(m.ruleset, stored):
                 mismatch += 1
+            elif not settings_current(m, app_cfg):
+                superseded += 1
+            else:
+                matches.append(m)
     outcomes = rated_outcomes(matches, app_cfg.ladder.max_autopilot)
     ratings = compute_ratings(
         outcomes,
-        anchor=app_cfg.ladder.anchor,
+        anchor=anchor or app_cfg.ladder.anchor,
         anchor_rating=app_cfg.ladder.anchor_rating,
         bootstrap_samples=app_cfg.ladder.bootstrap_samples,
     ) if rate else {}
-    return LadderState(matches, outcomes, ratings, games_between(outcomes), mismatch)
+    return LadderState(matches, outcomes, ratings, games_between(outcomes), mismatch, superseded)
 
 
 def control_opponents(config_id: str, app_cfg: AppConfig, force: bool = False,
@@ -221,7 +226,7 @@ def games_played(app_cfg: AppConfig, config_id: str) -> int:
     """Every game this registry entry has played in the version being played, voided ones included (each one cost
     tokens). The cap counts per version, so a new benchmark gets its own budget."""
     return sum(1 for m in load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
-               if any(p.config_id == config_id for p in m.players))
+               if any(p.config_id == config_id for p in m.players) and settings_current(m, app_cfg))
 
 
 def cap_exempt(app_cfg: AppConfig, a: str, b: str) -> bool:
@@ -306,7 +311,7 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
     open, then API models among themselves, then pairs with one local model, the anchor's with local models, and
     local against local last. Within a tier the balanced rounds keep their order. Pairs with a model in
     ladder.play_last (slow local models) come after all of those, fewest such models first."""
-    anchor = app_cfg.ladder.anchor
+    anchor = app_cfg.anchor_for()
 
     def tier(pair: Tuple[str, str]) -> int:
         local = [x for x in pair if app_cfg.agents[x].provider == "local"]

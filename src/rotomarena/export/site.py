@@ -399,7 +399,7 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     out = Path(out_dir)
     runs_dir = Path(app_cfg.telemetry.output_dir)
     boards = app_cfg.boards()
-    states = {b.id: versions_state(app_cfg, b.versions) for b in boards}
+    states = {b.id: versions_state(app_cfg, b.versions, anchor=b.anchor) for b in boards}
     # every version any board shows, rated together: model stats, match pages and findings come from this
     all_versions = list(dict.fromkeys(s for b in boards for s in b.versions))
     state = states[boards[0].id] if set(boards[0].versions) == set(all_versions) else versions_state(app_cfg, all_versions)

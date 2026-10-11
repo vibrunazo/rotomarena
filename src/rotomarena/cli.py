@@ -498,7 +498,7 @@ def _print_ratings(app_cfg: AppConfig) -> None:
             str(rank) if r.ranked else "-",
             r.config_id,
             f"{r.rating:.0f}" if r.ranked else "unranked",
-            "fixed" if r.config_id == app_cfg.ladder.anchor else (f"{r.ci_low:.0f} to {r.ci_high:.0f}" if r.ranked else ""),
+            "fixed" if r.config_id == app_cfg.anchor_for() else (f"{r.ci_low:.0f} to {r.ci_high:.0f}" if r.ranked else ""),
             str(r.games),
             f"{r.wins}-{r.losses}-{r.draws}",
             ", ".join(notes),
