@@ -147,6 +147,11 @@ def parse_decision(raw_text: str) -> ActionDecision:
     """Parses '<thought>…</thought><decision>MOVE: id [TERA]</decision>' strictly: exactly one action line."""
     thought = re.search(r"<thought>(.*?)</thought>", raw_text, re.DOTALL | re.IGNORECASE)
     reasoning = thought.group(1).strip() if thought else ""
+    if not reasoning:
+        # Its thought without the tags, before the decision: Opus 5.5 wrote it so on most turns, and showed none
+        before = re.split(r"<decision>", raw_text, maxsplit=1, flags=re.IGNORECASE)
+        if len(before) == 2:
+            reasoning = re.sub(r"</?thought>", "", before[0], flags=re.IGNORECASE).strip()
 
     def failed(reason: str) -> ActionDecision:
         return ActionDecision(reasoning=reasoning, parse_error=reason, raw_response=raw_text)

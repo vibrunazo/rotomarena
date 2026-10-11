@@ -302,3 +302,9 @@ def test_the_champions_prompt_offers_mega_not_tera():
 
     p = system_prompt_for("gen9championsrotomarenabssregmb", 3)
     assert "MOVE: <move_id> [MEGA]" in p and "[TERA]" not in p
+
+
+def test_an_untagged_thought_before_the_decision_is_still_the_thought():
+    decision = parse_decision("Earthquake is super effective here.\n\n<decision>\nMOVE: earthquake [MEGA]\n</decision>")
+    assert decision.reasoning == "Earthquake is super effective here."
+    assert decision.target == "earthquake" and decision.mega_evolve
