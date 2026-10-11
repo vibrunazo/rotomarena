@@ -1,0 +1,36 @@
+---
+// Superseded versions: still browsable, out of the way. Each keeps its own leaderboard page.
+import Base from '../../layouts/Base.astro';
+import { archivedBoards, benches, fmtInt, mainBoard } from '../../lib/data';
+import { routes } from '../../lib/routes';
+
+const sections = benches.map((bench) => ({ bench, boards: archivedBoards(bench) })).filter((s) => s.boards.length);
+const href = (id: string) => routes.board(id, id === mainBoard.id);
+---
+<Base title="Archive" description="Superseded benchmark versions, kept for the record.">
+  <h1>Archive</h1>
+  <p class="lede prose">
+    Versions we replaced when their rules turned out to be wrong, or that we stopped playing. Their games are kept and
+    their leaderboards still stand, but they count on no current leaderboard. Only the newest version of each benchmark
+    matters; this page is for the record.
+  </p>
+  {sections.map(({ bench, boards }) => (
+    <section>
+      <h2><a href={routes.bench(bench.id)}>{bench.title}</a></h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Leaderboard</th><th>Why it was retired</th><th class="r">Rated games</th><th class="r">Models</th></tr></thead>
+          <tbody>
+            {boards.map((b) => (
+              <tr>
+                <td><a href={href(b.id)}>{b.title}</a></td>
+                <td class="small">{b.description}</td>
+                <td class="r num">{fmtInt(b.rated_matches)}</td><td class="r num">{b.models}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+</Base>

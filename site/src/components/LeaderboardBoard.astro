@@ -46,6 +46,9 @@ const record = (a: string, b: string) => {
       ))}
     </nav>
   )}
+  {board.archived && <p class="prose archived-note"><strong>Archived.</strong> A superseded version, kept for the record; its games
+    count on no current leaderboard. {variants[0] && <>The current one: <a href={href(variants[0])}>{variants[0].title}</a>.</>}{' '}
+    <a href={routes.archive}>Every archived version</a>.</p>}
   {bench && <p class="prose bench-line">{bench.tagline} <a href={routes.bench(bench.id)}>About {bench.title} →</a></p>}
   <p class="prose"><strong>{board.description}</strong></p>
   <p class="prose">

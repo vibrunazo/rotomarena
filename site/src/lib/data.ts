@@ -17,7 +17,7 @@ type H2H = { a: string; b: string; games: number; a_wins: number; b_wins: number
 /** Head-to-head records on one leaderboard. */
 export const headToHeadFor = (board: string): H2H[] => (headToHeadJson as Record<string, H2H[]>)[board] ?? [];
 
-export type Board = { id: string; title: string; description: string; kind: string; category: string | null; bench: string | null; versions: string[]; anchor: string; rated_matches: number; models: number };
+export type Board = { id: string; title: string; description: string; kind: string; category: string | null; bench: string | null; versions: string[]; anchor: string; archived?: boolean; rated_matches: number; models: number };
 /** The rankings: Overall first, then categories, then each benchmark; each fits the rated games of some ruleset versions. */
 export const boards = meta.leaderboards as Board[];
 
@@ -29,7 +29,9 @@ export const boardById = (id: string) => boards.find((b) => b.id === id);
 /** The leaderboard at /leaderboard/: the first live bench's main board (Overall if there are no benches). */
 export const mainBoard = (liveBenches[0] && boardById(liveBenches[0].main!)) || boards[0];
 export const benchOf = (board: Board) => benches.find((b) => b.id === board.bench) ?? null;
-export const benchBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b);
+/** A bench's current leaderboards (main first); superseded versions are on the archive page. */
+export const benchBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !b.archived);
+export const archivedBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !!b.archived);
 
 type Finding = { id: string; show: boolean; [key: string]: unknown };
 export const findings: Record<string, Finding> = Object.fromEntries(

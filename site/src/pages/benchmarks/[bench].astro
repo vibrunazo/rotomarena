@@ -2,7 +2,7 @@
 // One benchmark family: what is played, its rules, its leaderboards and who leads.
 import Base from '../../layouts/Base.astro';
 import LeaderboardTable from '../../components/LeaderboardTable.astro';
-import { benchBoards, benches, boardModels, fmtInt, mainBoard, meta, type Bench } from '../../lib/data';
+import { archivedBoards, benchBoards, benches, boardModels, fmtInt, mainBoard, meta, type Bench } from '../../lib/data';
 import { routes } from '../../lib/routes';
 
 export function getStaticPaths() {
@@ -10,6 +10,7 @@ export function getStaticPaths() {
 }
 const { bench } = Astro.props as { bench: Bench };
 const boards = benchBoards(bench);
+const archived = archivedBoards(bench);
 const main = boards[0];
 const top = (await boardModels(main.id)).filter((m) => m.games > 0).slice(0, 8);
 const rules = main.versions.map((v) => [v, (meta.rulesets as Record<string, any>)[v]] as const);
@@ -37,6 +38,7 @@ const href = (id: string) => routes.board(id, id === mainBoard.id);
       </tbody>
     </table>
   </div>
+  {archived.length > 0 && <p class="small muted">{archived.length} superseded {archived.length === 1 ? 'version is' : 'versions are'} in the <a href={routes.archive}>archive</a>.</p>}
 
   <h2>Standings</h2>
   {top.length ? <LeaderboardTable models={top} compact /> : <p class="muted">No rated games yet: the first ones are being played.</p>}

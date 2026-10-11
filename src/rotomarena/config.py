@@ -395,6 +395,10 @@ class BenchmarkConfig(BaseModel):
     category: str = Field(description="Group of benchmarks, e.g. Pokémon; categories get their own aggregate board")
     description: str = ""
     versions: List[str]
+    archived: bool = Field(
+        default=False, description="A superseded version: kept on the site's archive page, left out of the bench's "
+        "pages, its leaderboard tabs and the Overall and category boards",
+    )
     anchor: Optional[str] = Field(
         default=None, description="Config id fixed at ladder.anchor_rating on this benchmark's board (default: "
         "ladder.anchor). Each board has its own: a model that plays early and often, never at 0% or 100%",
@@ -413,6 +417,7 @@ class LeaderboardConfig(BaseModel):
     bench: Optional[str] = None
     versions: List[str]
     anchor: str = ""  # the config id this board's scale is pinned to
+    archived: bool = False  # a superseded version (BenchmarkConfig.archived)
 
 
 class AppConfig(BaseSettings):
@@ -439,18 +444,19 @@ class AppConfig(BaseSettings):
         benchmark."""
         benchmarks = self.benchmarks or [BenchmarkConfig(id=self.ruleset.version, title=self.ruleset.version,
                                                          category="Pokémon", versions=[self.ruleset.version])]
+        current = [b for b in benchmarks if not b.archived]  # Overall and categories: the versions played now
         boards = [LeaderboardConfig(id="overall", title="Overall", kind="overall", anchor=self.ladder.anchor,
-                                    description="Every rated game in every benchmark: how good each model is overall.",
-                                    versions=[v for b in benchmarks for v in b.versions])]
-        categories = list(dict.fromkeys(b.category for b in benchmarks))
+                                    description="Every rated game in every current benchmark: how good each model is overall.",
+                                    versions=[v for b in current for v in b.versions])]
+        categories = list(dict.fromkeys(b.category for b in current))
         if len(categories) > 1:
             boards += [LeaderboardConfig(id=c.lower().replace(" ", "-"), title=c, kind="category", category=c,
                                          anchor=self.ladder.anchor,
-                                         description=f"Every {c} benchmark together.",
-                                         versions=[v for b in benchmarks if b.category == c for v in b.versions])
+                                         description=f"Every current {c} benchmark together.",
+                                         versions=[v for b in current if b.category == c for v in b.versions])
                        for c in categories]
         boards += [LeaderboardConfig(id=b.id, title=b.title, kind="benchmark", category=b.category, bench=b.bench or None,
-                                     description=b.description, versions=b.versions,
+                                     description=b.description, versions=b.versions, archived=b.archived,
                                      anchor=b.anchor or self.ladder.anchor) for b in benchmarks]
         return boards
 

@@ -5,6 +5,7 @@ export const routes = {
   leaderboard: '/leaderboard/',
   board: (id: string, main: boolean) => (main ? '/leaderboard/' : `/leaderboard/${id}/`),
   benchmarks: '/benchmarks/',
+  archive: '/benchmarks/archive/',
   bench: (id: string) => `/benchmarks/${id}/`,
   matches: '/matches/',
   teams: '/teams/',
