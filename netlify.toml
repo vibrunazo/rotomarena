@@ -19,3 +19,23 @@
   from = "/arxiv"
   to = "/paper/"
   status = 301
+
+# A benchmark's page is its leaderboard (/benchmarks/<bench>/). The old leaderboard addresses of the current boards
+# point there; the pages Astro builds for them redirect too, after 2 s, wherever these don't apply.
+[[redirects]]
+  from = "/leaderboard/"
+  to = "/benchmarks/rotom-champ-bench/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leaderboard/champions-bss-own-teams/"
+  to = "/benchmarks/rotom-champ-bench/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leaderboard/gen9ou-own-teams/"
+  to = "/benchmarks/rotom-gen9-bench/"
+  status = 301
+  force = true

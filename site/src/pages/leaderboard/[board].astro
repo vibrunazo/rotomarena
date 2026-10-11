@@ -1,10 +1,15 @@
 ---
+// Boards that aren't a benchmark's page: All benchmarks, categories and archived versions. A benchmark's current board
+// lives on the benchmark's page, so its old address here redirects there.
 import LeaderboardBoard from '../../components/LeaderboardBoard.astro';
-import { boards, mainBoard, type Board } from '../../lib/data';
+import { boardHref, boards, type Board } from '../../lib/data';
+import { routes } from '../../lib/routes';
 
 export function getStaticPaths() {
-  return boards.filter((b) => b.id !== mainBoard.id).map((board) => ({ params: { board: board.id }, props: { board } }));
+  return boards.map((board) => ({ params: { board: board.id }, props: { board } }));
 }
 const { board } = Astro.props as { board: Board };
+const home = boardHref(board);
+if (home !== routes.board(board.id)) return Astro.redirect(home);
 ---
 <LeaderboardBoard board={board} />

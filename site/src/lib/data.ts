@@ -1,4 +1,5 @@
 // Small helpers over the exported data. Numbers shown on the site come from here, never typed into copy.
+import { routes } from './routes';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import metaJson from '../data/meta.json';
 import findingsJson from '../data/findings.json';
@@ -31,6 +32,11 @@ export const mainBoard = (liveBenches[0] && boardById(liveBenches[0].main!)) || 
 export const benchOf = (board: Board) => benches.find((b) => b.id === board.bench) ?? null;
 /** A bench's current leaderboards (main first); superseded versions are on the archive page. */
 export const benchBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !b.archived);
+/** Where a board lives: a benchmark's current board is the benchmark's page; the rest are under /leaderboard/. */
+export const boardHref = (board: Board) => {
+  const bench = benches.find((b) => b.main === board.id);
+  return bench ? routes.bench(bench.id) : routes.board(board.id);
+};
 export const archivedBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !!b.archived);
 
 type Finding = { id: string; show: boolean; [key: string]: unknown };

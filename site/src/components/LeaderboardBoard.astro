@@ -5,7 +5,7 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from './LeaderboardTable.astro';
 import ForestPlot from './ForestPlot.astro';
-import { benchBoards, benchOf, benches, boardModels, boards, fmtDate, headToHeadFor, mainBoard, meta, modelsById, type Board } from '../lib/data';
+import { archivedBoards, benchBoards, benchOf, benches, boardHref, boardModels, boards, fmtDate, fmtInt, headToHeadFor, meta, modelsById, type Board } from '../lib/data';
 
 interface Props { board: Board }
 const { board } = Astro.props;
@@ -14,9 +14,10 @@ const headToHead = headToHeadFor(board.id);
 const byId = await modelsById();
 const anchor = byId.get(board.anchor || meta.ladder.anchor);  // each board has its own
 const bench = benchOf(board);
-const variants = bench ? benchBoards(bench) : [];
+const current = bench ? benchBoards(bench)[0] : undefined;  // the bench's board now; older versions are archived
+const isBench = !!bench && current?.id === board.id;  // this page is the benchmark itself
+const archived = bench ? archivedBoards(bench) : [];
 const combined = boards.filter((b) => b.kind !== 'benchmark');  // Overall, and categories once there are several
-const href = (b: Board) => routes.board(b.id, b.id === mainBoard.id);
 
 // Head-to-head grid over everyone who has played: cell (row, col) is row's record against col.
 const played = models.filter((m) => m.games > 0);
@@ -26,31 +27,25 @@ const record = (a: string, b: string) => {
   return h.a === a ? { w: h.a_wins, l: h.b_wins, d: h.draws } : { w: h.b_wins, l: h.a_wins, d: h.draws };
 };
 ---
-<Base title={board === mainBoard ? 'Leaderboard' : `Leaderboard: ${board.title}`} description="RotomArena ratings with 95% bootstrap intervals, win rates, hallucination rates and cost per game.">
-  <p class="eyebrow">{board.title} · {board.rated_matches} rated games · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
-  <h1>Leaderboard</h1>
+<Base title={isBench ? bench!.title : `Leaderboard: ${board.title}`} description={isBench ? bench!.tagline : "RotomArena ratings with 95% bootstrap intervals, win rates, hallucination rates and cost per game."}>
+  <p class="eyebrow">{isBench ? `Benchmark · ${board.title}` : board.title} · {fmtInt(board.rated_matches)} rated games · updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}</p>
+  <h1>{isBench ? bench!.title : board.kind === 'overall' ? 'All benchmarks' : board.title}</h1>
   <nav class="tabs" aria-label="Benchmarks">
     {benches.map((b) => b.status === 'live' && b.main ? (
-      <a href={routes.board(b.main, b.main === mainBoard.id)} aria-current={bench?.id === b.id ? 'page' : undefined}>{b.title}</a>
+      <a href={routes.bench(b.id)} aria-current={isBench && bench?.id === b.id ? 'page' : undefined}>{b.title}</a>
     ) : (
       <span class="tab-off" title={b.tagline}>{b.title} <small>soon</small></span>
     ))}
     {combined.map((b) => (
-      <a href={href(b)} aria-current={b.id === board.id ? 'page' : undefined}>{b.kind === 'overall' ? 'All benchmarks' : b.title}</a>
+      <a href={boardHref(b)} aria-current={b.id === board.id ? 'page' : undefined}>{b.kind === 'overall' ? 'All benchmarks' : b.title}</a>
     ))}
   </nav>
-  {variants.length > 1 && (
-    <nav class="subtabs" aria-label={`${bench!.title} leaderboards`}>
-      {variants.map((v) => (
-        <a href={href(v)} aria-current={v.id === board.id ? 'page' : undefined}>{v.title}</a>
-      ))}
-    </nav>
-  )}
   {board.archived && <p class="prose archived-note"><strong>Archived.</strong> A superseded version, kept for the record; its games
-    count on no current leaderboard. {variants[0] && <>The current one: <a href={href(variants[0])}>{variants[0].title}</a>.</>}{' '}
-    <a href={routes.archive}>Every archived version</a>.</p>}
-  {bench && <p class="prose bench-line">{bench.tagline} <a href={routes.bench(bench.id)}>About {bench.title} →</a></p>}
-  <p class="prose"><strong>{board.description}</strong></p>
+    count on no current leaderboard. {current && bench && <>The current one is <a href={routes.bench(bench.id)}>{bench.title}</a>.</>}</p>}
+  {isBench && <p class="lede prose">{bench!.tagline}</p>}
+  {isBench && bench!.description && <p class="prose">{bench!.description}</p>}
+  {isBench && <p class="cta"><a class="hud-btn" href={`${routes.teams}#${bench!.id}`}>The teams</a></p>}
+  {!isBench && <p class="prose"><strong>{board.description}</strong></p>}
   <p class="prose">
     Ratings are on the Elo scale, fitted by Bradley-Terry over this board's rated games. Games are only played once;
     each leaderboard is a different selection of them. {anchor?.display_name} is
@@ -65,18 +60,20 @@ const record = (a: string, b: string) => {
     <p class="small muted">Every game records the rules it was played under; a board only rates games that match their version's stored rules.</p>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>Version</th><th>Format</th><th>Teams</th><th>Thinking</th><th class="r">Tokens per turn</th><th>Prompt</th></tr></thead>
+        <thead><tr><th>Version</th><th>Format</th><th>Teams</th><th>Bring</th><th>Thinking per turn</th><th class="r">Tokens per turn</th><th>Prompt</th></tr></thead>
         <tbody>
           {board.versions.map((v) => {
             const r = (meta.rulesets as Record<string, any>)[v];
             return r ? (
               <tr>
                 <td class="num">{v}</td><td class="num">{r.format}</td>
-                <td>{r.team_mode === 'draft' ? 'own (drafted)' : `fixed: ${r.teams.join(', ')}`}</td>
-                <td>{r.reasoning}</td><td class="r num">{r.max_output_tokens.toLocaleString('en-US')}</td>
+                <td>{r.team_mode === 'draft' ? 'own (drafted)' : r.team_mode === 'random' ? 'dealt at random' : `fixed: ${r.teams.join(', ')}`}</td>
+                <td class="num">{r.pick ? `${r.pick} of 6` : 'all 6'}</td>
+                <td class="num">{r.thinking_budget ? `${r.thinking_budget.toLocaleString('en-US')} tokens` : r.reasoning}</td>
+                <td class="r num">{r.max_output_tokens.toLocaleString('en-US')}</td>
                 <td class="num muted">{r.battle_prompt}{r.draft_prompt ? ` · draft ${r.draft_prompt}` : ''}</td>
               </tr>
-            ) : <tr><td class="num">{v}</td><td colspan="5" class="muted">rules not stored</td></tr>;
+            ) : <tr><td class="num">{v}</td><td colspan="6" class="muted">rules not stored</td></tr>;
           })}
         </tbody>
       </table>
@@ -122,6 +119,7 @@ const record = (a: string, b: string) => {
       <li id="fn-ci">95% intervals come from {meta.ladder.bootstrap_samples.toLocaleString('en-US')} parametric bootstrap refits. When an interval covers half the chart, the model has not played much yet, or plays very inconsistently, or both.</li>
       <li id="fn-hallucination">Hallucination rate: the share of turns where the model gave no usable answer (named a move it does not have, answered in a format we could not read, rambled past its token budget, timed out or errored) and the default move was played on its behalf. Matches where either side does this on more than {meta.ladder.max_autopilot * 100}% of its turns are voided.</li>
       <li id="fn-anchor">Ratings need a reference point. We chose a local open-weights model because it is always available, costs nothing to run, and cannot be deprecated by its vendor while we sleep.</li>
+      {isBench && archived.length > 0 && <li id="fn-versions">Older versions of this benchmark, retired when their rules changed: {archived.map((b, i) => <>{i > 0 && ', '}<a href={routes.board(b.id)}>{b.versions.join(', ')}</a></>)}.</li>}
     </ol>
   </section>
 </Base>

@@ -17,7 +17,7 @@ for (const b of benches) {
   <p class="prose">
     Each benchmark is a game the models play against each other, under fixed rules, with its own leaderboard.
     Games are played once and every game records the exact rules it was played under.
-    The <a href={routes.leaderboard}>leaderboard</a> has a tab for each benchmark, and one for all of them together.
+    Each benchmark's page is its leaderboard; <a href={routes.board('overall')}>All benchmarks</a> rates every game together.
   </p>
 
   <div class="cards">
@@ -28,7 +28,7 @@ for (const b of benches) {
         {b.status === 'live' && b.main ? (
           <>
             <p class="small muted num">{fmtInt(b.rated_matches)} rated games · {b.models} {b.models === 1 ? 'model' : 'models'}{leaders.get(b.id) ? ` · leader: ${leaders.get(b.id)}` : ''}</p>
-            <p class="links"><a href={routes.bench(b.id)}>About</a><a href={routes.board(b.main, false)}>Leaderboard</a></p>
+            <p class="links"><a href={routes.bench(b.id)}>Leaderboard</a></p>
           </>
         ) : <p class="small muted">Coming later.</p>}
       </article>

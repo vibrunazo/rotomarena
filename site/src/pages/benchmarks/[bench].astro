@@ -1,69 +1,11 @@
 ---
-// One benchmark family: what is played, its rules, its leaderboards and who leads.
-import Base from '../../layouts/Base.astro';
-import LeaderboardTable from '../../components/LeaderboardTable.astro';
-import { archivedBoards, benchBoards, benches, boardModels, fmtInt, mainBoard, meta, type Bench } from '../../lib/data';
-import { routes } from '../../lib/routes';
+// One benchmark: its page is its current leaderboard (older versions are footnoted; see LeaderboardBoard).
+import LeaderboardBoard from '../../components/LeaderboardBoard.astro';
+import { benchBoards, benches, type Bench } from '../../lib/data';
 
 export function getStaticPaths() {
   return benches.filter((b) => b.status === 'live' && b.main).map((bench) => ({ params: { bench: bench.id }, props: { bench } }));
 }
 const { bench } = Astro.props as { bench: Bench };
-const boards = benchBoards(bench);
-const archived = archivedBoards(bench);
-const main = boards[0];
-const top = (await boardModels(main.id)).filter((m) => m.games > 0).slice(0, 8);
-const rules = main.versions.map((v) => [v, (meta.rulesets as Record<string, any>)[v]] as const);
-const href = (id: string) => routes.board(id, id === mainBoard.id);
 ---
-<Base title={bench.title} description={bench.tagline}>
-  <p class="eyebrow">Benchmark · {fmtInt(bench.rated_matches)} rated games · {bench.models} models</p>
-  <h1>{bench.title}</h1>
-  <p class="lede prose">{bench.tagline}</p>
-  {bench.description && <p class="prose">{bench.description}</p>}
-  <p class="cta"><a class="hud-cta" href={href(main.id)}>Full leaderboard</a><a class="hud-btn" href={`${routes.teams}#${bench.id}`}>The teams</a></p>
-
-  <h2>Leaderboards</h2>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th>Leaderboard</th><th>What it rates</th><th class="r">Rated games</th><th class="r">Models</th></tr></thead>
-      <tbody>
-        {boards.map((b, i) => (
-          <tr>
-            <td><a href={href(b.id)}>{b.title}</a>{i === 0 && <span class="pill accent" title="The benchmark's main leaderboard">main</span>}</td>
-            <td class="small">{b.description}</td>
-            <td class="r num">{fmtInt(b.rated_matches)}</td><td class="r num">{b.models}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-  {archived.length > 0 && <p class="small muted">{archived.length} superseded {archived.length === 1 ? 'version is' : 'versions are'} in the <a href={routes.archive}>archive</a>.</p>}
-
-  <h2>Standings</h2>
-  {top.length ? <LeaderboardTable models={top} compact /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
-  <p class="small muted"><a href={href(main.id)}>Every model, with intervals and head-to-head results →</a></p>
-
-  <h2>Rules</h2>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th>Version</th><th>Format</th><th>Teams</th><th>Bring</th><th>Thinking per turn</th></tr></thead>
-      <tbody>
-        {rules.map(([v, r]) => r ? (
-          <tr>
-            <td class="num">{v}</td><td class="num">{r.format}</td>
-            <td>{r.team_mode === 'draft' ? 'built by each model' : r.team_mode === 'random' ? 'dealt at random' : `fixed: ${r.teams.join(', ')}`}</td>
-            <td class="num">{r.pick ? `${r.pick} of 6` : 'all 6'}</td>
-            <td class="num">{r.thinking_budget ? `${r.thinking_budget.toLocaleString('en-US')} tokens` : r.reasoning}</td>
-          </tr>
-        ) : <tr><td class="num">{v}</td><td colspan="4" class="muted">rules stored on its first game</td></tr>)}
-      </tbody>
-    </table>
-  </div>
-</Base>
-
-<style>
-  .lede { font-size: 1.2rem; color: var(--text); }
-  .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.2rem 0 0.4rem; }
-  td .pill { margin-left: 0.5rem; }
-</style>
+<LeaderboardBoard board={benchBoards(bench)[0]} />

@@ -3,7 +3,8 @@
 export const routes = {
   home: '/',
   leaderboard: '/leaderboard/',
-  board: (id: string, main: boolean) => (main ? '/leaderboard/' : `/leaderboard/${id}/`),
+  // A benchmark's current leaderboard is its page (data.boardHref); these are Overall, categories, archived versions
+  board: (id: string) => `/leaderboard/${id}/`,
   benchmarks: '/benchmarks/',
   archive: '/benchmarks/archive/',
   bench: (id: string) => `/benchmarks/${id}/`,

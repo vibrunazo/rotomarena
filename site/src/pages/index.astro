@@ -48,7 +48,7 @@ const stats = [
       <h3><a href={routes.bench(bench.id)}>{bench.title}</a></h3>
       <p class="small muted">{bench.tagline}</p>
       {models.length ? <LeaderboardTable models={models} compact anchor={boards.find((b) => b.id === bench.main)?.anchor} /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
-      <p class="small muted"><a href={routes.board(bench.main!, bench.main === mainBoard.id)}>Full {bench.title} leaderboard →</a></p>
+      <p class="small muted"><a href={routes.bench(bench.id)}>Full {bench.title} leaderboard →</a></p>
     </section>
   ))}
   <p class="small muted">Updated {fmtDate(meta.generated_at.slice(0, 10).replaceAll('-', ''))}.</p>

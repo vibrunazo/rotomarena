@@ -1,11 +1,11 @@
 ---
 // Superseded versions: still browsable, out of the way. Each keeps its own leaderboard page.
 import Base from '../../layouts/Base.astro';
-import { archivedBoards, benches, fmtInt, mainBoard } from '../../lib/data';
+import { archivedBoards, benches, fmtInt } from '../../lib/data';
 import { routes } from '../../lib/routes';
 
 const sections = benches.map((bench) => ({ bench, boards: archivedBoards(bench) })).filter((s) => s.boards.length);
-const href = (id: string) => routes.board(id, id === mainBoard.id);
+const href = (id: string) => routes.board(id);
 ---
 <Base title="Archive" description="Superseded benchmark versions, kept for the record.">
   <h1>Archive</h1>
