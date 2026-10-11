@@ -1,5 +1,5 @@
 ---
-import { routes } from '../lib/routes';
+import { leaderboardHref } from '../lib/data';
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Page not found" description="This page fainted.">
@@ -7,6 +7,6 @@ import Base from '../layouts/Base.astro';
   <h1>This page fainted.</h1>
   <p class="prose">
     The page you were looking for is unable to battle. It may have been moved, retracted, or never existed, which
-    in our experience is the most common case. <a href={routes.leaderboard}>Return to the leaderboard</a>.
+    in our experience is the most common case. <a href={leaderboardHref()}>Return to the leaderboard</a>.
   </p>
 </Base>

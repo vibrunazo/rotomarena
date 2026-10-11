@@ -37,6 +37,8 @@ export const boardHref = (board: Board) => {
   const bench = benches.find((b) => b.main === board.id);
   return bench ? routes.bench(bench.id) : routes.board(board.id);
 };
+/** The leaderboard: the main benchmark's page. */
+export const leaderboardHref = () => routes.bench(liveBenches[0].id);
 export const archivedBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !!b.archived);
 
 type Finding = { id: string; show: boolean; [key: string]: unknown };

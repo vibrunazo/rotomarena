@@ -3,7 +3,7 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from '../components/LeaderboardTable.astro';
 import Findings from '../components/Findings.astro';
-import { allModels, boardModels, boards, fmtDate, fmtInt, isModel, liveBenches, mainBoard, meta } from '../lib/data';
+import { allModels, boardModels, boards, fmtDate, fmtInt, isModel, leaderboardHref, liveBenches, mainBoard, meta } from '../lib/data';
 
 const llms = (await allModels()).filter((m) => isModel(m) && m.games > 0);
 // Each benchmark's standings, top five of its main leaderboard
@@ -31,7 +31,7 @@ const stats = [
       95% bootstrap intervals, because we are a serious benchmark.<sup class="fn-ref"><a href="#fn-serious">1</a></sup>
     </p>
     <p class="cta">
-      <a class="hud-cta" href={routes.leaderboard}>View the leaderboard</a>
+      <a class="hud-cta" href={leaderboardHref()}>View the leaderboard</a>
       <a class="hud-btn" href={routes.paper}>Read the paper</a>
     </p>
   </section>

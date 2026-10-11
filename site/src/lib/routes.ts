@@ -2,7 +2,6 @@
 // means changing these paths, moving the page files, and adding redirects in netlify.toml.
 export const routes = {
   home: '/',
-  leaderboard: '/leaderboard/',
   // A benchmark's current leaderboard is its page (data.boardHref); these are Overall, categories, archived versions
   board: (id: string) => `/leaderboard/${id}/`,
   benchmarks: '/benchmarks/',
