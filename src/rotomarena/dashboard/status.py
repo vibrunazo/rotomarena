@@ -5,6 +5,7 @@ recent games, spending and a rough finish time. Read-only: nothing here changes 
 from __future__ import annotations
 
 import asyncio
+import dataclasses
 import datetime
 import json
 import math
@@ -18,7 +19,8 @@ from typing import Any, Dict, List, Optional
 from rotomarena.config import AppConfig
 from rotomarena.local_servers import local_agents
 from rotomarena.dashboard.driver import GAMES_PER_PAIR
-from rotomarena.ladder import cap_exempt, games_left, pair_target, quick_pairs_first, round_robin_ids, round_robin_pairs, version_state
+from rotomarena.ladder import cap_exempt, games_left, pair_target, round_robin_ids, schedule, version_state
+from rotomarena.rating import compute_ratings
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
 from rotomarena.teams.draft import draft_cost, load_drafts, playable_team
@@ -130,7 +132,10 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     drafts = load_drafts(version=version, fmt=app_cfg.ruleset.format)
     ids = round_robin_ids(app_cfg)
     sitting_out = [k for k, a in app_cfg.agents.items() if a.is_model and a.active and k not in ids]
-    pairs = quick_pairs_first(round_robin_pairs(ids), app_cfg)
+    # ratings without their bootstrap (the page polls this): enough to rank whom a capped model meets
+    rated = dataclasses.replace(state, ratings=compute_ratings(
+        state.outcomes, anchor=app_cfg.anchor_for(), anchor_rating=app_cfg.ladder.anchor_rating, bootstrap_samples=1))
+    pairs = schedule(app_cfg, rated, GAMES_PER_PAIR)
     left = {k: games_left(app_cfg, app_cfg.agents[k]) for k in ids}
     plan = []
     for i, (a, b) in enumerate(pairs, 1):
