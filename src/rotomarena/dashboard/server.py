@@ -83,6 +83,9 @@ def serve(config_file: str, host: str, port: int) -> None:
             app_cfg = AppConfig.load(config_file)  # re-read: models join and leave between runs
             data: Dict[str, Any] = status(app_cfg)
             data["live"] = asyncio.run(live_battles(app_cfg))
+            for battle in data["live"]:  # display names, not lane usernames ("Opus 5.5 6")
+                shown = live_names([battle.get("p1") or "", battle.get("p2") or ""], app_cfg)
+                battle["p1"], battle["p2"] = (shown.get(battle.get(k), battle.get(k)) for k in ("p1", "p2"))
             body = json.dumps(data).encode("utf-8")
             cache["status"] = (time.time(), body)
             return body
