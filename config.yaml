@@ -228,9 +228,14 @@ local_llm:
 # role: anchor (fixed reference), sparring (free standing opponent) or contestant (default).
 agents:
   # Anchors (free, never change). Bonsai, the rating anchor, is in the local lineup below.
+  # Second control (10 Oct, Champions c4): PokéChamp's search without its language model. The chimps show whether a
+  # model plays better than random; PokéChamp whether it plays better than a damage calculator. Borrows its
+  # opponent's team like them.
   pokechamp:
     type: "pokechamp"
-    role: "anchor"
+    display_name: "PokéChamp"
+    battle_name: "PokeChamp"
+    role: "control"
 
   # Free API sparring partners
   nemotron_3_ultra:

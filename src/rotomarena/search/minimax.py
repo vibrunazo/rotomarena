@@ -93,7 +93,9 @@ class PokeChampSearchEngine:
             if worst_opp_score > best_score:
                 best_score = worst_opp_score
                 best_label = label
-                best_order = SingleBattleOrder(act_obj, terastallize=is_tera) if act_type == "MOVE" else SingleBattleOrder(act_obj)
+                # Champions: Mega Evolve at the first chance, as strong players do (a free ~100 base stat points)
+                best_order = (SingleBattleOrder(act_obj, terastallize=is_tera, mega=bool(battle.can_mega_evolve))
+                              if act_type == "MOVE" else SingleBattleOrder(act_obj))
             alpha = max(alpha, best_score)
 
         telemetry.best_action = best_label

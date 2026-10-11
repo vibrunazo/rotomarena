@@ -10,12 +10,18 @@ from rotomarena.search.heuristics import evaluate_battle_state, get_type_effecti
 DEFAULT_SWITCH_COST = 0.1  # sweep vs MaxDamage, 40 games per value: 0 -> 43% wins, 0.1 -> 66% (best for both bots)
 
 
+def _level(mon: Pokemon) -> int:
+    return getattr(mon, "level", None) or 100
+
+
 def _estimate_stat(mon: Pokemon, key: str) -> float:
-    """Level-100 stat from base stats, assuming 31 IVs, 84 EVs and a neutral nature."""
+    """The stat at the Pokémon's own level (50 in Champions, 100 in Gen 9 OU) from its base stats, assuming 31 IVs,
+    84 EVs (about 10 of Champions' Stat Points) and a neutral nature. Estimating at level 100 against our own
+    level-50 stats made every opponent look twice as fast and strong in Champions: each move scored the same, a
+    knockout taken first, and the bot switched turn after turn (1 win in 40 against the max-damage and random bots)."""
     base = (mon.base_stats or {}).get(key, 80)
-    if key == "hp":
-        return 2 * base + 31 + 21 + 110
-    return 2 * base + 31 + 21 + 5
+    core = (2 * base + 31 + 21) * _level(mon) // 100
+    return core + _level(mon) + 10 if key == "hp" else core + 5
 
 
 def _stat(mon: Pokemon, key: str) -> float:
@@ -64,7 +70,8 @@ def _damage_fraction(
     if physical and attacker.status == Status.BRN and attacker.ability != "guts":
         atk_stat *= 0.5
 
-    raw_damage = (42.0 * power * (atk_stat / max(1.0, def_stat))) / 50.0 + 2.0
+    level_factor = 2 * _level(attacker) / 5 + 2  # 42 at level 100, 22 at level 50
+    raw_damage = (level_factor * power * (atk_stat / max(1.0, def_stat))) / 50.0 + 2.0
     return min(1.0, max(0.0, raw_damage * stab * type_mult / _max_hp(defender)))
 
 
@@ -165,7 +172,9 @@ def simulate_turn_outcome(
         player_dmg *= 0.5  # the hit lands on a switch-in, likely one that resists it
     opp_dmg = _opponent_attack(battle, opp_action_type, opp_action_target, active)
 
-    if _stat(active, "spe") >= _stat(opp, "spe"):
+    opp_move = opp.moves.get(opp_action_target) if opp_action_type == "MOVE" else None
+    priority = (player_move.priority or 0) - ((opp_move.priority or 0) if opp_move else 0)
+    if priority > 0 or (priority == 0 and _stat(active, "spe") >= _stat(opp, "spe")):  # priority, then speed
         # Player moves first: a KO means the opponent never attacks
         if opp_action_type != "SWITCH" and player_dmg >= opp.current_hp_fraction:
             delta = 0.5

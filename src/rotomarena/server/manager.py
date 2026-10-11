@@ -328,6 +328,14 @@ class ShowdownServerManager:
         return False
 
     @asynccontextmanager
+    async def joined(self) -> AsyncIterator[ShowdownServerManager]:
+        """Plays on the server a live run already has up (test games beside a run): starts and stops nothing.
+        Its players need names of their own, which the run's never use (bots and scratch registry entries)."""
+        if not self._live_run() or not await self.is_server_healthy(timeout=2.0):
+            raise RuntimeError("No run's Showdown server is up to join: run without --join")
+        yield self
+
+    @asynccontextmanager
     async def ensure_running(self) -> AsyncIterator[ShowdownServerManager]:
         """Runs a fresh Showdown server for the duration of a run. A server that is already running may hold
         battles abandoned by an earlier, interrupted run (timers are off, so they never end), and bots logging

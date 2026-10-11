@@ -406,6 +406,8 @@ def run_battle(
     provider: str = typer.Option("openrouter", "--provider", help="LLM provider when not set per player"),
     model: Optional[str] = typer.Option(None, "--model", "-m", help="LLM model when not set per player (default: the provider's)"),
     config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file with the agents registry"),
+    join: bool = typer.Option(False, "--join", help="Play on the Showdown server a running ladder has up, starting and "
+                              "stopping nothing (bots and API models only: local servers belong to the run)"),
 ):
     """Run a 1v1 battle series between two agents (a test game: under the version being played, so point --config at
     a scratch config with its own ruleset version and output folder). Own-teams versions play the players' drafted
@@ -443,14 +445,17 @@ def run_battle(
 
     server_mgr = ShowdownServerManager(app_cfg.server)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
+    if join and local_servers.local_agents([p1_cfg, p2_cfg]):
+        console.print("[bold red]--join plays beside a run: local models would take its servers. Use bots or API models.[/bold red]")
+        raise typer.Exit(1)
 
     async def _execute():
-        async with server_mgr.ensure_running():
+        async with (server_mgr.joined() if join else server_mgr.ensure_running()):
             player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg)
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(
                 player_1, player_2, first_team, second_team, n_games=games,
-                before_game=lambda: local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print),
+                before_game=None if join else lambda: local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print),
                 own_teams=own,
             )
 

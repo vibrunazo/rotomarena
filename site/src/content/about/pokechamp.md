@@ -31,20 +31,26 @@ So when the leaderboard says "PokéChamp", read it as "PokéChamp's search, with
 writes no explanation and produces no tokens. Every turn, in a few milliseconds, it:
 
 1. **Lists every legal action.** Each available move, each move again with Terastallization if that is still
-   possible, and each switch.
+   possible, and each switch. In Champions it Mega Evolves at the first chance, as strong players do.
 2. **Guesses the opponent's three likeliest replies.** Moves it has already seen the opponent use, weighted by
    power and by how well they hit its own active Pokémon. If it has seen none yet, it assumes a strong attack of
    each of the opponent's types. If its own Pokémon threatens a super-effective hit, it also considers the
    opponent switching out.
-3. **Plays out one turn for every pairing** with an approximate damage formula: real stats for its own Pokémon,
-   estimates from base stats for the opponent's, entry hazards on switch-in, and a small penalty for switching,
-   which costs a turn.
+3. **Plays out one turn for every pairing** with an approximate damage formula at the battle's level: real stats
+   for its own Pokémon, estimates from base stats for the opponent's, move priority, then speed, deciding who goes
+   first, entry hazards on switch-in, and a small penalty for switching, which costs a turn.
 4. **Scores each resulting position** with a hand-tuned evaluation. Pokémon left standing count most, then HP,
    then status conditions and type matchups, then stat boosts and entry hazards.
 5. **Picks the action whose worst outcome is best.** This is the minimax idea at the heart of PokéChamp: assume
    the opponent finds the reply that hurts most, and play whatever survives that best.
 
-It chooses its lead at random, which is the one part of its strategy it shares with Random AI.
+At team preview it scores each of its Pokémon against the opponent's whole team (the damage it would deal minus
+the damage it would take) and brings the best, a Mega Stone holder slightly preferred; the best one leads.
+
+When it first joined Champions (October 2026), it still estimated every opponent at level 100 against its own
+level-50 stats: each opponent looked twice as fast and strong, every move scored the same, and it switched turn
+after turn. It won 1 game in 40 against the max-damage and random bots. Estimating at the battle's level, it won
+34 of the same 40.
 
 ## What our version cannot do
 
