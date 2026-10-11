@@ -12,7 +12,8 @@ const player = z.object({
   model_key: z.string().nullable(), // the weights' id across games and providers ('org/model'); null for bots
   quantization: z.string().nullable(),
   role: z.string(),
-  username: z.string().optional(), // its Showdown name in this game (the replay's trainer label)
+  username: z.string().optional(), // its Showdown name in this game (with a lane number in parallel games)
+  replay_name: z.string().optional(), // the replay's trainer label: its display name, or username in a mirror match
   team: z.string(),
   autopilot_rate: z.number(),
 });

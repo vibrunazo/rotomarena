@@ -12,10 +12,11 @@ const w = winner(m);
 const models = await modelsById();
 const title = m.players.map((p) => p.display_name).join(' vs ');
 const tokens = m.decisions.reduce((n, d) => n + d.tokens, 0);
-// Who brought which three (bring-N formats), for the replay's ring: {Showdown username: [species ids]}
-const brought = Object.fromEntries(m.decisions.filter((d) => d.turn === 0 && d.action.kind === 'bring').map((d) => [
-  m.players.find((p) => p.role === d.role)?.username ?? '', d.action.target.split(','),
-]));
+// Who brought which three (bring-N formats), for the replay's ring: {name in the replay: [species ids]}
+const brought = Object.fromEntries(m.decisions.filter((d) => d.turn === 0 && d.action.kind === 'bring').map((d) => {
+  const p = m.players.find((x) => x.role === d.role);
+  return [p?.replay_name ?? p?.username ?? '', d.action.target.split(',')];
+}));
 const cost = m.decisions.reduce((n, d) => n + d.cost_usd, 0);
 ---
 <Base title={title} description={`${title}: replay and turn-by-turn reasoning.`}>

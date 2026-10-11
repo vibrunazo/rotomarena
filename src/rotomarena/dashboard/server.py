@@ -19,6 +19,7 @@ from rotomarena.config import AppConfig
 from rotomarena.dashboard.control import start_run, stop_run
 from rotomarena.dashboard.relay import relay
 from rotomarena.dashboard.status import live_battles, status
+from rotomarena.replay_names import live_names, rename_players
 
 PAGE = Path(__file__).with_name("page.html")
 WATCH = Path(__file__).with_name("watch.html")
@@ -33,6 +34,12 @@ def serve(config_file: str, host: str, port: int) -> None:
     battles = relay(app.server.websocket_url)
     live_dir = Path(app.telemetry.output_dir) / "live"
 
+    def names(room: str) -> Dict[str, str]:
+        """{username: display name} for this battle's players (their lane numbers dropped), from its |player| lines."""
+        lines, _, _ = battles.lines(room)
+        users = [l.split("|")[3] for l in lines if l.startswith("|player|") and len(l.split("|")) > 3 and l.split("|")[3]]
+        return live_names(list(dict.fromkeys(users)), app)
+
     def thoughts(room: str, start: int) -> list:
         """The players' decisions in this battle so far (written by the run as it plays), from `start`."""
         try:
@@ -40,11 +47,14 @@ def serve(config_file: str, host: str, port: int) -> None:
         except OSError:
             return []
         out = []
+        shown = names(room)
         for row in rows[start:]:
             try:
-                out.append(json.loads(row))
+                decision = json.loads(row)
             except ValueError:
                 break  # a line still being written: fetch it next time
+            decision["player"] = shown.get(decision.get("player"), decision.get("player"))
+            out.append(decision)
         return out
 
     def watch_page(room: str) -> bytes:
@@ -54,6 +64,7 @@ def serve(config_file: str, host: str, port: int) -> None:
                 break
             time.sleep(0.1)
             lines, _, joined = battles.lines(room)
+        lines = rename_players(lines, names(room))
         players = {l.split("|")[2]: l.split("|")[3] for l in lines if l.startswith("|player|") and len(l.split("|")) > 3}
         title = " vs ".join(players.get(p, "?") for p in ("p1", "p2")) if players else room
         page = (WATCH.read_text(encoding="utf-8")
@@ -89,6 +100,7 @@ def serve(config_file: str, host: str, port: int) -> None:
                 tstart = int(m.group(1)) if (m := re.search(r"(?:^|&)tfrom=(\d+)", query)) else 0
                 room = path[len("/api/battle/"):]
                 lines, ended, _ = battles.lines(room, start)
+                lines = rename_players(lines, names(room))
                 body = {"lines": lines, "ended": ended, "thoughts": thoughts(room, tstart)}
                 self._send(200, "application/json", json.dumps(body).encode("utf-8"))
             elif path == "/api/status":

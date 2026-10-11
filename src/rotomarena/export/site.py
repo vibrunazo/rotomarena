@@ -19,6 +19,7 @@ from rotomarena.results import autopilot_rate, load_matches, player_turns, void_
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
 from rotomarena.teams.draft import _id, load_drafts, team_species
 from rotomarena.teams.loader import parse_smogon_team
+from rotomarena.replay_names import rename_players, shown_names
 from rotomarena.telemetry.replay_saver import flatten_logs
 
 RETRACTED_SEASON = "v0"
@@ -116,6 +117,14 @@ def model_key(player: MatchPlayer, app_cfg: AppConfig) -> Optional[str]:
 def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> Dict[str, Any]:
     winner_role = next((p.role for p in match.players if p.username == match.winner), None)
     max_autopilot = app_cfg.ladder.max_autopilot
+
+    def shown(p: MatchPlayer) -> str:
+        # the name it has now (Random AI became Chimps at the Zoo), not the one it played under
+        agent = app_cfg.agents.get(p.config_id)
+        return agent.display_name if agent and agent.display_name else p.display_name
+
+    # the replay shows display names, not Showdown usernames with their lane numbers ("Opus 5.5 2")
+    names = shown_names({p.username: shown(p) for p in match.players})
     return {
         "id": match.match_id,
         "game": GAME,
@@ -124,16 +133,14 @@ def match_record(match: MatchTelemetry, runs_dir: Path, app_cfg: AppConfig) -> D
         "date": match.match_id.split("_")[1] if match.match_id.count("_") > 1 else "",
         "players": [
             {**p.model_dump(), "model_key": model_key(p, app_cfg), "autopilot_rate": round(autopilot_rate(match, p.role), 3),
-             # the name it has now (Random AI became Chimps at the Zoo), not the one it played under
-             "display_name": (app_cfg.agents[p.config_id].display_name if p.config_id in app_cfg.agents
-                              and app_cfg.agents[p.config_id].display_name else p.display_name)}
+             "display_name": shown(p), "replay_name": names.get(p.username, p.username)}
             for p in match.players
         ],
         "winner_role": winner_role,
         "turns": match.total_turns,
         "duration_seconds": match.duration_seconds,
         "void_reason": void_reason(match, max_autopilot),
-        "log": _raw_log(runs_dir, match.match_id),
+        "log": rename_players(_raw_log(runs_dir, match.match_id), names),
         "decisions": _turn_entries(match),
     }
 
