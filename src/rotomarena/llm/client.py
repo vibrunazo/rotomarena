@@ -310,6 +310,13 @@ class LLMClient:
         usage = response.usage
         details = getattr(usage, "completion_tokens_details", None) if usage else None
         cost = _extra(usage, "cost")
+        if _extra(usage, "is_byok"):
+            # Our own provider key (Claude on the Max plan's API credits): `cost` is OpenRouter's fee, usually 0; the
+            # site ranks what the model costs, the upstream price
+            details_cost = _extra(usage, "cost_details")
+            upstream = (details_cost.get("upstream_inference_cost") if isinstance(details_cost, dict)
+                        else _extra(details_cost, "upstream_inference_cost"))
+            cost = upstream or cost
         prompt_tokens = (usage.prompt_tokens or 0) if usage else 0
         completion_tokens = (usage.completion_tokens or 0) if usage else 0
         estimated = None

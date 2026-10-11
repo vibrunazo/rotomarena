@@ -107,6 +107,9 @@ rulesets:
       muse_spark_1_3: "medium"   # 10 Oct: was minimal (~250 of 2,048 tokens); medium ~1,400. Only its games replay
     provider_routing:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
+      # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
+      claude_sonnet_5_5: ["Anthropic"]
+      claude_opus_5_5: ["Anthropic"]
     agent_versions:
       pokechamp: 3   # 11 Oct: v2 ability immunities, no switching that only delays a knockout; v3 status moves (Protect, setup, hazards, healing, status)
 
@@ -356,6 +359,26 @@ agents:
     model: "anthropic/claude-haiku-5.5"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
+  # Paid from the Max plan's monthly Claude API credits (OpenRouter BYOK, Anthropic only: see c4's provider_routing),
+  # not OpenRouter credits. List prices 20x and 40x Haiku's: about $0.15 and $0.30 a game in Champions (11 Oct)
+  claude_sonnet_5_5:
+    type: "direct_llm"
+    display_name: "Claude Sonnet 5.5"
+    battle_name: "Sonnet 5.5"   # Showdown names stop at 16 characters here
+    provider: "openrouter"
+    model: "anthropic/claude-sonnet-5.5"
+    max_games: 0
+    extra_games: {c4: 63}
+    weights: "closed"
+  claude_opus_5_5:
+    type: "direct_llm"
+    display_name: "Claude Opus 5.5"
+    battle_name: "Opus 5.5"
+    provider: "openrouter"
+    model: "anthropic/claude-opus-5.5"
+    max_games: 0
+    extra_games: {c4: 63}
     weights: "closed"
   gpt_6_luna:
     type: "direct_llm"
