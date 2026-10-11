@@ -11,19 +11,21 @@ title: Muse Spark 1.3, and its thinking exception
 
 ## Why it plays by a slightly different rule
 
-Every model in this version may think for up to 1,024 tokens per turn, then answer. Meta's endpoint ignores that
-budget: asked for 1,024 tokens of thinking, Muse Spark thought for about 2,000 and ran into the per-turn cap before
-it could answer, on 24 of its first 53 turns. A cut-off answer plays the default move, so about half of its moves
-weren't its own.
+Every model in a version may think for up to the same number of tokens per turn, then answer. Muse Spark can't be
+given a number: [Meta's API](https://dev.meta.ai/docs/reasoning) controls its thinking only by effort level (minimal,
+low, medium, high, xhigh), and a token budget sent through OpenRouter becomes one of those levels, which it overshoots.
+In the first Champions versions, asked for 1,024 tokens of thinking, it thought for about 2,000 and ran into the
+per-turn cap before answering on 24 of its first 53 turns. A cut-off answer plays the default move, so about half
+of its moves weren't its own.
 
-The endpoint does follow effort levels, so Muse Spark gets the strongest one that stays within the budget,
-"minimal" (about 335 tokens of thinking in our tests), instead of the token count. The exception is recorded in this
-version's rules. Its first two games, played before it, are voided, and it drafted its team again under the
-exception.
+So Muse Spark gets an effort level instead of the token count, recorded in each version's rules as its exception:
+
+- **Champions c1 to c3** (1,024 tokens for everyone): "minimal", about 335 tokens of thinking in our tests.
+- **Champions c4** (2,048 tokens): "medium", a median of about 1,400 in our tests, sometimes more. It played its
+  first 45 c4 games on "minimal", which left most of its budget unused; when the exception changed, those games were
+  retired and replayed, and nobody else's games were touched.
 
 ## Things to know
 
-- **It thinks less than the others.** About a third of the budget, where most models use most of it. That is a
-  handicap, but a smaller one than losing half its turns.
-- **It is capped at 8 games** for now, like the other paid models; the two voided games count toward the cap, since
-  they were paid for.
+- **It now thinks about as much as the others,** where it used to get about a third of the budget.
+- **It is capped at 63 games in Champions c4,** like the other paid models: three against each opponent.
