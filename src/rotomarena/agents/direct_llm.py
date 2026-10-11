@@ -16,6 +16,8 @@ from rotomarena.llm.prompts import format_battle_state, format_team_preview, sys
 from rotomarena.llm.schemas import ActionDecision
 
 # What a model hears when its answer can't be played and it has another try (ruleset.answer_attempts)
+MAX_ANSWER = 6000  # characters of the visible answer kept in the breadcrumbs (its end, where the decision is)
+
 RETRY_PROMPT = ("Your answer could not be played: {problem}. Answer again for the same turn: a short <thought>, then "
                 "a <decision> holding exactly one action from LEGAL ACTIONS THIS TURN, written as it is listed.")
 
@@ -126,7 +128,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             return fallback_order
 
         llm_metrics = metrics.model_dump() if metrics else None
-        retried = dict(attempts=attempts, first_try=first_try)
+        retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
         if order is None:
             fallback_order = self.choose_default_order(battle)
             if source == "parse_error":
@@ -180,7 +182,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              "<decision>LEAD: one species from YOUR TEAM</decision>."),
                 timeout=self.turn_timeout)
-            retried = dict(attempts=attempts, first_try=first_try)
+            retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
             if match is None:
                 note = f"[{'PARSE ERROR' if source == 'parse_error' else 'INVALID'}] {problem}."
             else:
@@ -231,7 +233,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                              f"<decision>BRING: {self.pick} different species from YOUR TEAM, comma-separated, the "
                              "leader first</decision>."),
                 timeout=self.turn_timeout)
-            retried = dict(attempts=attempts, first_try=first_try)
+            retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
             if source == "parse_error":
                 note = f"[PARSE ERROR] {problem}."
             elif source == "invalid":

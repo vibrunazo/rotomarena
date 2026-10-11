@@ -56,6 +56,9 @@ class TurnBreadcrumb(BaseModel):
     # Tries the decision took (ruleset.answer_attempts), and why the first one failed with what it said
     attempts: int = 1
     first_try: str = ""
+    # The model's visible answer as written, tags and all (its last try): format slips show here, such as Opus 5.5's
+    # thought without its <thought> tags, which the parser still reads
+    answer: str = ""
     timestamp: str = ""
 
 

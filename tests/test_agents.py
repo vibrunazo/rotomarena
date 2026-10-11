@@ -188,6 +188,7 @@ async def test_a_failed_answer_gets_a_second_try_told_what_was_wrong():
     bad = ActionDecision(action_type="MOVE", target="fly", raw_response="<decision>MOVE: fly</decision>",
                          metrics=LLMUsageMetrics(prompt_tokens=100, cost_usd=0.001))
     good = ActionDecision(action_type="MOVE", target="earthquake", reasoning="Ground beats Heatran.",
+                          raw_response="Ground beats Heatran.\n<decision>MOVE: earthquake</decision>",
                           metrics=LLMUsageMetrics(prompt_tokens=120, cost_usd=0.002))
     player, recorder = _llm_player(side_effect=[bad, good])
     player.answer_attempts = 2
@@ -197,6 +198,7 @@ async def test_a_failed_answer_gets_a_second_try_told_what_was_wrong():
     assert retry[0] == "<decision>MOVE: fly</decision>" and "'MOVE: fly' is not a legal action" in retry[1]
     crumb = recorder.breadcrumbs[-1]
     assert crumb.decision_source == "model" and crumb.attempts == 2 and crumb.first_try.startswith("'MOVE: fly'")
+    assert crumb.answer == "Ground beats Heatran.\n<decision>MOVE: earthquake</decision>"  # as written, the last try
     assert crumb.llm_metrics["prompt_tokens"] == 220 and abs(crumb.llm_metrics["cost_usd"] - 0.003) < 1e-9
 
 

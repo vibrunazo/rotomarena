@@ -87,6 +87,7 @@ class BaseBenchmarkPlayer(Player):
         probabilities: Optional[Dict[str, float]] = None,
         attempts: int = 1,
         first_try: str = "",
+        answer: str = "",
     ) -> None:
         """Records a structured breadcrumb entry for this turn."""
         if not self.breadcrumbs_recorder:
@@ -126,6 +127,7 @@ class BaseBenchmarkPlayer(Player):
             probabilities=probabilities,
             attempts=attempts,
             first_try=first_try,
+            answer=answer,
             timestamp=datetime.datetime.now().isoformat(),
         )
         self.breadcrumbs_recorder.record_turn(crumb, battle.battle_tag)

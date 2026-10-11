@@ -44,3 +44,11 @@ does, and "Regulation M-B" also names Champions' doubles rules. Sonnet 5.5 built
 Rock Slide, Tailwind), Haiku 5.5 too (Rage Powder), Gemma, Muse, GLM and MiniCPM partly. Next version: the rules line
 "Singles: one Pokémon on the field per side; you bring 3 of your 6 to each battle and choose which." Sonnet and Opus
 play only the top 5 in c4 (15 games) and get their full runs then.
+
+## Battle prompt: state the answer format (next version)
+The battle prompt shows the format only by example: "Keep <thought> to 2-4 short sentences" and an example answer
+with both tags, while the turn's message ends "Choose exactly one action from LEGAL ACTIONS." Opus 5.5 dropped the
+<thought> tags on 80% of its c4 turns (its decisions were always tagged and right; the parser now reads an untagged
+thought before <decision>). Next version: a rule "Answer in exactly this form: <thought>...</thought> then
+<decision>...</decision>", repeated as the last line of every turn's message. Breadcrumbs keep each raw answer
+(`answer`) from 11 Oct, so format slips can be counted per model.
