@@ -1,7 +1,7 @@
 ---
 // The Showdown replay player, fed the raw battle log. Ported from telemetry/replay_saver.py.
-interface Props { log: string[] }
-const { log } = Astro.props;
+interface Props { log: string[]; brought?: Record<string, string[]> }
+const { log, brought = {} } = Astro.props;
 // Showdown's convention for a log inlined in <script>: every "/" becomes "\/", so the log can never contain
 // "</script>"; replay-embed.js turns them back.
 const logText = log.join('\n').replaceAll('/', '\\/');
@@ -55,6 +55,35 @@ const logText = log.join('\n').replaceAll('/', '\\/');
 </script>
 <script is:inline type="text/plain" class="battle-log-data" set:html={logText} />
 <script is:inline src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
+<script is:inline define:vars={{ brought }}>
+  // Ring the Pokémon each player brought (bring-N formats). Showdown keeps the picks hidden until each switches
+  // in, so they come from our own records: {username: [species ids, the lead first]}.
+  window.markBrought = function (picks) {
+    function id(s) { return String(s || '').toLowerCase().replace(/\s*\(.*$/, '').replace(/[^a-z0-9]/g, ''); }
+    function apply() {
+      document.querySelectorAll('.battle .trainer').forEach(function (trainer) {
+        var name = ((trainer.querySelector('strong') || {}).textContent || '').trim();
+        var ids = picks[name] || [];
+        trainer.querySelectorAll('.picon').forEach(function (icon) {
+          var label = id(icon.getAttribute('aria-label') || icon.title);
+          // a base name before the forme is revealed (Rotom for Rotom-Wash), a longer one after Mega Evolving
+          var brought = !!label && ids.some(function (x) { return x.indexOf(label) === 0 || label.indexOf(x) === 0; });
+          if (icon.classList.contains('brought') !== brought) icon.classList.toggle('brought', brought);
+        });
+      });
+    }
+    apply();
+    var battle = document.querySelector('.battle');
+    if (battle && !battle.dataset.ringed) {
+      battle.dataset.ringed = '1';
+      new MutationObserver(function () { window.markBrought.refresh(); }).observe(battle, {childList: true, subtree: true});
+    }
+    window.markBrought.refresh = apply;
+  };
+  var ring = setInterval(function () {
+    if (document.querySelector('.battle .trainer')) { clearInterval(ring); window.markBrought(brought); }
+  }, 300);
+</script>
 <script is:inline>
   // The site is dark only. Showdown picks its theme from the system scheme (body.dark) and resets it when the
   // scheme changes, so pin its dark theme after it does.
@@ -70,4 +99,5 @@ const logText = log.join('\n').replaceAll('/', '\\/');
   .replay-scroll { overflow-x: auto; margin: 1rem 0; }
   .replay-wrapper { min-width: 640px; max-width: 1180px; margin: 0 auto; font-family: var(--font-body); }
   .noscript-note { margin-top: 0; }
+  :global(.battle) :global(.picon.brought) { border-radius: 50%; box-shadow: 0 0 0 2px #f6c945; opacity: 1 !important; }
 </style>

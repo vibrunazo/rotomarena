@@ -7,7 +7,7 @@ interface Props { match: Match }
 const { match } = Astro.props;
 const names = Object.fromEntries(match.players.map((p) => [p.role, p.display_name]));
 
-const verb: Record<string, string> = { move: 'used', switch: 'switched to', lead: 'led with' };
+const verb: Record<string, string> = { move: 'used', switch: 'switched to', lead: 'led with', bring: 'brought' };
 const tags: Record<string, { label: string; cls: string; title: string }> = {
   timeout: { label: 'autopilot', cls: 'warn', title: 'No answer before the hang guard; default move played' },
   api_error: { label: 'autopilot', cls: 'warn', title: 'The provider returned an error; default move played' },

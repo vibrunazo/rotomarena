@@ -25,6 +25,7 @@
   .thought { margin: 4px 0 0; white-space: pre-wrap; font-size: 0.92rem; }
   .flag { color: #ffb547; font-size: 0.8rem; }
   #nothoughts { color: var(--dim); font-size: 0.9rem; }
+  .battle .picon.brought { border-radius: 50%; box-shadow: 0 0 0 2px #f6c945; opacity: 1 !important; }
 </style>
 </head>
 <body class="dark">
@@ -78,6 +79,31 @@
 <script type="text/plain" class="battle-log-data">__LOG__</script>
 <script src="https://play.pokemonshowdown.com/js/replay-embed.js"></script>
 <script>
+  // Ring the Pokémon each player brought (bring-N formats). Showdown keeps the picks hidden until each switches
+  // in, so they come from our own records: {username: [species ids, the lead first]}.
+  window.markBrought = function (picks) {
+    function id(s) { return String(s || '').toLowerCase().replace(/\s*\(.*$/, '').replace(/[^a-z0-9]/g, ''); }
+    function apply() {
+      document.querySelectorAll('.battle .trainer').forEach(function (trainer) {
+        var name = ((trainer.querySelector('strong') || {}).textContent || '').trim();
+        var ids = picks[name] || [];
+        trainer.querySelectorAll('.picon').forEach(function (icon) {
+          var label = id(icon.getAttribute('aria-label') || icon.title);
+          // a base name before the forme is revealed (Rotom for Rotom-Wash), a longer one after Mega Evolving
+          var brought = !!label && ids.some(function (x) { return x.indexOf(label) === 0 || label.indexOf(x) === 0; });
+          if (icon.classList.contains('brought') !== brought) icon.classList.toggle('brought', brought);
+        });
+      });
+    }
+    apply();
+    var battle = document.querySelector('.battle');
+    if (battle && !battle.dataset.ringed) {
+      battle.dataset.ringed = '1';
+      new MutationObserver(function () { window.markBrought.refresh(); }).observe(battle, {childList: true, subtree: true});
+    }
+    window.markBrought.refresh = apply;
+  };
+  var picks = {};  // username -> the species it brought, from its team preview decision
   var room = __ROOM_JSON__;
   var next = __COUNT__;
   var tnext = 0;
@@ -135,7 +161,14 @@
         var d = await r.json();
         d.lines.forEach(function (line) { battle.add(line); });
         next += d.lines.length;
-        if (d.thoughts.length) { decisions = decisions.concat(d.thoughts); tnext += d.thoughts.length; renderThoughts(); }
+        if (d.thoughts.length) {
+          decisions = decisions.concat(d.thoughts); tnext += d.thoughts.length; renderThoughts();
+          decisions.forEach(function (x) {
+            var m = x.turn === 0 && /bring=(\S+)/.exec(x.action || '');
+            if (m) picks[x.player] = m[1].split(',');
+          });
+          window.markBrought(picks);
+        }
         ended = d.ended;
         live.textContent = (ended ? 'Battle over' : '● Live') + ' · turn ' + (battle.turn || 0) + ' · ' + new Date().toLocaleTimeString();
       } catch (e) {

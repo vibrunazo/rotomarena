@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import random
+from types import SimpleNamespace
 from typing import Optional
 from poke_env.battle import Battle
 from poke_env.player import BattleOrder
@@ -26,6 +28,22 @@ class RandomBenchmarkPlayer(BaseBenchmarkPlayer):
             team=team,
             **kwargs,
         )
+
+    def teampreview(self, battle: Battle) -> str:
+        """A random order, as poke-env's default; recorded, so the site can show which ones it brought."""
+        members = list(battle.team.values())
+        order = list(range(len(members)))
+        random.shuffle(order)
+        message = self.bring_order(battle, order)
+        picked = [members[int(c) - 1].species for c in message.split()[1]]
+        bring_n = self.pick and self.pick < len(members)
+        self.record_turn_telemetry(
+            battle=battle,
+            chosen_order=SimpleNamespace(message=f"{message} bring={','.join(picked)}" if bring_n
+                                         else f"{message} lead={picked[0]}"),
+            reasoning="Randomly chosen team." if bring_n else "Randomly chosen lead.",
+        )
+        return message
 
     def choose_move(self, battle: Battle) -> BattleOrder:
         order = self.choose_random_move(battle)
