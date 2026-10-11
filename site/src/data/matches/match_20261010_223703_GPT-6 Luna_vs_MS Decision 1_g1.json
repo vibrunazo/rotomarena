@@ -1,0 +1,414 @@
+{
+  "id": "match_20261010_223703_GPT-6 Luna_vs_MS Decision 1_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p1",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1",
+      "role": "p2",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 39.97,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|GPT-6 Luna vs. MS Decision 1",
+    "|j|☆GPT-6 Luna",
+    "|j|☆MS Decision 1",
+    "|gametype|singles",
+    "|player|p1|GPT-6 Luna|265|",
+    "|player|p2|MS Decision 1|102|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Dragonite, L50, F|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Primarina, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Scizor, L50, F|",
+    "|poke|p2|Greninja, L50, M|",
+    "|poke|p2|Palafin, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Primarina|Primarina, L50, F|187/187",
+    "|move|p2a: Dragapult|Sucker Punch||[still]",
+    "|-fail|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Primarina",
+    "|-resisted|p1a: Primarina|1",
+    "|-damage|p1a: Primarina|160/187",
+    "|move|p1a: Primarina|Moonblast|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Primarina",
+    "|-damage|p1a: Primarina|0 fnt",
+    "|faint|p1a: Primarina",
+    "|-damage|p2a: Garchomp|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|turn|4",
+    "|",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|-damage|p1a: Garchomp|161/183|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|faint|p2a: Garchomp",
+    "|-damage|p1a: Garchomp|143/183|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|-damage|p1a: Garchomp|125/183|[from] item: Life Orb",
+    "|",
+    "|win|GPT-6 Luna",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 58% BRING: dragapult, 27% BRING: garchomp, 5% BRING: gholdengo\nPick 2: 71% BRING: garchomp, 20% BRING: gholdengo, 5% BRING: scizor\nPick 3: 84% BRING: gholdengo, 9% BRING: scizor, 6% BRING: greninja",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5454,
+      "latency_ms": 3033,
+      "cost_usd": 0.000229068,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,primarina,kingambit",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp pressures Gholdengo and Scizor, while Primarina covers the opposing dragons and Water-types. Kingambit adds priority to help against faster threats such as Dragapult and Greninja.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2333,
+      "latency_ms": 9261,
+      "cost_usd": 0.00034259,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: suckerpunch, 26% MOVE: shadowball, 12% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1308,
+      "latency_ms": 471,
+      "cost_usd": 5.4936e-05,
+      "probabilities": {
+        "MOVE: hex": 0.040526356986747905,
+        "MOVE: shadowball": 0.26426504351650953,
+        "MOVE: suckerpunch": 0.3845033695002268,
+        "MOVE: uturn": 0.12482996761584784,
+        "SWITCH: garchomp": 0.11016205977072108,
+        "SWITCH: gholdengo": 0.07571320260994686
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Primarina",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult may outspeed Garchomp and threaten it with a super-effective Dragon attack. Primarina is immune to Dragon moves and can pressure Dragapult back with Moonblast, making the switch the safer play.",
+      "hidden_reasoning": "**Evaluating battle strategy**\n\nI need to choose between Dragapult and Garchomp. Dragapult is faster, which is beneficial, and it might be able to use Dragon Claw to take Garchomp down. With its HP range and damage estimates, I see some uncertainty around guaranteed knockouts. Primarina could be a safer choice, as it's immune to dragon moves and can retaliate effectively. I think switching to Primarina is my best bet for a strong matchup against the opposing Dragapult.**Deciding on a switch**\n\nI need to reason through whether a short name could be a deciding factor for a bad matchup. It seems like a switch might be necessary, but I want to ensure I'm making the right choice. I should consider what aspects of each option provide the best advantages and whether a name really plays into that or just adds confusion. Making a clear and strategic decision is key here. Let's think this through carefully!",
+      "note": "",
+      "tokens": 1590,
+      "latency_ms": 6881,
+      "cost_usd": 0.000314925,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: suckerpunch, 41% SWITCH: garchomp, 12% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1259,
+      "latency_ms": 491,
+      "cost_usd": 5.2878e-05,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.4683102676378722,
+        "SWITCH: garchomp": 0.41328236063898505,
+        "SWITCH: gholdengo": 0.11840737172314271
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Moonblast is super effective and Primarina’s strongest option against Dragapult. Speed favors Dragapult, but attacking now gives the best chance to take it out before it can deal more damage.",
+      "hidden_reasoning": "**Evaluating attack options**\n\nI need to choose Moonblast because Dragapult is faster and it’s super effective. With a special attack of around 195, it might score a knockout. Although the damage isn’t guaranteed—hitting Primarina with a Sucker Punch failed before due to her entering. This time, I estimate that Moonblast might deal around 95-110%, possibly OHKOing her. Sucker Punch’s priority matters, but it seems using Moonblast is still my best option here.",
+      "note": "",
+      "tokens": 1605,
+      "latency_ms": 5198,
+      "cost_usd": 0.000305175,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "73% SWITCH: garchomp, 27% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1160,
+      "latency_ms": 546,
+      "cost_usd": 4.872e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.7310585727705127,
+        "SWITCH: gholdengo": 0.2689414272294874
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: earthquake, 24% MOVE: dracometeor, 11% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1450,
+      "latency_ms": 551,
+      "cost_usd": 6.09e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.23998895054390945,
+        "MOVE: earthquake": 0.5080565820057816,
+        "MOVE: stealthrock": 0.07791300493282116,
+        "MOVE: swordsdance": 0.06067870925312736,
+        "SWITCH: gholdengo": 0.11336275326436038
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Primarina is slower, but Moonblast is super effective and has a strong chance to knock out Garchomp before it can attack. Switching gives up that immediate pressure.",
+      "hidden_reasoning": "**Calculating moonblast effectiveness**\n\nI need to assess whether moonblast can likely achieve OHKO against Garchomp. Primarina has a 195 Special Attack against Garchomp's defense of around 103-161. With HP reaching 215, its effectiveness could be about 90-106%. If Garchomp hits Primarina with an Earthquake, it could deal over 110 damage. I'll calculate the odds of Primarina surviving while focusing on Garchomp's potential to switch. In this scenario, deploying Moonblast seems like the best option despite uncertainties.",
+      "note": "",
+      "tokens": 1708,
+      "latency_ms": 5464,
+      "cost_usd": 0.0003128,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Kingambit is weak to the opposing Garchomp’s revealed Earthquake, making it a dangerous switch-in. Our Garchomp takes Earthquake neutrally and can challenge it in the mirror.",
+      "hidden_reasoning": "**Analyzing switch options**\n\nI need to decide whether to switch Pokémon. The opponent's Garchomp is at 90 HP, and it might be faster than mine since its speed is unknown but can go up to 169, while my Garchomp is at 169 as well. This could lead to a speed tie. If my Garchomp uses Earthquake, it would be neutral, but the opponent has a Life Orb that increases damage, which could lead to a potential KO. My alternate option is Kingambit, but it would be weak to Earthquake. So I should probably switch to my Garchomp.",
+      "note": "",
+      "tokens": 1546,
+      "latency_ms": 5083,
+      "cost_usd": 0.0002828,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: earthquake, 21% MOVE: dracometeor, 10% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1499,
+      "latency_ms": 545,
+      "cost_usd": 6.2958e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.21028549862507367,
+        "MOVE: earthquake": 0.5716152837719123,
+        "MOVE: stealthrock": 0.0414076698054125,
+        "MOVE: swordsdance": 0.0773597117206502,
+        "SWITCH: gholdengo": 0.09933183607695144
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragon Claw is super effective and deals far more than Earthquake; switching Kingambit risks a disastrous Ground hit. Speed is uncertain, but attacking is the best chance to win the mirror.",
+      "hidden_reasoning": "**Evaluating battle strategy**\n\nI’m considering whether to use Dragon Claw against my opponent who's at 90% health. If I go with Dragon Claw, it should do around 60-72% damage since my Garchomp has 182 attack with Life Orb. It seems like it won't guarantee a one-hit knockout, though. The opposing Earthquake could do a significant amount of damage due to its effectiveness as well. I reckon Dragon Claw is the better choice, but there's still a risk with the speed tie!",
+      "note": "",
+      "tokens": 1724,
+      "latency_ms": 4603,
+      "cost_usd": 0.00030055,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: gholdengo": 1.0
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "69% MOVE: shadowball, 12% MOVE: ironhead, 11% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1546,
+      "latency_ms": 495,
+      "cost_usd": 6.4932e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.08256333854708957,
+        "MOVE: ironhead": 0.12012894874823132,
+        "MOVE: recover": 0.10601342518105775,
+        "MOVE: shadowball": 0.6912942875236213
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is faster, and Earthquake is super effective against Gholdengo with Life Orb backing it. This is the strongest reliable attack and should threaten a knockout before Gholdengo can move.",
+      "hidden_reasoning": "**Considering EQ and Gholdengo**\n\nI need to focus on choosing Earthquake (EQ). Gholdengo might have an unknown move related to air balloons, but I'm not sure about that. EQ is likely to deliver a knockout or be very effective, especially if it’s faster. I want to mention its speed and the potential for a knockout. Hmm, I think emphasizing the effectiveness against this Pokémon is crucial, especially if it can hit hard and fast.",
+      "note": "",
+      "tokens": 1655,
+      "latency_ms": 2902,
+      "cost_usd": 0.0002458,
+      "probabilities": null
+    }
+  ]
+}
