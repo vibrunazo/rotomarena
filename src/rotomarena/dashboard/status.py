@@ -123,6 +123,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     version = app_cfg.ruleset.version
     state = version_state(app_cfg, rate=False)  # counts only: the page polls this
     matches = state.matches
+    paid = load_matches(app_cfg.telemetry.output_dir, version)  # spending counts retired (superseded) games too
     max_autopilot = app_cfg.ladder.max_autopilot
 
     # The schedule, exactly as round_robin builds it
@@ -205,8 +206,9 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         mine = [m for m in matches if any(p.config_id == k for p in m.players)]
         valid = [m for m in mine if not void_reason(m, max_autopilot)]
         wins = sum(1 for m in valid if any(p.config_id == k and p.username == m.winner for p in m.players))
-        # Every game it finished in this version, voided ones too (they were paid for), plus all its drafting
-        games_cost = sum((c.llm_metrics or {}).get("cost_usd") or 0 for m in mine for c in m.breadcrumbs
+        # Every game it finished in this version, voided and retired ones too (they were paid for), plus its drafting
+        bought = [m for m in paid if any(p.config_id == k for p in m.players)]
+        games_cost = sum((c.llm_metrics or {}).get("cost_usd") or 0 for m in bought for c in m.breadcrumbs
                          if any(p.config_id == k and p.username == c.agent_name for p in m.players))
         drafting = draft_cost(drafts.get(k) or {})
         models.append({
@@ -215,6 +217,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
             "planned": sum(p["planned"] for p in plan if k in (p["a"], p["b"])),
             "wins": wins, "losses": len(valid) - wins, "void": len(mine) - len(valid),
             "games_cost_usd": round(games_cost, 4), "draft_cost_usd": round(drafting, 4),
+            "cost_per_game_usd": round(games_cost / len(bought), 4) if bought else None,
             "cost_usd": round(games_cost + drafting, 4), "cap": a.cap(version), "sec_per_turn": round(secs[k], 1) if k in secs else None,
         })
     models.sort(key=lambda m: (-(m["done"] / m["planned"]) if m["planned"] else 0, m["name"]))
