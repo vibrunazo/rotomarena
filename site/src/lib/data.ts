@@ -84,8 +84,11 @@ export function roleLabel(role: string): string | null {
   return { anchor: 'anchor', sparring: 'sparring partner', control: 'control group' }[role] ?? null;
 }
 
-/** What a role tag means, for its tooltip. */
-export function roleTitle(role: string): string | undefined {
+/** What a role tag means, for its tooltip (`type`: which control bot it is). */
+export function roleTitle(role: string, type?: string): string | undefined {
+  if (role === 'control' && type === 'pokechamp') {
+    return 'A search bot: it simulates one turn of every move and switch against the replies it expects, and plays the safest. A model below it plays worse than a simple calculator';
+  }
   return {
     anchor: 'The fixed point of the rating scale: pinned at 1500, so every other rating is measured against it',
     sparring: 'Plays every new model during placement, so the top of the table has a strong common opponent',

@@ -22,7 +22,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
       <button type="button" data-filter="structure" data-value="" aria-pressed="true">all</button>
       <button type="button" data-filter="structure" data-value="llm" aria-pressed="false" title="Language models: they write their move as text">LLM</button>
       <button type="button" data-filter="structure" data-value="system1" aria-pressed="false" title="System-1 decision models: a probability for each legal move, no text">System-1</button>
-      <button type="button" data-filter="structure" data-value="bot" aria-pressed="false" title="Scripted players, such as the chimps, picking at random">bot</button>
+      <button type="button" data-filter="structure" data-value="bot" aria-pressed="false" title="Scripted players: the chimps, which pick at random, and PokéChamp, a one-turn search">bot</button>
     </span>
     <span class="group">
       <button type="button" data-filter="open" data-value="1" aria-pressed="false" data-toggle title="Models whose weights are published">open weights</button>
@@ -57,7 +57,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
           <td class="r num rank" data-value={rank ?? 999}>{rank ?? '—'}</td>
           <td data-value={m.display_name}>
             <a href={routes.model(m.config_id)}>{m.display_name}</a>
-            {roleLabel(role(m)) && <span class="pill" title={roleTitle(role(m))}>{roleLabel(role(m))}</span>}
+            {roleLabel(role(m)) && <span class="pill" title={roleTitle(role(m), m.type)}>{roleLabel(role(m))}</span>}
             {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
             {m.quantization && <span class="muted small"> {m.quantization}</span>}
           </td>
