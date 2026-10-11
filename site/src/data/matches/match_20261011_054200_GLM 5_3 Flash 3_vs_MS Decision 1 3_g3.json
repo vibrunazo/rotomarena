@@ -1,0 +1,354 @@
+{
+  "id": "match_20261011_054200_GLM 5_3 Flash 3_vs_MS Decision 1 3_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261011",
+  "players": [
+    {
+      "config_id": "glm_5_3_flash",
+      "display_name": "GLM 5.3 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "z-ai/glm-5.3-flash",
+      "quantization": null,
+      "username": "GLM 5.3 Flash 3",
+      "role": "p1",
+      "team": "GLM 5.3 Flash's team",
+      "model_key": "z-ai/glm-5.3-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "GLM 5.3 Flash"
+    },
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1 3",
+      "role": "p2",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0,
+      "replay_name": "Microsoft-Decision-1"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 15.46,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|GLM 5.3 Flash 3 vs. MS Decision 1 3",
+    "|j|☆GLM 5.3 Flash",
+    "|j|☆Microsoft-Decision-1",
+    "|gametype|singles",
+    "|player|p1|GLM 5.3 Flash|265|",
+    "|player|p2|Microsoft-Decision-1|2|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Sylveon, L50, F|",
+    "|poke|p1|Dragonite, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Scizor, L50, F|",
+    "|poke|p2|Greninja, L50, F|",
+    "|poke|p2|Palafin, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|139/183",
+    "|-damage|p2a: Dragapult|87/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|move|p1a: Garchomp|Scale Shot|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|49/100",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|11/100",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|-hitcount|p2: Dragapult|3",
+    "|-unboost|p1a: Garchomp|def|1",
+    "|-boost|p1a: Garchomp|spe|1",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Garchomp|Earthquake|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|42/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|4",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|win|GLM 5.3 Flash",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,kingambit,sylveon",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp leads with Focus Sash to set Stealth Rock safely. Kingambit pressures their Gholdengo and Scizor, while Sylveon handles Dragapult and Greninja. This core covers their team well.",
+      "hidden_reasoning": "Pick core: Garchomp lead (rocks, sash), Gholdengo, Kingambit? Sylveon covers Dragapult/Greninja. Bring garchomp, sylveon, gholdengo? Kingambit weak to their fighting? Opponent has no fighting. Kingambit strong vs Gholdengo. I'll take garchomp, kingambit, sylveon.",
+      "note": "",
+      "tokens": 1837,
+      "latency_ms": 1932,
+      "cost_usd": 0.00013955,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 68% BRING: dragapult, 17% BRING: garchomp, 6% BRING: gholdengo\nPick 2: 70% BRING: garchomp, 23% BRING: gholdengo, 3% BRING: scizor\nPick 3: 84% BRING: gholdengo, 9% BRING: scizor, 6% BRING: greninja",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5457,
+      "latency_ms": 2330,
+      "cost_usd": 0.000229194,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: suckerpunch, 21% MOVE: shadowball, 11% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1309,
+      "latency_ms": 982,
+      "cost_usd": 5.4978e-05,
+      "probabilities": {
+        "MOVE: hex": 0.037084042720383584,
+        "MOVE: shadowball": 0.21340393147583017,
+        "MOVE: suckerpunch": 0.4517761264795426,
+        "MOVE: uturn": 0.11422689321332156,
+        "SWITCH: garchomp": 0.11422689321332156,
+        "SWITCH: gholdengo": 0.06928211289760047
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "scaleshot",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult is 4x weak to Dragon and may outspeed my Garchomp, so attacking now is best. Scaleshot's multi-hits should KO it before it can move, and the Speed boost helps going forward.",
+      "hidden_reasoning": "Dragapult may outspeed; scaleshot hits it super effectively and likely KOs (25 BP multihit, 4x weak). Best turn 1: scaleshot.",
+      "note": "",
+      "tokens": 1378,
+      "latency_ms": 1792,
+      "cost_usd": 9.442e-05,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: gholdengo, 38% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1109,
+      "latency_ms": 530,
+      "cost_usd": 4.6578e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.37754066879814546,
+        "SWITCH: gholdengo": 0.6224593312018546
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: garchomp, 31% MOVE: shadowball, 6% MOVE: flashcannon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1400,
+      "latency_ms": 542,
+      "cost_usd": 5.88e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.06161384917925102,
+        "MOVE: ironhead": 0.06161384917925102,
+        "MOVE: recover": 0.047984913988844136,
+        "MOVE: shadowball": 0.3129009446258507,
+        "SWITCH: garchomp": 0.5158864430268031
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is Steel/Ghost and weak to Ground, and my Garchomp outspeeds it. Earthquake hits it for super effective damage and is far better than resisted Scale Shot. Gholdengo is also immune to status, so Stealth Rock is wasted here.",
+      "hidden_reasoning": "Gholdengo is Steel/Ghost, immune to Earthquake? No—Ghost isn't immune to Ground (Levitate would be, but Gholdengo isn't). Earthquake is super effective (Steel weak to Ground). Garchomp outspeeds. EQ likely KOs or heavily damages. Gholdengo 100% HP, EQ from 182 Atk vs Def ~103-161 — likely big chunk, maybe KO. Scale Shot is resisted. EQ is best.",
+      "note": "",
+      "tokens": 1634,
+      "latency_ms": 1436,
+      "cost_usd": 0.0003046,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: earthquake, 21% MOVE: dracometeor, 10% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1451,
+      "latency_ms": 964,
+      "cost_usd": 6.0942e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.20639695233211502,
+        "MOVE: earthquake": 0.56104511841461,
+        "MOVE: stealthrock": 0.059133716900474954,
+        "MOVE: swordsdance": 0.07592919548342729,
+        "SWITCH: gholdengo": 0.0974950168693727
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "My Garchomp outspeeds and last turn's Earthquake did ~58%, so a second Earthquake KOs the opposing Garchomp before it moves. If they switch to Gholdengo, I lose that turn, but removing their Garchomp now is worth it.",
+      "hidden_reasoning": "Opposing Garchomp at 42%. My Garchomp outspeeds. Earthquake last turn dealt 58%? Actually it went from 100% to 42%, so EQ did ~58%. Another EQ KOs. But wait — did it? Turn 2: EQ brought it to 42%. So EQ again kills. But opponent might switch to Gholdengo (immune to EQ). Scale Shot also KOs (super effective, 2-5 hits). Risk: opponent switches to Gholdengo, EQ does nothing. Scale Shot hits Gholdengo neutrally... actually Dragon vs Steel/Ghost: Steel resists Dragon? No — Steel resists Dragon? Dragon is not resisted by Steel... Actually Steel does resist Dragon? No, Fairy is immune, Steel doesn't resist Dragon. Ghost neutral. So Scale Shot hits Gholdengo neutrally, weak per hit though. Best: EQ to KO Garchomp; if they stay, KO. If they switch, we got chip? No, EQ immune. Scale Shot guarantees damage on either. But EQ on Garchomp = KO (58%+ damage already shown). If they switch, we lose a turn but they lose momentum. EQ is fine — likely KO.",
+      "note": "",
+      "tokens": 1919,
+      "latency_ms": 2624,
+      "cost_usd": 0.0004023,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: gholdengo": 1.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: shadowball, 14% MOVE: recover, 9% MOVE: ironhead",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1424,
+      "latency_ms": 439,
+      "cost_usd": 5.9808e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.058697984976641346,
+        "MOVE: ironhead": 0.08540506419640133,
+        "MOVE: recover": 0.14080914596611682,
+        "MOVE: shadowball": 0.7150878048608406
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is Steel/Ghost, so Earthquake is super effective and we outspeed. It likely takes a big chunk or KO, and Gholdengo is immune to status so Stealth Rock is blocked by Good as Gold anyway.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1640,
+      "latency_ms": 6734,
+      "cost_usd": 9.55e-05,
+      "probabilities": null
+    }
+  ]
+}
