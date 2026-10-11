@@ -107,6 +107,31 @@ def _llama_speed(port: int) -> Optional[Dict[str, Any]]:
     return {"tok_s": float(speeds[-1]) if speeds else None, "last_write": _iso(log.stat().st_mtime)}
 
 
+_EARLIER_PACE: Dict[tuple, Dict[str, float]] = {}
+
+
+def _earlier_pace(app_cfg: AppConfig, version: str) -> Dict[str, float]:
+    """Seconds per decision measured in earlier versions, for a model that hasn't played this one yet: the newest
+    version of the same format first. A guess (25 s for any local model) made Bonsai and Ornith, held for last at
+    44-49 s a turn, look twice as fast, and the time left grew by hours once they started. Earlier versions don't
+    change while this one plays: read once per version."""
+    key = (str(app_cfg.telemetry.output_dir), version)
+    if key not in _EARLIER_PACE:
+        fmt = app_cfg.rulesets[version].format
+        order = [v for v in reversed(list(app_cfg.rulesets)) if v != version]
+        order.sort(key=lambda v: app_cfg.rulesets[v].format != fmt)  # stable: same format first, newest first
+        by_version: Dict[str, list] = {v: [] for v in order}
+        for m in load_matches(app_cfg.telemetry.output_dir):
+            if m.ruleset.get("version") in by_version:
+                by_version[m.ruleset["version"]].append(m)
+        pace: Dict[str, float] = {}
+        for v in order:
+            for k, s in _turn_seconds(by_version[v]).items():
+                pace.setdefault(k, s)
+        _EARLIER_PACE[key] = pace
+    return _EARLIER_PACE[key]
+
+
 def _turn_seconds(matches) -> Dict[str, float]:
     """Median seconds per decision for each model, from this version's games."""
     per: Dict[str, List[float]] = {}
@@ -153,6 +178,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
     # Time left, as a range: each remaining pair's games at its models' measured seconds per turn, for a short,
     # typical and long game (the 25th, 50th and 75th percentile of game lengths so far)
     secs = _turn_seconds(matches)
+    earlier = _earlier_pace(app_cfg, version)
     lengths = sorted(m.total_turns for m in matches)
     if len(lengths) >= 4:
         spread = {k: lengths[round(q * (len(lengths) - 1))] for k, q in (("low", 0.25), ("mid", 0.5), ("high", 0.75))}
@@ -160,7 +186,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         spread = {"low": DEFAULT_TURNS * 0.7, "mid": DEFAULT_TURNS, "high": DEFAULT_TURNS * 1.4}
 
     def turn_time(cid: str) -> float:
-        return secs.get(cid) or DEFAULT_TURN_SECONDS[_kind(app_cfg, cid)]
+        return secs.get(cid) or earlier.get(cid) or DEFAULT_TURN_SECONDS[_kind(app_cfg, cid)]
 
     def pair_seconds(p: Dict[str, Any], turns: float) -> float:
         games = p["planned"] - p["done"]
@@ -181,7 +207,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
                  for k, t in spread.items()}
     # a bot decides instantly, so only models can have a pace still to guess
     unmeasured = sorted({x for p in plan if p["done"] < p["planned"] for x in (p["a"], p["b"])
-                         if x not in secs and _kind(app_cfg, x) != "bot"})
+                         if x not in secs and x not in earlier and _kind(app_cfg, x) != "bot"})
     stamps = [datetime.datetime.strptime(m.match_id[6:21], "%Y%m%d_%H%M%S") for m in matches
               if re.match(r"match_\d{8}_\d{6}", m.match_id)]
     first_game = min(stamps) if stamps else None
