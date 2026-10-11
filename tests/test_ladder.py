@@ -608,5 +608,5 @@ def test_a_capped_model_spends_its_cap_on_the_strongest_opponents():
     }, {})
     pairs = strongest_opponents(round_robin_pairs(list(agents)), app_cfg, state, 3, log=lambda msg: None)
     opus_opponents = {a if b == "opus" else b for a, b in pairs if "opus" in (a, b)}
-    assert opus_opponents == {"new", "strong"}  # unrated newcomers first, then the top of the ladder
+    assert opus_opponents == {"strong", "mid"}  # the top of the ladder; unrated newcomers last
     assert len(pairs) == 10 - 2

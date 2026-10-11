@@ -37,3 +37,10 @@ cheap models, outside a run's Showdown server. The LLM drafting prompt would get
 
 **If it helps.** It changes the drafting rules (`decision_draft_prompt` and `draft_prompt` fingerprints), so it ships
 as a new version with every model re-drafted, never mid-version.
+
+## Champions draft prompt: say singles (next version)
+c4's draft prompt says "bring 3 of your 6" but never "singles": only the format name's "BSS" (Battle Stadium Singles)
+does, and "Regulation M-B" also names Champions' doubles rules. Sonnet 5.5 built for doubles (Protect x4, Fake Out,
+Rock Slide, Tailwind), Haiku 5.5 too (Rage Powder), Gemma, Muse, GLM and MiniCPM partly. Next version: the rules line
+"Singles: one Pokémon on the field per side; you bring 3 of your 6 to each battle and choose which." Sonnet and Opus
+play only the top 5 in c4 (15 games) and get their full runs then.

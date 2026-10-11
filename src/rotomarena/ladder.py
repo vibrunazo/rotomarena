@@ -326,10 +326,10 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
 
 def strongest_opponents(pairs: List[Tuple[str, str]], app_cfg: AppConfig, state: LadderState,
                          games_per_pair: int, log: Callable[[str], None] = print) -> List[Tuple[str, str]]:
-    """A model whose game cap can't cover all its pairs spends it on its strongest opponents: models not rated yet
-    (newcomers, whose strength is unknown) and then the highest rated, down the ladder while the cap lasts; its pairs
-    with the rest are dropped. Sonnet and Opus get 63 games for 25 opponents; without this the order of the rounds
-    decided which ones they skipped. Games already played count against the cap wherever they were played."""
+    """A model whose game cap can't cover all its pairs spends it on its strongest opponents: the highest rated,
+    down the ladder while the cap lasts (models not rated yet last); its pairs with the rest are dropped. Sonnet and
+    Opus play only the top 5 in c4; without this the order of the rounds decided whom a capped model met. Games
+    already played count against the cap wherever they were played."""
     version = app_cfg.ruleset.version
     drop: set = set()
     for x, agent in app_cfg.agents.items():
@@ -343,7 +343,7 @@ def strongest_opponents(pairs: List[Tuple[str, str]], app_cfg: AppConfig, state:
 
         def strength(pair: Tuple[str, str]) -> float:
             other = state.ratings.get(pair[0] if pair[1] == x else pair[1])
-            return float("inf") if other is None or other.rating is None else other.rating
+            return float("-inf") if other is None or other.rating is None else other.rating
 
         ranked.sort(key=strength, reverse=True)
         kept_cost, dropped = 0, []
