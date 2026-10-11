@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, benches, boardModels, boards, fmtCost, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
+import { allModels, benches, boardHref, boardModels, boards, fmtCost, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -12,6 +12,8 @@ export async function getStaticPaths() {
 
 const { model: m } = Astro.props as { model: Model };
 const llm = isModel(m);
+// Its standing on each current board (archived versions are on the archive page)
+const currentBoards = boards.filter((b) => !b.archived && m.boards[b.id]);
 const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x));
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
@@ -72,18 +74,18 @@ const facts: [string, string][] = [
     </section>
   )}
 
-  {Object.keys(m.boards).length > 1 && (
+  {currentBoards.length > 1 && (
     <section>
-      <h2>By leaderboard</h2>
+      <h2>By benchmark</h2>
       <div class="table-scroll">
         <table>
-          <thead><tr><th>Leaderboard</th><th class="r">Rating (95% CI)</th><th class="r">Games</th><th class="r">Record</th></tr></thead>
+          <thead><tr><th>Benchmark</th><th class="r">Rating (95% CI)</th><th class="r">Games</th><th class="r">Record</th></tr></thead>
           <tbody>
-            {boards.filter((b) => m.boards[b.id]).map((b) => {
+            {currentBoards.map((b) => {
               const s = m.boards[b.id];
               return (
                 <tr>
-                  <td><a href={b.id === mainBoard.id ? '/leaderboard/' : `/leaderboard/${b.id}/`}>{b.title}</a></td>
+                  <td><a href={boardHref(b)}>{b.kind === 'overall' ? 'All benchmarks' : benches.find((x) => x.main === b.id)?.title ?? b.title}</a></td>
                   <td class="r"><Rating model={s} /></td>
                   <td class="r num">{s.games}</td>
                   <td class="r num">{s.wins}–{s.losses}{s.draws ? `–${s.draws}` : ''}</td>
