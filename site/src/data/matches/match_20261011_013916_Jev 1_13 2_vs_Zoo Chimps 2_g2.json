@@ -1,0 +1,381 @@
+{
+  "id": "match_20261011_013916_Jev 1_13 2_vs_Zoo Chimps 2_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261011",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13 2",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "random_ai",
+      "display_name": "Chimps at the Zoo",
+      "agent_type": "random",
+      "provider": null,
+      "model": null,
+      "quantization": null,
+      "username": "Zoo Chimps 2",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": null,
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 3.44,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Jev 1.13 2 vs. Zoo Chimps 2",
+    "|j|☆Jev 1.13 2",
+    "|j|☆Zoo Chimps 2",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13 2|266|",
+    "|player|p2|Zoo Chimps 2|265|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Aegislash, L50, M|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Archaludon, L50, M|",
+    "|poke|p2|Aegislash, L50, F|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Archaludon, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Archaludon|Archaludon, L50, F|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Archaludon",
+    "|-damage|p2a: Archaludon|50/100g",
+    "|-unboost|p2a: Archaludon|spd|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|20/100y",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Archaludon|Archaludon, L50, F|50/100g",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|20/100y",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Archaludon|Archaludon, L50, F|50/100g",
+    "|turn|5",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Archaludon",
+    "|-damage|p2a: Archaludon|0 fnt",
+    "|faint|p2a: Archaludon",
+    "|",
+    "|win|Jev 1.13 2",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,archaludon,gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,aegislash",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 35% BRING: dragapult, 25% BRING: aegislash, 25% BRING: gholdengo\nPick 2: 56% BRING: gholdengo, 19% BRING: aegislash, 10% BRING: corviknight\nPick 3: 39% BRING: aegislash, 24% BRING: corviknight, 24% BRING: kingambit",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6553,
+      "latency_ms": 1271,
+      "cost_usd": 0.000275226,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Archaludon",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: shadowball, 14% SWITCH: aegislash, 13% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1703,
+      "latency_ms": 433,
+      "cost_usd": 7.1526e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.57,
+        "MOVE: dragondarts": 0.12,
+        "MOVE: uturn": 0.03,
+        "MOVE: thunderbolt": 0.01,
+        "SWITCH: gholdengo": 0.13,
+        "SWITCH: aegislash": 0.14
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "62% MOVE: shadowball, 20% SWITCH: aegislash, 18% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1630,
+      "latency_ms": 428,
+      "cost_usd": 6.846e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.62,
+        "SWITCH: gholdengo": 0.18,
+        "SWITCH: aegislash": 0.2
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "87% MOVE: shadowball, 8% SWITCH: gholdengo, 5% SWITCH: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1703,
+      "latency_ms": 419,
+      "cost_usd": 7.1526e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.87,
+        "SWITCH: gholdengo": 0.08,
+        "SWITCH: aegislash": 0.05
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Archaludon",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: shadowball, 23% SWITCH: gholdengo, 22% SWITCH: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1785,
+      "latency_ms": 424,
+      "cost_usd": 7.497e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.55,
+        "SWITCH: gholdengo": 0.23,
+        "SWITCH: aegislash": 0.22
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Archaludon",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "58% MOVE: shadowball, 21% SWITCH: gholdengo, 21% SWITCH: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1779,
+      "latency_ms": 441,
+      "cost_usd": 7.4718e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.58,
+        "SWITCH: gholdengo": 0.21,
+        "SWITCH: aegislash": 0.21
+      }
+    }
+  ]
+}
