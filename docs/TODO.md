@@ -1,6 +1,7 @@
 # TODO
 
 Things worth doing later, with enough context to start without the conversation they came from.
+The plan for the next Champions version and the simulator rework is `docs/plan-c5.md`.
 
 ## Drafting options with descriptions (test, then maybe a new version)
 
