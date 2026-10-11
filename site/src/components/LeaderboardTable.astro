@@ -18,10 +18,11 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
 ---
 {!compact && (
   <div class="filters" data-filters>
-    <span class="group"><span class="label">Answers with</span>
-      <button type="button" data-filter="answers" data-value="" aria-pressed="true">all</button>
-      <button type="button" data-filter="answers" data-value="text" aria-pressed="false" title="Language models: they write their move as text">text</button>
-      <button type="button" data-filter="answers" data-value="probabilities" aria-pressed="false" title="System-1 decision models: a probability for each legal move, no text">probabilities</button>
+    <span class="group"><span class="label">Structure</span>
+      <button type="button" data-filter="structure" data-value="" aria-pressed="true">all</button>
+      <button type="button" data-filter="structure" data-value="llm" aria-pressed="false" title="Language models: they write their move as text">LLM</button>
+      <button type="button" data-filter="structure" data-value="system1" aria-pressed="false" title="System-1 decision models: a probability for each legal move, no text">System-1</button>
+      <button type="button" data-filter="structure" data-value="bot" aria-pressed="false" title="Scripted players, such as the chimps, picking at random">bot</button>
     </span>
     <span class="group">
       <button type="button" data-filter="open" data-value="1" aria-pressed="false" data-toggle title="Models whose weights are published">open weights</button>
@@ -51,7 +52,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
     </thead>
     <tbody>
       {rows.map(({ m, rank }) => (
-        <tr data-answers={isModel(m) ? (m.type === 'decision' ? 'probabilities' : 'text') : 'bot'} data-open={m.weights === 'open' ? '1' : '0'}
+        <tr data-structure={isModel(m) ? (m.type === 'decision' ? 'system1' : 'llm') : 'bot'} data-open={m.weights === 'open' ? '1' : '0'}
             data-small={m.params_b != null && m.params_b <= SMALL_B ? '1' : '0'} data-tier={m.price_tier ?? ''} data-ranked={rank ? '1' : '0'}>
           <td class="r num rank" data-value={rank ?? 999}>{rank ?? '—'}</td>
           <td data-value={m.display_name}>
@@ -76,10 +77,10 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
 
 <script>
   // Filters: hide the rows that don't match, and number the rated models that remain (the ratings themselves are
-  // fitted over everyone, so they don't change). Bots only show while nothing is filtered.
+  // fitted over everyone, so they don't change). Bots show unfiltered, or alone under Structure: bot.
   for (const bar of document.querySelectorAll<HTMLElement>('[data-filters]')) {
     const table = bar.nextElementSibling!.querySelector('table')!;
-    const state: Record<string, string> = { answers: '', open: '', small: '', tier: '' };
+    const state: Record<string, string> = { structure: '', open: '', small: '', tier: '' };
     const apply = () => {
       const active = Object.values(state).some(Boolean);
       let n = 0;
@@ -87,7 +88,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
         Number(a.querySelector<HTMLElement>('.rank')!.dataset.value) - Number(b.querySelector<HTMLElement>('.rank')!.dataset.value));
       for (const row of rows) {
         const d = row.dataset;
-        const show = (!active || d.answers !== 'bot') && (!state.answers || d.answers === state.answers) &&
+        const show = (!active || d.structure !== 'bot' || state.structure === 'bot') && (!state.structure || d.structure === state.structure) &&
           (!state.open || d.open === '1') && (!state.small || d.small === '1') && (!state.tier || d.tier === state.tier);
         row.hidden = !show;
         const cell = row.querySelector<HTMLElement>('.rank')!;
