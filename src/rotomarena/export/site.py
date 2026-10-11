@@ -370,6 +370,8 @@ def _model_rows(state: LadderState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
             "config_id": config_id,
             "display_name": registry.display_name if registry and registry.display_name else identity.display_name,
             "type": identity.agent_type,
+            "weights": registry.weights if registry else None,
+            "params_b": registry.params_b if registry else None,
             "role": registry.role if registry else "contestant",
             "provider": identity.provider,
             "model": identity.model,
@@ -389,6 +391,36 @@ def _model_rows(state: LadderState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
     return rows
 
 
+def price_tiers(app_cfg: AppConfig, cost: Dict[str, float]) -> List[Dict[str, Any]]:
+    """The tiers with their dollar edges ({name, low, high}), from the config and the reference models' costs per
+    game (`cost`: config id -> cost in the main benchmark). Tiers whose reference model hasn't played are left out."""
+    tiers, low = [], 0.0
+    refs = [(t, cost.get(t.like or "", 0.0)) for t in app_cfg.price_tiers]
+    present = [(t, c) for t, c in refs if not t.like or c > 0]
+    for i, (t, c) in enumerate(present):
+        if not t.under and not t.like:
+            tiers.append({"name": t.name, "low": 0.0, "high": 0.0})  # free
+            continue
+        nxt = present[i + 1] if i + 1 < len(present) else None
+        if t.under:
+            high = t.under
+        elif nxt and nxt[0].like:
+            high = round((c * nxt[1]) ** 0.5, 5)
+        else:
+            high = None
+        tiers.append({"name": t.name, "low": low, "high": high})
+        low = high if high is not None else low
+    return tiers
+
+
+def tier_of(cost: float, tiers: List[Dict[str, Any]]) -> Optional[str]:
+    for t in tiers:
+        if (cost == 0 and t["high"] == 0.0) or (cost > 0 and t["high"] != 0.0 and cost >= t["low"]
+                                                and (t["high"] is None or cost < t["high"])):
+            return t["name"]
+    return None
+
+
 def _write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(scrub(data), indent=2, ensure_ascii=False), encoding="utf-8")
@@ -405,6 +437,14 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
     state = states[boards[0].id] if set(boards[0].versions) == set(all_versions) else versions_state(app_cfg, all_versions)
     retracted = load_matches(runs_dir, RETRACTED_SEASON)
     models = _model_rows(state, app_cfg)
+    # Price tiers, by cost per game in the main benchmark (the first bench's current board)
+    main_id = next((b.id for bench in app_cfg.benches for b in boards if b.bench == bench.id and not b.archived), boards[0].id)
+    main_cost = {row["config_id"]: model_stats(row["config_id"], states[main_id].matches)["cost_per_game_usd"]
+                 for row in models}
+    tiers = price_tiers(app_cfg, main_cost)
+    for row in models:
+        row["tier_cost_usd"] = main_cost[row["config_id"]] or row["cost_per_game_usd"]
+        row["price_tier"] = tier_of(row["tier_cost_usd"], tiers) if row["type"] in MODEL_TYPES else None
     for row in models:  # each model's standing on every board; top-level rating fields are the main board's
         row["boards"] = {b.id: r for b in boards if (r := _board_rating(states[b.id], row["config_id"], app_cfg))}
         main = row["boards"].get(boards[0].id)
@@ -456,6 +496,7 @@ def export_site(app_cfg: AppConfig, out_dir: str | Path) -> Dict[str, int]:
                     for bench in app_cfg.benches],
         "ruleset": app_cfg.ruleset.model_dump(),
         "ladder": app_cfg.ladder.model_dump(),
+        "price_tiers": tiers,
         "matches": len(state.matches),
         "rated_matches": len(state.outcomes),
         "void_matches": state.void_count,

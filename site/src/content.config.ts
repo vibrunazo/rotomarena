@@ -73,6 +73,10 @@ const models = defineCollection({
     hallucinated_move_rate: z.number(),
     tokens_per_turn: z.number().nullable(),
     cost_per_game_usd: z.number(),
+    weights: z.enum(['open', 'closed']).nullable().optional(),
+    params_b: z.number().nullable().optional(), // total parameters (billions), when published
+    price_tier: z.string().nullable().optional(), // by cost per game in the main benchmark (meta.price_tiers)
+    tier_cost_usd: z.number().optional(),
     switch_rate: z.number(),
     signature_move: z.string().nullable(),
     most_used_pokemon: z.string().nullable(),

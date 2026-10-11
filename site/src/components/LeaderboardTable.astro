@@ -10,7 +10,29 @@ const { models, compact = false, anchor } = Astro.props;
 const role = (m: Model) => (m.config_id === anchor ? 'anchor' : m.role === 'anchor' ? 'contestant' : m.role);
 let rank = 0;
 const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++rank : null }));
+const tiers = ((meta as any).price_tiers ?? []) as { name: string; low: number; high: number | null }[];
+const SMALL_B = 36;  // "small": published total parameters, 36B or less
+const tierTitle = (t: { name: string; low: number; high: number | null }) =>
+  t.high === 0 ? 'Costs nothing: local models and free tiers' :
+  `Cost per game in the main benchmark: ${t.low ? `$${t.low}` : '$0'}${t.high ? ` to $${t.high}` : ' and up'}`;
 ---
+{!compact && (
+  <div class="filters" data-filters>
+    <span class="group"><span class="label">Answers with</span>
+      <button type="button" data-filter="answers" data-value="" aria-pressed="true">all</button>
+      <button type="button" data-filter="answers" data-value="text" aria-pressed="false" title="Language models: they write their move as text">text</button>
+      <button type="button" data-filter="answers" data-value="probabilities" aria-pressed="false" title="System-1 decision models: a probability for each legal move, no text">probabilities</button>
+    </span>
+    <span class="group">
+      <button type="button" data-filter="open" data-value="1" aria-pressed="false" data-toggle title="Models whose weights are published">open weights</button>
+      <button type="button" data-filter="small" data-value="1" aria-pressed="false" data-toggle title={`Published total size of ${SMALL_B}B parameters or less (undisclosed sizes are left out)`}>{SMALL_B}B or smaller</button>
+    </span>
+    {tiers.length > 0 && <span class="group"><span class="label">Price</span>
+      <button type="button" data-filter="tier" data-value="" aria-pressed="true">all</button>
+      {tiers.map((t) => <button type="button" data-filter="tier" data-value={t.name} aria-pressed="false" title={tierTitle(t)}>{t.name}</button>)}
+    </span>}
+  </div>
+)}
 <div class="table-scroll">
   <table class="leaderboard" data-sortable>
     <thead>
@@ -29,8 +51,9 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
     </thead>
     <tbody>
       {rows.map(({ m, rank }) => (
-        <tr>
-          <td class="r num" data-value={rank ?? 999}>{rank ?? '—'}</td>
+        <tr data-answers={isModel(m) ? (m.type === 'decision' ? 'probabilities' : 'text') : 'bot'} data-open={m.weights === 'open' ? '1' : '0'}
+            data-small={m.params_b != null && m.params_b <= SMALL_B ? '1' : '0'} data-tier={m.price_tier ?? ''} data-ranked={rank ? '1' : '0'}>
+          <td class="r num rank" data-value={rank ?? 999}>{rank ?? '—'}</td>
           <td data-value={m.display_name}>
             <a href={routes.model(m.config_id)}>{m.display_name}</a>
             {roleLabel(role(m)) && <span class="pill" title={roleTitle(role(m))}>{roleLabel(role(m))}</span>}
@@ -52,6 +75,40 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
 </div>
 
 <script>
+  // Filters: hide the rows that don't match, and number the rated models that remain (the ratings themselves are
+  // fitted over everyone, so they don't change). Bots only show while nothing is filtered.
+  for (const bar of document.querySelectorAll<HTMLElement>('[data-filters]')) {
+    const table = bar.nextElementSibling!.querySelector('table')!;
+    const state: Record<string, string> = { answers: '', open: '', small: '', tier: '' };
+    const apply = () => {
+      const active = Object.values(state).some(Boolean);
+      let n = 0;
+      const rows = [...table.tBodies[0].rows].sort((a, b) =>
+        Number(a.querySelector<HTMLElement>('.rank')!.dataset.value) - Number(b.querySelector<HTMLElement>('.rank')!.dataset.value));
+      for (const row of rows) {
+        const d = row.dataset;
+        const show = (!active || d.answers !== 'bot') && (!state.answers || d.answers === state.answers) &&
+          (!state.open || d.open === '1') && (!state.small || d.small === '1') && (!state.tier || d.tier === state.tier);
+        row.hidden = !show;
+        const cell = row.querySelector<HTMLElement>('.rank')!;
+        if (d.ranked === '1') cell.textContent = show ? String(++n) : cell.dataset.value!;
+      }
+    };
+    bar.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button');
+      if (!btn) return;
+      const key = btn.dataset.filter!;
+      if (btn.hasAttribute('data-toggle')) {
+        state[key] = state[key] ? '' : btn.dataset.value!;
+        btn.setAttribute('aria-pressed', String(!!state[key]));
+      } else {
+        state[key] = btn.dataset.value!;
+        bar.querySelectorAll(`button[data-filter="${key}"]`).forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      }
+      apply();
+    });
+  }
+
   // Sort by clicking a header; a second click reverses. Rows keep their data-value for numbers.
   for (const table of document.querySelectorAll<HTMLTableElement>('table[data-sortable]')) {
     const headers = [...table.tHead!.rows[0].cells];
@@ -80,6 +137,12 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
 </script>
 
 <style>
+  .filters { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 0.75rem 0; font-size: 0.85rem; }
+  .filters .group { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
+  .filters .label { color: var(--muted, #8a93a6); margin-right: 0.15rem; }
+  .filters button { font: inherit; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--border, #2a3550);
+    background: transparent; color: inherit; cursor: pointer; }
+  .filters button[aria-pressed="true"] { border-color: var(--accent, #43e0ff); color: var(--accent, #43e0ff); }
   .leaderboard td .pill { margin-left: 0.4rem; }
   .leaderboard td a { font-weight: 500; }
 </style>

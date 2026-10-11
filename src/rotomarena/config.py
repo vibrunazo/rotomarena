@@ -293,6 +293,13 @@ class AgentConfig(BaseModel):
         description="Its Showdown username when display_name is too long: Showdown allows 18 characters and a set's "
         "second game adds \" 2\", so 16 keep it whole (battle footage showed \"GPT-6 Luna Decisio\")",
     )
+    weights: Optional[Literal["open", "closed"]] = Field(
+        default=None, description="open: its weights are published (the site's 'open weights' filter)",
+    )
+    params_b: Optional[float] = Field(
+        default=None, gt=0, description="Total parameters in billions, when published (the site's size filter; "
+        "undisclosed sizes stay out of it)",
+    )
     max_games: Optional[int] = Field(
         default=None, ge=0, description="At most this many games in each version (a spending cap for paid models); "
         "schedules skip it once reached",
@@ -405,6 +412,16 @@ class BenchmarkConfig(BaseModel):
     )
 
 
+class PriceTier(BaseModel):
+    """A price tier on the site, by cost per game in the main benchmark. `under`: a fixed upper edge in dollars.
+    `like`: a reference model; the edge between two reference tiers is halfway (geometrically) between their
+    models' costs, and a tier whose model hasn't played yet isn't shown. The first tier, without either, is 'free'."""
+
+    name: str
+    under: Optional[float] = None
+    like: Optional[str] = None
+
+
 class LeaderboardConfig(BaseModel):
     """A ranking: Bradley-Terry ratings fitted over the rated games of some ruleset versions. Games are played once;
     boards are views over them (Overall, a category, one benchmark), recomputed on every export."""
@@ -430,6 +447,7 @@ class AppConfig(BaseSettings):
     )
     play: Optional[str] = Field(default=None, description="The version ladder and draft commands play by default")
     benches: List[BenchConfig] = Field(default_factory=list)
+    price_tiers: List[PriceTier] = Field(default_factory=list, description="The site's price tiers, cheapest first")
     ladder: LadderConfig = Field(default_factory=LadderConfig)
     providers: Dict[str, ProviderConfig] = Field(default_factory=provider_presets)
     agents: Dict[str, AgentConfig] = Field(default_factory=dict)

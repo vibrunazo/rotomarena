@@ -109,6 +109,17 @@ rulesets:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
 
 # The benchmark families the site presents like SWE-bench's: each has its own page and leaderboard tab.
+# The site's price tiers, by cost per game in the main benchmark: a fixed edge, or a reference model (the edge
+# between two reference tiers is halfway, geometrically, between their models' costs; a tier whose model hasn't
+# played isn't shown). Free = costs nothing (local models, free tiers).
+price_tiers:
+  - {name: "free"}
+  - {name: "pocket change", under: 0.002}
+  - {name: "cheap", like: "claude_haiku_5_5"}
+  - {name: "mid", like: "gpt_6_luna_pro"}
+  - {name: "expensive", like: "claude_sonnet_5_5"}
+  - {name: "very expensive", like: "claude_opus_5_5"}
+
 benches:
   - id: "rotom-champ-bench"
     title: "Rotom Champ Bench"
@@ -228,6 +239,8 @@ agents:
     role: "sparring"
     provider: "openrouter"
     model: "nvidia/nemotron-3-ultra-550b-a55b:free"
+    weights: "open"
+    params_b: 560.5
   gemma_4_31b:
     type: "direct_llm"
     display_name: "Gemma 4 31B"
@@ -235,6 +248,8 @@ agents:
     provider: "openrouter"
     model: "google/gemma-4-31b-it:free"
     max_parallel_games: 1   # Google's 16k input tokens/min on the free tier: 4 lanes at once hit it on turn 2
+    weights: "open"
+    params_b: 31.3
 
   # Season 1 local lineup (draft). model = the Smooth Generator catalog key (gen llm serve --model);
   # model_key = the original weights ('org/model', OpenRouter-style), shared with other games' benchmarks;
@@ -249,6 +264,8 @@ agents:
     quantization: "PQ2_0"
     model_key: "prism-ml/ternary-bonsai-2-27b"
     max_parallel_games: 1    # its ternary kernels batch badly: 45 tok/s alone, 13.5 each with two requests at once
+    weights: "open"
+    params_b: 27
   qwen3_8_27b:
     active: false            # retired from play on 8 Oct (too slow here); its games still count
     type: "direct_llm"
@@ -258,6 +275,8 @@ agents:
     port: 8081
     quantization: "UD-Q4_K_M"
     model_key: "qwen/qwen3.8-27b"
+    weights: "open"
+    params_b: 27
   gpt_oss_20b:
     type: "direct_llm"
     display_name: "GPT-OSS 20B"
@@ -266,6 +285,8 @@ agents:
     port: 8082
     quantization: "MXFP4"
     model_key: "openai/gpt-oss-20b"
+    weights: "open"
+    params_b: 20.9
   granite_4_2_30b:
     active: false            # retired from play on 8 Oct (too slow here); its games still count
     type: "direct_llm"
@@ -275,6 +296,8 @@ agents:
     port: 8083
     quantization: "Q4_K_M"
     model_key: "ibm-granite/granite-4.2-30b"
+    weights: "open"
+    params_b: 30
   ornith_1_5_35b_a3b:
     type: "direct_llm"
     display_name: "Ornith 1.5 35B"
@@ -283,6 +306,8 @@ agents:
     port: 8084
     quantization: "Q4_K_M"
     model_key: "ornith-ai/ornith-1.5-35b-a3b"
+    weights: "open"
+    params_b: 35.95
   k2_horizon_36b_a4b:
     active: false            # retired from play on 8 Oct (too slow here); its games still count
     type: "direct_llm"
@@ -292,6 +317,8 @@ agents:
     port: 8087
     quantization: "Q4_K_M"
     model_key: "ifm/k2-horizon-mova-36b-a4b"
+    weights: "open"
+    params_b: 36
   ling_3_0_tiny:
     type: "direct_llm"
     display_name: "Ling 3.0 Tiny"
@@ -300,6 +327,8 @@ agents:
     port: 8085
     quantization: "Q8_0"
     model_key: "inclusionai/ling-3.0-tiny"
+    weights: "open"
+    params_b: 7.9
   minicpm5_2b:
     type: "direct_llm"
     display_name: "MiniCPM5 2B"
@@ -308,6 +337,8 @@ agents:
     port: 8086
     quantization: "Q8_0"
     model_key: "openbmb/minicpm5-2b"
+    weights: "open"
+    params_b: 2.5
 
   # Cheap paid models on OpenRouter, capped at 8 games per version, 63 in Champions c3 and c4 (raised 10 Oct: cheap and quick; 63 = three games
   # against each of 21 opponents)
@@ -318,6 +349,7 @@ agents:
     model: "anthropic/claude-haiku-5.5"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   gpt_6_luna:
     type: "direct_llm"
     display_name: "GPT-6 Luna"
@@ -325,6 +357,7 @@ agents:
     model: "openai/gpt-6-luna"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   gpt_6_luna_pro:
     type: "direct_llm"
     display_name: "GPT-6 Luna Pro"
@@ -332,6 +365,7 @@ agents:
     model: "openai/gpt-6-luna-pro"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   mimo_v2_6_flash:
     type: "direct_llm"
     display_name: "MiMo V2.6 Flash"
@@ -339,6 +373,8 @@ agents:
     model: "xiaomi/mimo-v2.6-flash"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "open"
+    params_b: 310.8
   glm_5_3_flash:
     type: "direct_llm"
     display_name: "GLM 5.3 Flash"
@@ -346,6 +382,8 @@ agents:
     model: "z-ai/glm-5.3-flash"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "open"
+    params_b: 321.3
   deepseek_v4_1_flash:
     type: "direct_llm"
     display_name: "DeepSeek V4.1 Flash"
@@ -354,6 +392,8 @@ agents:
     model: "deepseek/deepseek-v4.1-flash"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "open"
+    params_b: 763.2
   muse_spark_1_3:
     type: "direct_llm"
     display_name: "Muse Spark 1.3"
@@ -361,6 +401,7 @@ agents:
     model: "meta/muse-spark-1.3-contributor"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   gemini_3_8_flash:
     type: "direct_llm"
     display_name: "Gemini 3.8 Flash"
@@ -368,6 +409,7 @@ agents:
     model: "google/gemini-3.8-flash"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   solar_pro_4:
     type: "direct_llm"
     display_name: "Solar Pro 4"
@@ -375,6 +417,7 @@ agents:
     model: "upstage/solar-pro4"
     max_games: 8
     extra_games: {c3: 55, c4: 55}
+    weights: "closed"
   # Decision models ("System One"): no text, a probability for each option (OpenRouter's Decisions API). Each turn
   # is one Choice question over the legal actions; teams are drafted one choice at a time (teams/draft_decisions.py).
   # Uncapped: a game costs well under a cent.
@@ -383,29 +426,34 @@ agents:
     display_name: "Jev 1.13"
     provider: "openrouter"
     model: "typesafe/jev-1.13"
+    weights: "closed"
   gpt_6_luna_decisions:
     type: "decision"
     display_name: "GPT-6 Luna Decisions"
     battle_name: "Luna Decisions"
     provider: "openrouter"
     model: "openai/gpt-6-luna-decisions"
+    weights: "closed"
   microsoft_decision_1:
     type: "decision"
     display_name: "Microsoft-Decision-1"
     battle_name: "MS Decision 1"   # Showdown names stop at 16 characters here
     provider: "openrouter"
     model: "microsoft/microsoft-decision-1"
+    weights: "closed"
   pplx_decider_v1_1_27b:
     type: "decision"
     display_name: "Perplexity Decider V1.1 27B"
     battle_name: "Decider V1.1 27B"
     provider: "openrouter"
     model: "perplexity/pplx-decider-v1.1-27b"
+    weights: "closed"
   mercury_decide:
     type: "decision"
     display_name: "Mercury Decide"
     provider: "openrouter"
     model: "inception/mercury-decide"   # the paid variant: the free one's daily request limit would stall a run
+    weights: "closed"
   # Local decision models, served by the Smooth Generator (gen llm serve) on POST /v1/systemone
   drex_v1_5:
     type: "decision"
@@ -415,6 +463,8 @@ agents:
     port: 8090
     quantization: "Q8_0"
     model_key: "nace-ai/drex-v1.5"
+    weights: "open"
+    params_b: 9.0
   laya:
     type: "decision"
     display_name: "Laya"
@@ -426,6 +476,8 @@ agents:
     # ~6K), past the English checkpoint's 512. Options share the head budget, so long lists go 24 at a time.
     decision_request: {model: "multilingual", max_len: 8192, head_max_len: 1024}
     decision_max_options: 24
+    weights: "open"
+    params_b: 0.32
 
   # Control: free models play it 3 times first in placement (a model that loses to it is probably broken)
   # Hans Rosling's chimpanzees, picking answers at random from bananas: a model that loses to them isn't playing.
