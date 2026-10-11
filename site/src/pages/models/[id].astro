@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, benches, boardModels, boards, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
+import { allModels, benches, boardModels, boards, fmtCost, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -41,7 +41,7 @@ const facts: [string, string][] = [
         ['Autopilot rate', fmtPct(m.autopilot_rate, 1)],
         ['Hallucinated moves', fmtPct(m.hallucinated_move_rate, 1)],
         ['Tokens per turn', m.tokens_per_turn?.toLocaleString('en-US') ?? '—'],
-        ['Cost per game', `$${m.cost_per_game_usd.toFixed(2)}`],
+        ['Cost per game', fmtCost(m.cost_per_game_usd)],
       ] as [string, string][])
     : []),
 ];

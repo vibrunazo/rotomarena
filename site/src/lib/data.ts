@@ -37,6 +37,9 @@ export const boardHref = (board: Board) => {
   const bench = benches.find((b) => b.main === board.id);
   return bench ? routes.bench(bench.id) : routes.board(board.id);
 };
+/** A cost in dollars, rounded up to a tenth of a cent so a paid model never reads as $0; 'free' only when it cost
+ *  nothing (local models, free tiers). The tolerance keeps 0.013 from rounding up to 0.014. */
+export const fmtCost = (usd: number) => (usd > 0 ? `$${(Math.ceil(usd * 1000 - 1e-9) / 1000).toFixed(3)}` : 'free');
 /** The leaderboard: the main benchmark's page. */
 export const leaderboardHref = () => routes.bench(liveBenches[0].id);
 export const archivedBoards = (bench: Bench) => bench.boards.map(boardById).filter((b): b is Board => !!b && !!b.archived);

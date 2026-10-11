@@ -2,7 +2,7 @@
 // The main table. Click a column header to sort. Only rated models (language and decision) get a rank; bots are scenery.
 import { routes } from '../lib/routes';
 import Rating from './Rating.astro';
-import { fmtPct, isModel, meta, provisionalTitle, roleLabel, roleTitle, type Model } from '../lib/data';
+import { fmtCost, fmtPct, isModel, meta, provisionalTitle, roleLabel, roleTitle, type Model } from '../lib/data';
 
 interface Props { models: Model[]; compact?: boolean; anchor?: string }
 const { models, compact = false, anchor } = Astro.props;
@@ -44,7 +44,7 @@ const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++r
           <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
           {!compact && <td class="r num" data-value={m.autopilot_rate}>{isModel(m) ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
           {!compact && <td class="r num" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
-          {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{isModel(m) ? `$${m.cost_per_game_usd.toFixed(2)}` : '—'}</td>}
+          {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{isModel(m) ? fmtCost(m.cost_per_game_usd) : '—'}</td>}
         </tr>
       ))}
     </tbody>
