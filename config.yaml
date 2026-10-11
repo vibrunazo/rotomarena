@@ -363,8 +363,8 @@ agents:
     weights: "closed"
   # Paid from the Max plan's monthly Claude API credits (OpenRouter BYOK, Anthropic only: see c4's provider_routing),
   # not OpenRouter credits. List prices 20x and 40x Haiku's: about $0.15 and $0.30 a game in Champions (11 Oct).
-  # c4: only the top 5 of the ladder (15 games): c4's draft prompt never says singles and Sonnet built for doubles;
-  # their full runs wait for the version that fixes it
+  # c4: 15 games, against the top 3 of the ladder (11 Oct), each other and the anchor: c4's draft prompt never says
+  # singles and Sonnet built for doubles; their full runs wait for the version that fixes it
   claude_sonnet_5_5:
     type: "direct_llm"
     display_name: "Claude Sonnet 5.5"
@@ -373,6 +373,7 @@ agents:
     model: "anthropic/claude-sonnet-5.5"
     max_games: 0
     extra_games: {c4: 15}
+    opponents: {c4: ["gemini_3_8_flash", "gpt_6_luna_pro", "gpt_6_luna", "claude_opus_5_5", "gpt_oss_20b"]}
     weights: "closed"
   claude_opus_5_5:
     type: "direct_llm"
@@ -382,6 +383,7 @@ agents:
     model: "anthropic/claude-opus-5.5"
     max_games: 0
     extra_games: {c4: 15}
+    opponents: {c4: ["gemini_3_8_flash", "gpt_6_luna_pro", "gpt_6_luna", "claude_sonnet_5_5", "gpt_oss_20b"]}
     weights: "closed"
   gpt_6_luna:
     type: "direct_llm"

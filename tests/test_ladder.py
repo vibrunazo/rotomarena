@@ -610,3 +610,14 @@ def test_a_capped_model_spends_its_cap_on_the_strongest_opponents():
     opus_opponents = {a if b == "opus" else b for a, b in pairs if "opus" in (a, b)}
     assert opus_opponents == {"strong", "mid"}  # the top of the ladder; unrated newcomers last
     assert len(pairs) == 10 - 2
+
+
+def test_an_opponents_list_limits_whom_a_model_meets():
+    from rotomarena.config import RulesetConfig
+    from rotomarena.ladder import chosen_opponents, round_robin_pairs
+    agents = {k: AgentConfig(name=k, type="direct_llm", provider="openrouter", model=f"lab/{k}") for k in "abcd"}
+    agents["a"].opponents = {"v1": ["b"]}
+    app_cfg = AppConfig(agents=agents, ruleset=RulesetConfig(version="v1"))
+    pairs = chosen_opponents(round_robin_pairs(list(agents)), app_cfg)
+    assert {frozenset(p) for p in pairs if "a" in p} == {frozenset("ab")}
+    assert len(pairs) == 4  # b-c, b-d, c-d and a-b

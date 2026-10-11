@@ -321,6 +321,10 @@ class AgentConfig(BaseModel):
         default_factory=dict, description="Ruleset version -> games added to max_games in that version only (e.g. "
         "for a best of three there)",
     )
+    opponents: Dict[str, List[str]] = Field(
+        default_factory=dict, description="Ruleset version -> the only opponents it meets in that version's round robin "
+        "(Sonnet and Opus in c4: three of the top, each other and the anchor)",
+    )
     model_key: Optional[str] = Field(
         default=None,
         description="Canonical id of the weights, OpenRouter-style 'org/model' (e.g. 'qwen/qwen3.8-27b'), so other "
