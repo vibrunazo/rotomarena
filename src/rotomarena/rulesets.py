@@ -61,7 +61,7 @@ def stored_rules(version: str, rulesets_dir: Path = RULESETS_DIR) -> Optional[Di
 # Rules about one model (its thinking exception, its provider routing). A version's rules leave them out: a game
 # counts while each of its players' entries are still the ones configured (settings_current), so changing one model's
 # entry retires and replays only that model's games, not the whole version.
-PER_MODEL_RULES = ("thinking_exceptions", "provider_routing")
+PER_MODEL_RULES = ("thinking_exceptions", "provider_routing", "agent_versions")
 
 
 def _version_rules(rules: Dict[str, Any]) -> Dict[str, Any]:

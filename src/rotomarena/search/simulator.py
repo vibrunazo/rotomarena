@@ -37,6 +37,23 @@ def _max_hp(mon: Pokemon) -> float:
     return _estimate_stat(mon, "hp")
 
 
+# Abilities that make a Pokémon immune to a type. PokéChamp kept using Earthquake on a Levitate Rotom-Wash, turn
+# after turn: the type chart alone says Ground hits Electric hard.
+_ABILITY_IMMUNITIES = {
+    "levitate": "GROUND", "eartheater": "GROUND", "flashfire": "FIRE", "wellbakedbody": "FIRE",
+    "waterabsorb": "WATER", "stormdrain": "WATER", "dryskin": "WATER", "voltabsorb": "ELECTRIC",
+    "lightningrod": "ELECTRIC", "motordrive": "ELECTRIC", "sapsipper": "GRASS",
+}
+
+
+def _immune_by_ability(defender: Pokemon, move_type: str) -> bool:
+    """Its ability (once revealed, or when every ability it could have does) makes it immune to this type."""
+    known = getattr(defender, "ability", None)
+    abilities = [known] if known else list(getattr(defender, "possible_abilities", None) or [])
+    ids = ["".join(c for c in str(a).lower() if c.isalnum()) for a in abilities]
+    return bool(ids) and all(_ABILITY_IMMUNITIES.get(a) == move_type for a in ids)
+
+
 def _type_names(mon: Pokemon) -> List[str]:
     return [t.name.upper() for t in mon.types if t]
 
@@ -55,7 +72,7 @@ def _damage_fraction(
 ) -> float:
     """Fraction of the defender's max HP a hit of this power and type deals (level-100 damage formula)."""
     type_mult = get_type_effectiveness(move_type, _type_names(defender))
-    if type_mult == 0.0:
+    if type_mult == 0.0 or _immune_by_ability(defender, move_type):
         return 0.0
 
     stab = 1.0
@@ -136,10 +153,12 @@ def simulate_turn_outcome(
     opp_action_type: str,
     opp_action_target: str,
     weights: Optional[Dict[str, float]] = None,
+    just_switched: bool = False,
 ) -> float:
     """
     Simulates a 1-turn transition between player action and opponent action,
-    returning the estimated resulting state score.
+    returning the estimated resulting state score. `just_switched`: our active Pokémon came in by our own switch
+    last turn, so switching it straight back out costs more (the ping-pong brake).
     """
     base_eval = evaluate_battle_state(battle, weights)
     active = battle.active_pokemon
@@ -157,9 +176,22 @@ def simulate_turn_outcome(
         threat_next_turn = estimate_best_hit(switch_in, opp)
         # switch_cost: the tempo a switch gives away; without it the bots switched on half their turns
         switch_cost = (weights or {}).get("switch_cost", DEFAULT_SWITCH_COST)
-        delta = 0.4 * (0.5 * threat_next_turn - incoming - hazards) - switch_cost
-        if _opponent_attack(battle, opp_action_type, opp_action_target, active) >= active.current_hp_fraction:
-            delta += 0.2  # staying in would have cost the active Pokémon
+        # Two turns, not one: a switch-in that won't survive this hit, or then can't stand against the opponent
+        # (survive its best hit next turn, or outspeed it and threaten a knockout), only delays the loss. Scored like
+        # one, it no longer beats staying in: switching Steelix and Blastoise back and forth into Rotom-Wash's Hydro
+        # Pump, six turns running, each time "saving" the Pokémon about to faint.
+        hp_after = switch_in.current_hp_fraction - incoming - hazards
+        outspeeds = _stat(switch_in, "spe") > _stat(opp, "spe")
+        holds = hp_after > 0 and (estimate_best_hit(opp, switch_in) < hp_after
+                                  or (outspeeds and threat_next_turn >= opp.current_hp_fraction))
+        if holds:
+            delta = 0.4 * (0.5 * threat_next_turn - incoming - hazards) - switch_cost
+            if _opponent_attack(battle, opp_action_type, opp_action_target, active) >= active.current_hp_fraction:
+                delta += 0.2  # staying in would have cost the active Pokémon
+        else:
+            delta = -0.5 - switch_cost
+        if just_switched:
+            delta -= switch_cost
         return max(-1.0, min(1.0, base_eval + delta))
 
     # 2. Player move

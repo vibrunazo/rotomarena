@@ -151,6 +151,11 @@ class RulesetConfig(BaseModel):
         description="{config id: effort level} for models whose provider ignores the thinking budget: the strongest "
         "effort level that stays within it is sent instead (Meta's endpoint for Muse Spark)",
     )
+    agent_versions: Dict[str, int] = Field(
+        default_factory=dict,
+        description="{config id: version} of a scripted player's code (PokéChamp): bumping it retires only that "
+        "player's games, which the round robin replays (a per-model rule, see rulesets.PER_MODEL_RULES)",
+    )
     provider_routing: Dict[str, List[str]] = Field(
         default_factory=dict,
         description="{config id: OpenRouter providers} a model is served by only these, when others ignore the thinking "

@@ -38,6 +38,7 @@ class PokeChampPlayer(BaseBenchmarkPlayer):
             **kwargs,
         )
         self.search_engine = PokeChampSearchEngine(evaluation_weights=evaluation_weights)
+        self.switched_on: Dict[str, int] = {}  # battle tag -> the turn of its last voluntary switch
 
     def teampreview(self, battle: Battle) -> str:
         """Brings the Pokémon with the best matchups against the opponent's whole team (the damage each would deal
@@ -70,7 +71,11 @@ class PokeChampPlayer(BaseBenchmarkPlayer):
 
     async def _async_choose_move(self, battle: Battle) -> BattleOrder:
         """Runs the search and records its telemetry."""
-        order, telemetry = await self.search_engine.search(battle)
+        voluntary = bool(battle.active_pokemon and not battle.active_pokemon.fainted)
+        order, telemetry = await self.search_engine.search(
+            battle, just_switched=self.switched_on.get(battle.battle_tag) == battle.turn - 1)
+        if voluntary and telemetry.best_action.startswith("SWITCH"):
+            self.switched_on[battle.battle_tag] = battle.turn
 
         reasoning = (
             f"PokéChamp selected '{telemetry.best_action}' with evaluation score {telemetry.best_score:.3f}. "

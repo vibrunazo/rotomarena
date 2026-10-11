@@ -42,8 +42,9 @@ class PokeChampSearchEngine:
         }
         self.top_k_opp = top_k_opp
 
-    async def search(self, battle: Battle) -> Tuple[BattleOrder, SearchTreeTelemetry]:
-        """Picks the action whose worst simulated outcome is best (alpha-beta pruned)."""
+    async def search(self, battle: Battle, just_switched: bool = False) -> Tuple[BattleOrder, SearchTreeTelemetry]:
+        """Picks the action whose worst simulated outcome is best (alpha-beta pruned). Ties go to the first listed:
+        moves come before switches, so equally bad options mean attacking."""
         start_time = time.perf_counter()
         telemetry = SearchTreeTelemetry()
 
@@ -83,6 +84,7 @@ class PokeChampSearchEngine:
                     opp_action_type=opp_type,
                     opp_action_target=opp_tgt,
                     weights=self.evaluation_weights,
+                    just_switched=just_switched,
                 )
                 worst_opp_score = min(worst_opp_score, sim_score)
                 if worst_opp_score <= alpha:

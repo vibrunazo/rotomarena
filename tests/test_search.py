@@ -53,8 +53,18 @@ def test_switches_are_scored_per_target():
     battle.team[corviknight.species] = corviknight
     battle.available_switches = [battle.bench_mon, corviknight]
     scores = {
-        mon.species: simulate_turn_outcome(battle, "SWITCH", mon.species, False, "MOVE", "flamethrower",
-                                            weights={"switch_cost": 0.0})  # the losing mock position would clamp both to -1
+        # a Ground attack: Corviknight (Flying) takes nothing and holds; Kingambit (weak to it) only delays the loss
+        mon.species: simulate_turn_outcome(battle, "SWITCH", mon.species, False, "MOVE", "attack_ground",
+                                            weights={"switch_cost": 0.0})
         for mon in battle.available_switches
     }
-    assert scores["kingambit"] != scores["corviknight"]
+    assert scores["corviknight"] > scores["kingambit"]
+
+
+def test_a_known_immunity_ability_means_no_damage():
+    from rotomarena.search.simulator import estimate_damage_fraction
+
+    battle = MockBattle()
+    target = create_test_pokemon("rotomwash")
+    target._ability = "levitate"
+    assert estimate_damage_fraction(battle.available_moves[0], battle.active_pokemon, target) == 0.0  # Earthquake
