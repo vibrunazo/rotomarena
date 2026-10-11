@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T02:01:37+00:00",
+  "generated_at": "2026-10-11T02:43:04+00:00",
   "game": "pokemon",
   "formats": [
     "gen9championsrotomarenabssregmb",
@@ -8,9 +8,9 @@
   "version": "c4",
   "versions": [
     "s4",
+    "c4",
     "s1",
     "s2",
-    "c4",
     "c3",
     "c2",
     "c1"
@@ -38,35 +38,6 @@
       "draft_prompt": "63c78295eef1",
       "control_team": "opponent's",
       "decision_draft_prompt": "bad10b3b4a9e"
-    },
-    "s1": {
-      "version": "s1",
-      "profile": "ladder",
-      "reasoning": "medium",
-      "max_output_tokens": 4096,
-      "turn_timeout": 7200.0,
-      "team_mode": "fixed",
-      "teams": [
-        "balance",
-        "hyper_offense"
-      ],
-      "format": "gen9ou",
-      "battle_prompt": "ba3dda5d9965"
-    },
-    "s2": {
-      "version": "s2",
-      "profile": "ladder",
-      "reasoning": "medium",
-      "max_output_tokens": 4096,
-      "turn_timeout": 7200.0,
-      "team_mode": "draft",
-      "teams": [
-        "balance",
-        "hyper_offense"
-      ],
-      "format": "gen9ou",
-      "battle_prompt": "ba3dda5d9965",
-      "draft_prompt": "3a8760325e8d"
     },
     "c4": {
       "version": "c4",
@@ -102,6 +73,35 @@
       "draft_prompt": "b0a500bd511d",
       "control_team": "opponent's",
       "decision_draft_prompt": "d7c512fb79a3"
+    },
+    "s1": {
+      "version": "s1",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "fixed",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965"
+    },
+    "s2": {
+      "version": "s2",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "draft",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965",
+      "draft_prompt": "3a8760325e8d"
     },
     "c3": {
       "version": "c3",
@@ -197,21 +197,18 @@
     {
       "id": "overall",
       "title": "Overall",
-      "description": "Every rated game in every benchmark: how good each model is overall.",
+      "description": "Every rated game in every current benchmark: how good each model is overall.",
       "kind": "overall",
       "category": null,
       "bench": null,
       "versions": [
         "s4",
-        "s1",
-        "s2",
-        "c4",
-        "c3",
-        "c2",
-        "c1"
+        "c4"
       ],
-      "rated_matches": 919,
-      "models": 27
+      "anchor": "bonsai_2_27b",
+      "archived": false,
+      "rated_matches": 556,
+      "models": 23
     },
     {
       "id": "gen9ou-own-teams",
@@ -223,6 +220,8 @@
       "versions": [
         "s4"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": false,
       "rated_matches": 107,
       "models": 14
     },
@@ -236,6 +235,8 @@
       "versions": [
         "s1"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": true,
       "rated_matches": 40,
       "models": 6
     },
@@ -249,6 +250,8 @@
       "versions": [
         "s2"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": true,
       "rated_matches": 7,
       "models": 8
     },
@@ -262,7 +265,9 @@
       "versions": [
         "c4"
       ],
-      "rated_matches": 400,
+      "anchor": "gpt_oss_20b",
+      "archived": false,
+      "rated_matches": 449,
       "models": 21
     },
     {
@@ -275,6 +280,8 @@
       "versions": [
         "c3"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": true,
       "rated_matches": 259,
       "models": 21
     },
@@ -288,6 +295,8 @@
       "versions": [
         "c2"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": true,
       "rated_matches": 36,
       "models": 9
     },
@@ -301,6 +310,8 @@
       "versions": [
         "c1"
       ],
+      "anchor": "bonsai_2_27b",
+      "archived": true,
       "rated_matches": 70,
       "models": 12
     }
@@ -334,7 +345,7 @@
         "champions-bss-own-teams-c1"
       ],
       "main": "champions-bss-own-teams",
-      "rated_matches": 765,
+      "rated_matches": 814,
       "models": 23
     },
     {
@@ -410,10 +421,10 @@
     "control_games": 3,
     "control_max_cost_per_game_usd": 2.0
   },
-  "matches": 929,
-  "rated_matches": 919,
-  "void_matches": 10,
+  "matches": 976,
+  "rated_matches": 968,
+  "void_matches": 8,
   "retracted_matches": 55,
-  "turns": 28094,
-  "tokens": 66955027
+  "turns": 29126,
+  "tokens": 69743352
 }
