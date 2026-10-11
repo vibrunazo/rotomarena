@@ -1,0 +1,354 @@
+{
+  "id": "match_20261011_003105_Muse Spark 1_3 2_vs_Decider V1_1 27B 2_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261011",
+  "players": [
+    {
+      "config_id": "muse_spark_1_3",
+      "display_name": "Muse Spark 1.3",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "meta/muse-spark-1.3-contributor",
+      "quantization": null,
+      "username": "Muse Spark 1.3 2",
+      "role": "p1",
+      "team": "Muse Spark 1.3's team",
+      "model_key": "meta/muse-spark-1.3-contributor",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B 2",
+      "role": "p2",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 131.12,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Muse Spark 1.3 2 vs. Decider V1.1 27B 2",
+    "|j|☆Muse Spark 1.3 2",
+    "|j|☆Decider V1.1 27B 2",
+    "|gametype|singles",
+    "|player|p1|Muse Spark 1.3 2|1|",
+    "|player|p2|Decider V1.1 27B 2|102|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Primarina, L50, F|",
+    "|poke|p1|Dragonite, L50, M|",
+    "|poke|p1|Kingambit, L50, M|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|poke|p2|Chandelure, L50, F|",
+    "|poke|p2|Tinkaton, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|194/194",
+    "|switch|p2a: Annihilape|Annihilape, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Annihilape|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|84/194",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Annihilape",
+    "|-supereffective|p2a: Annihilape|1",
+    "|-damage|p2a: Annihilape|0 fnt",
+    "|faint|p2a: Annihilape",
+    "|",
+    "|-heal|p1a: Gholdengo|96/194|[from] item: Leftovers",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Tinkaton|Tinkaton, L50, F|100/100",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|move|p2a: Tinkaton|Knock Off|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|155/183",
+    "|-damage|p2a: Tinkaton|87/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Tinkaton",
+    "|-supereffective|p2a: Tinkaton|1",
+    "|-damage|p2a: Tinkaton|0 fnt",
+    "|faint|p2a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Chandelure|Chandelure, L50, F|100/100",
+    "|turn|4",
+    "|",
+    "|detailschange|p2a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p2a: Chandelure|Chandelure|Chandelurite",
+    "|move|p1a: Garchomp|Earthquake|p2a: Chandelure",
+    "|-supereffective|p2a: Chandelure|1",
+    "|-damage|p2a: Chandelure|0 fnt",
+    "|faint|p2a: Chandelure",
+    "|",
+    "|win|Muse Spark 1.3 2",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "annihilape,tinkaton,chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 40% BRING: annihilape, 24% BRING: tinkaton, 15% BRING: palafin\nPick 2: 37% BRING: tinkaton, 27% BRING: chandelure, 20% BRING: palafin\nPick 3: 45% BRING: chandelure, 31% BRING: palafin, 13% BRING: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5623,
+      "latency_ms": 1433,
+      "cost_usd": 0.00011246,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,garchomp,primarina",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo's Fighting immunity and status immunity walls Annihilape and Toxapex, the worst matchups to face. Garchomp's 169 speed outspeeds Palafin and the whole roster for likely knockouts. Primarina checks Palafin and Annihilape with resist + Moonblast.",
+      "hidden_reasoning": "Following the Pokémon battle rules to select a single best action and format the thought and decision blocks.Evaluating team composition and legality against the opponent to choose three Pokémon.Assessing mega evolution limits and type matchups to narrow the three-Pokémon selection.Evaluating speed tiers and lead matchups to finalize the Garchomp, Primarina, and Gholdengo core.Shifting to lead matchup analysis and selecting Gholdengo as the opening pick.",
+      "note": "",
+      "tokens": 5728,
+      "latency_ms": 44324,
+      "cost_usd": 0.000812298,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "88% MOVE: earthquake, 7% MOVE: phantomforce, 3% SWITCH: tinkaton",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1360,
+      "latency_ms": 499,
+      "cost_usd": 2.72e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.007405774777567073,
+        "MOVE: phantomforce": 0.074824356100643,
+        "MOVE: earthquake": 0.882376089839566,
+        "MOVE: icepunch": 0.0010747613050247553,
+        "SWITCH: tinkaton": 0.03018020878389877,
+        "SWITCH: chandelure": 0.004138809193300385
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is immune to Fighting, so Annihilape cannot hit it with Drain Punch. Shadow Ball is super effective with a likely knockout in two hits. Despite Annihilape likely winning on speed, attacking now beats risking Nasty Plot into Rage Fist.",
+      "hidden_reasoning": "Analyzing Pokémon battle rules to select the single best turn action under speed, knockout, and matchup constraints.Evaluating type immunity and move priority to narrow the optimal turn action.Assessing speed and damage to choose Shadow Ball over Nasty Plot against the Ghost-type threat.",
+      "note": "",
+      "tokens": 2958,
+      "latency_ms": 14017,
+      "cost_usd": 0.000439082,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "79% SWITCH: tinkaton, 21% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1097,
+      "latency_ms": 436,
+      "cost_usd": 2.194e-05,
+      "probabilities": {
+        "SWITCH: tinkaton": 0.7885512187666192,
+        "SWITCH: chandelure": 0.21144878123338093
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "92% MOVE: knockoff, 4% MOVE: stealthrock, 2% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1393,
+      "latency_ms": 441,
+      "cost_usd": 2.786e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.006727149445218708,
+        "MOVE: swordsdance": 0.021476326517397195,
+        "MOVE: stealthrock": 0.03877972016326557,
+        "MOVE: knockoff": 0.9236739905481579,
+        "SWITCH: chandelure": 0.009342813325960531
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is at 49% and Tinkaton likely outspeeds with a possible Knock Off for the knockout, a bad matchup to stay in. Garchomp is faster and threatens a knockout with Earthquake. Switching preserves Gholdengo.",
+      "hidden_reasoning": "Parsing Pokémon battle rules and formatting requirements for a single legal action output.Evaluating legal move selection and opponent prediction under the single-action output constraint.Assessing switch versus stay tradeoffs given priority uncertainty and type matchups.Evaluating Garchomp as the safer switch against Knock Off and Earthquake while weighing Tinkaton's speed and damage risk.",
+      "note": "",
+      "tokens": 4148,
+      "latency_ms": 28544,
+      "cost_usd": 0.0006844,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "gigatonhammer",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: gigatonhammer, 22% MOVE: swordsdance, 17% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1527,
+      "latency_ms": 460,
+      "cost_usd": 3.054e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.44437641369135744,
+        "MOVE: swordsdance": 0.21628239335683744,
+        "MOVE: stealthrock": 0.17469440277045997,
+        "MOVE: knockoff": 0.12732810133185316,
+        "SWITCH: chandelure": 0.03731868884949189
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp outspeeds Tinkaton and Earthquake is super effective for a likely knockout from 87%. Mega evolving risks losing speed for no needed extra power, so save it.",
+      "hidden_reasoning": "Evaluating Garchomp's move choice against Tinkaton by weighing Mega Earthquake damage versus Swords Dance setup and opponent move uncertainty.Quantifying Mega Earthquake damage range against Tinkaton's HP and defense to confirm a likely KO.Evaluating speed drop from Mega evolution against Tinkaton's max speed range and switching options.",
+      "note": "",
+      "tokens": 3550,
+      "latency_ms": 22762,
+      "cost_usd": 0.0005478,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: chandelure": 1.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "energyball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: energyball [MEGA], 25% MOVE: calmmind [MEGA], 18% MOVE: shadowball [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1821,
+      "latency_ms": 555,
+      "cost_usd": 3.642e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.0047651988663244445,
+        "MOVE: fireblast [MEGA]": 0.033128051762138004,
+        "MOVE: shadowball": 0.017863541497781844,
+        "MOVE: shadowball [MEGA]": 0.18052638924215145,
+        "MOVE: energyball": 0.10489378557169216,
+        "MOVE: energyball [MEGA]": 0.39566082209938475,
+        "MOVE: calmmind": 0.016189651185370788,
+        "MOVE: calmmind [MEGA]": 0.24697255977515653
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp outspeeds Chandelure and Earthquake is super effective. Frail Chandelure should be knocked out before it moves. Staying non-Mega preserves Speed against possible Scarf.",
+      "hidden_reasoning": "Analyzing Pokémon battle rules and legal actions to select the single best turn action under speed and matchup constraints.Evaluating super-effective ground coverage against unknown Chandelure ability before committing to mega evolution.Assessing mega evolution tradeoffs for guaranteed KO while weighing speed and bulk against possible focus sash or scarf.",
+      "note": "",
+      "tokens": 3764,
+      "latency_ms": 21015,
+      "cost_usd": 0.00052075,
+      "probabilities": null
+    }
+  ]
+}
