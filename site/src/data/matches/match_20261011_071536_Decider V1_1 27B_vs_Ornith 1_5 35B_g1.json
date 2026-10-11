@@ -1,0 +1,583 @@
+{
+  "id": "match_20261011_071536_Decider V1_1 27B_vs_Ornith 1_5 35B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261011",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "ornith_1_5_35b_a3b",
+      "display_name": "Ornith 1.5 35B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "ornith-1.5-35b-a3b",
+      "quantization": "Q4_K_M",
+      "username": "Ornith 1.5 35B",
+      "role": "p2",
+      "team": "Ornith 1.5 35B's team",
+      "model_key": "ornith-ai/ornith-1.5-35b-a3b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Ornith 1.5 35B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 330.44,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Decider V1.1 27B vs. Ornith 1.5 35B",
+    "|j|☆Perplexity Decider V1.1 27B",
+    "|j|☆Ornith 1.5 35B",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B|170|",
+    "|player|p2|Ornith 1.5 35B|102|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p1|Annihilape, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Tinkaton, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Sneasler, L50, F|",
+    "|poke|p2|Quaquaval, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|185/185",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Annihilape",
+    "|-supereffective|p1a: Annihilape|1",
+    "|-damage|p1a: Annihilape|53/185",
+    "|-unboost|p1a: Annihilape|spd|1",
+    "|move|p1a: Annihilape|Phantom Force||[still]",
+    "|-prepare|p1a: Annihilape|Phantom Force",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Annihilape|[miss]",
+    "|-miss|p2a: Dragapult|p1a: Annihilape",
+    "|move|p1a: Annihilape|Phantom Force|p2a: Dragapult|[from] lockedmove",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|-start|p1a: Annihilape|Disable|Phantom Force|[from] ability: Cursed Body|[of] p2a: Dragapult",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Tinkaton|Tinkaton, L50, F|160/160",
+    "|move|p2a: Gholdengo|Poltergeist|p1a: Tinkaton|[miss]",
+    "|-miss|p2a: Gholdengo|p1a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|move|p1a: Tinkaton|Knock Off|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|73/100",
+    "|-damage|p1a: Tinkaton|140/160|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|-enditem|p2a: Garchomp|Leftovers|[from] move: Knock Off|[of] p1a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Tinkaton",
+    "|-supereffective|p1a: Tinkaton|1",
+    "|-damage|p1a: Tinkaton|0 fnt",
+    "|faint|p1a: Tinkaton",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|turn|6",
+    "|",
+    "|detailschange|p1a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p1a: Chandelure|Chandelure|Chandelurite",
+    "|move|p2a: Garchomp|Earthquake|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Annihilape|Annihilape, L50, M|53/185",
+    "|turn|7",
+    "|",
+    "|move|p1a: Annihilape|Ice Punch|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|2",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|-damage|p1a: Annihilape|30/185|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|8",
+    "|",
+    "|move|p1a: Annihilape|Ice Punch|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|89/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Annihilape",
+    "|-supereffective|p1a: Annihilape|1",
+    "|-damage|p1a: Annihilape|0 fnt",
+    "|faint|p1a: Annihilape",
+    "|",
+    "|win|Ornith 1.5 35B",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "annihilape,tinkaton,chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 35% BRING: annihilape, 29% BRING: tinkaton, 14% BRING: chandelure\nPick 2: 40% BRING: tinkaton, 29% BRING: chandelure, 13% BRING: palafin\nPick 3: 53% BRING: chandelure, 18% BRING: palafin, 18% BRING: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5653,
+      "latency_ms": 1545,
+      "cost_usd": 0.00011306,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "The opponent has a varied team with Palafin, Toxapex, Incineroar, Annihilape, Chandelure, and Tinkaton. Dragapult is a must for its speed and Ghost/Dragon coverage plus Fighting/Ghost resistance against Annihilape. Gholdengo anchors with Steel/Ghost typing, resisting Fighting and being immune to Dark, handling Toxapex, Annihilape, and Tinkaton. Garchomp provides physical pressure and resists Fairy/Incineroar's Fire, covering Tinkaton with Earthquake.",
+      "hidden_reasoning": "This is a team preview turn in Champions Singles. I need to choose 3 of my 6 Pokémon to bring into the battle.\n\nLet me analyze the opponent's team:\n- Palafin (Water) - Zero to Hero ability, can sweep\n- Toxapex (Poison/Water) - bulky wall\n- Incineroar (Fire/Dark) - Intimidate, support\n- Annihilape (Fighting/Ghost) - physical attacker\n- Chandelure (Ghost/Fire) - special attacker\n- Tinkaton (Fairy/Steel) - physical/special attacker\n\nMy team:\n- Dragapult (Dragon/Ghost) - fast special attacker, Choice Scarf\n- Garchomp (Dragon/Ground) - physical attacker, Rough Skin\n- Gholdengo (Steel/Ghost) - Focus Sash, bulky\n- Corviknight (Flying/Steel) - defensive\n- Sneasler (Fighting/Poison) - Unburden, fast physical\n- Quaquaval (Water/Fighting) - Moxie\n\nFor Champions Singles, I need to pick a balanced team of 3 that covers the opponent's threats.\n\nThe opponent has:\n- Palafin - fast sweeper\n- Toxapex - special wall\n- Incineroar - Intimidate support\n- Annihilape - physical\n- Chandelure - special\n- Tinkaton - physical/special\n\nLet me think about what coverage I need. The opponent has a lot of variety. \n\nDragapult is a great pick - fast, can hit with various coverage moves. It resists Ghost and Fighting (Annihilape), and is immune to Toxapex's moves. It's weak to Ice (Tinkaton's Ice Hammer) and Fairy (Tinkaton).\n\nGarchomp is a strong physical attacker. It resists Fire (Incineroar), Fairy (Tinkaton), and is immune to Electric. Weak to Ice (Tinkaton, Palafin could use Ice coverage).\n\nGholdengo is a great special wall - resists many types, immune to Fighting (Annihilape), Steel type. Weak to Fire (Incineroar, Chandelure) and Ground.\n\nLet me think about the best 3.\n\nThe opponent's team has:\n- Palafin (Water) - weak to Grass, Electric, Ice\n- Toxapex (Poison/Water) - weak to Ground, Psychic, Ghost\n- Incineroar (Fire/Dark) - weak to Ground, Fighting, Water, Grass\n- Annihilape (Fighting/Ghost) - weak to Psychic, Ghost, Fairy, Flying\n- Chandelure (Ghost/Fire) - weak to Ground, Rock, Water, Dark, Ghost\n- Tinkaton (Fairy/Steel) - weak to Poison, Fire, Ground\n\nI want a team that can handle multiple threats.\n\nDragapult:\n- vs Palafin: Can outspeed with Scarf, Shadowball or Dracometeor. Palafin in Hero form is fast (up to 167). Dragapult at 213 with Scarf... wait, Scarf boosts speed. Dragapult base 213 speed. With Scarf it's even faster. Actually Dragapult's speed stat is already 213. With Choice Scarf it would be 319. But the stats shown are 213 without scarf boost? Let me check - the stats shown are the actual stats. Dragapult has 213 speed. Hmm, that seems like it might already include... no, Choice Scarf isn't reflected in the stat shown typically. Actually the stat shown is the base stat after EVs/IVs but before item boost. So Dragapult with Scarf would be 213 * 1.5 = 319. That's very fast.\n- vs Toxapex: Immune to its attacks, can chip with Dracometeor\n- vs Incineroar: Dracometeor or Shadowball. Dragapult resists Dark (Incineroar's Dark moves). Fire moves hit it super effectively but Incineroar usually uses physical.\n- vs Annihilape: Resists Fighting and Ghost. Good matchup.\n- vs Chandelure: Chandelure is Ghost/Fire. Dragapult is Ghost, so immune to Ghost, resists Fire? No, Dragapult is Dragon/Ghost. Fire is neutral to Dragon/Ghost. Actually Fire vs Ghost is neutral. Chandelure's Fire moves would be neutral. But Dragapult can hit Chandelure with... Dracometeor is Dragon type, Chandelure resists Dragon? No. Chandelure is Ghost/Fire, Dragon is neutral. Hmm. Actually Chandelure can OHOG Dragapult with Fire moves.\n- vs Tinkaton: Fairy moves OHOG Dragapult. Ice Hammer too. Bad matchup.\n\nGarchomp:\n- vs Palafin: Can it handle Palafin? Palafin in Hero form is very fast and strong. Garchomp is slower. Earthquake would hit. But Palafin's Close Combat or Ice Hammer could be problematic.\n- vs Toxapex: Earthquake is immune (Toxapex is Water/Poison, Ground is immune to... no wait, Toxapex is Water/Poison. Ground moves are blocked by Water? No. Ground vs Water/Poison: Ground is super effective against Poison. But Toxapex is in water-ish... no, it's just a Pokémon. Earthquake would hit Toxapex super effectively. Actually wait, is Toxapex immune to Ground? No. Toxapex is Poison/Water. Ground vs Poison is 2x effective. So Earthquake hits hard. But Toxapex is very bulky with high defense. Might not OHOG.\n- vs Incineroar: Resists Fire. Earthquake or Dragon Claw. Good.\n- vs Annihilape: Dragon Claw. Annihilape resists Dragon? Annihilape is Fighting/Ghost, Dragon is neutral. Earthquake hits it. Good matchup.\n- vs Chandelure: Chandelure's Fire moves OHOG Garchomp. Garchomp resists Fire? No, Garchomp is Dragon/Ground, Fire is neutral. Chandelure can OHOG.\n- vs Tinkaton: Resists Fairy. Earthquake hits Steel... wait Tinkaton is Fairy/Steel. Earthquake vs Steel is 2x effective. Good matchup. But Tinkaton's Iron Head or Play Rough... Garchomp resists Fairy (Dragon doesn't resist Fairy actually). Hmm, Garchomp is Dragon/Ground. Fairy vs Dragon/Ground is neutral. So Tinkaton's Play Rough is neutral. Iron Head is neutral. Garchomp can handle it with Earthquake (2x).\n\nGholdengo:\n- vs Palafin: Gholdengo is Steel/Ghost. Palafin's Water moves neutral. Fighting moves (Close Combat) - Steel resists Fighting. Ghost immune. Gholdengo can handle Palafin. Poltergeist hits.\n- vs Toxapex: Immune to... Toxapex's moves are Poison/Water. Gholdengo resists... Steel resists Poison and Water? Steel resists many types including Poison, Water, Grass, Ice, etc. So Gholdengo resists Toxapex's attacks. Good matchup.\n- vs Incineroar: Fire moves OHOG Gholdengo (Steel weak to Fire). Incineroar uses Fire moves? Flare Blitz is physical. Incineroar's Dark moves - Gholdengo is Ghost, immune to Dark. So Incineroar would use physical moves. Flare Blitz (Fire) hits Gholdengo super effectively. Bad matchup if it uses Flare Blitz.\n- vs Annihilape: Fighting moves - Gholdengo resists Fighting. Ghost moves - immune. Good matchup.\n- vs Chandelure: Fire moves OHOG Gholdengo. Chandelure is a special attacker with Fire Blast. Bad matchup.\n- vs Tinkaton: Tinkaton is Fairy/Steel. Gholdengo resists Fairy and Steel. Play Rough neutral (resisted). Iron Head resisted. Good matchup. Gholdengo can hit with Flash Cannon or Poltergeist.\n\nLet me think about the best combination.\n\nThe opponent's team is quite varied. Let me consider what's the biggest threat:\n- Palafin - can sweep if it gets a hit in\n- Chandelure - special attacker, can OHOG fragile things\n- Tinkaton - can set up and sweep\n\nI think a good team would be:\n- Dragapult (fast, versatile)\n- Gholdengo (special wall, handles Annihilape, Toxapex, Tinkaton)\n- Garchomp (physical, handles Incineroar, Annihilape, Tinkaton)\n\nWait, but Gholdengo and Garchomp both struggle with Fire types (Incineroar's Flare Blitz, Chandelure's Fire Blast).\n\nLet me reconsider. Maybe include Corviknight for Fire resistance? Corviknight is Flying/Steel, resists Fire, Fairy, etc.\n\nActually, let me think about the matchup more carefully.\n\nOpponent threats:\n1. Palafin - Water type, Zero to Hero. In Pal Pad form it's slow and weak. In Hero form it's fast and strong. It needs to hit something to transform.\n2. Toxapex - bulky special wall, Haze, Toxic\n3. IncThinking budget reached. Stop thinking and give your final answer now.\n",
+      "note": "",
+      "tokens": 4228,
+      "latency_ms": 66286,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "phantomforce",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: phantomforce, 33% MOVE: icepunch, 8% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1408,
+      "latency_ms": 388,
+      "cost_usd": 2.816e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.05616836880229941,
+        "MOVE: phantomforce": 0.48077846402081514,
+        "MOVE: earthquake": 0.0827051084041342,
+        "MOVE: icepunch": 0.32738155510910566,
+        "SWITCH: tinkaton": 0.035627346964238915,
+        "SWITCH: chandelure": 0.01733915669940681
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult is faster than Annihilape and Shadowball is super effective, so it will hit first and likely 2HKO or worse before Annihilape can act. Dracometeor is riskier with lower accuracy and a big Sp.Atk drop, so Shadowball is the clean, reliable choice.",
+      "hidden_reasoning": "Dragapult is faster than Annihilape (213 vs 99-156) and Shadowball is super effective. Annihilape is a Fighting/Ghost type, so it's immune to Ghost moves but takes super effective damage from Shadowball. Shadowball will likely knock it out or heavily damage it before it can act. Annihilape's Close Combat would 2HKO Dragapult, but Dragapult moves first. Shadowball is the safest and most effective option here.\n\nLet me consider: Shadowball is super effective (2x) on Annihilape. Dragapult's SpA is 152. This should do significant damage. Annihilape has decent bulk but Shadowball should 2HKO at least, possibly OHKO. Since Dragapult is faster and Shadowball is super effective, this is the clear choice.\n\nDracometeor is powerful but lowers Sp.Atk and has 90% accuracy. Shadowball is more reliable and super effective.\n\nU-turn would switch to Gholdengo or Garchomp, but Shadowball is better here.\n\nThunderbolt isn't super effective.\n\nShadowball is the best move.\n",
+      "note": "",
+      "tokens": 1791,
+      "latency_ms": 10656,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "phantomforce",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: phantomforce": 1.0
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult is much faster and already lowered Annihilape's speed, so Shadow Ball will outspeed and likely KO it at 28%. No reason to switch or risk Phantom Force landing.",
+      "hidden_reasoning": "Dragapult is faster and has a super effective Shadow Ball that will likely knock out Annihilape at 28%. Phantom Force is a Ghost move, so it would hit Dragapult, but Dragapult is faster and can just kill Annihilape first. Shadow Ball is the clear choice.\n",
+      "note": "",
+      "tokens": 1542,
+      "latency_ms": 4474,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 28% and only has Phantom Force revealed. Goldengo is Ghost/Steel, immune to both Fighting and Ghost moves, so it takes nothing from Annihilape, and Poltergeist (4x super effective) easily KOs it at 28%. Garchomp would be at risk from Ghost moves.",
+      "hidden_reasoning": "Annihilape is at 28% HP and has Phantom Force ready. It's at -1 speed. My active Dragapult is fainted. I need to switch in.\n\nGholdengo vs Annihilape: Goldengo is Steel/Ghost, immune to Fighting and Ground. Annihilape's only revealed move is Phantom Force (Ghost). Goldengo is Ghost type, so it's immune to Phantom Force (Ghost moves don't affect Ghost types). Actually wait, Phantom Force is Ghost type, and Goldengo is Ghost/Steel, so it's immune. Also Fighting is immune to Ghost. So Annihilape can't hurt Goldengo at all with its revealed moves.\n\nGoldengo has Poltergeist (Ghost, BP 110) which is super effective against Annihilape (Fighting/Ghost). Annihilape at 28% - Poltergeist would likely knock it out. Actually Poltergeist only works if opponent holds an item. Annihilape has unknown_item, so it probably holds something. Poltergeist is super effective (Ghost vs Fighting/Ghost = 4x). At 28% HP, Poltergeist BP 110 with 137 SpA should KO easily.\n\nGarchomp vs Annihilape: Fighting type. Annihilape's Fighting moves would be not very effective, but it only has Phantom Force revealed. Garchomp is Ground/Dragon, weak to Ghost. Phantom Force is Ghost, super effective against Garchomp. But Annihilape is at -1 speed and Garchomp is slower (169 vs maybe 100-156). Actually Garchomp SPE 169, Annihilape SPE 99-156. If Annihilape is faster, it could KO Garchomp with Phantom Force. Garchomp is weak to Ghost.\n\nSo Goldengo is the safe switch - immune to everything Annihilape can do, and can KO it with Poltergeist.\n\nSwitch to Goldengo.\n",
+      "note": "",
+      "tokens": 1867,
+      "latency_ms": 18922,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tinkaton",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "78% SWITCH: tinkaton, 20% SWITCH: chandelure, 1% MOVE: struggle",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1384,
+      "latency_ms": 623,
+      "cost_usd": 2.768e-05,
+      "probabilities": {
+        "MOVE: struggle": 0.014681448187947654,
+        "SWITCH: tinkaton": 0.780460742085321,
+        "SWITCH: chandelure": 0.20485780972673137
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "poltergeist",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 28% HP and Poltergeist (110 BP, super effective Ghost) should easily KO it before anything matters. It's the direct, reliable finish, so no need to switch or set up.",
+      "hidden_reasoning": "Annihilape is at 28% HP. Poltergeist is super effective (Ghost) and hits for 110 BP with an item, likely to KO. Annihilape's speed is uncertain (99-156), could outspeed. At 28%, Poltergeist (110 BP, super effective) should KO even at low end. Let me think - Gholdengo SpA 137, Poltergeist 110 BP, super effective 2x. Annihilape HP ~185-217, at 28% that's ~52-61 HP. Poltergeist damage would be well over that. So Poltergeist KOs.\n\nBut if Annihilape outspeeds, it could use Phantom Force (which has a turn of invisibility, so it wouldn't hit on turn 1... but this is turn 3, and Annihilape used Phantom Force last turn). Actually Phantom Force's second turn is when it hits. If Annihilape used Phantom Force on turn 2, it would strike on turn 3. Wait, let me re-read.\n\nTurn 2: Annihilape used Phantom Force. Phantom Force makes the user invisible on turn 1 and strikes on turn 2. So Annihilape's Phantom Force should have struck on... wait, but the turn log shows Turn 2 was the last turn. Annihilape used Phantom Force on turn 2, meaning it would strike on turn 3.\n\nHmm, but actually the phantoms - if Annihilape used Phantom Force on turn 2, it becomes invisible and strikes on turn 3. So on turn 3, Annihilape would strike with Phantom Force. But wait, we're now on turn 3 and it's our move. If Annihilape is charging Phantom Force, it won't move this turn - it'll strike during our turn.\n\nActually, this is a concern. If Annihilape is mid-Phantom Force, it will strike regardless. But Poltergeist would KO it first (or simultaneously). Since Poltergeist is super effective and 110 BP at 28% HP, it KOs. Even if Annihilape strikes, we'd want to KO it.\n\nActually, let me reconsider. The safest is Poltergeist which KOs. Let me go with Poltergeist.\n\nWait, but there's a subtlety. If Annihilape is using Phantom Force (invisible this turn), it won't be able to be hit by Poltergeist? No, Phantom Force just makes it immune to attacks during the charge turn, then strikes next turn. If Annihilape used Phantom Force on turn 2, then on turn 3 it strikes. So it's not charging now - it already charged on turn 2 and will strike on turn 3.\n\nHmm, but actually the timing: Phantom Force turn 1 = invisible, turn 2 = strike. Annihilape used it on turn 2, so it strikes on turn 3. On turn 3, both would act. If Annihilape strikes (Phantom Force hits, super effective ghost), and we Poltergeist (KO)... \n\nActually if Annihilape is at 28% and we KO it with Poltergeist, but Annihilape also strikes - who goes first? Speed tie uncertain. If Annihilape outspeeds and strikes, it might KO Gholdengo (Phantom Force is physical ghost, Gholdengo is ghost so super effective, and Gholdengo has no ghost resistance... actually Gholdengo is Steel/Ghost, immune to nothing relevant, Phantom Force would hit). But Gholdengo has Focus Sash! So even if Annihilape KOs it, Focus Sash keeps it at 1 HP, then we... no wait, if we're being attacked we still get to act unless we fainted.\n\nThis is getting complicated. The cleanest read: Poltergeist KOs Annihilape at 28%. Just use Poltergeist.\n\nLet me go with Poltergeist.\n",
+      "note": "",
+      "tokens": 2514,
+      "latency_ms": 25711,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: knockoff, 22% MOVE: swordsdance, 9% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1567,
+      "latency_ms": 434,
+      "cost_usd": 3.134e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.004648963857860481,
+        "MOVE: swordsdance": 0.21883201522258863,
+        "MOVE: stealthrock": 0.08779117228512723,
+        "MOVE: knockoff": 0.6654319804009439,
+        "SWITCH: annihilape": 0.0014896339117819644,
+        "SWITCH: chandelure": 0.02180623432169787
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp's Earthquake is STAB Ground, which is 2x super effective against Tinkaton's Steel typing, and Tich is far bulkier than Goldengo to survive any Fairy/Steel retaliation. Goldengo's Poltergeist risks failing if Tinkaton holds no item, and Flash Cannon is resisted, so switching to Garchomp for the reliable super-effective Earthquake is clearly best.",
+      "hidden_reasoning": "Goldengo vs Tinkaton. Tinkaton is Fairy/Steel. Goldengo is Steel/Ghost. Goldengo's Ghost moves are immune to Tinkaton (Fairy/Steel, Ghost hits neutral? No, Ghost is immune to Normal/Fighting, and Fairy/Steel... Ghost vs Fairy/Steel: Ghost deals neutral to Ghost? Wait, Tinkaton is Fairy/Steel. Ghost moves hit Fairy neutrally and Steel neutrally. Actually Ghost is not very effective? No. Let me think.\n\nType effectiveness:\n- Ghost vs Fairy: neutral\n- Ghost vs Steel: neutral (Ghost does neutral to Steel? Actually Ghost hits Steel neutrally. Yes.)\n\nSo Poltergeist (Ghost, 110 BP) hits Tinkaton neutrally. Tinkaton is Fairy/Steel.\n\nGoldengo is Steel/Ghost. Tinkaton's moves: Tinkaton uses Fairy/Steel moves. Tinkaton's Fairy moves hit Goldengo (Steel/Ghost) - Fairy is super effective against Fighting, but Goldengo is Steel/Ghost. Fairy vs Steel: not very effective. Fairy vs Ghost: neutral. So Fairy moves hit Goldengo for not very effective (0.5x). Good.\n\nBut wait, Goldengo is Steel type, so it's weak to Fire, Ground, Fighting. Tinkaton is Fairy/Steel, so it doesn't learn Fighting or Ground or Fire typically. Tinkaton's moves: Play Rough (Fairy), Flash Cannon (Steel), Thunder Wave, Grass Knot, etc. None super effective to Goldengo.\n\nActually, the key issue: Tinkaton could have a move that threatens Goldengo. But Goldengo is immune to Normal and Fighting (Ghost). Steel resists many things.\n\nLet me think about the matchup. Tinkaton is a physical attacker mostly. Its possible moves include Play Rough, Flash Cannon, Thunder Wave, Grass Knot, Iron Tail, etc.\n\nGoldengo vs Tinkaton: Goldengo is faster potentially (104 vs 102-160). Tinkaton could be faster if invested.\n\nPoltergeist is 110 BP but requires target to hold an item. Tinkaton's item is unknown. If Tinkaton has no item, Poltergeist fails.\n\nHmm, this is a risk. Tinkaton might not hold an item.\n\nActually, let me reconsider. The opponent's revealed bench: Annihilape at 28%. Tinkaton came in on turn 3 (from the recent turns, \"Opposing Tinkaton came in\"). Wait, but the team preview showed palafin, toxapex, incineroar, chandelure as the possible remaining. Tinkaton wasn't in that list. So Tinkaton was one of the 3 brought but not revealed? Actually the bench shows only Annihilape revealed. Tinkaton is now active.\n\nWait, the format: opponent brought 3 of 6. Revealed bench: Annihilape. Still to come: from palafin, toxapex, incineroar, chandelure. So the 3 brought include Annihilape and 2 others from that list. But Tinkaton is active now. Tinkaton wasn't in the \"to come\" list. So Tinkaton must be one of the 3 that's already... hmm, confusing. Actually maybe Tinkaton was the active from before and I don't have full context.\n\nAnyway, current situation: I have Goldengo active vs Tinkaton. I have Garchomp on bench.\n\nLet me think about what's best.\n\nTinkaton: Fairy/Steel. Weak to Ground and Fighting. Garchomp has Earthquake (Ground) which would be super effective. Garchomp is Dragon/Ground, 169 speed, 182 atk. Earthquake vs Tinkaton (Fairy/Steel): Ground is super effective against Steel (2x). So Earthquake would hit hard.\n\nBut Tinkaton could be faster and hit Garchomp. Garchomp is weak to Ice, Water, Grass, Ground, Fairy? Garchomp is Dragon/Ground. Weak to Ice (2x), Water (2x), Grass (2x), Ground (4x). Fairy is neutral. Tinkaton's Fairy moves would be neutral to Garchomp.\n\nActually, the matchup question: should I stay with Goldengo or switch to Garchomp?\n\nGoldengo vs Tinkaton:\n- Goldengo is immune to Normal/Fighting.\n- Tinkaton's moves are likely Fairy/Steel/Grass/Electric.\n- Flash Cannon (Steel) vs Goldengo (Steel/Ghost): Steel vs Steel not very effective (0.5x), Steel vs Ghost neutral. So 0.5x.\n- Play Rough (Fairy) vs Goldengo: Fairy vs Steel not very effective (0.5x), Fairy vs Ghost neutral. So 0.5x.\n- Grass Knot vs Goldengo: Steel weak to Grass (2x). So Grass Knot would be super effective!\n- Thunder Wave: Goldengo immune to paralysis? No, Goldengo is Steel/Ghost. Not immune to paralysis. But GoodasGold makes it immune to status. So Thunder Wave fails.\n\nSo the concern is Grass Knot. Does Tinkaton learn Grass Knot? Tinkaton's movepool: Play Rough, Flash Cannon, Thunder Wave, Grass Knot, Iron Tail, Magnet Rise, Play Round, etc. Yes, Tinkaton can learn Grass Knot.\n\nIf Tinkaton has Grass Knot, it could threaten Goldengo. But Grass Knot's damage depends on Tinkaton's weight. Tinkaton is heavy. Grass Knot base power can be high.\n\nHmm. But Goldengo has Focus Sash. If Tinkaton hits with a super effective move, Focus Sash keeps Goldengo at 1 HP, then Goldengo can attack back.\n\nActually, let me reconsider the whole thing. This is turn 4. Let me look at recent turns:\n- Turn 1: Dragapult vs Annihilape, Shadow Ball super effective, Annihilape at 28%, spd -1, Annihilape used Phantom Force.\n- Turn 2: Dragapult Shadow Ball missed, Annihilape Phantom Force, super effective, Cursed Body disabled Annihilape's [from] ability... Dragapult fainted, Gholdengo came in.\n- Turn 3: Tinkaton came in, Gholdengo Poltergeist missed.\n\nSo now Turn 4: Goldengo vs Tinkaton.\n\nWait, but Annihilape is at 28% and still on the team (in bench). Tinkaton is active.\n\nHmm, actually the recent turns show Tinkaton came in on turn 3. So Tinkaton replaced someone. And Annihilape is on bench at 28%.\n\nOK so current: Goldengo vs Tinkaton (100%).\n\nLet me think about the best play.\n\nOption A: Stay with Goldengo, use Poltergeist. Risk: Tinkaton may not hold an item, causing Poltergeist to fail. Also Tinkaton could be faster and hit Goldengo. If Tinkaton has Grass Knot and is faster, Focus Sash saves Goldengo, then Goldengo Poltergeists back.\n\nOption B: Stay with Goldengo, use Flash Cannon. Steel move, not very effective against Tinkaton (resists Steel). 80 BP. Not great.\n\nOption C: Stay with Goldengo, use Shadowball. 80 BP Ghost, neutral. 100% accuracy.\n\nOption D: Stay with Goldengo, Nasty Plot. Set up.\n\nOption E: Switch to Garchomp. Earthquake would be super effective (Ground vs Steel 2x). Garchomp 169 speed vs Tinkaton 102-160. Garchomp likely faster. Earthquake 100 BP, super effective, plus Rough Skin. But Tinkaton could have a move that threatens Garchomp. Tinkaton Fairy/Steel moves vs Garchomp (Dragon/Ground): neutral mostly. Play Rough neutral, Flash Cannon neutral. Garchomp resists... no. Garchomp weak to Ice/Water/Grass/Ground. Tinkaton doesn't learn those typically. So Garchomp is safe from Tinkaton's typical moves.\n\nActually, wait. Does Tinkaton learn any move that threatens Garchomp? Tinkaton is Fairy/Steel. Its STAB is Fairy and Steel. Neither is super effective to Garchomp. Tinkaton could have Thunder Wave (paralyze Garchomp, but that's fine), Grass Knot (Grass is super effective to Garchomp! 2x). If Tinkaton has Grass Knot, it threatens Garchomp too.\n\nHmm. But Garchomp is much bulkier and can survive a Grass Knot and OHKO with Earthquake.\n\nLet me estimate: Garchomp Earthquake vs Tinkaton. Tinkaton DEF range 87-141. Earthquake 100 BP, STAB? No, Garchomp's Earthquake is Ground, Tinkaton is Fairy/Steel, Ground is super effective to Steel (2x), neutral to Fairy. So 2x. Garchomp at 182 atk, no item boost necessarily. Earthquake would do significant damage. Probably not OHKO but big damage.\n\nActually, let me reconsider. The key deciding factor.\n\nGoldengo vs Tinkaton: Goldengo is faster or slower depending on Tinkaton's speed. If Goldengo isThinking budget reached. Stop thinking and give your final answer now.\n",
+      "note": "",
+      "tokens": 3834,
+      "latency_ms": 60192,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigatonhammer",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "52% MOVE: gigatonhammer, 24% MOVE: swordsdance, 15% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1678,
+      "latency_ms": 480,
+      "cost_usd": 3.356e-05,
+      "probabilities": {
+        "MOVE: gigatonhammer": 0.5232541640719544,
+        "MOVE: swordsdance": 0.24469876666738358,
+        "MOVE: stealthrock": 0.14948324340837305,
+        "MOVE: knockoff": 0.04866483199329496,
+        "SWITCH: annihilape": 0.003447382142623445,
+        "SWITCH: chandelure": 0.03045161171637054
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is faster than Tinkaton (169 vs max 160) and Earthquake is super effective, so it attacks safely. Tinkaton is already at 87% and its only revealed move is Knock Off (neutral), so taking the hit for a likely KO is worth it. Ghost moves from Gholdengo would be blocked by Tinkaton's Fairy immunity anyway.",
+      "hidden_reasoning": "Garchomp is facing Tinkaton. Tinkaton is at 87% HP. Garchomp has Earthquake (super effective, BP 100) which would likely knock out Tinkaton. Let me think about the matchup.\n\nTinkaton stats: HP 160-192, Def 87-141. Garchomp ATK 182. Earthquake is Ground, super effective on Fairy/Steel. That's 2x. BP 100.\n\nAgainst Tinkaton with def 87-141, Earthquake should do significant damage. Let me estimate: Garchomp 182 ATK, Earthquake 100 BP, 2x super effective. Against 141 def: damage ≈ (some formula). At level 50, damage = ((2*50/5+2) * 100 * 182/141 / 50) * modifier. = (20.2 * 100 * 1.29 / 50) = (20.2 * 129 / 50) = 2606/50 = 52 * 2 (SE) = 104 * random(0.85-1.0) * crit... So ~88-104 damage. Tinkaton has 160-192 HP. So it won't OHKO at max def. At 87% HP, Tinkaton has ~140-167 HP remaining.\n\nHmm, so Earthquake might not OHKO. But Tinkaton is at 87%, so it's already damaged. Let me reconsider.\n\nActually the question is whether to attack or switch. Gholdengo is a good check but Tinkaton has Knock Off which could hit it. Actually Tinkaton's Knock Off is Dark, not very effective against... Gholdengo is Steel/Ghost. Dark is not very effective? Steel resists Dark. So Knock Off would be not very effective on Gholdengo.\n\nBut wait, Tinkaton could use a special move? Its revealed move is only Knock Off. But it could have other moves. The possible abilities include Moldbreaker, Own Tempo, Pickpocket.\n\nLet me think about what's best. Garchomp is faster than Tinkaton (169 vs max 160). Earthquake is super effective. Even if it doesn't OHKO, it does a lot. But Tinkaton at 87%...\n\nActually, let me reconsider. Tinkaton's Speed range is 102-160. Garchomp is 169. So Garchomp moves first regardless. So we can attack safely.\n\nEarthquake does 2x super effective. Against 87% Tinkaton, it should knock it out or nearly. Let me estimate more carefully.\n\nTinkaton HP range 160-192. At 87%, remaining HP = 139-167.\nEarthquake damage: base formula at level 50:\nDamage = ((2 * Level / 5 + 2) * Power * A / D) / 5 + 2\n= ((2*50/5 + 2) * 100 * 182 / 141) / 50 + 2 (using min def 87 for max damage... wait, higher def = less damage)\n\nLet me use def 141 (max def, least damage):\n= ((20 + 2) * 100 * 182 / 141) / 50 + 2\n= (22 * 100 * 1.289) / 50 + 2\n= (22 * 128.9) / 50 + 2\n= 2836 / 50 + 2\n= 56.7 + 2 = 58.7\nTimes 2 (super effective) = 117.4\nTimes random 0.85-1.0 = 99.7 - 117.4\nCrit 1/6: times 1.5 = up to 176\n\nSo against max def Tinkaton (192 HP), at 87% (167 remaining), Earthquake does ~100-117, not OHKO. But against lower def (87):\n= (22 * 100 * 182 / 87) / 50 + 2\n= (22 * 100 * 2.09) / 50 + 2\n= (22 * 209) / 50 + 2\n= 4598 / 50 + 2\n= 91.96 + 2 = 93.96\nTimes 2 = 187.9\nTimes random = 159-187.9\nSo against min def Tinkaton (160 HP), at 87% (139 remaining), Earthquake OHKOs.\n\nSo it's a 50/50 on whether it OHKOs based on Tinkaton's actual def. Hmm.\n\nBut wait, there's also the possibility that Tinkaton has a move that threatens Garchomp. Tinkaton is Fairy/Steel. Garchomp is Dragon/Ground. Earthquake is super effective. Tinkaton's Knock Off is not very effective on Garchomp? Knock Off is Dark. Garchomp is Dragon/Ground, Dark does neutral. Actually Garchomp takes neutral from Dark.\n\nBut Tinkaton's revealed move is only Knock Off. It could have other moves though. Common Tinkaton sets: Knock Off, Hammer Arm, Play Rough, Thunder Wave, Magnetic Flux, etc. Hammer Arm is Fighting, super effective on Garchomp (Dragon resists Fighting? No, Dragon doesn't resist Fighting. Fighting is super effective... wait Garchomp is Dragon/Ground. Fighting vs Dragon = neutral, vs Ground = neutral. Actually Fighting is not very effective? No. Fighting vs Ground is neutral. Fighting vs Dragon is neutral. So Hammer Arm would be neutral on Garchomp.)\n\nActually, the key decision: Garchomp is faster and Earthquake is super effective. Even if it doesn't OHKO, Tinkaton is at 87% and will be weakened. But if Tinkaton has Hammer Arm, it could 2HKO Garchomp.\n\nAlternatively, switch to Gholdengo. Gholdengo is Steel/Ghost, immune to Fighting and Ground, resists Fairy, Steel. Tinkaton's Knock Off (Dark) is not very effective. Gholdengo could Poltergeist (needs an item - it has Focus Sash, so Poltergeist gets +50% power = 165 BP). That would likely OHKO Tinkaton.\n\nHmm, but Gholdengo is already on bench. Switching to Gholdengo vs attacking with Garchomp.\n\nLet me think about the opponent's remaining team. The opponent revealed bench: Annihilape (28% HP), and still to come: palafin, toxapex, incineroar, chandelure. So the opponent has Annihilape still at 28%, plus Tinkaton active.\n\nActually, the most important thing: Tinkaton is at 87% and Garchomp is faster with super-effective Earthquake. The deciding factor is whether to secure the KO or not.\n\nIf Earthquake doesn't OHKO (max def case), then Tinkaton hits back. Tinkaton's moveset unknown except Knock Off. If Tinkaton has a super-effective move... but its only revealed move is Knock Off (neutral-ish). Actually the possible abilities: Moldbreaker would ignore Garchomp's Rough Skin. \n\nI think the safest and most aggressive play is to use Earthquake. Garchomp is faster, Earthquake is super effective, and it's likely to KO or heavily damage Tinkaton. Even if it doesn't KO, Gholdengo can come in next turn.\n\nBut actually, let me reconsider switching to Gholdengo. Gholdengo with Focus Sash + Poltergeist (165 BP physical Ghost) would likely OHKO Tinkaton. Tinkaton has 160-192 HP, def 87-141. Poltergeist at 165 BP... Gholdenko SPA 137. Wait, Poltergeist is Physical. Gholdenko ATK 80. That's low.\n\nHmm, Poltergeist is physical, Gholdenko only has 80 ATK. That's not great. Let me reconsider.\n\nActually, Gholdengo's Poltergeist is physical based on ATK (80). That's weak. Shadowball is special (SPA 137). Shadowball vs Tinkaton: Ghost vs Fairy/Steel. Ghost is not very effective? Fairy is immune to Ghost! Tinkaton is Fairy/Steel. Ghost moves have no effect on Fairy. So Ghost moves do nothing to Tinkaton. So Shadowball and Poltergeist both do nothing (Fairy immunity).\n\nSo Gholdengo can't hurt Tinkaton with Ghost moves. Flash Cannon (Steel) would be not very effective (TinkThinking budget reached. Stop thinking and give your final answer now.\n",
+      "note": "",
+      "tokens": 3826,
+      "latency_ms": 60851,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "93% SWITCH: chandelure, 7% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1402,
+      "latency_ms": 390,
+      "cost_usd": 2.804e-05,
+      "probabilities": {
+        "SWITCH: annihilape": 0.07248839478911981,
+        "SWITCH: chandelure": 0.9275116052108803
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "energyball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "39% MOVE: energyball [MEGA], 23% MOVE: shadowball [MEGA], 19% MOVE: calmmind [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1923,
+      "latency_ms": 456,
+      "cost_usd": 3.846e-05,
+      "probabilities": {
+        "MOVE: fireblast": 0.005805614373373573,
+        "MOVE: fireblast [MEGA]": 0.04748924856158023,
+        "MOVE: shadowball": 0.018106498275503057,
+        "MOVE: shadowball [MEGA]": 0.22922585507909699,
+        "MOVE: energyball": 0.0745667194603936,
+        "MOVE: energyball [MEGA]": 0.38885904440909924,
+        "MOVE: calmmind": 0.018417119316380206,
+        "MOVE: calmmind [MEGA]": 0.19255096278026385,
+        "SWITCH: annihilape": 0.024978937744309086
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is faster than Chandelure and Earthquake is labeled super effective here. With STAB + super effectiveness, it very likely OHKOs Chandelure before the special attacker can hit, removing a Ghost-type threat that otherwise beats Garchomp. Switching to Gholdengo is riskier since it's slower and also takes Ghost damage.",
+      "hidden_reasoning": "Garchomp is facing Chandelure. Chandelure is Ghost/Fire, so Earthquake is super effective (Ground vs Ghost/Fire - Ground is super effective against Fire, and Ghost is immune to Ground... wait, actually Ground moves don't affect Ghost types. Let me reconsider.\n\nActually, Ground-type moves have NO EFFECT on Ghost types. So Earthquake would fail against Chandelure because Chandelure is a Ghost type. Wait, but the legal actions say \"super effective on chandelure\" for earthquake. Hmm, that's confusing.\n\nWait, let me reconsider. In Gen 9, Ground moves still have no effect on Ghost types. But the action description says \"super effective on chandelure.\" This might be a simulation quirk or the game is treating it differently. Actually, in the official games, Ground cannot affect Ghost types at all. But this simulator says super effective...\n\nHmm, this is a specific simulation (gen9championsrotomarenabssregmb). Let me think about what's realistic. Actually, I should trust the game mechanics. In standard Gen 9, Ground-type moves do not affect Ghost-type Pokémon. So Earthquake would fail.\n\nBut the action description explicitly says \"super effective on chandelure.\" This is contradictory. Let me think about whether this is a special format.\n\nActually, wait. Maybe this is a custom format where the type effectiveness is being shown. But physically, Ground cannot affect Ghost. Unless... the description is wrong or it's a quirk.\n\nLet me focus on the practical decision. Chandelure is a special attacker with high SpA (148-216). Garchomp is taking damage. Chandelure likely has moves like Shadow Ball, Fire Blast, Flamethrower, Hex, etc.\n\nGarchomp has 135/183 HP. Chandelure is at 100% HP.\n\nIf I use Dragon Claw, it's neutral (Dragon vs Ghost/Fire - neutral). It won't knock out Chandelure.\n\nIf I use Earthquake and it's super effective (as the game says), it might knock out Chandelure. But if Ground has no effect on Ghost, it fails.\n\nActually, I need to be careful. Let me reconsider the type matchups:\n- Earthquake (Ground) vs Chandelure (Ghost/Fire): Ground has NO EFFECT on Ghost. So it should fail.\n\nBut the game description says \"super effective on chandelure.\" This is very strange. \n\nHmm, maybe in this specific format, there's some rule change. Or maybe the description is auto-generated and wrong.\n\nLet me think about the safest play. Gholdengo is on the bench at 100% HP. Gholdengo is Steel/Ghost. Chandelure is Ghost/Fire. \n\nActually, let me reconsider. The key question: should I attack or switch?\n\nGarchomp vs Chandelure: Chandelure is a special attacker. If Chandelure has a Fire move, Garchomp (Fire-immune? No, Garchomp is Dragon/Ground, not Fire-immune). Wait, Garchomp is Dragon/Ground. Ground is weak to Fire? No. Ground is weak to Water, Grass, Ice. Fire doesn't affect Ground super effectively... actually Fire does not affect Ground super effectively. Wait, Fire vs Ground: Fire is not very effective against Ground? No. Let me recall: Fire moves against Ground types - Ground is immune to Fire? No. Actually, Ground types are immune to Electric, not Fire. Fire vs Ground: Fire does normal damage to Ground... no wait.\n\nType effectiveness: Fire vs Ground - Fire is not very effective? Actually, Ground is weak to Fire? No. Let me think. Ground weaknesses: Water, Grass, Ice. Ground resists: Rock. Ground is immune to Electric. \n\nFire vs Ground: Fire does not affect... no. Fire attacks against Ground types deal normal (1x) damage. Actually, I recall Fire is not very effective against Ground? No. Hmm.\n\nLet me just recall the standard: Fire vs Ground = 1x (normal). Actually no. Ground is weak to Ice, Water, Grass. Fire is not particularly effective or ineffective against Ground in standard... Actually, I think Fire does normal damage to Ground. Wait, no. Let me think about Heatron/Heatran. Heatran is Steel/Fire, weak to Ground, Fire, Fairy. Ground is super effective against Heatran because of its Steel typing.\n\nOK here's the thing: Fire vs Ground. In the games, Fire-type moves deal normal damage to Ground types. There's no special interaction. So Garchomp can take a Fire move from Chandelure.\n\nBut Chandelure also has Ghost moves (Shadow Ball, Hex) which are super effective against Garchomp (Dragon/Ghost - Garchomp is Ghost, so Ghost moves are 2x effective). So Chandelure's Ghost moves are super effective against Garchomp.\n\nSo Garchomp is in a bad matchup against Chandelure if Chandelure has Ghost moves. Garchomp's Dragon Claw is neutral and won't OHKO. Garchomp would take super effective damage.\n\nNow, should Garchomp use Earthquake? If Earthquake actually works (super effective per the game), it might KO Chandelure. But if Ground has no effect on Ghost, it fails and Garchomp takes a super effective Ghost move.\n\nGiven the game explicitly says \"super effective on chandelure\" for Earthquake, I'll trust that in this format, Earthquake is super effective. But wait, that contradicts core mechanics.\n\nHmm, let me reconsider. Actually, maybe the description is auto-generated based on the opponent's typing without accounting for Ghost immunity. This is a known issue in some simulators where they show \"super effective\" based on one type.\n\nActually, I think the safest interpretation: In standard Gen 9, Ground moves have no effect on Ghost types. Chandelure is a Ghost type. So Earthquake would fail.\n\nBut the simulator explicitly lists it as \"super effective on chandelure.\" This is a strong signal that in THIS simulation, Earthquake works super effectively. \n\nWait, but that would be a major rule change. Let me think about the format name: gen9championsrotomarenabssregmb. This looks like a custom format. Maybe there are type changes.\n\nActually, I'll go with the game's own description. It says Earthquake is super effective on Chandelure. If it's super effective and 100% accurate, and Chandelure is at 100% HP, Garchomp's Earthquake (100 BP, STAB? No, Garchomp isn't Ground STAB... wait Garchomp IS Ground type. So Earthquake gets STAB = 125 BP). With 182 ATK and STAB, Earthquake would do massive damage.\n\nWait, Garchomp is Dragon/Ground. So Earthquake gets STAB. 100 BP × 1.25 = 125 BP, super effective (2x), with 182 ATK against Chandelure's 99-156 DEF. That's likely an OHKO.\n\nBut if Ground has no effect on Ghost, it fails. The game says super effective, so I'll trust it.\n\nHmm, but this is risky. Let me reconsider.\n\nActually, you know what, I bet the \"super effective\" label is a bug/quirk in the simulator's type calculation, OR it's genuinely super effective in this format. Given the ambiguity, let me think about the alternative.\n\nIf I switch to Gholdengo: Gholdengo is Steel/Ghost. Chandelure is Ghost/Fire. Gholdengo resists Fire (Steel resists Fire), is immune to... Ghost vs Steel/Ghost - Gholdengo is Ghost, so Ghost moves hit it normally. Actually Gholdengo is Ghost type, so it takes Ghost damage normally. Chandelure's Ghost moves would be super effective against Gholdengo? Gholdengo is Steel/Ghost. Ghost moves vs Steel/Ghost: Ghost is super effective against Ghost (2x). So yes, super effective.\n\nHmm, but Gholdengo has Focus Sash and can set up Nasty Plot. Gholdengo is slower (104 vs Chandelure 90-145).\n\nActually, let me reconsider the whole situation. The key deciding factor:\n\nOption 1: Earthquake. If it works (super effective, STAB), likely OHKO Chandelure. If it fails (Ground no effect on Ghost), Garchomp takes super effective Ghost move and is in trouble.\n\nOption 2: Dragon Claw. Neutral, won't KO. Garchomp takes super effective Ghost move next turn.\n\nOption 3: Swords Dance. Set up, then Garchomp takes super effective move.\n\nOption 4: Switch to Gholdengo. Gholdengo vs Chandelure - mixed.\n\nThe deciding factor: If Earthquake is super effective (as the game says), it's the best play because it likely OHKOs Chandelure and removes a threat. Garchomp is fast enough (169 vs 90-145) to hit first.\n\nBut the risk is that Ground has no effect on Ghost. However, the game explicitly says \"super effective on chandelure.\" I should trust the game's own assessment.\n\nWait, actually, let me reconsider. In some formats, there might be abilities or rules. But the most likely scenario given the explicit \"super effective\" label is that EarthquakeThinking budget reached. Stop thinking and give your final answer now.\n",
+      "note": "",
+      "tokens": 3877,
+      "latency_ms": 57307,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Annihilape",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: annihilape",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: annihilape": 1.0
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "96% MOVE: icepunch, 3% MOVE: closecombat, 0% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1471,
+      "latency_ms": 408,
+      "cost_usd": 2.942e-05,
+      "probabilities": {
+        "MOVE: closecombat": 0.03258521350502175,
+        "MOVE: phantomforce": 0.004437240612340226,
+        "MOVE: earthquake": 0.004796826564657893,
+        "MOVE: icepunch": 0.9581807193179802
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 28% HP and slower than Garchomp (169 vs max 156), so Earthquake (super effective, 100 BP) will knock it out before it can act. No need to set up or switch.",
+      "hidden_reasoning": "Annihilape is at 28% HP. Garchomp is faster (169 vs 99-156). Earthquake is super effective against Annihilape (Fighting/Ghost, Ground is super effective). With 182 ATK and 100 BP, Earthquake should easily knock out Annihilape at 28%. No need to Swords Dance. Earthquake also hits any adjacent but there's none. Just knock it out.\n\nWait, Annihilape is Fighting/Ghost. Ground moves hit it super effectively. Yes. Earthquake knocks it out.\n\nThe deciding factor is speed + likely knockout. Garchomp moves first and Earthquake KO's Annihilape.\n",
+      "note": "",
+      "tokens": 1958,
+      "latency_ms": 7311,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 16% HP. My Gholdengo is at 100% HP. Annihilape is Fighting/Ghost. Gholdengo is Steel/Ghost. \n\nAnnihilape's revealed moves: Phantom Force (Ghost) and Ice Punch (Ice). Both are super effective against Gholdengo? No wait, Gholdengo is Steel/Ghost. Ice Punch is Ice type - not super effective against Steel/Ghost. Phantom Force is Ghost type - Gholdengo is Ghost, so Ghost moves don't affect Ghost types. So Annihilape's moves are either not very effective or no effect against Gholdengo.\n\nActually, Gholdengo is immune to Ghost (Ghost/Ghost). Ice Punch against Steel/Ghost - Ice is not very effective against Steel. So Annihilape can't really hurt Gholdengo much.\n\nAnnihilape is at 16% HP. Gholdengo's Poltergeist is Ghost/Physical BP110 - but Annihilape is Ghost, so immune. Shadowball is Ghost - immune. Flash Cannon is Steel - super effective against Steel. Annihilape is Fighting/Ghost, Steel is neutral. Flash Cannon would do damage but might not KO at 16%.\n\nWait, but I can only switch to Gholdengo this turn (that's the only legal action). So I have to switch.\n\nActually the only legal action is SWITCH: gholdengo. So I must switch. Gholdengo is a good switch-in since Annihilape's moves don't hurt it well.\n\nThe deciding factor: Gholdengo resists/immunes Annihilape's moves and can wear it down. Switch in.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1976,
+      "latency_ms": 11333,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: icepunch": 1.0
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Annihilape is at 16% HP, so any super-effective move KOs it. Shadowball is 100% accurate and doesn't depend on Annihilape holding an item like Poltergeist does, making it the safer finish.",
+      "hidden_reasoning": "Annihilape is at 16% HP. Gholdengo has Focus Sash still active (full HP). Poltergeist is super effective and physical, but Annihilape likely holds an item (unknown_item). Shadowball is super effective special and 100% accurate. At 16% HP, either should KO. Annihilape could hit back with Ice Punch (super effective) or Phantom Force. Gholdengo is fast enough potentially but speed is uncertain. Since Annihilape is at 16%, a super effective move should KO. Poltergeist requires an item; if Annihilape holds an item it works. Shadowball is safer (100% acc, no item requirement). Both KO at 16%. I'll go with shadowball to guarantee the KO without item dependency.\n\nActually, both KO. Shadowball is 100% accurate and doesn't need an item. Choose shadowball.\n",
+      "note": "",
+      "tokens": 2038,
+      "latency_ms": 6959,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
