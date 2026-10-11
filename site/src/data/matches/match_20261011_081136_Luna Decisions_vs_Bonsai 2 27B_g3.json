@@ -1,0 +1,641 @@
+{
+  "id": "match_20261011_081136_Luna Decisions_vs_Bonsai 2 27B_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261011",
+  "players": [
+    {
+      "config_id": "gpt_6_luna_decisions",
+      "display_name": "GPT-6 Luna Decisions",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna-decisions",
+      "quantization": null,
+      "username": "Luna Decisions",
+      "role": "p1",
+      "team": "GPT-6 Luna Decisions's team",
+      "model_key": "openai/gpt-6-luna-decisions",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna Decisions"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 9,
+  "duration_seconds": 441.86,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Luna Decisions vs. Bonsai 2 27B",
+    "|j|☆GPT-6 Luna Decisions",
+    "|j|☆Bonsai 2 27B",
+    "|gametype|singles",
+    "|player|p1|GPT-6 Luna Decisions|169|",
+    "|player|p2|Bonsai 2 27B|170|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Scizor, L50, M|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Ninetales-Alola, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Krookodile, L50, F|",
+    "|poke|p2|Gardevoir, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Mimikyu, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|157/157",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Rotom",
+    "|-immune|p1a: Rotom|[from] ability: Levitate",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Garchomp",
+    "|-crit|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|13/100",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Toxapex",
+    "|-resisted|p2a: Toxapex|1",
+    "|-damage|p2a: Toxapex|76/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|-heal|p2a: Toxapex|100/100|[from] ability: Regenerator|[silent]",
+    "|switch|p2a: Krookodile|Krookodile, L50, F|100/100",
+    "|-ability|p2a: Krookodile|Intimidate|boost",
+    "|-unboost|p1a: Rotom|atk|1",
+    "|move|p1a: Rotom|Volt Switch|p2a: Krookodile",
+    "|-immune|p2a: Krookodile",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Krookodile|Stone Edge|p1a: Rotom|[miss]",
+    "|-miss|p2a: Krookodile|p1a: Rotom",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Krookodile",
+    "|-supereffective|p2a: Krookodile|1",
+    "|-damage|p2a: Krookodile|0 fnt",
+    "|faint|p2a: Krookodile",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Rotom|Volt Switch|p2a: Toxapex",
+    "|-supereffective|p2a: Toxapex|1",
+    "|-damage|p2a: Toxapex|41/100",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162|[from] Volt Switch",
+    "|move|p2a: Toxapex|Toxic Spikes|p1a: Gholdengo",
+    "|-sidestart|p1: Luna Decisions|move: Toxic Spikes",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Toxapex|Protect|p2a: Toxapex",
+    "|-singleturn|p2a: Toxapex|Protect",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Toxapex",
+    "|-activate|p2a: Toxapex|move: Protect",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|0 fnt",
+    "|faint|p2a: Toxapex",
+    "|-damage|p1a: Gholdengo|146/162|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|13/100",
+    "|turn|8",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|-damage|p2a: Garchomp|3/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|-status|p1a: Garchomp|psn",
+    "|turn|9",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|65/183 psn",
+    "|-damage|p2a: Garchomp|0 fnt|[from] item: Life Orb",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|win|GPT-6 Luna Decisions",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "rotomwash,garchomp,gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 36% BRING: rotomwash, 34% BRING: garchomp, 22% BRING: ninetalesalola\nPick 2: 39% BRING: garchomp, 21% BRING: scizor, 18% BRING: gholdengo\nPick 3: 68% BRING: gholdengo, 22% BRING: scizor, 6% BRING: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4832,
+      "latency_ms": 1460,
+      "cost_usd": 0.00048320000000000004,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,toxapex,krookodile",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp leads with Life Orb Earthquake/Stone Edge, covering most of their team super-effectively (2x on Gholdengo, Incineroar, Ninetales-Alola). Toxapex walls special attackers like Gholdengo and Rotom-Wash with Sludgebomb and Regenerator. Krookodile's Intimidate halves physical threats while Black Belt + Knockoff removes items for free pressure.",
+      "hidden_reasoning": "Let me analyze this team preview for a Gen 9 Champions Rotomarenabssregmb format.\n\nMy team:\n- Garchomp (Dragon/Ground) - Life Orb, Sandveil, fast (169 Spe), strong physical attacker\n- Toxapex (Poison/Water) - Damp Rock, Regenerator, slow but very defensive\n- Krookodile (Ground/Dark) - Black Belt, Intimidate, fast (158 Spe), strong physical attacker\n- Gardevoir (Psychic/Fairy) - Choice Scarf, Synchronize, 145 Spe with scarf = ~203 effective speed\n- Corviknight (Flying/Steel) - Leftovers, Unnerve, defensive\n- Mimikyu (Ghost/Fairy) - Focus Sash, Disguise, fast (162 Spe), can KO\n\nOpponent's team:\n- Garchomp (Dragon/Ground)\n- Rotom-Wash (Electric/Water)\n- Scizor (Bug/Steel)\n- Incineroar (Fire/Dark)\n- Gholdengo (Steel/Ghost)\n- Ninetales-Alola (Ice/Fairy)\n\nThis is a Champions format with 6 Pokémon on each side. The opponent has:\n- Garchomp: threatens my Garchomp and Krookodile, but weak to Rock, Ice, Fairy\n- Rotom-Wash: Electric/Water, Levitate - resists Ground (my Garchomp/Krookodile), weak to Grass, Fighting\n- Scizor: Bug/Steel - resists many types, weak to Fire, Fighting. Good wall for special attackers\n- Incineroar: Fire/Dark - Intimidate, resists Dark/Fire, weak to Water/Ground/Fighting\n- Gholdengo: Steel/Ghost - very defensive, good as a wall, weak to Ground (2x), Fire (2x)\n- Ninetales-Alola: Ice/Fairy - Levitate, resists many types, weak to Fire, Fighting, Poison\n\nLet me think about what 3 to bring:\n\nKey considerations:\n1. Garchomp is my best lead - fast, strong, can pressure most of their team. Life Orb + Earthquake/Stone Edge covers a lot.\n2. Krookodile with Black Belt + Intimidate is also great - Intimidate halves the opponent's physical attacker, and Black Belt boosts Knockoff for item removal.\n3. Toxapex is an excellent wall - can handle special attackers like Gholdengo, Rotom-Wash, Ninetales-Alola. Regenerator helps with recovery.\n\nThe opponent has a lot of physical threats (Garchomp, Scizor, Incineroar) and some special (Gholdengo, Rotom-Wash, Ninetales). \n\nFor a 3-pick in Champions:\n- Garchomp as lead: Fast, can pressure with Earthquake/Stone Edge. Life Orb helps with consistency. Can handle Garchomp (Dragon/Ground is neutral to Ground), Scizor (Ground resists Bug, but Steel resists Ground... wait, Ground is not very effective against Steel). Actually, Garchomp's Earthquake doesn't hit Steel types. Stone Edge hits Scizor super effectively (Rock vs Bug/Steel = 2x).\n\nWait, let me reconsider matchups:\n- My Garchomp vs their Garchomp: Dragon/Ground vs Dragon/Ground - neutral. Both can KO each other with STAB. Mine has Life Orb and higher stats (182 Atk vs unknown). Speed is close (169 vs 109-169 range).\n- My Garchomp vs their Scizor: Ground is not very effective against Steel. Stone Edge is super effective (Rock vs Bug/Steel = 4x? No, Rock vs Bug is 2x, Rock vs Steel is 2x, so Rock vs Bug/Steel is 4x). Wait no - Rock is super effective against Bug and Flying, but NOT against Steel. Let me recalculate: Rock vs Bug = 2x, Rock vs Steel = 0.5x (resists). So Rock vs Bug/Steel = 1x. Hmm, that's not great.\n\nActually wait: Scizor is Bug/Steel. Rock moves are super effective against Bug but resist against Steel. So Rock vs Bug/Steel = 2 * 0.5 = 1x. Not very good.\n\n- My Garchomp vs their Incineroar (Fire/Dark): Ground is not very effective against Fire? No, Ground is neutral to Fire and Dark. Actually Ground is super effective against... let me think. Ground is super effective against Fire, Rock, Ice, Poison, Steel. Wait no:\n  - Ground is super effective against: Fire, Ice, Poison, Rock, Steel\n  - Ground is not very effective against: Grass, Flying\n  - Ground is neutral against: Normal, Fighting, Water, Electric, Psychic, Bug, Dragon, Dark, Ghost, Fairy\n  \nSo Ground vs Fire/Dark = 2x (super effective against Fire). Good!\n\n- My Garchomp vs their Rotom-Wash (Electric/Water): Ground is not very effective against... wait. Ground vs Electric = neutral? No, Ground resists Electric. Actually:\n  - Ground is immune to Electric\n  - Ground vs Water = neutral\n  \nSo Earthquake on Rotom-Wash does no damage (immune). Stone Edge on Rotom-Wash: Rock vs Electric/Water = neutral. Not great.\n\n- My Garchomp vs their Gholdengo (Steel/Ghost): Ground is super effective against Steel (2x), but Ghost resists... wait, Ghost doesn't resist anything from Ground specifically. Let me check:\n  - Ground vs Steel = 2x (super effective)\n  - Ground vs Ghost = neutral\n  - So Ground vs Steel/Ghost = 2x\n  \nActually wait, I need to double-check. Is Ground super effective against Steel? Yes! Ground is super effective against Fire, Ice, Poison, Rock, and Steel.\n\nSo Garchomp's Earthquake hits Gholdengo for 2x. Good.\n\n- My Garchomp vs their Ninetales-Alola (Ice/Fairy): \n  - Ground vs Ice = 2x\n  - Ground vs Fairy = neutral\n  - So Ground vs Ice/Fairy = 2x\n  \nGood, Earthquake hits Ninetales for 2x.\n\nSo Garchomp is a great lead that can handle most of their team with Earthquake (except Rotom-Wash which it's immune to).\n\nNow for the second pick:\n- Krookodile: Intimidate helps against physical threats. Black Belt + Knockoff removes items. Earthquake hits most things. But same issue as Garchomp - can't hit Steel types well with Ground.\n- Toxapex: Excellent wall. Can handle special attackers. Sludgebomb hits Ghost (Gholdengo) super effectively. Recover keeps it alive. Damp Rock reduces burn damage.\n\nFor the third pick:\n- Mimikyu: Focus Sash guarantees one free hit. Phantom Force is a priority move that can KO many things. Disguise makes it harder to target. Can handle physical threats.\n- Corviknight: Very defensive, Defog clears hazards. But slow (87 Spe).\n- Gardevoir: Choice Scarf gives great speed (~203 effective). Moonblast hits Garchomp (Fairy vs Dragon = 2x), Scizor (Fairy vs Bug/Steel = 4x? No, Fairy vs Bug is 2x, Fairy vs Steel is 0.5x, so Fairy vs Bug/Steel = 1x). Hmm, not great against Scizor.\n\nActually, let me reconsider. In Champions format with 6 Pokémon, you bring 3 at a time and can switch in others later. So I want a balanced trio that covers the most ground.\n\nMy best 3:\n1. Garchomp (lead) - Fast physical sweeper, handles most of their team\n2. Toxapex - Special wall, handles Gholdengo, Rotom-Wash, Ninetales-Alola\n3. Krookodile or Mimikyu or Corviknight\n\nKrookodile with Intimidate is great for pressure and item removal. But it overlaps a lot with Garchomp (both Ground-type physical attackers).\n\nMimikyu with Focus Sash + Phantom Force gives me a guaranteed KO threat that can handle physical walls like Scizor or Corviknight-type threats. Disguise also makes it harder to predict.\n\nActually, for Champions format, I think:\n1. Garchomp - lead sweeper\n2. Toxapex - special wall / pivot\n3. Krookodile - Intimidate pressure + item removal with Knockoff\n\nThis gives me:\n- Physical coverage (Garchomp + Krookodile)\n- Special wall (Toxapex)\n- Intimidate for physical threats\n- Item removal capability\n- Good type coverage\n\nWait, but I'm missing a priority move or something to handle faster threats. Let me think...\n\nActually, Garchomp at 169 Spe is quite fast. Krookodile at 158 Spe is also fast. Toxapex at 55 Spe is slow but that's fine as a wall.\n\nThe opponent's fastest threats:\n- Their Garchomp: up to 169 Spe (could beThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 4178,
+      "latency_ms": 48316,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: hydropump, 18% MOVE: willowisp, 7% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1193,
+      "latency_ms": 429,
+      "cost_usd": 0.0001193,
+      "probabilities": {
+        "MOVE: hydropump": 0.72,
+        "MOVE: voltswitch": 0.07,
+        "MOVE: willowisp": 0.18,
+        "MOVE: painsplit": 0.01,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: gholdengo": 0.01
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp outspeeds Rotom-Wash and Earthquake is super effective per the matchup data. With Life Orb, STAB, and a guaranteed KO on a full-HP target, this is a clean first-turn knockout before Rotom-Wash can act.",
+      "hidden_reasoning": "Let me analyze this battle situation.\n\nMy Garchomp (Dragon/Ground, Life Orb, Sandveil) is facing Rotom-Wash (Electric/Water, Levitate).\n\nKey factors:\n- Garchomp moves first (169 speed vs 95-151 range for Rotom-Wash)\n- Earthquake is super effective against Rotom-Wash (Ground > Water, but Electric resists Ground... wait, let me reconsider)\n\nActually, let me check the type matchup:\n- Garchomp's Earthquake is Ground type\n- Rotom-Wash is Electric/Water\n- Ground vs Electric: Not very effective (0.5x)\n- Ground vs Water: Neutral (1x)\n- So Ground vs Electric/Water = 0.5x\n\nWait, that's not super effective at all. Let me re-read the legal actions...\n\nThe legal action says \"super effective on rotomwash\" for earthquake. But that doesn't make sense with standard type matchups. Let me reconsider...\n\nActually wait - in Gen 9 Champions format, maybe there's something different. But no, Ground is not super effective against Electric/Water. Ground is resisted by Electric and neutral to Water. So it should be 0.5x.\n\nHmm, but the game says \"super effective on rotomwash\" for earthquake. Let me just trust the game's description... Actually wait, maybe I'm wrong about the type chart. Let me think again:\n- Ground attacks: Super effective against Fire, Rock, Ice. Not very effective against Grass, Bug. Resisted by Flying, Bug.\n- Electric resists Ground? No! Electric does NOT resist Ground. \n\nWait, let me reconsider the type chart:\n- Ground is NOT resisted by Electric. Ground is neutral to Electric.\n- Ground IS super effective against Fire, Rock, Ice.\n- Ground is NOT very effective against Grass and Bug.\n\nSo Ground vs Electric/Water would be 1x (neutral) for both types. That means Earthquake should deal normal damage, not super effective.\n\nBut the game explicitly states \"super effective on rotomwash\" for earthquake in the legal actions. I'll trust the game's description since it's part of the rules given to me. Maybe there's a format-specific mechanic or I'm misremembering something about Gen 9 Champions.\n\nActually, wait. Let me re-read: \"earthquake | Ground, Physical, power 100, 100% accuracy, super effective on rotomwash\"\n\nHmm, this is what the game tells me. I'll go with it. If Earthquake is super effective (2x) and Garchomp moves first with Life Orb (1.3x), that's a massive hit.\n\nGarchomp: 182 ATK × 100 BP × 2 (STAB? No, Dragon/Ground... wait, Earthquake is Ground type, and Garchomp IS Ground type, so yes STAB) × 1.5 (STAB) × 1.3 (Life Orb) × 2 (super effective per game) \n\nWait, actually let me reconsider. The game says \"super effective\" which means 2x. With STAB (1.5x), Life Orb (1.3x), and super effective (2x), that's a LOT of damage.\n\nRotom-Wash HP range: 125-157 at level 50. Let's say around 140.\n\nGarchomp Earthquake damage: 182 × 100/50 × 1.5 (STAB) × 1.3 (Life Orb) × 2 (super effective) = 182 × 2 × 1.5 × 1.3 × 2 = 709... that's way more than the HP. Even without super effective, it would be 354 which still exceeds 157 max HP.\n\nSo Earthquake should KO Rotom-Wash regardless of whether it's super effective or not. Since Garchomp moves first, this is a guaranteed KO.\n\nThe deciding factor: likely knockout. Earthquake will KO Rotom-Wash before it can move.\n\nI'll go with MOVE: earthquake.\n",
+      "note": "",
+      "tokens": 2380,
+      "latency_ms": 22863,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: hydropump, 3% MOVE: voltswitch, 1% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1245,
+      "latency_ms": 411,
+      "cost_usd": 0.0001245,
+      "probabilities": {
+        "MOVE: hydropump": 0.95,
+        "MOVE: voltswitch": 0.03,
+        "MOVE: willowisp": 0.0,
+        "MOVE: painsplit": 0.0,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: gholdengo": 0.01
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 13% HP and will be KO'd by Rotom-Wash's next Hydro Pump. Earthquake is useless due to Levitate, and Stone Edge likely won't KO before getting hit back. The bad matchup forces a switch out — Toxapex with Regenerator and Damprock is the safest pivot here.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy Garchomp is at 24/183 HP (13.1%). It just got hit by a critical Hydro Pump from Rotom-Wash. \n\nKey considerations:\n- Garchomp is at 13% HP - it's basically one hit away from fainting\n- Rotom-Wash has Levitate, so Earthquake won't work on it (it's immune to Ground)\n- Wait, actually looking at the stats: Garchomp SPE 169 vs Rotom-Wash SPE 95-151. So Garchomp moves first.\n- But Garchomp is at 24 HP. Even if it moves first, what can it do?\n\nLet me think about each option:\n1. Swords Dance - raises attack but doesn't deal damage. Garchomp would still be at 24 HP after the opponent's turn. Rotom-Wash could hit again and KO it.\n2. Earthquake - Ground is immune to Rotom-Wash (Levitate). Won't do anything.\n3. Stone Edge - Rock, power 100, 80% accuracy. Garchomp has 182 ATK with Life Orb (1.3x) = effective 236.6 ATK. Against Rotom-Wash's Def (114-174), this could deal significant damage. But at 24 HP, if it doesn't KO, Rotom-Wash will hit back and KO Garchomp.\n4. Substitute - Takes 1/4 of max HP (183/4 ≈ 46 HP). Garchomp is at 24 HP, so it can't even use Substitute! Wait, actually in Gen 9 Champions, you need enough HP to create a substitute. 24 < 46, so this would fail or not be possible. Actually, let me reconsider - the rule is you take 1/4 max HP. If you have less than that, you can't use it. So Substitute is likely not viable here.\n5. Switch to Toxapex - Safe switch. Toxapex has Regenerator and Damprock. It's a great defensive pivot.\n6. Switch to Krookodile - Also safe. Krookodile has Intimidate (halves opponent's Attack) and Black Belt (1.5x on Knock Off).\n\nThe deciding factor here is that Garchomp is at 13% HP and essentially cannot survive another hit from Rotom-Wash. The bad matchup to switch out of is the fact that Garchomp is about to be KO'd by Rotom-Wash's next move.\n\nBetween Toxapex and Krookodile:\n- Toxapex: Very defensive, Regenerator heals 1/3 HP on switch-in, Damprock reduces damage taken. Good for stalling and setting up Toxic Spikes. But it's slow (SPE 55).\n- Krookodile: Intimidate halves Rotom-Wash's Attack, which is significant since Rotom-Wash is a special attacker... wait, Intimidate only affects physical attackers. Rotom-Wash uses Hydro Pump (special), so Intimidate won't help against it. However, Krookodile has Knock Off for item removal and Earthquake/Stone Edge for damage.\n\nActually, let me reconsider. Rotom-Wash's revealed move is Hydro Pump (Water/Special). Its stats range includes SpA 112-172. Intimidate only reduces physical Attack, so it won't help against a special attacker like Rotom-Wash.\n\nToxapex seems better here because:\n- Regenerator will heal it on switch-in\n- Damprock reduces damage taken by 30%\n- It can set up Toxic Spikes for later\n- It's a great defensive pivot\n- Slow speed means it won't be outsped, which is fine since we're switching in defensively\n\nKrookodile could work too but without Intimidate helping against special attackers, and its main threats (Earthquake) don't hit Rotom-Wash due to Levitate.\n\nI'll go with switching to Toxapex. The deciding factor is the bad matchup - Garchomp at 13% HP cannot survive another turn against Rotom-Wash.\n",
+      "note": "",
+      "tokens": 2485,
+      "latency_ms": 23918,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "87% MOVE: voltswitch, 6% MOVE: willowisp, 4% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1383,
+      "latency_ms": 418,
+      "cost_usd": 0.0001383,
+      "probabilities": {
+        "MOVE: hydropump": 0.0,
+        "MOVE: voltswitch": 0.87,
+        "MOVE: willowisp": 0.06,
+        "MOVE: painsplit": 0.01,
+        "SWITCH: garchomp": 0.02,
+        "SWITCH: gholdengo": 0.04
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Krookodile",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash's Hydro Pump is only 0.5x on Toxapex (30 HP damage per hit), so it's not an immediate KO threat. Switching to Krookodile lets me use Intimidate and hit with a 2x super-effective Earthquake, since Ground is super effective against Rotom-Wash's Water typing.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My active: Toxapex at 97/127 HP (76.4%), with Damprock, Regenerator\n- Opponent active: Rotom-Wash at 100% HP, Levitate\n- Weather: None, Field: None\n\nToxapex stats: HP 127, ATK 83, DEF 224, SPA 65, SPD 194, SPE 55\nRotom-Wash stats (range): HP 125-157, Atk 76-128, Def 114-174, SpA 112-172, SpD 114-174, Spe 95-151\n\nRotom-Wash moves first (speed 95-151 vs Toxapex's 55).\n\nWhat can Rotom-Wash do? It revealed Hydro Pump. It could also have other moves but we only know Hydro Pump is revealed.\n\nHydro Pump on Toxapex: Water is not very effective against Poison/Water (Water resists Water, and Poison resists... wait, let me think about type matchups).\n\nToxapex is Poison/Water:\n- Water attacks: resisted by Water (0.5x), neutral to Poison → 0.5x total\n- Electric attacks: neutral to Poison, resisted by Water (0.5x) → 0.5x total\n- Ground: immune (Poison resists... no wait, Ground is neutral to Poison, super effective against... no. Let me reconsider.\n\nActually for Toxapex (Poison/Water):\n- Water: 0.5x (Water resists Water) × 1 (Poison neutral) = 0.5x\n- Electric: 1 (Poison neutral) × 0.5 (Water resists Electric) = 0.5x\n- Ground: 1 (Poison neutral... wait, Poison is immune to Ground? No, that's not right. Let me think again.\n\nPoison type resistances: Grass, Fighting, Poison, Bug, Fairy\nPoison type weaknesses: Ground, Psychic\nPoison type immunities: None (in Gen 9)\n\nWater type resistances: Water, Fire, Steel, Dragon\nWater type weaknesses: Electric, Grass\nWater type immunities: None\n\nSo Toxapex (Poison/Water):\n- Weak to: Ground (from Poison), Psychic (from Poison), Electric (from Water), Grass (from Water) → 4x weak to... wait no. Ground is super effective against Poison but neutral to Water = 2x. Electric is neutral to Poison, super effective against Water = 2x. Grass is neutral to Poison, super effective against Water = 2x. Psychic is super effective against Poison, neutral to Water = 2x.\n- Resisted by: Water (0.5×1=0.5), Fire (1×0.5=0.5), Steel (1×0.5=0.5), Dragon (1×0.5=0.5), Grass... wait no, Grass is super effective against Water. Let me redo.\n\nActually:\n- Poison resists: Grass, Fighting, Poison, Bug, Fairy\n- Poison weak to: Ground, Psychic\n- Water resists: Water, Fire, Steel, Dragon\n- Water weak to: Electric, Grass\n\nCombined for Toxapex (Poison/Water):\n- Weak to: Ground (2×1=2), Psychic (2×1=2), Electric (1×2=2), Grass (1×2=2) → all 2x\n- Resisted by: Water (1×0.5=0.5), Fire (1×0.5=0.5), Steel (1×0.5=0.5), Dragon (1×0.5=0.5), Grass... wait, Grass is resisted by Poison but super effective against Water → 2×0.5=1 (neutral). Fighting: resisted by Poison, neutral to Water → 0.5. Bug: resisted by Poison, neutral to Water → 0.5. Fairy: resisted by Poison, neutral to Water → 0.5.\n\nSo Toxapex resists: Water, Fire, Steel, Dragon, Fighting, Bug, Fairy (all 0.5x)\nToxapex is weak to: Ground, Psychic, Electric, Grass (all 2x)\n\nRotom-Wash is Electric/Water with Levitate. Its revealed move is Hydro Pump.\n\nHydro Pump on Toxapex: Water type → 0.5x against Toxapex. So it's not very effective.\n\nIn Turn 2, Rotom used Hydro Pump and it was \"not very effective\" - confirming this.\n\nNow, what should I do?\n\nOptions:\n1. Sludgebomb (Poison/Special, BP 90): Poison is neutral to Electric/Water... wait. Let me check. Poison vs Electric: neutral. Poison vs Water: neutral. So Sludgebomb is neutral on Rotom-Wash. Power 90, Toxapex's SpA is 65.\n\n2. Recover: Heals 50% of max HP (63.5 HP). Toxapex goes from 97 to 160/127... wait, max is 127, so it heals 63.5 → 97+63.5 = 160.5, capped at 127. So full heal essentially.\n\n3. Toxic Spikes: Sets up hazards. But Rotom-Wash has Levitate, so it won't be affected by Toxic Spikes when it switches in... wait, Toxic Spikes affects grounded Pokémon on switch-in. Since Rotom-Wash is already out and has Levitate, if it switches back in, it won't take damage from Toxic Spikes. But if the opponent switches to a grounded Pokémon, they'll take damage.\n\n4. Protect: Blocks any move this turn.\n\n5. Switch to Garchomp (13% HP) - very low HP, risky\n6. Switch to Krookodile (100% HP) - full health\n\nLet me think about what's best here.\n\nRotom-Wash moves first. If I do nothing defensive, Rotom-Wash will use Hydro Pump (or another move). Hydro Pump is 0.5x on Toxapex. Let's estimate: SpA range 112-172. At max SpA 172, with BP 110, against Toxapex's SPD 194...\n\nActually, I don't need to calculate exact damage. The key question is: can Rotom-Wash KO Toxapex?\n\nToxapex has 97 HP. Hydro Pump at 0.5x... In Turn 2, it hit and Toxapex went from 127 to 97 (30 HP lost). So one Hydro Pump does about 30 damage. That means Rotom-Wash needs about 4 more hits to KO Toxapex. Not an immediate threat.\n\nBut wait - what if Rotom-Wash has a different move? We only know Hydro Pump is revealed. It could have Thunderbolt, Volt Switch, etc. But we can't assume it has a super effective move since we don't know its full moveset.\n\nGiven that:\n- Toxapex is at 76% HP and not in immediate danger from Hydro Pump (0.5x)\n- Rotom-Wash is at 100% HP\n- I have Krookodile at 100% HP on the bench\n\nLet me think about what happens if I switch to Krookodile:\n- Krookodile (Ground/Dark) vs Rotom-Wash (Electric/Water)\n- Ground is super effective against Water (2x), neutral to Electric → 2x total\n- Dark is neutral to both\n- So Earthquake would be 2x super effective on Rotom-Wash!\n- Krookodile's ATK: 169, Earthquake BP 100\n- Rotom-Wash DEF range: 114-174\n\nKrookodile also has Intimidate which lowers the opponent's Attack by 1 stage.\n\nIf I switch to Krookodile:\n- Intimidate triggers (lowers Rotom-Wash's Attack)\n- Krookodile can use Earthquake for 2x damage\n- This could potentially KO or significantly hurt Rotom-Wash\n\nBut wait - does Krookodile move first? Krookodile SPE is 158, Rotom-Wash SPE is 95-151. So Krookodile likely moves first (or at least ties at the upper end).\n\nActually, let me reconsider. If I switch to Krookodile:\n- Turn order: Krookodile (SPE 158) vs Rotom-Wash (SPE 95-151)\n- Krookodile likely goes first\n- Earthquake at 2x on Rotom-Wash\n\nLet me estimate damage: Krookodile ATK 169, Earthquake BP 100, 2x STABThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 3649,
+      "latency_ms": 48880,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "98% MOVE: hydropump, 1% MOVE: willowisp, 1% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1477,
+      "latency_ms": 451,
+      "cost_usd": 0.0001477,
+      "probabilities": {
+        "MOVE: hydropump": 0.98,
+        "MOVE: voltswitch": 0.0,
+        "MOVE: willowisp": 0.01,
+        "MOVE: painsplit": 0.0,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: gholdengo": 0.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has Levitate, making it immune to Earthquake despite the type chart showing super effective. Stoneedge is neutral but hits at 100 power with a high critical ratio, giving the best chance to pressure or KO before Rotom-Wash retaliates with Hydro Pump.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy active Pokémon is Krookodile (Ground/Dark) at 170/170 HP, with Black Belt and Intimidate. It's facing Rotom-Wash (Electric/Water) at 100% HP.\n\nKey facts:\n- Krookodile moves first (speed 158 vs Rotom-Wash 95-151)\n- Rotom-Wash has Levitate, so it's immune to Ground-type moves\n- Earthquake is super effective on Electric/Water... wait, no. Let me reconsider.\n\nActually, Earthquake is Ground type. Rotom-Wash is Electric/Water with Levitate. Levitate makes it immune to Ground-type attacks. So Earthquake would NOT hit at all!\n\nWait, let me re-read the legal actions:\n1. MOVE: earthquake | Ground, Physical, power 100, 100% accuracy, super effective on rotomwash\n\nHmm, it says \"super effective on rotomwash\" but Rotom-Wash has Levitate which makes it immune to Ground. This is contradictory. Let me think about this more carefully.\n\nActually wait - in Gen 9 Champions format, does Levitate still make a Pokémon immune to Ground? Yes, it does. Levitate grants immunity to Ground-type moves regardless of the Pokémon's typing.\n\nBut the legal actions say Earthquake is \"super effective on rotomwash.\" This might be an error in the prompt, or maybe I'm wrong about something. Let me reconsider...\n\nActually, looking at this again - the prompt explicitly states Earthquake is \"super effective on rotomwash\" as a legal action description. But Rotom-Wash has Levitate which should make it immune to Ground. \n\nHmm, but wait - in some competitive contexts, maybe the game engine would still show it as super effective even though it wouldn't hit? Or perhaps I should trust the legal actions list as given.\n\nActually, let me reconsider. The legal actions are what's available and their descriptions. If Earthquake is listed as \"super effective on rotomwash,\" maybe in this specific game state it would actually hit. But that contradicts Levitate...\n\nLet me think about what makes sense strategically:\n- Rotom-Wash has Levitate → immune to Ground → Earthquake won't hit\n- Stoneedge (Rock) is neutral against Electric/Water, 80% accuracy\n- Knockoff (Dark) is neutral against Electric/Water, 65 power but removes item\n- Roar forces switch\n\nWait, actually I need to reconsider. In Gen 9 Champions format with Rotom-Wash... Let me look at the stats range: HP 125-157, SpA 112-172. This is a special attacker.\n\nGiven that Earthquake likely won't hit due to Levitate (despite what the legal action description says), I should consider alternatives.\n\nActually, wait. Let me re-read: \"super effective on rotomwash\" - this is just describing type effectiveness, not whether it will actually connect. The game might still list it as super effective in terms of type chart, but Levitate prevents it from hitting. In competitive play, you wouldn't use Earthquake against a Levitate Pokémon.\n\nSo my best options:\n1. Stoneedge - neutral, 80% accuracy, high crit ratio. With Black Belt... wait, Black Belt only boosts Fighting-type attacks. So no boost here.\n2. Knockoff - Dark type, neutral on Electric/Water, 65 power, removes item. Good for removing the unknown item.\n3. Roar - forces switch, but priority -6 means it goes last.\n\nActually, let me reconsider whether Earthquake would hit. The prompt says Rotom-Wash has Levitate. In all generations, Levitate makes a Pokémon immune to Ground-type moves. So Earthquake should miss completely.\n\nBut the legal action description says \"super effective on rotomwash.\" This is confusing. Maybe in this specific game implementation, it does hit? Or maybe the description is just showing type effectiveness without accounting for Levitate immunity.\n\nI'll go with the safe assumption that Earthquake won't hit due to Levitate. \n\nNow between Stoneedge and Knockoff:\n- Rotom-Wash has an unknown item\n- Knockoff removes items, which is very valuable in a 3-pick format\n- But Knockoff only does 65 power, might not KO\n\nActually, let me think about what's the best strategic play. In Champions singles (bring 6, pick 3), removing items is crucial. The opponent has an unknown item on Rotom-Wash. If it's a Life Orb or similar, Knockoff would be very valuable.\n\nBut wait - if I use Knockoff and it doesn't KO, Rotom-Wash will still move. What will it do? It has Hydro Pump (110 power Water) and Volt Switch (70 power Electric). Both are neutral to Ground/Dark... actually:\n- Hydro Pump (Water) vs Ground/Dark: neutral\n- Volt Switch (Electric) vs Ground/Dark: neutral\n\nSo Rotom-Wash can hit with either move. With Intimidate already applied (-1 ATK), its physical attacks would be reduced, but these are special moves so Intimidate doesn't help.\n\nHmm, let me reconsider. Actually, I think the best play here might be to switch to Garchomp or Toxapex.\n\nWait, but Garchomp is at 24/183 HP (13.1%). That's very low. If Rotom-Wash hits with Hydro Pump, it could KO Garchomp easily.\n\nToxapex is at 100% HP and has Damprock. It can tank Water moves well (Water vs Poison/Water = not very effective). But it's slow (SPE 55).\n\nActually, let me reconsider the whole situation. Krookodile is healthy at 170/170. The question is: should I try to KO Rotom-Wash or switch?\n\nIf I use Stoneedge:\n- Power 100, neutral (Rock vs Electric/Water)\n- With Black Belt: no boost (only Fighting gets boosted)\n- Critical hit ratio is high\n- Might not KO depending on HP stats\n\nIf I use Knockoff:\n- Power 65, neutral (Dark vs Electric/Water)\n- Removes item - very valuable\n- Low chance of KO\n\nActually, you know what, let me reconsider Earthquake. The legal action explicitly says \"super effective on rotomwash.\" In the context of this game, maybe I should trust that it will hit and be super effective. Perhaps in this specific implementation or format, Levitate doesn't apply as expected, or perhaps there's something else going on.\n\nBut no, I shouldn't ignore a clearly stated ability. Levitate = immune to Ground. Earthquake won't hit.\n\nLet me go with Stoneedge. It's the best offensive option that could potentially KO Rotom-Wash. With 80% accuracy and high crit ratio, it has a decent chance of hitting hard. If it KOs, great. If not, I can switch next turn.\n\nWait, actually - let me reconsider Knockoff. In Champions format with only 3 picks, removing an item is extremely valuable. The unknown item could be Life Orb (which would make Rotom-Wash's Hydro Pump very dangerous) or something else. Removing it gives a significant advantage.\n\nBut the immediate threat is: if I don't KO Rotom-Wash, it will hit back with Hydro Pump or Volt Switch. Let me estimate damage:\n- Krookodile HP: 170\n- Rotom-Wash SpA: 112-172 (let's say ~140 average)\n- Hydro Pump: 110 power, Water vs Ground/Dark = neutral\n- Damage roughly: (110/50) * (140/169) * 170 ≈ ... this is getting complicated without exact formulas.\n\nActually, I think the safest and most impactful play is Stoneedge. It has the highest power among the options that can actually hit, and with high crit ratio it could potentially KO. Let me go with that.\n\nHmm, but actually wait. Let me reconsider one more time. The prompt says Earthquake is \"super effective on rotomwash.\" In competitive Pokémon, if a move is listed as super effective against a target in the game's UI, it means the type matchup works out. But Levitate should override this...\n\nUnless... this is a specific Gen 9 Champions format where something different happens? No, I don't think so. Levitate has always granted Ground immunity.\n\nI'll go with Stoneedge as my best offensive option that will actually connect.\n",
+      "note": "",
+      "tokens": 3543,
+      "latency_ms": 44860,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at only 13% HP and takes a 2× super-effective hit from Rotom Wash's Hydro Pump, making it a likely knockout target. Toxapex is at full HP, immune to Electric, and takes reduced damage from Water, giving it the better matchup to stall and recover.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Krookodile just fainted after Stone Edge missed and Rotom Wash hit with Hydro Pump (super effective).\n- I need to switch in either Garchomp (13.1% HP, 24/183) or Toxapex (100% HP, 127/127).\n\nRotom Wash is at full HP (100%). It's Electric/Water with Levitate (immune to Ground).\n\nLet me think about the matchup:\n- Garchomp (Dragon/Ground) vs Rotom Wash (Electric/Water): \n  - Garchomp is weak to Water (2x), so Hydro Pump hits for 2x.\n  - Garchomp's Earthquake is immune to Rotom Wash due to Levitate.\n  - Stone Edge would hit normally (Rock vs Electric/Water = neutral).\n  - But Garchomp is at only 13% HP - one super effective Water hit could KO it.\n  - Garchomp has Swords Dance, Earthquake, Stone Edge, Substitute.\n\n- Toxapex (Poison/Water) vs Rotom Wash (Electric/Water):\n  - Toxapex is immune to Electric (Poison typing).\n  - Hydro Pump hits for neutral (Water vs Water = not very effective actually... wait, Water attacking Water is not very effective? No, same type is neutral. Wait, let me reconsider. Water moves against Water-type: it's neutral. Actually no - in Gen 9 Champions, same-type attacks are neutral. So Hydro Pump on Toxapex would be neutral.)\n  - Wait, actually looking back at Turn 2: \"Opposing Rotom used Hydro Pump - It was not very effective\" on Toxapex. So Water vs Poison/Water is not very effective (0.5x). That makes sense because Water attacks are not very effective against Water types.\n  - Toxapex has Sludge Bomb (Poison, neutral vs Electric/Water), Recover, Toxic Spikes, Protect.\n  - Toxapex is at full HP with Regenerator and Damprock.\n\nThe deciding factor: Garchomp is at 13% HP and would be vulnerable to Hydro Pump (2x super effective due to Water weakness). One hit from Rotom Wash's Hydro Pump could KO Garchomp. Toxapex is at full HP, immune to Electric, and takes reduced damage from Water.\n\nThe deciding factor here is a likely knockout - Garchomp at 13% would be KOs by Rotom Wash's super effective Hydro Pump (2x). Toxapex is the safer choice.\n\nI should switch in Toxapex.\n",
+      "note": "",
+      "tokens": 2076,
+      "latency_ms": 16077,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: voltswitch, 3% SWITCH: gholdengo, 2% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1497,
+      "latency_ms": 605,
+      "cost_usd": 0.0001497,
+      "probabilities": {
+        "MOVE: hydropump": 0.0,
+        "MOVE: voltswitch": 0.95,
+        "MOVE: willowisp": 0.0,
+        "MOVE: painsplit": 0.0,
+        "SWITCH: garchomp": 0.02,
+        "SWITCH: gholdengo": 0.03
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "toxicspikes",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has Levitate, so Toxic Spikes won't affect it this turn, but it will punish the remaining threats (Garchomp, Scizor, Incineroar, Gholdengo) on switch-in. Toxapex is at full HP and Hydro Pump is only 0.5x effective, making this a safe free setup turn.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy active Pokémon is Toxapex at full HP (127/127). The opponent has Rotom-Wash at 100% HP with a -1 ATK boost.\n\nKey considerations:\n- Toxapex is very slow (SPE 55) vs Rotom-Wash (SPE 95-151), so Rotom moves first.\n- Rotom-Wash has Hydro Pump (Water, super effective on Toxapex? No wait - Toxapex is Poison/Water. Water is not very effective against Water. Actually, let me reconsider. Water vs Water: neutral. So Hydro Pump is neutral on Toxapex.)\n\nWait, let me recheck. In Turn 2, it says \"Opposing Rotom used Hydro Pump - It was not very effective\" on Toxapex. That makes sense because Toxapex is Poison/Water, and Water moves are not very effective against Water-type Pokémon (0.5x).\n\nSo Rotom-Wash's Hydro Pump does 0.5x damage to Toxapex. With a -1 ATK boost... wait, Hydro Pump is special, so the ATK boost doesn't matter. The -1 ATK boost only affects physical attacks.\n\nRotom-Wash stats: SpA 112-172, SpD 114-174. At level 50 with unknown item.\n\nToxapex HP is 127. Let's estimate Hydro Pump damage:\n- Base power 110, Water vs Poison/Water = 0.5x (not very effective)\n- SpA could be up to 172, but let's say around 140ish\n- Damage formula roughly: ((2*50/5+2)*110*SpA*0.5)/ToxapexDef * 0.5 (not very effective) / 50 + 2\n\nActually, I don't need to calculate exact damage. The key point is that Hydro Pump is not very effective on Toxapex due to the Water typing.\n\nNow, what should I do?\n\nOptions:\n1. Sludgebomb - Poison, Special, power 90, 30% poison chance. Rotom-Wash is Electric/Water. Poison is neutral against both. So this does neutral damage. But Toxapex's SpA is only 65, so this won't do much damage.\n\n2. Recover - Heals 50% of max HP. Toxapex is already at full HP (127/127), so this would be wasted.\n\n3. Toxic Spikes - Sets up hazards. But Rotom-Wash has Levitate, so it's immune to Toxic Spikes! This would be useless against the current opponent. However, it could help against future switches. But wait, the opponent still has 2 Pokémon to bring in from: garchomp, scizor, incineroar, gholdengo, ninetalesalola. Garchomp is Ground-type (would hit Toxic Spikes), Scizor is Steel/Flying (would hit), Incineroar is Dark/Fighting (would hit), Gholdengo is Electric/Steel (would hit), Ninetales-Alola is Fire/Fairy (would hit). So Toxic Spikes would be useful against most of the remaining threats.\n\n4. Protect - Prevents damage this turn. Since Rotom moves first and could use Hydro Pump or Volt Switch, Protect would save Toxapex from any damage. But Toxapex is already at full HP...\n\n5. Switch to Garchomp - Garchomp is at 13.1% HP (24/183). This is very low HP. Switching in a nearly dead Pokémon seems bad unless there's a specific reason.\n\nWait, let me reconsider. Toxapex is at full HP. Rotom-Wash has Hydro Pump which is not very effective on Toxapex. The -1 ATK boost doesn't affect special moves.\n\nActually, the most logical play here:\n- Recover is wasted (already full HP)\n- Sludgebomb won't do much damage (SpA 65) and Rotom-Wash has good SpD\n- Toxic Spikes are useless against Levitate but useful for future switches\n- Protect would be safe but Toxapex is already at full HP\n- Switching to Garchomp at 13% HP seems terrible\n\nHmm, actually let me reconsider. The deciding factor here...\n\nToxapex is at full HP and Rotom-Wash's Hydro Pump is only neutral (actually not very effective - 0.5x) on it. Toxapex has great defensive stats (DEF 224, SpD 194). Even if hit by Hydro Pump, Toxapex would survive easily.\n\nThe best play might be Toxic Spikes to set up for future switches, since Rotom-Wash can't be affected by it but the remaining threats (Garchomp, Scizor, Incineroar, Gholdengo) all would be affected.\n\nActually wait - let me reconsider Protect. If I use Protect, I guarantee no damage this turn. But Toxapex is already at full HP and can tank Hydro Pump easily anyway.\n\nI think Toxic Spikes is the best move here. It sets up a trap for the remaining threats while Rotom-Wash (with Levitate) is unaffected. This gives me a free setup turn since Rotom-Wash can't do much to Toxapex anyway (Hydro Pump is 0.5x).\n\nActually, let me reconsider once more. The deciding factor:\n- Speed: Rotom moves first, but its best move (Hydro Pump) is not very effective on Toxapex\n- A likely knockout: No one can KO Toxapex this turn easily\n- Bad matchup to switch out of: Garchomp at 13% HP would be a terrible switch\n\nI'll go with Toxic Spikes. It's a free setup since Rotom-Wash is immune to it, and it'll punish the remaining threats when they switch in.\n\nWait, but actually - should I consider that Rotom-Wash might use Volt Switch to switch out? If it does, Toxapex gets Regenerator on switch... no wait, Regenerator triggers when YOU switch out, not when the opponent switches. So if Rotom uses Volt Switch, Toxapex stays in and doesn't get healed (it's already full anyway).\n\nI'll go with Toxic Spikes as the best strategic play.\n",
+      "note": "",
+      "tokens": 3085,
+      "latency_ms": 34971,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "51% SWITCH: gholdengo, 49% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1321,
+      "latency_ms": 367,
+      "cost_usd": 0.0001321,
+      "probabilities": {
+        "SWITCH: garchomp": 0.49,
+        "SWITCH: gholdengo": 0.51
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: shadowball, 18% MOVE: makeitrain, 6% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1555,
+      "latency_ms": 390,
+      "cost_usd": 0.0001555,
+      "probabilities": {
+        "MOVE: makeitrain": 0.18,
+        "MOVE: shadowball": 0.63,
+        "MOVE: nastyplot": 0.04,
+        "MOVE: focusblast": 0.04,
+        "SWITCH: garchomp": 0.06,
+        "SWITCH: rotomwash": 0.05
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Gholdengo moves first and Toxapex is at 41% HP with no effective offensive option (Sludgebomb does nothing against Ghost). Protect guarantees survival this turn, then I can Recover next turn to restore health before facing Gholdengo again.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My active: Toxapex at 53/127 HP (41.7%), with Regenerator, Damprock\n- Opponent's active: Gholdengo at 100% HP, Steel/Ghost, GoodasGold (immune to status moves)\n- Gholdengo has Toxic Spikes on its side (from my previous turn)\n- Gholdengo moves first (speed 93-149 vs Toxapex 55)\n\nKey considerations:\n1. Gholdengo is Steel/Ghost - it's immune to status moves (GoodasGold), so Toxic Spikes won't work on it directly, but it will poison when it switches in... wait, no. The Toxic Spikes are on the opponent's side. So when my Pokémon switches in, they get poisoned. But Gholdengo is already out there.\n\nWait, let me re-read. \"Opponent side hazards / conditions: Toxic_Spikes\" - this means the Toxic Spikes are set on the opponent's field. So when the opponent switches a Pokémon in, it gets poisoned. That's good for me.\n\n2. Gholdengo is Steel/Ghost. Let me check what Toxapex can do:\n- Sludgebomb: Poison/Special - NOT effective against Ghost (Ghost is immune to Poison). The legal action even says \"no effect on gholdengo\"\n- Recover: Heals 50% of max HP = 63 HP, bringing Toxapex from 53 to 116/127\n- Toxic Spikes: Already set (max 2 layers), and Gholdengo is Steel/Ghost so it's immune to poison anyway... wait, actually the spikes are on the opponent's side. They would affect opposing Pokémon when they switch in. But Gholdengo is already out there.\n- Protect: Priority +4, prevents damage this turn\n\n3. Gholdengo moves first. What could it do? It has no revealed moves yet. It's Steel/Ghost with GoodasGold. Common moves might include: Iron Head, Shadow Ball, Thunderbolt, etc.\n\n4. My bench: Garchomp at 24/183 HP (13.1%) - very low HP. Krookodile fainted.\n\n5. The opponent's revealed bench shows Rotom-Wash is still there (100% HP), and one more from garchomp, scizor, incineroar, ninetalesalola.\n\nLet me think about what to do:\n\n- Sludgebomb does nothing against Ghost type. Bad move.\n- Toxic Spikes - already set, and Gholdengo is immune to poison anyway (Ghost). Actually wait, the spikes are on the opponent's side. They would poison opposing Pokémon when they switch in. But Gholdengo is Steel/Ghost - it's immune to poison. So setting more spikes won't help against Gholdengo specifically, but could help against other opposing Pokémon that might switch in. However, I already have Toxic Spikes set (from turn 5). The legal action says \"Max 2 layers\" so maybe I can add a second layer? But it's not super urgent.\n\n- Recover: Toxapex is at 53/127. Recover would heal 63 HP, bringing it to 116/127. This is smart because Gholdengo moves first and will likely hit Toxapex with a super effective move (Steel/Ghost vs Poison/Water... let me think about what's super effective).\n\nToxapex is Poison/Water:\n- Weak to: Electric (4x), Ground (2x)\n- Resistant to: Fire, Fighting, Water, Grass, Steel, Bug, Dark, Fairy\n- Gholdengo is Steel/Ghost. What moves would it have? If it has Thunderbolt (Electric), that's 4x super effective against Toxapex. That would be devastating.\n\nActually wait - Gholdengo at level 50 with possible SpA of 137-203. A Thunderbolt would deal massive damage to Toxapex. Let me estimate: At level 50, a base 110 BP move... actually Thunderbolt is 90 BP. With SpA around 160 (mid-range), against Toxapex's SpD of 194... \n\nActually, I shouldn't calculate damage formulas per the rules. But the key point is: Gholdengo moves first and could potentially KO or severely damage Toxapex with an Electric move (4x STAB if it has Thunderbolt).\n\n- Protect: This would prevent any damage from Gholdengo this turn. Since Gholdengo moves first, Protect would save Toxapex from a potential KO hit. Then next turn, I can switch or use Recover.\n\nWait, but if I Protect, Gholdengo uses its move and it's blocked. Then my turn comes and I can Recover or switch. This seems like the safest option given that:\n1. Gholdengo moves first\n2. Toxapex is at 41% HP\n3. Sludgebomb does nothing against Ghost\n4. Toxic Spikes won't affect Gholdengo (Ghost immune to poison)\n5. Switching to Garchomp at 13% HP is risky\n\nActually, let me reconsider. If I Protect:\n- Gholdengo attacks but is blocked\n- My turn: I can Recover (heal to 116/127) or switch to Garchomp\n\nIf I Recover now:\n- Gholdengo moves first and hits Toxapex at 53 HP. If it uses a super effective move, Toxapex likely faints.\n\nSo Protect seems like the best choice here. It guarantees survival this turn, and then I can recover or switch next turn.\n\nActually wait - let me reconsider Toxic Spikes. The opponent's side already has Toxic Spikes (1 layer from turn 5). If I set a second layer... but Gholdengo is Ghost type and immune to poison. So it won't help against the current active. It could help if the opponent switches, but they might not switch.\n\nI think Protect is the best move here. Gholdengo moves first, Toxapex is at 41% HP, and Sludgebomb does nothing. Protect guarantees I survive this turn, then I can Recover next turn to be at ~89% HP (53 + 63 = 116... wait, if I protect, I'm still at 53/127, then recover heals 63 to get to 116/127).\n\nActually, let me reconsider one more time. Could Gholdengo have a move that's not super effective? It could have Iron Head (Steel), Shadow Ball (Ghost), Thunderbolt (Electric), etc. Even a neutral hit from a strong attacker could be significant. With SpA potentially up to 203 and Toxapex at 53 HP...\n\nYes, Protect is the safest and best choice. The deciding factor is that Gholdengo moves first and Toxapex is vulnerable (41% HP), making this a likely knockout situation if I don't protect.\n",
+      "note": "",
+      "tokens": 3303,
+      "latency_ms": 37664,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: shadowball, 16% MOVE: makeitrain, 4% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1523,
+      "latency_ms": 447,
+      "cost_usd": 0.0001523,
+      "probabilities": {
+        "MOVE: makeitrain": 0.16,
+        "MOVE: shadowball": 0.72,
+        "MOVE: nastyplot": 0.03,
+        "MOVE: focusblast": 0.02,
+        "SWITCH: garchomp": 0.03,
+        "SWITCH: rotomwash": 0.04
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "recover",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Sludgebomb is useless against Steel/Ghost (Steel is immune to Poison), Toxic Spikes won't affect Gholdengo due to GoodasGold, and switching to a 13% Garchomp would be an instant KO from Shadow Ball. Recovering after taking the guaranteed first-hit Shadow Ball keeps Toxapex alive at ~70+ HP for another turn of hazard pressure.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My active: Toxapex at 53/127 HP (41.7%), with Regenerator and Damprock\n- Opponent's active: Gholdengo at 100% HP, Steel/Ghost, GoodasGold (immune to status moves)\n- Gholdengo moves first (speed 93-149 vs Toxapex 55)\n- Toxic Spikes are on the opponent's side\n- My bench: Garchomp at 24/183 HP (13.1%), Krookodile fainted\n\nKey considerations:\n1. Gholdengo is Steel/Ghost - it's immune to Poison moves! Sludgebomb won't do anything to it.\n2. Gholdengo has GoodasGold - immune to status moves, so Toxic Spikes won't affect it either (it's already on the field).\n3. Gholdengo will move first and use Shadow Ball (Ghost/Special, BP 80) on Toxapex.\n\nWait, let me check: Ghost is super effective against... Poison/Water? No. Ghost is neutral against Poison and Water. Actually, Ghost is not very effective against Steel (Steel resists Ghost). So Gholdengo's Shadow Ball would be neutral to Toxapex (Poison/Water).\n\nActually wait - Ghost moves are not very effective against Steel types, but Toxapex is Poison/Water, not Steel. So Ghost is neutral against Poison and Water. Shadow Ball would deal normal damage to Toxapex.\n\nLet me think about what happens:\n- Gholdengo moves first with Shadow Ball (BP 80, Ghost/Special)\n- Toxapex has SPD 194, so it should take manageable damage from a BP 80 move\n- Then Toxapex can act\n\nOptions:\n1. Sludgebomb - won't do anything to Gholdengo (Steel/Ghost resists/immune to Poison). Actually, Steel is immune to Poison! So Sludgebomb does ZERO damage. This is useless.\n2. Recover - heals 50% of max HP = 63 HP. Toxapex goes from 53 to 116 HP. But Gholdengo moves first and hits with Shadow Ball.\n3. Toxic Spikes - already set (from turn 5). Wait, it says \"Max 2 layers\" and the opponent side has Toxic_Spikes. So it's already there. Setting it again would just add a second layer if possible. But Gholdengo is Steel/Ghost with Levitate... wait no, GoodasGold. Actually, does Gholdengo have Levitate? No, its ability is GoodasGold. But Steel types are grounded (they don't have Levitate unless specified). Wait, actually in Gen 9, Steel types ARE grounded. So Toxic Spikes would poison it on switch-in, but it's already on the field. Setting a second layer... hmm, but Gholdengo has GoodasGold which makes it immune to status moves. Does that mean it can't be poisoned by Toxic Spikes? Actually, Toxic Spikes is a field effect - when a Pokémon switches in, it gets poisoned. The ability GoodasGold prevents the Pokémon from being affected by status effects. So if Gholdengo switches out and back in, it wouldn't get poisoned. But it's already on the field, so setting more spikes now doesn't help immediately.\n\nActually wait - let me re-read. \"Effects: goodasgold: This Pokemon is immune to Status moves.\" This means Gholdengo can't be affected by status moves. Toxic Spikes is a field effect that applies poison when a Pokémon switches in. Since Gholdengo is immune to status effects, it wouldn't get poisoned by the spikes. So Toxic Spikes are useless against Gholdengo.\n\n4. Protect - priority +4, so Toxapex would use Protect before Gholdengo's Shadow Ball. This prevents damage this turn. But it wastes a turn and doesn't help much since Garchomp is at 13% HP.\n\n5. Switch to Garchomp (13.1% HP) - Garchomp is Dragon/Ground. Let me check matchups:\n   - Gholdengo is Steel/Ghost\n   - Ground moves are immune to... wait, Ghost is not affected by Ground. Actually, Ground is neutral against Steel and Ghost? No wait:\n     - Ground vs Steel: Ground is NOT very effective against Steel (Steel resists Ground)\n     - Ground vs Ghost: Ground is ineffective against Ghost (Ghost is immune to Ground)\n   - So Garchomp's Earthquake would do ZERO damage to Gholdengo!\n   - Stone Edge (Rock): Rock vs Steel = not very effective, Rock vs Ghost = neutral. So 0.5x damage.\n   - Garchomp at 13% HP is basically a dead Pokémon. It would likely faint from one hit of Shadow Ball.\n\nWait, let me reconsider. Garchomp's moves: Swords Dance, Earthquake, Stone Edge, Substitute.\n- Earthquake vs Steel/Ghost: Ground is not very effective against Steel AND ineffective against Ghost. So 0 damage.\n- Stone Edge vs Steel/Ghost: Rock is not very effective against Steel (0.5x) and neutral against Ghost. So 0.5x total.\n\nGarchomp at 13% HP would likely be KO'd by Shadow Ball. This seems like a bad switch.\n\nLet me reconsider Recover:\n- Gholdengo moves first with Shadow Ball (BP 80, Ghost/Special)\n- Toxapex SPD is 194\n- Gholdengo SpA range: 137-203\n- At level 50, a BP 80 move... let's estimate. With max SpA of 203, the damage would be significant but Toxapex has 194 SpD.\n- Actually, I don't need to calculate exact damage. The key question is: can Toxapex survive one Shadow Ball and then Recover?\n\nIf Toxapex uses Recover after taking a hit from Shadow Ball:\n- It heals 50% of max HP (63 HP)\n- If it's at 53 HP before the hit, and takes say 40-60 damage from Shadow Ball, it could be at 10-20 HP, then heal to 73-83 HP. That's survivable.\n\nBut wait - if Toxapex is at 53 HP and Gholdengo hits with Shadow Ball... let me think about whether Toxapex survives.\n\nGholdengo SpA: 137-203 (let's say around 170 average)\nToxapex SpD: 194\nBP: 80, Ghost/Special, neutral to Poison/Water\n\nAt level 50, the damage formula... I'll estimate. A BP 80 move from a ~170 SpA attacker against 194 SpD defense at level 50 would deal roughly... \n\nActually, in Gen 9 Champions format at level 50:\n- Damage = ((2*Level/5 + 2) * Power * Atk * STAB / Def) / 50 + 2\n- With STAB (Ghost on Ghost): 1.3x\n- Let's say SpA is around 170, SpD is 194\n- Base damage: ((2*50/5+2) * 80 * 170 * 1.3 / 194) / 50 + 2\n- = ((22) * 80 * 170 * 1.3 / 194) / 50 + 2\n- = (22 * 80 * 221 / 194) / 50 + 2\n- = (22 * 17680 / 194) / 50 + 2\n- = (388960 / 194) / 50 + 2\n- = 2005 / 50 + 2\n- = 40.1 + 2 = ~42 damage\n\nSo Toxapex at 53 HP would take about 42 damage, leaving it at about 11 HP. Then Recover heals 63 HP, bringing it to 74 HP. That's survivable!\n\nBut wait - I should also consider that Gholdengo might have a higher SpA (up to 203). At 203:\n- = (22 * 80 * 203 * 1.3 / 194) / 50 + 2\n- = (22 * 80 * 263.9 / 194) / 50 + 2\n- = (22 * 21112 / 194) / 50 + 2\n- = (464464 / 194) / 50 + 2\n- = 2394 / 50 + 2\n- = 47.9 + 2 = ~50 damage\n\nToxapex at 53 HP would be at 3 HP after theThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 3784,
+      "latency_ms": 49101,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Toxapex just fainted and Garchomp is my only remaining active option at 13% HP. I have no choice but to bring it in; Stone Edge would be super effective on Steel/Ghost if I could move, but the only legal action this turn is the switch itself.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My active Pokémon (Toxapex) just fainted from Gholdengo's Shadow Ball.\n- I have only one legal action: SWITCH to garchomp at 13.1% HP (24/183).\n- The opponent has Gholdengo at 90% HP with Life Orb, and Toxic Spikes on their side.\n\nWait, let me re-read the rules. It says \"Choose exactly one action from LEGAL ACTIONS.\" The only legal action is SWITCH: garchomp. So I have no choice but to switch to Garchomp.\n\nGarchomp is at 24/183 HP (13.1%). Gholdengo has Shadow Ball which is super effective against Garchomp? No, Ghost is neutral against Dragon/Ground. Wait, let me check:\n- Garchomp is Dragon/Ground\n- Shadow Ball is Ghost type\n- Ghost vs Dragon: neutral\n- Ghost vs Ground: neutral (Ground is immune to Ghost! Wait no - Ground is NOT immune to Ghost. Ghost is not super effective on Ground, and Ground is not weak to Ghost.)\n\nActually, let me reconsider. Ghost moves are neutral against Dragon/Ground. So Shadow Ball would be neutral damage.\n\nBut Garchomp has Sandveil ability which gives it resistance to sandstorm damage (not relevant here since no weather).\n\nGarchomp's stats: HP 183, ATK 182, DEF 117, SPA 90, SPD 105, SPE 169.\nGholdengo: Spe range 93-149, so Garchomp at 169 speed is faster.\n\nGarchomp can use Earthquake (Ground/Physical, BP 100) or Stone Edge (Rock/Physical, BP 100).\n\nGholdengo is Steel/Ghost:\n- Ground moves are neutral against Steel/Ghost (Steel resists Ground? No - Ground is not super effective on Steel. Actually, Ground is neutral against Steel and neutral against Ghost... wait, Ghost is immune to Ground! Yes, Ghost type is immune to Ground-type moves.)\n\nSo Earthquake would be completely useless against Gholdengo due to Ghost immunity.\n\nStone Edge (Rock/Physical):\n- Rock vs Steel: super effective (2x)\n- Rock vs Ghost: neutral\n- Combined: 2x damage\n\nSo Stone Edge would be super effective on Gholdengo! With Garchomp's 182 ATK and Life Orb... wait, Garchomp has Life Orb. Let me check - yes, Item: lifeorb.\n\nStone Edge with Life Orb: 1.3x * 2x (super effective) = 2.6x base damage. At level 50, this should be a very strong hit.\n\nBut wait - Garchomp is at only 24 HP. If Gholdengo hits back with Shadow Ball (Ghost, neutral against Dragon/Ground), it could potentially KO Garchomp. But Garchomp is faster (169 vs max 149 for Gholdengo), so Garchomp goes first.\n\nThe deciding factor here: I have no choice but to switch to Garchomp since it's the only legal action. The question is what move to use. Stone Edge is super effective on Steel/Ghost and should deal significant damage. Earthquake would be useless due to Ghost immunity.\n\nActually wait - let me re-read the legal actions. It says:\n1. SWITCH: garchomp (13.1% HP)\n\nThat's the ONLY legal action listed. So I must switch to Garchomp. But then what move do I use? \n\nHmm, actually looking at the format again - it says \"Choose exactly one action from LEGAL ACTIONS.\" The only option is SWITCH: garchomp. But in a battle, when you switch in, you also get to use a move on that turn (unless it's a forced switch like fainting).\n\nWait, actually in Pokémon battles, when your active Pokémon fainted, you switch in and then the opponent moves. You don't get to move on the same turn as the switch-in from a faint. Let me reconsider...\n\nActually no - in standard Pokémon battle mechanics:\n- Turn 1: Player A moves, Player B moves\n- If Player A's Pokémon fainted during their move, they switch in at the end of the turn (or immediately)\n- The new Pokémon does NOT get to move on that same turn\n\nWait, but looking at the recent turns:\nTurn 4: Krookodile used Stone Edge → missed. Opposing Rotom used Hydro Pump → KO'd Krookodile. \"Your Toxapex came in\" - this happened after the opponent's move.\nTurn 5: \"Opposing Rotom used Volt Switch... Your Toxapex used Toxic Spikes\" - so Toxapex DID get to move on the same turn it switched in!\n\nSo in this format, when you switch in from a faint, you DO get to use a move that turn. The opponent's active Pokémon moves first (since it was already there), and then your new Pokémon can act? Or maybe both sides move simultaneously but the fainted side gets their move after switching?\n\nLooking at Turn 5 more carefully:\n- Opposing Rotom used Volt Switch (super effective on Toxapex)\n- Your Toxapex is at 53/127 HP\n- Opposing Gholdengo came in\n- Your Toxapex used Toxic Spikes\n\nSo the sequence was: Toxapex was active, Rotom switched out with Volt Switch (hitting Toxapex), then Gholdengo came in for the opponent. Then \"Your Toxapex used Toxic Spikes\" - this seems like it happened on the same turn. So yes, you can use a move when switching in from a faint.\n\nBut wait, in Turn 7:\n- Opposing Gholdengo used Shadow Ball\n- Your Toxapex fainted\n- Opposing Gholdengo is at 90% HP\n\nSo now it's my turn to switch in Garchomp. And I think I also get to use a move with Garchomp this turn.\n\nBut the LEGAL ACTIONS only shows \"1. SWITCH: garchomp (13.1% HP)\". There are no MOVE options listed. This suggests that when switching in from a faint, you can ONLY switch and not also use a move. Or perhaps the format only allows the switch action.\n\nHmm, but looking at Turn 5 again - Toxapex used Toxic Spikes on the same turn it was hit by Volt Switch. But that's different - Toxapex was already active when Rotom switched out. The opponent switched (Rotom → Gholdengo), and Toxapex got its move.\n\nIn this case, MY Pokémon fainted (Toxapex), so I need to switch in. The question is whether I also get a move.\n\nGiven that the LEGAL ACTIONS only lists \"1. SWITCH: garchomp\", I think the answer is simply to switch. There's no move option available for me this turn.\n\nSo my decision must be: SWITCH: garchomp\n\nThe thought should be brief - 2-4 sentences, naming the deciding factor.\n",
+      "note": "",
+      "tokens": 3126,
+      "latency_ms": 37719,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: shadowball, 36% MOVE: makeitrain, 7% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1536,
+      "latency_ms": 666,
+      "cost_usd": 0.0001536,
+      "probabilities": {
+        "MOVE: makeitrain": 0.36,
+        "MOVE: shadowball": 0.49,
+        "MOVE: nastyplot": 0.03,
+        "MOVE: focusblast": 0.03,
+        "SWITCH: garchomp": 0.07,
+        "SWITCH: rotomwash": 0.02
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp moves first and Earthquake is 2x super effective on Steel/Ghost Gholdengo, guaranteeing a knockout at 90% HP. Life Orb recoil leaves me at ~6 HP but the KO is secured before Gholdengo can retaliate with Shadow Ball.",
+      "hidden_reasoning": "Let me analyze this situation:\n\nMy Garchomp is at 24/183 HP (13.1%) - very low HP, basically one hit away from fainting.\n\nOpponent's Gholdengo is at 90% HP with Life Orb. It has Shadow Ball revealed.\n\nGarchomp moves first (speed 169 vs Gholdengo 93-149).\n\nOptions:\n1. Swords Dance - raises Attack but doesn't deal damage. With 24 HP, I'm basically a sitting duck.\n2. Earthquake - Ground/Physical, super effective on Steel/Ghost Gholdengo. Power 100, 100% accuracy. This should KO Gholdengo at 90% HP. Let me think about damage: Garchomp has 182 ATK with Life Orb (1.3x). Earthquake is Ground, super effective on Steel/Ghost (4x? No wait - Ground is super effective on Steel but not Ghost. Actually, Ground is neutral against Ghost and super effective against Steel. So it's 2x effective. Wait, let me reconsider: Gholdengo is Steel/Ghost. Ground is super effective on Steel (2x) and neutral on Ghost. So total multiplier is 2x. With Life Orb that's 1.3x * 2x = 2.6x. At level 50, with 182 ATK, this should definitely KO a 90% HP Gholdengo.\n\nActually wait - let me reconsider the type matchup. Ground vs Steel/Ghost:\n- Ground is super effective on Steel (2x)\n- Ground is neutral on Ghost\n- Total: 2x\n\nWith Life Orb: 182 * 1.3 = 236.6 ATK effectively. At level 50, Earthquake power 100, 2x STAB... wait no, Garchomp is Dragon/Ground so Ground IS STAB (1.5x). So total multiplier is 1.5 * 2 * 1.3 = 3.9x.\n\nThis will absolutely KO Gholdengo at 90% HP. Even without Life Orb it would likely KO.\n\n3. Stoneedge - Rock, not very effective on Steel/Ghost (Rock is super effective on... wait, Rock vs Steel: Rock is neutral on Steel? No, Rock is super effective on Flying, Bug, Ice. Against Steel, Rock is not very effective (0.5x). Against Ghost, Rock is neutral. So total: 0.5x. Bad choice.\n\n4. Substitute - Takes 1/4 HP (about 46 HP) which would KO me since I'm at 24 HP. Not an option.\n\nThe clear answer is Earthquake. It's super effective, will KO Gholdengo, and I move first. Even though I'm at low HP, I get to hit first and take it out before it can use Shadow Ball on me.\n\nWait, but if I use Earthquake, Garchomp takes Life Orb damage (1/10 max HP = ~18 HP). 24 - 18 = 6 HP. So Garchomp survives at about 6 HP. That's fine, it still gets the KO.\n\nActually, let me reconsider: Life Orb damage is 1/10 of max HP after the attack. Max HP is 183, so 1/10 is ~18.3 HP. 24 - 18 = 6 HP remaining. Garchomp survives!\n\nSo Earthquake KOs Gholdengo and Garchomp barely survives at ~6 HP. Then I can switch to Krookodile or Toxapex... wait, both are fainted. My bench only has Toxapex and Krookodile, both fainted. So after this turn, I'll have no Pokémon left!\n\nHmm, but the format is \"bring 6, pick 3\" - Champions singles. Wait, looking at the team preview: \"The opponent brought 3 of the 6 it showed at team preview: 1 more is still to come in, from: garchomp, scizor, incineroar, ninetalesalola\"\n\nWait, that's the OPPONENT's remaining bench. My bench shows Toxapex and Krookodile both fainted. So I have no bench left after Garchomp faints. But for now, Earthquake is still the best move because it KOs Gholdengo. Even if I lose next turn, at least I got a KO.\n\nActually wait - let me re-read. \"Your BENCH\" shows Toxapex and Krookodile both fainted. And my active is Garchomp. So I have 0 bench Pokémon left. If Garchomp faints, I lose the match. But Earthquake will KO Gholdengo this turn, so at least I get a point.\n\nThe deciding factor: Earthquake is super effective (2x) and will knock out Gholdengo before it can move. Speed advantage ensures I hit first.\n",
+      "note": "",
+      "tokens": 2824,
+      "latency_ms": 27407,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: garchomp, 38% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1301,
+      "latency_ms": 420,
+      "cost_usd": 0.0001301,
+      "probabilities": {
+        "SWITCH: garchomp": 0.62,
+        "SWITCH: rotomwash": 0.38
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "80% MOVE: dragonclaw, 19% MOVE: earthquake, 1% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1530,
+      "latency_ms": 370,
+      "cost_usd": 0.000153,
+      "probabilities": {
+        "MOVE: earthquake": 0.19,
+        "MOVE: stoneedge": 0.0,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.8,
+        "SWITCH: rotomwash": 0.01
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "My Garchomp is at 6/183 HP with Life Orb, so any attack will kill it after dealing damage. Earthquake is neutral on Dragon/Ground and deals the most damage (~80+ to their full HP Garchomp) before I faint. Stoneedge is not very effective and has 80% accuracy, making it strictly worse.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy Garchomp is at 6/183 HP (3.3%) - it's basically about to faint. It has Life Orb, so any attack will cost 1/10 max HP (18 HP) and deal 1.3x damage.\n\nThe opponent's Garchomp is at 100% HP and is poisoned (PSN).\n\nMy Garchomp's speed: 169\nOpponent's Garchomp speed: 109-169 (could be faster or slower)\n\nKey considerations:\n- My Garchomp is at 3.3% HP - it will faint from Life Orb damage on any attack (loses 18 HP, which is more than its current 6 HP). Wait, actually Life Orb costs 1/10 max HP = 18 HP. My Garchomp has 6 HP. So if I use an attacking move, it will deal damage but then faint from the Life Orb recoil.\n\nWait, let me reconsider. Life Orb: \"Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.\" So it deals damage first, then takes 18 HP damage. Since it only has 6 HP, it will faint after using any attacking move.\n\nSo my options are:\n1. Swords Dance - raises Attack by 2 stages. But I'm at 3% HP and will likely be KO'd next turn anyway. This seems pointless unless I can set up a threat... but I'll be dead.\n2. Earthquake - Ground, Physical, power 100. Against Dragon/Ground Garchomp: Ground is neutral to Ground (Ground resists nothing from Ground type... wait, Ground attacks are not very effective against Ground? No, Ground is neutral against Ground. Actually, let me think about type matchups.\n\nGarchomp is Dragon/Ground.\n- Earthquake (Ground): Against Dragon/Ground - Ground is neutral to Dragon, and Ground is neutral to Ground. So it's neutral. Wait, actually Ground moves are not very effective against... no. Let me recall: Ground is super effective against Fire, Electric, Rock, Steel. It's not very effective against Grass, Bug. Against Dragon/Ground: Ground vs Dragon = neutral, Ground vs Ground = neutral. So Earthquake is neutral.\n\nWait, but the opponent's Garchomp is at 100% HP. My Garchomp has 182 ATK with Life Orb (1.3x). Let me estimate damage:\n- Base damage formula roughly: ((2*50/5+2) * power * attacker_atk / defender_def) / 50 + 2\n- Attacker ATK: 182, Defender DEF: 103-161 (let's say ~130 average), Power: 100, Level: 50\n- ((2*50/5+2) * 100 * 182 / 130) / 50 + 2 = ((22) * 100 * 182 / 130) / 50 + 2 = (22 * 140) / 50 + 2 = 3080/50 + 2 = 61.6 + 2 = ~63.6\n- With Life Orb: 63.6 * 1.3 ≈ 82.7\n\nSo Earthquake would deal roughly 80+ damage to a full HP Garchomp (which has 183-215 HP). That's not a KO, but it does significant damage.\n\nBut wait - my Garchomp will faint from Life Orb recoil after using the move (6 HP - 18 HP = negative). So I'm essentially sacrificing my last Pokémon.\n\n3. Stoneedge - Rock, Physical, power 100, 80% accuracy, NOT VERY EFFECTIVE on Garchomp. Rock is not very effective against Dragon/Ground? Let me check: Rock vs Dragon = neutral, Rock vs Ground = super effective (Rock is super effective against Bug, Flying, Ice). Wait no - Rock is super effective against Bug and Flying. Against Dragon it's neutral. Against Ground... Rock attacks are not very effective against Grass, Bug, Fighting, Steel. They're neutral against Ground. So Rock vs Dragon/Ground: neutral * neutral = neutral? Actually wait, let me reconsider.\n\nRock type effectiveness:\n- Super effective: Bug, Flying\n- Not very effective: Fire, Rock, Steel, Dark\n- Neutral: everything else including Dragon and Ground\n\nSo Stoneedge would be neutral against Dragon/Ground Garchomp. But it has 80% accuracy and is marked as \"not very effective on garchomp\" in the legal actions. Hmm, that's strange. Let me re-read...\n\n\"stoneedge | Rock, Physical, power 100, 80% accuracy, not very effective on garchomp\"\n\nWait, maybe I'm wrong about type matchups. Let me reconsider. Actually in Gen 9 Champions format... no, the type chart hasn't changed. Let me double-check:\n- Rock vs Dragon: neutral (4x)\n- Rock vs Ground: neutral (1x)\n\nSo it should be neutral overall. But the game says \"not very effective on garchomp.\" Maybe I'm wrong. Actually wait - could it be that in some interpretation, Rock is not very effective against Ground? No, that's not right. Rock is super effective against Bug and Flying only.\n\nHmm, but the legal actions explicitly say \"not very effective on garchomp\" for stoneedge. I'll trust that. So Stoneedge would deal 0.5x damage. That's even worse.\n\n4. Substitute - takes 1/4 max HP (46 HP) to create a substitute. But my Garchomp only has 6 HP! It can't use Substitute because it doesn't have enough HP. Wait, actually in Pokémon, you need at least 1 HP to survive, and Substitute costs 25% of max HP. If I have 6/183 HP, that's not enough for a substitute (needs 46 HP). So this would be illegal or the move would fail. But it's listed as a legal action... Hmm, maybe in this format it's still listed but would just fail? Or maybe I'm wrong about the HP requirement.\n\nActually wait - in Pokémon, Substitute requires you to have at least 25% of your max HP remaining (plus 1). If you have less than that, the move fails. So with 6/183, my Garchomp cannot use Substitute. But it's listed as legal... Maybe the game allows it and it just does nothing? Or maybe I should ignore this option since it would be useless.\n\nGiven all this, my best options are:\n- Earthquake: Deals ~80 damage to opponent's full HP Garchomp (which has 183-215 HP), then I faint from Life Orb recoil. This is the best use of my last Pokémon - deal some damage before dying.\n- Swords Dance: Pointless, I'll be dead next turn anyway and can't attack.\n- Stoneedge: Not very effective (0.5x), 80% accuracy, I faint anyway. Worse than Earthquake.\n- Substitute: Can't use with only 6 HP.\n\nWait, but actually - should I just switch? No, I don't have any other Pokémon! Both Toxapex and Krookodile are fainted. My Garchomp is my last active Pokémon. If it faints, I lose the battle (I'd be at 0/3).\n\nActually wait - in Champions format, you bring 6 but pick 3. Let me re-read... \"Your BENCH: toxapex [FAINTED], krookodile [FAINTED]\" and \"YOUR ACTIVE POKÉMON: garchomp\". So I only have 1 Pokémon left (Garchomp). If it faints, I lose.\n\nSo the question is: what's the best last stand? Earthquake deals the most damage to the opponent's Garchomp before I faint. Even though I'll die, dealing ~80 damage to their full HP Garchomp (which has Toxic Spikes on its side... wait, that's MY side's hazards or theirs?)\n\n\"Opponent side hazards / conditions: Toxic_Spikes\" - This means the opponent set up Toxic Spikes. So when my Pokémon switches in, it gets poisoned. But I'm already at 3% HP and this is my last turn essentially.\n\nActually wait - \"Your side hazards / conditions: None\" and \"Opponent side hazards / conditions: Toxic_Spikes\". So Toxic Spikes are on the opponent's field. This means when MY Pokémon switches in, it gets poisoned. But I have no other Pokémon to switch to.\n\nSo my best move is Earthquake - deal maximum damage before fainting. The opponent's Garchomp is at 100% HP (183-215), and my Earthquake with Life Orb should deal roughly 80+ damage, bringing it down significantly even if not a KO.\n\nActually, let me reconsider whether I could KO. With 182 ATK, Life Orb (1.3x), power 100:\n- Against minimum DEF (103): ((22 * 1Thinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 3906,
+      "latency_ms": 49258,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
