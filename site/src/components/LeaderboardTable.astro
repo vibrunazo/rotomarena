@@ -30,7 +30,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
     </span>
     {tiers.length > 0 && <span class="group"><span class="label">Price</span>
       <button type="button" data-filter="tier" data-value="" aria-pressed="true">all</button>
-      {tiers.map((t) => <button type="button" data-filter="tier" data-value={t.name} aria-pressed="false" title={tierTitle(t)}>{t.name}</button>)}
+      {tiers.map((t) => <button type="button" data-filter="tier" data-value={t.name} aria-pressed="false" data-multi title={`${tierTitle(t)} (pick several to combine them)`}>{t.name}</button>)}
     </span>}
   </div>
 )}
@@ -77,19 +77,21 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
 
 <script>
   // Filters: hide the rows that don't match, and number the rated models that remain (the ratings themselves are
-  // fitted over everyone, so they don't change). Bots show unfiltered, or alone under Structure: bot.
+  // fitted over everyone, so they don't change). Bots show unfiltered, or alone under Structure: bot. Price tiers
+  // combine (free + pocket change + cheap); "all" clears them.
   for (const bar of document.querySelectorAll<HTMLElement>('[data-filters]')) {
     const table = bar.nextElementSibling!.querySelector('table')!;
-    const state: Record<string, string> = { structure: '', open: '', small: '', tier: '' };
+    const state: Record<string, string> = { structure: '', open: '', small: '' };
+    const tiers = new Set<string>();
     const apply = () => {
-      const active = Object.values(state).some(Boolean);
+      const active = Object.values(state).some(Boolean) || tiers.size > 0;
       let n = 0;
       const rows = [...table.tBodies[0].rows].sort((a, b) =>
         Number(a.querySelector<HTMLElement>('.rank')!.dataset.value) - Number(b.querySelector<HTMLElement>('.rank')!.dataset.value));
       for (const row of rows) {
         const d = row.dataset;
         const show = (!active || d.structure !== 'bot' || state.structure === 'bot') && (!state.structure || d.structure === state.structure) &&
-          (!state.open || d.open === '1') && (!state.small || d.small === '1') && (!state.tier || d.tier === state.tier);
+          (!state.open || d.open === '1') && (!state.small || d.small === '1') && (!tiers.size || tiers.has(d.tier ?? ''));
         row.hidden = !show;
         const cell = row.querySelector<HTMLElement>('.rank')!;
         if (d.ranked === '1') cell.textContent = show ? String(++n) : cell.dataset.value!;
@@ -99,7 +101,15 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
       const btn = (e.target as HTMLElement).closest('button');
       if (!btn) return;
       const key = btn.dataset.filter!;
-      if (btn.hasAttribute('data-toggle')) {
+      if (btn.hasAttribute('data-multi')) {
+        const value = btn.dataset.value!;
+        if (!tiers.delete(value)) tiers.add(value);
+        btn.setAttribute('aria-pressed', String(tiers.has(value)));
+        bar.querySelector(`button[data-filter="${key}"][data-value=""]`)!.setAttribute('aria-pressed', String(!tiers.size));
+      } else if (key === 'tier') {  // "all"
+        tiers.clear();
+        bar.querySelectorAll(`button[data-filter="${key}"]`).forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      } else if (btn.hasAttribute('data-toggle')) {
         state[key] = state[key] ? '' : btn.dataset.value!;
         btn.setAttribute('aria-pressed', String(!!state[key]));
       } else {
