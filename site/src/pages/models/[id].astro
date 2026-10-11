@@ -37,7 +37,13 @@ const facts: [string, string][] = [
   ['Win rate', fmtPct(m.win_rate)],
   ['Turns played', m.turns.toLocaleString('en-US')],
   ['Switch rate', fmtPct(m.switch_rate)],
-  ['Median Terastallization turn', m.median_tera_turn === null ? 'never' : `turn ${m.median_tera_turn}`],
+  // Gen 9 OU has Terastallization, Champions Mega Evolution: only what its games allowed
+  ...((m.gimmicks ?? ['tera']).includes('tera')
+    ? ([['Median Terastallization turn', m.median_tera_turn === null ? 'never' : `turn ${m.median_tera_turn}`]] as [string, string][])
+    : []),
+  ...((m.gimmicks ?? []).includes('mega')
+    ? ([['Median Mega Evolution turn', m.median_mega_turn == null ? 'never' : `turn ${m.median_mega_turn}`]] as [string, string][])
+    : []),
   ...(llm
     ? ([
         ['Autopilot rate', fmtPct(m.autopilot_rate, 1)],

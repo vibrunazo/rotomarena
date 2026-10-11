@@ -38,7 +38,7 @@ const repairs = [...d.picks.repairs, ...d.repairs];
         <li>
           {m.sprite && <img src={`https://play.pokemonshowdown.com/sprites/gen5/${m.sprite}.png`} alt="" width="96" height="96" />}
           <strong>{m.species}</strong>
-          <span class="small muted">{m.item}</span>
+          <span class:list={["small muted", { tip: m.notes?.item }]} title={m.notes?.item || undefined}>{m.item}</span>
           {m.fallback
             ? <span class="pill tiny" title="Put in by the referee when the model's own pick was missing or illegal: not its choice">fallback</span>
             : d.meta.sample_teams > 0 && (m.smogon_teams
@@ -54,9 +54,9 @@ const repairs = [...d.picks.repairs, ...d.repairs];
       <div class="sets">
         {d.members.map((m) => (
           <div class="set">
-            <strong>{m.species}</strong> @ {m.item}<br />
-            <span class="muted small">{m.ability} · Tera {m.tera_type} · {m.nature} · {evText(m.evs)}</span>
-            <ul>{m.moves.map((mv) => <li>{mv}</li>)}</ul>
+            <strong>{m.species}</strong> @ <span class:list={[{ tip: m.notes?.item }]} title={m.notes?.item || undefined}>{m.item}</span><br />
+            <span class="muted small"><span class:list={[{ tip: m.notes?.ability }]} title={m.notes?.ability || undefined}>{m.ability}</span>{m.tera_type ? ` · Tera ${m.tera_type}` : ''} · <span class:list={[{ tip: m.notes?.nature }]} title={m.notes?.nature || undefined}>{m.nature}</span> · {evText(m.evs)}</span>
+            <ul>{m.moves.map((mv) => <li><span class:list={[{ tip: m.notes?.moves[mv] }]} title={m.notes?.moves[mv] || undefined}>{mv}</span></li>)}</ul>
           </div>
         ))}
       </div>
@@ -97,6 +97,8 @@ const repairs = [...d.picks.repairs, ...d.repairs];
   .mons img { width: 80px; height: 80px; image-rendering: pixelated; filter: drop-shadow(0 0 6px rgba(62, 230, 255, 0.25)); }
   .sets { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 0.6rem; margin-top: 0.6rem; font-family: var(--font-body); font-size: 0.9rem; }
   .set ul { margin: 0.3rem 0 0; padding-left: 1.1rem; }
+  /* hover for what it does */
+  .tip { cursor: help; text-decoration: underline dotted; text-decoration-color: var(--line); text-underline-offset: 3px; }
   details { margin-top: 0.5rem; }
   summary { cursor: pointer; color: var(--text-dim); font-family: var(--font-body); }
   .problems { color: #ff8da1; font-family: var(--font-mono); }

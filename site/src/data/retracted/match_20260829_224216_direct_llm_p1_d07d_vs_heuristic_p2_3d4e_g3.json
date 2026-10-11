@@ -283,7 +283,8 @@
       "action": {
         "kind": "move",
         "target": "playrough",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -300,7 +301,8 @@
       "action": {
         "kind": "move",
         "target": "uturn",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nTurn 1 situation:\n- Active: Dragapult (Choice Specs) vs Ogerpon-Wellspring (Wellspring Mask).\n- Dragapult naturally outspeeds Ogerpon-W (142 vs 110 base speed).\n- Ogerpon-W mandatory item is Wellspring Mask (no Focus Sash potential).\n- On Turn 1, opponent might stay in and Tera Water (which gives +1 SpD via Embody Aspect), or switch to a Dragapult check (such as Ting-Lu, Kingambit, or a Fairy-type).\n- Locking into Draco Meteor or Shadow Ball on Turn 1 gives up momentum if the opponent switches to a immune/resistant target or Teras.\n- U-turn allows Dragapult to deal chip damage while gaining complete initiative to switch into an appropriate counter (e.g., Dragonite against Ogerpon-W, Great Tusk against Kingambit/Ting-Lu, Gholdengo against Fairy-types).\n\nTherefore, U-turn is the safest and most positionally strong play.\n</thought>\n<decision>\nACTION: MOVE: uturn\n</decision>",
@@ -317,7 +319,8 @@
       "action": {
         "kind": "switch",
         "target": "Dragonite",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe available legal actions consist entirely of switching out of Dragapult.\n\nEvaluating the switch options against Ogerpon-Wellspring (Water/Grass):\n1. Dragonite: Quad-resists Grass, resists Water, and has 100% HP with Multiscale active. It easily wall-breaks or threatens Ogerpon-Wellspring regardless of what move Ogerpon uses (Ivy Cudgel, Power Whip, Knock Off, or Play Rough).\n2. Gholdengo: Steel/Ghost is susceptible to Knock Off from Ogerpon.\n3. Ting-Lu: Dark/Ground is weak to both Water and Grass STABs.\n4. Kingambit: Dark/Steel takes super-effective damage from potential Fighting coverage (Low Kick) and heavy neutral damage from Ivy Cudgel.\n5. Great Tusk: Ground/Fighting is weak to both Grass and Water STABs.\n\nDragonite is unequivocally the safest and strongest switch-in here, preserving full team structure and momentum.\n</thought>\n<decision>\nACTION: SWITCH: dragonite\n</decision>",
@@ -334,7 +337,8 @@
       "action": {
         "kind": "move",
         "target": "playrough",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -351,7 +355,8 @@
       "action": {
         "kind": "move",
         "target": "extremespeed",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nStep-by-step tactical analysis:\n\n1. **Active Matchup Analysis**:\n   - **Dragonite** (65.5% HP) vs. **Ogerpon-Wellspring** (57.0% HP).\n   - Ogerpon-Wellspring's item is locked to Wellspring Mask (cannot hold Choice Band / Life Orb).\n   - Ogerpon's maximum damage output with Play Rough against Dragonite (0 HP / 0 Def): 174 - 206 HP (53.8% - 63.7%).\n   - Dragonite currently has 65.5% HP (~211 HP). Max damage from Play Rough is 206 HP (63.7%), meaning Dragonite is **guaranteed to survive** a Play Rough hit without Terastallizing.\n\n2. **Damage Calculations for Extreme Speed**:\n   - Dragonite's non-Tera Extreme Speed deals 104 - 123 HP (34.5% - 40.8%) to Ogerpon-Wellspring.\n   - Two Extreme Speeds deal a total of 69.0% - 81.6% damage, which easily KOs Ogerpon from 57.0% HP.\n   - Extreme Speed has +2 priority, moving strictly before Ogerpon-Wellspring.\n\n3. **Turn Execution**:\n   - Turn 2: Dragonite uses Extreme Speed (+2 priority), dropping Ogerpon-Wellspring down to ~16.2% - 22.5% HP.\n   - Ogerpon attacks back with Play Rough, dealing max 63.7% and leaving Dragonite alive at ~1.8% - 11.7% HP.\n   - Turn 3: Dragonite uses Extreme Speed again to KO Ogerpon-Wellspring before it can move.\n\n4. **Resource Management**:\n   - Terastallizing to Normal right now is unnecessary and wastes a crucial defensive/offensive Terastallization option for late-game sweepers (like Kingambit or Dragonite itself later).\n   - Keeping Tera available while removing one of the metagame's biggest offensive threats (Ogerpon-W) is the optimal competitive play.\n\n**Action**: Use `extremespeed` without Terastallizing.\n</thought>\n<decision>\nACTION: MOVE: extremespeed\n</decision>",
@@ -368,7 +373,8 @@
       "action": {
         "kind": "switch",
         "target": "Kingambit",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -385,7 +391,8 @@
       "action": {
         "kind": "move",
         "target": "kowtowcleave",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -402,7 +409,8 @@
       "action": {
         "kind": "move",
         "target": "earthquake",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nTurn 3 state analysis:\n- **My Active**: Dragonite (65.5% HP, Boots, Multiscale inactive).\n- **Opponent Active**: Kingambit (100% HP, 1 Supreme Overlord boost).\n- **Matchup**: Dragonite vs. Kingambit. Dragonite naturally outspeeds Kingambit. Ground (Earthquake) is super-effective against Dark/Steel, dealing roughly 60-70% damage.\n\nOptions evaluated:\n1. **MOVE: earthquake**: Directly threatens Kingambit with high damage. If Kingambit uses Kowtow Cleave or Sucker Punch, Dragonite comfortably survives and lands heavy damage. If Kingambit spends its Terastallization early to avoid Earthquake, that removes their Tera option for the rest of the game, which is a major win for my team (Great Tusk / Dragapult / Kingambit).\n2. **MOVE: roost**: Heals Dragonite back to 100%, restoring Multiscale if Sucker Punch fails or if Kowtow Cleave hits, but cedes offensive momentum.\n3. **SWITCH: greattusk**: Very safe swap defensive-wise, but gives up Dragonite's immediate offensive position.\n\nEarthquake applies maximum pressure immediately and forces the opponent into a bad position or forces out their Tera turn 3.\n\nOptimal Action: `earthquake`\n</thought>\n<decision>\nACTION: MOVE: earthquake\n</decision>",
@@ -419,7 +427,8 @@
       "action": {
         "kind": "move",
         "target": "kowtowcleave",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -436,7 +445,8 @@
       "action": {
         "kind": "switch",
         "target": "Great",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe active Dragonite is at 10.9% HP against opponent's Kingambit at 36.0% HP.\n- Dragonite naturally outspeeds Kingambit (Base 80 vs Base 50).\n- If Kingambit uses Sucker Punch (+1 priority), it will KO Dragonite before Earthquake hits.\n- Extreme Speed (+2 priority) goes before Sucker Punch, but as a Normal-type move against Steel-type Kingambit, it will only deal ~10-12% damage, which is insufficient to KO from 36%.\n\nSwitching to Great Tusk is an extremely safe play:\n- If Kingambit uses Sucker Punch, it fails on a switch, allowing Great Tusk to come in safely at 100% HP.\n- If Kingambit uses Kowtow Cleave or Iron Head, Great Tusk comfortably resists/buys in and threatens an immediate KO with STAB Fighting/Ground moves.\n- Preserves Dragonite for potential sack/utility later if needed.\n\nTherefore, switching to Great Tusk is the best tactical move.\n</thought>\n<decision>\nACTION: SWITCH: greattusk\n</decision>",
@@ -453,7 +463,8 @@
       "action": {
         "kind": "move",
         "target": "ironhead",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -470,7 +481,8 @@
       "action": {
         "kind": "move",
         "target": "headlongrush",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nStep-by-step tactical analysis:\n1. **Speed & Damage Assessment**:\n   - Great Tusk (Base 87 Speed) outspeeds Kingambit (Base 50 Speed).\n   - Great Tusk resists Dark-type attacks (Kowtow Cleave, Sucker Punch) and takes minimal damage from them. Even if Kingambit uses Sucker Punch, Great Tusk easily survives.\n   - Kingambit is at 36.0% HP and will be cleanly KO'd by Great Tusk's Ground or Fighting STAB moves.\n\n2. **Opponent Predictions & Defensive Tera**:\n   - Kingambit might stay in and Terastallize (commonly Tera Ghost, Tera Flying, Tera Fairy, or Tera Fire) to try to survive and retaliate, or switch out to a defensive pivot (e.g., Gholdengo, Flying-type, etc.).\n   - Using `closecombat` risks being immune against Ghost Tera or a Gholdengo switch-in.\n   - Using `headlongrush` (120 BP Ground STAB) hits Dark/Steel, Tera Ghost, Tera Fairy, Tera Fire, and Tera Dark for super-effective or strong neutral damage that easily KOs Kingambit at 36% HP. It also heavily punishes a potential Gholdengo switch-in.\n\n3. **Conclusion**:\n   - `headlongrush` is the safest and highest-value play in this scenario, covering standard Kingambit stays, defensive Ghost Teras, and non-Flying switch-ins.\n\n</thought>\n<decision>\nACTION: MOVE: headlongrush\n</decision>",
@@ -487,7 +499,8 @@
       "action": {
         "kind": "switch",
         "target": "Ribombee",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -504,7 +517,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -521,7 +535,8 @@
       "action": {
         "kind": "switch",
         "target": "Gholdengo",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent has Ribombee active, which base outspeeds Great Tusk (124 base Speed vs 87 base Speed).\nGreat Tusk currently has a -1 Special Defense drop and is at 78.7% HP. Ribombee's STAB Moonblast deals 2x super-effective damage against Great Tusk, which will easily KO Great Tusk at -1 SpD from full/near-full HP.\n\nNone of Great Tusk's moves can OHKO Ribombee even if Great Tusk were faster (Ice Spinner is 80 BP neutral damage).\n\nLooking at our bench:\n- Gholdengo (Steel/Ghost) double-resists Bug (0.25x) and resists Fairy (0.5x).\n- Gholdengo's ability, Good as Gold, makes it completely immune to Ribombee's Stun Spore.\n- Gholdengo severely threatens Ribombee with STAB Steel attacks (e.g. Make It Rain).\n\nSwitching to Gholdengo is completely risk-free, preserves Great Tusk for later in the match (especially for hazard control or physically attacking remainder of opponent's team), and establishes immediate offensive pressure.\n</thought>\n<decision>\nACTION: SWITCH: gholdengo\n</decision>",
@@ -538,7 +553,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -555,7 +571,8 @@
       "action": {
         "kind": "move",
         "target": "makeitrain",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\n Ribombee is a Bug/Fairy type Pokémon that typically acts as a fast Lead (124 base Speed) carrying Focus Sash to set up Sticky Web.\nGholdengo (Steel/Ghost) resists Ribombee's Fairy-type STAB (Moonblast) and is immune to status moves directed at it due to Good as Gold (though Sticky Web targets the field).\nMake It Rain is a 120 BP Steel-type STAB move that deals 2x super-effective damage to Ribombee, easily knocking it out (or popping its Focus Sash if equipped).\nUsing Make It Rain is the highest-value, lowest-risk play to either remove Ribombee or severely dent whatever switches in.\n</thought>\n<decision>\nACTION: MOVE: makeitrain\n</decision>",
@@ -572,7 +589,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -589,7 +607,8 @@
       "action": {
         "kind": "move",
         "target": "shadowball",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "The current battle state is Gholdengo (54.9% HP, -1 SpA) facing Ribombee (1.0% HP). \n\n1. **Speed & Threat Assessment:** Ribombee (Base 124 Speed) is faster than Gholdengo (Base 84 Speed). Ribombee's main offensive move Moonblast is resisted by Gholdengo's Steel typing (dealing minimal damage to 54.9% HP Gholdengo).\n2. **Execution:** Ribombee is at 1.0% HP, meaning any standard attacking move will secure the KO. \n3. **Move Choice:** \n   - `shadowball` has 100% accuracy and kills Ribombee while preserving Gholdengo's current SpA stage (-1).\n   - `makeitrain` also KOs, but unnecessarily lowers Gholdengo's Special Attack to -2.\n   - `focusblast` has a 30% miss chance and is resisted.\n\nThus, `shadowball` is the safest, most efficient action.",
@@ -606,7 +625,8 @@
       "action": {
         "kind": "switch",
         "target": "Samurott",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -623,7 +643,8 @@
       "action": {
         "kind": "move",
         "target": "ceaselessedge",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -640,7 +661,8 @@
       "action": {
         "kind": "switch",
         "target": "Great",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent has Hisuian Samurott on the field against my Gholdengo.\nGholdengo is at 31.4% HP and -2 Special Attack. Samurott-Hisui outspeeds Gholdengo and heavily threatens it with STAB Ceaseless Edge (which also sets Spikes).\nGholdengo cannot survive any hit from Samurott-Hisui, nor can it deal meaningful damage at -2 SpA.\n\nSwitching to Great Tusk is optimal here:\n- Great Tusk's Fighting typing resists Dark-type attacks like Ceaseless Edge or Sucker Punch.\n- Great Tusk has high physical defense and can easily take any physical hit.\n- If Samurott uses Ceaseless Edge to set Spikes, Great Tusk can immediately clear them with Rapid Spin on the following turn while boosting its Speed, or threaten a KO with STAB Fighting moves against Samurott's Dark/Water typing.\n- Preserving Gholdengo (even at low HP) keeps Good as Gold alive to block future status or hazard moves if needed.\n\nTherefore, switching to Great Tusk is the highest value play.\n</thought>\n<decision>\nACTION: SWITCH: greattusk\n</decision>",
@@ -657,7 +679,8 @@
       "action": {
         "kind": "move",
         "target": "razorshell",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -674,7 +697,8 @@
       "action": {
         "kind": "move",
         "target": "closecombat",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\n- Active match-up: Great Tusk (63.3%) vs. Samurott-Hisui (100%).\n- Speed & Damage: Great Tusk naturally outspeeds non-Scarf Samurott-Hisui. Close Combat is 2x super effective against Water/Dark and easily OHKOs Samurott-Hisui.\n- Priority threat: Samurott-Hisui's priority options (Aqua Jet, Sucker Punch) do not deal enough damage to KO Great Tusk from 63.3% HP (Aqua Jet deals ~22-26%, Sucker Punch is resisted).\n- Opponent plays: If Samurott-Hisui stays in and attacks/sets hazards, Close Combat KOs it before or right after its move. If it switches, Close Combat hits the incoming Pokémon hard.\n- Conclusion: `MOVE: closecombat` is the most reliable, high-reward play to eliminate Samurott-Hisui.\n</thought>\n<decision>\nACTION: MOVE: closecombat\n</decision>",
@@ -691,7 +715,8 @@
       "action": {
         "kind": "switch",
         "target": "Dragapult",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nGreat Tusk has fainted on Turn 9. I need to bring in a replacement.\n\nOpponent's active Pokémon:\n- Hisuian Samurott at 1.0% HP.\n- Samurott-Hisui's signature move is Ceaseless Edge, which sets a layer of Spikes upon dealing damage.\n- My side currently has Spikes. Preventing Hisuian Samurott from getting off another Ceaseless Edge to stack more Spikes is crucial.\n\nEvaluating options to bring out:\n1. Dragapult (100% HP):\n   - Base 142 Speed guarantees outspeeding Hisuian Samurott (Base 85 Speed).\n   - Can KO the 1.0% HP Samurott-Hisui before it can attack or set another layer of Spikes.\n   - Takes minor Spikes damage on entry, but retains high HP and momentum.\n\n2. Dragonite (10.9% HP):\n   - Immune to Spikes, but slower than Hisuian Samurott unless running heavy speed investment/Dragon Dance (base 80 vs 85). If Samurott attacks first or uses Aqua Jet / Sucker Punch, Dragonite faints.\n\n3. Ting-Lu / Kingambit / Gholdengo:\n   - All are slower than Hisuian Samurott and allow it to land Ceaseless Edge (adding another layer of Spikes) or deal chip damage.\n\n Dragapult is the safest and fastest option to clean up the 1% Hisuian Samurott before it can exert any further pressure or hazards.\n\nDecision: SWITCH: dragapult\n</thought>\n<decision>\nACTION: SWITCH: dragapult\n</decision>",
@@ -708,7 +733,8 @@
       "action": {
         "kind": "move",
         "target": "ceaselessedge",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -725,7 +751,8 @@
       "action": {
         "kind": "move",
         "target": "uturn",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\n1. **Current Situation**:\n   - Opponent's active Pokémon is Samurott-Hisui at 1.0% HP.\n   - My active Pokémon is Dragapult (Choice Specs) at 87.7% HP.\n   - Opponent has 3 Pokémon fainted (Ogerpon-W, Kingambit, Ribombee) and 2 unknown bench Pokémon.\n\n2. **Move Selection**:\n   - Samurott-Hisui is at 1.0% HP, so any hitting move will faint it.\n   - Draco Meteor has 90% accuracy and could miss.\n   - Shadow Ball / Flamethrower would lock Dragapult into a move via Choice Specs against the opponent's remaining unknown team members.\n   - **U-turn** is 100% accurate, hits super-effectively against Dark/Water, guarantees the knockout on Samurott-Hisui, and grants a free switch to position favorably against the opponent's incoming Pokémon.\n\n3. **Conclusion**:\n   - `uturn` is the safest, most flexible, and highest-value option.\n</thought>\n<decision>\nACTION: MOVE: uturn\n</decision>",
@@ -742,7 +769,8 @@
       "action": {
         "kind": "switch",
         "target": "Ting-Lu",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "The active Dragapult knocked out the opponent's Samurott-Hisui using U-turn on Turn 10, which forces a switch.\nThe opponent currently has 4 fainted Pokémon (Samurott-Hisui, Ogerpon-Wellspring, Kingambit, Ribombee) and 2 unrevealed Pokémon remaining.\nBecause U-turn knocked out the target, I must make my switch before seeing which Pokémon the opponent brings in.\n\nMy available switch-ins:\n- Ting-Lu (100% HP): Extremely tanky on both sides of the spectrum. Takes minimal chip from Spikes on my side and can comfortably take a hit from virtually any unrevealed threat to gain information and establish defensive positioning.\n- Kingambit (100% HP): Excellent end-game sweeper, but sending it in blind risks forcing it out immediately if the opponent brings out a Fighting-type threat (e.g., Zamazenta, Great Tusk, Iron Valiant).\n- Gholdengo (31.4% HP): Low HP, takes Spikes damage, better preserved for later.\n- Dragonite (10.9% HP): Flying immune to Spikes, but too low HP to switch in blind.\n\nTing-Lu is the safest and most optimal play here to scout the opponent's remaining team while preserving Kingambit and Dragapult.",
@@ -759,7 +787,8 @@
       "action": {
         "kind": "switch",
         "target": "Gholdengo",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -776,7 +805,8 @@
       "action": {
         "kind": "move",
         "target": "makeitrain",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -793,7 +823,8 @@
       "action": {
         "kind": "move",
         "target": "earthquake",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\n- Active Pokémon: Ting-Lu (93.8% HP, Dark/Ground) vs Gholdengo (100.0% HP, Steel/Ghost).\n- Opponent has only 1 or 2 Pokémon remaining (4 fainted).\n- Type advantage: Ground is super effective against Steel/Ghost Gholdengo.\n- Ting-Lu's Vessel of Ruin reduces Gholdengo's Special Attack, making Ting-Lu easily tank any incoming attack from Gholdengo (Make It Rain, Shadow Ball, Focus Blast).\n- Earthquake is a high BP STAB super-effective move that inflicts heavy damage on Gholdengo, forcing Gholdengo to react or take huge damage/KO.\n- No need to Terastallize yet as Ting-Lu already possesses favorable defensive typing against Gholdengo.\n\nTherefore, selecting Earthquake is the most optimal and safest high-value action.\n</thought>\n<decision>\nACTION: MOVE: earthquake\n</decision>",
@@ -810,7 +841,8 @@
       "action": {
         "kind": "move",
         "target": "makeitrain",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -827,7 +859,8 @@
       "action": {
         "kind": "move",
         "target": "earthquake",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent currently has an 18.0% HP Gholdengo at -1 SpA on the field, with 4 fainted Pokémon and 1 unrevealed Pokémon on the bench.\nMy active Pokémon is Ting-Lu at 73.5% HP with Leftovers and Vessel of Ruin active.\n\nAnalysis:\n1. Speed & Priority: Ting-Lu is slower than Gholdengo, but Gholdengo at -1 SpA with Vessel of Ruin active poses virtually no threat to Ting-Lu (Make It Rain / Focus Blast will do very little damage).\n2. Damage & Type Effectiveness: Earthquake is STAB super effective against Gholdengo's Steel typing and will easily KO it from 18% HP.\n3. Opponent options:\n   - Gholdengo stays in and attacks / Teras (e.g. Tera Flying): Even if Gholdengo Terastallizes Flying to avoid Earthquake, Ting-Lu comfortably tanks any -1 SpA hit and can deal with it next turn.\n   - Opponent switches to their last unknown Pokémon: Earthquake will deal heavy neutral damage to anything grounded.\n4. Risk vs Reward: Clicking Earthquake is completely safe, secures a KO on Gholdengo, or hits the incoming last Pokémon. No need to Terastallize.\n\nOptimal Action: MOVE: earthquake\n</thought>\n<decision>\nACTION: MOVE: earthquake\n</decision>",
@@ -844,7 +877,8 @@
       "action": {
         "kind": "switch",
         "target": "Iron",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -861,7 +895,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -878,7 +913,8 @@
       "action": {
         "kind": "move",
         "target": "earthquake",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent is down to their final Pokémon, Iron Valiant (100% HP).\nOur active Pokémon is Ting-Lu at 42.4% HP.\n\nIron Valiant threatens Ting-Lu with 4x STAB Close Combat or STAB Moonblast, both of which easily KO Ting-Lu at 42.4% HP.\nHard switching into Iron Valiant is extremely risky because:\n- Kingambit takes 4x damage from Fighting moves.\n- Dragapult is weak to Fairy/Ghost and takes Spikes damage.\n- Gholdengo is at 31.4% HP and takes Spikes damage.\n\nBy staying in with Ting-Lu and using Earthquake:\n1. If Iron Valiant attacks and KOes Ting-Lu, we get a clean, hazard-free switch into our revenge killer/counter without risking any bench Pokémon.\n2. If Iron Valiant attempts to setup (Swords Dance / Calm Mind) or misses, Earthquake will deal massive physical damage to its fragile Defense stat.\n3. We preserve Terastallization for Kingambit or another bench sweeper to secure the win against Iron Valiant.\n\nTherefore, the best play is to stay in and use Earthquake.\n</thought>\n<decision>\nACTION: MOVE: earthquake\n</decision>",
@@ -895,7 +931,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -912,7 +949,8 @@
       "action": {
         "kind": "move",
         "target": "earthquake",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent is down to their last Pokémon: Iron Valiant at 52.0% HP.\nMy active Pokémon is Ting-Lu at 12.5% HP.\n\nIron Valiant outspeeds Ting-Lu and threatens a knockout with any offensive move (Moonblast, Close Combat, etc.).\nSwitching out is detrimental because my side has Spikes set up, and any incoming Pokémon would take hazard damage plus a free hit from Iron Valiant.\nIf Ting-Lu stays in:\n- If Iron Valiant attacks and KOs Ting-Lu, I get a free switch into Dragapult (which outspeeds unboosted Iron Valiant and can clean up with Ghost STAB / coverage).\n- If Iron Valiant uses a status move or misses, Earthquake deals heavy neutral damage (~40%), reducing Valiant to critical HP.\n\nEarthquake is preferred over Ruination because a 100 BP Earthquake deals more damage to a 52% HP Iron Valiant than Ruination (which only cuts current HP in half to 26%).\n\nTherefore, using Earthquake with Ting-Lu without Terastallizing is the optimal tactical move.\n</thought>\n<decision>\nACTION: MOVE: earthquake\n</decision>",
@@ -929,7 +967,8 @@
       "action": {
         "kind": "switch",
         "target": "Dragapult",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent is down to their final Pokémon, Iron Valiant at 52.0% HP. \nMy active Ting-Lu just fainted, giving me a free switch.\n\nEvaluating options:\n1. **Dragapult** (87.7% HP):\n   - Base Speed of 142 comfortably outspeeds standard Iron Valiant (Base 116).\n   - Its STAB attacks (such as Shadow Ball or Draco Meteor) easily deal over 52% HP damage to Iron Valiant's weak special bulk.\n   - Grounded, so it will take Spikes damage on entry, but remains at ~75% HP which is plenty.\n\n2. **Dragonite** (10.9% HP):\n   - Immune to Spikes, has +2 priority Extreme Speed. Can chip Valiant down significantly, but Dragapult can outright finish the match immediately.\n\n3. **Kingambit** / **Gholdengo**:\n   - Kingambit takes 4x damage from Valiant's Fighting STAB, while Sucker Punch is 4x resisted.\n   - Gholdengo is low HP (31.4%) and takes Spikes damage on switch-in.\n\nBringing in Dragapult allows me to outspeed and secure the KO on Iron Valiant to win the battle.\n</thought>\n<decision>\nACTION: SWITCH: dragapult\n</decision>",
@@ -946,7 +985,8 @@
       "action": {
         "kind": "move",
         "target": "moonblast",
-        "tera": false
+        "tera": false,
+        "mega": false
       },
       "source": "model",
       "thought": "",
@@ -963,7 +1003,8 @@
       "action": {
         "kind": "move",
         "target": "shadowball",
-        "tera": true
+        "tera": true,
+        "mega": false
       },
       "source": "model",
       "thought": "<thought\nThe opponent only has one Pokémon remaining: Iron Valiant at 52.0% HP.\nOur active Pokémon is Specs Dragapult at 75.4% HP.\n\nLet's analyze the match-up:\n1. Speed: Dragapult (base 142) naturally outspeeds Iron Valiant (base 116) unless Iron Valiant has a Choice Scarf or Booster Energy active in Speed.\n2. Defensive Matchup: Fairy-type Moonblast deals 2x super-effective damage to Dragon/Ghost Dragapult and could potentially KO from 75.4% HP if Iron Valiant moves first.\n3. Terastallization Advantage: Terastallizing Dragapult into Tera Ghost removes its Dragon typing. Pure Ghost takes neutral (1x) damage from Fairy-type Moonblast, guaranteeing that Dragapult survives any single attack from full/75.4% HP even if Iron Valiant moves first with Booster Speed or Scarf.\n4. Offense: Specs-boosted Shadow Ball from Dragapult easily deals over 52% damage to Iron Valiant (it easily OHKOs from full HP), securing the final knockout and winning the match immediately.\n\nTherefore, using `shadowball [TERA]` completely eliminates any risk of being outsped and eliminated by Moonblast, guaranteeing a game-winning KO.\n</thought>\n<decision>\nACTION: MOVE: shadowball [TERA]\n</decision>",

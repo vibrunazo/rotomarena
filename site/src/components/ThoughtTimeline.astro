@@ -31,6 +31,7 @@ const turns = [...new Set(match.decisions.map((d) => d.turn))];
               <span class="muted"> {verb[d.action.kind] ?? d.action.kind} </span>
               <code>{pretty(d.action.target)}</code>
               {d.action.tera && <span class="pill accent" title="Terastallized this turn: the Pokémon took its Tera Type">tera</span>}
+              {d.action.mega && <span class="pill accent" title="Mega Evolved this turn, before moving">mega</span>}
               {tag && <span class={`pill ${tag.cls}`} title={tag.title}>{tag.label}</span>}
               <span class="meta num muted small">
                 {d.tokens > 0 && `${d.tokens.toLocaleString('en-US')} tok`}

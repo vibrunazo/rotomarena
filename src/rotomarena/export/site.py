@@ -17,7 +17,7 @@ from rotomarena.rulesets import current_rules, stored_rules
 from rotomarena.rating import Rating
 from rotomarena.results import autopilot_rate, load_matches, player_turns, void_reason
 from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry, TurnBreadcrumb
-from rotomarena.teams.draft import _id, load_drafts, team_species
+from rotomarena.teams.draft import _id, is_champions, load_drafts, team_species
 from rotomarena.teams.loader import parse_smogon_team
 from rotomarena.replay_names import rename_players, shown_names
 from rotomarena.telemetry.replay_saver import flatten_logs
@@ -25,7 +25,7 @@ from rotomarena.telemetry.replay_saver import flatten_logs
 RETRACTED_SEASON = "v0"
 GAME = "pokemon"  # this harness's game; a multi-game site keys its data folders and rankings by it
 _SECRETS = re.compile(r"sk-[A-Za-z0-9_\-*]{6,}|AIza[0-9A-Za-z_\-]{10,}|Bearer\s+\S+")
-_CHOICE = re.compile(r"/choose (move|switch) (\S+)( terastallize)?")
+_CHOICE = re.compile(r"/choose (move|switch) (\S+)( terastallize| mega)?")
 _PROPOSED = re.compile(r"'((?:MOVE|SWITCH): [^']*)'")
 
 
@@ -41,17 +41,18 @@ def scrub(value: Any) -> Any:
 
 
 def parse_choice(chosen_action: str) -> Dict[str, Any]:
-    """'/choose move terablast terastallize' -> {'kind': 'move', 'target': 'terablast', 'tera': True}."""
+    """'/choose move terablast terastallize' -> {'kind': 'move', 'target': 'terablast', 'tera': True, 'mega': False}
+    ('/choose move earthquake mega': Mega Evolution, in Champions)."""
     lead = re.search(r"/team \d+ lead=(\S+)", chosen_action or "")
     if lead:
-        return {"kind": "lead", "target": lead.group(1), "tera": False}
+        return {"kind": "lead", "target": lead.group(1), "tera": False, "mega": False}
     bring = re.search(r"/team \d+ bring=(\S+)", chosen_action or "")  # bring-N formats: the picks, the lead first
     if bring:
-        return {"kind": "bring", "target": bring.group(1), "tera": False}
+        return {"kind": "bring", "target": bring.group(1), "tera": False, "mega": False}
     m = _CHOICE.search(chosen_action or "")
     if not m:
-        return {"kind": "default", "target": "", "tera": False}
-    return {"kind": m.group(1), "target": m.group(2), "tera": bool(m.group(3))}
+        return {"kind": "default", "target": "", "tera": False, "mega": False}
+    return {"kind": m.group(1), "target": m.group(2), "tera": m.group(3) == " terastallize", "mega": m.group(3) == " mega"}
 
 
 def _thought(crumb: TurnBreadcrumb) -> str:
@@ -153,17 +154,21 @@ def _median(values: Iterable[float]) -> Optional[float]:
 def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]:
     """Behaviour across every match a model played in the exported versions, rated or not."""
     turns: List[TurnBreadcrumb] = []
-    tera_turns, played = [], 0
+    tera_turns, mega_turns, played, formats = [], [], 0, set()
     for m in matches:
         for p in m.players:
             if p.config_id != config_id:
                 continue
             played += 1
+            formats.add("mega" if is_champions(m.format) else "tera")  # Champions has Mega Evolution, not Tera
             mine = player_turns(m, p.role)
             turns.extend(mine)
             tera = next((b.turn for b in mine if parse_choice(b.chosen_action)["tera"]), None)
             if tera is not None:
                 tera_turns.append(tera)
+            mega = next((b.turn for b in mine if parse_choice(b.chosen_action)["mega"]), None)
+            if mega is not None:
+                mega_turns.append(mega)
 
     sources = Counter(b.decision_source for b in turns)
     choices = [parse_choice(b.chosen_action) for b in turns if b.decision_source == "model"]
@@ -187,6 +192,8 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
         "signature_move": moves.most_common(1)[0][0] if moves else None,
         "most_used_pokemon": Counter(b.active_pokemon for b in turns).most_common(1)[0][0] if turns else None,
         "median_tera_turn": _median(tera_turns),
+        "median_mega_turn": _median(mega_turns),
+        "gimmicks": sorted(formats),  # which of Terastallization and Mega Evolution its games allowed
         "longest_thought": max(thoughts, key=lambda t: len(t.split()), default=None),
         "shortest_thought": min(thoughts, key=lambda t: len(t.split()), default=None),
         "hallucinations": [{"action": a, "count": c} for a, c in hallucinations.most_common(10)],
@@ -292,6 +299,45 @@ def _bench_main(boards, bench: str) -> Optional[str]:
     return next((b.id for b in boards if b.kind == "benchmark" and b.bench == bench), None)
 
 
+# Natures: the stat each raises and lowers by 10% (the five neutral ones change nothing)
+_NATURES = {
+    "lonely": ("atk", "def"), "brave": ("atk", "spe"), "adamant": ("atk", "spa"), "naughty": ("atk", "spd"),
+    "bold": ("def", "atk"), "relaxed": ("def", "spe"), "impish": ("def", "spa"), "lax": ("def", "spd"),
+    "timid": ("spe", "atk"), "hasty": ("spe", "def"), "jolly": ("spe", "spa"), "naive": ("spe", "spd"),
+    "modest": ("spa", "atk"), "mild": ("spa", "def"), "quiet": ("spa", "spe"), "rash": ("spa", "spd"),
+    "calm": ("spd", "atk"), "gentle": ("spd", "def"), "sassy": ("spd", "spe"), "careful": ("spd", "spa"),
+}
+_STAT_NAMES = {"atk": "Attack", "def": "Defense", "spa": "Sp. Atk", "spd": "Sp. Def", "spe": "Speed"}
+
+
+def set_notes(member: Any, fmt: str) -> Dict[str, Any]:
+    """What a set's item, ability, nature and moves do, for the team's hover tips: Showdown's tooltip texts for the
+    format (Champions' own where they differ), and each move's type, category, power and accuracy."""
+    from poke_env.battle import Move
+
+    from rotomarena.llm.prompts import _desc
+
+    up_down = _NATURES.get(_id(member.nature or ""))
+    moves = {}
+    for name in member.moves:
+        try:
+            move = Move(_id(name), gen=9)
+            facts = [move.type.name.title() if move.type else "", move.category.name.title() if move.category else "",
+                     f"power {move.base_power}" if move.base_power else "",
+                     "never misses" if move.accuracy is True else f"{round(move.accuracy * 100)}% accuracy",
+                     f"priority {move.priority:+d}" if move.priority else ""]
+        except Exception:  # not in poke-env's data: the description alone
+            facts = []
+        desc = _desc("moves", name, fmt)
+        moves[name] = " · ".join(f for f in facts if f) + (f". {desc}" if desc and facts else desc)
+    return {
+        "item": _desc("items", member.item, fmt), "ability": _desc("abilities", member.ability, fmt),
+        "nature": (f"+10% {_STAT_NAMES[up_down[0]]}, -10% {_STAT_NAMES[up_down[1]]}" if up_down
+                   else "Neutral: no stat changes"),
+        "moves": moves,
+    }
+
+
 def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]], version: str = "", fmt: str = "gen9ou",
                bench: Optional[str] = None) -> List[Dict[str, Any]]:
     """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
@@ -316,7 +362,8 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]], version: s
             "members": [{"species": m.species, "sprite": sprites.get(m.species), "item": m.item, "ability": m.ability,
                          "tera_type": m.tera_type, "nature": m.nature,
                          "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves,
-                         "smogon_teams": n, "fallback": _id(m.species) in filler} for m, n in zip(parsed[cid], counts)],
+                         "smogon_teams": n, "fallback": _id(m.species) in filler, "notes": set_notes(m, d["format"])}
+                        for m, n in zip(parsed[cid], counts)],
             # The meta score: how many of its own picks appear in at least one of Smogon's sample teams (the referee's
             # fallbacks aren't its choice, so they don't count)
             "meta": {"used": sum(1 for n in own if n), "of": len(own), "slots": sum(own),

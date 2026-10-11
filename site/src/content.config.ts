@@ -21,7 +21,7 @@ const player = z.object({
 const decision = z.object({
   turn: z.number(),
   role: z.string(),
-  action: z.object({ kind: z.string(), target: z.string(), tera: z.boolean() }),
+  action: z.object({ kind: z.string(), target: z.string(), tera: z.boolean(), mega: z.boolean().optional() }),
   source: z.string(),
   thought: z.string(),
   hidden_reasoning: z.string().default(''),
@@ -82,6 +82,8 @@ const models = defineCollection({
     signature_move: z.string().nullable(),
     most_used_pokemon: z.string().nullable(),
     median_tera_turn: z.number().nullable(),
+    median_mega_turn: z.number().nullable().optional(),
+    gimmicks: z.array(z.string()).optional(), // 'tera' (Gen 9 OU) and/or 'mega' (Champions): what its games allowed
     longest_thought: z.string().nullable(),
     shortest_thought: z.string().nullable(),
     hallucinations: z.array(z.object({ action: z.string(), count: z.number() })),
@@ -102,6 +104,8 @@ const member = z.object({
   nature: z.string(), evs: z.record(z.string(), z.number()), moves: z.array(z.string()),
   smogon_teams: z.number(), // how many of Smogon's sample teams use this Pokémon
   fallback: z.boolean(), // put in by the referee (an empty or illegal slot), not picked by the model
+  // what its item, ability, nature and each move do (Showdown's tooltip texts), for hover tips
+  notes: z.object({ item: z.string(), ability: z.string(), nature: z.string(), moves: z.record(z.string(), z.string()) }).optional(),
 });
 const drafts = defineCollection({
   loader: file('src/data/drafts.json', {

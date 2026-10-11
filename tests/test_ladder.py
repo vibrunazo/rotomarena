@@ -109,7 +109,8 @@ def test_fill_prefers_overlapping_free_neighbours(tmp_path):
 
 
 def test_parse_choice_and_scrub():
-    assert parse_choice("/choose move terablast terastallize") == {"kind": "move", "target": "terablast", "tera": True}
+    assert parse_choice("/choose move terablast terastallize") == {"kind": "move", "target": "terablast", "tera": True, "mega": False}
+    assert parse_choice("/choose move earthquake mega") == {"kind": "move", "target": "earthquake", "tera": False, "mega": True}
     assert parse_choice("/choose switch kingambit")["kind"] == "switch"
     assert scrub({"a": ["Incorrect API key provided: sk-or-v1-abcdef123456"]}) == {"a": ["Incorrect API key provided: [redacted]"]}
 
