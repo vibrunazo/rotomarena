@@ -1,0 +1,591 @@
+{
+  "id": "match_20261010_220810_Mercury Decide 3_vs_GPT-6 Luna 3_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261010",
+  "players": [
+    {
+      "config_id": "mercury_decide",
+      "display_name": "Mercury Decide",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "inception/mercury-decide",
+      "quantization": null,
+      "username": "Mercury Decide 3",
+      "role": "p1",
+      "team": "Mercury Decide's team",
+      "model_key": "inception/mercury-decide",
+      "autopilot_rate": 0.0
+    },
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna 3",
+      "role": "p2",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 68.2,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Mercury Decide 3 vs. GPT-6 Luna 3",
+    "|j|☆Mercury Decide 3",
+    "|j|☆GPT-6 Luna 3",
+    "|gametype|singles",
+    "|player|p1|Mercury Decide 3|169|",
+    "|player|p2|GPT-6 Luna 3|170|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Scizor, L50, F|",
+    "|poke|p1|Metagross, L50|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Primarina, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Rotom|Trick|p1a: Dragapult",
+    "|-activate|p2a: Rotom|move: Trick|[of] p1a: Dragapult",
+    "|-item|p1a: Dragapult|Choice Scarf|[from] move: Trick",
+    "|-item|p2a: Rotom|Life Orb|[from] move: Trick",
+    "|move|p1a: Dragapult|Draco Meteor|p2a: Rotom",
+    "|-damage|p2a: Rotom|36/100",
+    "|-unboost|p1a: Dragapult|spa|2",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|move|p1a: Dragapult|Draco Meteor|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|88/100",
+    "|-unboost|p1a: Dragapult|spa|2",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Metagross|Metagross, L50|155/155",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Metagross",
+    "|-supereffective|p1a: Metagross|1",
+    "|-damage|p1a: Metagross|0 fnt",
+    "|faint|p1a: Metagross",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|turn|4",
+    "|",
+    "|-end|p2a: Kingambit|fallenundefined|[silent]",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|detailschange|p1a: Garchomp|Garchomp-Mega, L50, M",
+    "|-mega|p1a: Garchomp|Garchomp|Garchompite",
+    "|move|p1a: Garchomp|Earthquake|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|30/100",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|36/100",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|88/100",
+    "|-activate|p2a: Kingambit|ability: Supreme Overlord",
+    "|-start|p2a: Kingambit|fallen1|[silent]",
+    "|turn|6",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch|p1a: Garchomp",
+    "|-crit|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|50/183",
+    "|move|p1a: Garchomp|Earthquake|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|0 fnt",
+    "|faint|p2a: Kingambit",
+    "|-end|p2a: Kingambit|fallen1|[silent]",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|30/100",
+    "|turn|7",
+    "|",
+    "|move|p2a: Garchomp|Dragon Claw|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|-damage|p2a: Garchomp|20/100y|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|8",
+    "|",
+    "|move|p1a: Dragapult|Draco Meteor|p2a: Garchomp|[miss]",
+    "|-miss|p1a: Dragapult|p2a: Garchomp",
+    "|move|p2a: Garchomp|Dragon Claw|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|-damage|p2a: Garchomp|10/100|[from] item: Life Orb",
+    "|",
+    "|win|GPT-6 Luna 3",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,metagross,garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Lead: 63% BRING: dragapult, 11% BRING: metagross, 10% BRING: rotomwash\nPick 2: 32% BRING: metagross, 28% BRING: garchomp, 19% BRING: scizor\nPick 3: 51% BRING: garchomp, 31% BRING: scizor, 13% BRING: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5524,
+      "latency_ms": 2068,
+      "cost_usd": 0.00011048,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "rotomwash,garchomp,kingambit",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash is the best lead: Levitate avoids opposing Garchomp’s Ground attacks, while Hydro Pump threatens it and Toxapex. Garchomp covers the opposing Steel-types, and Kingambit gives us priority pressure against Dragapult.",
+      "hidden_reasoning": "**Considering Pokémon Setup**\n\nI’m analyzing a Pokémon battle setup. Dragonite seems strong but has threats from Scizor and Metagross. Gholdengo looks good against Toxapex and Scizor and possibly against Fairy-types. I wonder if bringing Primarina instead of Dragonite would help against Dragapult while still addressing the Scizor and Metagross threats. I’m thinking of leading with Rotom Wash for pressure, and Garchomp could work against steel-type Pokémon. I’m also considering Kingambit for its Sucker Punch against Dragapult.",
+      "note": "",
+      "tokens": 2547,
+      "latency_ms": 11382,
+      "cost_usd": 0.00044567,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "85% MOVE: dracometeor, 9% MOVE: shadowball, 3% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1371,
+      "latency_ms": 651,
+      "cost_usd": 2.742e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.8468484388684713,
+        "MOVE: shadowball": 0.08925717010819773,
+        "MOVE: phantomforce": 0.028977560505050324,
+        "MOVE: uturn": 0.010014376942785157,
+        "SWITCH: metagross": 0.007326674685504511,
+        "SWITCH: garchomp": 0.017575778889990925
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "trick",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash’s Choice Scarf lets it act before even a maximally fast Dragapult. Trick can cripple Dragapult by locking it into one move, making it the strongest opening play.",
+      "hidden_reasoning": "**Assessing speed and strategy**\n\nI need to determine the speed dynamics between Rotom and Dragapult. If my Rotom with a scarf has a speed of 226, it’s likely faster than Dragapult, which clocks in at a max of 213. There's a possibility of using Trick to disrupt Dragapult, but it might still attack first. Swapping to Garchomp could be a safer strategy, especially since Dragapult tends to carry moves like Draco or Shadow Ball. Overall, I can use Trick effectively, but I need to be mindful of Dragapult's potential choice item.**Evaluating strategy and moves**\n\nI'm considering using Trick, which could help take away items like a Weakness Policy, but maybe Volt Switch would be a better pivot into Kingambit. If Dragapult attacks first, that's a concern, even though my scarf Rotom outspeeds it. Swapping to Garchomp through Volt Switch could deal low damage, depending on matchups. I feel like using Trick could disrupt the opponent, but if they already have a scarf, I risk losing mine. Volt Switch offers safe damage but might get resisted. Trick feels like a strong move for the first turn.",
+      "note": "",
+      "tokens": 1671,
+      "latency_ms": 7561,
+      "cost_usd": 0.000359175,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "94% MOVE: dracometeor, 3% SWITCH: garchomp, 3% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1292,
+      "latency_ms": 761,
+      "cost_usd": 2.584e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.942625038506029,
+        "SWITCH: metagross": 0.025120106402833003,
+        "SWITCH: garchomp": 0.03225485509113805
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Kingambit resists Dragapult’s locked Draco Meteor, while Garchomp would take super-effective damage. Switching preserves Rotom and gives Kingambit a favorable matchup.",
+      "hidden_reasoning": "**Deciding battle strategy**\n\nI need to make a choice for my Pokémon move. Dragapult is locked into Draco Meteor, and Rotom is low on health. I’m considering switching to Kingambit since it resists Dragon attacks. Steel resists Dragon, and Dark/Steel could take a hit from Draco. Garchomp wouldn’t be ideal since it’s weak to it. Kingambit might take neutral damage, and afterward, I could use Sucker Punch or Kowtow. I think switching to Kingambit is the best move here!",
+      "note": "",
+      "tokens": 1567,
+      "latency_ms": 4386,
+      "cost_usd": 0.000257675,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: metagross, 42% SWITCH: garchomp, 3% MOVE: dracometeor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1470,
+      "latency_ms": 593,
+      "cost_usd": 2.94e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.03469195209441,
+        "SWITCH: metagross": 0.542673500648465,
+        "SWITCH: garchomp": 0.42263454725712507
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult is locked into Draco Meteor at -4 Special Attack, which Kingambit resists. Kowtow Cleave is the strongest reliable super-effective hit, so take the damage rather than risk Sucker Punch failing.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1738,
+      "latency_ms": 4852,
+      "cost_usd": 0.0003218,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "78% SWITCH: garchomp, 22% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1311,
+      "latency_ms": 716,
+      "cost_usd": 2.622e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.22270014914315833,
+        "SWITCH: garchomp": 0.7772998508568416
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "89% MOVE: earthquake [MEGA], 11% MOVE: earthquake, 0% MOVE: swordsdance [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1874,
+      "latency_ms": 636,
+      "cost_usd": 3.748e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.10595671420887391,
+        "MOVE: earthquake [MEGA]": 0.8871646203211051,
+        "MOVE: swordsdance": 0.0021990609223809686,
+        "MOVE: swordsdance [MEGA]": 0.0034059721851259677,
+        "MOVE: dragonclaw": 0.00014964804517878316,
+        "MOVE: dragonclaw [MEGA]": 5.86030165131953e-05,
+        "MOVE: stoneedge": 5.171698055500875e-05,
+        "MOVE: stoneedge [MEGA]": 3.783695125597397e-05,
+        "SWITCH: dragapult": 0.0009758273690109731
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp’s Ground-type attack threatens a major hit on Kingambit, and Kingambit is slower. Switching to your healthy Garchomp preserves Kingambit for Dragapult and gives you a strong response to the opposing Garchomp.",
+      "hidden_reasoning": "**Evaluating battle strategy**\n\nI need to decide between Kingambit and Garchomp. If I switch to my Garchomp, it might handle opposing Garchomp's Earthquake, but the speed matchup is uncertain. Rotomwash is low on HP but could threaten with Hydro Pump, although opposing Garchomp might outspeed. Kingambit has decent HP, but Earthquake could likely deal huge damage; I'll consider switching my Garchomp to avoid Ground damage and keep Kingambit as a valuable option against Dragapult. It’s tricky, but I’ll prioritize preserving my Garchomp.**Analyzing battle options**\n\nIt seems the opponent is likely to use a Dragon move against Kingambit. If I switch to my Garchomp, it will handle Earthquake neutrally and potentially deal solid damage of about 50%. There's uncertainty about speed since I could tie at 169. Switching to Rotomwash is an option since it’s immune to Earthquake, but it's at low health and risks getting knocked out by a Dragon attack. So switching to my Garchomp sounds like the best option to maintain pressure!",
+      "note": "",
+      "tokens": 1951,
+      "latency_ms": 7282,
+      "cost_usd": 0.000390425,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "65% MOVE: dragonclaw, 35% MOVE: earthquake, 0% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1692,
+      "latency_ms": 623,
+      "cost_usd": 3.384e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.346032660905792,
+        "MOVE: swordsdance": 0.00435590783674533,
+        "MOVE: dragonclaw": 0.6464741198767608,
+        "MOVE: stoneedge": 0.0008057619295083487,
+        "SWITCH: dragapult": 0.00233154945119337
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Your Garchomp is too low to survive the opposing Garchomp’s next attack, and your faster Dragon Claw is unlikely to knock it out from full. Rotom-Wash’s Levitate gives it a safe switch into Earthquake and threatens back with Hydro Pump.",
+      "hidden_reasoning": "**Evaluating battle strategy**\n\nI need to decide on the best move. Dragon Claw is super effective, but the opposing Mega Garchomp has high defense. A Dragon Claw might hit 70-85%, but not enough to KO. The opponent could retaliate with Earthquake, which would defeat us. Switching to Kingambit resists Dragon-type moves, but it's weak to Ground. Rotom-Wash is immune to Ground, and at 36% health, it might survive a dragon move. Hydro Pump seems promising, but I’m unsure it would secure the KO. I need to think through this!**Considering attack options**\n\nRotom's Hydro Pump against Mega Garchomp might deal around 75-90% damage with a Life Orb. If it moves first, Rotom can survive but is at risk with only 46 health. The opposing Garchomp can hit with Dragon Claw or Earthquake. Since Rotom is weak to Water but immune to Ground, switching to avoid Earthquake might be wise. However, the opponent could predict this and use Dragon Claw. It's a tricky situation, and switching Rotom seems like the safer choice!",
+      "note": "",
+      "tokens": 1962,
+      "latency_ms": 7009,
+      "cost_usd": 0.000408675,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at only 30.6% and is likely knocked out by either revealed attack. Kingambit is the better switch despite its Ground weakness because it has far more HP to work with.",
+      "hidden_reasoning": "**Evaluating Pokémon matchup**\n\nI'm analyzing the matchup where Mega Garchomp faces Kingambit. Mega Garchomp's moves, like Earthquake, could be a serious threat, but Kingambit resists Dragon-type moves and might manage to survive. Given Kingambit's 183 HP and impressive defense, it could withstand an Earthquake, even if not comfortably. However, with Garchomp at low HP, it's clear that switching to Kingambit may be the best option, especially since it has a far superior health advantage in this context.",
+      "note": "",
+      "tokens": 1629,
+      "latency_ms": 5505,
+      "cost_usd": 0.0003033,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: earthquake, 0% SWITCH: dragapult, 0% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1684,
+      "latency_ms": 634,
+      "cost_usd": 3.368e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.9915574934362895,
+        "MOVE: swordsdance": 0.0031559101722576457,
+        "MOVE: dragonclaw": 0.0004012289528176424,
+        "MOVE: stoneedge": 0.000293545232693974,
+        "SWITCH: dragapult": 0.004591822205941124
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Sucker Punch is the deciding play: opposing Garchomp is faster and can threaten Kingambit with Earthquake, while priority lets you deal damage before it attacks. Switching to your weakened Garchomp risks losing it to either revealed attack.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2051,
+      "latency_ms": 7596,
+      "cost_usd": 0.000453175,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Garchomp is my only available Pokémon, so switching it in is forced. The opposing Garchomp may outspeed and threaten a knockout, but there is no other legal action.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1661,
+      "latency_ms": 4700,
+      "cost_usd": 0.000307675,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "81% MOVE: dragonclaw, 10% SWITCH: dragapult, 9% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1731,
+      "latency_ms": 639,
+      "cost_usd": 3.462e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.08563542615285578,
+        "MOVE: swordsdance": 0.003762558034690232,
+        "MOVE: dragonclaw": 0.8124863742142233,
+        "MOVE: stoneedge": 0.0010779909254036012,
+        "SWITCH: dragapult": 0.09703765067282698
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Your Garchomp is faster, and Dragon Claw is super effective against the opposing Garchomp. It should knock it out before it can move.",
+      "hidden_reasoning": "**Evaluating attack strategy**\n\nI need to choose the best attack option. Dragon Claw looks likely to knock out the opponent with a 27% chance, being super effective and faster. Earthquake has equal power but does not have the same effectiveness. When factoring in STAB, Dragon Claw is slightly stronger overall. With a Life Orb, I think Dragon Claw should easily deal enough damage to knock the opponent out. So, I'll confidently go with Dragon Claw!",
+      "note": "",
+      "tokens": 1716,
+      "latency_ms": 3619,
+      "cost_usd": 0.00027705,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: dragapult": 1.0
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "94% MOVE: dracometeor, 2% MOVE: shadowball, 2% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1542,
+      "latency_ms": 607,
+      "cost_usd": 3.084e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.9350498555543882,
+        "MOVE: shadowball": 0.024918235357635304,
+        "MOVE: phantomforce": 0.024918235357635304,
+        "MOVE: uturn": 0.015113673730341209
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false
+      },
+      "source": "model",
+      "thought": "Dragapult’s Choice Scarf likely lets it move first, and at 38 HP Garchomp is unlikely to survive its attack. Dragon Claw is the best chance to knock Dragapult out before it can move.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1846,
+      "latency_ms": 3539,
+      "cost_usd": 0.000313175,
+      "probabilities": null
+    }
+  ]
+}
