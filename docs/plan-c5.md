@@ -34,7 +34,7 @@ attackers best).
 
 1. **Simulator instead of the chat server** (section 3). Removes a whole class of failures and unlocks parallel
    and batch play.
-2. **c5 rules** (section 4): prompt fixes, three drafts per model, both-ways pairs, waste cuts.
+2. **c5 rules** (section 4): prompt fixes, thoughts as memory, three drafts per model, waste cuts.
 3. **Scheduling** (section 5): free placement, then neighbours, to a precision target.
 4. **Batch mode for expensive models** (section 6), once the simulator runs many games at once.
 5. Site additions (section 7).
@@ -90,11 +90,13 @@ since 11 Oct). It would have caught Sonnet's doubles team and Opus's missing tag
 - **Whole battle log** instead of the last 3 turns: Champions games are ~8 turns, so it's short.
 - **Static parts first, changing parts last** (rules, then your own team's sets, then the turn's state), so
   providers' automatic prompt caching applies. Gemini's cost is mostly input (1,800 tokens in, 142 out).
-- **Thoughts: drop them, or make them memory** (decide by smoke test). Today they are display only: nothing
-  carries between turns. Either (a) drop the visible thought (saves ~5% of output; video matches become
-  exhibition games with thoughts on, unrated), or (b) make it notes for later turns: the prompt says what they
-  are for ("your plan, what you've learned about their sets"), no punchline-brevity rule, a cost cap (~60 words),
-  and each turn shows the earlier notes. Test both with cheap models against PokéChamp: cost per game and results.
+- **Thoughts become memory** (decided 11 Oct; we try it and see). Today they are display only: each turn is a
+  fresh request, nothing carries over, and the hidden reasoning is discarded. In c5 the visible thought is the
+  model's notes for its later turns: the prompt says what they are for ("your plan, what you've learned about
+  their sets", for long-term strategy), drops the punchline-brevity rule (that existed for videos), keeps a cost
+  cap (~60 words), and each turn shows its earlier notes. Smoke test with cheap models against PokéChamp: cost
+  per game (input grows with the notes), whether notes get used, results. If it doesn't pay, fall back to dropping
+  the visible thought (~5% of output).
 
 ### Drafts: three per model
 One draft per version is one sample of a model's teambuilding: more games only measure that one team more
@@ -108,15 +110,14 @@ precisely (Sonnet's misread of singles shaped its whole c4 rating). So:
   different skill, and makes ratings drift mid-version. A possible separate benchmark later.
 - Model pages show the three teams and each one's record.
 
-### Both-ways pairs
-A pair's games come in twos: each model once with its own team, once with its opponent's (as in duplicate
-bridge). The rating fits how well each model plays and how strong its teams are, and **publishes only the sum**:
-its own team, played by itself, as now. Swapped games still inform that sum (how it plays, how its team does in
-other hands), and team matchups stop adding noise. Pairs play in units of two: 2, 4, 6 games. The control bots
-already borrow their opponent's team, so they're unchanged.
-
-Alternatives considered: fixed meta teams (no Champions BSS Reg M-B sample-teams thread found on Smogon; ladder
-usage data exists) and random teams (more luck per game). Swapping needs nothing outside the field itself.
+### Considered, not doing: swapped teams
+Playing a pair both ways (each model once with its own team, once with its opponent's, as in duplicate bridge)
+separates playing skill from team strength. With one published number (its own team, played by itself) that
+split isn't needed, and a swapped game measures that number less directly than an own-team game. The one thing
+it would add, averaging out lucky team matchups, the three drafts mostly cover: two models meet across up to 9
+team combinations instead of one. Also considered: fixed meta teams (no Champions BSS Reg M-B sample-teams thread
+found on Smogon) and random teams (more luck per game). Back on the table only if a separate battling score is
+ever wanted. The control bots keep borrowing their opponent's team.
 
 ### Waste
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
@@ -128,8 +129,8 @@ Replaces the fixed round robin (325 pairs x 3 games, everyone against everyone):
 
 1. **Placement against free opponents.** A new model first plays the anchor (GPT-OSS 20B, local), PokéChamp and
    the chimps: they cost nothing, so a paid model's first games cost only its own side.
-2. **Neighbours.** Then it plays models near its current rating, in both-ways pairs, where results are still in
-   doubt. Close pairs can meet again (4, 6 games).
+2. **Neighbours.** Then it plays models near its current rating, where results are still in doubt. Close pairs
+   can meet again.
 3. **Stop at a precision target** (an interval half-width, e.g. +-100) or the model's dollar cap, whichever comes
    first. Cheap models naturally play more; expensive ones only what's needed.
 
@@ -159,6 +160,6 @@ turn.
 
 ## 8. Open questions
 
-- Thoughts: dropped or memory (smoke test decides).
+- Thoughts as memory: the note cap and how many earlier notes to show (smoke test).
 - Precision target and dollar caps per tier.
 - Batch mode: the real wait and real price, per model.
