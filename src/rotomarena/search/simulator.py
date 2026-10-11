@@ -145,6 +145,103 @@ def _opponent_attack(battle: Battle, opp_action_type: str, opp_action_target: st
     return estimate_best_hit(opp, target)
 
 
+# Status moves, each worth roughly the HP fraction a hit would have to deal to match it. Valued at zero, they tied
+# with any attack that does nothing: Earthquake into a Levitate Rotom-Wash beside Swords Dance and Stealth Rock, all
+# three scored the same and the first listed won; and Protect, twice in a row, the second one failing.
+_STATUS_WORTH = {Status.SLP: 0.35, Status.PAR: 0.2, Status.TOX: 0.2, Status.PSN: 0.12, Status.FRZ: 0.35}
+_HAZARD_WORTH = {SideCondition.STEALTH_ROCK: 0.2, SideCondition.SPIKES: 0.15, SideCondition.TOXIC_SPIKES: 0.12,
+                 SideCondition.STICKY_WEB: 0.12}
+_HAZARD_LAYERS = {SideCondition.SPIKES: 3, SideCondition.TOXIC_SPIKES: 2}
+_TYPE_STATUS_IMMUNE = {Status.BRN: ("FIRE",), Status.PAR: ("ELECTRIC",), Status.PSN: ("POISON", "STEEL"),
+                       Status.TOX: ("POISON", "STEEL"), Status.FRZ: ("ICE",)}
+_ABILITY_STATUS_IMMUNE = {
+    Status.SLP: ("insomnia", "vitalspirit", "sweetveil"), Status.BRN: ("waterveil", "waterbubble", "thermalexchange"),
+    Status.PAR: ("limber",), Status.PSN: ("immunity", "pastelveil"), Status.TOX: ("immunity", "pastelveil"),
+}
+_BLOCKS_STATUS_MOVES = ("goodasgold", "magicbounce", "purifyingsalt", "comatose")
+PROTECT_COST = 0.1  # a turn that only delays: worse than an even trade
+
+
+def _ability_id(mon: Pokemon) -> str:
+    return "".join(c for c in str(getattr(mon, "ability", None) or "").lower() if c.isalnum())
+
+
+def _status_lands(move: Move, target: Pokemon) -> bool:
+    """The move's status would take: the target has none yet and neither its types nor its known ability stop it."""
+    status, types, ability = move.status, _type_names(target), _ability_id(target)
+    if target.status or ability in _BLOCKS_STATUS_MOVES or ability in _ABILITY_STATUS_IMMUNE.get(status, ()):
+        return False
+    if any(t in types for t in _TYPE_STATUS_IMMUNE.get(status, ())):
+        return False
+    move_type = move.type.name.upper() if move.type else "NORMAL"
+    if move.id == "thunderwave" and get_type_effectiveness(move_type, types) == 0.0:
+        return False  # Ground
+    if "powder" in (move.flags or ()) and "GRASS" in types:
+        return False
+    return not _immune_by_ability(target, move_type)
+
+
+def _boost_worth(move: Move, active: Pokemon, opp: Pokemon) -> float:
+    """Self-boosts: the extra damage our best hit of each boosted kind would deal next turn (half counted), plus a
+    little for defences, and for Speed when it turns a slower Pokémon into a faster one."""
+    worth = 0.0
+    for stat, stages in (move.boosts or {}).items():
+        current = active.boosts.get(stat, 0)
+        gained = min(6, current + stages) - current
+        if gained <= 0:
+            continue
+        if stat in ("atk", "spa"):
+            kind = MoveCategory.PHYSICAL if stat == "atk" else MoveCategory.SPECIAL
+            best = max((estimate_damage_fraction(m, active, opp) for m in active.moves.values() if m.category == kind),
+                       default=0.0)
+            boosted = best * _boosted(1.0, current + gained) / _boosted(1.0, current)
+            worth += 0.5 * (min(boosted, opp.current_hp_fraction) - min(best, opp.current_hp_fraction))
+        elif stat == "spe":
+            mine, theirs = _stat(active, "spe"), _stat(opp, "spe")
+            if _boosted(mine, current) < theirs <= _boosted(mine, current + gained):
+                worth += 0.25
+        elif stat in ("def", "spd"):
+            worth += 0.03 * gained
+    return worth
+
+
+def _status_move_delta(battle: Battle, move: Move, active: Pokemon, opp: Pokemon, opp_action_type: str,
+                       opp_dmg: float, moves_first: bool) -> float:
+    """The score change a status move brings: what it achieves, minus the opponent's hit it takes meanwhile."""
+    if move.is_protect_move:
+        if active.protect_counter == 0:
+            return -PROTECT_COST  # the hit is blocked (Protect has priority), the turn is gone
+        moves_first = False  # used again straight away it fails (2 in 3): treat as doing nothing
+    if not moves_first and opp_dmg >= active.current_hp_fraction:
+        return -0.5  # knocked out before it moves
+    if move.heal:
+        # healed before the hit when moving first, after it otherwise
+        hp_before = active.current_hp_fraction if moves_first else active.current_hp_fraction - opp_dmg
+        healed = min(move.heal, 1.0 - hp_before)
+        if hp_before + healed - (opp_dmg if moves_first else 0.0) <= 0:
+            return -0.5
+        return 0.4 * (0.8 * healed - opp_dmg)
+    hp_after = active.current_hp_fraction - opp_dmg
+    if hp_after <= 0:
+        return -0.5
+    worth = 0.0
+    if move.boosts and move.target and move.target.name == "SELF":
+        worth = _boost_worth(move, active, opp) * hp_after
+    elif move.side_condition in _HAZARD_WORTH:
+        layers = battle.opponent_side_conditions.get(move.side_condition, 0)
+        if layers < _HAZARD_LAYERS.get(move.side_condition, 1):
+            worth = _HAZARD_WORTH[move.side_condition] / (1 + layers)
+    elif move.status and _status_lands(move, opp):
+        physical = _stat(opp, "atk") >= _stat(opp, "spa")
+        worth = (0.25 if physical else 0.1) if move.status == Status.BRN else _STATUS_WORTH.get(move.status, 0.1)
+        worth *= move.accuracy if isinstance(move.accuracy, float) else 1.0
+        if opp_action_type == "SWITCH":
+            worth *= 0.5  # it lands on a switch-in instead
+        elif moves_first and move.status in (Status.SLP, Status.FRZ):
+            opp_dmg *= 1.0 - (move.accuracy if isinstance(move.accuracy, float) else 1.0)  # asleep before it moves
+    return 0.4 * (worth - opp_dmg)
+
+
 def simulate_turn_outcome(
     battle: Battle,
     player_action_type: str,  # 'MOVE' or 'SWITCH'
@@ -206,7 +303,11 @@ def simulate_turn_outcome(
 
     opp_move = opp.moves.get(opp_action_target) if opp_action_type == "MOVE" else None
     priority = (player_move.priority or 0) - ((opp_move.priority or 0) if opp_move else 0)
-    if priority > 0 or (priority == 0 and _stat(active, "spe") >= _stat(opp, "spe")):  # priority, then speed
+    moves_first = priority > 0 or (priority == 0 and _stat(active, "spe") >= _stat(opp, "spe"))  # priority, then speed
+    if player_move.category == MoveCategory.STATUS:
+        delta = _status_move_delta(battle, player_move, active, opp, opp_action_type, opp_dmg, moves_first)
+        return max(-1.0, min(1.0, base_eval + delta))
+    if moves_first:
         # Player moves first: a KO means the opponent never attacks
         if opp_action_type != "SWITCH" and player_dmg >= opp.current_hp_fraction:
             delta = 0.5

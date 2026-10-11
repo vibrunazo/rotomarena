@@ -68,3 +68,26 @@ def test_a_known_immunity_ability_means_no_damage():
     target = create_test_pokemon("rotomwash")
     target._ability = "levitate"
     assert estimate_damage_fraction(battle.available_moves[0], battle.active_pokemon, target) == 0.0  # Earthquake
+
+
+@pytest.mark.asyncio
+async def test_a_status_move_beats_an_attack_the_target_is_immune_to():
+    battle = MockBattle()
+    great_tusk = create_test_pokemon("greattusk", moves=["earthquake", "swordsdance", "stealthrock"])
+    battle.active_pokemon = great_tusk
+    battle.available_moves = list(great_tusk.moves.values())
+    rotom = create_test_pokemon("rotomwash", moves=["voltswitch"])
+    rotom._ability = "levitate"
+    battle.opponent_active_pokemon = rotom
+    _, telemetry = await PokeChampSearchEngine().search(battle)
+    assert "stealthrock" in telemetry.best_action.lower()  # Swords Dance only boosts the Earthquake
+
+
+def test_protect_used_again_straight_away_is_worth_less():
+    battle = MockBattle()
+    great_tusk = create_test_pokemon("greattusk", moves=["protect"])
+    battle.active_pokemon = great_tusk
+    fresh = simulate_turn_outcome(battle, "MOVE", "protect", False, "MOVE", "flamethrower")
+    great_tusk._protect_counter = 1
+    again = simulate_turn_outcome(battle, "MOVE", "protect", False, "MOVE", "flamethrower")
+    assert again < fresh

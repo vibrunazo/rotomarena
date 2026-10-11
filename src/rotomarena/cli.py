@@ -451,7 +451,9 @@ def run_battle(
 
     async def _execute():
         async with (server_mgr.joined() if join else server_mgr.ensure_running()):
-            player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg)
+            # Beside a run, a test player under a ladder player's Showdown name signs it out mid-game (PokeChamp, in
+            # A/B tests while the ladder played PokéChamp's sets, crashed both): lane 99 names are never the ladder's
+            player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg, lane=99 if join else 1)
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(
                 player_1, player_2, first_team, second_team, n_games=games,
