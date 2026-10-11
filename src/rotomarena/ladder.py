@@ -387,6 +387,9 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     for two local models costs about one game's time instead of two. Pairs with a local model and pairs without
     one play in two streams at once (the second never touches the GPU). Resumable."""
     pairs = quick_pairs_first(round_robin_pairs(round_robin_ids(app_cfg, log)), app_cfg)
+    # Two control bots: each borrows its opponent's team, and neither has one (PokéChamp against the chimps crashed
+    # the run on 11 Oct). They measure models, not each other.
+    pairs = [p for p in pairs if not all(app_cfg.agents[x].role == "control" for x in p)]
     pairs = strongest_opponents(chosen_opponents(pairs, app_cfg), app_cfg, version_state(app_cfg), games_per_pair, log)
     gpu, api = split_streams(pairs, app_cfg)
     playing: Dict[Tuple[str, str], int] = {}  # sets now playing -> the game count each stops at
