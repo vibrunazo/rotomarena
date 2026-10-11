@@ -324,6 +324,44 @@ def quick_pairs_first(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> List[
     return sorted(pairs, key=lambda pair: (sum(x in last for x in pair), tier(pair)))
 
 
+def strongest_opponents(pairs: List[Tuple[str, str]], app_cfg: AppConfig, state: LadderState,
+                         games_per_pair: int, log: Callable[[str], None] = print) -> List[Tuple[str, str]]:
+    """A model whose game cap can't cover all its pairs spends it on its strongest opponents: models not rated yet
+    (newcomers, whose strength is unknown) and then the highest rated, down the ladder while the cap lasts; its pairs
+    with the rest are dropped. Sonnet and Opus get 63 games for 25 opponents; without this the order of the rounds
+    decided which ones they skipped. Games already played count against the cap wherever they were played."""
+    version = app_cfg.ruleset.version
+    drop: set = set()
+    for x, agent in app_cfg.agents.items():
+        cap = agent.cap(version)
+        mine = [p for p in pairs if x in p]
+        if cap is None or not mine:
+            continue
+        exempt = [p for p in mine if cap_exempt(app_cfg, *p)]
+        budget = cap - sum(max(pair_target(app_cfg, state, *p, games_per_pair), state.games(*p)) for p in exempt)
+        ranked = [p for p in mine if p not in exempt]
+
+        def strength(pair: Tuple[str, str]) -> float:
+            other = state.ratings.get(pair[0] if pair[1] == x else pair[1])
+            return float("inf") if other is None or other.rating is None else other.rating
+
+        ranked.sort(key=strength, reverse=True)
+        kept_cost, dropped = 0, []
+        for i, p in enumerate(ranked):
+            cost = max(games_per_pair, state.games(*p))
+            # keeping it must leave room for the games already played in every pair after it, should those be dropped
+            if kept_cost + cost + sum(state.games(*q) for q in ranked[i + 1:]) <= budget:
+                kept_cost += cost
+            else:
+                dropped.append(p)
+        if dropped:
+            drop.update(dropped)
+            names = [q[0] if q[1] == x else q[1] for q in dropped]
+            log(f"{x}: its cap of {cap} games covers its {len(ranked) - len(dropped)} strongest opponents; "
+                f"it skips {', '.join(names)}")
+    return [p for p in pairs if p not in drop]
+
+
 def split_streams(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> Tuple[list, list]:
     """(pairs with a local model, the rest), each keeping its order: the first need the GPU, the second only APIs,
     so the two play side by side."""
@@ -338,6 +376,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
     for two local models costs about one game's time instead of two. Pairs with a local model and pairs without
     one play in two streams at once (the second never touches the GPU). Resumable."""
     pairs = quick_pairs_first(round_robin_pairs(round_robin_ids(app_cfg, log)), app_cfg)
+    pairs = strongest_opponents(pairs, app_cfg, version_state(app_cfg), games_per_pair, log)
     gpu, api = split_streams(pairs, app_cfg)
     playing: Dict[Tuple[str, str], int] = {}  # sets now playing -> the game count each stops at
 

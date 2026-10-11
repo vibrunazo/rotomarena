@@ -446,6 +446,8 @@ def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
     api_played = None
 
     class State:
+        ratings = {}
+
         def games(self, a, b):
             return played.get(frozenset((a, b)), 0)
 
@@ -463,6 +465,9 @@ def test_local_and_api_pairs_play_in_two_streams_at_once(monkeypatch):
     monkeypatch.setattr(ladder, "games_played", lambda cfg, x: sum(n for pair, n in played.items() if x in pair))
     monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=print: list(agents))
     monkeypatch.setattr(ladder, "play_set", fake_set)
+    # api's cap can't cover both its pairs: strongest_opponents would drop one up front; this checks the streams'
+    # own guard (games promised by the other stream), which still matters when games go void
+    monkeypatch.setattr(ladder, "strongest_opponents", lambda pairs, *args, **kwargs: pairs)
 
     async def run():
         nonlocal api_played
@@ -588,3 +593,20 @@ def test_changing_one_models_rules_retires_only_its_games():
     assert settings_current(muse_game, before) and settings_current(other_game, before)
     assert not settings_current(muse_game, after)  # Muse's games are replayed
     assert settings_current(other_game, after)  # everyone else's stand
+
+
+def test_a_capped_model_spends_its_cap_on_the_strongest_opponents():
+    from rotomarena.ladder import LadderState, round_robin_pairs, strongest_opponents
+    agents = {k: AgentConfig(name=k, type="direct_llm", provider="openrouter", model=f"lab/{k}")
+              for k in ("weak", "mid", "strong", "new")}
+    agents["opus"] = AgentConfig(name="opus", type="direct_llm", provider="openrouter", model="lab/opus", max_games=6)
+    app_cfg = AppConfig(agents=agents)
+    state = LadderState([], [], {
+        "weak": Rating("weak", 1300, 1200, 1400, 9, 2, 7, 0),
+        "mid": Rating("mid", 1500, 1400, 1600, 9, 4, 5, 0),
+        "strong": Rating("strong", 1700, 1600, 1800, 9, 7, 2, 0),
+    }, {})
+    pairs = strongest_opponents(round_robin_pairs(list(agents)), app_cfg, state, 3, log=lambda msg: None)
+    opus_opponents = {a if b == "opus" else b for a, b in pairs if "opus" in (a, b)}
+    assert opus_opponents == {"new", "strong"}  # unrated newcomers first, then the top of the ladder
+    assert len(pairs) == 10 - 2
