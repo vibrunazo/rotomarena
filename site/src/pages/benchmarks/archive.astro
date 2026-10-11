@@ -15,7 +15,7 @@ const href = (id: string) => routes.board(id);
     matters; this page is for the record.
   </p>
   {sections.map(({ bench, boards }) => (
-    <section>
+    <section id={bench.id}>
       <h2><a href={routes.bench(bench.id)}>{bench.title}</a></h2>
       <div class="table-scroll">
         <table>

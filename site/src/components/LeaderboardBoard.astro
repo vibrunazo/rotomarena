@@ -119,7 +119,7 @@ const record = (a: string, b: string) => {
       <li id="fn-ci">95% intervals come from {meta.ladder.bootstrap_samples.toLocaleString('en-US')} parametric bootstrap refits. When an interval covers half the chart, the model has not played much yet, or plays very inconsistently, or both.</li>
       <li id="fn-hallucination">Hallucination rate: the share of turns where the model gave no usable answer (named a move it does not have, answered in a format we could not read, rambled past its token budget, timed out or errored) and the default move was played on its behalf. Matches where either side does this on more than {meta.ladder.max_autopilot * 100}% of its turns are voided.</li>
       <li id="fn-anchor">Ratings need a reference point. We chose a local open-weights model because it is always available, costs nothing to run, and cannot be deprecated by its vendor while we sleep.</li>
-      {isBench && archived.length > 0 && <li id="fn-versions">Older versions of this benchmark, retired when their rules changed: {archived.map((b, i) => <>{i > 0 && ', '}<a href={routes.board(b.id)}>{b.versions.join(', ')}</a></>)}.</li>}
+      {isBench && archived.length > 0 && <li id="fn-versions">Older versions of this benchmark, retired when their rules changed, are in the <a href={`${routes.archive}#${bench!.id}`}>archive</a>.</li>}
     </ol>
   </section>
 </Base>
