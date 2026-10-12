@@ -128,6 +128,8 @@ rulesets:
     notes_shown: 3
     draft_prompts: 2
     drafts: 3
+    thinking_exceptions:
+      step_5_preview: "low"   # 12 Oct: at medium it thinks past the 8,192-token cap (all three drafts cut off and repaired)
     provider_routing:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
       # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
