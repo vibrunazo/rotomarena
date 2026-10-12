@@ -1,0 +1,571 @@
+{
+  "id": "match_20261012_010357_Drex v1_5_vs_Bonsai 2 27B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c4",
+  "date": "20261012",
+  "players": [
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p1",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 7,
+  "duration_seconds": 468.92,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|title|Drex v1.5 vs. Bonsai 2 27B",
+    "|j|☆Drex v1.5",
+    "|j|☆Bonsai 2 27B",
+    "|gametype|singles",
+    "|player|p1|Drex v1.5|2|",
+    "|player|p2|Bonsai 2 27B|102|",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p1|Kommo-o, L50, M|",
+    "|poke|p1|Hydreigon, L50, F|",
+    "|poke|p1|Gliscor, L50, F|",
+    "|poke|p1|Milotic, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Krookodile, L50, F|",
+    "|poke|p2|Gardevoir, L50, M|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Mimikyu, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|215/215",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Corviknight|Corviknight, L50, M|100/100",
+    "|-ability|p2a: Corviknight|Unnerve",
+    "|move|p1a: Garchomp|Earthquake|p2a: Corviknight",
+    "|-immune|p2a: Corviknight",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Gardevoir|Gardevoir, L50, M|100/100",
+    "|move|p1a: Garchomp|Earthquake|p2a: Gardevoir",
+    "|-damage|p2a: Gardevoir|0 fnt",
+    "|faint|p2a: Gardevoir",
+    "|-damage|p1a: Garchomp|194/215|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Garchomp",
+    "|-crit|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|3/215",
+    "|-damage|p2a: Garchomp|90/100|[from] item: Life Orb",
+    "|move|p1a: Garchomp|Dragon Tail|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|7/100",
+    "|-damage|p1a: Garchomp|0 fnt|[from] item: Life Orb",
+    "|faint|p1a: Garchomp",
+    "|drag|p2a: Corviknight|Corviknight, L50, M|100/100",
+    "|-ability|p2a: Corviknight|Unnerve",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|turn|4",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Corviknight",
+    "|-resisted|p2a: Corviknight|2",
+    "|-damage|p2a: Corviknight|96/100",
+    "|",
+    "|switch|p1a: Kommo-o|Kommo-o, L50, M|182/182|[from] U-turn",
+    "|move|p2a: Corviknight|Brave Bird|p1a: Kommo-o",
+    "|-supereffective|p1a: Kommo-o|1",
+    "|-damage|p1a: Kommo-o|66/182",
+    "|-damage|p2a: Corviknight|74/100|[from] Recoil",
+    "|",
+    "|-heal|p2a: Corviknight|80/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|move|p2a: Corviknight|Brave Bird|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|73/163",
+    "|-damage|p2a: Corviknight|63/100|[from] Recoil",
+    "|",
+    "|-heal|p2a: Corviknight|69/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Corviknight",
+    "|-damage|p2a: Corviknight|48/100",
+    "|move|p2a: Corviknight|Brave Bird|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|-damage|p2a: Corviknight|34/100|[from] Recoil",
+    "|",
+    "|-heal|p2a: Corviknight|40/100|[from] item: Leftovers",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Kommo-o|Kommo-o, L50, M|66/182",
+    "|turn|7",
+    "|",
+    "|move|p1a: Kommo-o|Earthquake|p2a: Corviknight",
+    "|-immune|p2a: Corviknight",
+    "|move|p2a: Corviknight|Brave Bird|p1a: Kommo-o",
+    "|-supereffective|p1a: Kommo-o|1",
+    "|-damage|p1a: Kommo-o|0 fnt",
+    "|faint|p1a: Kommo-o",
+    "|-damage|p2a: Corviknight|28/100|[from] Recoil",
+    "|",
+    "|win|Bonsai 2 27B",
+    "|deinit"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,corviknight,gardevoir",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "The opponent fielded four Dragons plus Gliscor and Milotic, so I need Fairy-type coverage to pressure the Dragon core. Garchomp leads as a fast physical sweeper (Stone Edge on Kommojio/Gliscor, Earthquake on Garchomp/Milotic), Corviknight provides mixed STAB with Brave Bird/Flash Cannon plus Defog for hazards, and Gardevoir's Choice Scarf Moonblast hits all four Dragons super effectively.",
+      "hidden_reasoning": "Let me analyze this team preview for a Gen 9 Champions Rotomarenabssregmb format. I need to pick 3 out of my 6 Pokémon.\n\nMy team:\n- Garchomp (Dragon/Ground) - Life Orb, Sandveil, fast physical attacker with Earthquake/Stone Edge/Swords Dance/Substitute\n- Toxapex (Poison/Water) - Damp Rock, Regenerator, slow but very defensive, Sludge Bomb/Recover/Toxic Spikes/Protect\n- Krookodile (Ground/Dark) - Black Belt, Intimidate, Earthquake/Stone Edge/Knock Off/Roar\n- Gardevoir (Psychic/Fairy) - Choice Scarf, Synchronize, Calm Mind/Moonblast/Psyshock/Willowisp\n- Corviknight (Flying/Steel) - Leftovers, Unnerve, Brave Bird/Flash Cannon/Defog/Roost\n- Mimikyu (Ghost/Fairy) - Focus Sash, Disguise, Phantom Force/Play Rough/Willowisp/Protect\n\nOpponent's team:\n- Garchomp (Dragon/Ground)\n- Dragapult (Dragon/Ghost)\n- Kommojio (Dragon/Fighting)\n- Hydreigon (Dark/Dragon)\n- Gliscor (Ground/Flying)\n- Milotic (Water)\n\nThis is a heavy Dragon team. Let me think about what counters these:\n\n1. Garchomp (opponent): Weak to Ice, Water, Ground, Rock, Fairy. My Garchomp can't hit it well (Dragon/Ground vs Dragon/Ground - neutral). Krookodile's Earthquake hits it neutrally. Corviknight's Brave Bird is super effective! Gardevoir's Moonblast is super effective.\n\n2. Dragapult (opponent): Weak to Ice, Ghost, Dark, Fairy, Steel. My Garchomp can't hit it well. Krookodile's Knock Off hits it super effectively (Dark). Corviknight's Flash Cannon is super effective. Gardevoir's Moonblast is super effective. Mimikyu's Phantom Force is super effective.\n\n3. Kommojio (opponent): Weak to Ice, Rock, Flying, Fairy, Steel. My Garchomp's Stone Edge hits it super effectively. Krookodile's Stone Edge hits it super effectively. Corviknight's Brave Bird/Flash Cannon hit it super effectively. Gardevoir's Moonblast is super effective.\n\n4. Hydreigon (opponent): Weak to Ice, Bug, Dark, Fairy. My Garchomp can't hit it well. Krookodile's Knock Off hits it super effectively (Dark). Corviknight's Brave Bird is neutral... wait, Flying vs Dark/Dragon - neutral. Gardevoir's Moonblast is super effective. Mimikyu's Phantom Force is neutral (Ghost vs Dark/Dragon - neutral), Play Rough is super effective (Fairy).\n\n5. Gliscor (opponent): Weak to Ice, Rock, Water, Steel, Fairy. My Garchomp's Stone Edge hits it super effectively. Krookodile's Stone Edge hits it super effectively. Corviknight's Flash Cannon hits it super effectively. Gardevoir's Moonblast is super effective.\n\n6. Milotic (opponent): Weak to Electric, Grass, Poison. My Garchomp can't hit it well. Krookodile's Earthquake is neutral. Corviknight's Brave Bird is neutral... wait, Flying vs Water - neutral. Gardevoir's Moonblast is neutral (Fairy vs Water - neutral). Hmm, actually none of my Pokémon have great coverage on Milotic specifically.\n\nLet me think about the best 3:\n\nKey considerations:\n- The opponent has a LOT of Dragons (Garchomp, Dragapult, Kommojio, Hydreigon) and Gliscor + Milotic\n- I need Fairy-type coverage to hit Dragons\n- I need Ghost/Dark coverage for Dragapult\n- I need Rock/Flying/Steel coverage for various threats\n\nBest picks:\n1. **Garchomp** - Fast physical sweeper, Earthquake hits Garchomp (neutral), Stone Edge hits Kommojio/Gliscor super effectively. Life Orb boosts power. Sandveil protects from sand. Can handle a lot of the team.\n\n2. **Corviknight** - Brave Bird is super effective on Garchomp, Kommojio, Gliscor. Flash Cannon is super effective on Dragapult, Kommojio, Gliscor. Defog clears hazards. Very versatile. Unnerve lowers opponent's SpA.\n\n3. **Gardevoir** with Choice Scarf - Moonblast hits all Dragons (Garchomp, Dragapult, Kommojio, Hydreigon) super effectively. With Choice Scarf, it can outspeed most of the team. Calm Mind + Moonblast is a great setup sweeper.\n\nWait, but Gardevoir with Choice Scarf and Calm Mind... that's a bit odd since Choice Scarf already gives speed boost. But in Gen 9 Champions, this could work as a fast special attacker. Actually, let me reconsider - maybe Mimikyu would be better?\n\nMimikyu: Phantom Force (Ghost) hits Dragapult super effectively. Play Rough (Fairy) hits Dragons super effectively. Focus Sash guarantees it survives one hit to set up or KO. Disguise makes it harder to predict. But it's slower than Gardevoir with Choice Scarf.\n\nActually, let me reconsider the team:\n- Garchomp: Physical sweeper, handles Gliscor (Stone Edge), Kommojio (Stone Edge), Garchomp (Earthquake)\n- Corviknight: Mixed attacker, Brave Bird hits Garchomp/Kommojio/Gliscor, Flash Cannon hits Dragapult/Kommojio/Gliscor, Defog for hazards\n- Gardevoir: Fast special sweeper with Moonblast hitting all Dragons\n\nThis gives me:\n- Physical coverage (Garchomp, Corviknight)\n- Special coverage (Corviknight, Gardevoir)\n- Fairy-type hits all 4 Dragons\n- Ghost/Dark not covered... wait, Dragapult is weak to Dark and Ghost. Krookodile's Knock Off would handle it. But I'm not bringing Krookodile.\n\nHmm, let me reconsider. Maybe:\n- Garchomp (physical sweeper)\n- Corviknight (mixed, Defog)\n- Krookodile (Knock Off for Dragapult, Earthquake/Stone Edge)\n\nBut then I lose the Fairy coverage which is crucial against 4 Dragons.\n\nActually, Gardevoir's Moonblast covers all 4 Dragons perfectly. That's a huge advantage. Let me stick with Garchomp, Corviknight, Gardevoir.\n\nWait - does Gardevoir handle Milotic? Moonblast vs Water is neutral. Earthquake from Garchomp hits Milotic neutrally. Brave Bird from Corviknight is neutral on Water. Hmm, Milotic might be a problem. But it's the weakest of their team probably (Water type, no STAB physical moves listed).\n\nActually, looking at this more carefully - the opponent has 4 Dragons + Gliscor + Milotic. This is clearly a Dragon-heavy team. My best response:\n\n1. Garchomp - Stone Edge for Kommojio/Gliscor, Earthquake for Garchomp/Milotic\n2. Corviknight - Brave Bird for Garchomp/Kommojio/Gliscor, Flash Cannon for Dragapult/Kommojio/Gliscor, Defog\n3. Gardevoir - Moonblast for ALL Dragons (Garchomp, Dragapult, Kommojio, Hydreigon)\n\nThis is the best 3. Garchomp leads since it's the fastest and can threaten immediately.\n\nActually wait - should I lead with Garchomp or Corviknight? Garchomp at Spe 169 is faster than most of their team. It can go in and hit with Earthquake (hits Garchomp, Milotic neutrally) or Stone Edge (hits Kommojio, Gliscor super effectively). Let me lead with Garchomp.\n\nOrder: Garchomp, Corviknight, Gardevoir\n",
+      "note": "",
+      "tokens": 3910,
+      "latency_ms": 44445,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,dragapult,kommoo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: garchomp, 33% BRING: dragapult, 10% BRING: hydreigon\nPick 2: 36% BRING: dragapult, 24% BRING: kommoo, 22% BRING: hydreigon\nPick 3: 39% BRING: kommoo, 29% BRING: hydreigon, 20% BRING: gliscor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5423,
+      "latency_ms": 1823,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Both sides running Garchomp means Earthquake and Stone Edge are both not very effective (0.5x) against a Dragon/Ground target — a bad matchup that makes staying in painful. Corviknight is immune to Ground moves and resists Dragon, giving me a clean defensive pivot out of this stalemate.",
+      "hidden_reasoning": "Let me analyze this battle situation.\n\nBoth sides have Garchomp at full HP. My Garchomp has Life Orb and Sandveil, with stats [HP: 183, ATK: 182, DEF: 117, SPA: 90, SPD: 105, SPE: 169].\n\nThe opponent's Garchomp has unknown stats in range [HP 183-215, Atk 135-200, Def 103-161, SpA 90-145, SpD 94-150, Spe 109-169].\n\nKey considerations:\n- Both are Garchomp vs Garchomp - same type matchup (Dragon/Ground)\n- Earthquake is super effective on Dragon/Ground? No wait. Ground is not very effective against Dragon/Ground. Actually, let me think about this more carefully.\n  - My Garchomp's moves: Swords Dance, Earthquake, Stone Edge, Substitute\n  - Earthquake (Ground) vs Dragon/Ground: Ground is NOT very effective against Ground type. So it deals 0.5x damage.\n  - Stone Edge (Rock) vs Dragon/Ground: Rock is not very effective against Ground type. So it also deals 0.5x damage.\n\nWait, actually both Earthquake and Stone Edge are not very effective against a Garchomp (Dragon/Ground). That's a bad matchup!\n\nSo I'm facing a same-type matchup where my physical moves are only super effective at 0.5x. This is essentially a neutral-to-weak matchup.\n\nOptions:\n1. Swords Dance - boosts attack, but then next turn I still have the same issue with STAB being not very effective\n2. Earthquake - 0.5x damage, Ground vs Dragon/Ground\n3. Stone Edge - 0.5x damage, Rock vs Dragon/Ground, 80% accuracy\n4. Substitute - takes 1/4 HP (46 HP), creates a shield\n5. Switch to Corviknight - Flying/Steel, resists Dragon and Ground? Let me check:\n   - Corviknight is Flying/Steel\n   - Dragon vs Flying/Steel: Dragon is not very effective against Steel (0.5x). So Corviknight resists Dragon attacks.\n   - Ground vs Flying/Steel: Ground is not very effective against... wait, Ground has no effect on Flying types! So Corviknight is immune to Ground moves.\n   - This means Corviknight would be immune to Earthquake and resist Dragon moves. That's a great switch!\n\n6. Switch to Gardevoir - Psychic/Fairy\n   - Dragon vs Psychic/Fairy: Dragon is not very effective against Fairy (0.5x). So Gardevoir resists Dragon.\n   - Ground vs Psychic/Fairy: Ground is neutral against both. So Gardevoir takes full damage from Earthquake.\n\nCorviknight seems like the better switch because it's immune to Ground moves AND resists Dragon moves. This gives me a great defensive pivot.\n\nActually wait, let me reconsider. The opponent's Garchomp could have any ability (Sandveil or Roughskin). If it has Roughskin, switching in would take 1/8 HP damage. But Corviknight at 175 HP would lose about 22 HP to Roughskin, which is manageable.\n\nAlso, the speed matchup: my Garchomp is 169 SPE, opponent's Garchomp could be anywhere from 109-169. If I switch, I avoid the speed issue entirely.\n\nThe deciding factor here is a bad matchup - both being Garchomp means my physical STAB moves are only 0.5x effective. Switching to Corviknight which is immune to Ground and resists Dragon is the best play.\n\nLet me go with SWITCH: corviknight.\n",
+      "note": "",
+      "tokens": 2356,
+      "latency_ms": 22087,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: earthquake, 27% MOVE: dragontail, 19% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1297,
+      "latency_ms": 440,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2901,
+        "MOVE: dragontail": 0.2742,
+        "MOVE: stealthrock": 0.188,
+        "MOVE: stoneedge": 0.032,
+        "SWITCH: dragapult": 0.123,
+        "SWITCH: kommoo": 0.0927
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gardevoir",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight is immune to Earthquake but outsped by Garchomp (87 vs 109-169), creating a stalemate where I can't make progress. Switching to Gardevoir with Choice Scarf guarantees speed (217 effective vs max 169), letting me strike first with neutral Moonblast before the opponent moves.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My active: Corviknight (Flying/Steel), 175/175 HP, Leftovers, Unnerve\n- Opponent's active: Garchomp (Dragon/Ground), 100% HP\n- Turn 2\n\nKey considerations:\n- Corviknight is immune to Ground moves (Earthquake did nothing last turn)\n- Corviknight is Steel/Flying - it resists Dragon, Ground, Rock, Bug, Fairy, Normal, Ice, Steel, and is immune to Poison\n- Garchomp is Dragon/Ground - it's weak to Water, Grass, Ice, Dragon, Fighting\n- Corviknight's Brave Bird (Flying/Physical) hits Garchomp for 1x (neutral)\n- Corviknight's Flash Cannon (Steel/Special) hits Garchomp for 0.5x (resisted by Dragon/Ground... wait, let me check. Steel vs Dragon: neutral. Steel vs Ground: neutral. So Flash Cannon is neutral against Garchomp.)\n\nWait, actually let me reconsider. Steel moves vs Dragon/Ground:\n- Steel vs Dragon: neutral\n- Steel vs Ground: neutral\nSo Flash Cannon is neutral.\n\nBrave Bird (Flying) vs Dragon/Ground:\n- Flying vs Dragon: neutral\n- Flying vs Ground: neutral\nSo Brave Bird is also neutral.\n\nBut wait - Garchomp's speed range is 109-169, and Corviknight is 87. So Garchomp moves first.\n\nIf I use Brave Bird:\n- Garchomp moves first (likely Earthquake again, which does nothing to Corviknight)\n- Then Corviknight uses Brave Bird for neutral damage with 33% recoil\n\nIf I switch to Garchomp:\n- My Garchomp would be immune to Earthquake too (Ground type)\n- But Garchomp vs Garchomp is a bad matchup - they're both Dragon/Ground, so moves are resisted or neutral\n- Actually, my Garchomp has Swords Dance, Earthquake, Stone Edge, Substitute\n\nIf I switch to Gardevoir:\n- Gardevoir (Psychic/Fairy) with Choice Scarf at 145 speed\n- Garchomp is Dragon/Ground - Psychic moves are resisted by Dragon? No wait. Psychic vs Dragon: neutral. Psychic vs Ground: neutral. Fairy vs Dragon: neutral. Fairy vs Ground: neutral.\n- Actually, Gardevoir's Moonblast (Fairy) would be neutral against Garchomp\n- PsyShock (Psychic) would also be neutral\n- But Gardevoir at 145 speed with Choice Scarf = 217 effective speed, which is faster than Garchomp's max of 169\n- So Gardevoir would move first!\n\nWait, let me reconsider. The opponent's Garchomp has unknown stats. Its speed range is 109-169. With Choice Scarf, Gardevoir's base 145 becomes 217 effective speed. That's faster than any possible Garchomp speed (max 169).\n\nSo if I switch to Gardevoir:\n- Gardevoir moves first with Moonblast or PsyShock\n- Moonblast (Fairy, Special, BP 95) vs Dragon/Ground: neutral damage\n- With SpA 177 and Choice Scarf... wait, Choice Scarf doesn't boost attack, it boosts speed. So SpA stays at 177.\n- Garchomp's HP is unknown but likely around 183-215 based on the range given\n\nActually, let me think about what's the best play here.\n\nThe key issue: Corviknight is being outsped by Garchomp. Every turn, Garchomp gets a free move (Earthquake) that does nothing to Corviknight. This is a stalemate situation where I'm just taking no damage but also not making progress.\n\nOptions:\n1. Brave Bird - neutral hit, 33% recoil, but Garchomp moves first and does nothing\n2. Switch to Garchomp - bad matchup (same types), but I could set up with Swords Dance\n3. Switch to Gardevoir - Choice Scarf makes it faster than Garchomp, so it can strike first\n\nLet me think about Gardevoir more carefully:\n- Speed: 145 * 1.5 = 217 effective (Choice Scarf)\n- Garchomp max speed: 169\n- So Gardevoir moves first, guaranteed\n\nMoonblast (Fairy, Special, BP 95):\n- Against Dragon/Ground: neutral (Fairy resists Fighting, Bug, Dark; resists... wait. Let me check type matchups properly.)\n- Fairy vs Dragon: neutral\n- Fairy vs Ground: neutral\n- So Moonblast is neutral damage\n\nWith SpA 177 and Garchomp likely having around 94-150 SpD (let's say ~120 average):\n- Damage = (2*177/120 + 2) * 95/100 * HP/HP... roughly this would deal significant damage but probably not a KO.\n\nActually, let me reconsider the whole situation. The opponent revealed: dragapult, kommoo, hydreigon, gliscor, milotic as their remaining bench.\n\nGarchomp vs Garchomp: If I switch to my Garchomp, it's a Dragon/Ground vs Dragon/Ground matchup. Earthquake is resisted by neither (both are Ground type, so Earthquake does 1x). Stone Edge (Rock) hits Dragon for neutral and Ground for neutral. Swords Dance would help.\n\nBut actually, the most important consideration: Corviknight is completely safe from Garchomp's moves (immune to Ground, resists Dragon). The problem is I can't make progress because I'm slower.\n\nSwitching to Gardevoir with Choice Scarf gives me a speed advantage and a way to actually deal damage. Moonblast at BP 95 with SpA 177 should do decent damage to Garchomp.\n\nBut wait - does Garchomp resist Fairy? No, Dragon/Ground doesn't resist Fairy. Does it resist Psychic? No. So Gardevoir's special attacks are neutral.\n\nActually, I think the best play is to switch to Gardevoir. The Choice Scarf guarantees speed advantage, and Moonblast or PsyShock will deal meaningful damage while Garchomp can't do much back (its moves are resisted by Psychic/Fairy... wait:\n- Earthquake (Ground) vs Psychic/Fairy: neutral for Psychic, neutral for Fairy. So 1x.\n- But Garchomp's revealed move is only Earthquake. It could have other moves though.\n\nHmm, but actually the opponent's Garchomp stats are unknown. Let me think about what's most likely.\n\nActually, I think switching to Gardevoir is the best option because:\n1. Choice Scarf guarantees speed (217 vs max 169)\n2. Moonblast deals neutral damage\n3. It breaks the stalemate where Corviknight just sits there taking no damage but also doing nothing\n\nLet me go with SWITCH: gardevoir.\n\nWait, actually let me reconsider. Is there a reason to stay on Corviknight? \n\nCorviknight's Brave Bird would do:\n- Garchomp moves first (Earthquake, 0 damage)\n- Corviknight uses Brave Bird: Flying/Physical, BP 120, neutral vs Dragon/Ground\n- With ATK 107 and Garchomp's DEF around 103-161... this would deal some damage but with 33% recoil\n\nThe problem is I'm stuck in a stalemate. Every turn Garchomp gets a free Earthquake. I need to either:\n- Switch to something that can outspeed and hit\n- Or switch to my Garchomp for a more even matchup\n\nGardevoir with Choice Scarf seems like the cleanest answer - guaranteed speed, good special attack, neutral damage. Let me go with that.\n",
+      "note": "",
+      "tokens": 3318,
+      "latency_ms": 42556,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: earthquake, 22% MOVE: stealthrock, 18% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1403,
+      "latency_ms": 474,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.292,
+        "MOVE: dragontail": 0.0751,
+        "MOVE: stealthrock": 0.2235,
+        "MOVE: stoneedge": 0.1243,
+        "SWITCH: dragapult": 0.1838,
+        "SWITCH: kommoo": 0.1014
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "The opponent's Garchomp is at 90% HP after Life Orb recoil, and my Gardevoir just fainted to Earthquake. Bringing in my Garchomp lets me match speed (SPE 169 vs up to 169) and use Swords Dance to set up a Life Orb-boosted sweeper that can threaten the opponent's remaining Pokémon next turn.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My Gardevoir just fainted after being hit by Earthquake from the opponent's Garchomp.\n- The opponent's Garchomp is at 90% HP (it used Life Orb, so it lost some HP).\n- I need to switch in a Pokémon.\n\nMy bench options:\n1. Garchomp (Dragon/Ground) - 183/183 HP, Life Orb, Sandveil, Stats: HP 183, ATK 182, DEF 117, SPA 90, SPD 105, SPE 169\n   Moves: Swords Dance, Earthquake, Stone Edge, Substitute\n\n2. Corviknight (Flying/Steel) - 175/175 HP, Leftovers, Unnerve, Stats: HP 175, ATK 107, DEF 172, SPA 65, SPD 137, SPE 87\n   Moves: Brave Bird, Flash Cannon, Defog, Roost\n\nThe opponent's Garchomp is at 90% HP. It used Earthquake on my Gardevoir (which fainted). \n\nLet me think about what to bring in:\n\n**Garchomp vs Garchomp:**\n- My Garchomp has SPE 169, opponent's Garchomp could have SPE up to 169. If both are at max speed, it's a coin flip (or depends on exact stats). Actually, the opponent's Garchomp stats range includes SPE 109-169. My Garchomp is at SPE 169.\n- My Garchomp has Life Orb and Sandveil. The opponent also has Life Orb.\n- Earthquake vs Earthquake: both are Ground type, so they'd be neutral to each other. Both have BP 100.\n- Actually, my Garchomp is Dragon/Ground, opponent's Garchomp is Dragon/Ground. They're the same type! So Earthquake would do neutral damage to each other.\n- My Garchomp has higher ATK (182) vs opponent's possible range (135-200). If opponent is at max ATK 200, it could be close. But my Garchomp at 182 ATK with Life Orb would deal decent damage.\n- Stone Edge: Rock type, neutral to Dragon/Ground. BP 100. Could work too.\n- Swords Dance: boosts my attack, but the opponent is a physical attacker so this could be good for next turn.\n\n**Corviknight vs Garchomp:**\n- Corviknight is Flying/Steel. Garchomp's Earthquake is Ground type - Corviknight is immune to Ground! So it would survive Earthquake.\n- But Garchomp can also use Dragon moves (like Dragon Claw or Outrage) which are neutral to Steel but... wait, Steel resists Dragon? No, Steel resists Dragon? Let me think... Actually, in Gen 9, Steel type resists: Normal, Grass, Ice, Bug, Rock, Dragon, Fairy. Wait no. Let me recall the type chart.\n  \n  Steel resists: Normal, Grass, Ice, Bug, Rock, Dragon, Fairy (and is immune to Poison)\n  Steel is weak to: Fire, Fighting, Ground\n  \n  So Garchomp's Earthquake would be super effective against Corviknight? Wait no - Corviknight IS Flying/Steel. Ground is neutral to Steel but... wait, Ground is not super effective against Steel. Let me recheck.\n  \n  Actually, Ground type moves: Super effective vs Fire, Electric, Rock, Ice. Neutral vs Normal, Fighting, Poison, Bug, Dragon, Dark, Fairy, Grass, Steel, Water. Weak vs Flying, Grass, Bug.\n  \n  So Earthquake (Ground) is NEUTRAL to Steel and WEAK to Flying. Since Corviknight is Flying/Steel, Ground would be... the weaker of the two applies? No, in type matchups, you multiply. Ground vs Flying = 0.5x (resisted), Ground vs Steel = 1x (neutral). So total = 0.5x. That means Earthquake would do HALF damage to Corviknight!\n  \n  Wait, but earlier in Turn 1, the opponent's Garchomp used Earthquake on my Corviknight and it was immune? Let me re-read...\n  \n  \"Turn 1: Your Corviknight came in, Opposing Garchomp used Earthquake, Your Corviknight was immune\"\n  \n  Hmm, that says Corviknight was IMMUNE to Earthquake. But Ground is only resisted by Flying/Steel (0.5x), not immune. Unless... wait, maybe I'm wrong about the type chart. Let me reconsider.\n  \n  Actually wait - in some generations or specific contexts... No, Ground moves are never immune to Steel/Flying. They're just resisted.\n  \n  Hmm, but the battle log clearly says \"Your Corviknight was immune.\" That's strange. Unless there's a field effect or something I'm missing. But it says \"Weather: None | Field: None.\"\n  \n  Wait, maybe I misread. Let me re-read: \"Opposing Garchomp used Earthquake\" and \"Your Corviknight was immune.\" \n  \n  Actually, you know what, maybe the game is just telling us that. Perhaps there's a mechanic I'm not accounting for, or perhaps it's a simplified simulation where they're treating it as immune. In any case, the battle state says Corviknight survived Earthquake.\n  \n  OK so regardless of whether it was truly immune or just resisted, Corviknight clearly survived Earthquake. Let me go with what the game tells us.\n\nActually wait - I need to re-read more carefully. The opponent's Garchomp is at 90% HP. It used Earthquake on my Gardevoir (which fainted). Now I need to switch.\n\nLet me reconsider:\n- If I bring in Corviknight: It survived Earthquake before (per the log). It has Defog which could be useful. But it's slow (SPE 87) and the opponent's Garchomp is likely faster (SPE up to 169). So Garchomp would go first.\n- If I bring in Garchomp: Same type matchup, both have Life Orb. My Garchomp is faster or equal speed. Could use Swords Dance to set up, or Earthquake/Stone Edge for damage.\n\nActually, let me think about this more strategically. The opponent's Garchomp is at 90% HP. \n\nIf I bring in my Garchomp:\n- Speed: My Garchomp SPE 169 vs opponent's possible SPE 109-169. If opponent is at max speed, it's a tie (coin flip). If lower, I go first.\n- Earthquake: Both Dragon/Ground, so neutral. My ATK 182 with Life Orb = 182 * 1.3 = 236.6 effective. Opponent at 90% HP with ~183-215 HP... this might not KO it in one hit but would chip it down.\n- Stone Edge: Rock type, neutral to Dragon/Ground. BP 100. Similar damage profile.\n- Swords Dance: +1 ATK boost. This is a great setup move since the opponent is a physical attacker and I can threaten with Earthquake/Stone Edge next turn.\n\nIf I bring in Corviknight:\n- It's slower, so Garchomp goes first.\n- Garchomp could use Dragon Claw (neutral to Steel/Flying... wait, Dragon vs Flying = 0.5x, Dragon vs Steel = 1x? No wait. Let me recheck.\n  \n  Dragon type moves: Super effective vs Dragon, Ice. Neutral vs Normal, Fighting, Poison, Bug, Grass, Electric, Ground, Rock, Dark, Fairy. Weak to Fire, Water, Steel, Flying, Ice.\n  \n  So Dragon vs Flying = 0.5x (resisted), Dragon vs Steel = 0.5x (resisted). Total for Corviknight: 0.25x! That's a quadruple resistance to Dragon moves.\n  \n  What about Earthquake? Ground vs Flying = 0.5x, Ground vs Steel = 1x. Total: 0.5x.\n  \n  So Corviknight has great resistances to Garchomp's likely moves. But it's slow and would take a hit first.\n\nHmm, but the key question is: what does the opponent do? They have Earthquake revealed. If they only have Earthquake (and maybe other moves), Corviknight would be very safe from them.\n\nActually, looking at this more carefully - the opponent's Garchomp has \"Revealed Moves: earthquake\" - meaning we only know it used Earthquake. It could have other moves too.\n\nLet me think about the best strategic choice:\n\n1. **Garchomp (my side)**: Same type as opponent. Can use Swords Dance to set up a sweeper. If I go first, I can boost and then next turn hit hard with Life Orb Earthquake/Stone Edge. Even if opponent goes first, my Garchomp at 90%+ HP can survive one hit and still threaten.\n\n2. **Corviknight**: Very safe defensively against Garchomp (Thinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 3485,
+      "latency_ms": 49230,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "25% MOVE: dragontail, 21% SWITCH: dragapult, 20% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1595,
+      "latency_ms": 554,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2032,
+        "MOVE: dragontail": 0.2526,
+        "MOVE: stealthrock": 0.1268,
+        "MOVE: stoneedge": 0.0381,
+        "SWITCH: dragapult": 0.2089,
+        "SWITCH: kommoo": 0.1704
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp vs Garchomp mirror: my Earthquake hits neutrally at 100% accuracy with Life Orb boost, while Stone Edge is not very effective and only 80% accurate. Switching to Corviknight would be punished hard since Ground is super effective on its Steel typing. Going for the reliable neutral STAB hit is best here.",
+      "hidden_reasoning": "Let me analyze this battle state carefully.\n\nMy Garchomp: 183/183 HP, Life Orb, Sandveil, Stats: [HP: 183, ATK: 182, DEF: 117, SPA: 90, SPD: 105, SPE: 169]\nMoves: Swords Dance, Earthquake, Stone Edge, Substitute\n\nOpponent's Garchomp: 90% HP (so ~165/183 if same base), Life Orb, possible abilities Sandveil or Roughskin\nRevealed Moves: Earthquake\nStats range: [HP 183-215, Atk 135-200, Def 103-161, SpA 90-145, SpD 94-150, Spe 109-169]\n\nKey matchup analysis:\n- Garchomp vs Garchomp is a neutral matchup for most moves\n- Earthquake hits Dragon/Ground neutrally (Ground is not very effective on Ground? No wait - Ground is NOT very effective against Rock, Steel, and Flying. Against Dragon/Ground, Ground is neutral.)\n- Actually let me reconsider: Ground attacks are super effective against Fire, Ice, Rock, Steel. Not very effective against Bug, Fighting, Grass, Poison. Neutral against Dragon and Ground. So Earthquake hits Garchomp neutrally.\n- Stone Edge (Rock) is not very effective on Dragon/Ground? Rock is neutral against Dragon, but not very effective against Flying, Bug, Fighting, Fire. Against Ground it's neutral. So Rock vs Dragon/Ground is neutral overall... wait, the legal actions say \"not very effective on garchomp\" for Stone Edge. Let me re-read: \"Rock, Physical, power 100, 80% accuracy, not very effective on garchomp\". Hmm, that's odd. Actually Rock IS not very effective against Fighting, Bug, Fire, and Flying. Garchomp is Dragon/Ground. Rock should be neutral against both Dragon and Ground. But the game says it's not very effective... Maybe I'm wrong about the typing interaction. Let me just trust the game data: Stone Edge is not very effective on Garchomp.\n\nWait, actually I need to reconsider. In Gen 9 Champions, maybe there's something different. But regardless, the game explicitly states Stone Edge is \"not very effective on garchomp\" so I'll go with that.\n\nSo my options:\n1. Swords Dance - boosts Attack by 2 stages. Safe setup move.\n2. Earthquake - neutral hit, 100% accuracy, Life Orb boost (1.3x). Power 100 * 1.3 = effective power ~130.\n3. Stone Edge - not very effective (0.5x), 80% accuracy, high crit ratio. Not great.\n4. Substitute - takes 25% HP to set up a sub.\n5. Switch to Corviknight\n\nSpeed: My Garchomp is 169 SPE. Opponent's Garchomp could be 109-169 SPE. So I might or might not go first.\n\nLet me think about what's best here:\n\nThe opponent's Garchomp is at 90% HP and has Life Orb. It revealed Earthquake. If it uses Earthquake, it hits my Garchomp neutrally (Ground vs Dragon/Ground = neutral). With Life Orb, that's a solid hit.\n\nMy Garchomp at full HP with Life Orb:\n- Earthquake: 100 power * 1.3 (Life Orb) = effective 130. Against opponent's Garchomp at 90% HP... Let me estimate damage. My ATK is 182, opponent's DEF range is 103-161. With Life Orb: (2*50/50 + 2) * 182 * 100 / (103 to 161) / 50 * 1.3... roughly. Let me just think about whether it's a KO.\n\nActually, the key question is: should I set up with Swords Dance or go for damage?\n\nIf I use Earthquake and hit first (or even if opponent hits first), I deal significant damage. The opponent is at 90% HP. With Life Orb boosting my attack, Earthquake should do substantial damage.\n\nBut wait - the speed is uncertain. If opponent goes first with Earthquake, it'll hit me for a good chunk of HP (I'm at full). Then I can still hit back with Earthquake.\n\nIf I use Swords Dance:\n- Safe, but if opponent hits me with Earthquake, I lose some HP and then have to deal with the boosted Garchomp next turn.\n- But it gives me a massive attack boost for future turns.\n\nActually, let me think about this more strategically. Both are Garchomps with Life Orb. This is essentially a mirror battle. The opponent revealed Earthquake. \n\nIf I go for Earthquake:\n- If I go first: I hit them at 90% HP with a boosted attack. Could be a KO or near-KO. Then they hit me back (if not KO'd).\n- If they go first: They hit me at full HP, then I hit back.\n\nIf I use Swords Dance:\n- Safe turn, but I'm still vulnerable to their Earthquake.\n- Next turn I have a massive attack boost.\n\nGiven that both are Garchomps and the matchup is symmetric, I think the best play depends on whether I can KO or near-KO with Earthquake.\n\nLet me estimate: My ATK 182, opponent DEF could be as low as 103 (if they invested in Speed/HP). \nBase damage formula: ((2*50+2)/50) * (ATK/DEF) * Power = (2.04) * (182/103) * 100 ≈ 2.04 * 1.77 * 100 ≈ 361\nWith Life Orb: 361 * 1.3 ≈ 469\nDivide by 50 (level factor): wait, I'm overcomplicating this.\n\nIn Gen 9 Champions at level 50, the damage formula is simplified. Let me just think about it differently.\n\nA standard Garchomp with Life Orb using Earthquake against a Garchomp:\n- If opponent has ~183 HP (base) and I have 182 ATK vs their DEF...\n- At 90% HP, they have ~165 HP to lose.\n- A boosted Earthquake from a full-HP Garchomp should do roughly 40-50% damage on a neutral hit.\n\nSo Earthquake would likely bring them down to around 40-50% or potentially KO if their DEF is low.\n\nActually, I think the safest and most effective play here is to just use Earthquake. It's a reliable neutral hit with Life Orb boost. If I go first, I might KO or nearly KO. If they go first, I still deal good damage back.\n\nSwords Dance is also viable but risky if they can take my setup turn and then pressure me.\n\nSubstitute would be too passive in this situation.\n\nSwitching to Corviknight: Corviknight is Steel/Flying, which resists Ground (Earthquake) - wait no, Steel resists... let me think. Ground attacks are not very effective against Flying? No, Ground IS super effective against... no. Ground is neutral against Steel and neutral against Flying. Actually:\n- Ground vs Steel: Not very effective (Steel resists Ground? No...)\n\nLet me recall the type chart:\n- Ground is super effective against: Fire, Ice, Rock, Steel\n- Ground is not very effective against: Bug, Fighting, Grass, Poison\n- Ground is neutral against: Dragon, Flying, Ground, Normal, Psychic, Dark, Ghost, Water, Electric, Fairy\n\nWait, that doesn't seem right. Let me reconsider:\n- Ground attacks: Super effective vs Fire, Ice, Rock, Steel. Not very effective vs Bug, Fighting, Grass, Poison. Neutral vs everything else including Dragon, Flying, Ground.\n\nSo Corviknight (Flying/Steel) would take Ground attacks at... Steel resists? No wait. Ground is super effective against Steel! So Earthquake hits Corviknight for 2x damage! That's terrible.\n\nActually wait: Ground IS super effective against Steel. So Earthquake on Corviknight = 2x damage (super effective on Steel, neutral on Flying). That's a bad switch.\n\nSo switching to Corviknight is bad because their Earthquake would hit it for double damage.\n\nTherefore, my best option is to stay with Garchomp and use Earthquake. It's the most reliable move - 100% accuracy, neutral STAB, boosted by Life Orb. Stone Edge is not very effective and has lower accuracy. Swords Dance is safe but gives them a free turn to pressure me.\n\nI'll go with Earthquake.\n",
+      "note": "",
+      "tokens": 3628,
+      "latency_ms": 47676,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: dragapult, 48% SWITCH: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1344,
+      "latency_ms": 449,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: dragapult": 0.5163,
+        "SWITCH: kommoo": 0.4837
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: uturn, 29% MOVE: shadowball, 29% SWITCH: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1639,
+      "latency_ms": 553,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.3269,
+        "MOVE: dragontail": 0.0298,
+        "MOVE: shadowball": 0.2863,
+        "MOVE: willowisp": 0.0708,
+        "SWITCH: kommoo": 0.2862
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "bravebird",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult moves first but its Ghost-type attacks are fully blocked by Corviknight's Steel typing, and Dragon moves hit at a quarter power. With Corviknight's massive 172 DEF walling any neutral Dark or Fighting follow-up, Brave Bird should KO Dragapult before it can threaten, even after the recoil.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy active Pokémon: Corviknight (Flying/Steel), 175/175 HP, Leftovers, Unnerve\nOpponent's active: Dragapult (Dragon/Ghost), 100% HP\n\nKey considerations:\n- Dragapult moves first (speed 145-213 vs my 87)\n- Corviknight is immune to Dragon and Ground attacks (Flying/Steel resists Dragon, Steel resists Dragon... wait, let me think about this more carefully)\n\nCorviknight's typing: Flying/Steel\n- Dragon moves: Flying resists Dragon (0.5x), Steel resists Dragon (0.5x) → 0.25x resistance to Dragon\n- Ghost moves: Steel is immune to Ghost! So Corviknight is IMMUNE to Ghost-type attacks.\n\nSo Dragapult's likely moves:\n- If it uses a Dragon move (like Draco Meteor, Dragon Claw): Corviknight resists at 0.25x\n- If it uses a Ghost move (like Shadow Ball, Hex): Corviknight is IMMUNE (Steel)\n- If it uses a Dark move (like Sucker Punch, Dark Pulse): Flying/Steel takes Dark at 1x... wait, Steel resists Dark? No. Let me think. Steel resists: Bug, Dragon, Fairy, Flying, Grass, Normal, Rock, Steel. It does NOT resist Dark. So Dark is neutral to Corviknight.\n- If it uses a Fighting move (like Close Combat): Steel resists Fighting at 0.5x\n- If it uses a Ground move: Flying is immune to Ground!\n\nSo Dragapult has limited options against Corviknight:\n- Dragon moves: 0.25x damage\n- Ghost moves: IMMUNE\n- Dark moves: neutral (1x)\n- Fighting moves: 0.5x\n- Ground moves: IMMUNE\n- Ice moves: Steel resists Ice at 0.5x... wait, does Flying resist Ice? No. So Ice is 0.5x to Corviknight.\n- Poison: Steel resists Poison at 0.5x\n\nSo Dragapult's best options against Corviknight are Dark-type moves (neutral) or maybe a Dragon move (0.25x).\n\nNow, what should I do?\n\nOptions:\n1. Brave Bird - 120 power Flying physical, 33% recoil. Against Dragon/Ghost: Flying is neutral to Dragon, and... wait, Ghost resists Fighting but not Flying. Let me check: Flying vs Dragon/Ghost. Dragon resists nothing from Flying (neutral). Ghost resists Fighting, Bug, Dark - not Flying. So Flying is neutral to both. 120 power physical. Corviknight's ATK is 107. Dragapult's DEF range is 85-139. This might or might not KO.\n\nActually wait - let me reconsider. Brave Bird is a Flying-type move. Against Dragon/Ghost:\n- Flying vs Dragon: neutral (1x)\n- Flying vs Ghost: neutral (1x)\nSo it's neutral, 120 power.\n\nWith ATK 107 and Dragapult's DEF at minimum 85: damage would be roughly (107/85) * 120 * level factor... At level 50, the formula is complex but roughly: (2*50+16)/50 * 107/85 * 120 ≈ 2.32 * 1.26 * 120 ≈ 349... that seems too high. Let me not do exact math but think about whether it KOs.\n\nActually, I should focus on the strategic decision rather than damage calc.\n\n2. Flash Cannon - 80 power Steel special. Against Dragon/Ghost:\n- Steel vs Dragon: neutral (1x)\n- Steel vs Ghost: neutral (1x)\nSo also neutral. But it's Special and my SpA is only 65, so this would deal very little damage.\n\n3. Defog - clears hazards/terrain. There are no hazards on either side. Also lowers evasion by 1. Not very useful here since there's nothing to clear.\n\n4. Roost - heals 50% HP (I'm already at full HP), removes Flying type until end of turn. This would make me take Dragon moves at 0.5x instead of 0.25x, and Ghost moves... wait, Steel is still immune to Ghost even without Flying. But it also means I lose the Flying resistance to Dragon. Not ideal since I'm already at full HP.\n\n5. Switch to Garchomp - Garchomp is at 14/183 (7.7% HP). This is extremely low. Garchomp vs Dragapult:\n- Garchomp is Dragon/Ground\n- Dragapult is Dragon/Ghost\n- Ground moves are immune to... wait, Ghost doesn't resist Ground. But Garchomp's Ground attacks would be neutral to Ghost and neutral to Dragon (Dragon resists nothing from Ground). Actually wait - does Dragon resist Ground? No. Does Ghost resist Ground? No. So Ground is neutral to Dragapult.\n- But Garchomp at 7.7% HP is basically a suicide switch. It could get KO'd by almost anything.\n\nActually, let me reconsider the situation. Corviknight is at full HP and has good defensive stats (DEF 172). Against Dragapult:\n- If Dragapult uses a Dragon move: 0.25x damage to Corviknight\n- If Dragapult uses a Ghost move: IMMUNE\n- If Dragapult uses a Dark move: neutral, but with DEF 172, it would take very little damage\n\nCorviknight seems like a great wall against Dragapult. The question is whether I should attack or defend.\n\nBrave Bird at 120 power physical with ATK 107... Let me think about whether this KOs Dragapult. Dragapult's HP range is 163-195, DEF range is 85-139. \n\nWith a neutral 120 BP move:\n- Best case (max damage): high ATK relative to low DEF\n- Worst case: low ATK relative to high DEF\n\nAt level 50, the damage formula is: ((2*level+2)/50) * power * attacker_atk / defender_def * STAB * modifiers\n\nFor physical: (102/50) * 120 * 107 / DEF * 1 (no STAB since Corviknight is Flying/Steel and Brave Bird is Flying... wait, yes there IS STAB! Corviknight is Flying type and Brave Bird is a Flying move. So STAB = 1.5x)\n\nSo: 2.04 * 120 * 107 / DEF * 1.5\n\nIf DEF = 85: 2.04 * 120 * 107 / 85 * 1.5 ≈ 2.04 * 120 * 1.259 * 1.5 ≈ 463... that's way more than max HP of 195. So it would definitely KO.\n\nIf DEF = 139: 2.04 * 120 * 107 / 139 * 1.5 ≈ 2.04 * 120 * 0.769 * 1.5 ≈ 284... still more than max HP of 195. So it would KO even at max DEF.\n\nWait, but there's also the 33% recoil. With 175 HP and 33% recoil on a move that deals ~284-463 damage... the recoil would be about 33% of what was dealt. If it deals 284 damage, recoil is ~94 HP. That leaves Corviknight at ~81 HP. Still alive.\n\nActually wait, I need to reconsider. The damage formula in Gen 9 Champions might be slightly different, but the general principle holds: a 120 BP STAB move from a 107 ATK Pokémon against a Dragon/Ghost with DEF 85-139 should KO at level 50.\n\nBut wait - Dragapult moves first! So I need to consider what happens if Dragapult attacks first.\n\nIf Dragapult uses a Dark-type move (like Sucker Punch, which has priority):\n- Sucker Punch: 80 power Dark physical, priority +1\n- Against Corviknight (Flying/Steel): Dark is neutral to both types\n- With ATK 126-189 and Corviknight's DEF 172... this would deal very little damage. Probably not a KO.\n\nIf Dragapult uses a Dragon move:\n- 0.25x to Corviknight, so even a strong Dragon move wouldn't do much\n\nIf Dragapult uses a Ghost move:\n- IMMUNE (Steel)\n\nSo the safest play is probably Brave Bird to try to KO Dragapult before it can do significant damage. Even if Dragapult hits first with a neutral Dark move, Corviknight's 172 DEF should tank it easily.\n\nActually, let me reconsider whether I should just switch. Garchomp at 7.7% HP is basically useless.Thinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 3879,
+      "latency_ms": 49536,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kommo-o",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: kommoo": 1.0
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% SWITCH: dragapult, 21% MOVE: earthquake, 18% MOVE: focusblast",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1741,
+      "latency_ms": 590,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.214,
+        "MOVE: dragontail": 0.0605,
+        "MOVE: stealthrock": 0.0806,
+        "MOVE: focusblast": 0.1846,
+        "SWITCH: dragapult": 0.4603
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "bravebird",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kommo-o is at only 36% HP, and Brave Bird is 4x super effective against its Dragon/Fighting typing. Even though Kommo-o moves first, it cannot survive a 4x hit from Corviknight's Brave Bird, so the KO is guaranteed regardless of turn order.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nCurrent state:\n- My active: Corviknight (Flying/Steel) at 141/175 HP (80.6%)\n- Opponent's active: Kommo-o (Dragon/Fighting) at 36% HP\n- My bench: Garchomp (Dragon/Ground) at 14/183 HP (7.7%), Gardevoir fainted\n\nKey considerations:\n- Kommo-o is at 36% HP - it's very low\n- Corviknight has Brave Bird which is super effective on Kommo-o (Flying vs Dragon/Fighting)\n- Brave Bird is a Flying/Physical move, power 120, super effective on Dragon/Fighting (4x? No wait - Flying is super effective against Fighting and Dragon. So it's 2x for Fighting AND 2x for Dragon = 4x super effective!)\n\nWait, let me reconsider. Kommo-o is Dragon/Fighting.\n- Brave Bird is Flying type. Flying is super effective against Fighting (2x) and Dragon (2x). So yes, 4x super effective!\n\nAt 36% HP, a 4x super effective Brave Bird from Corviknight should absolutely KO Kommo-o. Even at reduced stats, this should be a guaranteed knockout.\n\nThe speed issue: Kommo-o moves first (94-150 vs Corviknight's 87). But since Kommo-o is at 36% HP and will be KO'd by Brave Bird, the order doesn't really matter much - even if Kommo-o hits first, it won't do enough damage to take down Corviknight (which is at 141/175).\n\nActually wait - what could Kommo-o hit with? Its moves aren't revealed yet. But at 36% HP, it's basically done. Even if it hits first with a strong move, Corviknight at 80% HP should survive.\n\nThe best play here is clearly Brave Bird to KO Kommo-o. It's super effective (4x), the target is at 36%, and this guarantees a knockout.\n\nLet me go with MOVE: bravebird.\n",
+      "note": "",
+      "tokens": 2457,
+      "latency_ms": 14484,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: shadowball, 34% MOVE: uturn, 13% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1740,
+      "latency_ms": 589,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.34,
+        "MOVE: dragontail": 0.0347,
+        "MOVE: shadowball": 0.4026,
+        "MOVE: willowisp": 0.1337,
+        "SWITCH: kommoo": 0.089
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "bravebird",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult moves first but its likely moves (U-turn, Shadow Ball, Dragon-type) are neutral or resisted by Corviknight's Steel/Flying typing. Garchomp is at 7.7% HP and useless to bring in. Brave Bird at 120 BP neutral should pressure the 44% HP Dragapult significantly while keeping Corviknight healthy enough to continue.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy active Pokémon: Corviknight at 121/175 HP (69.1%), with Leftovers, Unnerve ability.\nOpponent's active: Dragapult at 44% HP.\n\nKey considerations:\n- Dragapult moves first (speed 145-213 vs my 87)\n- Corviknight is Steel/Flying - it resists Dragon and Ghost? Let me check:\n  - Steel resists: Normal, Flying, Rock, Bug, Steel, Fairy, Grass, Ice, Psychic, Dragon, Dark (wait, let me be more careful)\n  - Steel weaknesses: Fire, Fighting, Ground\n  - Steel resistances: Normal, Flying, Rock, Bug, Steel, Fairy, Grass, Ice, Psychic, Dragon, Dark\n  - Actually wait: Steel resists: Normal, Flying, Rock, Bug, Steel, Fairy, Grass, Ice, Psychic, Dragon, Dark. That's a lot of resistances.\n  - Steel is weak to: Fire, Fighting, Ground\n\n- Dragapult is Dragon/Ghost:\n  - Dragon moves against Steel/Flying: Dragon is neutral to Steel (Steel resists Dragon), and neutral to Flying? No wait. Let me reconsider.\n  - Actually, Steel resists Dragon. So Dragon moves are not very effective against Corviknight.\n  - Ghost moves against Steel/Flying: Ghost is neutral to both.\n\n- What can Dragapult do? It has U-turn revealed. It likely has other moves too but we don't know them yet. Common Dragapult moves: Shadow Ball, Draco Meteor, Dragon Ascent, Sucker Punch, etc.\n\n- My options:\n  1. Brave Bird (Flying/Physical, 120 BP, 33% recoil) - This is super effective against... wait, what does it hit? Flying is neutral to Dragon/Ghost. Actually, let me check: Flying vs Dragon = neutral, Flying vs Ghost = neutral. So Brave Bird is neutral damage.\n  \n  Wait, actually I need to reconsider. Let me check type matchups more carefully:\n  - Flying attacks against Dragon: neutral (1x)\n  - Flying attacks against Ghost: neutral (1x)\n  - So Brave Bird would be neutral damage at 120 BP.\n\n  2. Flash Cannon (Steel/Special, 80 BP) - Steel vs Dragon/Ghost: Steel is not very effective against Dragon? No wait. Let me check:\n     - Steel attacks against Dragon: Steel is super effective against Dragon! Wait no...\n     - Actually: Steel is super effective against Ice, Rock, Flying. Steel is not very effective against Fire, Fighting, Ground, Electric, Poison.\n     - Steel vs Dragon: neutral (1x)\n     - Steel vs Ghost: neutral (1x)\n     - So Flash Cannon would be neutral at 80 BP.\n\n  3. Defog - removes hazards but there are none on either side. Not useful here.\n\n  4. Roost - heals 50% HP, removes Flying type. This would make Corviknight just Steel, which is still resistant to Dragon and Ghost. But it also means I lose the Flying resistance... wait, does Dragapult have any moves that are super effective against Flying? Let me think about what Dragapult might use.\n\n  Actually, let me reconsider the battle state:\n  - My Garchomp is at 14/183 HP (7.7%) - basically a dead Pokémon\n  - My Gardevoir fainted\n  - I have Corviknight active at 69% HP\n  - Opponent has Dragapult at 44% and Kommo-o at 36%\n\n  The opponent's Dragapult moves first. What could it do?\n  - U-turn (revealed) - neutral to Steel/Flying, would switch out\n  - Could have Shadow Ball (Ghost/Special) - neutral to Steel/Flying\n  - Could have Draco Meteor or Dragon Ascent (Dragon/Physical or Special) - not very effective against Steel (0.5x)\n  - Could have Sucker Punch (Dark/Priority) - Dark is neutral to Steel, but... wait, Dark vs Steel: Dark is not very effective? No, Dark is neutral to Steel. Actually let me check: Dark moves are super effective against Ghost and Psychic. Against Steel, they're neutral.\n\n  Hmm, what about a move that's super effective against Corviknight?\n  - Fire (super effective to Steel)\n  - Fighting (super effective to Steel)\n  - Ground (super effective to Steel)\n  \n  Dragapult is Dragon/Ghost. Common moves: Shadow Ball, Draco Meteor, Dragon Ascent, U-turn, Sucker Punch, Will-O-Wisp, etc. None of these are super effective against Corviknight.\n\n  So the threat from Dragapult is limited. It can't really do much damage to Corviknight.\n\n  Now, what should I do?\n  \n  Option: Brave Bird at 120 BP neutral. Let's estimate: Corviknight ATK is 107. At level 50, a neutral physical move with 120 BP... The opponent's Dragapult has HP in range 163-195 and Def in range 85-139.\n  \n  Actually, I don't need to calculate exact damage. Let me think strategically.\n\n  Corviknight at 121/175 (69%) vs Dragapult at 44%.\n  \n  If I use Brave Bird: It's neutral damage. With 107 ATK and 120 BP, this could potentially KO or do significant damage to a 44% HP Dragon/Ghost. But recoil will hurt Corviknight (33% of damage dealt).\n\n  Actually wait - let me reconsider. The opponent just used U-turn on turn 4 (bringing in Kommo-o) and then on turn 5, Dragapult came back in. So the opponent is cycling through their team.\n\n  Given that:\n  1. Dragapult moves first but has limited options against Corviknight\n  2. My Garchomp is at 7.7% HP (basically useless)\n  3. I have Corviknight at 69% HP which is a good wall\n\n  The best option seems to be Brave Bird to pressure Dragapult. Even though it's neutral, 120 BP physical from Corviknight should do decent damage. And if Dragapult switches out (like with U-turn), I still have a healthy Corviknight.\n\n  Actually, wait. Let me reconsider whether I should switch to Garchomp. Garchomp is at 7.7% HP - that's basically dead. Switching it in would be terrible as it could faint from any attack.\n\n  What about Roost? It heals 50% (so Corviknight goes from 121 to ~168/175). But it removes the Flying type, making Corviknight just Steel. This is actually fine since Steel resists Dragon and Ghost anyway. But it also means I lose the ability to hit with Brave Bird next turn... well, I can still use Flash Cannon.\n\n  Actually, I think the best play here is Brave Bird. Here's why:\n  - Dragapult at 44% HP should be vulnerable to a 120 BP neutral physical attack from Corviknight\n  - Even with recoil, Corviknight stays healthy enough\n  - It pressures the opponent into switching or taking damage\n  - If Dragapult uses U-turn (which it has revealed), I still have a good Pokémon\n\n  Let me go with Brave Bird.\n",
+      "note": "",
+      "tokens": 3696,
+      "latency_ms": 41247,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kommo-o",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "100% SWITCH: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: kommoo": 1.0
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: earthquake, 32% MOVE: focusblast, 14% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1685,
+      "latency_ms": 581,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.4558,
+        "MOVE: dragontail": 0.0785,
+        "MOVE: stealthrock": 0.1415,
+        "MOVE: focusblast": 0.3242
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "bravebird",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Brave Bird is super effective (2x) with STAB on Kommo-o, and at 36% HP it should be a guaranteed knockout even accounting for recoil. This also eliminates the opponent's last revealed Pokémon, ending the battle.",
+      "hidden_reasoning": "Let me analyze this situation carefully.\n\nMy active Pokémon: Corviknight at 71/175 HP (40.6%), with Leftovers, Unnerve.\nOpponent's active: Kommo-o at 36% HP.\n\nCorviknight's moves: Brave Bird (super effective on Kommo-o), Flash Cannon, Defog, Roost.\n\nKey considerations:\n- Kommo-o is Dragon/Fighting\n- Corviknight is Flying/Steel\n- Brave Bird is super effective on Kommo-o (Flying vs Dragon/Fighting)\n- Kommo-o has 36% HP remaining\n- Corviknight has 71/175 HP (40.6%)\n\nLet me think about whether Brave Bird will KO Kommo-o:\n- Brave Bird is 120 BP, super effective (2x), Flying vs Dragon/Fighting\n- Kommo-o at 36% HP\n- Corviknight ATK is 107\n\nFor a level 50 battle, the damage calculation would be roughly:\n- Base damage = ((2*50/5 + 2) * 120 * 107 / (Kommo-o's HP stat)) * STAB * type effectiveness\n- Kommo-o's HP is at least 150, likely around 163-182 range based on the stats shown\n- Let's say HP ~165\n\nActually, let me think about this differently. Kommo-o was hit by Brave Bird twice already (Turn 4 and Turn 5) and went from full to 36%. Wait, no - Turn 4: Kommo-o came in at some HP, got hit by Brave Bird, went to 36%. Then Turn 5: Dragapult came in. Turn 6: Dragapult fainted, Kommo-o came back in.\n\nWait, let me re-read the recent turns:\n- Turn 4: Opposing Dragapult used U-turn (switched out), Your Corviknight used Brave Bird on Kommo-o → Kommo-o at 36%\n- Turn 5: Opposing Dragapult came in (wait, that doesn't make sense if it just fainted... let me re-read)\n\nActually wait:\n- Turn 4: Opposing Dragapult used U-turn (switched out to Kommo-o), Your Corviknight used Brave Bird → Kommo-o at 36%\n- Turn 5: Opposing Dragapult came in (wait, that's confusing... maybe the opponent switched from Kommo-o back to Dragapult?)\n\nHmm, let me re-read more carefully:\nTurn 4:\n- Opposing Dragapult used U-turn → this means Dragapult switched out\n- Your Corviknight is at 169/175 HP (wait, this doesn't match... let me look again)\n\nActually I think the sequence is:\n- Turn 4: Dragapult used U-turn (switched to Kommo-o), then Corviknight used Brave Bird on Kommo-o → Kommo-o at 36%\n- Turn 5: Opposing Dragapult came in (so opponent switched from Kommo-o back to Dragapult?), Your Corviknight used Brave Bird → Dragapult at 44%\n- Turn 6: Dragapult used Shadow Ball, Corviknight used Brave Bird → Dragapult fainted, Kommo-o came in\n\nWait that's confusing. Let me re-read:\n\nTurn 5:\n- Opposing Dragapult came in (so it switched back to Dragapult from Kommo-o)\n- Your Corviknight used Brave Bird\n- Opposing Dragapult is at 44%\n\nTurn 6:\n- Opposing Dragapult used Shadow Ball\n- Your Corviknight is at 85/175 HP\n- Your Corviknight used Brave Bird\n- Opposing Dragapult fainted\n- Your Corviknight is at 61/175 HP [from] Recoil\n- Your Corviknight healed to 71/175 HP [from] item: Leftovers\n- Opposing Kommo-o came in\n\nSo the opponent switched from Kommo-o (at 36%) to Dragapult, then back to Kommo-o. Now Kommo-o is at 36% again.\n\nNow it's my turn with Corviknight at 71/175 HP vs Kommo-o at 36%.\n\nKey question: Will Brave Bird KO Kommo-o?\n\nBrave Bird: 120 BP, Flying, Physical, super effective on Dragon/Fighting (2x)\n- STAB: Yes (Corviknight is Flying/Steel)\n- Type effectiveness: 2x (Flying vs Dragon/Fighting)\n\nKommo-o at 36% HP. Let's estimate:\n- Kommo-o base HP range: 150-182, let's say ~165\n- 36% of 165 ≈ 60 HP remaining\n\nBrave Bird damage estimate:\n- At level 50, with ATK 107 vs Def ~130-194 (let's say ~160)\n- Damage = ((2*50/5 + 2) * 120 * 107 / 160) * 2 (STAB) * 2 (super effective) * random factor\n- = (22 * 120 * 107 / 160) * 4\n- = (283,680 / 160) * 4\n- = 1773 * 4\n- ≈ 7092... that seems too high\n\nWait, I'm using the wrong formula. Let me use the standard Pokémon damage formula:\nDamage = (((2*Level/5 + 2) * Power * Attacker_ATK / Defender_DEF) / 50) + 2\n\n= (((2*50/5 + 2) * 120 * 107 / 160) / 50) + 2\n= (((22) * 120 * 107 / 160) / 50) + 2\n= ((283,680 / 160) / 50) + 2\n= (1773 / 50) + 2\n= 35.46 + 2\n= 37.46\n\nThen multiply by STAB (1.5 for Flying on Flying/Steel... wait, Corviknight is Flying/Steel, so STAB is 1.5x for Flying moves):\n= 37.46 * 1.5 = 56.2\n\nThen type effectiveness: Flying vs Dragon/Fighting = 2x (Flying is super effective on both Dragon and Fighting... wait no)\n\nActually let me check: \n- Flying vs Dragon: Neutral (1x)\n- Flying vs Fighting: Super effective (2x)\n- Combined for Dragon/Fighting: 1x * 2x = 2x\n\nSo total damage = 37.46 * 1.5 * 2 = 112.1\n\nKommo-o has about 60 HP remaining (36% of ~165). So 112 > 60, and this would be a KO!\n\nWait, but I need to account for the random factor (0.85-1.00). Even at minimum: 112 * 0.85 = 95, which is still > 60. So Brave Bird should KO Kommo-o with very high probability.\n\nActually wait, let me reconsider Kommo-o's HP. The stats range says HP 150-182. If it's at the higher end (182), 36% = 65.5 HP. Still well below 95 minimum damage.\n\nSo Brave Bird should KO Kommo-o almost certainly.\n\nBut wait - I also need to consider what happens after. My Corviknight will take recoil: 33% of the damage dealt. If it deals ~112 damage, recoil is ~37 HP. Corviknight is at 71 HP, so it would be at ~34 HP after recoil. Then Leftovers heals ~11 HP (1/16 of 175), bringing it to ~45 HP.\n\nThen the opponent will bring in their last Pokémon (they've lost Garchomp and Dragapult, and now Kommo-o). Their remaining bench... wait, they brought 3 of 6 shown at team preview. They've fainted: Garchomp, Dragapult, and now Kommo-o. So all 3 are gone!\n\nWait, let me re-read: \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\" And their revealed bench shows Garchomp [FAINTED], Dragapult [FAINTED], and Kommo-o is active. So if I KO Kommo-o, the opponent has no Pokémon left!\n\nActually wait - in Champions format, you bring 6 but only 3 are shown at team preview? No, let me re-read: \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\" Hmm, this is confusing. Let me look at the revealed bench againThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 4040,
+      "latency_ms": 49368,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
