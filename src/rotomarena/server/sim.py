@@ -47,6 +47,7 @@ class Simulator:
         self._proc: Optional[asyncio.subprocess.Process] = None
         self._battles: Dict[str, SimBattle] = {}
         self._reader: Optional[asyncio.Task] = None
+        self._stderr: List[str] = []  # Node's last error lines, read as they come (a crash's reason)
         self._lock = asyncio.Lock()
 
     async def __aenter__(self) -> "Simulator":
@@ -73,6 +74,7 @@ class Simulator:
             limit=64 * 1024 * 1024,  # a battle's summary carries its whole log on one line
         )
         self._reader = asyncio.create_task(self._read())
+        self._errors = asyncio.create_task(self._read_stderr(self._proc))
 
     async def close(self) -> None:
         if self._proc and self._proc.returncode is None:
@@ -93,6 +95,10 @@ class Simulator:
         async with self._lock:
             self._proc.stdin.write((json.dumps(message) + "\n").encode("utf-8"))
             await self._proc.stdin.drain()
+
+    async def _read_stderr(self, proc: asyncio.subprocess.Process) -> None:
+        async for raw in proc.stderr:
+            self._stderr = (self._stderr + [raw.decode("utf-8", "replace").rstrip()])[-200:]
 
     async def _read(self) -> None:
         assert self._proc and self._proc.stdout
@@ -122,7 +128,8 @@ class Simulator:
             elif "error" in message:
                 battle.error = message["error"]
                 battle.done.set()
-        stderr = (await self._proc.stderr.read()).decode("utf-8", "replace") if self._proc.stderr else ""
+        await asyncio.sleep(0.2)  # the last error lines, if it crashed
+        stderr = "\n".join(self._stderr[-20:])
         for battle in self._battles.values():
             if not battle.done.is_set():
                 battle.error = f"the simulator exited: {stderr[-500:]}"
