@@ -146,6 +146,21 @@ Sonnet 148, GPT-6 Luna 259, by choice.
   first: Muse, Solar, GPT-6 Luna, Gemini 3.8 Flash): reasoning tokens and cost per turn, and whether results move.
 - Local models get their budget at server start (`--reasoning-budget`): more thinking costs GPU time, not money.
 
+**Smoke test, 12 Oct (medium vs high, 8,192 output cap, 20 games each against PokéChamp, simulator, $2.24):**
+
+| Model | Thinking/turn medium → high | Cost/game | Wins (of 20) |
+|---|---|---|---|
+| Muse Spark 1.3 | 1,886 → 2,697 (+43%) | $0.0079 → $0.0102 | 9 → 9 |
+| Solar Pro 4 | 1,229 → 1,017 (ignores it) | $0.0064 → $0.0047 | 15 → 15 |
+| GPT-6 Luna | 283 → 428 (+51%) | $0.0039 → $0.0047 | 9 → 13 |
+| Gemini 3.8 Flash | 100 → 95 (ignores it) | $0.0365 → $0.0377 | 11 → 13 |
+
+High only changes some models (Muse, GPT-6 Luna think ~50% more, +20-30% cost; Solar and Gemini ignore it), and
+no result difference is detectable at this size: all four went 44 → 50 wins of 80, about one standard error, and
+Gemini won 2 more without thinking any more (a measure of the noise). A real 10-point gain would need a few
+hundred games per level to show. **Decision pending; recommendation: medium** (4,096 of 8,192), since high costs
+more where it does anything and shows no measurable gain.
+
 ### Waste
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
 - Look into GPT-6 Luna Pro's input-token count before c5 (see section 1).
