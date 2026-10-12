@@ -40,8 +40,10 @@ class SimBattle:
 class Simulator:
     """Showdown's simulator in one Node process: start it once, play many battles at once, close it."""
 
-    def __init__(self, server_dir: str | Path):
+    def __init__(self, server_dir: str | Path, live_dir: Optional[str | Path] = None):
         self.server_dir = Path(server_dir).resolve()
+        # each battle's spectator log as it plays (<live_dir>/<battle tag>.log), for the run monitor's watch page
+        self.live_dir = Path(live_dir) if live_dir else None
         self._proc: Optional[asyncio.subprocess.Process] = None
         self._battles: Dict[str, SimBattle] = {}
         self._reader: Optional[asyncio.Task] = None
@@ -60,6 +62,11 @@ class Simulator:
         from rotomarena.server.manager import install_custom_formats
 
         install_custom_formats(self.server_dir)  # RotomArena's formats, where the simulator loads them
+        if self.live_dir:
+            self.live_dir.mkdir(parents=True, exist_ok=True)
+            for old in self.live_dir.glob("battle-*.log"):  # battles of earlier runs are in their match folders
+                if time.time() - old.stat().st_mtime > 3600:
+                    old.unlink(missing_ok=True)
         self._proc = await asyncio.create_subprocess_exec(
             "node", str(DRIVER), str(self.server_dir),
             stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
@@ -102,7 +109,11 @@ class Simulator:
                 if message["data"]:
                     battle.inbox[to].put_nowait(message["data"])
             elif to == "spectator":
-                battle.spectator.extend(line for line in message["data"].split("\n") if line)
+                lines = [line for line in message["data"].split("\n") if line]
+                battle.spectator.extend(lines)
+                if self.live_dir and lines:
+                    with open(self.live_dir / f"{battle.tag}.log", "a", encoding="utf-8") as live:
+                        live.write("\n".join(lines) + "\n")
             elif to == "omniscient":
                 battle.omniscient.extend(line for line in message["data"].split("\n") if line)
             elif "end" in message:

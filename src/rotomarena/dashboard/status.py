@@ -13,6 +13,7 @@ import re
 import statistics
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -63,11 +64,35 @@ def _iso(ts: float) -> str:
     return datetime.datetime.fromtimestamp(ts).isoformat(timespec="seconds")
 
 
+def sim_battle_lines(live_dir: Path, room: str) -> Optional[List[str]]:
+    """A simulator battle's spectator log so far (runs/live/<room>.log), or None when it isn't one."""
+    try:
+        return (live_dir / f"{room}.log").read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return None
+
+
+def live_sim_battles(live_dir: Path, minutes: float = 30) -> List[Dict[str, Any]]:
+    """Simulator battles still playing: their logs in runs/live, written to lately and without a result yet."""
+    out = []
+    for log in sorted(live_dir.glob("battle-*.log")):
+        if time.time() - log.stat().st_mtime > minutes * 60:
+            continue
+        lines = sim_battle_lines(live_dir, log.stem) or []
+        if any(line.startswith("|win|") or line.rstrip() == "|tie" for line in lines):
+            continue
+        players = {l.split("|")[2]: l.split("|")[3] for l in lines if l.startswith("|player|") and l.count("|") >= 3}
+        turns = [int(l.split("|")[2]) for l in lines if l.startswith("|turn|")]
+        out.append({"room": log.stem, "p1": players.get("p1"), "p2": players.get("p2"), "turn": turns[-1] if turns else 0})
+    return out
+
+
 async def live_battles(app_cfg: AppConfig, timeout: float = 3.0) -> List[Dict[str, Any]]:
-    """The battles open on the Showdown server, each with its players and current turn (joined as a spectator)."""
+    """The battles being played: in the simulator (their logs in runs/live), or open on the Showdown server, each
+    with its players and current turn (joined as a spectator)."""
     import websockets
 
-    out = []
+    out = live_sim_battles(Path(app_cfg.telemetry.output_dir) / "live")
     try:
         async with websockets.connect(app_cfg.server.websocket_url, open_timeout=timeout) as ws:
             await ws.send("|/cmd roomlist")

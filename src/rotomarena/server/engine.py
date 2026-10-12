@@ -5,6 +5,7 @@ active."""
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncIterator, Optional
 
 from rotomarena.config import AppConfig
@@ -24,7 +25,7 @@ async def battles(app_cfg: AppConfig, join: bool = False) -> AsyncIterator[None]
     on the server a live run already has up; the simulator needs no such care (each command runs its own)."""
     global _active
     if app_cfg.server.engine == "simulator":
-        async with Simulator(app_cfg.server.server_dir) as sim:
+        async with Simulator(app_cfg.server.server_dir, live_dir=Path(app_cfg.telemetry.output_dir) / "live") as sim:
             previous, _active = _active, sim
             try:
                 yield

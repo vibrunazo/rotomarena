@@ -18,7 +18,7 @@ from typing import Any, Dict, Tuple
 from rotomarena.config import AppConfig
 from rotomarena.dashboard.control import start_run, stop_run
 from rotomarena.dashboard.relay import relay
-from rotomarena.dashboard.status import live_battles, status
+from rotomarena.dashboard.status import live_battles, sim_battle_lines, status
 from rotomarena.replay_names import live_names, rename_players
 
 PAGE = Path(__file__).with_name("page.html")
@@ -34,9 +34,16 @@ def serve(config_file: str, host: str, port: int) -> None:
     battles = relay(app.server.websocket_url)
     live_dir = Path(app.telemetry.output_dir) / "live"
 
+    def room_lines(room: str, start: int = 0) -> Tuple[list, bool, bool]:
+        """(lines from `start`, ended, joined): a simulator battle's log file, else the server room's relay."""
+        log = sim_battle_lines(live_dir, room)
+        if log is None:
+            return battles.lines(room, start)
+        return log[start:], any(line.startswith("|win|") or line.rstrip() == "|tie" for line in log), True
+
     def names(room: str) -> Dict[str, str]:
         """{username: display name} for this battle's players (their lane numbers dropped), from its |player| lines."""
-        lines, _, _ = battles.lines(room)
+        lines, _, _ = room_lines(room)
         users = [l.split("|")[3] for l in lines if l.startswith("|player|") and len(l.split("|")) > 3 and l.split("|")[3]]
         return live_names(list(dict.fromkeys(users)), app)
 
@@ -58,12 +65,12 @@ def serve(config_file: str, host: str, port: int) -> None:
         return out
 
     def watch_page(room: str) -> bytes:
-        lines, _, joined = battles.lines(room)
+        lines, _, joined = room_lines(room)
         for _ in range(30):  # the first ask joins the room; wait for its log
             if joined:
                 break
             time.sleep(0.1)
-            lines, _, joined = battles.lines(room)
+            lines, _, joined = room_lines(room)
         lines = rename_players(lines, names(room))
         players = {l.split("|")[2]: l.split("|")[3] for l in lines if l.startswith("|player|") and len(l.split("|")) > 3}
         title = " vs ".join(players.get(p, "?") for p in ("p1", "p2")) if players else room
@@ -102,7 +109,7 @@ def serve(config_file: str, host: str, port: int) -> None:
                 start = int(m.group(1)) if (m := re.search(r"(?:^|&)from=(\d+)", query)) else 0
                 tstart = int(m.group(1)) if (m := re.search(r"(?:^|&)tfrom=(\d+)", query)) else 0
                 room = path[len("/api/battle/"):]
-                lines, ended, _ = battles.lines(room, start)
+                lines, ended, _ = room_lines(room, start)
                 lines = rename_players(lines, names(room))
                 body = {"lines": lines, "ended": ended, "thoughts": thoughts(room, tstart)}
                 self._send(200, "application/json", json.dumps(body).encode("utf-8"))
