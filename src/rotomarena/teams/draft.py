@@ -265,7 +265,8 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
         return (completion, *recover_answer(completion.text, completion.reasoning, marker))
 
     def retry(answer: str, template: str, problems: List[str]) -> List[Dict[str, str]]:
-        return [{"role": "assistant", "content": answer},
+        # an answer cut off while thinking is empty: some providers (Mistral) refuse an empty assistant message
+        return [{"role": "assistant", "content": answer.strip() or "(empty reply: cut off at the token budget)"},
                 {"role": "user", "content": template.format(problems="\n".join(f"- {p}" for p in problems))}]
 
     # Stage 1: six Pokémon from the legal list. `keep_picks` (an earlier draft's picks stage) skips it, for redoing
