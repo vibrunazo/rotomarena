@@ -68,3 +68,25 @@ def test_a_question_with_one_option_is_not_sent():
     answers, usage = asyncio.run(client.choose("state", {"ability": Question("Which?", {"Good as Gold": ""})}))
     assert answers["ability"].choice == "Good as Gold" and sent == [] and usage.requests == 0
 
+
+
+def test_a_local_decision_model_loads_its_server_before_asking(monkeypatch):
+    # Drex next to Ling 3.0 Tiny: the pair doesn't fit the GPU, so whichever model's turn it is gets loaded.
+    # The decision client skipped that, and every one of Drex's requests was refused (15 void games in c4).
+    from rotomarena import local_servers
+
+    loaded, asked = [], []
+
+    async def ensure_loaded(port):
+        loaded.append(port)
+
+    async def request(self, body, headers):
+        asked.append(loaded[:])
+        return {"answers": {"move": {"choice": "a", "probabilities": {"a": 1.0}}}}, 200
+
+    monkeypatch.setattr(local_servers, "ensure_loaded", ensure_loaded)
+    monkeypatch.setattr(DecisionClient, "_request", request)
+    agent = AgentConfig(name="drex", type="decision", provider="local", model="drex-v1.5", port=8090)
+    client = DecisionClient.for_agent(agent, AppConfig())
+    asyncio.run(client._post({}, {"move": {"options": {"a": "x"}}}))
+    assert asked == [[8090]]  # loaded first, then asked

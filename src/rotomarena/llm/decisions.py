@@ -13,7 +13,8 @@ from typing import Any, Dict, List, Optional, Tuple
 import aiohttp
 
 from rotomarena.config import AgentConfig, AppConfig
-from rotomarena.llm.client import _RATE_LIMIT_WAITS, ProviderLimitError, _is_quota
+from rotomarena import local_servers
+from rotomarena.llm.client import _RATE_LIMIT_WAITS, ProviderLimitError, _is_quota, _local_gate
 from rotomarena.llm.schemas import LLMUsageMetrics
 
 MAX_OPTIONS = 255  # per Choice question
@@ -75,8 +76,9 @@ class DecisionClient:
     POST /v1/systemone (the same request; Drex and Laya serve it)."""
 
     def __init__(self, url: str, api_key: Optional[str], model: str, provider_name: str = "openrouter",
-                 extra: Optional[Dict[str, Any]] = None, max_options: int = MAX_OPTIONS):
+                 extra: Optional[Dict[str, Any]] = None, max_options: int = MAX_OPTIONS, port: Optional[int] = None):
         self.url = url
+        self.port = port  # a local server's: its requests take the GPU's turn and, when swapping, load it first
         self.api_key = api_key
         self.model = model
         self.provider_name = provider_name
@@ -93,7 +95,12 @@ class DecisionClient:
             url = (root[: -len("/api/v1")] if root.endswith("/api/v1") else root) + DECISIONS_PATH
             api_key = app_cfg.providers[provider].get_api_key()
         return cls(url, api_key, agent.model, provider, agent.decision_request,
-                   agent.decision_max_options or MAX_OPTIONS)
+                   agent.decision_max_options or MAX_OPTIONS, port=agent.port)
+
+    async def _request(self, body: Dict[str, Any], headers: Dict[str, str]) -> Tuple[Any, int]:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(self.url, json=body, headers=headers, timeout=aiohttp.ClientTimeout(total=120)) as r:
+                return await r.json(content_type=None), r.status
 
     async def _post(self, state: Any, questions: Dict[str, Dict[str, Any]]) -> Tuple[Dict[str, Any], Usage]:
         body = {"model": self.model, **self.extra, "state": state, "questions": questions}
@@ -103,12 +110,19 @@ class DecisionClient:
         while True:
             start = time.perf_counter()
             try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.post(self.url, json=body, headers=headers,
-                                            timeout=aiohttp.ClientTimeout(total=120)) as r:
-                        data = await r.json(content_type=None)
-                        status = r.status
+                if self.port:
+                    # As the LLM client does: one local model generates at a time, and a pair that doesn't fit the
+                    # GPU together loads whichever model's turn it is. Without this, Drex's server was never
+                    # loaded next to Ling 3.0 Tiny: every request refused, 15 of c4's games void (11 Oct).
+                    async with _local_gate().use(self.port):
+                        await local_servers.ensure_loaded(self.port)
+                        start = time.perf_counter()  # latency excludes the wait and the load
+                        data, status = await self._request(body, headers)
+                else:
+                    data, status = await self._request(body, headers)
             except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+                if self.port:
+                    local_servers.forget(self.port)  # reload it next time instead of assuming it is up
                 errors += 1
                 if errors >= 3:
                     raise RuntimeError(f"decision request failed after 3 attempts: {e}") from e

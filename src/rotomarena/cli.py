@@ -445,8 +445,11 @@ def run_battle(
                 raise typer.Exit(1)
 
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
-    if join and local_servers.local_agents([p1_cfg, p2_cfg]):
-        console.print("[bold red]--join plays beside a run: local models would take its servers. Use bots or API models.[/bold red]")
+    # Local model servers belong to a live run: readying ours would stop its (a bot-only smoke test in the simulator
+    # stopped the run's GPT-OSS and Bonsai servers mid-game on 11 Oct). Bots and API models need no servers at all.
+    local = local_servers.local_agents([p1_cfg, p2_cfg])
+    if local and (join or ShowdownServerManager(app_cfg.server)._live_run()):
+        console.print("[bold red]A run is playing: local models would take its servers. Use bots or API models.[/bold red]")
         raise typer.Exit(1)
 
     async def _execute():
@@ -457,7 +460,7 @@ def run_battle(
             console.rule(f"[bold cyan]1v1 Matchup: {player_1.agent_name} vs {player_2.agent_name}[/bold cyan]")
             series_res = await runner.run_series(
                 player_1, player_2, first_team, second_team, n_games=games,
-                before_game=None if join else lambda: local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print),
+                before_game=(lambda: local_servers.prepare([p1_cfg, p2_cfg], app_cfg, log=console.print)) if local else None,
                 own_teams=own,
             )
 
@@ -475,7 +478,10 @@ def run_battle(
                 if latest.report_md_path:
                     console.print(f"  - Report: [cyan]{latest.report_md_path}[/cyan]")
 
-    with local_servers.session(app_cfg):
+    if not local:  # bots and API models: the local servers (maybe a live run's) are none of this command's business
+        asyncio.run(_execute())
+        return
+    with local_servers.session(app_cfg):  # stops every local server before and after: only with no run playing
         asyncio.run(_execute())
 
 
