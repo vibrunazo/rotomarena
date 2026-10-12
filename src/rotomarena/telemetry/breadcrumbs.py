@@ -10,7 +10,8 @@ from pydantic import BaseModel, Field
 
 
 # Who actually picked the move: the agent itself, or the fallback after a failure.
-DecisionSource = Literal["model", "timeout", "api_error", "parse_error", "invalid", "error"]
+# "forced": only one action was legal, played without asking (battle state 3); not the model's, not autopilot either
+DecisionSource = Literal["model", "timeout", "api_error", "parse_error", "invalid", "error", "forced"]
 
 
 class PlayerIdentity(BaseModel):

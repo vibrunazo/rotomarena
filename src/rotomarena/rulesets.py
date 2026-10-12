@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 from rotomarena.config import AppConfig
-from rotomarena.llm.prompts import DEX_DIR, USER_PROMPT_DIRECT_COT_TEMPLATE, dex_mod, system_prompt_for
+from rotomarena.llm.prompts import DEX_DIR, dex_mod, system_prompt_for, user_template_for
 
 RULESETS_DIR = Path("data/rulesets")
 
@@ -36,14 +36,14 @@ def current_rules(app_cfg: AppConfig) -> Dict[str, Any]:
              # the battle prompt as this format uses it (Gen 9 OU's as written)
              "battle_prompt": _sha(system_prompt_for(app_cfg.ruleset.format, app_cfg.ruleset.pick,
                                                      app_cfg.ruleset.answer_attempts or 1, app_cfg.ruleset.battle_state or 1),
-                                   USER_PROMPT_DIRECT_COT_TEMPLATE)}
+                                   user_template_for(app_cfg.ruleset.battle_state or 1))}
     if (app_cfg.ruleset.battle_state or 1) >= 2:  # the Showdown texts the state quotes
         rules["dex_text"] = _sha((DEX_DIR / f"{dex_mod(app_cfg.ruleset.format)}.json").read_text(encoding="utf-8"))
     from rotomarena.agents import decision  # imported here, like the drafts below
     rules["decision_prompt"] = _sha(decision.TURN_INSTRUCTIONS, decision.LEAD_INSTRUCTIONS)
     if app_cfg.ruleset.team_mode == "draft":
         from rotomarena.teams import draft, draft_decisions  # imported here: drafting imports the agent factory
-        p = draft.prompts_for(app_cfg.ruleset.format)  # Gen 9 OU's prompts as written, Champions' rewritten
+        p = draft.prompts_for(app_cfg.ruleset.format, app_cfg.ruleset.draft_prompts or 1)  # Champions' rewritten
         rules["draft_prompt"] = _sha(p["system"], p["pick"], p["build"], p["retry_pick"], p["retry_build"],
                                      draft.PROMPT_VERSION, str(draft.ATTEMPTS))
         rules["control_team"] = "opponent's"  # a control bot (Chimps at the Zoo) borrows its opponent's own team

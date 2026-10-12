@@ -145,13 +145,14 @@ def _local_gate() -> _LocalGate:
 
 def parse_decision(raw_text: str) -> ActionDecision:
     """Parses '<thought>…</thought><decision>MOVE: id [TERA]</decision>' strictly: exactly one action line."""
-    thought = re.search(r"<thought>(.*?)</thought>", raw_text, re.DOTALL | re.IGNORECASE)
-    reasoning = thought.group(1).strip() if thought else ""
+    # <notes> from battle state 3 on (the thought became the player's notes for its later turns)
+    thought = re.search(r"<(thought|notes)>(.*?)</\1>", raw_text, re.DOTALL | re.IGNORECASE)
+    reasoning = thought.group(2).strip() if thought else ""
     if not reasoning:
         # Its thought without the tags, before the decision: Opus 5.5 wrote it so on most turns, and showed none
         before = re.split(r"<decision>", raw_text, maxsplit=1, flags=re.IGNORECASE)
         if len(before) == 2:
-            reasoning = re.sub(r"</?thought>", "", before[0], flags=re.IGNORECASE).strip()
+            reasoning = re.sub(r"</?(thought|notes)>", "", before[0], flags=re.IGNORECASE).strip()
 
     def failed(reason: str) -> ActionDecision:
         return ActionDecision(reasoning=reasoning, parse_error=reason, raw_response=raw_text)
@@ -355,13 +356,14 @@ class LLMClient:
         thinking_budget: Optional[int] = None,
         system_prompt: Optional[str] = None,
         retry: Optional[Tuple[str, str]] = None,
+        user_template: str = USER_PROMPT_DIRECT_COT_TEMPLATE,
     ) -> ActionDecision:
         """Asks for one turn's decision and parses it. API failures raise; bad answers set parse_error.
         `system_prompt` replaces the Gen 9 OU one for another format (prompts.system_prompt_for).
         `retry` = (the failed answer, what was wrong with it): the conversation continues with both, for a second try."""
         messages = [
             {"role": "system", "content": system_prompt or SYSTEM_PROMPT_DIRECT_COT},
-            {"role": "user", "content": USER_PROMPT_DIRECT_COT_TEMPLATE.format(battle_state=battle_state_str)},
+            {"role": "user", "content": user_template.format(battle_state=battle_state_str)},
         ]
         if retry:
             answer, problem = retry

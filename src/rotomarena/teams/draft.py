@@ -146,22 +146,33 @@ def is_champions(fmt: str) -> bool:
     return fmt.startswith("gen9champions")
 
 
-def prompts_for(fmt: str) -> Dict[str, str]:
-    """The drafting prompts for a format: Gen 9 OU's as written, rewritten for Champions formats."""
+# Version 2 (c5) of Champions' first rules line: singles said outright. c4's only said "bring 3 of your 6", and
+# "Regulation M-B" also names Champions' doubles rules: Sonnet 5.5 built for doubles (Protect x4, Fake Out, Rock
+# Slide, Tailwind), Haiku 5.5 too (Rage Powder), others partly.
+CHAMPIONS_SINGLES = ("- Singles: one Pokémon on the field per side. Exactly 6 Pokémon, all level 50; at team preview you "
+                     "bring 3 of your 6 to each battle and choose which.")
+
+
+def prompts_for(fmt: str, version: int = 1) -> Dict[str, str]:
+    """The drafting prompts for a format: Gen 9 OU's as written, rewritten for Champions formats (`version`: the
+    ruleset's draft_prompts)."""
     prompts = {"system": DRAFT_SYSTEM_PROMPT, "pick": PICK_PROMPT, "build": BUILD_PROMPT,
                "retry_pick": RETRY_PICK, "retry_build": RETRY_BUILD}
     if is_champions(fmt):
-        for old, new in CHAMPIONS_TEXT:
+        replacements = list(CHAMPIONS_TEXT)
+        if version >= 2:
+            replacements[0] = (replacements[0][0], CHAMPIONS_SINGLES)
+        for old, new in replacements:
             hits = [k for k, v in prompts.items() if old in v]
             assert len(hits) == 1, f"Champions text no longer matches the prompts: {old[:40]}"
             prompts[hits[0]] = prompts[hits[0]].replace(old, new)
     return prompts
 
 
-def system_prompt(rules: Dict[str, Any], with_species: bool = True) -> str:
+def system_prompt(rules: Dict[str, Any], with_species: bool = True, version: int = 1) -> str:
     clause_lines = "\n".join(f"- {c.split(': ', 1)[0]}: {c.split(': ', 1)[1].replace('&eacute;', 'é')}" for c in rules["clauses"])
     banned = rules["banned"]
-    return prompts_for(rules["id"])["system"].format(
+    return prompts_for(rules["id"], version)["system"].format(
         format=rules["format"], clauses=clause_lines, abilities=", ".join(banned["abilities"]) or "none",
         moves=", ".join(banned["moves"]) or "none", items=", ".join(banned["items"]) or "none",
         species=", ".join(rules["species"]) if with_species else "(you have already picked yours)",
@@ -259,8 +270,10 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
 
     # Stage 1: six Pokémon from the legal list. `keep_picks` (an earlier draft's picks stage) skips it, for redoing
     # only the sets when the harness, not the model, spoiled them
-    prompts = prompts_for(rules["id"])
-    base = [{"role": "system", "content": system_prompt(rules)}, {"role": "user", "content": prompts["pick"]}]
+    version = app_cfg.ruleset.draft_prompts or 1
+    prompts = prompts_for(rules["id"], version)
+    base = [{"role": "system", "content": system_prompt(rules, version=version)},
+            {"role": "user", "content": prompts["pick"]}]
     picks: List[str] = []
     plan: Optional[str] = None
     last: List[Dict[str, str]] = []
@@ -290,7 +303,7 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
 
     # Stage 2: the sets, given each pick's legal abilities and moves, in a fresh conversation without the legal list
     intro = f"Step 1 is done. Your six Pokémon: {', '.join(picks)}." + (f" Your plan: {plan}" if plan else "")
-    base = [{"role": "system", "content": system_prompt(rules, with_species=False)},
+    base = [{"role": "system", "content": system_prompt(rules, with_species=False, version=version)},
             {"role": "user", "content": intro + "\n\n" + prompts["build"].format(
                 options=options_text(species_options(app_cfg, picks)), items=", ".join(rules.get("items", [])))}]
     last = []

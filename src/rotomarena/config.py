@@ -184,13 +184,26 @@ class RulesetConfig(BaseModel):
         "move. Unset: one try (versions before c4)",
     )
     battle_state: Optional[int] = Field(
-        default=None, ge=1, le=2,
+        default=None, ge=1, le=3,
         description="Version of the battle state the players read. 2 (c4 on) adds what Showdown's interface shows a "
         "player: the recent turns list failed moves, turns lost to status or flinching, Protect and other effects, Mega "
         "Evolution, volatile conditions and each stat change's cause; legal moves carry their tooltip line, priority and "
         "effectiveness on the opposing Pokémon; abilities and items their descriptions; the opponent's stats are its "
         "possible range at its level, with a speed comparison; Champions shows Mega Evolution, not Terastallization. "
+        "3 (c5): the same, ordered for prompt caching (what never changes, then the whole battle log, then this "
+        "turn), with a plainly stated task and answer format (no persona), and the thought becomes the player's "
+        "notes, shown again on its later turns (notes_shown); a turn with one legal action is played without asking. "
         "Unset: 1 (versions before c4)",
+    )
+    draft_prompts: Optional[int] = Field(
+        default=None, ge=1, le=2,
+        description="Version of the drafting prompts. 2 (c5): Champions' rules line says singles outright (c4's said "
+        "only 'bring 3 of your 6', and Sonnet 5.5 built for doubles). Unset: 1",
+    )
+    notes_shown: Optional[int] = Field(
+        default=None, ge=0,
+        description="Battle state 3: how many of the player's latest notes each turn shows (its memory between turns; "
+        "each turn is a fresh request). Unset: 3",
     )
     teams: List[str] = Field(
         default_factory=lambda: ["balance", "hyper_offense"],

@@ -248,6 +248,7 @@ def create_agent_instance(
         pick=app_config.ruleset.pick,
         answer_attempts=app_config.ruleset.answer_attempts or 1,
         battle_state=app_config.ruleset.battle_state or 1,
+        notes_shown=app_config.ruleset.notes_shown if app_config.ruleset.notes_shown is not None else 3,
         start_listening=start_listening,
         server_configuration=ServerConfiguration(
             app_config.server.websocket_url,

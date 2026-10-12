@@ -31,6 +31,7 @@ class BaseBenchmarkPlayer(Player):
         pick: Optional[int] = None,
         answer_attempts: int = 1,
         battle_state: int = 1,
+        notes_shown: int = 3,
         identity: Optional[PlayerIdentity] = None,
         server_configuration: Optional[ServerConfiguration] = None,
         account_configuration: Optional[AccountConfiguration] = None,
@@ -58,6 +59,8 @@ class BaseBenchmarkPlayer(Player):
         self.brought: Dict[str, List[str]] = {}  # battle tag -> the species it brought (bring-N formats)
         self.answer_attempts = answer_attempts  # tries per decision (ruleset.answer_attempts)
         self.battle_state = battle_state  # which battle state the player reads (ruleset.battle_state)
+        self.notes_shown = notes_shown  # battle state 3: its latest notes each turn shows (ruleset.notes_shown)
+        self.notes: Dict[str, Dict[int, str]] = {}  # battle tag -> {turn: the notes it wrote then} (state 3)
         self.identity = identity or PlayerIdentity(
             config_id=player_name, display_name=player_name, agent_type=agent_type
         )

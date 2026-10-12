@@ -54,7 +54,7 @@ def generate_match_markdown_report(telemetry: MatchTelemetry, output_path: str |
         
         avg_latency = round(total_latency / max(1, len(crumbs)), 1)
         avg_nodes = round(total_nodes / max(1, searches_run), 1) if searches_run else 0
-        autopilot = sum(1 for c in crumbs if c.decision_source != "model")
+        autopilot = sum(1 for c in crumbs if c.decision_source not in ("model", "forced"))
         return total_tokens, avg_latency, avg_nodes, autopilot
 
     p1_tokens, p1_lat, p1_nodes, p1_auto = compute_agent_metrics(p1_turns)

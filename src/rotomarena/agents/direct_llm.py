@@ -12,7 +12,7 @@ from poke_env.player import BattleOrder
 
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.llm.client import LLMClient, ProviderLimitError, to_id
-from rotomarena.llm.prompts import format_battle_state, format_team_preview, system_prompt_for
+from rotomarena.llm.prompts import format_battle_state, format_team_preview, system_prompt_for, user_template_for
 from rotomarena.llm.schemas import ActionDecision
 
 # What a model hears when its answer can't be played and it has another try (ruleset.answer_attempts)
@@ -73,6 +73,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 thinking_budget=self.thinking_budget,
                 system_prompt=system_prompt_for(self.format, self.pick, self.answer_attempts, self.battle_state),
                 retry=retry,
+                user_template=user_template_for(self.battle_state),
             )
         except ProviderLimitError as e:
             self.provider_limit = e
@@ -91,6 +92,8 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             if problem is None or attempt == self.answer_attempts:
                 return decision, result, source, problem, metrics, attempt, first_try
             first_try = first_try or f"{problem}\n{(decision.raw_response or '')[-1500:]}"
+            if self.battle_state >= 3:  # the thought became the player's notes
+                retry_prompt = retry_prompt.replace("a short <thought>", "your <notes>")
             retry = (decision.raw_response or "", retry_prompt.format(problem=problem))
         raise AssertionError("unreachable")
 
@@ -114,7 +117,14 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                 return f"'{decision.action_type}: {decision.target}' is not a legal action", "invalid", None
             return None, "model", order
 
-        state = format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick, self.battle_state)
+        if self.battle_state >= 3:
+            only = self._only_action(battle)
+            if only is not None:  # nothing to choose: no tokens spent asking (7% of c4's decisions)
+                self.record_turn_telemetry(battle=battle, chosen_order=only, decision_source="forced",
+                                           reasoning="Only one legal action: played without asking.")
+                return only
+        state = format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick, self.battle_state,
+                                    self.notes.get(battle.battle_tag), self.notes_shown)
         try:
             decision, order, source, problem, metrics, attempts, first_try = await self._decide(state, play)
         except Exception as e:
@@ -128,6 +138,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             return fallback_order
 
         llm_metrics = metrics.model_dump() if metrics else None
+        self.remember(battle, decision)
         retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
         if order is None:
             fallback_order = self.choose_default_order(battle)
@@ -157,6 +168,22 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         )
         return order
 
+    def _only_action(self, battle: Battle) -> Optional[BattleOrder]:
+        """The one legal action, when there is exactly one (a Mega Evolution option counts as another)."""
+        moves = battle.available_moves or []
+        switches = battle.available_switches or []
+        options = len(moves) * (2 if battle.can_mega_evolve or battle.can_tera else 1) + len(switches)
+        if options != 1:
+            return None
+        return self.create_order(moves[0] if moves else switches[0])
+
+    def remember(self, battle: Battle, decision: Optional[ActionDecision]) -> None:
+        """Keeps the notes the model wrote this turn for its later turns (battle state 3: its memory)."""
+        if self.battle_state >= 3 and decision is not None and decision.reasoning:
+            words = decision.reasoning.split()
+            text = " ".join(words[:120]) + (" ..." if len(words) > 120 else "")  # asked for 60 words at most
+            self.notes.setdefault(battle.battle_tag, {})[battle.turn] = text
+
     async def teampreview(self, battle: Battle) -> str:
         """The model picks its lead; the rest of the team keeps its order. Failures lead with the first
         Pokémon, which is what Showdown itself does when a player doesn't choose. In a bring-N format it picks the
@@ -182,6 +209,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              "<decision>LEAD: one species from YOUR TEAM</decision>."),
                 timeout=self.turn_timeout)
+            self.remember(battle, decision)
             retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
             if match is None:
                 note = f"[{'PARSE ERROR' if source == 'parse_error' else 'INVALID'}] {problem}."
@@ -233,6 +261,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                              f"<decision>BRING: {self.pick} different species from YOUR TEAM, comma-separated, the "
                              "leader first</decision>."),
                 timeout=self.turn_timeout)
+            self.remember(battle, decision)
             retried = dict(attempts=attempts, first_try=first_try, answer=(decision.raw_response or "")[-MAX_ANSWER:])
             if source == "parse_error":
                 note = f"[PARSE ERROR] {problem}."

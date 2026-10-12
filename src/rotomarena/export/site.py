@@ -182,7 +182,8 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
     return {
         "matches_played": played,
         "turns": len(turns),
-        "autopilot_rate": round((len(turns) - sources.get("model", 0)) / n, 3),
+        "autopilot_rate": round((len(turns) - sources.get("model", 0) - sources.get("forced", 0))
+                                / max(n - sources.get("forced", 0), 1), 3),
         "decision_sources": dict(sources),
         "hallucinated_move_rate": round(sources.get("invalid", 0) / n, 3),
         "tokens_per_turn": round(statistics.mean(x.get("completion_tokens", 0) for x in metrics)) if metrics else None,

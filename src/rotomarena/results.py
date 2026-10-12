@@ -36,8 +36,9 @@ def player_turns(match: MatchTelemetry, role: str) -> List[TurnBreadcrumb]:
 
 
 def autopilot_rate(match: MatchTelemetry, role: str) -> float:
-    """Share of a side's turns where the fallback, not the agent, picked the move."""
-    turns = player_turns(match, role)
+    """Share of a side's turns where the fallback, not the agent, picked the move. Turns with one legal action
+    ("forced": nothing to choose) don't count either way."""
+    turns = [b for b in player_turns(match, role) if b.decision_source != "forced"]
     if not turns:
         return 0.0
     return sum(1 for b in turns if b.decision_source != "model") / len(turns)

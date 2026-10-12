@@ -91,7 +91,7 @@ async def draft_team_by_decisions(agent: AgentConfig, app_cfg: AppConfig, attemp
         usage.add(used)
         return answers
 
-    rules_text = system_prompt(rules, with_species=False)
+    rules_text = system_prompt(rules, with_species=False, version=app_cfg.ruleset.draft_prompts or 1)
     champions = is_champions(rules["id"])
 
     # Stage 1: six picks, one at a time; Species Clause is kept by leaving taken species out of the options

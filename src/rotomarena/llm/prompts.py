@@ -371,10 +371,13 @@ def unseen_line(preview: List[str], seen: set, pick: Optional[int] = None) -> st
 
 
 def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None,
-                        state: int = 1) -> str:
+                        state: int = 1, notes: Optional[Dict[int, str]] = None, notes_shown: int = 3) -> str:
     """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
     turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn.
-    `state` is the ruleset's battle_state version (2: what Showdown's interface shows, see RulesetConfig)."""
+    `state` is the ruleset's battle_state version (2: what Showdown's interface shows, see RulesetConfig; 3: the
+    same, ordered for prompt caching, with the whole battle log and the player's notes, see format_battle_state_3)."""
+    if state >= 3:
+        return format_battle_state_3(battle, brought, pick, notes or {}, notes_shown)
     fmt = battle.format or "gen9ou"
     champions = state >= 2 and dex_mod(fmt) == "champions"
     lines = ["#### YOUR BENCH:"]
@@ -450,6 +453,116 @@ def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pic
     return "\n".join(lines)
 
 
+def _own_set_line(mon: Pokemon) -> str:
+    """One of the player's Pokémon as built: what doesn't change during the battle (state 3's opening section)."""
+    types = "/".join(t.name.title() for t in mon.types if t)
+    stats = ", ".join(f"{STAT_NAMES[k]} {v}" for k, v in (mon.stats or {}).items() if v is not None)
+    moves = ", ".join(
+        f"{m.id} ({m.type.name.title() if m.type else 'Normal'}/{m.category.name.title() if m.category else 'Status'}, "
+        f"BP:{m.base_power if m.base_power > 0 else '-'})" for m in mon.moves.values())
+    return (f"- **{mon.species}** ({types}) | Ability: {mon.ability or 'unknown'} | Stats: [{stats}]\n"
+            f"  Moves: {moves or 'unknown'}")
+
+
+def _own_now_line(mon: Pokemon, fmt: str, is_active: bool) -> str:
+    """One of the player's Pokémon right now: HP, status, item, boosts (state 3's closing section)."""
+    hp = (f"{mon.current_hp}/{mon.max_hp} ({round(mon.current_hp_fraction * 100, 1)}%)"
+          if mon.current_hp is not None and mon.max_hp else f"{round(mon.current_hp_fraction * 100, 1)}%")
+    status = " [FAINTED]" if mon.fainted else (f" [{mon.status.name}]" if mon.status else "")
+    parts = [f"- **{mon.species}**{' (active)' if is_active else ''}{status}: {hp}", f"Item: {mon.item or 'none'}"]
+    pp = ", ".join(f"{m.id} {m.current_pp}/{m.max_pp}" for m in mon.moves.values())
+    if pp:
+        parts.append(f"PP: {pp}")
+    if is_active:
+        boosts = [f"{STAT_NAMES[k]} {v:+d}" for k, v in mon.boosts.items() if v]
+        if boosts:
+            parts.append(f"Boosts: {', '.join(boosts)}")
+    line = " | ".join(parts)
+    if is_active and not mon.fainted:
+        effects = _effects_line(mon, fmt, False)
+        if effects:
+            line += f"\n{effects}"
+    return line
+
+
+def format_battle_state_3(battle: Battle, brought: Optional[List[str]], pick: Optional[int],
+                          notes: Dict[int, str], notes_shown: int = 3) -> str:
+    """Battle state 3 (c5): what Showdown's interface shows a player (as state 2), ordered so that each turn's prompt
+    begins with the previous turn's, which lets providers' prompt caches reuse it: first what never changes (your
+    Pokémon as built, the opponent's team preview), then what only grows (the whole battle log), then the player's
+    own notes from earlier turns (its memory: each turn is a fresh request), then this turn's state and its legal
+    actions. A human player can scroll the whole log and remembers their plan; models used to see the last 3
+    turns and nothing they had planned."""
+    fmt = battle.format or "gen9ou"
+    champions = dex_mod(fmt) == "champions"
+    mine = [mon for mon in battle.team.values() if not brought or mon.species in brought
+            or any(mon.species.startswith(b) for b in brought)]  # a Mega Evolved one keeps its place
+    lines = ["#### YOUR POKÉMON IN THIS BATTLE (as built):"]
+    lines.extend(_own_set_line(mon) for mon in mine)
+    lines.append("\n#### OPPONENT'S TEAM AT TEAM PREVIEW:")
+    for mon in getattr(battle, "teampreview_opponent_team", None) or []:
+        types = "/".join(t.name.title() for t in mon.types if t)
+        ranges = ", ".join(f"{STAT_NAMES[k]} {'-'.join(map(str, stat_range(mon, k)))}" for k in STATS)
+        abilities = ", ".join(mon.possible_abilities or [])
+        lines.append(f"- **{mon.species}** ({types}) | Stats at level {mon.level} (possible range): [{ranges}]"
+                     + (f" | Possible abilities: {abilities}" if abilities else ""))
+
+    log = format_recent_turns(battle, turns=10 ** 6, max_lines=10 ** 6, full=True)
+    lines.append("\n#### BATTLE LOG:")
+    lines.extend(log or ["(nothing yet)"])
+
+    shown = sorted(notes)[-notes_shown:] if notes_shown else []
+    if shown:
+        lines.append("\n#### YOUR NOTES FROM EARLIER TURNS (oldest first):")
+        lines.extend(f"{'Team preview' if t == 0 else f'Turn {t}'}: {notes[t]}" for t in shown)
+
+    lines.append(f"\n### Turn {battle.turn} | Weather: {_condition_names(battle.weather)} | "
+                 f"Field: {_condition_names(battle.fields)}")
+    lines.append("#### YOUR POKÉMON NOW:")
+    lines.extend(_own_now_line(mon, fmt, mon is battle.active_pokemon) for mon in mine)
+    side = [k.name.title() for k in battle.side_conditions.keys()]
+    lines.append(f"Your side hazards / conditions: {', '.join(side) if side else 'None'}")
+    if champions:
+        active = battle.active_pokemon.species if battle.active_pokemon else "your Pokémon"
+        lines.append(f"Mega Evolution available: Yes, {active} can Mega Evolve this turn (add [MEGA] to a move)"
+                     if battle.can_mega_evolve else "Mega Evolution available: No")
+    else:
+        lines.append(f"Terastallization available: {'Yes' if battle.can_tera else 'No'}")
+
+    lines.append("\n#### OPPONENT'S POKÉMON SEEN:")
+    seen = [battle.opponent_active_pokemon] + [m for m in battle.opponent_team.values()
+                                               if m is not battle.opponent_active_pokemon]
+    for mon in seen:
+        if mon is not None:
+            summary = format_pokemon_summary(mon, mon is battle.opponent_active_pokemon, True, 2, fmt)
+            lines.append(summary.replace(f"- **{mon.species}**", f"- **{mon.species}** (active)", 1)
+                         if mon is battle.opponent_active_pokemon else summary)
+    preview = [mon.species for mon in getattr(battle, "teampreview_opponent_team", None) or []]
+    line = unseen_line(preview, {mon.species for mon in battle.opponent_team.values()}, pick)
+    if line:
+        lines.append(line)
+    opp_side = [k.name.title() for k in battle.opponent_side_conditions.keys()]
+    lines.append(f"Opponent side hazards / conditions: {', '.join(opp_side) if opp_side else 'None'}")
+    if champions:
+        lines.append(f"Opponent Mega Evolved: {'Yes' if getattr(battle, 'opponent_used_mega_evolve', False) else 'No'}")
+    if speed_line(battle):
+        lines.append(speed_line(battle))
+
+    lines.append("\n#### LEGAL ACTIONS THIS TURN:")
+    actions = []
+    active = battle.active_pokemon.species if battle.active_pokemon else "your Pokémon"
+    for m in battle.available_moves or []:
+        actions.append(_move_line(m, battle, fmt))
+        if battle.can_tera:
+            actions.append(f"MOVE: {m.id} [TERA]")
+        if battle.can_mega_evolve:
+            actions.append(f"MOVE: {m.id} [MEGA] | Mega Evolve {active} first, then use {m.id}")
+    for s in battle.available_switches or []:
+        actions.append(f"SWITCH: {s.species} ({round(s.current_hp_fraction * 100, 1)}% HP)")
+    lines.extend(f"{i}. {a}" for i, a in enumerate(actions, 1))
+    return "\n".join(lines)
+
+
 def format_team_preview(battle: Battle, pick: Optional[int] = None, state: int = 1) -> str:
     """Team preview: both teams before the battle; the player picks its lead, or, in a bring-N format, the N
     Pokémon it brings in order (the first leads)."""
@@ -494,7 +607,10 @@ FORMAT_NAMES = {"gen9championsrotomarenarandombss": "Pokémon Champions singles 
 
 def system_prompt_for(fmt: str, pick: Optional[int] = None, attempts: int = 1, state: int = 1) -> str:
     """The battle system prompt for this format: unchanged for Gen 9 OU. With a second try (ruleset.answer_attempts)
-    rule 3 says so; battle state 2 gives Champions a Champions example (the Gen 9 OU one named Great Tusk)."""
+    rule 3 says so; battle state 2 gives Champions a Champions example (the Gen 9 OU one named Great Tusk); battle
+    state 3 is c5's (system_prompt_3)."""
+    if state >= 3:
+        return system_prompt_3(fmt, pick, attempts)
     prompt = SYSTEM_PROMPT_DIRECT_COT
     if attempts > 1:
         prompt = prompt.replace(
@@ -538,6 +654,65 @@ Heatran is 4x weak to Ground and slower than Great Tusk, so Headlong Rush should
 MOVE: headlongrush
 </decision>
 """
+
+
+# Battle state 3 (c5). The task stated plainly, no persona; the answer format as a rule, not only by example (Opus
+# 5.5 dropped the <thought> tags on 80% of its c4 turns); "singles" said outright (c4's draft prompt didn't, and
+# Sonnet 5.5 built for doubles); and the thought becomes notes the model reads again on later turns, its memory:
+# no punchline length rule (that was for videos), a cap for cost.
+FORMAT_RULES_3 = {
+    "champions": "Pokémon Champions singles: one Pokémon on the field per side; each player brought {pick} of their "
+                 "6 Pokémon; every Pokémon is level 50; Mega Evolution instead of Terastallization",
+    "gen9": "Gen 9 OU singles: one Pokémon on the field per side; six Pokémon each, all level 100; Terastallization",
+}
+SYSTEM_PROMPT_3 = """You are playing a Pokémon Showdown battle: {rules}. Each turn you are shown the battle as \
+Showdown shows it to you, and you choose one action.
+
+ANSWER IN EXACTLY THIS FORM:
+<notes>
+Your notes for your later turns, at most 60 words: your plan for this battle, and what you have learned about \
+the opponent (its moves, items, speed, how it plays). Every turn shows you your latest notes, so carry forward \
+what still matters and update the rest.
+</notes>
+<decision>
+One action line, copied from LEGAL ACTIONS without its number: {actions}
+</decision>
+
+{fallback}
+
+Example answer:
+<notes>
+Plan: Garchomp breaks their Kingambit, then Gholdengo cleans up. Their Rotom-Wash has Levitate and \
+Will-O-Wisp, so keep Garchomp away from it. Their Dragapult outspeeds my whole team.
+</notes>
+<decision>
+{example}
+</decision>
+"""
+USER_PROMPT_3_TEMPLATE = """{battle_state}
+
+Answer in exactly this form: <notes>...</notes>, then <decision>...</decision> holding one action from LEGAL ACTIONS."""
+
+
+def user_template_for(state: int = 1) -> str:
+    """The turn message's template for this battle state version."""
+    return USER_PROMPT_3_TEMPLATE if state >= 3 else USER_PROMPT_DIRECT_COT_TEMPLATE
+
+
+def system_prompt_3(fmt: str, pick: Optional[int] = None, attempts: int = 1) -> str:
+    champions = dex_mod(fmt) == "champions"
+    gimmick = "[MEGA]" if champions else "[TERA]"
+    preview = f"BRING: <{pick} species, comma-separated, the leader first>" if pick else "LEAD: <species>"
+    fallback = ("If your action is not in LEGAL ACTIONS, or your answer is empty or cut off, you get one more try, told "
+                "what was wrong; if that one fails too, the first legal move is played for you." if attempts > 1 else
+                "If your action is not in LEGAL ACTIONS, or your answer is cut off, the first legal move is played for you.")
+    return SYSTEM_PROMPT_3.format(
+        rules=FORMAT_RULES_3["champions" if champions else "gen9"].format(pick=pick or 6),
+        actions=f"MOVE: <move_id>   or   MOVE: <move_id> {gimmick}   or   SWITCH: <species>   "
+                f"(at team preview: {preview})",
+        fallback=fallback,
+        example=f"MOVE: earthquake {gimmick}",
+    )
 
 
 USER_PROMPT_DIRECT_COT_TEMPLATE = """Here is the current battle state:
