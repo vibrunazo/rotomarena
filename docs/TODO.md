@@ -66,3 +66,10 @@ battle engine runs headless and can be stepped by outside players (it is built f
 how a GO battle could be replayed: Showdown's replay player won't render GO mechanics (energy, shields, charged
 move minigame), so it would need PvPoke's own battle timeline or a viewer of ours; the action space per decision
 (fast move, charged move, shield or not, switch), and the formats (Great, Ultra, Master League; team of 3 from 6).
+
+## PokéChamp: endless Swords Dance against Sucker Punch (fix before c5)
+Seen 11 Oct in a simulator smoke test (PokéChamp mirror, Kingambit vs Kingambit): both sides used Swords Dance at +6
+for turns on end. Its search fears the opponent's Sucker Punch knockout equally whether it attacks or sets up (it
+doesn't know Sucker Punch fails against a status move), so every move ties and the first listed wins. Fix: Sucker
+Punch (and similar) fail when the target uses a status move; a boost at +6 is worth nothing; ties go to attacks.
+Bump agent_versions.
