@@ -125,19 +125,26 @@ team combinations instead of one. Also considered: fixed meta teams (no Champion
 found on Smogon) and random teams (more luck per game). Back on the table only if a separate battling score is
 ever wanted. The control bots keep borrowing their opponent's team.
 
-### Thinking budget: 4,096 (smoke-test first)
-c5 is closer to a production run, so a bigger thinking budget for better games. c4's data (11 Oct) says the
-budget only binds a few models: Muse Spark reaches the 2,048 cap on 45% of its turns, Solar Pro 4 on 18%, MiMo
-10%, GPT-6 Luna Pro 9%; nobody is cut off (they answer after the cap). Everyone else stops well short by choice:
-Opus averages 526 thinking tokens, Gemini 83, Sonnet 148, GPT-6 Luna 259. So:
-- Raise `thinking_budget` to 4,096 (and `max_output_tokens` to 8,192). Estimated cost: about +$0.40 on a
-  c4-sized run (~4%), all from the four capped models.
-- Don't raise effort levels across the board: that is what would make Gemini, Opus or Sonnet think more, and
-  it multiplies the cost of the expensive models. A bigger budget is not that.
-- Local models get the same budget at server start (`--reasoning-budget`): more thinking costs GPU time, not
-  money; watch the slow local models' turn times in the smoke test.
-- Smoke test: Muse and Solar, 2,048 vs 4,096, ~20 games each against PokéChamp: real cost per turn, and
-  whether results move.
+### Thinking: stay at medium, with more room (smoke-test high)
+How it works (OpenRouter's reasoning docs, checked 11 Oct): a request sets `reasoning.effort` (low, medium,
+high...) or `reasoning.max_tokens`, never both, and OpenRouter translates for each provider. Budget-based
+providers (Anthropic) get a budget: effort is a share of the output cap (medium 50%, high 80%, low 20%), a number
+is used as is. Effort-based providers (OpenAI, Gemini, Grok) get an effort level: a number is turned into one by
+its share of the output cap (exact cutoffs unpublished; Gemini 3 maps it internally). A budget is a ceiling, not a
+target: the model decides how much to think below it.
+
+So c4 (2,048 of a 4,096 output cap, 50%) is **medium for everyone**: a 2,048 ceiling for budget-based models,
+medium effort for effort-based ones; Muse is set to medium explicitly. c4's data: only Muse (45% of turns),
+Solar (18%), MiMo (10%) and GPT-6 Luna Pro (9%) reach 2,048 reasoning tokens; Opus averages 526, Gemini 83,
+Sonnet 148, GPT-6 Luna 259, by choice.
+
+- **c5: 4,096 of 8,192** (still 50%, still medium). More room for the models that reach the ceiling; effort-based
+  models unchanged. About +$0.40 on a c4-sized run (~4%).
+- **The real quality decision is medium vs high.** High (80%) changes what effort-based models do (GPT-6,
+  Gemini): they think more, and cost more. For budget-based models (Claude) it only raises the ceiling again.
+- Smoke test before choosing: a few models at medium vs high, ~20 games each against PokéChamp (cheap ones
+  first: Muse, Solar, GPT-6 Luna, Gemini 3.8 Flash): reasoning tokens and cost per turn, and whether results move.
+- Local models get their budget at server start (`--reasoning-budget`): more thinking costs GPU time, not money.
 
 ### Waste
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
