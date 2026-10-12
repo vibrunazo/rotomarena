@@ -195,6 +195,12 @@ class RulesetConfig(BaseModel):
         "notes, shown again on its later turns (notes_shown); a turn with one legal action is played without asking. "
         "Unset: 1 (versions before c4)",
     )
+    drafts: Optional[int] = Field(
+        default=None, ge=1,
+        description="Teams each model drafts under this version (c5: 3), as independent drafts with the same prompt "
+        "and no feedback between them; its games take them in turn. One draft is one sample of a model's "
+        "teambuilding: more games only measure that one team more precisely. Unset: 1",
+    )
     draft_prompts: Optional[int] = Field(
         default=None, ge=1, le=2,
         description="Version of the drafting prompts. 2 (c5): Champions' rules line says singles outright (c4's said "

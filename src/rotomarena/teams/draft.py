@@ -340,9 +340,15 @@ async def draft_team(agent: AgentConfig, app_cfg: AppConfig, attempts: int = ATT
     return record
 
 
-def playable_team(record: Dict[str, Any]) -> Optional[str]:
-    """The team a model plays: its own legal team, or its repaired one."""
-    return record.get("team")
+def playable_team(record: Dict[str, Any], index: int = 0) -> Optional[str]:
+    """The team a model plays: its own legal team, or its repaired one. With several drafts (ruleset.drafts), the
+    `index`-th, taken in turn (index modulo the number of drafts)."""
+    records = [record] + list(record.get("more") or [])
+    return records[index % len(records)].get("team")
+
+
+def draft_count(record: Dict[str, Any]) -> int:
+    return 1 + len(record.get("more") or [])
 
 
 def draft_cost(record: Dict[str, Any]) -> float:
@@ -351,7 +357,8 @@ def draft_cost(record: Dict[str, Any]) -> float:
     if record.get("copied_from_version"):
         return 0.0
     attempts = record.get("picks", {}).get("attempts", []) + record.get("attempts", [])
-    return sum(a.get("cost_usd") or 0 for a in attempts) + (record.get("earlier_drafts_cost_usd") or 0)
+    more = sum(draft_cost(extra) for extra in record.get("more") or [])  # the other drafts of this version
+    return sum(a.get("cost_usd") or 0 for a in attempts) + (record.get("earlier_drafts_cost_usd") or 0) + more
 
 
 def save_draft(record: Dict[str, Any], drafts_dir: Path = DRAFTS_DIR) -> Path:

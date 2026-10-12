@@ -254,16 +254,17 @@ def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
     return max(cap - games_played(app_cfg, agent.name), 0) if cap is not None else 10**9
 
 
-def own_team(agent: AgentConfig, app_cfg: AppConfig) -> Team:
-    """The team a model built itself (draft mode) under this ruleset version: its legal team, or the repaired one."""
+def own_team(agent: AgentConfig, app_cfg: AppConfig, game: int = 0) -> Team:
+    """The team a model built itself (draft mode) under this ruleset version: its legal team, or the repaired one.
+    With several drafts (ruleset.drafts), game `game` of a set takes them in turn."""
     record = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format).get(agent.name)
-    text = playable_team(record) if record else None
+    text = playable_team(record, game) if record else None
     if not text:
         raise ValueError(f"{agent.name} has no team of its own yet: run `rotomarena teams draft {agent.name}`")
     return parse_smogon_team(text, name=f"{agent.display_name or agent.name}'s team")
 
 
-def set_teams(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig) -> Tuple[Team, Team]:
+def set_teams(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, game: int = 0) -> Tuple[Team, Team]:
     """The two teams of a set. Draft mode: each model's own team, except that a control bot (which can't build one)
     plays its opponent's, so only the play differs between them. Fixed mode: the ruleset's two teams."""
     if app_cfg.ruleset.team_mode == "random":
@@ -271,12 +272,12 @@ def set_teams(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig) ->
     if app_cfg.ruleset.team_mode != "draft":
         return tuple(load_preset_team(t) for t in app_cfg.ruleset.teams)
     if agent_a.role == "control":
-        team = own_team(agent_b, app_cfg)
+        team = own_team(agent_b, app_cfg, game)
         return team, team
     if agent_b.role == "control":
-        team = own_team(agent_a, app_cfg)
+        team = own_team(agent_a, app_cfg, game)
         return team, team
-    return own_team(agent_a, app_cfg), own_team(agent_b, app_cfg)
+    return own_team(agent_a, app_cfg, game), own_team(agent_b, app_cfg, game)
 
 
 def round_robin_ids(app_cfg: AppConfig, log: Callable[[str], None] = lambda msg: None) -> List[str]:
@@ -531,7 +532,7 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     lanes = [create_players(agent_a, agent_b, app_cfg, lane=a, lane_b=b) for a, b in lane_numbers]
     players = [p for lane in lanes for p in lane]
     own = app_cfg.ruleset.team_mode == "draft"
-    team_1, team_2 = set_teams(agent_a, agent_b, app_cfg)
+
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
     played_before = len(_pair_matches(app_cfg, id_a, id_b))
 
@@ -546,7 +547,9 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
                 local_servers.prepare([agent_a, agent_b], app_cfg)
             try:
                 async with asyncio.TaskGroup() as group:  # one failed game cancels the round; the set resumes later
-                    games = [group.create_task(runner.run_game(player_a, player_b, team_1, team_2, game, own_teams=own))
+                    # each game its teams: with several drafts per model, game g plays draft g (in turn)
+                    games = [group.create_task(runner.run_game(player_a, player_b, *set_teams(agent_a, agent_b, app_cfg, game),
+                                                               game, own_teams=own))
                              for (player_a, player_b), game in zip(lanes, round_games)]
                     guard = group.create_task(stall_guard(players, app_cfg.ladder.stall_minutes, f"{id_a} vs {id_b}"))
                     await asyncio.gather(*games)

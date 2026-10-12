@@ -158,21 +158,30 @@ def teams_draft(
                           "using them. Draft local models when it is idle.[/bold red]")
             raise typer.Exit(1)
 
+    count = app_cfg.ruleset.drafts or 1  # independent drafts per model (c5: 3)
+
     async def _run():
         for agent in agents:
-            console.print(f"[bold cyan]{agent.name}[/bold cyan] drafting")
+            console.print(f"[bold cyan]{agent.name}[/bold cyan] drafting" + (f" {count} teams" if count > 1 else ""))
             if agent in local:
                 local_servers.prepare([agent], app_cfg, log=console.print)
+            records = []
             try:
-                if agent.type == "decision":
-                    record = await draft_team_by_decisions(agent, app_cfg, attempts=attempts, log=console.print)
-                else:
-                    earlier = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format).get(agent.name) if keep_picks else None
-                    record = await draft_team(agent, app_cfg, attempts=attempts, log=console.print,
-                                              keep_picks=earlier["picks"] if earlier else None)
-            except DraftUnavailable as e:
+                for n in range(count):
+                    if count > 1:
+                        console.print(f"  draft {n + 1} of {count}")
+                    if agent.type == "decision":
+                        records.append(await draft_team_by_decisions(agent, app_cfg, attempts=attempts, log=console.print))
+                    else:
+                        earlier = load_drafts(version=app_cfg.ruleset.version, fmt=app_cfg.ruleset.format).get(agent.name) if keep_picks else None
+                        records.append(await draft_team(agent, app_cfg, attempts=attempts, log=console.print,
+                                                        keep_picks=earlier["picks"] if earlier else None))
+            except DraftUnavailable as e:  # all or none: a model's teams are drafted together
                 console.print(f"  [red]no draft kept[/red] ({e}); run it again when the provider is back")
                 continue
+            record = records[0]
+            if len(records) > 1:
+                record["more"] = records[1:]  # its other drafts: its games take them in turn
             path = save_draft(record)
             verdict = "[green]legal[/green]" if record["legal"] else f"[yellow]repaired ({len(record['repairs'])} changes)[/yellow]"
             console.print(f"  {verdict} after {len(record['attempts'])} attempt(s) -> {path}")

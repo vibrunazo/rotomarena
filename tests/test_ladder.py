@@ -391,7 +391,7 @@ def test_the_control_bot_borrows_its_opponents_own_team(monkeypatch):
     from rotomarena import ladder
     from rotomarena.config import RulesetConfig
 
-    monkeypatch.setattr(ladder, "own_team", lambda agent, cfg: f"{agent.name}'s team")
+    monkeypatch.setattr(ladder, "own_team", lambda agent, cfg, game=0: f"{agent.name}'s team")
     app_cfg = AppConfig(ruleset=RulesetConfig(team_mode="draft"))
     chimps = AgentConfig(name="random_ai", type="random", role="control")
     model, other = AgentConfig(name="m", type="direct_llm"), AgentConfig(name="o", type="direct_llm")
@@ -622,3 +622,13 @@ def test_an_opponents_list_limits_whom_a_model_meets():
     pairs = chosen_opponents(round_robin_pairs(list(agents)), app_cfg)
     assert {frozenset(p) for p in pairs if "a" in p} == {frozenset("ab")}
     assert len(pairs) == 4  # b-c, b-d, c-d and a-b
+
+
+def test_several_drafts_are_played_in_turn():
+    from rotomarena.teams.draft import draft_cost, draft_count, playable_team
+
+    record = {"team": "first", "attempts": [{"cost_usd": 0.01}],
+              "more": [{"team": "second", "attempts": [{"cost_usd": 0.02}]}, {"team": "third", "attempts": []}]}
+    assert [playable_team(record, g) for g in range(4)] == ["first", "second", "third", "first"]
+    assert draft_count(record) == 3 and abs(draft_cost(record) - 0.03) < 1e-9
+    assert playable_team({"team": "only"}, 5) == "only"  # one draft: every game
