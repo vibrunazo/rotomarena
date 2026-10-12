@@ -133,6 +133,7 @@ rulesets:
       # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
       claude_sonnet_5_5: ["Anthropic"]
       claude_opus_5_5: ["Anthropic"]
+      claude_fable_5_1: ["Anthropic"]
     agent_versions:
       pokechamp: 4   # 12 Oct: damaging moves listed first (ties mean attacking); Sucker Punch fails against status moves
 
@@ -304,14 +305,15 @@ agents:
     weights: "open"
     params_b: 27
   qwen3_8_27b:
-    active: false            # retired from play on 8 Oct (too slow here); its games still count
+    # Played locally until 8 Oct (too slow on this GPU); from c5 via OpenRouter, unquantized
     type: "direct_llm"
     display_name: "Qwen3.8 27B"
-    provider: "local"
-    model: "qwen3.8-27b"
+    provider: "openrouter"
+    model: "qwen/qwen3.8-27b"
     released: "2026-08-05"
-    port: 8081
-    quantization: "UD-Q4_K_M"
+    max_games: 0
+    extra_games: {c5: 9}
+    pairing: {c5: "neighbours"}
     model_key: "qwen/qwen3.8-27b"
     weights: "open"
     params_b: 27
@@ -612,6 +614,57 @@ agents:
     pairing: {c5: "neighbours"}
     weights: "open"
     params_b: 1598.8
+  mistral_large_4:
+    type: "direct_llm"
+    display_name: "Mistral Large 4"
+    provider: "openrouter"
+    model: "mistralai/mistral-large-4-0"
+    released: "2026-10-06"
+    max_games: 0
+    extra_games: {c5: 9}
+    pairing: {c5: "neighbours"}
+  qwen3_8_flash:
+    type: "direct_llm"
+    display_name: "Qwen3.8 Flash"
+    provider: "openrouter"
+    model: "qwen/qwen3.8-flash"
+    released: "2026-08-26"
+    max_games: 0
+    extra_games: {c5: 9}
+    pairing: {c5: "neighbours"}
+  qwen3_8_max_prime:
+    type: "direct_llm"
+    display_name: "Qwen3.8 Max Prime"
+    battle_name: "Qwen3.8 MaxPrime"
+    provider: "openrouter"
+    model: "qwen/qwen3.8-max-prime"
+    released: "2026-09-23"
+    max_games: 0
+    extra_games: {c5: 9}
+    pairing: {c5: "neighbours"}
+    weights: "closed"
+  # The top tier ($10/$50 per million): smoke tests only for now (12 Oct), not in c5's run
+  claude_fable_5_1:
+    active: false
+    type: "direct_llm"
+    display_name: "Claude Fable 5.1"
+    battle_name: "Fable 5.1"
+    provider: "openrouter"
+    model: "anthropic/claude-fable-5.1"
+    released: "2026-09-01"
+    max_games: 0
+    pairing: {c5: "neighbours"}
+    weights: "closed"
+  gpt_6_astra:
+    active: false
+    type: "direct_llm"
+    display_name: "GPT-6 Astra"
+    provider: "openrouter"
+    model: "openai/gpt-6-astra"
+    released: "2026-09-04"
+    max_games: 0
+    pairing: {c5: "neighbours"}
+    weights: "closed"
   # Decision models ("System One"): no text, a probability for each option (OpenRouter's Decisions API). Each turn
   # is one Choice question over the legal actions; teams are drafted one choice at a time (teams/draft_decisions.py).
   # Uncapped: a game costs well under a cent.
