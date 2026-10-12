@@ -53,3 +53,16 @@ with both tags, while the turn's message ends "Choose exactly one action from LE
 thought before <decision>). Next version: a rule "Answer in exactly this form: <thought>...</thought> then
 <decision>...</decision>", repeated as the last line of every turn's message. Breadcrumbs keep each raw answer
 (`answer`) from 11 Oct, so format slips can be counted per model.
+
+## Pokémon GO battles with PvPoke (look into later)
+**Idea (11 Oct 2026).** A GO PvP benchmark for decision models (System-1): GO battles run in real time (turns of
+0.5 s: fast moves build energy, charged moves spend it, shields, a switch timer), far too quick for LLMs that
+think for seconds, but a fit for decision models answering in milliseconds, and the simulation could be slowed or
+stepped turn by turn. PvPoke (pvpoke.com, github.com/pvpoke/pvpoke) is an open-source GO PvP simulator, rankings
+and team builder in JavaScript.
+
+**To check.** PvPoke's license (open the LICENSE in pvpoke/pvpoke itself; forks differ) and credit; whether its
+battle engine runs headless and can be stepped by outside players (it is built for its own UI and its own bots);
+how a GO battle could be replayed: Showdown's replay player won't render GO mechanics (energy, shields, charged
+move minigame), so it would need PvPoke's own battle timeline or a viewer of ours; the action space per decision
+(fast move, charged move, shield or not, switch), and the formats (Great, Ultra, Master League; team of 3 from 6).
