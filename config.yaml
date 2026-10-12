@@ -345,6 +345,7 @@ agents:
     model: "ornith-1.5-35b-a3b"
     released: "2026-08-18"
     port: 8084
+    max_parallel_games: 2    # 2 slots of 12,288 tokens fit the GPU; 4 spilled out of VRAM (0.4 tok/s, 12 Oct)
     quantization: "Q4_K_M"
     model_key: "ornith-ai/ornith-1.5-35b-a3b"
     weights: "open"

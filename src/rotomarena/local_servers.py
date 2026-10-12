@@ -147,9 +147,15 @@ def forget(port: int) -> None:
 
 
 def _serve_args(app_cfg: AppConfig, model: str, port: int) -> List[str]:
-    """`gen llm serve` arguments for an arena server under the ruleset being played."""
+    """`gen llm serve` arguments for an arena server under the ruleset being played. One slot per game it plays at
+    once: ladder.parallel_games, or fewer when the model has its own max_parallel_games (each slot's context costs
+    GPU memory: Ornith 35B with four slots of 12,288 tokens spilled out of VRAM and fell to 0.4 tok/s, 12 Oct)."""
+    agent = next((a for a in app_cfg.agents.values() if a.port == port and a.provider == "local"), None)
+    slots = app_cfg.ladder.parallel_games
+    if agent and agent.max_parallel_games:
+        slots = min(slots, agent.max_parallel_games)
     args = ["serve", "--model", model, "--port", str(port),
-            "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(app_cfg.ladder.parallel_games)]
+            "--ctx", str(app_cfg.local_llm.ctx), "--slots", str(slots)]
     if app_cfg.ruleset.reasoning == "off":
         return args + ["--reasoning", "off"]
     # Thinking on (each request asks for it); at half the output cap llama.cpp tells the model to stop
