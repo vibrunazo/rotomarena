@@ -144,7 +144,7 @@ price_tiers:
   - {name: "free"}
   - {name: "pocket change", under: 0.002}
   - {name: "cheap", like: "claude_haiku_5_5"}
-  - {name: "mid", like: "gpt_6_luna_pro"}
+  - {name: "mid", like: "gpt_6_luna_pro", under: 0.08}   # 12 Oct: the line sits between Gemini 3.8 Flash (~$0.053 in c5) and Sonnet (~$0.124)
   - {name: "expensive", like: "claude_sonnet_5_5"}
   - {name: "very expensive", like: "claude_opus_5_5"}
 
@@ -470,7 +470,7 @@ agents:
     provider: "openrouter"
     model: "google/gemini-3.8-flash"
     max_games: 8
-    extra_games: {c3: 55, c4: 67, c5: 1}   # c5: 9 games to start (placement), raised step by step: the expensive tier (12 Oct: ~$0.053 a game at medium effort, c4 $0.026)
+    extra_games: {c3: 55, c4: 67, c5: 13}   # c5: 21 games, the mid tier (12 Oct: ~$0.053 a game at medium effort; the mid tier's line sits below Sonnet)
     pairing: {c5: "neighbours"}
     weights: "closed"
   solar_pro_4:
