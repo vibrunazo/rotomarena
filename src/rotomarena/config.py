@@ -265,6 +265,14 @@ class LadderConfig(BaseModel):
         "slots and batch the requests (GPT-OSS 2.4x, Qwen 1.6x, Bonsai 1x at four); remote and bot games just overlap",
     )
     games_per_set: int = Field(default=4, description="Games per opponent: 2 teams x 2 sides")
+    precision: float = Field(
+        default=100.0,
+        description="A neighbours-paired model (AgentConfig.pairing) stops playing once its rating's 95% interval is "
+        "this narrow (half-width, Elo points), or at its game cap",
+    )
+    neighbour_repeats: int = Field(
+        default=2, ge=1, description="A neighbours-paired model plays the same opponent at most this many sets",
+    )
     provisional_games: int = Field(default=16, description="Valid games before a rating stops being provisional")
     max_autopilot: float = Field(
         default=0.5, description="A match is void when either side's fallback share of turns exceeds this"
@@ -344,6 +352,13 @@ class AgentConfig(BaseModel):
     extra_games: Dict[str, int] = Field(
         default_factory=dict, description="Ruleset version -> games added to max_games in that version only (e.g. "
         "for a best of three there)",
+    )
+    pairing: Dict[str, Literal["everyone", "neighbours"]] = Field(
+        default_factory=dict,
+        description="Ruleset version -> how it meets the field. everyone (the default): the round robin, every pair. "
+        "neighbours (expensive models): only placement games in the round robin (the anchor and the control bots, "
+        "free), then, once the round robin is done, sets against whoever is nearest its rating until its game cap "
+        "or ladder.precision. Its cap is raised step by step as its games check out.",
     )
     opponents: Dict[str, List[str]] = Field(
         default_factory=dict, description="Ruleset version -> the only opponents it meets in that version's round robin "

@@ -382,7 +382,81 @@ def schedule(app_cfg: AppConfig, state: LadderState, games_per_pair: int,
     # Two control bots: each borrows its opponent's team, and neither has one (PokéChamp against the chimps crashed
     # the run on 11 Oct). They measure models, not each other.
     pairs = [p for p in pairs if not all(app_cfg.agents[x].role == "control" for x in p)]
+    # A neighbours-paired model (expensive) plays only its placement here; its other games come after (neighbours)
+    placement = set(placement_opponents(app_cfg))
+    pairs = [(a, b) for a, b in pairs
+             if not any(pairing(app_cfg, x) == "neighbours" and y not in placement for x, y in ((a, b), (b, a)))]
     return strongest_opponents(chosen_opponents(pairs, app_cfg), app_cfg, state, games_per_pair, log)
+
+
+def pairing(app_cfg: AppConfig, config_id: str) -> str:
+    """How this model meets the field in the version being played (AgentConfig.pairing)."""
+    return app_cfg.agents[config_id].pairing.get(app_cfg.ruleset.version, "everyone")
+
+
+def placement_opponents(app_cfg: AppConfig) -> List[str]:
+    """Who a neighbours-paired model plays first: the version's anchor and the active control bots, all free."""
+    anchor = app_cfg.anchor_for()
+    controls = [k for k, a in app_cfg.agents.items() if a.role == "control" and a.active]
+    return ([anchor] if anchor in app_cfg.agents else []) + [k for k in controls if k != anchor]
+
+
+async def neighbours(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str], None] = print) -> None:
+    """After the round robin: each neighbours-paired model plays, set by set, whoever is nearest its current rating
+    (results there are in doubt; a set against a far weaker or stronger model says little), until its game cap or
+    until its rating is precise enough (ladder.precision). An opponent is met at most ladder.neighbour_repeats sets.
+    One model at a time; each set's games run at once as usual. Resumable: it starts from the games played."""
+    ids = round_robin_ids(app_cfg)
+    limit = games_per_pair * app_cfg.ladder.neighbour_repeats
+    for x in [k for k in ids if pairing(app_cfg, k) == "neighbours"]:
+        skipped: set = set()  # opponents that couldn't play this run
+        while True:
+            state = version_state(app_cfg)  # rated, with intervals: every set moves them
+            mine = state.ratings.get(x)
+            if games_left(app_cfg, app_cfg.agents[x]) <= 0:
+                log(f"neighbours: {x} reached its game cap")
+                break
+            if mine is None or mine.rating is None:
+                log(f"neighbours: {x} isn't rated yet: its placement games must connect it to the anchor first")
+                break
+            half = (mine.ci_high - mine.ci_low) / 2 if mine.ci_high is not None and mine.ci_low is not None else None
+            if half is not None and half <= app_cfg.ladder.precision:
+                log(f"neighbours: {x} is rated {mine.rating:.0f} +-{half:.0f}, within ladder.precision: done")
+                break
+            options = []
+            for k in ids:
+                theirs = state.ratings.get(k)
+                if k == x or k in skipped or theirs is None or theirs.rating is None:
+                    continue
+                if state.games(x, k) >= limit:
+                    continue
+                if app_cfg.agents[k].max_games is not None and games_left(app_cfg, app_cfg.agents[k]) <= 0 \
+                        and not cap_exempt(app_cfg, x, k):
+                    continue
+                options.append((abs(theirs.rating - mine.rating), k))
+            if not options:
+                log(f"neighbours: {x} has no opponent left within ladder.neighbour_repeats")
+                break
+            _, opponent = min(options)
+            done = state.games(x, opponent)
+            theirs = state.ratings[opponent]
+            log(f"{time.strftime('%Y-%m-%d %H:%M')} neighbours: {x} ({mine.rating:.0f}"
+                + (f" +-{half:.0f}" if half is not None else "") + f") vs {opponent} ({theirs.rating:.0f}), "
+                f"{done} games so far")
+            try:
+                played = await play_set(x, opponent, app_cfg, done, games=done + games_per_pair)
+            except ModelUnavailable as e:
+                log(f"neighbours: {', '.join(e.config_ids)} unavailable: {str(e)[:200]}")
+                if x in e.config_ids:
+                    break
+                skipped.add(opponent)
+                continue
+            except local_servers.ServerStartFailed as e:
+                log(f"neighbours: {opponent}'s server didn't start: {str(e)[:200]}")
+                skipped.add(opponent)
+                continue
+            if not played:  # its cap or the opponent's left no room
+                skipped.add(opponent)
 
 
 def split_streams(pairs: List[Tuple[str, str]], app_cfg: AppConfig) -> Tuple[list, list]:
@@ -487,6 +561,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
             group.create_task(stream(api))
     except ExceptionGroup as failed:
         raise failed.exceptions[0] from failed  # callers catch RunHalted itself
+    await neighbours(app_cfg, games_per_pair, log)  # the expensive models' games, against settled ratings
 
 
 # {config id: the lane numbers its players use right now}. Showdown names must be unique, so a model playing two
