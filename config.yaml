@@ -424,7 +424,8 @@ agents:
     provider: "openrouter"
     model: "openai/gpt-6-luna-pro"
     max_games: 8
-    extra_games: {c3: 55, c4: 67, c5: 112}
+    extra_games: {c3: 55, c4: 67, c5: 13}   # c5: 21 games, the mid price tier (12 Oct): placement 9, then 4 sets of neighbours
+    pairing: {c5: "neighbours"}
     weights: "closed"
   mimo_v2_6_flash:
     type: "direct_llm"
@@ -468,7 +469,8 @@ agents:
     provider: "openrouter"
     model: "google/gemini-3.8-flash"
     max_games: 8
-    extra_games: {c3: 55, c4: 67, c5: 112}
+    extra_games: {c3: 55, c4: 67, c5: 13}   # c5: 21 games, the mid price tier (12 Oct): placement 9, then 4 sets of neighbours
+    pairing: {c5: "neighbours"}
     weights: "closed"
   solar_pro_4:
     type: "direct_llm"
