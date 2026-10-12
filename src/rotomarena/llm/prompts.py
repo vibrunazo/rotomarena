@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -507,7 +508,8 @@ def format_battle_state_3(battle: Battle, brought: Optional[List[str]], pick: Op
         lines.append(f"- **{mon.species}** ({types}) | Stats at level {mon.level} (possible range): [{ranges}]"
                      + (f" | Possible abilities: {abilities}" if abilities else ""))
 
-    log = format_recent_turns(battle, turns=10 ** 6, max_lines=10 ** 6, full=True)
+    log = [line for line in format_recent_turns(battle, turns=10 ** 6, max_lines=10 ** 6, full=True)
+           if not re.search(r": fallen\w* (started|ended)$", line)]  # Supreme Overlord's internal counter, not an event
     lines.append("\n#### BATTLE LOG:")
     lines.extend(log or ["(nothing yet)"])
 
