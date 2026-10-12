@@ -672,9 +672,11 @@ Showdown shows it to you, and you choose one action.
 
 ANSWER IN EXACTLY THIS FORM:
 <notes>
-Your notes for your later turns, at most 60 words: your plan for this battle, and what you have learned about \
-the opponent (its moves, items, speed, how it plays). Every turn shows you your latest notes, so carry forward \
-what still matters and update the rest.
+Your memory and your long-term plan, at most 60 words. Each turn is a fresh request: you will remember nothing \
+of this turn except these notes, which your next turns show you. Use them to plan ahead over several turns \
+(what to set up, what to save for later, which threat to remove first, what you expect the opponent to do) and \
+to keep what you have learned about the opponent (its moves, items, speed, habits). Carry forward what still \
+matters and update the rest.
 </notes>
 <decision>
 One action line, copied from LEGAL ACTIONS without its number: {actions}
