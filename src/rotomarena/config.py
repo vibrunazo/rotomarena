@@ -333,6 +333,10 @@ class AgentConfig(BaseModel):
     weights: Optional[Literal["open", "closed"]] = Field(
         default=None, description="open: its weights are published (the site's 'open weights' filter)",
     )
+    released: Optional[str] = Field(
+        default=None, description="Release date (YYYY-MM-DD), shown on its model page: OpenRouter's listing date for "
+        "API models, the Hugging Face release for local ones, the Decisions API snapshot date for decision models",
+    )
     params_b: Optional[float] = Field(
         default=None, gt=0, description="Total parameters in billions, when published (the site's size filter; "
         "undisclosed sizes stay out of it)",

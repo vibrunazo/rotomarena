@@ -107,6 +107,10 @@ export const provisionalTitle = (games: number) =>
 export const isModel = (m: { type: string }) => m.type === 'direct_llm' || m.type === 'decision';
 
 /** "2026-10-07" from the export's "20261007". */
+/** A release date (YYYY-MM-DD) as "12 October 2026". */
+export const fmtLongDate = (d: string) =>
+  new Date(`${d}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
 export const fmtDate = (d: string) => (d.length === 8 ? `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6)}` : d);
 
 export function winner(match: Match) {

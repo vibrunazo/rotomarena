@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, benches, boardHref, boardModels, boards, fmtCost, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
+import { allModels, benches, boardHref, boardModels, boards, fmtCost, fmtLongDate, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -57,6 +57,11 @@ const facts: [string, string][] = [
 <Base title={m.display_name} description={`${m.display_name} on RotomArena: rating, record and every decision it made.`}>
   <p class="eyebrow">{kind[m.type] ?? m.type}{roleLabel(m.role) && ` · ${roleLabel(m.role)}`}</p>
   <h1>{m.display_name}</h1>
+  {m.released && (
+    <p class="released" title="OpenRouter's listing date for API models, the Hugging Face release for local ones, the snapshot date for decision models">
+      Released <time datetime={m.released}>{fmtLongDate(m.released)}</time>
+    </p>
+  )}
   <p class="muted small id-line">
     {m.model && <code>{m.model}</code>}
     {m.provider && <span> via {m.provider === 'local' ? 'llama.cpp, on one consumer GPU' : m.provider}</span>}
@@ -155,6 +160,7 @@ const facts: [string, string][] = [
 <style>
   .id-line { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: baseline; margin-top: 0.6rem; font-family: var(--font-body); }
   .note { border-left: 3px solid var(--cyan); padding-left: 0.8rem; color: var(--text-dim); }
+  .released { margin: 0.15rem 0 0.6rem; font: 600 0.95rem var(--font-display); letter-spacing: 0.04em; color: var(--accent, #43e0ff); }
   .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); background: var(--hud-panel);
     border: 1px solid transparent; border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0; box-shadow: var(--shadow-panel); }
   /* Cell rules as shadows: the ones on the outer edge are clipped, and empty trailing cells stay blank. */
