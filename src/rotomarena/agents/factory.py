@@ -205,6 +205,10 @@ def llm_client_for(agent_cfg: AgentConfig, app_config: AppConfig) -> LLMClient:
     client = LLMClient.from_provider_name(agent_cfg.provider or "openrouter", providers=providers,
                                           model_override=agent_cfg.model)
     client.only_providers = app_config.ruleset.provider_routing.get(agent_cfg.name)  # a rule of the version
+    if agent_cfg.batch.get(app_config.ruleset.version):
+        from rotomarena.llm.batch import shared_queue
+
+        client.batch = shared_queue(providers[agent_cfg.provider or "openrouter"].get_api_key())
     return client
 
 
@@ -243,7 +247,9 @@ def create_agent_instance(
     common = dict(
         player_name=username,
         identity=identity,
-        turn_timeout=app_config.ruleset.turn_timeout,
+        # a batched model's turn waits for its batch: up to OpenRouter's 24-hour window
+        turn_timeout=max(app_config.ruleset.turn_timeout, 26 * 3600) if agent_cfg.batch.get(app_config.ruleset.version)
+        else app_config.ruleset.turn_timeout,
         battle_format=app_config.ruleset.format,
         pick=app_config.ruleset.pick,
         answer_attempts=app_config.ruleset.answer_attempts or 1,

@@ -357,6 +357,11 @@ class AgentConfig(BaseModel):
         default_factory=dict, description="Ruleset version -> games added to max_games in that version only (e.g. "
         "for a best of three there)",
     )
+    batch: Dict[str, bool] = Field(
+        default_factory=dict,
+        description="Ruleset version -> whether its turns go through OpenRouter's Batch API (about half price, results "
+        "within 24 hours; llm/batch.py). For expensive models with a ':batch' endpoint, played many games at once.",
+    )
     pairing: Dict[str, Literal["everyone", "neighbours"]] = Field(
         default_factory=dict,
         description="Ruleset version -> how it meets the field. everyone (the default): the round robin, every pair. "
