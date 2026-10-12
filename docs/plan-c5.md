@@ -125,6 +125,20 @@ team combinations instead of one. Also considered: fixed meta teams (no Champion
 found on Smogon) and random teams (more luck per game). Back on the table only if a separate battling score is
 ever wanted. The control bots keep borrowing their opponent's team.
 
+### Thinking budget: 4,096 (smoke-test first)
+c5 is closer to a production run, so a bigger thinking budget for better games. c4's data (11 Oct) says the
+budget only binds a few models: Muse Spark reaches the 2,048 cap on 45% of its turns, Solar Pro 4 on 18%, MiMo
+10%, GPT-6 Luna Pro 9%; nobody is cut off (they answer after the cap). Everyone else stops well short by choice:
+Opus averages 526 thinking tokens, Gemini 83, Sonnet 148, GPT-6 Luna 259. So:
+- Raise `thinking_budget` to 4,096 (and `max_output_tokens` to 8,192). Estimated cost: about +$0.40 on a
+  c4-sized run (~4%), all from the four capped models.
+- Don't raise effort levels across the board: that is what would make Gemini, Opus or Sonnet think more, and
+  it multiplies the cost of the expensive models. A bigger budget is not that.
+- Local models get the same budget at server start (`--reasoning-budget`): more thinking costs GPU time, not
+  money; watch the slow local models' turn times in the smoke test.
+- Smoke test: Muse and Solar, 2,048 vs 4,096, ~20 games each against PokéChamp: real cost per turn, and
+  whether results move.
+
 ### Waste
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
 - Look into GPT-6 Luna Pro's input-token count before c5 (see section 1).
