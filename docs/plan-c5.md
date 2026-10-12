@@ -173,14 +173,18 @@ Replaces the fixed round robin (325 pairs x 3 games, everyone against everyone):
    the chimps: they cost nothing, so a paid model's first games cost only its own side.
 2. **Neighbours.** Then it plays models near its current rating, where results are still in doubt. Close pairs
    can meet again.
-3. **Stop at a precision target** (an interval half-width, e.g. +-100) or the model's dollar cap, whichever comes
-   first. Cheap models naturally play more; expensive ones only what's needed.
+3. **Stop at a precision target** (an interval half-width, e.g. +-100). Cheap models naturally play more.
+4. **Expensive models ramp up** (decided 12 Oct): no dollar caps; expensive and very expensive models start with
+   a low game cap, raised step by step as their games check out (answers, costs, no surprises), as Sonnet and
+   Opus did in c4.
 
 A newcomer then costs a bounded number of games instead of a match against every model (the first design's goal:
 adding a model shouldn't re-bill the incumbents). Lost: the complete head-to-head matrix; featured best-of-threes
 can still be scheduled by hand. `ladder place` and `ladder fill` exist from the first design.
 
 ## 6. Batch mode for expensive models
+
+**Decided 12 Oct: we try it for the expensive and very expensive tiers.**
 
 OpenRouter's Batch API (`/api/v1/batches`, models with a `:batch` variant) costs about half, with results within
 24 hours (median reported in minutes). One turn becomes one batch round trip, so a game takes hours: it pays off
@@ -200,8 +204,13 @@ turn.
   sides (like the 11 Oct experiment).
 - Later: a reference above the models (a two-turn PokéChamp), maybe a human baseline.
 
-## 8. Open questions
+## 8. Decisions and open questions
 
+Decided 12 Oct: thoughts become memory for long-term planning; no dollar caps (expensive models ramp up their game
+caps instead); batch mode is tried for the expensive and very expensive tiers.
+
+Open:
+- Effort: medium (recommended) or high (section 4).
 - Thoughts as memory: the note cap and how many earlier notes to show (smoke test).
-- Precision target and dollar caps per tier.
-- Batch mode: the real wait and real price, per model.
+- The precision target.
+- Batch mode: the real wait and real price, per model (smoke test).
