@@ -171,6 +171,12 @@ Built, behind new ruleset settings so c4's rules stay unchanged; c5's ruleset is
   (`notes_shown: 3`), cache order, one-legal-action turns played without asking ("forced", not autopilot).
   Smoke test: a GLM 5.3 Flash game; its notes carried its plan from turn to turn. Prompts start at ~1,750 tokens
   (c4: ~2,000) and grow ~200 a turn.
+- **Notes test** (12 Oct, $1.77): GLM 5.3 Flash, DeepSeek V4.1 Flash, GPT-6 Luna and Muse Spark, 26 games each
+  against PokéChamp with notes shown (the last 3) and without (written, never shown). Every turn has notes;
+  77-99% plan ahead (33-50 words). Shown notes are built on: 45-48% of the previous note carried forward (37-40%
+  unseen). Muse held one plan for 12 turns ("preserve Multiscale, set up late, save Gholdengo") and won with it.
+  Input +~150 tokens a turn (~7%). Results: 60 vs 61 wins of 104, no difference either way (a first 24-game
+  sample looked 12-18 against notes: luck). Kept: notes as memory, 3 shown.
 - **Draft prompts 2** (singles said outright) and **three drafts per model** (`drafts: 3`, played in turn).
   Smoke test: GLM and Sonnet, three legal, different teams each ($0.002 and $0.14). Sonnet dropped Tailwind and
   Rage Powder; it keeps Fake Out and Parting Shot on Incineroar, which singles uses too.
