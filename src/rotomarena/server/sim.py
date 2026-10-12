@@ -132,6 +132,7 @@ class Simulator:
                    timeout: Optional[float] = None) -> SimBattle:
         """Plays one battle between two poke-env players (p1 and p2 as given) with their current teams. Returns
         when it ends; each player's poke-env battle object is then finished, as after a server game."""
+        await self.start()  # again if the Node process died: the battles after it can still play
         tag = f"battle-{formatid}-{os.getpid()}{int(time.time())}{next(_ids)}"
         battle = SimBattle(tag=tag, inbox={"p1": asyncio.Queue(), "p2": asyncio.Queue()})
         self._battles[tag] = battle

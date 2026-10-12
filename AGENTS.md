@@ -86,7 +86,14 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
      Each local registry entry has its own `port`; `battle` and the ladder start the servers a series needs and stop the
      others (`local_llm.manage` in config.yaml). Weights: `gen llm install --model <key>`.
 
-3. **Pokémon Showdown Server:**
+3. **Where games are played (`server.engine` in config.yaml):**
+   - `simulator`: Showdown's simulator directly, no chat server (`src/rotomarena/server/sim.py` +
+     `sim_driver.js`, one Node process for all battles). No logins, so no usernames to keep unique, no lane
+     numbers, challenges or `--join`; test games can't disturb a run. Teams pass Showdown's validator as on the
+     server (it applies Champions' level 50). Each battle records its seed and input log (`battle_log.json`), and
+     its spectator log goes to `runs/live/<battle>.log` for the run monitor's watch page. The default from c5.
+   - `server` (the default until c4's run ends): bots log into the local chat server and challenge each other.
+4. **Pokémon Showdown Server (engine `server`):**
    - Server runs on port `8000` and listens on `127.0.0.1` only.
    - Guest autoconfirmation and battle chat are enabled.
    - Bot usernames are formatted cleanly based on their model/agent type without random hashes (e.g., `Gemini 3.7 Flash`, `DeepSeek V4`, `PokeChamp`). Only identical mirror matches receive clean numeric tags (e.g., `Gemini 3.7 Flash 1` vs `Gemini 3.7 Flash 2`).

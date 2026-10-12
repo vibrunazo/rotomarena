@@ -43,6 +43,12 @@ Each step: smoke test (a few games, free or cheap models first), read the raw an
 
 ## 3. Simulator instead of the chat server
 
+**Status (11 Oct, evening): built and smoke-tested** (`server.engine: simulator`; the chat server stays the default
+until c4's run ends). Tests passed: bots 40 games (PokéChamp 33-7 against MaxDamage, as on the server, after one
+bug: teams skipped the validator, which applies Champions' level 50); a GLM 5.3 Flash game with every decision
+answered and its raw answer kept; a 3-player round robin with parallel lanes; live watching in the run monitor.
+Still to do: switch the default once c4 ends, then play c5 on it.
+
 **Now.** Our players log into a local Pokémon Showdown *server* as users and challenge each other over
 websockets (poke-env). The server is a chat site wrapped around Showdown's *simulator*: logins, usernames, rooms,
 challenges. This week's failures all came from that layer: lane numbers in names ("Opus 5.5 2") and renaming them
