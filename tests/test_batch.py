@@ -10,7 +10,7 @@ from rotomarena.llm.batch import BatchFailed, BatchQueue
 
 
 def _completion(text, prompt=1000, completion=200):
-    return {"id": "gen", "object": "chat.completion", "created": 0, "model": "m",
+    return {"id": "gen", "object": "chat.completion", "created": 0, "model": "m", "service_tier": "batch",
             "choices": [{"index": 0, "finish_reason": "stop", "message": {"role": "assistant", "content": text}}],
             "usage": {"prompt_tokens": prompt, "completion_tokens": completion, "total_tokens": prompt + completion}}
 

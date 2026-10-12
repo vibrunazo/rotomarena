@@ -131,6 +131,7 @@ class BatchQueue:
             if item.get("error") or not body or (response.get("status_code") or 200) >= 300:
                 future.set_exception(BatchFailed(f"{item.get('error') or response.get('status_code')}"))
                 continue
+            body.pop("service_tier", None)  # "batch", which the openai library's ChatCompletion rejects
             body.setdefault("usage", {})
             body["usage"]["cost"] = round(shares.get(item.get("custom_id"), 0.0) * scale, 8)
             body["usage"]["batched"] = True
