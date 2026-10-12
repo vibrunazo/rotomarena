@@ -26,6 +26,7 @@ from rotomarena.agents.factory import create_players, resolved_model
 from rotomarena import local_servers
 from rotomarena.config import AgentConfig, AppConfig
 from rotomarena.matchmaker.runner import MatchRunner
+from rotomarena.server import engine
 from rotomarena.server.manager import ShowdownServerManager
 from rotomarena.teams.loader import load_team_file
 from rotomarena.rulesets import RulesChanged, current_rules, register
@@ -443,14 +444,13 @@ def run_battle(
                               + " ".join(problems[:4]))
                 raise typer.Exit(1)
 
-    server_mgr = ShowdownServerManager(app_cfg.server)
     runner = MatchRunner(telemetry_config=app_cfg.telemetry, rules=current_rules(app_cfg))
     if join and local_servers.local_agents([p1_cfg, p2_cfg]):
         console.print("[bold red]--join plays beside a run: local models would take its servers. Use bots or API models.[/bold red]")
         raise typer.Exit(1)
 
     async def _execute():
-        async with (server_mgr.joined() if join else server_mgr.ensure_running()):
+        async with engine.battles(app_cfg, join=join):
             # Beside a run, a test player under a ladder player's Showdown name signs it out mid-game (PokeChamp, in
             # A/B tests while the ladder played PokéChamp's sets, crashed both): lane 99 names are never the ladder's
             player_1, player_2 = create_players(p1_cfg, p2_cfg, app_cfg, lane=99 if join else 1)
@@ -534,10 +534,9 @@ def ladder_place(
 
     app_cfg = AppConfig.load(config_file)
     _register_rules(app_cfg)
-    server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
-        async with server_mgr.ensure_running():
+        async with engine.battles(app_cfg):
             await place(config_id, app_cfg, log=console.print, with_control=with_control)
 
     try:
@@ -616,10 +615,9 @@ def ladder_place_all(
         _wait_for_idle_cpu()
     for config_id in config_ids:
         console.rule(f"[bold cyan]{datetime.datetime.now():%Y-%m-%d %H:%M} placing {config_id}[/bold cyan]")
-        server_mgr = ShowdownServerManager(app_cfg.server)
 
         async def _run():
-            async with server_mgr.ensure_running():
+            async with engine.battles(app_cfg):
                 await place(config_id, app_cfg, log=console.print)
 
         try:
@@ -646,10 +644,9 @@ def ladder_round_robin(
     app_cfg = AppConfig.load(config_file).playing(version)
     _register_rules(app_cfg)
     watchdog(app_cfg, app_cfg.ladder.stall_minutes + 10)  # the backstop when the event loop itself hangs
-    server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
-        async with server_mgr.ensure_running():
+        async with engine.battles(app_cfg):
             await round_robin(app_cfg, games_per_pair, log=console.print)
 
     try:
@@ -671,10 +668,9 @@ def ladder_fill(
 
     app_cfg = AppConfig.load(config_file)
     _register_rules(app_cfg)
-    server_mgr = ShowdownServerManager(app_cfg.server)
 
     async def _run():
-        async with server_mgr.ensure_running():
+        async with engine.battles(app_cfg):
             await fill(app_cfg, budget, free_only=not include_paid, log=console.print)
 
     try:

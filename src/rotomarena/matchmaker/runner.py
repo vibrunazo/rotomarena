@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 from pydantic import BaseModel, Field
 
+from rotomarena.server import engine
 from rotomarena.agents.base import BaseBenchmarkPlayer
 from rotomarena.config import TelemetryConfig
 from rotomarena.teams.loader import Team
@@ -94,7 +95,10 @@ class MatchRunner:
 
         known_battles = set(challenger.battles)
         start_time = time.perf_counter()
-        await challenger.battle_against(opponent, n_battles=1)
+        sim = engine.simulator()
+        played = await sim.play(challenger, opponent, challenger.format) if sim else None
+        if not sim:
+            await challenger.battle_against(opponent, n_battles=1)
         duration = time.perf_counter() - start_time
 
         new_battles = [b for tag, b in challenger.battles.items() if tag not in known_battles]
@@ -159,6 +163,10 @@ class MatchRunner:
                     "duration_seconds": duration,
                     "players": [p.model_dump() for p in telemetry.players],
                     "ruleset": telemetry.ruleset,
+                    # played in the simulator: its seed and every input replay the game exactly; the spectators'
+                    # log is what a replay shows
+                    **({"seed": played.end.get("seed"), "input_log": played.end.get("inputLog"),
+                        "spectator_log": played.spectator} if played else {}),
                 },
                 raw_logs=raw_logs,
                 output_path=match_dir / "battle_log.json",

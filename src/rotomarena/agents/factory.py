@@ -219,6 +219,10 @@ def create_agent_instance(
     Showdown names must be unique, so a mirror match tags both sides and lanes after the first (games of a set
     played at once) add their number; the display name stays the model's own.
     `start_listening=False` skips connecting to Showdown (for tests)."""
+    from rotomarena.server import engine
+
+    if engine.simulator() is not None:  # no logins: lanes need no numbers, and nobody listens to a server
+        lane, start_listening = 1, False
     llm_client = llm_client_for(agent_cfg, app_config) if agent_cfg.type == "direct_llm" else None
     decision_client = DecisionClient.for_agent(agent_cfg, app_config) if agent_cfg.type == "decision" else None
     resolved_model = (llm_client.default_model if llm_client

@@ -42,6 +42,11 @@ class ServerConfig(BaseModel):
         default=Path("server/pokemon-showdown"),
         description="Path to Pokémon Showdown repository",
     )
+    engine: str = Field(
+        default="server",
+        description="Where games are played: 'simulator' (Showdown's simulator directly, no logins or server; "
+        "seeded) or 'server' (bots log into the local chat server and challenge each other)",
+    )
 
     @property
     def websocket_url(self) -> str:
