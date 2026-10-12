@@ -242,6 +242,7 @@ ladder:
 local_llm:
   gen: "D:/docs/assets/generator/gen.py"
   manage: true
+  ctx: 12288   # tokens per slot (x ladder.parallel_games): c5 prompts grow to ~6,000 by turn 20, plus 4,096 of thinking
 
 # Built-in providers: openrouter (default), local (llama.cpp on :8080), gemini, ollama, vllm (:8001).
 # Entries here override or extend them, e.g.:
