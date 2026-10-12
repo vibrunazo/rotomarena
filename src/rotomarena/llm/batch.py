@@ -105,7 +105,7 @@ class BatchQueue:
                 if batch.get("status") in TERMINAL:
                     self.log(f"batch {batch_id}: {batch['status']} after {(time.time() - started) / 60:.1f} min")
                     return batch
-                wait = min(wait * 1.5, 300)  # back off to every 5 minutes while it waits its turn
+                wait = min(wait * 1.5, 60)  # every minute at most: batches took ~8 min (12 Oct), a turn waits on each
 
     def _resolve(self, model: str, batch: Dict[str, Any], futures: Dict[str, asyncio.Future]) -> None:
         results = batch.get("results") or []
