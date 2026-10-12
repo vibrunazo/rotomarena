@@ -112,6 +112,29 @@ rulesets:
       claude_opus_5_5: ["Anthropic"]
     agent_versions:
       pokechamp: 3   # 11 Oct: v2 ability immunities, no switching that only delays a knockout; v3 status moves (Protect, setup, hazards, healing, status)
+  # c5 (plan: docs/plan-c5.md), to be played in the simulator once c4 ends. Medium effort for everyone (decided 12
+  # Oct): 50% of an 8,192-token cap, so budget-based models (Claude) get a 4,096 ceiling and effort-based ones
+  # (GPT-6, Gemini) medium. Battle state 3: plainly stated task and answer format, notes as memory, cache order.
+  c5:
+    format: "gen9championsrotomarenabssregmb"
+    team_mode: "draft"
+    pick: 3
+    profile: "ladder"
+    reasoning: "medium"
+    max_output_tokens: 8192
+    draft_max_output_tokens: 8192
+    answer_attempts: 2
+    battle_state: 3
+    notes_shown: 3
+    draft_prompts: 2
+    drafts: 3
+    provider_routing:
+      deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
+      # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
+      claude_sonnet_5_5: ["Anthropic"]
+      claude_opus_5_5: ["Anthropic"]
+    agent_versions:
+      pokechamp: 4   # 12 Oct: damaging moves listed first (ties mean attacking); Sucker Punch fails against status moves
 
 # The benchmark families the site presents like SWE-bench's: each has its own page and leaderboard tab.
 # The site's price tiers, by cost per game in the main benchmark: a fixed edge, or a reference model (the edge

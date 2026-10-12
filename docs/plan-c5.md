@@ -165,6 +165,26 @@ more where it does anything and shows no measurable gain.
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
 - Look into GPT-6 Luna Pro's input-token count before c5 (see section 1).
 
+### Progress (12 Oct)
+Built, behind new ruleset settings so c4's rules stay unchanged; c5's ruleset is in config.yaml (not played yet):
+- **Battle state 3** (`battle_state: 3`): the task and answer format stated plainly, no persona, notes as memory
+  (`notes_shown: 3`), cache order, one-legal-action turns played without asking ("forced", not autopilot).
+  Smoke test: a GLM 5.3 Flash game; its notes carried its plan from turn to turn. Prompts start at ~1,750 tokens
+  (c4: ~2,000) and grow ~200 a turn.
+- **Draft prompts 2** (singles said outright) and **three drafts per model** (`drafts: 3`, played in turn).
+  Smoke test: GLM and Sonnet, three legal, different teams each ($0.002 and $0.14). Sonnet dropped Tailwind and
+  Rage Powder; it keeps Fake Out and Parting Shot on Incineroar, which singles uses too.
+- **Medium effort** for everyone (decided): `reasoning: medium` with an 8,192 cap.
+- **PokéChamp v4**: damaging moves listed first (a tie means attacking) and Sucker Punch fails against status
+  moves: no more endless Swords Dance between two +6 Kingambit. Against MaxDamage 89-31 (v3: 92-28), mirror games
+  8-11 turns.
+
+Before c5 starts:
+- **Local context**: a long game's prompt (~6,000 tokens by turn 20) plus 4,096 of thinking overflows the 8,192
+  tokens per slot local servers have now: set `local_llm.ctx: 12288` and check the local models' VRAM in their
+  smoke test (after c4's run, which uses the GPU).
+- The all-model smoke test (2 games each against PokéChamp under c5, raw answers read), then drafting.
+
 ## 5. Scheduling: placement, then neighbours
 
 Replaces the fixed round robin (325 pairs x 3 games, everyone against everyone):

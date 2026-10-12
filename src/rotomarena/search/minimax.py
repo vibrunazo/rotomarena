@@ -6,7 +6,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 from pydantic import BaseModel, Field
 
-from poke_env.battle import Battle
+from poke_env.battle import Battle, MoveCategory
 from poke_env.player import BattleOrder, DefaultBattleOrder, SingleBattleOrder
 from rotomarena.search.heuristics import evaluate_battle_state
 from rotomarena.search.opponent_model import sample_opponent_actions
@@ -50,7 +50,10 @@ class PokeChampSearchEngine:
 
         player_actions: List[Tuple[str, Any, bool, str]] = []  # (type, object, is_tera, label)
         if battle.available_moves:
-            for move in battle.available_moves:
+            # Damaging moves first, then status moves: ties go to the first listed, so equally bad options mean
+            # attacking. Listed in the team's order, two +6 Kingambit used Swords Dance forever, both fearing a
+            # Sucker Punch knockout either way (12 Oct). v4.
+            for move in sorted(battle.available_moves, key=lambda m: m.category == MoveCategory.STATUS):
                 player_actions.append(("MOVE", move, False, f"MOVE:{move.id}"))
                 if battle.can_tera:
                     player_actions.append(("MOVE", move, True, f"MOVE:{move.id}[TERA]"))

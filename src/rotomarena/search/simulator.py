@@ -132,10 +132,18 @@ def entry_hazard_damage(battle: Battle, switch_in: Pokemon) -> float:
     return damage
 
 
-def _opponent_attack(battle: Battle, opp_action_type: str, opp_action_target: str, target: Pokemon) -> float:
-    """Damage the opponent's sampled action deals to `target` (0 when the opponent switches)."""
+# Moves that fail unless the target is about to use a damaging move: they miss a status move or a switch
+_NEEDS_AN_ATTACK = {"suckerpunch", "thunderclap"}
+
+
+def _opponent_attack(battle: Battle, opp_action_type: str, opp_action_target: str, target: Pokemon,
+                     attacking: bool = True) -> float:
+    """Damage the opponent's sampled action deals to `target` (0 when the opponent switches). `attacking`: whether
+    we use a damaging move this turn (Sucker Punch fails otherwise)."""
     opp = battle.opponent_active_pokemon
     if opp_action_type == "SWITCH":
+        return 0.0
+    if not attacking and opp_action_target in _NEEDS_AN_ATTACK:
         return 0.0
     known_move = opp.moves.get(opp_action_target)
     if known_move:
@@ -268,7 +276,7 @@ def simulate_turn_outcome(
         switch_in = next((m for m in battle.available_switches if m.species == player_action_target), None)
         if switch_in is None:
             return base_eval
-        incoming = _opponent_attack(battle, opp_action_type, opp_action_target, switch_in)
+        incoming = _opponent_attack(battle, opp_action_type, opp_action_target, switch_in, attacking=False)
         hazards = entry_hazard_damage(battle, switch_in)
         threat_next_turn = estimate_best_hit(switch_in, opp)
         # switch_cost: the tempo a switch gives away; without it the bots switched on half their turns
@@ -299,7 +307,8 @@ def simulate_turn_outcome(
     player_dmg = estimate_damage_fraction(player_move, active, opp, is_tera=player_tera)
     if opp_action_type == "SWITCH":
         player_dmg *= 0.5  # the hit lands on a switch-in, likely one that resists it
-    opp_dmg = _opponent_attack(battle, opp_action_type, opp_action_target, active)
+    opp_dmg = _opponent_attack(battle, opp_action_type, opp_action_target, active,
+                               attacking=player_move.category != MoveCategory.STATUS)
 
     opp_move = opp.moves.get(opp_action_target) if opp_action_type == "MOVE" else None
     priority = (player_move.priority or 0) - ((opp_move.priority or 0) if opp_move else 0)
