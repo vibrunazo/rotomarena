@@ -274,6 +274,12 @@ class LadderConfig(BaseModel):
     neighbour_repeats: int = Field(
         default=2, ge=1, description="A neighbours-paired model plays the same opponent at most this many sets",
     )
+    ceiling: Dict[str, int] = Field(
+        default_factory=dict,
+        description="Ruleset version -> a check run: every model plays at most this many games of the version, all "
+        "against its free placement opponents (the anchor and the control bots, who aren't capped by it). A version "
+        "starts small; raise or remove it once its first games check out, and the usual caps and pairings take over.",
+    )
     provisional_games: int = Field(default=16, description="Valid games before a rating stops being provisional")
     max_autopilot: float = Field(
         default=0.5, description="A match is void when either side's fallback share of turns exceeds this"
@@ -467,6 +473,9 @@ class BenchmarkConfig(BaseModel):
         default=False, description="A superseded version: kept on the site's archive page, left out of the bench's "
         "pages, its leaderboard tabs and the Overall and category boards",
     )
+    hidden: bool = Field(
+        default=False, description="Not on the site yet (a version's check run): played and rated, never exported",
+    )
     anchor: Optional[str] = Field(
         default=None, description="Config id fixed at ladder.anchor_rating on this benchmark's board (default: "
         "ladder.anchor). Each board has its own: a model that plays early and often, never at 0% or 100%",
@@ -523,6 +532,7 @@ class AppConfig(BaseSettings):
         benchmark."""
         benchmarks = self.benchmarks or [BenchmarkConfig(id=self.ruleset.version, title=self.ruleset.version,
                                                          category="Pokémon", versions=[self.ruleset.version])]
+        benchmarks = [b for b in benchmarks if not b.hidden]
         current = [b for b in benchmarks if not b.archived]  # Overall and categories: the versions played now
         boards = [LeaderboardConfig(id="overall", title="Overall", kind="overall", anchor=self.ladder.anchor,
                                     description="Every rated game in every current benchmark: how good each model is overall.",

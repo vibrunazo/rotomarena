@@ -20,7 +20,7 @@ from typing import Any, Dict, List, Optional
 from rotomarena.config import AppConfig
 from rotomarena.local_servers import local_agents
 from rotomarena.dashboard.driver import GAMES_PER_PAIR
-from rotomarena.ladder import cap_exempt, games_left, pair_target, round_robin_ids, schedule, version_state
+from rotomarena.ladder import cap_exempt, game_cap, games_left, pair_target, round_robin_ids, schedule, version_state
 from rotomarena.rating import compute_ratings
 from rotomarena.local_servers import running as running_servers
 from rotomarena.results import load_matches, void_reason
@@ -274,7 +274,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
             "wins": wins, "losses": len(valid) - wins, "void": len(mine) - len(valid),
             "games_cost_usd": round(games_cost, 4), "draft_cost_usd": round(drafting, 4),
             "cost_per_game_usd": round(games_cost / len(bought), 4) if bought else None,
-            "cost_usd": round(games_cost + drafting, 4), "cap": a.cap(version), "sec_per_turn": round(secs[k], 1) if k in secs else None,
+            "cost_usd": round(games_cost + drafting, 4), "cap": game_cap(app_cfg, a), "sec_per_turn": round(secs[k], 1) if k in secs else None,
         })
     models.sort(key=lambda m: (-(m["done"] / m["planned"]) if m["planned"] else 0, m["name"]))
 

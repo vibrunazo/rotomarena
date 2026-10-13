@@ -9,12 +9,13 @@ server:
   action_path: "/action.php?"
   no_security: true
   auto_start: true
+  engine: "simulator"   # from c5: games in Showdown's simulator, no chat server (AGENTS.md)
 
 # Rules shared by every player of a version. They are recorded in every match; changing any of them needs a new
 # version id.
 # The version the ladder and draft commands play unless given --version. Every version that can be played is under
 # rulesets, by its version id; a version id names exact rules, stored in data/rulesets/<version>.json on its first run.
-play: "c4"
+play: "c5"
 
 rulesets:
   s4:
@@ -200,6 +201,14 @@ benchmarks:
     description: "Pokémon Champions singles under Regulation M-B: each model builds six from the regulation's list, with Champions' Stat Points and Mega Stones, and brings three of them to each battle."
     versions: ["c4"]
     anchor: "gpt_oss_20b"   # local open weights, plays early and often (Bonsai plays last: c4 had no ratings for hours)
+  # c5's check run (13 Oct): played and rated, not on the site until it replaces c4 above
+  - id: "champions-bss-own-teams-c5"
+    title: "Champions BSS Reg M-B · own teams (c5)"
+    bench: "rotom-champ-bench"
+    category: "Pokémon"
+    versions: ["c5"]
+    anchor: "gpt_oss_20b"
+    hidden: true
   - id: "champions-bss-own-teams-c3"
     title: "Champions BSS · own teams (c3)"
     bench: "rotom-champ-bench"
@@ -236,6 +245,10 @@ ladder:
   best_of_three:
     s4: [["gpt_6_luna_pro", "gpt_6_luna_decisions"]]   # 1-1 after the first two: the video needs a decider
   games_per_set: 4          # 2 teams x 2 sides
+  # A version's check run: each model plays this many games, all against free opponents (anchor, PokéChamp, chimps);
+  # raised once they check out (13 Oct: c5 starts at 2)
+  ceiling:
+    c5: 2
   parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
   provisional_games: 16     # a full placement
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns

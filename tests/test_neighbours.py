@@ -25,6 +25,18 @@ def test_a_neighbours_model_plays_only_its_placement_in_the_round_robin(monkeypa
     assert frozenset(("low", "high")) in {frozenset(p) for p in pairs}  # everyone else plays everyone
 
 
+def test_a_check_run_plays_only_free_opponents_up_to_its_ceiling(monkeypatch):
+    app = _app()
+    app.ladder.ceiling = {"v1": 2}
+    monkeypatch.setattr(ladder, "round_robin_ids", lambda cfg, log=None: list(cfg.agents))
+    monkeypatch.setattr(ladder, "games_played", lambda cfg, name: 0)
+    pairs = {frozenset(p) for p in ladder.schedule(app, ladder.LadderState([], [], {}, {}), 3)}
+    assert all(p & {"anchor", "chimps"} and not p <= {"anchor", "chimps"} for p in pairs)  # models meet free ones
+    assert frozenset(("low", "high")) not in pairs
+    assert ladder.game_cap(app, app.agents["low"]) == 2 and ladder.game_cap(app, app.agents["opus"]) == 2
+    assert ladder.game_cap(app, app.agents["anchor"]) is None  # the anchor places everyone, uncapped
+
+
 def test_neighbours_play_the_nearest_rating_until_the_cap(monkeypatch):
     app = _app()
     played = []

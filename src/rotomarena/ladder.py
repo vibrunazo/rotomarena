@@ -249,8 +249,18 @@ def pair_target(app_cfg: AppConfig, state: LadderState, a: str, b: str, games_pe
     return max(games_per_pair, 3 if len(games) >= 2 and score_a == len(games) / 2 else 2)
 
 
-def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
+def game_cap(app_cfg: AppConfig, agent: AgentConfig) -> Optional[int]:
+    """Its game cap in the version being played (AgentConfig.cap), held under the version's check-run ceiling
+    (ladder.ceiling) unless it is a placement opponent; None: no cap."""
     cap = agent.cap(app_cfg.ruleset.version)
+    ceiling = app_cfg.ladder.ceiling.get(app_cfg.ruleset.version)
+    if ceiling is None or not agent.is_model or agent.name in placement_opponents(app_cfg):
+        return cap
+    return ceiling if cap is None else min(cap, ceiling)
+
+
+def games_left(app_cfg: AppConfig, agent: AgentConfig) -> int:
+    cap = game_cap(app_cfg, agent)
     return max(cap - games_played(app_cfg, agent.name), 0) if cap is not None else 10**9
 
 
@@ -345,7 +355,7 @@ def strongest_opponents(pairs: List[Tuple[str, str]], app_cfg: AppConfig, state:
     version = app_cfg.ruleset.version
     drop: set = set()
     for x, agent in app_cfg.agents.items():
-        cap = agent.cap(version)
+        cap = game_cap(app_cfg, agent)
         mine = [p for p in pairs if x in p]
         if cap is None or not mine:
             continue
@@ -361,8 +371,9 @@ def strongest_opponents(pairs: List[Tuple[str, str]], app_cfg: AppConfig, state:
         kept_cost, dropped = 0, []
         for i, p in enumerate(ranked):
             cost = max(games_per_pair, state.games(*p))
-            # keeping it must leave room for the games already played in every pair after it, should those be dropped
-            if kept_cost + cost + sum(state.games(*q) for q in ranked[i + 1:]) <= budget:
+            # keeping it must leave room for the games already played in every pair after it, should those be dropped;
+            # the last one kept may be a short set (a cap of 2 against sets of 3: one pair, 2 games)
+            if kept_cost + sum(state.games(*q) for q in ranked[i + 1:]) < budget:
                 kept_cost += cost
             else:
                 dropped.append(p)
@@ -386,6 +397,11 @@ def schedule(app_cfg: AppConfig, state: LadderState, games_per_pair: int,
     placement = set(placement_opponents(app_cfg))
     pairs = [(a, b) for a, b in pairs
              if not any(pairing(app_cfg, x) == "neighbours" and y not in placement for x, y in ((a, b), (b, a)))]
+    if app_cfg.ruleset.version in app_cfg.ladder.ceiling:  # a check run: every model against free opponents only
+        pairs = [(a, b) for a, b in pairs if (a in placement) != (b in placement)]
+        # the anchor first, then the control bots as configured (PokéChamp before the chimps: full-length games)
+        order = placement_opponents(app_cfg)
+        pairs.sort(key=lambda p: order.index(p[0] if p[0] in order else p[1]))
     return strongest_opponents(chosen_opponents(pairs, app_cfg), app_cfg, state, games_per_pair, log)
 
 
@@ -430,7 +446,7 @@ async def neighbours(app_cfg: AppConfig, games_per_pair: int, log: Callable[[str
                     continue
                 if state.games(x, k) >= limit:
                     continue
-                if app_cfg.agents[k].max_games is not None and games_left(app_cfg, app_cfg.agents[k]) <= 0 \
+                if game_cap(app_cfg, app_cfg.agents[k]) is not None and games_left(app_cfg, app_cfg.agents[k]) <= 0 \
                         and not cap_exempt(app_cfg, x, k):
                     continue
                 options.append((abs(theirs.rating - mine.rating), k))
@@ -534,7 +550,7 @@ async def round_robin(app_cfg: AppConfig, games_per_pair: int, log: Callable[[st
                     stop = target
                     if not cap_exempt(app_cfg, a, b):
                         for x in (a, b):
-                            if app_cfg.agents[x].max_games is not None:
+                            if game_cap(app_cfg, app_cfg.agents[x]) is not None:
                                 stop = min(stop, done + games_left(app_cfg, app_cfg.agents[x]) - promised(x))
                     if stop <= done:
                         log(f"pair {i}/{len(pairs)}: {a} vs {b} skipped: a model reached its game cap")
@@ -594,7 +610,8 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
     remaining = (games or app_cfg.ladder.games_per_set) - already_played
     agent_a, agent_b = app_cfg.agents[id_a], app_cfg.agents[id_b]
     if not cap_exempt(app_cfg, id_a, id_b):
-        remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b) if a.max_games is not None])
+        remaining = min([remaining] + [games_left(app_cfg, a) for a in (agent_a, agent_b)
+                                       if game_cap(app_cfg, a) is not None])
     if remaining <= 0:
         return 0
     taken: List[Tuple[str, int]] = []  # (config id, lane number) this set holds, released when it ends
