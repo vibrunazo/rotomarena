@@ -6,7 +6,7 @@ import Base from '../layouts/Base.astro';
 import LeaderboardTable from './LeaderboardTable.astro';
 import ForestPlot from './ForestPlot.astro';
 import CostRatingChart from './CostRatingChart.astro';
-import { archivedBoards, benchBoards, benchOf, benches, boardHref, boardModels, boards, fmtDate, fmtInt, headToHeadFor, meta, modelsById, type Board } from '../lib/data';
+import { archivedBoards, benchBoards, benchOf, benches, boardHref, boardModels, boards, fmtDate, fmtInt, headToHeadFor, matchEntries, meta, modelsById, winner, type Board } from '../lib/data';
 
 interface Props { board: Board }
 const { board } = Astro.props;
@@ -19,6 +19,14 @@ const current = bench ? benchBoards(bench)[0] : undefined;  // the bench's board
 const isBench = !!bench && current?.id === board.id;  // this page is the benchmark itself
 const archived = bench ? archivedBoards(bench) : [];
 const combined = boards.filter((b) => b.kind !== 'benchmark');  // Overall, and categories once there are several
+
+// The games behind each head-to-head record (this board's rated games), newest first: a record opens its list
+const pairKey = (a: string, b: string) => [a, b].sort().join('|');
+const games: Record<string, [string, string, string | null, number][]> = {};  // [slug, date, winner id, turns]
+for (const { slug, data: m } of await matchEntries()) {
+  if (!m.version || !board.versions.includes(m.version) || m.void_reason || m.players.length !== 2) continue;
+  (games[pairKey(m.players[0].config_id, m.players[1].config_id)] ??= []).push([slug, fmtDate(m.date), winner(m)?.config_id ?? null, m.turns]);
+}
 
 // Head-to-head grid over everyone who has played: cell (row, col) is row's record against col.
 const played = models.filter((m) => m.games > 0);
@@ -95,7 +103,7 @@ const record = (a: string, b: string) => {
   )}
 
   <h2>Head to head</h2>
-  <p class="small muted">Wins–losses of the row model against the column model.</p>
+  <p class="small muted">Wins–losses of the row model against the column model. Click a record for its games and replays.</p>
   <div class="table-scroll">
     <table class="h2h">
       <thead>
@@ -112,7 +120,9 @@ const record = (a: string, b: string) => {
               const r = row.config_id === col.config_id ? null : record(row.config_id, col.config_id);
               return (
                 <td class={`r num ${r ? (r.w > r.l ? 'ahead' : r.w < r.l ? 'behind' : '') : 'empty'}`}>
-                  {row.config_id === col.config_id ? '' : r ? `${r.w}–${r.l}${r.d ? `–${r.d}` : ''}` : '·'}
+                  {row.config_id === col.config_id ? '' : r && games[pairKey(row.config_id, col.config_id)]
+                    ? <button type="button" class="rec" data-a={row.config_id} data-b={col.config_id}>{`${r.w}–${r.l}${r.d ? `–${r.d}` : ''}`}</button>
+                    : r ? `${r.w}–${r.l}${r.d ? `–${r.d}` : ''}` : '·'}
                 </td>
               );
             })}
@@ -121,6 +131,15 @@ const record = (a: string, b: string) => {
       </tbody>
     </table>
   </div>
+
+  <dialog id="h2h-dialog" class="h2h-dialog">
+    <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    <h3 id="h2h-title"></h3>
+    <ol id="h2h-list" class="h2h-games"></ol>
+  </dialog>
+  <script type="application/json" id="h2h-data" set:html={JSON.stringify({
+    games, names: Object.fromEntries(played.map((m) => [m.config_id, m.display_name])), base: routes.matches,
+  })} />
 
   <section class="footnotes">
     <ol>
@@ -131,6 +150,25 @@ const record = (a: string, b: string) => {
     </ol>
   </section>
 </Base>
+
+<script>
+  // A head-to-head record opens the list of that pair's games, each with its replay
+  const data = JSON.parse(document.getElementById('h2h-data')?.textContent || '{}');
+  const dialog = document.getElementById('h2h-dialog') as HTMLDialogElement | null;
+  const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+  document.querySelectorAll<HTMLButtonElement>('.h2h .rec').forEach((button) => button.addEventListener('click', () => {
+    const a = button.dataset.a!, b = button.dataset.b!;
+    const list = data.games[[a, b].sort().join('|')] || [];
+    const name = (id: string) => esc(data.names[id] || id);
+    document.getElementById('h2h-title')!.innerHTML = `${name(a)} <span class="muted">vs</span> ${name(b)} · ${button.textContent}`;
+    document.getElementById('h2h-list')!.innerHTML = list.map(([slug, date, w, turns]: [string, string, string | null, number]) => {
+      const result = w ? `<strong>${name(w)}</strong> won` : 'Draw';
+      return `<li><span class="num muted">${esc(date)}</span> ${result} <span class="muted">in ${turns} turns</span> <a href="${data.base}${slug}/">Replay</a></li>`;
+    }).join('');
+    dialog?.showModal();
+  }));
+  dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });  // a click outside closes it
+</script>
 
 <style>
   .rules { margin: 1rem 0; }
@@ -157,4 +195,13 @@ const record = (a: string, b: string) => {
   .h2h td.ahead { color: var(--green); font-weight: 500; }
   .h2h td.behind { color: var(--red); }
   .h2h td.empty { color: var(--text-faint); }
+  .h2h .rec { all: unset; cursor: pointer; border-bottom: 1px dotted currentColor; }
+  .h2h .rec:hover, .h2h .rec:focus-visible { color: var(--cyan); border-bottom-style: solid; }
+  .h2h-dialog { background: var(--panel-solid); color: var(--text); border: 1px solid var(--line-strong);
+    border-radius: var(--radius); padding: 1rem 1.2rem 1.2rem; width: min(34rem, calc(100vw - 2rem)); box-shadow: var(--shadow-panel); }
+  .h2h-dialog::backdrop { background: rgba(3, 5, 14, 0.7); }
+  .h2h-dialog h3 { margin: 0 2rem 0.6rem 0; font-size: 1.05rem; }
+  .h2h-dialog .close { position: absolute; top: 0.5rem; right: 0.7rem; background: none; border: 0; color: var(--text-dim);
+    font-size: 1.4rem; cursor: pointer; }
+  .h2h-games { margin: 0; padding-left: 1.4rem; display: grid; gap: 0.35rem; }
 </style>
