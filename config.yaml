@@ -136,6 +136,9 @@ rulesets:
       # 13 Oct: at medium effort Qwen3.8 Flash thought to the 8,192 cap on every replayed c5 turn (4 of its first 7
       # turns cut off); asked for 4,096 tokens it thought 477-3,669
       qwen3_8_flash: 4096
+      # 13 Oct: MiniMax M3 at medium spiralled now and then (2 of 23 c5 turns cut off; replayed turns 5,666 and
+      # 8,192 tokens); asked for 4,096 it thought 589-3,099
+      minimax_m3: 4096
     provider_routing:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
       # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
