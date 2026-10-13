@@ -62,6 +62,36 @@ def _extra(obj: Any, name: str) -> Any:
     return value
 
 
+CACHE = {"type": "ephemeral"}
+LOG_ENTRY = re.compile(r"\n(?=(?:Leads|Turn \d+):\n)")  # where each turn's entry in the battle log starts
+
+
+def cache_marked(messages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """The same messages with Claude's prompt cache breakpoints (Anthropic caches only where it is told to; other
+    providers cache prompt prefixes on their own). The system prompt is one; the battle log of battle state 3 is cut
+    into one text block per turn and the last is the other, so the next turn, whose log adds a turn after it, finds
+    this turn's prefix cached at a block boundary. The text is unchanged: the blocks join into the same message."""
+    out = [dict(m) for m in messages]
+    for m in out:
+        if m["role"] == "system" and isinstance(m["content"], str):
+            m["content"] = [{"type": "text", "text": m["content"], "cache_control": CACHE}]
+    user = next((m for m in out if m["role"] == "user"), None)
+    text = user["content"] if user else None
+    start = text.find("\n#### BATTLE LOG:\n") if isinstance(text, str) else -1
+    if start < 0:
+        return out
+    ends = [i for i in (text.find("\n\n#### YOUR NOTES", start), text.find("\n\n### Turn ", start)) if i > 0]
+    end = min(ends) if ends else len(text)
+    # each turn's block starts at the line break before it, so it ends alike whether a later turn or the notes follow
+    cuts = [start] + [m.start() for m in LOG_ENTRY.finditer(text, start, end)] + [end]
+    blocks = [{"type": "text", "text": text[a:b]} for a, b in zip([0] + cuts, cuts) if b > a]
+    blocks[-1]["cache_control"] = CACHE  # the log up to this turn
+    if end < len(text):
+        blocks.append({"type": "text", "text": text[end:]})  # notes and this turn: new every turn
+    user["content"] = blocks
+    return out
+
+
 def to_id(text: str) -> str:
     """Showdown's toID: lowercase letters and digits only ('Landorus-Therian' -> 'landorustherian')."""
     return re.sub(r"[^a-z0-9]", "", text.lower())
@@ -260,6 +290,8 @@ class LLMClient:
     ) -> Completion:
         """Calls the chat completions API, retrying server errors and rate limits."""
         target_model = model or self.default_model
+        if self.config.api_style == "openrouter" and target_model.startswith("anthropic/"):
+            messages = cache_marked(messages)
         create_kwargs: Dict[str, Any] = {
             "model": target_model,
             "messages": messages,
@@ -319,6 +351,7 @@ class LLMClient:
         choice = response.choices[0]
         usage = response.usage
         details = getattr(usage, "completion_tokens_details", None) if usage else None
+        prompt_details = getattr(usage, "prompt_tokens_details", None) if usage else None
         cost = _extra(usage, "cost")
         if _extra(usage, "is_byok"):
             # Our own provider key (Claude on the Max plan's API credits): `cost` is OpenRouter's fee, usually 0; the
@@ -336,6 +369,8 @@ class LLMClient:
             prompt_tokens=(usage.prompt_tokens or 0) if usage else 0,
             completion_tokens=(usage.completion_tokens or 0) if usage else 0,
             reasoning_tokens=(getattr(details, "reasoning_tokens", 0) or 0) if details else 0,
+            cached_tokens=(getattr(prompt_details, "cached_tokens", 0) or 0) if prompt_details else 0,
+            cache_write_tokens=(_extra(prompt_details, "cache_write_tokens") or 0) if prompt_details else 0,
             total_tokens=(usage.total_tokens or 0) if usage else 0,
             latency_ms=latency,
             finish_reason=choice.finish_reason or "",

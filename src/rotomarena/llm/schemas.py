@@ -12,6 +12,8 @@ class LLMUsageMetrics(BaseModel):
     prompt_tokens: int = 0
     completion_tokens: int = 0
     reasoning_tokens: int = 0
+    cached_tokens: int = 0  # of the prompt, read from the provider's prompt cache (as the provider reports)
+    cache_write_tokens: int = 0  # of the prompt, written to the cache (Claude bills them at 1.25x)
     total_tokens: int = 0
     latency_ms: float = 0.0
     finish_reason: str = ""
@@ -27,6 +29,8 @@ class LLMUsageMetrics(BaseModel):
             "prompt_tokens": self.prompt_tokens + other.prompt_tokens,
             "completion_tokens": self.completion_tokens + other.completion_tokens,
             "reasoning_tokens": self.reasoning_tokens + other.reasoning_tokens,
+            "cached_tokens": self.cached_tokens + other.cached_tokens,
+            "cache_write_tokens": self.cache_write_tokens + other.cache_write_tokens,
             "total_tokens": self.total_tokens + other.total_tokens,
             "latency_ms": self.latency_ms + other.latency_ms,
             "cost_usd": self.cost_usd + other.cost_usd,
