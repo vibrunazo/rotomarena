@@ -128,6 +128,10 @@ rulesets:
     notes_shown: 3
     draft_prompts: 2
     drafts: 3
+    thinking_exceptions:
+      # 12 Oct: at medium effort Sonnet 5.5 never thought (0 tokens in 85 turns); the 4,096-token budget medium means
+      # for Claude, asked for directly, makes it think
+      claude_sonnet_5_5: 4096
     provider_routing:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
       # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out

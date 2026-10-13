@@ -114,6 +114,14 @@ def test_a_thinking_exception_sends_its_effort_instead_of_the_budget():
     assert AgentConfig(name="muse", type="direct_llm").thinking(exception) == ("minimal", None)
 
 
+def test_a_thinking_exception_can_send_a_budget_instead_of_the_effort():
+    from rotomarena.config import AgentConfig, RulesetConfig
+
+    ruleset = RulesetConfig(reasoning="medium", max_output_tokens=8192, thinking_exceptions={"sonnet": 4096})
+    assert AgentConfig(name="x", type="direct_llm").thinking(ruleset) == ("medium", None)
+    assert AgentConfig(name="sonnet", type="direct_llm").thinking(ruleset) == ("medium", 4096)
+
+
 def test_a_voided_game_is_not_rated():
     from rotomarena.results import void_reason
     from rotomarena.telemetry.breadcrumbs import MatchPlayer, MatchTelemetry

@@ -180,7 +180,9 @@ Built, behind new ruleset settings so c4's rules stay unchanged; c5's ruleset is
 - **Draft prompts 2** (singles said outright) and **three drafts per model** (`drafts: 3`, played in turn).
   Smoke test: GLM and Sonnet, three legal, different teams each ($0.002 and $0.14). Sonnet dropped Tailwind and
   Rage Powder; it keeps Fake Out and Parting Shot on Incineroar, which singles uses too.
-- **Medium effort** for everyone (decided): `reasoning: medium` with an 8,192 cap.
+- **Medium effort** for everyone (decided): `reasoning: medium` with an 8,192 cap. Except Sonnet 5.5: at medium
+  effort it never thought (0 thinking tokens in 85 c5 turns, batched or not; Opus, Haiku and Fable did), so c5
+  asks it for the 4,096-token budget medium means for Claude (`thinking_exceptions` now takes a budget).
 - **PokéChamp v4**: damaging moves listed first (a tie means attacking) and Sucker Punch fails against status
   moves: no more endless Swords Dance between two +6 Kingambit. Against MaxDamage 89-31 (v3: 92-28), mirror games
   8-11 turns.
@@ -222,6 +224,13 @@ Needs the simulator's parallelism first. Smoke test: one model, a few games; che
 answer format and per-request cost survive batching, and what the wait really is. Risk: a 24-hour worst case per
 turn.
 
+**Smoke test (12 Oct, built: `batch: {c5: true}` per model, llm/batch.py).** Sonnet 5.5, 4 games at once against
+PokéChamp: every answer usable (57 model turns, no errors), **$0.063 a game against $0.12 direct**. Each batch took
+2-17 minutes (mostly 5-10), so a game of ~15 turns took ~1h45. Wall time is per round, not per game: 4 games or 40
+take about as long, so batched models need many games at once (more than `ladder.parallel_games` 4), e.g. their
+whole set of opponents overnight. A first run lost every answer: OpenRouter labels batched results
+`service_tier: "batch"`, which the openai library rejects (fixed, tested).
+
 ## 7. Site
 
 - A rating-against-cost chart: who plays best for the money (price tiers already exist).
@@ -239,4 +248,4 @@ Open:
 - Effort: medium (recommended) or high (section 4).
 - Thoughts as memory: the note cap and how many earlier notes to show (smoke test).
 - The precision target.
-- Batch mode: the real wait and real price, per model (smoke test).
+- Batch mode: how the ladder plays batched models (all their games at once, not 4 at a time).

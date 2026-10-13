@@ -151,10 +151,11 @@ class RulesetConfig(BaseModel):
         default=None, description="Wall-clock limit per turn in seconds; only catches hung servers"
     )
     format: str = Field(default="gen9ou", description="Showdown format id the games are played in")
-    thinking_exceptions: Dict[str, ReasoningLevel] = Field(
+    thinking_exceptions: Dict[str, ReasoningLevel | int] = Field(
         default_factory=dict,
-        description="{config id: effort level} for models whose provider ignores the thinking budget: the strongest "
-        "effort level that stays within it is sent instead (Meta's endpoint for Muse Spark)",
+        description="{config id: effort level or thinking budget in tokens} for models the ruleset's setting doesn't "
+        "fit: an effort level for a provider that ignores the thinking budget (Meta's endpoint for Muse Spark), a "
+        "budget for one that ignores the effort level (Sonnet 5.5 doesn't think at medium effort)",
     )
     agent_versions: Dict[str, int] = Field(
         default_factory=dict,
@@ -398,8 +399,11 @@ class AgentConfig(BaseModel):
 
     def thinking(self, ruleset: "RulesetConfig") -> Tuple[Optional[str], Optional[int]]:
         """(reasoning level, thinking budget) this model is asked for: the ruleset's, unless it has an exception."""
-        if self.name in ruleset.thinking_exceptions:
-            return ruleset.thinking_exceptions[self.name], None
+        exception = ruleset.thinking_exceptions.get(self.name)
+        if isinstance(exception, int):
+            return ruleset.reasoning, exception
+        if exception is not None:
+            return exception, None
         return ruleset.reasoning, ruleset.thinking_budget
 
     @property
