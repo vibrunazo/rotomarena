@@ -133,6 +133,9 @@ rulesets:
       # 12 Oct: at medium effort Sonnet 5.5 never thought (0 tokens in 85 turns); the 4,096-token budget medium means
       # for Claude, asked for directly, makes it think
       claude_sonnet_5_5: 4096
+      # 13 Oct: at medium effort Qwen3.8 Flash thought to the 8,192 cap on every replayed c5 turn (4 of its first 7
+      # turns cut off); asked for 4,096 tokens it thought 477-3,669
+      qwen3_8_flash: 4096
     provider_routing:
       deepseek_v4_1_flash: ["Fireworks", "Novita", "DeepInfra", "Together"]
       # Our own key (BYOK) only: Bedrock or Vertex would bill OpenRouter credits once the plan's API credits run out
