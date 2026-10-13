@@ -244,8 +244,10 @@ whole set of opponents overnight. A first run lost every answer: OpenRouter labe
 Decided 12 Oct: thoughts become memory for long-term planning; no dollar caps (expensive models ramp up their game
 caps instead); batch mode is tried for the expensive and very expensive tiers.
 
-Open:
-- Effort: medium (recommended) or high (section 4).
-- Thoughts as memory: the note cap and how many earlier notes to show (smoke test).
+Also decided 12 Oct: medium effort; notes of at most 60 words, the last 3 shown. c5's rules are complete.
+
+Open (none of them a rule of the version, so they can change while c5 plays):
 - The precision target.
 - Batch mode: how the ladder plays batched models (all their games at once, not 4 at a time).
+- Prompt caching for Claude (OpenRouter needs explicit cache breakpoints for Anthropic): input is most of Claude's
+  cost per turn.
