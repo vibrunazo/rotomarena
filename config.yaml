@@ -122,6 +122,11 @@ rulesets:
     pick: 3
     profile: "ladder"
     reasoning: "medium"
+    # 13 Oct: a 4,096-token thinking budget for everyone (c1-c4's way: the same ceiling for all), instead of medium
+    # effort, which providers read their own way (Sonnet thought 0 tokens, some spiralled to the cap). Effort-based
+    # providers turn the number back into an effort level; models it doesn't work for get an exception below.
+    # Earlier games of the models it changes are tagged "superseded:medium-effort" and retire later (see plan-c5.md).
+    thinking_budget: 4096
     max_output_tokens: 8192
     draft_max_output_tokens: 8192
     answer_attempts: 2
@@ -131,8 +136,11 @@ rulesets:
     drafts: 3
     thinking_exceptions:
       # 12 Oct: at medium effort Sonnet 5.5 never thought (0 tokens in 85 turns); the 4,096-token budget medium means
-      # for Claude, asked for directly, makes it think
+      # for Claude, asked for directly, makes it think. (The default since 13 Oct; kept so its games stay current.)
       claude_sonnet_5_5: 4096
+      # 13 Oct: Gemini 4 Argon barely thinks at medium or any budget (0-160 tokens); high effort makes it think
+      # (200-1,650), about what other models do at the default
+      gemini_4_argon: "high"
       # 13 Oct: at medium effort Qwen3.8 Flash thought to the 8,192 cap on every replayed c5 turn (4 of its first 7
       # turns cut off); asked for 4,096 tokens it thought 477-3,669
       qwen3_8_flash: 4096

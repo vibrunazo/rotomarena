@@ -74,6 +74,12 @@ class MatchTelemetry(BaseModel):
     total_turns: int = 0
     duration_seconds: float = 0.0
     breadcrumbs: List[TurnBreadcrumb] = Field(default_factory=list)
+    tags: List[str] = Field(
+        default_factory=list,
+        description="Labels set by hand. 'superseded:<label>:<config id>': that player played under an earlier form of "
+        "its version's rules (c5's medium effort before its 4,096-token budget); the game still counts until "
+        "retired (voided) once enough games under the new rule are in",
+    )
     voided: Optional[str] = Field(
         default=None, description="Why this game was voided after it was played (set by hand); a voided game is not rated"
     )

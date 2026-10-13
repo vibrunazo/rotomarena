@@ -161,6 +161,15 @@ Gemini won 2 more without thinking any more (a measure of the noise). A real 10-
 hundred games per level to show. **Decision pending; recommendation: medium** (4,096 of 8,192), since high costs
 more where it does anything and shows no measurable gain.
 
+**Changed 13 Oct: a 4,096-token budget for everyone** (`thinking_budget: 4096`; c1-c4's way, the same ceiling for
+all), instead of medium effort, which providers read their own way (Sonnet thought nothing; Qwen Flash and MiniMax
+spiralled). Exceptions only where a budget doesn't work: Gemini 4 Argon gets high effort (it barely thinks at any
+budget). Measured the same 3 real c5 turns at both settings per model ($0.58): unchanged for most (Claude, GPT-6,
+Gemini 3.8 Flash, Muse, Kimi, GLM Flash, DeepSeek Flash, MiMo Flash; local and decision models by construction);
+changed for Solar Pro 4, Qwen 27B, Qwen Max Prime, MiMo Pro, Grok, GLM 5.3, DeepSeek V4 Pro (borderline) and Nemotron
+(untested). Their 32 earlier c5 games are tagged `superseded:medium-effort:<model>` and still count; retire them
+(void) once those models have enough games under the budget. c5's stored rules record the amendment.
+
 ### Waste
 - **No model call when only one action is legal** (7% of decisions, 4% of cost): play it and record it as such.
 - Look into GPT-6 Luna Pro's input-token count before c5 (see section 1).
