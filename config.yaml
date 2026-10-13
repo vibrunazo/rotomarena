@@ -249,9 +249,9 @@ ladder:
     s4: [["gpt_6_luna_pro", "gpt_6_luna_decisions"]]   # 1-1 after the first two: the video needs a decider
   games_per_set: 4          # 2 teams x 2 sides
   # A version's check run: each model plays this many games, all against free opponents (anchor, PokéChamp, chimps);
-  # raised once they check out (13 Oct: c5 starts at 2)
+  # raised once they check out (13 Oct: c5 started at 2; then 9, every model against all three free opponents)
   ceiling:
-    c5: 2
+    c5: 9
   parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
   provisional_games: 16     # a full placement
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
@@ -549,6 +549,7 @@ agents:
     pairing: {c5: "neighbours"}
     weights: "closed"
   hy4_preview:
+    active: false   # dropped 13 Oct: thinks to the 8,192 cap at every effort and budget (even on a one-line question); 15 of 26 c5 turns failed, $0.46 a game
     type: "direct_llm"
     display_name: "Hy4 Preview"
     provider: "openrouter"
