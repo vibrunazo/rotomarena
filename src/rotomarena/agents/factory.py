@@ -303,8 +303,11 @@ def create_players(
     name_a = format_bot_display_name(cfg_a, resolved_model=resolved_model(cfg_a, app_config))
     name_b = format_bot_display_name(cfg_b, resolved_model=resolved_model(cfg_b, app_config))
     same = name_a.lower() == name_b.lower()
-    return (
-        create_agent_instance(cfg_a, app_config, player_tag="1" if same else None, lane=lane),
-        create_agent_instance(cfg_b, app_config, player_tag="2" if same else None,
-                              lane=lane if lane_b is None else lane_b),
-    )
+    a = create_agent_instance(cfg_a, app_config, player_tag="1" if same else None, lane=lane)
+    b = create_agent_instance(cfg_b, app_config, player_tag="2" if same else None, lane=lane if lane_b is None else lane_b)
+    # a control bot plays a copy of its opponent's team (ladder.set_teams): the opponent is told (battle state 3)
+    if cfg_b.role == "control":
+        a.mirror_of = cfg_b.display_name or cfg_b.name
+    if cfg_a.role == "control":
+        b.mirror_of = cfg_a.display_name or cfg_a.name
+    return a, b

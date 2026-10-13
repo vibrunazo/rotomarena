@@ -44,3 +44,21 @@ def test_an_evasion_or_accuracy_boost_is_named_not_a_crash():
     mon._boosts.update({"evasion": -1, "accuracy": 1, "atk": 2})
     line = _own_now_line(mon, "gen9championsrotomarenabssregmb", True)
     assert "Atk +2" in line and "Evasion -1" in line and "Accuracy +1" in line
+
+
+def test_against_a_control_bot_the_model_is_told_it_plays_a_copy_of_its_team():
+    from rotomarena.agents.factory import create_players
+    from rotomarena.config import AgentConfig, AppConfig
+
+    battle = MockBattle()
+    battle._replay_data = []
+    battle.player_role = "p1"
+    battle.teampreview_opponent_team = []
+    state = format_battle_state(battle, None, None, 3, {}, mirror_of="PokéChamp")
+    assert "Your opponent is PokéChamp" in state and "exact copy of your team" in state
+    assert "exact copy" not in format_battle_state(battle, None, None, 3, {})  # against another model: nothing
+    agents = {"bot": AgentConfig(name="bot", type="random", role="control", display_name="Chimps"),
+              "llm": AgentConfig(name="llm", type="heuristic")}
+    app = AppConfig(agents=agents)
+    a, b = create_players(agents["llm"], agents["bot"], app)
+    assert a.mirror_of == "Chimps" and b.mirror_of is None

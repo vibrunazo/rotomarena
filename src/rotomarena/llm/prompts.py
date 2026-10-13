@@ -382,14 +382,24 @@ def unseen_line(preview: List[str], seen: set, pick: Optional[int] = None) -> st
             f"{'is' if still == 1 else 'are'} still to come in, from: {', '.join(unseen)}")
 
 
+def mirror_note(opponent: Optional[str]) -> List[str]:
+    """Against a control bot, which borrows its opponent's team, the player is told so (battle state 3): it would
+    otherwise spend turns scouting sets it already knows (13 Oct: DeepSeek V4 Pro sacked a Pokémon to see a move)."""
+    if not opponent:
+        return []
+    return [f"Your opponent is {opponent}, a scripted control bot, not a language model. Its six are an exact copy of "
+            f"your team: the same Pokémon, items, abilities, moves and stat spreads. It brings its own choice of them."]
+
+
 def format_battle_state(battle: Battle, brought: Optional[List[str]] = None, pick: Optional[int] = None,
-                        state: int = 1, notes: Optional[Dict[int, str]] = None, notes_shown: int = 3) -> str:
+                        state: int = 1, notes: Optional[Dict[int, str]] = None, notes_shown: int = 3,
+                        mirror_of: Optional[str] = None) -> str:
     """Serializes the battle for the prompt. Sections that rarely change (the benches) come first and the
     turn-specific ones last, so a local server can reuse more of its prompt cache from the previous turn.
     `state` is the ruleset's battle_state version (2: what Showdown's interface shows, see RulesetConfig; 3: the
     same, ordered for prompt caching, with the whole battle log and the player's notes, see format_battle_state_3)."""
     if state >= 3:
-        return format_battle_state_3(battle, brought, pick, notes or {}, notes_shown)
+        return format_battle_state_3(battle, brought, pick, notes or {}, notes_shown, mirror_of)
     fmt = battle.format or "gen9ou"
     champions = state >= 2 and dex_mod(fmt) == "champions"
     lines = ["#### YOUR BENCH:"]
@@ -498,7 +508,7 @@ def _own_now_line(mon: Pokemon, fmt: str, is_active: bool) -> str:
 
 
 def format_battle_state_3(battle: Battle, brought: Optional[List[str]], pick: Optional[int],
-                          notes: Dict[int, str], notes_shown: int = 3) -> str:
+                          notes: Dict[int, str], notes_shown: int = 3, mirror_of: Optional[str] = None) -> str:
     """Battle state 3 (c5): what Showdown's interface shows a player (as state 2), ordered so that each turn's prompt
     begins with the previous turn's, which lets providers' prompt caches reuse it: first what never changes (your
     Pokémon as built, the opponent's team preview), then what only grows (the whole battle log), then the player's
@@ -512,6 +522,7 @@ def format_battle_state_3(battle: Battle, brought: Optional[List[str]], pick: Op
     lines = ["#### YOUR POKÉMON IN THIS BATTLE (as built):"]
     lines.extend(_own_set_line(mon) for mon in mine)
     lines.append("\n#### OPPONENT'S TEAM AT TEAM PREVIEW:")
+    lines.extend(mirror_note(mirror_of))
     for mon in getattr(battle, "teampreview_opponent_team", None) or []:
         types = "/".join(t.name.title() for t in mon.types if t)
         ranges = ", ".join(f"{STAT_NAMES[k]} {'-'.join(map(str, stat_range(mon, k)))}" for k in STATS)
@@ -576,7 +587,8 @@ def format_battle_state_3(battle: Battle, brought: Optional[List[str]], pick: Op
     return "\n".join(lines)
 
 
-def format_team_preview(battle: Battle, pick: Optional[int] = None, state: int = 1) -> str:
+def format_team_preview(battle: Battle, pick: Optional[int] = None, state: int = 1,
+                        mirror_of: Optional[str] = None) -> str:
     """Team preview: both teams before the battle; the player picks its lead, or, in a bring-N format, the N
     Pokémon it brings in order (the first leads)."""
     choosing = pick is not None and pick < len(battle.team)
@@ -592,6 +604,8 @@ def format_team_preview(battle: Battle, pick: Optional[int] = None, state: int =
     fmt = battle.format or "gen9ou"
     lines.extend(format_pokemon_summary(mon, False, False, state, fmt) for mon in battle.team.values())
     lines.append("\n#### OPPONENT'S TEAM:")
+    if state >= 3:
+        lines.extend(mirror_note(mirror_of))
     for mon in getattr(battle, "teampreview_opponent_team", None) or []:
         types = "/".join(t.name.title() for t in mon.types if t)
         if state >= 2:

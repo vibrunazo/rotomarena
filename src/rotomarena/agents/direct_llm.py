@@ -124,7 +124,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
                                            reasoning="Only one legal action: played without asking.")
                 return only
         state = format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick, self.battle_state,
-                                    self.notes.get(battle.battle_tag), self.notes_shown)
+                                    self.notes.get(battle.battle_tag), self.notes_shown, self.mirror_of)
         try:
             decision, order, source, problem, metrics, attempts, first_try = await self._decide(state, play)
         except Exception as e:
@@ -196,7 +196,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         lead, source, note, decision, metrics, retried = 0, "model", "", None, None, {}
         try:
             decision, match, source, problem, metrics, attempts, first_try = await asyncio.wait_for(
-                self._decide(format_team_preview(battle, state=self.battle_state), play,
+                self._decide(format_team_preview(battle, state=self.battle_state, mirror_of=self.mirror_of), play,
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              "<decision>LEAD: one species from YOUR TEAM</decision>."),
                 timeout=self.turn_timeout)
@@ -247,7 +247,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
         chosen, source, note, decision, metrics, retried = [], "model", "", None, None, {}
         try:
             decision, chosen, source, problem, metrics, attempts, first_try = await asyncio.wait_for(
-                self._decide(format_team_preview(battle, self.pick, self.battle_state), play,
+                self._decide(format_team_preview(battle, self.pick, self.battle_state, self.mirror_of), play,
                              "Your answer could not be used: {problem}. Answer again: a short <thought>, then "
                              f"<decision>BRING: {self.pick} different species from YOUR TEAM, comma-separated, the "
                              "leader first</decision>."),
