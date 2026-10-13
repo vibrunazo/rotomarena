@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-12T20:07:55+00:00",
+  "generated_at": "2026-10-13T05:46:56+00:00",
   "game": "pokemon",
   "formats": [
     "gen9championsrotomarenabssregmb",
     "gen9ou"
   ],
-  "version": "c4",
+  "version": "c5",
   "versions": [
     "s4",
     "c4",
@@ -361,19 +361,19 @@
     }
   ],
   "ruleset": {
-    "version": "c4",
+    "version": "c5",
     "profile": "ladder",
     "reasoning": "medium",
-    "thinking_budget": 2048,
-    "max_output_tokens": 4096,
-    "draft_max_output_tokens": 5120,
+    "thinking_budget": null,
+    "max_output_tokens": 8192,
+    "draft_max_output_tokens": 8192,
     "turn_timeout": 7200.0,
     "format": "gen9championsrotomarenabssregmb",
     "thinking_exceptions": {
-      "muse_spark_1_3": "medium"
+      "claude_sonnet_5_5": 4096
     },
     "agent_versions": {
-      "pokechamp": 3
+      "pokechamp": 4
     },
     "provider_routing": {
       "deepseek_v4_1_flash": [
@@ -387,15 +387,18 @@
       ],
       "claude_opus_5_5": [
         "Anthropic"
+      ],
+      "claude_fable_5_1": [
+        "Anthropic"
       ]
     },
     "team_mode": "draft",
     "pick": 3,
     "answer_attempts": 2,
-    "battle_state": 2,
-    "drafts": null,
-    "draft_prompts": null,
-    "notes_shown": null,
+    "battle_state": 3,
+    "drafts": 3,
+    "draft_prompts": 2,
+    "notes_shown": 3,
     "teams": [
       "balance",
       "hyper_offense"
@@ -429,6 +432,9 @@
     "games_per_set": 4,
     "precision": 100.0,
     "neighbour_repeats": 2,
+    "ceiling": {
+      "c5": 2
+    },
     "provisional_games": 16,
     "max_autopilot": 0.5,
     "bootstrap_samples": 1000,
