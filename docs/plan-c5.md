@@ -249,5 +249,8 @@ Also decided 12 Oct: medium effort; notes of at most 60 words, the last 3 shown.
 Open (none of them a rule of the version, so they can change while c5 plays):
 - The precision target.
 - Batch mode: how the ladder plays batched models (all their games at once, not 4 at a time).
-- Prompt caching for Claude (OpenRouter needs explicit cache breakpoints for Anthropic): input is most of Claude's
-  cost per turn.
+
+Prompt caching (checked 12 Oct): Claude cached nothing (Anthropic needs explicit breakpoints); now the system prompt
+and the battle log (one block per turn) are breakpoints, and from the third turn about half of Sonnet's prompt is
+read from cache at a tenth of the price. GPT-6 caches on its own; Gemini too once a prompt passes ~4,000 tokens
+(mid-game on). Breadcrumbs now record `cached_tokens` and `cache_write_tokens`.
