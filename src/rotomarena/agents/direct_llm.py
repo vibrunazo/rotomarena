@@ -118,7 +118,7 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             return None, "model", order
 
         if self.battle_state >= 3:
-            only = self._only_action(battle)
+            only = self.only_action(battle)
             if only is not None:  # nothing to choose: no tokens spent asking (7% of c4's decisions)
                 self.record_turn_telemetry(battle=battle, chosen_order=only, decision_source="forced",
                                            reasoning="Only one legal action: played without asking.")
@@ -167,15 +167,6 @@ class DirectLLMPlayer(BaseBenchmarkPlayer):
             **retried,
         )
         return order
-
-    def _only_action(self, battle: Battle) -> Optional[BattleOrder]:
-        """The one legal action, when there is exactly one (a Mega Evolution option counts as another)."""
-        moves = battle.available_moves or []
-        switches = battle.available_switches or []
-        options = len(moves) * (2 if battle.can_mega_evolve or battle.can_tera else 1) + len(switches)
-        if options != 1:
-            return None
-        return self.create_order(moves[0] if moves else switches[0])
 
     def remember(self, battle: Battle, decision: Optional[ActionDecision]) -> None:
         """Keeps the notes the model wrote this turn for its later turns (battle state 3: its memory)."""

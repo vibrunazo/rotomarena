@@ -71,6 +71,15 @@ def speed_line(battle: Battle) -> str:
             f"unless a move has priority.")
 
 
+def move_priority(move: Move) -> int:
+    """A move's priority; 0 for the pseudo-moves without dex data ("recharge" after Hyper Beam), whose entry has none
+    (poke-env raises KeyError)."""
+    try:
+        return move.priority or 0
+    except KeyError:
+        return 0
+
+
 def _move_line(move: Move, battle: Battle, fmt: str) -> str:
     """A legal move as battle state 2 lists it: type, category, power, accuracy, priority, effectiveness on the
     opposing active Pokemon (as Showdown's move buttons show) and its tooltip line."""
@@ -78,8 +87,8 @@ def _move_line(move: Move, battle: Battle, fmt: str) -> str:
     cat = move.category.name.title() if move.category else "Status"
     acc = "never misses" if move.accuracy is True else f"{round(move.accuracy * 100)}% accuracy"
     parts = [f"{m_type}, {cat}", f"power {move.base_power}" if move.base_power else "", acc]
-    if move.priority:
-        parts.append(f"priority {move.priority:+d}")
+    if move_priority(move):
+        parts.append(f"priority {move_priority(move):+d}")
     target = battle.opponent_active_pokemon
     if target and cat != "Status" and move.type:
         mult = target.damage_multiplier(move)

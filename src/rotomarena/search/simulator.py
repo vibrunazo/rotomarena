@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 from poke_env.battle import Battle, Move, MoveCategory, Pokemon, SideCondition, Status
+from rotomarena.llm.prompts import move_priority
 from rotomarena.search.heuristics import evaluate_battle_state, get_type_effectiveness
 
 
@@ -311,7 +312,7 @@ def simulate_turn_outcome(
                                attacking=player_move.category != MoveCategory.STATUS)
 
     opp_move = opp.moves.get(opp_action_target) if opp_action_type == "MOVE" else None
-    priority = (player_move.priority or 0) - ((opp_move.priority or 0) if opp_move else 0)
+    priority = move_priority(player_move) - (move_priority(opp_move) if opp_move else 0)
     moves_first = priority > 0 or (priority == 0 and _stat(active, "spe") >= _stat(opp, "spe"))  # priority, then speed
     if player_move.category == MoveCategory.STATUS:
         delta = _status_move_delta(battle, player_move, active, opp, opp_action_type, opp_dmg, moves_first)

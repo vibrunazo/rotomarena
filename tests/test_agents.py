@@ -243,3 +243,25 @@ def test_battle_state_2_shows_what_showdown_shows_a_player():
     prompt = system_prompt_for("gen9championsrotomarenabssregmb", 3, attempts=2, state=2)
     assert "MOVE: drainpunch" in prompt and "one more try" in prompt and "Great Tusk" not in prompt
     assert system_prompt_for("gen9championsrotomarenabssregmb", 3) != prompt  # c1-c3 keep theirs
+
+
+@pytest.mark.asyncio
+async def test_a_decision_model_is_not_asked_when_only_recharge_is_legal():
+    from poke_env.battle import Move
+    from rotomarena.agents.decision import DecisionPlayer
+    from rotomarena.llm.prompts import move_priority
+
+    client = MagicMock()
+    client.choose = AsyncMock()
+    player = DecisionPlayer(client, player_name="TestDecision", start_listening=False, battle_state=3)
+    recorder = BreadcrumbsRecorder("test_match")
+    player.set_recorder(recorder)
+    battle = MockBattle()
+    battle.can_tera = False
+    battle.available_moves = [Move("recharge", gen=9)]  # after Hyper Beam; it has no priority in the dex
+    battle.available_switches = []
+    order = await player.choose_move(battle)
+    assert "recharge" in str(order.message).lower() or "move 1" in str(order.message).lower()
+    client.choose.assert_not_called()
+    assert recorder.breadcrumbs[-1].decision_source == "forced"
+    assert move_priority(Move("recharge", gen=9)) == 0 and move_priority(Move("quickattack", gen=9)) == 1

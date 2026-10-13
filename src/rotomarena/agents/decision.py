@@ -72,6 +72,11 @@ class DecisionPlayer(BaseBenchmarkPlayer):
         options = turn_options(battle)
         if not options:
             return self.choose_default_order(battle)
+        only = self.only_action(battle) if self.battle_state >= 3 else None
+        if only is not None:  # nothing to choose (a recharge turn, a last Pokémon's only move): not asked
+            self.record_turn_telemetry(battle=battle, chosen_order=only, decision_source="forced",
+                                       reasoning="Only one legal action: played without asking.")
+            return only
         try:
             choice, usage = await self._ask(format_battle_state(battle, self.brought.get(battle.battle_tag), self.pick,
                                                                 self.battle_state),

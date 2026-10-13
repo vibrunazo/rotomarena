@@ -135,6 +135,16 @@ class BaseBenchmarkPlayer(Player):
         )
         self.breadcrumbs_recorder.record_turn(crumb, battle.battle_tag)
 
+    def only_action(self, battle: Battle) -> Optional[BattleOrder]:
+        """The one legal action, when there is exactly one (a Mega Evolution option counts as another): battle
+        state 3 plays it without asking ("forced")."""
+        moves = battle.available_moves or []
+        switches = battle.available_switches or []
+        options = len(moves) * (2 if battle.can_mega_evolve or battle.can_tera else 1) + len(switches)
+        if options != 1:
+            return None
+        return self.create_order(moves[0] if moves else switches[0])
+
     def choose_default_order(self, battle: Battle) -> BattleOrder:
         """The fallback ("Autopilot") move: the first legal move, else the first legal switch."""
         if battle.available_moves:
