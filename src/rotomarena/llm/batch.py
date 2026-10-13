@@ -49,6 +49,10 @@ class BatchQueue:
         body.update(create_kwargs.get("extra_body") or {})
         model = body.pop("model")
         provider = body.pop("provider", None)
+        if model.startswith("anthropic/") and (body.get("reasoning") or {}).get("enabled", True):
+            # Claude thinks only at temperature 1: a direct request ignores the temperature, a batched one drops the
+            # thinking instead (12 Oct: Sonnet at 0.7 thought 0 tokens batched in 1 try; without it 9 of 10 thought)
+            body.pop("temperature", None)
         key = (model, json.dumps(provider, sort_keys=True) if provider else "")
         future: asyncio.Future = asyncio.get_running_loop().create_future()
         self._pending.setdefault(key, []).append((f"r{next(_ids)}", body, future))

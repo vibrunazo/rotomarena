@@ -31,6 +31,7 @@ def test_requests_share_a_batch_and_get_their_own_answers(monkeypatch):
 
     async def ask(text):
         return await queue.submit({"model": "anthropic/claude-sonnet-5.5", "messages": [{"role": "user", "content": text}],
+                                   "temperature": 0.7,
                                    "extra_body": {"reasoning": {"effort": "medium"}, "provider": {"only": ["Anthropic"]}}})
 
     async def main():
@@ -40,6 +41,7 @@ def test_requests_share_a_batch_and_get_their_own_answers(monkeypatch):
     assert len(sent) == 1 and len(sent[0]["requests"]) == 3  # one batch for the three
     assert list(sent[0])[:4] == ["endpoint", "model", "provider", "completion_window"]  # before requests
     assert sent[0]["requests"][0]["body"]["reasoning"] == {"effort": "medium"}
+    assert "temperature" not in sent[0]["requests"][0]["body"]  # Claude thinks only without it in a batch
     assert one.choices[0].message.content == "ONE" and two.choices[0].message.content == "TWO"
     assert abs(one.usage.model_extra["cost"] - 0.015) < 1e-9  # half the batch's cost each, by tokens
     assert isinstance(three, BatchFailed)
