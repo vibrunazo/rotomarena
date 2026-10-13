@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from rotomarena.telemetry.breadcrumbs import MatchTelemetry, TurnBreadcrumb
 
@@ -20,11 +20,23 @@ class Outcome:
     score_p1: float
 
 
+# Parsed matches by file, kept while the file is unchanged: the run monitor and the round robin load every match
+# many times a minute (13 Oct: 1,900 files read once per model, a minute per status refresh)
+_parsed: Dict[Path, Tuple[Tuple[float, int], MatchTelemetry]] = {}
+
+
 def load_matches(runs_dir: str | Path, version: Optional[str] = None) -> List[MatchTelemetry]:
-    """All recorded matches in `runs_dir`, optionally only those played under one ruleset version."""
+    """All recorded matches in `runs_dir`, optionally only those played under one ruleset version. Files already
+    read are parsed again only when they change (a game voided or tagged by hand)."""
     matches = []
     for path in sorted(Path(runs_dir).glob("*/breadcrumbs.json")):
-        match = MatchTelemetry.model_validate(json.loads(path.read_text(encoding="utf-8")))
+        stat = path.stat()
+        stamp = (stat.st_mtime, stat.st_size)
+        hit = _parsed.get(path)
+        if hit is None or hit[0] != stamp:
+            hit = (stamp, MatchTelemetry.model_validate(json.loads(path.read_text(encoding="utf-8"))))
+            _parsed[path] = hit
+        match = hit[1]
         if version is None or match.ruleset.get("version") == version:
             matches.append(match)
     return matches
