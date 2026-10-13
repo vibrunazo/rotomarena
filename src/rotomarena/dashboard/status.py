@@ -304,6 +304,7 @@ def status(app_cfg: AppConfig) -> Dict[str, Any]:
         "now": now.isoformat(timespec="seconds"),
         "version": version,
         "run": {"driver_pid": driver_pid, "running": _alive(driver_pid), "started": _iso(run_started) if run_started else None,
+                "engine": app_cfg.server.engine,  # "simulator": no Showdown server to watch
                 "showdown_pid": showdown_run, "showdown_running": _alive(showdown_run),
                 "last_activity": _iso(activity), "idle_minutes": round((now.timestamp() - activity) / 60)},
         "totals": {"games_done": sum(p["done"] for p in plan), "games_planned": sum(p["planned"] for p in plan),

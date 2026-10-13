@@ -173,7 +173,8 @@ function render(s) {
   const live = s.live || [];
   now += live.length ? live.map((g) => `<div class="game"><span class="turn">Turn ${g.turn}</span><span>${esc(g.p1)}<span class="vs">vs</span>${esc(g.p2)}</span>
       <a class="small" href="watch/${encodeURIComponent(g.room)}" target="_blank" rel="noopener">Watch live ↗</a></div>`).join('')
-    : `<p class="small muted">${s.run.showdown_running ? 'No battle open right now (between games, or a model is loading).' : 'The Showdown server is not running.'}</p>`;
+    : `<p class="small muted">${s.run.engine === 'simulator' ? (s.run.running ? 'No battle open right now (between games, or a model is loading).' : 'No run is playing.')
+        : s.run.showdown_running ? 'No battle open right now (between games, or a model is loading).' : 'The Showdown server is not running.'}</p>`;
   if (s.in_progress.length) now += `<p class="small faint" style="margin:8px 0 0">${s.in_progress.map((g) => `Game started ${time(g.started)} (${g.minutes} min ago)`).join(' · ')}</p>`;
   if (s.sitting_out.length) now += `<p class="small faint" style="margin:6px 0 0">Sitting out, no team yet: ${s.sitting_out.map((k) => esc(n[k] || k)).join(', ')}</p>`;
   document.getElementById('now').innerHTML = now;
@@ -198,7 +199,8 @@ function render(s) {
 
   const rows = [
     ['Run', s.run.running ? `running since ${day(s.run.started)} (PID ${s.run.driver_pid})` : 'not running'],
-    ['Showdown', s.run.showdown_running ? `up (PID ${s.run.showdown_pid})` : 'down'],
+    s.run.engine === 'simulator' ? ['Games', "Showdown's simulator (no server)"]
+      : ['Showdown', s.run.showdown_running ? `up (PID ${s.run.showdown_pid})` : 'down'],
     ['Last activity', `${day(s.run.last_activity)} (${s.run.idle_minutes} min ago)`],
     ...s.local_servers.map((v) => [`Local: ${esc(v.model)}`, `port ${v.port} · ${v.tok_s ? v.tok_s.toFixed(1) + ' tok/s last turn' : 'no turn yet'}`]),
     ['Site publish', esc((s.publisher.filter((l) => l.includes('published') || l.includes('nothing new')).pop() || 'not yet this run').replace(/\(commit.*$/, ''))],
