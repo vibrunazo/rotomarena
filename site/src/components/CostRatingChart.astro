@@ -1,0 +1,162 @@
+---
+// Rating against cost per game, one point per rated model (log cost axis; free models in their own column at the
+// left), with the Pareto frontier (no model is both cheaper and better than a point on it), the most attractive
+// quadrant (better and cheaper than the median paid model), and the control bots as reference lines.
+import { routes } from '../lib/routes';
+import { fmtCost, type Model } from '../lib/data';
+
+interface Props { models: Model[]; caption?: string }
+const { models, caption } = Astro.props;
+
+const cost = (m: Model) => m.tier_cost_usd ?? m.cost_per_game_usd;
+const lab = (m: Model) => (m.model_key ?? '').split('/')[0] || 'other';
+const rated = models.filter((m) => m.games > 0 && m.rating !== null);
+const points = rated.filter((m) => m.type === 'direct_llm' || m.type === 'decision');
+const controls = rated.filter((m) => m.role === 'control');
+
+// Labs by colour; labs beyond the named ones take the spare colours in turn
+const named: Record<string, string> = {
+  anthropic: '#e0866a', openai: '#e7ecff', google: '#4f9dff', 'meta': '#9b6bff', deepseek: '#6d7dff',
+  xiaomi: '#ff8a3d', 'z-ai': '#3ee6ff', qwen: '#ffb547', nvidia: '#7ddc3a', mistralai: '#ff5470', 'x-ai': '#9aa5c9',
+};
+const spare = ['#3dffa8', '#ff4fd8', '#c4b5fd', '#f9e45b', '#67e8f9', '#ff9fb2', '#a3e635', '#fdba74'];
+const labName: Record<string, string> = {
+  anthropic: 'Anthropic', openai: 'OpenAI', google: 'Google', meta: 'Meta', deepseek: 'DeepSeek', xiaomi: 'Xiaomi',
+  'z-ai': 'Z.ai', qwen: 'Qwen', nvidia: 'NVIDIA', mistralai: 'Mistral', 'x-ai': 'xAI', inception: 'Inception',
+  perplexity: 'Perplexity', upstage: 'Upstage', typesafe: 'Typesafe', inclusionai: 'inclusionAI', openbmb: 'OpenBMB',
+  'ornith-ai': 'Ornith AI', 'prism-ml': 'PrismML', convaiinnovations: 'ConvAI Innovations', microsoft: 'Microsoft',
+  'nace-ai': 'NACE.ai', moonshotai: 'Moonshot AI', minimax: 'MiniMax', stepfun: 'StepFun', tencent: 'Tencent',
+};
+const labs = [...new Set(points.map(lab))].sort((a, b) => (labName[a] ?? a).localeCompare(labName[b] ?? b));
+const colour: Record<string, string> = {};
+let s = 0;
+for (const l of labs) colour[l] = named[l] ?? spare[s++ % spare.length];
+
+const W = 720, H = 420, L = 58, R = 24, T = 18, B = 50, FREE = 80;  // FREE: width of the free column
+const paid = points.filter((m) => cost(m) > 0);
+const costs = paid.map(cost);
+// the axis starts at the 1-3-10 step just below the cheapest paid model
+const low = Math.min(...costs, 0.01) / 1.2, decade = 10 ** Math.floor(Math.log10(low));
+const xmin = low >= 3 * decade ? 3 * decade : decade;
+const xmax = 10 ** Math.ceil(Math.log10(Math.max(...costs, 0.1)));
+const x0 = L + FREE;  // where the log axis starts
+const x = (c: number) => (c <= 0 ? L + FREE / 2
+  : x0 + ((Math.log10(c) - Math.log10(xmin)) / (Math.log10(xmax) - Math.log10(xmin))) * (W - x0 - R));
+const ratings = [...points, ...controls].map((m) => m.rating!);
+const ymin = Math.floor((Math.min(...ratings) - 30) / 100) * 100;
+const ymax = Math.ceil((Math.max(...ratings) + 30) / 100) * 100;
+const y = (r: number) => T + (1 - (r - ymin) / (ymax - ymin)) * (H - T - B);
+const xticks = Array.from({ length: Math.ceil(Math.log10(xmax / decade)) + 1 }, (_, i) => decade * 10 ** i)
+  .flatMap((d) => [d, 3 * d]).filter((t) => t >= xmin && t <= xmax);
+const yticks = Array.from({ length: (ymax - ymin) / 100 + 1 }, (_, i) => ymin + i * 100);
+const money = (t: number) => `$${Number(t.toPrecision(1))}`;
+
+// Pareto frontier: cheapest first, each point better than everything cheaper (ties in cost: the better one)
+const frontier: Model[] = [];
+for (const m of [...points].sort((a, b) => cost(a) - cost(b) || b.rating! - a.rating!)) {
+  if (!frontier.length || m.rating! > frontier[frontier.length - 1].rating!) frontier.push(m);
+}
+const onFrontier = new Set(frontier.map((m) => m.config_id));
+const path = frontier.map((m, i) => `${i ? 'L' : 'M'}${x(cost(m)).toFixed(1)},${y(m.rating!).toFixed(1)}`).join(' ');
+
+// Most attractive quadrant: at least the median paid model's rating, at most its cost
+const median = (v: number[]) => { const a = [...v].sort((p, q) => p - q); return a.length ? (a[(a.length - 1) >> 1] + a[a.length >> 1]) / 2 : NaN; };
+const qCost = median(costs), qRating = median(paid.map((m) => m.rating!));
+
+// Labels: frontier first, then the rest best first; each takes the first free spot around its point, else none
+// (its name is still in the point's tooltip)
+const placed: { x1: number; y1: number; x2: number; y2: number }[] = [];
+const dots = points.map((m) => ({ m, cx: x(cost(m)), cy: y(m.rating!) }));
+for (const d of dots) placed.push({ x1: d.cx - 6, y1: d.cy - 6, x2: d.cx + 6, y2: d.cy + 6 });
+const labels = new Map<string, { lx: number; ly: number; anchor: string }>();
+const order = [...dots].sort((a, b) => Number(onFrontier.has(b.m.config_id)) - Number(onFrontier.has(a.m.config_id)) || b.m.rating! - a.m.rating!);
+for (const d of order) {
+  const w = d.m.display_name.length * 6.3, h = 12;
+  for (const [dx, dy, anchor] of [[9, 4, 'start'], [-9, 4, 'end'], [0, -10, 'middle'], [0, 17, 'middle']] as const) {
+    const lx = d.cx + dx, ly = d.cy + dy;
+    const x1 = anchor === 'start' ? lx : anchor === 'end' ? lx - w : lx - w / 2;
+    const box = { x1, y1: ly - h + 2, x2: x1 + w, y2: ly + 2 };
+    const inside = box.x1 >= L && box.x2 <= W - R && box.y1 >= T && box.y2 <= H - B;
+    if (inside && !placed.some((p) => box.x1 < p.x2 && box.x2 > p.x1 && box.y1 < p.y2 && box.y2 > p.y1)) {
+      placed.push(box);
+      labels.set(d.m.config_id, { lx, ly, anchor });
+      break;
+    }
+  }
+}
+---
+{points.length > 1 && (
+  <figure>
+    <div class="plot-scroll">
+      <svg viewBox={`0 0 ${W} ${H}`} width={W} role="img" aria-label="Rating against cost per game">
+        {Number.isFinite(qCost) && (
+          <g>
+            <rect x={x0} y={T} width={Math.max(x(qCost) - x0, 0)} height={Math.max(y(qRating) - T, 0)} class="quadrant" />
+            <text x={x0 + 6} y={T + 14} class="quadrant-label">Most attractive quadrant</text>
+          </g>
+        )}
+        {yticks.map((t) => (
+          <g>
+            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} class="grid" />
+            <text x={L - 8} y={y(t) + 4} text-anchor="end" class="tick">{t}</text>
+          </g>
+        ))}
+        {xticks.map((t) => (
+          <g>
+            <line x1={x(t)} x2={x(t)} y1={T} y2={H - B} class="grid" />
+            <text x={x(t)} y={H - B + 18} text-anchor="middle" class="tick">{money(t)}</text>
+          </g>
+        ))}
+        <line x1={x0} x2={x0} y1={T} y2={H - B} class="free-edge" />
+        <text x={L + FREE / 2} y={H - B + 18} text-anchor="middle" class="tick">free</text>
+        <text x={(x0 + W - R) / 2} y={H - 8} text-anchor="middle" class="axis">Cost per game (USD, log scale)</text>
+        <text x={14} y={(T + H - B) / 2} text-anchor="middle" class="axis" transform={`rotate(-90 14 ${(T + H - B) / 2})`}>Rating</text>
+        {controls.map((m) => (
+          <g>
+            <line x1={L} x2={W - R} y1={y(m.rating!)} y2={y(m.rating!)} class="control" />
+            <text x={W - R - 4} y={y(m.rating!) - 5} text-anchor="end" class="control-label">{m.display_name} {Math.round(m.rating!)}</text>
+          </g>
+        ))}
+        <path d={path} class="frontier" />
+        {dots.map(({ m, cx, cy }) => {
+          const l = labels.get(m.config_id);
+          return (
+            <a href={routes.model(m.config_id)}>
+              <title>{`${m.display_name}: ${Math.round(m.rating!)}, ${fmtCost(cost(m))} a game`}</title>
+              <circle cx={cx} cy={cy} r={onFrontier.has(m.config_id) ? 6.5 : 5} fill={colour[lab(m)]}
+                class={onFrontier.has(m.config_id) ? 'pt on' : 'pt'} />
+              {l && <text x={l.lx} y={l.ly} text-anchor={l.anchor} class={onFrontier.has(m.config_id) ? 'label on' : 'label'}>{m.display_name}</text>}
+            </a>
+          );
+        })}
+      </svg>
+    </div>
+    <ul class="legend small">
+      <li><span class="key-line"></span> Pareto frontier</li>
+      {labs.map((l) => <li><span class="key-dot" style={`background:${colour[l]}`}></span> {labName[l] ?? l}</li>)}
+    </ul>
+    {caption && <figcaption set:html={caption} />}
+  </figure>
+)}
+
+<style>
+  .plot-scroll { overflow-x: auto; background: var(--hud-panel); border: 1px solid transparent; border-radius: 8px; padding: 0.6rem; }
+  svg { display: block; max-width: none; }
+  .grid { stroke: var(--line); }
+  .free-edge { stroke: var(--line-strong); stroke-dasharray: 2 4; }
+  .quadrant { fill: rgba(61, 255, 168, 0.06); stroke: rgba(61, 255, 168, 0.25); stroke-dasharray: 4 4; }
+  .quadrant-label { font: 600 11px var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--green); opacity: 0.8; }
+  .tick { font: 11px var(--font-mono); fill: var(--text-dim); }
+  .axis { font: 12px var(--font-body); fill: var(--text-dim); }
+  .control { stroke: var(--amber); stroke-dasharray: 5 4; opacity: 0.6; }
+  .control-label { font: 11px var(--font-body); fill: var(--amber); }
+  .frontier { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 2 4; stroke-linecap: round; opacity: 0.8; }
+  .pt { stroke: rgba(3, 5, 14, 0.8); stroke-width: 1.5; }
+  .pt.on { stroke: var(--text); stroke-width: 2; }
+  .label { font: 11px var(--font-body); fill: var(--text-dim); }
+  .label.on { fill: var(--text); font-weight: 600; }
+  a:hover .label { fill: var(--cyan); }
+  .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; list-style: none; padding: 0; margin: 0.6rem 0 0; color: var(--text-dim); }
+  .key-dot { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; vertical-align: middle; }
+  .key-line { display: inline-block; width: 1.4rem; border-top: 2px dotted var(--text); vertical-align: middle; }
+</style>

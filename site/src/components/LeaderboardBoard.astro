@@ -5,6 +5,7 @@ import { routes } from '../lib/routes';
 import Base from '../layouts/Base.astro';
 import LeaderboardTable from './LeaderboardTable.astro';
 import ForestPlot from './ForestPlot.astro';
+import CostRatingChart from './CostRatingChart.astro';
 import { archivedBoards, benchBoards, benchOf, benches, boardHref, boardModels, boards, fmtDate, fmtInt, headToHeadFor, meta, modelsById, type Board } from '../lib/data';
 
 interface Props { board: Board }
@@ -85,6 +86,13 @@ const record = (a: string, b: string) => {
     anchor={anchor?.config_id ?? meta.ladder.anchor}
     caption={`<strong>Figure 1.</strong> Ratings with 95% parametric bootstrap intervals; the bars end at the interval bounds. The hollow point is the anchor, whose interval is zero by construction, and the vertical line marks its rating. Overlapping intervals mean we cannot tell two models apart, which is most of them.`}
   />
+
+  {isBench && (
+    <CostRatingChart
+      models={models}
+      caption={`<strong>Figure 2.</strong> Rating against cost per game. The dotted line is the Pareto frontier: no model is both cheaper and better than a model on it. The shaded quadrant is better and cheaper than the median paid model. The dashed lines are the control bots, who cost nothing and are not invited to the frontier.`}
+    />
+  )}
 
   <h2>Head to head</h2>
   <p class="small muted">Wins–losses of the row model against the column model.</p>
