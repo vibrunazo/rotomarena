@@ -34,3 +34,13 @@ def test_the_state_goes_from_what_never_changes_to_this_turn_and_shows_the_lates
                                       "YOUR POKÉMON NOW", "LEGAL ACTIONS THIS TURN")]
     assert order == sorted(order)
     assert "turn one" in state and "turn three" in state and "lead plan" not in state  # the latest 3
+
+
+def test_an_evasion_or_accuracy_boost_is_named_not_a_crash():
+    from rotomarena.llm.prompts import _own_now_line
+    from .mocks import create_test_pokemon
+
+    mon = create_test_pokemon("garchomp", moves=["earthquake"])
+    mon._boosts.update({"evasion": -1, "accuracy": 1, "atk": 2})
+    line = _own_now_line(mon, "gen9championsrotomarenabssregmb", True)
+    assert "Atk +2" in line and "Evasion -1" in line and "Accuracy +1" in line

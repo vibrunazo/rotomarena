@@ -12,7 +12,9 @@ from poke_env.battle import Battle, Move, Pokemon
 # Showdown's tooltip texts (scripts/dump_dex_text.js), quoted by battle state 2
 DEX_DIR = Path(__file__).resolve().parents[3] / "data" / "dex"
 STATS = ["hp", "atk", "def", "spa", "spd", "spe"]
-STAT_NAMES = {"hp": "HP", "atk": "Atk", "def": "Def", "spa": "SpA", "spd": "SpD", "spe": "Spe"}
+# accuracy and evasion are boosts only (Sand Attack, Double Team): without them a lowered evasion crashed the turn
+STAT_NAMES = {"hp": "HP", "atk": "Atk", "def": "Def", "spa": "SpA", "spd": "SpD", "spe": "Spe",
+              "accuracy": "Accuracy", "evasion": "Evasion"}
 
 
 def dex_mod(fmt: str) -> str:
