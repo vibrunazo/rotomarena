@@ -1,0 +1,705 @@
+{
+  "id": "match_20261014_074411_Solar Decide_vs_Bonsai 2 27B_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 11,
+  "duration_seconds": 745.83,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|Bonsai 2 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Delphox, L50, F|",
+    "|poke|p1|Blaziken, L50, F|",
+    "|poke|p1|Sceptile, L50, M|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Hydreigon, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Gardevoir, L50, M|",
+    "|poke|p2|Krookodile, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Garchomp|Earthquake|p1a: Rotom",
+    "|-immune|p1a: Rotom|[from] ability: Levitate",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, M|100/100",
+    "|move|p1a: Rotom|Poltergeist|p2a: Hydreigon",
+    "|-activate|p2a: Hydreigon|move: Poltergeist|Choice Scarf",
+    "|-resisted|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|85/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Hydreigon|Dark Pulse|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|-ability|p1a: Tauros|Intimidate|boost",
+    "|-unboost|p2a: Hydreigon|atk|1",
+    "|move|p2a: Hydreigon|Dark Pulse|p1a: Tauros",
+    "|-resisted|p1a: Tauros|1",
+    "|-damage|p1a: Tauros|102/150",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|move|p1a: Tauros|Reversal|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|81/100",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Tauros",
+    "|-supereffective|p1a: Tauros|1",
+    "|-damage|p1a: Tauros|0 fnt",
+    "|faint|p1a: Tauros",
+    "|-damage|p2a: Garchomp|72/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|turn|7",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, M|100/100",
+    "|move|p1a: Garchomp|Stone Edge|p2a: Toxapex|[miss]",
+    "|-miss|p1a: Garchomp|p2a: Toxapex",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p1a: Garchomp|Stone Edge|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|82/100",
+    "|move|p2a: Toxapex|Toxic|p1a: Garchomp",
+    "|-status|p1a: Garchomp|tox",
+    "|",
+    "|-heal|p2a: Toxapex|87/100|[from] item: Leftovers",
+    "|-damage|p1a: Garchomp|172/183 tox|[from] psn",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p1a: Garchomp|Stone Edge|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|69/100",
+    "|move|p2a: Toxapex|Recover|p2a: Toxapex",
+    "|-heal|p2a: Toxapex|100/100",
+    "|",
+    "|-damage|p1a: Garchomp|150/183 tox|[from] psn",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|72/100",
+    "|move|p1a: Garchomp|Stone Edge|p2a: Garchomp",
+    "|-resisted|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|58/100",
+    "|",
+    "|-damage|p1a: Garchomp|117/183 tox|[from] psn",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|-damage|p2a: Garchomp|48/100|[from] item: Life Orb",
+    "|",
+    "|win|Bonsai 2 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 39% BRING: garchomp, 23% BRING: blaziken, 21% BRING: rotom\nPick 2: 37% BRING: rotom, 23% BRING: blaziken, 23% BRING: sceptile\nPick 3: 37% BRING: blaziken, 37% BRING: taurospaldeablaze, 20% BRING: delphox",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6452,
+      "latency_ms": 4910,
+      "cost_usd": 0.0003226,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,toxapex,hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has Garchomp, multiple Fire types, Sceptile, Rotom, Blaziken, Taurospaldeablaze. My Garchomp leads with Earthquake (2x vs their Fire/Grass types). Toxapex walls and Toxic's their Garchomp/Sceptile. Hydreigon Choice Scarf + Levitate handles their Garchomp/Rotom with Darkpulse. Avoiding Gardevoir/Krookodile for now - they have Grass/Water weaknesses I'd rather not expose.",
+      "hidden_reasoning": "Let me analyze the opponent's team and my team to make the best choice for the first three Pokémon.\n\nOpponent's team:\n- Rotom (Electric/Ghost) - Levitate, likely a special attacker or support\n- Taurospaldeablaze (Fighting/Fire) - Intimidate/Angerpoint/Cudchew, physical attacker\n- Delphox (Fire/Psychic) - Blaze/Magician, special attacker\n- Blaziken (Fire/Fighting) - Blaze/Speedboost, mixed attacker\n- Sceptile (Grass) - Overgrow/Unburden, fast special attacker\n- Garchomp (Dragon/Ground) - Sandveil/Roughskin, physical Dragon/Ground\n\nMy team:\n- Garchomp (Dragon/Ground) - Life Orb, Sandveil, 183 HP, 182 ATK, 107 SPE\n- Toxapex (Poison/Water) - Leftovers, Regenerator, 157 HP, 224 DEF, 55 SPE\n- Hydreigon (Dark/Dragon) - Choice Scarf, Levitate, 167 HP, 112 ATK, 177 SPA, 165 SPE\n- Corviknight (Flying/Steel) - Metal Coat, Unnerve, 205 HP, 87 SPE\n- Gardevoir (Psychic/Fairy) - Wise Glasses, Synchronize, 143 HP, 177 SPA, 145 SPE\n- Krookodile (Ground/Dark) - Black Belt, Intimidate, 170 HP, 169 ATK, 158 SPE\n\nKey considerations:\n- Opponent has a Garchomp! That's a mirror. My Garchomp vs their Garchomp is interesting.\n- Opponent has multiple Fire types (Delphox, Blaziken, Taurospaldeablaze) - my Garchomp and Krookodile are Ground-type which resists Fire.\n- Opponent has Sceptile (Grass) - my Garchomp resists Grass? No, Dragon/Ground is weak to Ice, Water, Dragon, Grass. Wait: Ground is weak to Water and Grass. So Sceptile's Grass moves hit Garchomp super effectively. But Garchomp's Earthquake hits Sceptile for 2x (Ground vs Grass).\n- Opponent has Rotom-Wash or Rotom-Fan? Electric/Ghost... could be Rotom-Wash (Water/Electric) or Rotom-Fan (Electric/Flying)? Wait, it says Electric/Ghost. That's unusual. Actually in Gen 9 Champions, there might be a custom form. Let me just take it as Electric/Ghost.\n- Taurospaldeablaze is Fighting/Fire - this is likely a custom Pokémon from the format.\n\nLet me think about what to bring:\n\n1. Garchomp (Dragon/Ground) - Great lead. Resists Fire, Grass, Rock, Bug. Weak to Ice, Water, Dragon, Grass (2x). Can hit most of their team with Earthquake (2x vs Sceptile, 2x vs Blaziken, 2x vs Taurospaldeablaze). Life Orb boosts damage. Sandveil protects from sand.\n\n2. Toxapex (Poison/Water) - Great wall. Resists Water, Electric, Poison, Steel, Rock, Ground, Bug, Grass. Weak to Fire (4x), Grass (2x), Electric (2x). Can Toxic their Garchomp or Sceptile. Regenerator helps with switching.\n\n3. Hydreigon (Dark/Dragon) - Choice Scarf gives speed boost. Levitate means it's immune to Ground moves. Dark/Dragon resists Ghost, Ice, Dragon, Fire, Grass, Bug, Poison. Weak to Fairy, Fighting, Steel, Water, Ice. Can hit their Garchomp with Darkpulse (2x), and their Rotom with Darkpulse (2x). Dracometeor is a nuke but lowers SpA.\n\n4. Corviknight (Flying/Steel) - Great wall. Resists Flying, Rock, Bug, Steel, Fairy, Grass, Electric, Normal, Ice. Weak to Fire (2x), Ground (2x). Metal Coat reduces physical damage by 50%. Can Defog hazards.\n\n5. Gardevoir (Psychic/Fairy) - Special attacker. Wise Glasses boosts special attacks. Resists Fighting, Bug, Dark. Weak to Poison, Ghost, Steel, Ice, Dragon. Can hit their Garchomp with Moonblast? No, Fairy is neutral to Dragon/Ground. Psyshock hits based on opponent's DEF.\n\n6. Krookodile (Ground/Dark) - Intimidate lowers physical attack by 50%. Black Belt boosts Knockoff. Earthquake hits Fire types for 2x. Weak to Water, Grass, Ice.\n\nBest lead: Garchomp is a strong lead. It can threaten their entire team with Earthquake (2x vs Sceptile, Blaziken, Taurospaldeablaze). Life Orb makes it hit harder. Sandveil protects from sand damage.\n\nSecond choice: Toxapex as a wall. It can Toxic their Garchomp or Sceptile. Regenerator helps. But it's slow (55 SPE) and weak to Fire (4x) which they have multiple of.\n\nThird choice: Hydreigon with Choice Scarf is great for speed control. Levitate makes it immune to Ground moves (important vs their Garchomp). Darkpulse hits their Garchomp and Rotom super effectively.\n\nActually, let me reconsider. The opponent has a Garchomp - if they lead with it, my Garchomp can trade or outspeed depending on stats. My Garchomp is 107 SPE, theirs could be up to 169 SPE. So their Garchomp likely outspeeds mine.\n\nLet me think about what's most important:\n- I need something that handles their Fire types (Garchomp, Krookodile)\n- I need something that handles their Garchomp (Hydreigon with Darkpulse, or Gardevoir... no Gardevoir doesn't hit Garchomp well)\n- I need a wall\n\nBest 3:\n1. Garchomp - Lead, Earthquake hits most of their team for 2x\n2. Toxapex - Wall, Toxic support, Regenerator\n3. Hydreigon - Choice Scarf speed control, Darkpulse hits Garchomp and Rotom\n\nActually wait - should I bring Krookodile instead of Toxapex? Krookodile has Intimidate which is great against their physical attackers (Garchomp, Blaziken, Taurospaldeablaze). But it's weak to Grass (Sceptile) and Water.\n\nLet me go with Garchomp, Toxapex, Hydreigon. This gives me:\n- Physical attacker (Garchomp)\n- Special wall + Toxic support (Toxapex)\n- Fast special attacker with speed control (Hydreigon)\n\nThis covers a lot of ground. Let me go with this.\n",
+      "note": "",
+      "tokens": 3819,
+      "latency_ms": 41786,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% SWITCH: rotom, 19% MOVE: stoneedge, 15% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2221,
+      "latency_ms": 1821,
+      "cost_usd": 0.00011105,
+      "probabilities": {
+        "MOVE: sandstorm": 0.150339,
+        "MOVE: spikes": 0.048808,
+        "MOVE: stealthrock": 0.048808,
+        "MOVE: stoneedge": 0.19304,
+        "SWITCH: rotom": 0.408665,
+        "SWITCH: taurospaldeablaze": 0.150339
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp vs Garchomp matchup. My Garchomp has Life Orb, higher Atk (182), and Spe 169 vs their possible 109-169. Earthquake gets STAB + Life Orb for strong neutral damage. If they go first, I can still trade well. Toxapex is my wall for later; Hydreigon with Choice Scarf handles their Garchomp/Rotom if needed. Will reassess after seeing their moveset.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp (Dragon/Ground, Spe 169) vs Opponent's Garchomp (Dragon/Ground, Spe 109-169)\n- Both are Dragon/Ground types at level 50\n- My Garchomp has Life Orb and Sandveil\n- Opponent's Garchomp stats: HP 183-215, Atk 135-200, Def 103-161, SpA 90-145, SpD 94-150, Spe 109-169\n\nKey considerations:\n1. Speed: My Garchomp is 169, opponent's could be anywhere from 109-169. If they're at max speed (169), it's a coin flip. If lower, I go first.\n2. Type matchup: Dragon/Ground vs Dragon/Ground - neutral against each other for most moves\n3. Earthquake is Ground/Physical BP 100 - neutral on Dragon/Ground\n4. Dragonclaw is Dragon/Physical BP 80 - neutral on Dragon/Ground\n5. Stoneedge is Rock/Physical BP 100, 80% accuracy - not very effective (0.5x) on Dragon/Ground\n\nWait, let me reconsider. Earthquake vs Dragon/Ground: Ground is neutral to Dragon and neutral to Ground. So it's neutral.\nDragonclaw vs Dragon/Ground: Dragon is neutral to Dragon and neutral to Ground. So it's neutral.\nStoneedge vs Dragon/Ground: Rock is neutral to Dragon but not very effective on Ground (0.5x). So 0.5x overall.\n\nSo Earthquake is the best move here - BP 100, neutral damage, 100% accuracy.\n\nWith Life Orb, my Garchomp deals 1.3x damage. Let me calculate:\n- My Atk: 182 (with Life Orb: ~236 effective)\n- Opponent's Def: 103-161\n\nEarthquake damage: ((2*50/50 + 2) * 182 * 1.3 / opponent_def) / 50 + 2\n= (4 * 182 * 1.3 / def) / 50 + 2\n= (947.6 / def) / 50 + 2\n\nIf their Def is 103: 947.6/103 = 9.2, /50 = 0.184, *HP(183-215) = ~33-40 damage... wait let me recalculate properly.\n\nActually the formula is: ((2*level/5 + 2) * power * attacker_atk * STAB * modifiers / defender_def) / 50 + 2\n\nLevel 50: (2*50/5 + 2) = 22\nPower: 100\nAtk: 182, with Life Orb: 182 * 1.3 = 236.6\nSTAB: 1 (Ground on Ground target... wait no, STAB is based on the attacker's type matching the move type. My Garchomp is Dragon/Ground, Earthquake is Ground. So yes, STAB x1.5)\n\nWait, STAB is 1.5x when the move matches one of the Pokémon's types. Earthquake is Ground, my Garchomp is Dragon/Ground. So STAB = 1.5.\n\nSo: (22 * 100 * 182 * 1.3 * 1.5 / def) / 50 + 2\n= (22 * 100 * 182 * 1.95 / def) / 50 + 2\n= (4,269,300 / def) / 50 + 2\n\nIf their Def is 103: 4,269,300/103 = 41,449.5, /50 = 829... that seems way too high. Let me recalculate.\n\nActually the formula in Pokémon is:\ndamage = ((2*level/5 + 2) * power * atk * def_modifiers / defender_def) / 50 + 2\n\nWhere level/5 means integer division? No, it's (2*level/5+2). At level 50: 2*50/5+2 = 20+2 = 22.\n\nWait, I think the formula is:\ndamage = floor(floor((2*level/5 + 2) * power * atk / def) / 50) + 2\n\nLet me redo:\n(2*50/5 + 2) = 22\npower = 100\natk = 182 (with Life Orb: 182 * 1.3 = 236.6, but we use floor? Let's say ~237)\nSTAB = 1.5\n\nSo: 22 * 100 * 237 * 1.5 / def / 50 + 2\n= 22 * 100 * 237 * 1.5 / (def * 50) + 2\n= 9,621,000 / (def * 50) + 2\n\nIf def = 103: 9,621,000 / 5,150 = 1868... that's still way too high.\n\nI think I'm overcomplicating this. The key point is: Earthquake with STAB and Life Orb will deal significant damage to their Garchomp. Whether it KO or not depends on their exact stats.\n\nActually, let me just think about what makes sense strategically:\n- Both are Dragon/Ground Garchomps\n- My Garchomp has higher Atk (182 vs 135-200) and higher Spe (169 vs 109-169)\n- I have Life Orb for extra damage\n- Earthquake is the best move: BP 100, STAB, 100% accuracy\n\nThe speed matchup is uncertain. If they go first, they might hit me with something. But my Garchomp has 183 HP and decent defenses.\n\nI think the best play is to use Earthquake. It's the highest damage move I have that hits neutrally (or better) on their Garchomp. Dragonclaw is also neutral but only BP 80. Stoneedge is not very effective.\n\nLet me go with Earthquake.\n",
+      "note": "",
+      "tokens": 3899,
+      "latency_ms": 40383,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "poltergeist",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: poltergeist, 26% SWITCH: garchomp, 20% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2271,
+      "latency_ms": 964,
+      "cost_usd": 0.00011355,
+      "probabilities": {
+        "MOVE: poltergeist": 0.336231,
+        "MOVE: risingvoltage": 0.066208,
+        "MOVE: voltswitch": 0.096332,
+        "MOVE: willowisp": 0.035438,
+        "SWITCH: garchomp": 0.261857,
+        "SWITCH: taurospaldeablaze": 0.203934
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Earthquake was immune (Levitate). Rotom-Wash resists my Dragon/Ground STAB and is a wall for Garchomp. Best play: switch to Hydreigon (Choice Scarf, 247 Spe) for super effective Darkpulse on Ghost-type. KO next turn, then reassess their remaining threats (Garchomp, Fire types, Sceptile).",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at full HP (183/183), using Life Orb\n- Opposing Rotom-Wash (Electric/Ghost) is active, at 100% HP\n- Rotom has Levitate, so it's immune to Ground moves\n- I used Earthquake last turn and it was immune (as expected with Levitate)\n- My Garchomp outspeeds Rotom (169 vs 99-157)\n\nKey observations:\n- Rotom is Electric/Ghost with Levitate - immune to my Earthquake\n- Rotom's weaknesses: Ghost types are weak to Dark and Psychic. Electric/Ghost means it's weak to Ground (but Levitate), Dark, and Psychic. It resists Electric, Ghost, Normal, Bug.\n- My Garchomp has Dragonclaw (Dragon/Physical) - neutral vs Rotom\n- Stoneedge is Rock/Physical - neutral vs Rotom\n- I could use StealthRock to set up hazards for later switches\n\nWait, let me reconsider. Rotom-Wash's weaknesses: Ground (immunity via Levitate), Dark, Psychic. Resistances: Electric, Ghost, Normal, Bug.\n\nMy options:\n1. Earthquake - immune (Levitate)\n2. Dragonclaw - neutral, 80 BP physical\n3. Stoneedge - neutral, 100 BP physical, 80% accuracy\n4. StealthRock - sets up hazards\n5. Switch to Toxapex\n6. Switch to Hydreigon\n\nSince Earthquake is useless against Rotom (Levitate), I should consider:\n- Dragonclaw or Stoneedge for damage\n- StealthRock to set up for later switches\n- Switching to a better counter\n\nRotom-Wash's weaknesses are Dark and Psychic. My Hydreigon has Darkpulse which would be super effective! But Hydreigon is at 165 speed, and Rotom could be up to 157 speed. With Choice Scarf, Hydreigon would be 247 speed - definitely faster.\n\nActually wait - let me reconsider the matchup:\n- My Garchomp vs Rotom-Wash: Earthquake is immune, Dragonclaw/Stoneedge are neutral physical. Rotom can hit back with Thunderbolt (super effective on Ground) or Shadow Ball (neutral).\n- Switching to Hydreigon: Darkpulse is super effective (2x) on Ghost. With Choice Scarf, Hydreigon outspeeds everything. This seems like the best option.\n\nBut wait - should I set StealthRock first? If I switch to Hydreigon, I lose the chance to set SR. But Rotom with Levitate won't be hurt by SR anyway (SR hits on switch-in, and Rotom is already in). Actually, SR would still help for future switches.\n\nLet me think about what's best:\n1. Use StealthRock now - sets up hazards for when their other Pokémon switch in. Then next turn I can switch to Hydreigon or continue fighting.\n2. Switch to Hydreigon immediately - Darkpulse is super effective on Rotom-Wash, and with Choice Scarf, Hydreigon will definitely outspeed.\n\nActually, the smartest play here might be to use StealthRock now (since Earthquake won't work), then switch to Hydreigon next turn for the super effective Darkpulse. But that wastes a turn.\n\nAlternatively, I could just switch to Hydreigon right now and hit with Darkpulse. That's 2x STAB-ish damage (Dark on Ghost). Let me calculate:\n- Hydreigon Choice Scarf: Spe = 165 * 1.5 = 247. Definitely faster than Rotom (max 157).\n- Darkpulse: 80 BP, Dark type, super effective (2x) on Ghost. Physical? No, it's special. Hydreigon SpA is 177.\n- Damage: (2*177/4 + 2) * (2/1) * (80/150) / (Def of Rotom). Rotom Def is 87-141. Let's say ~114 average.\n- Rough estimate: (354+2)*2*0.533/114 ≈ 356*2*0.533/114 ≈ 339/114 ≈ 3x damage roughly. That should KO Rotom-Wash easily.\n\nActually, I think switching to Hydreigon is the best move here. It's a clear super effective hit that will likely KO Rotom-Wash, and it removes their lead threat. Plus, with Choice Scarf, there's no speed concern.\n\nBut wait - what about setting StealthRock? If I switch now, I lose the SR setup. However, the priority should be removing Rotom since it's a good wall for my Garchomp (resists Dragon, immune to Ground). Once Rotom is gone, I can set up hazards with Garchomp or use Hydreigon to pressure their other Pokémon.\n\nI'll go with switching to Hydreigon and using Darkpulse next turn. Actually, I can only do one action per turn. So I should either:\n- Switch to Hydreigon this turn (then hit next turn)\n- Or use a move this turn\n\nSince Earthquake is useless, Dragonclaw/Stoneedge are neutral, and StealthRock doesn't help against Rotom specifically... I think switching to Hydreigon is the best choice. Next turn I can Darkpulse for a KO.\n\nWait, actually let me reconsider. Can I just use Stoneedge or Dragonclaw this turn? \n- Stoneedge: 100 BP Rock physical. Garchomp Atk 182. Rotom Def 87-141.\n- Dragonclaw: 80 BP Dragon physical.\n\nThese would do some damage but not KO. Then next turn I'd still be dealing with Rotom.\n\nSwitching to Hydreigon is cleaner - guaranteed super effective hit that KOs, and removes the threat. Let's go with that.\n",
+      "note": "",
+      "tokens": 3895,
+      "latency_ms": 35887,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "poltergeist",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: poltergeist, 36% SWITCH: garchomp, 10% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2416,
+      "latency_ms": 840,
+      "cost_usd": 0.0001208,
+      "probabilities": {
+        "MOVE: poltergeist": 0.359944,
+        "MOVE: risingvoltage": 0.042989,
+        "MOVE: voltswitch": 0.091008,
+        "MOVE: willowisp": 0.042989,
+        "SWITCH: garchomp": 0.359944,
+        "SWITCH: taurospaldeablaze": 0.103126
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon (Choice Scarf) is locked into Darkpulse. Super effective on Rotom-Wash (Ghost). With 177 SpA vs Rotom's 87-141 SpD, this should KO or nearly KO. After the switch, I'll need to handle their Garchomp and remaining Fire/Grass threats. Toxapex is my wall for later.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Hydreigon is active at 143/167 HP (85.6%)\n- Opponent's Rotom-Wash is active at 100% HP\n- I have Choice Scarf on Hydreigon, so I can only use Darkpulse (first move)\n- Wait, actually looking at the legal actions, I can choose any of the moves listed. But Choice Scarf says \"it can only select the first move it executes.\" The first move in the list is darkpulse. So I'm limited to darkpulse.\n\nWait, let me re-read: \"choicescarf: Holder's Speed is 1.5x, but it can only select the first move it executes.\" And the legal actions show all moves as options. But the Choice Scarf restriction means I can only use the first move in the moveset, which is darkpulse.\n\nActually, looking at the legal actions more carefully:\n1. MOVE: darkpulse\n2. MOVE: dracometeor\n3. MOVE: uturn\n4. MOVE: nastyplot\n5. SWITCH: toxapex\n6. SWITCH: garchomp\n\nAll of these are listed as legal actions. But Choice Scarf restricts to the first move. However, since all are listed as legal, maybe the game allows me to choose any? Let me just go with darkpulse since it's super effective on Rotom-Wash (Ghost type).\n\nDarkpulse is Dark/Special, power 80, super effective on Ghost-type Rotom-Wash. With Choice Scarf giving 1.5x speed, my Hydreigon at base 165 becomes ~247 speed. Rotom's speed range is 99-157, so I definitely go first.\n\nDamage calculation: Darkpulse (80 BP) × 2 (super effective) = 160 effective power.\nHydreigon SpA is 177. Rotom's SpD range is 87-141.\n\nAt minimum SpD (87): Damage ≈ 177 × 160 / 87 / 50 + 2 ≈ 329/50... let me recalculate properly.\n\nActually, the formula is roughly: ((2*Level/5+2) * Power * AtkStat / DefStat) / 50 + 2\n= ((2*50/5+2) * 80 * 177 / SpD) / 50 + 2\n= (22 * 80 * 177 / SpD) / 50 + 2\n= (312480 / SpD) / 50 + 2\n\nWith super effective ×2: = (624960 / SpD) / 50 + 2\n\nIf SpD = 87: 624960/87/50+2 = 7183.7/50+2 = 143.7+2 ≈ 146\nIf SpD = 141: 624960/141/50+2 = 4432.3/50+2 = 88.6+2 ≈ 91\n\nSo Darkpulse does roughly 91-146 damage to Rotom at 100% HP (max ~157). That's a KO or near-KO.\n\nEven with the worst case SpD of 141, it deals ~91 damage, leaving Rotom at about 66/157 HP. Next turn I could switch to Garchomp for Earthquake... wait, no, Rotom is Levitate so Earthquake won't work. But Garchomp's Dragonclaw would be super effective on Ghost? No, Dragon isn't super effective on Ghost.\n\nActually, let me reconsider. Darkpulse at 80 BP with STAB (Dark) and ×2 super effective = 160 effective power. That should KO Rotom in one hit most likely.\n\nLet me just go with Darkpulse. It's the best option - super effective, high damage, and I'm forced to use it anyway due to Choice Scarf.\n",
+      "note": "",
+      "tokens": 3671,
+      "latency_ms": 26833,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "50% SWITCH: garchomp, 50% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2094,
+      "latency_ms": 1505,
+      "cost_usd": 0.0001047,
+      "probabilities": {
+        "SWITCH: garchomp": 0.5,
+        "SWITCH: taurospaldeablaze": 0.5
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "88% SWITCH: taurospaldeablaze, 9% MOVE: stoneedge, 2% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2395,
+      "latency_ms": 908,
+      "cost_usd": 0.00011975,
+      "probabilities": {
+        "MOVE: sandstorm": 0.018269,
+        "MOVE: spikes": 0.004619,
+        "MOVE: stealthrock": 0.004076,
+        "MOVE: stoneedge": 0.092778,
+        "SWITCH: taurospaldeablaze": 0.880257
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon (Choice Scarf, 247 eff Spe) outspeeds their Garchomp (max 169). Dark Pulse is neutral but deals ~41-64 dmg. They can't KO my Hydreigon with Ground/Dragon (neutral), though Stone Edge would be dangerous (~120 dmg). I'll chip them, then switch to full HP Garchomp next turn for the main fight. Toxapex saved for later threats.",
+      "hidden_reasoning": "Let me analyze the situation:\n\nCurrent state:\n- My Hydreigon (Choice Scarf, 143/167 HP) is active vs their Garchomp (full HP)\n- My Garchomp (Life Orb, full HP) and Toxapex (Leftovers, full HP) are on bench\n- Their Garchomp just came in after Rotom-Wash fainted\n\nKey considerations:\n1. Hydreigon has Choice Scarf - it can ONLY use Dark Pulse (first move). So I'm locked into Dark Pulse or switching.\n2. My Hydreigon is at 85.6% HP (143/167)\n3. Their Garchomp is full HP\n\nIf I stay with Hydreigon:\n- Dark Pulse on Garchomp: Dark is neutral to Dragon/Ground. With Choice Scarf, my speed is 165*1.5 = 247. Their Garchomp could be up to 169 base speed. So I should outspeed them.\n- Dark Pulse BP 80, SpA 177 vs their Def 103-161. Let's calculate: (2*177/100 * 80 / (Def)) roughly... At minimum Def 103: (2*177*80)/(103) ≈ 274 damage. Their HP is 183-215. So this could be a KO or near-KO at lower end of their stats.\n- But they might have Rough Skin, which would chip me for contact... but Dark Pulse isn't a contact move.\n- They could also have Sandveil if it's sandstorm, but weather is None.\n\nIf I switch to Garchomp:\n- My Garchomp (Life Orb, Spe 169) vs their Garchomp (Spe 109-169). Could be a speed tie or I could outspeed.\n- Earthquake on their Garchomp: Ground is neutral to Dragon/Ground. Life Orb gives +30% damage. BP 100, Atk 182 vs Def 103-161.\n- But they might have Stealth Rock set up... no, field shows None.\n- Their Garchomp could also use Earthquake back on me - Ground is neutral to Dragon/Ground.\n\nIf I switch to Toxapex:\n- Toxapex (Spe 55) would be very slow. Their Garchomp would hit first with a super effective move (Ground or Dragon).\n- Toxapex resists Ground? No, Poison/Water is neutral to Ground. Actually Water resists Ground... wait no. Let me think: Ground attacks on Water type - it's neutral. Actually, Ground is not very effective against Water? No, Ground is neutral against Water. Hmm, actually I think Ground is neutral to Water.\n- Toxapex could use Toxic or Haze, but their Garchomp would hit first and potentially KO with a super effective move.\n\nBest option: Stay with Hydreigon and use Dark Pulse. With Choice Scarf giving me 247 speed, I should outspeed their Garchomp (max 169). Dark Pulse is neutral to Dragon/Ground but with high SpA it should deal significant damage. Even if it doesn't KO, I can switch next turn.\n\nActually wait - let me reconsider. My Hydreigon is at 85% HP. If their Garchomp hits back with a super effective move (Dragon or Ground), it could be a big hit. But since I outspeed them with Choice Scarf, I go first.\n\nLet me calculate Dark Pulse damage more carefully:\n- Base formula: ((2*Level/5 + 2) * BP * Atk / Def) / 50 + 2\n- Level 50: (2*50/5 + 2) = 22\n- SpA 177, BP 80, their Def range 103-161\n- Minimum damage (their max Def 161): (22 * 80 * 177 / 161) / 50 + 2 = (31152/161)/50 + 2 = 193.5/50 + 2 ≈ 4.07 + 2... wait that's not right.\n\nLet me redo: ((2*50/5+2) * 80 * 177 / 161) / 50 + 2\n= (22 * 80 * 177 / 161) / 50 + 2\n= (311,520 / 161) / 50 + 2\n= 1934.9 / 50 + 2\n= 38.7 + 2 = 40.7\n\nHmm that seems low. Wait, I think the formula is different. Let me use the standard:\nDamage = ((2*Level/5 + 2) * Power * AttackerStat / DefenderStat) / 50 + 2\n\nWith STAB? Dark Pulse on Dragon/Ground - Dark is neutral to both Dragon and Ground. So no STAB bonus.\n\n(22 * 80 * 177 / 161) / 50 + 2 = 38.7 + 2 ≈ 41 damage (at max Def)\n(22 * 80 * 177 / 103) / 50 + 2 = 61.9 + 2 ≈ 64 damage (at min Def)\n\nTheir HP is 183-215. So Dark Pulse deals about 41-64 damage, which is roughly 20-35% of their HP. Not a KO.\n\nHmm, that's not great. Let me reconsider switching to Garchomp.\n\nMy Garchomp with Life Orb:\n- Earthquake on their Garchomp: Ground neutral to Dragon/Ground\n- (22 * 100 * 182 / Def) / 50 + 2, plus Life Orb 1.3x\n- At min Def 103: (22*100*182/103)/50*1.3 + 2 = (400400/103)/50*1.3 + 2 = 3887.4/50*1.3 + 2 = 77.7*1.3 + 2 = 101 + 2 ≈ 103\n- At max Def 161: (22*100*182/161)/50*1.3 + 2 = (400400/161)/50*1.3 + 2 = 2487/50*1.3 + 2 = 49.7*1.3 + 2 = 64.6 + 2 ≈ 67\n\nTheir HP is 183-215. So Earthquake with Life Orb deals about 67-103 damage, which is roughly 31-56% of their HP. Still not a guaranteed KO but much better than Dark Pulse.\n\nBut wait - speed. My Garchomp Spe 169 vs their Garchomp Spe 109-169. If they have max speed (169), it's a tie and we both go in order of... actually in ties, the one that was active first goes first? No, in Pokémon Showdown, if speeds are equal, the one who moved first last turn goes first. Actually I think it's random or based on some other factor.\n\nActually, let me reconsider. If I switch to Garchomp:\n- Turn 4: I switch (switches don't consume a turn in terms of both getting to move... actually in Pokémon, switching is the action for that turn)\n- Wait no - in Showdown, when you switch, your old Pokémon leaves and new one comes in. The opponent's active Pokémon still gets to act? No, I think in standard battle format, if you switch, the opponent still gets their move.\n\nActually in Pokémon battles: if it's your turn and you switch, your new Pokémon is on field but the opponent still gets to use a move. So:\n- Turn 4: I switch Hydreigon -> Garchomp. Their Garchomp uses a move (Earthquake or Dragon Claw etc.) on my Garchomp.\n- Then Turn 5: My Garchomp acts first or second depending on speed.\n\nIf their Garchomp hits my Garchomp with Earthquake: Ground neutral to Dragon/Ground. Their Atk 135-200, my Def 115.\n(22 * 100 * 200 / 115) / 50 + 2 = (440000/115)/50 + 2 = 3826/50 + 2 = 76.5 + 2 ≈ 79 damage (at max Atk)\n(22 * 100 * 135 / 115) / 50 + 2 = (297000/115)/50 + 2 = 2583/50 + 2 = 51.7 + 2 ≈ 54 damage (at min Atk)\n\nMy Garchomp HP is 183. So they'd deal about 54-79 damage, leaving me at ~104-129 HP. Then I can hit back with Earthquake for 67-103 damage.\n\nAlternatively, if I stay with Hydreigon and use Dark Pulse:\n- I go first (Choice Scarf 247 speed > their max 169)\n- Dark Pulse deals 41-64 damage to their Garchomp\n- Their Garchomp hits back with Earthquake or Dragon Claw on my Hydreigon\n- Earthquake: Ground neutral to Dark/Dragon. My Def 112. (22*100*Atk/112)/50+2. At max Atk 200: (440000/112)/50+2 = 78.6+2 ≈ 81 damage. My Hydreigon at 143 HP would be at ~62 HP.\n- Dragon Claw: Dragon neutral to Dark/Dragon. Similar damage.\n\nSo staying with Hydreigon and using Dark Pulse seems safer since I go first and they can't KO me (they'd need ~143+ damage from a single hit, which is unlikely with their stats).\n\nActually wait - could their Garchomp have a super effective move? Ground is neutral to Dark/Dragon. Dragon is neutral to Dark/Dragon. Rock would be super effective but I don't know if they have it. If they use Stone Edge (Rock), that's super effective on Dark/Dragon:\n(22 * 100 * Atk / 112) / 50 + 2, times 1.5 (super effective)\nAt max Atk 200: (440000/112)/50*1.5 + 2 = 78.6*1.5 + 2 = 117.9 + 2 ≈ 120 damage\nMy Hydreigon at 143 would be at ~23 HP. That's dangerous but not a KO.\n\nI think the safest play is to use Dark Pulse with Hydreigon. I outspeed them, deal some damage, and they can't easily KO me (unless they have Stone Edge). Then next turn I can switch to Garchomp for the main battle.\n\nActually, let me reconsider switching to Garchomp. If I switch:\n- Their Garchomp gets a free hit on my Garchomp\n- But then I have my full HP Garchomp ready to fight their Garchomp\n\nIf I stay with Hydreigon:\n- I deal 41-64 damage to their Garchomp (now at ~120-174 HP)\n- They hit back, possibly hard\n- Next turn I switch to Garchomp and deal 67-103 damage\n\nI think staying with Hydreigon and using Dark Pulse is the better play. I get a free hit in, and my Hydreigon can survive one hit from their Garchomp (unless they have Stone Edge). Then I switch next turn.\n\nLet me go with Dark Pulse.\n",
+      "note": "",
+      "tokens": 5506,
+      "latency_ms": 71458,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "reversal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: reversal, 27% SWITCH: garchomp, 8% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2497,
+      "latency_ms": 1024,
+      "cost_usd": 0.00012485,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.07638,
+        "MOVE: overheat": 0.046327,
+        "MOVE: ragingbull": 0.046327,
+        "MOVE: reversal": 0.564375,
+        "SWITCH: garchomp": 0.266592
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon locked into Dark Pulse (Choice Scarf) dealing only ~7-12 dmg on Tauros due to 0.5x effectiveness. Switching to full HP Garchomp (Life Orb, Dragon STAB) to pressure Tauros with Dragonclaw (~18-26 dmg/hit). Opponent's remaining threats: Tauros (68%) and their Garchomp (full). Toxapex saved as wall for later.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Hydreigon (Choice Scarf, 247 eff Spe) is at 143/167 HP (85.6%) with Atk -1\n- Opponent's Tauros-Paldea-Blaze is at 68% HP\n- Choice Scarf means I'm locked into Dark Pulse (first move)\n\nKey considerations:\n- My Hydreigon outspeeds Tauros (247 vs max 167), so I'll always go first\n- Dark Pulse on Fighting/Fire type: not very effective (0.5x). With Atk -1, this is even weaker.\n- Wait, Dark Pulse is a special move. Hydreigon's SpA is 177. Tauros has SpD 81-134.\n- Let me calculate: Dark Pulse BP 80, not very effective (0.5x). With Choice Scarf and Atk -1... wait, Atk -1 doesn't affect special moves. The Intimidate lowered Attack, but Dark Pulse is a Special move. So the -1 Atk boost doesn't matter for Dark Pulse.\n\nActually wait - let me re-read. \"Your Hydreigon: atk -1\" - this is from Intimidate. But Dark Pulse is a special move, so this doesn't affect it. Good.\n\nSo my Hydreigon's Dark Pulse damage on Tauros:\n- SpA 177, BP 80, not very effective (0.5x)\n- Tauros SpD range: 81-134\n- Damage formula: ((2*50/5+2) * 80 * 177 / (SpD) / 50 + 2) * 0.5 * STAB? No, Dark Pulse is not STAB for Hydreigon (Dark/Dragon).\n\nWait, actually let me recalculate:\n- Power: 80\n- Type effectiveness: 0.5x (Dark on Fighting/Fire... wait, Dark is neutral to Fighting and Fire)\n\nActually, let me reconsider. Dark Pulse is a Dark-type move. Against Fighting/Fire:\n- Dark vs Fighting: neutral\n- Dark vs Fire: neutral\nSo it should be neutral, not \"not very effective.\"\n\nBut the game says \"not very effective on taurospaldeablaze.\" Let me think... Tauros-Paldea-Blaze is Fighting/Fire. Dark is neutral to both. Hmm, but the game explicitly says \"not very effective.\" Maybe I'm wrong about the typing. Let me just trust the game output.\n\nActually wait - maybe it's because of some other factor. The game says \"not very effective\" so I'll go with that. 0.5x effectiveness.\n\nSo damage: ((2*50/5+2) * 80 * 177 / SpD / 50 + 2) * 0.5\n= (6 * 80 * 177 / SpD / 50 + 2) * 0.5\n\nIf SpD = 81: (6 * 80 * 177 / 81 / 50 + 2) * 0.5 = (6*80*177/(81*50) + 2) * 0.5 = (84960/4050 + 2) * 0.5 = (20.98 + 2) * 0.5 = 22.98 * 0.5 ≈ 11.5\nIf SpD = 134: (6*80*177/(134*50) + 2) * 0.5 = (84960/6700 + 2) * 0.5 = (12.68 + 2) * 0.5 = 14.68 * 0.5 ≈ 7.3\n\nThat's very low damage. Tauros is at 68% of its HP pool. If HP is 150-182, that's about 102-124 HP remaining. My Dark Pulse would deal only ~7-12 damage. That won't KO it.\n\nWait, I think I'm miscalculating. Let me redo:\nDamage = ((2*Level/5 + 2) * Power * AttackerStat / DefenderStat / 50 + 2) * TypeMultiplier * STAB * Critical * etc.\n\n= ((2*50/5 + 2) * 80 * 177 / SpD / 50 + 2) * 0.5\n= (6 * 80 * 177 / SpD / 50 + 2) * 0.5\n\nHmm wait, the formula is: ((2*Level/5 + 2) * Power * Atk / Def / 50 + 2) * modifiers\n\nSo: (6 * 80 * 177 / SpD / 50 + 2) * 0.5\n\nFor SpD = 81: (6 * 80 * 177 / 81 / 50 + 2) * 0.5\n= (84960 / 4050 + 2) * 0.5\n= (20.98 + 2) * 0.5\n= 22.98 * 0.5 = 11.49\n\nFor SpD = 134: (6 * 80 * 177 / 134 / 50 + 2) * 0.5\n= (84960 / 6700 + 2) * 0.5\n= (12.68 + 2) * 0.5\n= 14.68 * 0.5 = 7.34\n\nSo I'm dealing about 7-11 damage per turn. Tauros has ~102-124 HP remaining. That would take 9-17 turns to KO. That's terrible.\n\nActually wait, I need to reconsider. Is Dark Pulse really \"not very effective\" on Fighting/Fire? Let me think again:\n- Dark vs Fighting: neutral (1x)\n- Dark vs Fire: neutral (1x)\n\nSo it should be neutral. But the game says \"not very effective.\" Maybe there's something I'm missing about Tauros-Paldea-Blaze's typing or ability. Or maybe the game is just showing it that way for some reason. I'll trust the game output.\n\nGiven this, continuing to hit with Dark Pulse on Tauros is very inefficient. My options:\n1. Keep hitting with Dark Pulse (locked in by Choice Scarf) - but it's dealing minimal damage\n2. Switch to Garchomp (full HP) to deal with Tauros\n3. Switch to Toxapex for a wall\n\nIf I switch to Garchomp:\n- Garchomp is Dragon/Ground, 183/183 HP\n- Against Tauros (Fighting/Fire): \n  - Earthquake (Ground): neutral to Fighting, super effective... wait no. Ground vs Fire is not very effective (0.5x). Ground vs Fighting is neutral. So overall 0.5x.\n  - Dragonclaw: neutral to both. 1x.\n  - Stoneedge: Rock vs Fighting is super effective (2x), Rock vs Fire is not very effective (0.5x). Overall 1x.\n\nHmm, none of Garchomp's moves are great against Tauros either. But Garchomp has much higher Attack (182) and can hit harder.\n\nActually wait - let me reconsider. If I switch to Garchomp:\n- Earthquake on Fighting/Fire: Ground is neutral to Fighting, 0.5x to Fire → 0.5x total\n- Dragonclaw: neutral to both → 1x\n- Stoneedge: Rock is 2x to Fighting, 0.5x to Fire → 1x total\n\nSo Garchomp's best move against Tauros would be Dragonclaw or Stoneedge at 1x effectiveness.\n\nDragonclaw: (6 * 80 * 182 / Def / 50 + 2) * 1\nIf Def = 112: (6*80*182/112/50 + 2) = (87360/5600 + 2) = (15.6 + 2) = 17.6\nIf Def = 172: (87360/8600 + 2) = (10.16 + 2) = 12.16\n\nTauros has ~102-124 HP. So Dragonclaw would deal about 12-18 damage. Still not a KO in one hit.\n\nStoneedge: (6 * 100 * 182 / Def / 50 + 2) * 1\nIf Def = 112: (6*100*182/112/50 + 2) = (109200/5600 + 2) = (19.5 + 2) = 21.5\nIf Def = 172: (109200/8600 + 2) = (12.7 + 2) = 14.7\n\nStill not a KO. But Garchomp can at least deal more damage than Hydreigon's Dark Pulse.\n\nActually, wait. Let me reconsider the situation. The opponent has:\n- Tauros-Paldea-Blaze (active, 68% HP)\n- Garchomp (100% HP)\n- Rotom-Wash (fainted)\n\nAnd they brought 3 of their 6 shown. So their team is: Rotom-Wash, Tauros-Paldea-Blaze, and one other (Garchomp or one of the others). Actually wait - \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\" So they've used all 3: Rotom-Wash, Garchomp, and Tauros-Paldea-Blaze.\n\nSo their remaining threats are just Tauros (at 68%) and Garchomp (full HP).\n\nMy team:\n- Hydreigon (Choice Scarf, 143/167) - locked into Dark Pulse\n- Garchomp (Life Orb, 183/183)\n- Toxapex (Leftovers, 157/157)\n\nStrategy: I should switch to Garchomp to deal with Tauros. Garchomp can use Dragonclaw or Stoneedge for neutral damage. Then after Tauros is dealt with, I'll have Garchomp vs Garchomp matchup, and Toxapex as a wall.\n\nActually, let me reconsider whether to just keep hitting with Dark Pulse. Even though it's \"not very effective,\" if I'm locked in by Choice Scarf... but I can switch! The Choice Scarf only locks the active Pokémon to its first move when it acts. If I switch out, I'm free to use other moves.\n\nSo my best option is to switch to Garchomp. Garchomp at full HP with Life Orb can deal solid damage to Tauros. Let me think about what Garchomp should do:\n- Dragonclaw (80 BP, neutral) or Stoneedge (100 BP, neutral but 30% recoil)\n\nWith Life Orb, Garchomp gets 1.5x STAB on Dragonclaw. So Dragonclaw becomes super effective... no wait, Dragon is not STAB for Dragon/Ground? Actually it IS STAB! Dragon/Ground means Dragon-type moves get STAB.\n\nSo Dragonclaw with Life Orb: (6 * 80 * 182 / Def / 50 + 2) * 1.5\nIf Def = 112: (17.6) * 1.5 = 26.4\nIf Def = 172: (12.16) * 1.5 = 18.2\n\nTauros has ~102-124 HP. So Dragonclaw would deal about 18-26 damage per hit. Still not a KO in one or two hits, but much better than Hydreigon's Dark Pulse.\n\nStoneedge with Life Orb: (6 * 100 * 182 / Def / 50 + 2) * 1.5\nIf Def = 112: (21.5) * 1.5 = 32.25\nIf Def = 172: (14.7) * 1.5 = 22.05\n\nStoneedge is better but has recoil. With Life Orb, the recoil is also increased? Actually no, Life Orb increases damage dealt by 1.5x but doesn't increase recoil. The recoil is based on the move's power and the attacker's HP.\n\nActually, I think switching to Garchomp is the right call. Let me go with that.\n\nWait, but should I consider Toxapex? Toxapex could use Toxic to poison Tauros or their Garchomp. But Tauros at 68% might not survive long enough for Toxic to matter, and their Garchomp is a threat I need to deal with directly.\n\nI'll switch to Garchomp. It's the most direct answer to both threats (Tauros and their Garchomp).\n",
+      "note": "",
+      "tokens": 5879,
+      "latency_ms": 77150,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "reversal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: reversal, 38% SWITCH: garchomp, 7% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2541,
+      "latency_ms": 1018,
+      "cost_usd": 0.00012705,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.065345,
+        "MOVE: overheat": 0.044911,
+        "MOVE: ragingbull": 0.030867,
+        "MOVE: reversal": 0.48284,
+        "SWITCH: garchomp": 0.376036
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Earthquake is super effective on Fighting/Fire Tauros (2x). With Life Orb + STAB + Intimidate -1 Atk, my Garchomp deals ~147-222 dmg vs Tauros at 68% (~113 HP). This is a guaranteed KO. After Tauros falls, their full HP Garchomp comes in; I'll switch to Toxapex or Hydreigon then.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n**My Garchomp:** 150/183 HP (82%), Life Orb, Sandveil ability\n- Moves: Earthquake (super effective on Tauros), Dragonclaw, Stoneedge, Stealth Rock\n- Speed: 169\n\n**Opponent's Tauros-Paldea-Blaze:** 68% HP, Intimidate active\n- Fighting/Fire type\n- Revealed move: Reversal\n- Stats range: Atk 117-178, Spe 108-167\n\n**My Garchomp's speed (169) vs Tauros (108-167):** I move first unless they have a priority move.\n\n**Key considerations:**\n- Earthquake is super effective on Fighting/Fire (Tauros). With Life Orb, this should be very strong.\n- My Garchomp has 150/183 HP after taking Reversal damage.\n- Tauros is at 68% HP.\n- Intimidate is active, lowering my Attack by 1 stage.\n\nLet me calculate Earthquake damage:\n- My Garchomp Atk: 182 (base stat), with Life Orb multiplier and Intimidate -1 stage\n- Base stats: Atk 182 at level 50 = 182 * 50/100 + 5 = 96... wait, let me recalculate.\n\nActually, the stats given are already calculated for level 50:\n- My Garchomp: HP 183, Atk 182, Def 115, SpA 90, SpD 107, Spe 169\n- Tauros: HP range 150-182, Atk 117-178, Def 112-172\n\nWith Intimidate (-1 stage to my Attack):\nMy effective Atk = 182 * (1/1.3) ≈ 140\n\nEarthquake BP 100, super effective (2x on Fighting/Fire... wait, is Earthquake super effective on Fighting? Yes! Ground is super effective against Fighting. And Tauros is Fighting/Fire, so Ground > Fire is neutral, but Ground > Fighting is super effective. So overall it's 2x.)\n\nWait, let me reconsider. Tauros-Paldea-Blaze is Fighting/Fire.\n- Earthquake (Ground) vs Fighting: Super effective (2x)\n- Earthquake (Ground) vs Fire: Neutral (1x)\n- Combined: 2x * 1x = 2x super effective\n\nDamage calculation:\n- Base damage = ((2*BP*Atk/Def)/50 + 2) * STAB * type * modifiers\n- Atk with Intimidate: ~140 (182 / 1.3 ≈ 140)\n- Tauros Def range: 112-172, let's use middle ~142\n\nBase damage = ((2*100*140)/142 + 2) * 1.3 (Life Orb) * 2 (super effective) * 1 (no STAB for Ground on Dragon/Ground... wait, Garchomp IS Ground type, so there IS STAB)\n\nWait, Garchomp is Dragon/Ground. Earthquake is Ground type. So yes, STAB applies (1.5x).\n\nBase damage = ((2*100*140)/142 + 2) * 1.3 * 2 * 1.5\n= ((28000/142) + 2) * 3.9\n= (197.2 + 2) * 3.9\n= 199.2 * 3.9\n≈ 777\n\nThat seems way too high. Let me recalculate more carefully.\n\nActually, the damage formula in Pokémon:\nDamage = (((2*Level/5 + 2) * Power * Attacker_Atk / Defender_Def) / 50 + 2) * STAB * Type_Matchup * Other_modifiers\n\nAt level 50: (2*50/5 + 2) = (20+2) = 22\n\nSo: ((22 * 100 * 140) / 142 / 50 + 2) * 1.5 (STAB) * 2 (super effective) * 1.3 (Life Orb)\n= ((308000 / 142) / 50 + 2) * 3.9\n= (2169 / 50 + 2) * 3.9\n= (43.4 + 2) * 3.9\n= 45.4 * 3.9\n≈ 177\n\nTauros is at 68% of its HP. If max HP is ~166 (middle of 150-182), then current HP ≈ 113.\n\nSo Earthquake would deal ~177 damage, which KOs Tauros easily.\n\nEven with the lowest Def (112):\n((22 * 100 * 140) / 112 / 50 + 2) * 3.9\n= ((308000/112)/50 + 2) * 3.9\n= (2750/50 + 2) * 3.9\n= (55 + 2) * 3.9\n= 57 * 3.9 ≈ 222\n\nAnd with highest Def (172):\n((22 * 100 * 140) / 172 / 50 + 2) * 3.9\n= ((308000/172)/50 + 2) * 3.9\n= (1790/50 + 2) * 3.9\n= (35.8 + 2) * 3.9\n= 37.8 * 3.9 ≈ 147\n\nSo Earthquake deals roughly 147-222 damage, which KOs Tauros at 68% HP (which is ~113-125 HP).\n\nThis is a clear KO. I should use Earthquake to take out Tauros.\n\nAfter Tauros falls, their Garchomp will come in. Then I'll need to deal with it. My Garchomp will be at 82% - 1/10 max HP (Life Orb) ≈ 73%. Their Garchomp is full HP.\n\nActually wait - should I consider switching to Toxapex instead? No, Tauros is at 68% and Earthquake super effective with Life Orb will KO it. That's the best play.\n\nLet me go with Earthquake.\n",
+      "note": "",
+      "tokens": 4524,
+      "latency_ms": 41909,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% MOVE: spikes, 30% MOVE: stoneedge, 23% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2575,
+      "latency_ms": 710,
+      "cost_usd": 0.00012875,
+      "probabilities": {
+        "MOVE: sandstorm": 0.179164,
+        "MOVE: spikes": 0.295392,
+        "MOVE: stealthrock": 0.230052,
+        "MOVE: stoneedge": 0.295392
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp vs Garchomp at 72% vs 100%. My Dragonclaw (STAB) deals ~150-187 dmg to their full HP Garchomp, likely a KO or near-KO. Their Dragonclaw would KO my Garchomp (~151+ dmg vs 132 HP). Switching to Toxapex is safest: Def 224 absorbs their physical attacks (Dragonclaw ~78, Stone Edge ~65), and I can Toxic + Recover. Hydreigon at 143 HP would be KO'd by their Dragonclaw. Save Garchomp for later if needed.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\nMy Garchomp is at 132/183 HP (72.1%) with Life Orb. The opponent's Garchomp is at full HP (100%).\n\nKey considerations:\n- Both are Garchomp vs Garchomp\n- My Garchomp has Life Orb, so it takes 1/10 max HP damage after each attack (18.3 HP)\n- Opponent's Garchomp stats range: HP 183-215, Atk 135-200, Def 103-161, SpA 90-145, SpD 94-150, Spe 109-169\n- My Garchomp stats: HP 183, Atk 182, Def 115, SpA 90, SpD 107, Spe 169\n\nSpeed: My Garchomp is 169, opponent's could be 109-169. So I either outspeed or tie.\n\nDamage calculation:\n- My Dragonclaw (80 BP, STAB Dragon) vs their Garchomp (Dragon/Ground): Dragon is super effective on Dragon? No wait - Dragon is NOT super effective on Dragon. Dragon attacks are neutral against Dragon types. Wait, let me reconsider.\n\nActually, Dragon moves are NEUTRAL against Dragon types. Dragonclaw would be neutral STAB.\n- Earthquake: Ground is NEUTRAL against Dragon/Ground (Ground is not very effective on Ground). So Earthquake would be 0.5x.\n- Stone Edge: Rock is NEUTRAL against Dragon/Ground.\n\nWait, let me re-check type effectiveness:\n- Dragon vs Dragon/Ground: Dragon is neutral to Dragon, and Dragon is neutral to Ground. So Dragonclaw = STAB (1.5x) × neutral = 1.5x effective.\n- Earthquake (Ground) vs Dragon/Ground: Ground is not very effective on Ground (0.5x). So Earthquake = 0.5x.\n- Stone Edge (Rock) vs Dragon/Ground: Rock is neutral to both. So Stone Edge = 1x.\n\nSo my best move against their Garchomp is Dragonclaw with STAB.\n\nLet me calculate damage:\nMy Garchomp Atk: 182, Life Orb gives 1.3x multiplier.\nDragonclaw BP: 80, STAB: 1.5x (Dragon on Dragon... wait no)\n\nActually, let me reconsider. Dragonclaw is a Dragon-type move. Against a Dragon/Ground type:\n- Dragon vs Dragon: neutral (1x)\n- Dragon vs Ground: neutral (1x)\nSo Dragonclaw is neutral to their Garchomp. With STAB it's 1.5x effective.\n\nDamage = (2×Level/5+2) × BP × Atk / Def × STAB × modifiers\n= (2×50/5+2) × 80 × 182 / Def × 1.5 × 1.3 (Life Orb)\n= (42) × 80 × 182 / Def × 1.95\n\nIf their Def is around 103-161:\n- At Def 103: 42 × 80 × 182 / 103 × 1.95 ≈ 42 × 80 × 1.767 × 1.95 ≈ 42 × 80 × 3.446 ≈ 11,590... \n\nLet me use the standard formula more carefully:\nDamage = floor(floor(floor(2×Level/5 + 2) × BP × Atk / Def / 50) + 2) × STAB × modifiers\n\n= floor(floor(floor(42) × 80 × 182 / Def / 50) + 2) × 1.5 × 1.3\n\nFor Def = 130 (midpoint):\n= floor(floor(42 × 80 × 182 / 130 / 50) + 2) × 1.95\n= floor(floor(610,560 / 130 / 50) + 2) × 1.95\n= floor(floor(4696.6 / 50) + 2) × 1.95\n= floor(floor(93.9) + 2) × 1.95\n= floor(93 + 2) × 1.95\n= 95 × 1.95\n= 185\n\nSo Dragonclaw would deal about 185 damage to their Garchomp at full HP (assuming ~130 Def). Their HP is 183-215, so this would be a KO or near-KO.\n\nIf their Def is higher (161):\n= floor(floor(42 × 80 × 182 / 161 / 50) + 2) × 1.95\n= floor(floor(610,560 / 161 / 50) + 2) × 1.95\n= floor(floor(3792.3 / 50) + 2) × 1.95\n= floor(floor(75.8) + 2) × 1.95\n= floor(75 + 2) × 1.95\n= 77 × 1.95\n= 150\n\nStill a KO if their HP is 183 (150 < 183... wait, that's not a KO). Hmm, 150 damage to 183 HP means it doesn't KO. But if their HP is lower or Def is lower, it could be a KO.\n\nActually wait - I need to reconsider. Let me recalculate:\n42 × 80 = 3360\n3360 × 182 = 611,520\n611,520 / 130 = 4704\n4704 / 50 = 94.08\nfloor(94.08) + 2 = 96\n96 × 1.5 (STAB) × 1.3 (Life Orb) = 96 × 1.95 = 187\n\nFor Def 161:\n611,520 / 161 = 3798\n3798 / 50 = 75.96\nfloor(75.96) + 2 = 77\n77 × 1.95 = 150\n\nSo Dragonclaw deals roughly 150-187 damage. Their HP is 183-215. This might not be a guaranteed KO if they have higher Def and more HP.\n\nWhat about Stone Edge?\nBP: 100, Rock type (neutral on Dragon/Ground)\n= floor(floor(42 × 100 × 182 / Def / 50) + 2) × 1.3\nFor Def 130:\n= floor(floor(766,800 / 130 / 50) + 2) × 1.3\n= floor(floor(5898.5 / 50) + 2) × 1.3\n= floor(floor(117.97) + 2) × 1.3\n= floor(117 + 2) × 1.3\n= 119 × 1.3 = 154\n\nFor Def 161:\n= floor(floor(766,800 / 161 / 50) + 2) × 1.3\n= floor(floor(4762.7 / 50) + 2) × 1.3\n= floor(floor(95.25) + 2) × 1.3\n= floor(95 + 2) × 1.3\n= 97 × 1.3 = 126\n\nStone Edge has lower accuracy (80%) but higher base power. Dragonclaw is more reliable.\n\nWhat about switching? If I switch to Hydreigon:\n- Hydreigon at 143/167 HP, Choice Scarf (247 eff Spe)\n- Their Garchomp could be up to 169 Spe, so Hydreigon outspeeds them\n- Dark Pulse is neutral on Dragon/Ground (Dark is neutral to both)\n- Dracometeor: Dragon/Special, BP 130. Against Dragon/Ground: neutral. With STAB... wait, Hydreigon is Dark/Dragon, so Dragon is STAB.\n\nActually, let me think about this differently. The opponent's Garchomp just came in at full HP. I'm at 72% with Life Orb damage accumulating. \n\nOptions:\n1. Dragonclaw - best offensive option, might KO or deal significant damage\n2. Switch to Hydreigon - outspeeds their Garchomp, can use Dracometeor (BP 130, STAB)\n3. Stealth Rock - set up hazard for later\n\nLet me think about what's best strategically:\n\nIf I stay with Garchomp and use Dragonclaw:\n- Deal ~150-187 damage to their full HP Garchomp\n- They might survive (if high Def/HP) or faint\n- If they survive, we're in a stalemate of two damaged Garchomps\n- My Life Orb will chip me down\n\nIf I switch to Hydreigon:\n- Outspeeds their Garchomp (247 vs max 169)\n- Dracometeor: BP 130, STAB Dragon, neutral on Dragon/Ground\n  = floor(floor(42 × 130 × 112 / Def / 50) + 2) × 1.5\n  For Def 130: floor(floor(617,520 / 130 / 50) + 2) × 1.5 = floor(floor(943.8/50)+2)×1.5 = floor(18+2)×1.5 = 30... wait that seems low.\n  \n  Let me recalculate: 42 × 130 = 5460, 5460 × 112 = 611,520, 611,520 / 130 = 4704, 4704 / 50 = 94.08, floor(94.08) + 2 = 96, 96 × 1.5 = 144\n  \n  For Def 161: 611,520 / 161 = 3798, 3798/50 = 75.96, floor(75.96)+2 = 77, 77 × 1.5 = 115\n\nSo Hydreigon's Dracometeor deals ~115-144 damage. Less than my Garchomp's Dragonclaw.\n\nBut Hydreigon has Choice Scarf so it always goes first. And if I switch, their Garchomp can't hit me with Ground moves (Hydreigon is Levitate). Wait, no - Hydreigon is Dark/Dragon with Levitate, so it's immune to Ground. That's a big advantage!\n\nActually wait - the opponent's Garchomp could use Dragonclaw or Stone Edge on my Hydreigon:\n- Dragonclaw (Dragon/Physical) vs Dark/Dragon: neutral STAB for them... actually Dragon is neutral to both Dark and Dragon. So it's neutral.\n- Stone Edge (Rock/Physical) vs Dark/Dragon: Rock is neutral to both.\n\nTheir Garchomp at full HP with Life Orb? No, their item is unknown. Let me check - \"Item: unknown_item\". Could be Life Orb or something else.\n\nIf they have a Life Orb Garchomp, Dragonclaw on my Hydreigon (Def 112):\n= floor(floor(42 × 80 × Atk / 112 / 50) + 2) × STAB × modifiers\n\nTheir Atk range: 135-200. Let's say 170 (midpoint).\n= floor(floor(42 × 80 × 170 / 112 / 50) + 2) × 1.5\n= floor(floor(571,200 / 112 / 50) + 2) × 1.5\n= floor(floor(5099.9/50) + 2) × 1.5\n= floor(floor(101.99) + 2) × 1.5\n= floor(101 + 2) × 1.5\n= 103 × 1.5 = 154\n\nIf they also have Life Orb: 154 × 1.3 = 200. That would KO my Hydreigon (143 HP).\n\nHmm, that's risky. But if I stay with Garchomp and use Dragonclaw, their Garchomp can hit me back:\nTheir Dragonclaw on my Garchomp (Def 115):\n= floor(floor(42 × 80 × Atk / 115 / 50) + 2) × STAB\nFor Atk 170: floor(floor(571,200/115/50)+2)×1.5 = floor(floor(994.3/50)+2)×1.5 = floor(19+2)×1.5 = 31... \n\nWait I'm making calculation errors. Let me redo:\n42 × 80 = 3360\n3360 × 170 = 571,200\n571,200 / 115 = 4966.96\n4966.96 / 50 = 99.34\nfloor(99.34) + 2 = 101\n101 × 1.5 (STAB) = 151.5\n\nSo their Dragonclaw deals ~151 damage to my Garchomp at 132 HP. That would KO me!\n\nIf they have Life Orb: 151 × 1.3 = 196. Definitely a KO.\n\nSo if I stay with Garchomp and use Dragonclaw, I might deal 150-187 damage to them, but they'll likely KO me back (if they have Life Orb or high Atk).\n\nIf I switch to Hydreigon:\n- They can't hit me with Ground moves (Levitate)\n- Their Dragonclaw/Stone Edge would deal ~154 damage to my 143 HP Hydreigon... that's a KO!\n- Unless they don't have Life Orb and their Atk is lower\n\nHmm, this is tricky. Let me think about what the best strategic play is.\n\nActually, wait. Let me reconsider. The opponent's Garchomp just came in at full HP. They've been playing defensively (switching out). Their team composition:\n- Rotom-Wash (fainted) - used Poltergeist\n- Tauros-Paldea-Blaze (fainted) - used Reversal, Intimidate\n- Garchomp (active) - unknown moves\n\nThey brought 3 of 6. The remaining 2 could be Delphox, Blaziken, or Sceptile.\n\nGiven that they've been switching and playing defensively, this might be a stall/battle. But their Garchomp is their main threat.\n\nI think the best play here is to use Dragonclaw on their Garchomp. Even if it doesn't KO, it deals significant damage. And if I switch after, I can bring in Hydreigon or Toxapex.\n\nActually, let me reconsider switching immediately:\n- Switch to Hydreigon: They can't hit me with Ground (Levitate). But their Dragon/Physical moves still hurt.\n- If they use Dragonclaw on my Hydreigon: ~154 damage to 143 HP = KO\n- If they use Stone Edge: similar damage\n\nSo switching to Hydreigon is risky if they can KO me.\n\nWhat about Toxapex?\n- Toxapex at full HP (157), Def 224, SpD 164\n- Their Garchomp's Dragonclaw on Toxapex: Dragon vs Poison/Water = neutral\n  = floor(floor(42 × 80 × Atk / 224 / 50) + 2) × STAB\n  For Atk 170: floor(floor(571,200/224/50)+2)×1.5 = floor(floor(2549.9/50)+2)×1.5 = floor(50+2)×1.5 = 78\n- Their Stone Edge on Toxapex: Rock vs Poison/Water = neutral\n  = floor(floor(42 × 100 × Atk / 224 / 50) + 2) × 1\n  For Atk 170: floor(floor(716,800/224/50)+2)×1 = floor(floor(3199.9/50)+2)×1 = floor(63+2)×1 = 65\n\nToxapex would survive their Garchomp's attacks easily! And I can use Toxic to poison them, then Recover. This seems like the safest option.\n\nBut wait - if I switch to Toxapex, they might just keep switching orThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 7235,
+      "latency_ms": 104112,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: stoneedge, 26% MOVE: sandstorm, 26% MOVE: spikes",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2655,
+      "latency_ms": 1734,
+      "cost_usd": 0.00013275,
+      "probabilities": {
+        "MOVE: sandstorm": 0.257033,
+        "MOVE: spikes": 0.257033,
+        "MOVE: stealthrock": 0.155898,
+        "MOVE: stoneedge": 0.330036
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's last Pokémon is their Garchomp (full HP). Toxapex is a great wall against it. I'll Toxic to set up a slow win condition - poison will chip them down over turns while I recover. Then switch to my Garchomp or Hydreigon for the KO. Their Stone Edge missed last turn, suggesting they're running physical moves. My Garchomp (72%) and Hydreigon (86%) are both viable finishers once their Garchomp is weakened by poison.",
+      "hidden_reasoning": "Let me analyze the situation:\n\nCurrent state:\n- My Toxapex is active at 157/157 HP (full)\n- Opponent's Garchomp is active at 100% HP\n- My Garchomp is at 132/183 (72%) with Life Orb\n- My Hydreigon is at 143/167 (85.6%) with Choice Scarf\n\nThe opponent's Garchomp just used Stone Edge and missed on my Toxapex. Now it's Turn 8.\n\nMy options:\n1. Toxic - Badly poisons the target\n2. Recover - Heals 50% max HP (but I'm already full)\n3. Baneful Bunker - Protects from moves, contact poisons\n4. Haze - Eliminates stat changes\n5. Switch to Garchomp\n6. Switch to Hydreigon\n\nAnalysis:\n- Toxapex is at full HP and just took a missed Stone Edge. It's a great wall against physical attackers.\n- The opponent's Garchomp is their last Pokémon (they've already lost Rotom and Tauros). Wait, let me check - they brought 3 of 6. They showed: Rotom, Tauros-Paldea-Blaze, Delphox, Blaziken, Sceptile, Garchomp. They used Rotom, Tauros-Paldea-Blaze, and Garchomp. So all 3 are accounted for - Rotom fainted, Tauros fainted, Garchomp is active.\n\nWait, the opponent brought 3 of their 6. The ones seen are: Garchomp (active), Rotom (fainted), Tauros-Paldea-Blaze (fainted). So the opponent only has Garchomp left! This is a 1v1 situation now.\n\nSo I need to beat their Garchomp with my remaining team. Let me think about what's best:\n\nMy Toxapex vs their Garchomp:\n- Toxapex can Toxic them (badly poison = 1/8 HP per turn)\n- Their Garchomp has Stone Edge (missed last turn, so it's not guaranteed to hit every time)\n- Toxapex Def is 224, which is great against physical attackers\n- Dragonclaw on Toxapex: Dragon vs Poison/Water = neutral. At their max Atk (~200), Dragonclaw would deal roughly... let me estimate. BP 80, STAB x1.5 (Dragon). Power ~120 effective. Against Def 224... that's a lot of defense. Probably around 60-80 damage per hit.\n- Stone Edge on Toxapex: Rock vs Poison/Water = neutral. BP 100, STAB x1.5 (Ground). Power ~150 effective. Against Def 224... maybe 70-90 damage.\n\nActually, let me reconsider. The opponent's Garchomp stats are in range [HP 183-215, Atk 135-200, Def 103-161, SpA 90-145, SpD 94-150, Spe 109-169].\n\nIf their Garchomp is at max stats (Atk 200), Dragonclaw would deal:\n- Base power 80 * STAB 1.5 = 120 effective\n- Against Toxapex Def 224... this is going to be low damage.\n\nActually, let me think about this differently. Toxapex with Regenerator + Leftovers is a great wall. If I Toxic their Garchomp:\n- They'll take 1/8 HP per turn from poison (about 23-27 HP per turn at full)\n- Their Stone Edge might miss again (it's not guaranteed to hit every turn)\n- I can Recover if needed\n- Eventually they'll be poisoned to death\n\nBut wait - their Garchomp could also use Dragonclaw, Earthquake, etc. Let me think about what moves they have. They've only revealed Stone Edge so far. They could have:\n- Earthquake (Ground/Physical)\n- Dragonclaw (Dragon/Physical)\n- Stone Edge (Rock/Physical)\n- Stealth Rock (Rock/Status)\n\nAgainst Toxapex:\n- Earthquake: Ground vs Poison/Water = neutral. BP 100, STAB x1.5 = 150 effective. Against Def 224... maybe 60-80 damage.\n- Dragonclaw: Dragon vs Poison/Water = neutral. BP 80, STAB x1.5 = 120 effective. Against Def 224... maybe 50-70 damage.\n- Stone Edge: Rock vs Poison/Water = neutral. BP 100, STAB x1.5 = 150 effective. Against Def 224... maybe 60-80 damage.\n\nToxapex at 157 HP can take about 2-3 hits from their Garchomp before fainting. With Regenerator (heals 52 HP on switch out) and Leftovers (9.8 HP per turn), it's quite durable.\n\nBut the key question is: should I Toxic now, or do something else?\n\nIf I Toxic:\n- Their Garchomp gets badly poisoned (1/8 HP per turn = ~23-27 HP per turn)\n- They'll take damage every turn regardless of what they do\n- After about 4-5 turns of poison, they'll be at low HP\n- Then I can switch to my Garchomp or Hydreigon for the KO\n\nIf I Recover:\n- I'm already at full HP, so this wastes a turn\n\nIf I Baneful Bunker:\n- Protects from one hit, but wastes a turn that could be used for Toxic\n\nIf I Haze:\n- No stat changes to remove (Intimidate was on Tauros which is fainted)\n\nI think Toxic is the best move here. It sets up a win condition - their Garchomp will slowly die from poison while I can recover and prepare my next Pokémon.\n\nActually wait - let me reconsider. Their Garchomp could use Stealth Rock to set up rocks, which would chip my team. But they've already used Stone Edge (missed), so maybe they're running a physical set. If they have Stealth Rock, it's only 32 PP left on mine... actually I have 32/32 stealthrock.\n\nLet me also consider: should I switch to Garchomp now? My Garchomp at 72% HP vs their full Garchomp. Both are Dragon/Ground types. Earthquake would be neutral (Ground vs Ground = not very effective, actually Ground is immune to Ground). Wait - Ground type is immune to Ground attacks! So if they use Earthquake, my Garchomp is immune. But Dragonclaw would hit neutrally.\n\nActually, let me reconsider the matchup:\n- My Garchomp (Dragon/Ground) vs their Garchomp (Dragon/Ground):\n  - Earthquake: Ground vs Dragon/Ground = not very effective (0.5x) for them on me... wait no. Ground attacks are not very effective against Ground types. So their Earthquake would be 0.5x on my Garchomp.\n  - Dragonclaw: Dragon vs Dragon/Ground = neutral (1x). STAB x1.5.\n  - Stone Edge: Rock vs Dragon/Ground = super effective (2x) for them! Rock is super effective against Dragon.\n\nHmm, so their Garchomp has a Rock-type advantage over mine with Stone Edge. That's concerning.\n\nBut Toxapex is much safer as a wall. Let me stick with Toxic.\n\nActually, I realize I should think about this more carefully. The opponent only has one Pokémon left (Garchomp). My team has 3 Pokémon. This is very favorable for me.\n\nStrategy:\n1. Toxic their Garchomp now\n2. Recover if needed (though I'm full)\n3. Let poison do its work\n4. Switch to my Garchomp or Hydreigon when they're weak enough\n\nToxic is clearly the best move here. It's a free turn where I set up a win condition. Their Garchomp will take ~25 HP per turn from poison, and after 3-4 turns it'll be at low HP. Then I can switch in my Garchomp (72% HP) or Hydreigon (86% HP) for the KO.\n\nLet me go with Toxic.\n",
+      "note": "",
+      "tokens": 5047,
+      "latency_ms": 50472,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% MOVE: spikes, 31% MOVE: stoneedge, 24% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2771,
+      "latency_ms": 1466,
+      "cost_usd": 0.00013855,
+      "probabilities": {
+        "MOVE: sandstorm": 0.239545,
+        "MOVE: spikes": 0.307582,
+        "MOVE: stealthrock": 0.145291,
+        "MOVE: stoneedge": 0.307582
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "recover",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Toxapex walls their Garchomp (Stone Edge 0.5x on Water, ~28 dmg/hit). Toxic will chip their Garchomp (93%→faint in ~4-5 turns) while Toxapex takes manageable damage. Recover to full HP for safety buffer. If they switch to Earthquake (2x), I'll need to adapt. Their Garchomp has only revealed Stone Edge so far.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Toxapex is active at 138/157 HP (87.9%)\n- Opponent's Garchomp is at 93% HP with Toxic on it\n- It's Turn 9, no weather, no field effects\n- Speed: Toxapex (55) vs Garchomp (109-169) - Garchomp moves first\n\nThe opponent's Garchomp has been using Stone Edge. It's at 93% HP and is poisoned (Toxic). Toxic deals increasing damage each turn:\n- Turn 8: Got toxic, so it took 1/16 max HP damage this turn (turn 8)\n- Turn 9: Will take 2/16 max HP damage\n- Turn 10: Will take 3/16 max HP damage\n- etc.\n\nTheir Garchomp's max HP is in range 183-215. Let's say ~199 (midpoint). Toxic damage per turn: 1/16, 2/16, 3/16... So over time it'll chip them down.\n\nMy options:\n1. Toxic again - but they're already toxed, this would just reapply (no benefit since Toxic is already active)\n2. Recover - heal 50% of max HP (78 HP), bringing me to ~216... wait, I'm at 138/157, so 50% of 157 = 78.5, rounded down to 78. That would bring me to 157/157 (full). Actually wait, Recover heals 50% of max HP. 157 * 0.5 = 78.5 → 78. So 138 + 78 = 216... but max is 157. So I'd be at 157/157.\n3. Baneful Bunker - priority protect, would block their next move and poison them on contact (but Stone Edge isn't a contact move)\n4. Haze - removes stat changes (not really needed here since no stat changes are active)\n5. Switch to Garchomp (72% HP)\n6. Switch to Hydreigon (85.6% HP)\n\nLet me think about what's best:\n\nThe opponent's Garchomp is at 93% and toxed. It moves first each turn. If I stay on Toxapex:\n- They'll use Stone Edge again (missed once, but likely will hit next time)\n- Stone Edge vs Toxapex: Rock vs Poison/Water. Rock is not very effective against Water (0.5x). So Stone Edge deals 0.5x damage.\n- Their Garchomp's Attack is 135-200, let's say ~167 (midpoint)\n- Stone Edge BP 100, so base damage = (2*167/8 + 2) * 100/100 / Toxapex Def... wait let me think more carefully.\n\nActually, the key question is: can I just wall them with Toxapex and let Toxic do its job?\n\nToxapex at 157 HP with Def 224. Stone Edge (Rock) vs Water type = 0.5x effectiveness.\n- Their Garchomp Atk ~167, Stone Edge BP 100\n- Damage ≈ (2*167/8 + 2) * 100/100 * 0.5 / (224/100) ... this is getting complex. Let me just estimate from past turns.\n\nFrom Turn 8: Their Garchomp used Stone Edge and Toxapex went from 157 to 129 HP = 28 damage. Wait, but that was when Toxapex was at full HP (157). Actually looking back:\n- Turn 7: Toxapex came in at 157/157\n- Turn 8: Stone Edge hit, Toxapex went to 129/157 = 28 damage taken\n\nSo each Stone Edge hits for ~28 damage on full HP Toxapex. With Toxic chipping their Garchomp (which is at 93% of ~199 = ~185 HP), and Toxapex taking ~28 per hit...\n\nTheir Garchomp: 185 HP, toxic will deal:\n- Turn 9: 2/16 * 199 ≈ 25 damage → 160 HP\n- Turn 10: 3/16 * 199 ≈ 37 damage → 123 HP\n- Turn 11: 4/16 * 199 ≈ 50 damage → 73 HP\n- Turn 12: 5/16 * 199 ≈ 62 damage → 11 HP (faints)\n\nMeanwhile Toxapex taking ~28 per turn:\n- Turn 9: 138 - 28 = 110\n- Turn 10: 110 - 28 = 82\n- Turn 11: 82 - 28 = 54\n- Turn 12: 54 - 28 = 26 (still alive!)\n\nSo Toxapex should outlast their Garchomp with Toxic! But I should Recover to make sure.\n\nActually wait, let me reconsider. Their Garchomp could also use Dragonclaw or Earthquake instead of Stone Edge. But from what we've seen, they only revealed Stone Edge. They might have other moves though.\n\nIf they use Dragonclaw (Dragon/Physical) vs Toxapex (Poison/Water):\n- Dragon vs Water = 1x (neutral)\n- Dragon vs Poison = 1x (neutral)\n- So Dragonclaw is neutral against Toxapex\n- Their Garchomp Atk ~167, Dragonclaw BP 80\n- Damage would be higher than Stone Edge\n\nIf they use Earthquake (Ground/Physical) vs Toxapex:\n- Ground vs Water = 2x (super effective!)\n- Ground vs Poison = 1x\n- So Earthquake is super effective!\n- That would be very dangerous.\n\nHmm, but their Garchomp has been using Stone Edge twice (one miss, one hit). They might switch to a different move. But I don't know their full moveset.\n\nLet me think about the best strategy:\n\nOption A: Recover now to be at full HP, then wall with Toxic\n- Turn 9: Recover → Toxapex at 157/157\n- Their Garchomp attacks (Stone Edge ~28 dmg or worse)\n- Toxic ticks\n\nOption B: Baneful Bunker - blocks their next move and poisons on contact (but Stone Edge isn't contact, so no poison from the bunker itself). This gives me a free turn.\n\nOption C: Switch to Garchomp or Hydreigon to try to KO their Garchomp before Toxic wears them out.\n\nLet me calculate if my Garchomp can KO their Garchomp:\n- My Garchomp: 132/183 HP, Life Orb, Atk 182\n- Their Garchomp: ~185 HP (93% of ~199), Dragon/Ground, Def ~103-161\n\nMy Garchomp's Earthquake vs their Garchomp (Ground):\n- Ground vs Ground = 1x (neutral)\n- Wait, actually Ground is not very effective against... no. Ground vs Ground is neutral.\n- Actually wait: Ground type moves are super effective against Rock, Steel, Fire. Not very effective against Grass, Bug. Neutral against everything else including Ground.\n- So Earthquake is neutral.\n\nMy Garchomp's Dragonclaw vs their Garchomp (Dragon/Ground):\n- Dragon vs Dragon = 1x\n- Dragon vs Ground = 1x\n- So Dragonclaw is neutral.\n\nTheir Garchomp's Def: 103-161, let's say ~132 (midpoint)\nMy Garchomp Atk: 182, Life Orb gives +50% damage but also 1/8 recoil\n\nEarthquake: (2*182/8 + 2) * 100/100 / (132/100) ≈ (45.5 + 2) * 0.76 ≈ 47.5 * 0.76 ≈ 36... wait that doesn't seem right.\n\nLet me use the standard damage formula more carefully:\nDamage = ((2*Level/5 + 2) * BP * Atk / Def / 50) + 2, then apply STAB and type modifiers, then Life Orb multiplier.\n\nLevel 50: (2*50/5 + 2) = (20+2) = 22\nEarthquake: 22 * 100 * 182 / 132 / 50 = 22 * 100 * 1.379 / 50 = 22 * 2.758 = 60.7\nWith Life Orb (1.5x): 91\nNo STAB (Earthquake is Ground, Garchomp is Dragon/Ground - actually it IS STAB! Ground type)\nSo with STAB: 91 * 1.3 = 118\n\nTheir Garchomp at 93% of ~199 = ~185 HP. So Earthquake does ~118 damage, not a KO but close.\n\nDragonclaw: 22 * 80 * 182 / 132 / 50 = 22 * 80 * 1.379 / 50 = 22 * 2.206 = 48.5\nWith STAB (Dragon): 48.5 * 1.3 = 63\nWith Life Orb: 63 * 1.5 = 94\n\nSo neither is a guaranteed KO on their Garchomp at 93%.\n\nWhat about Hydreigon?\n- Hydreigon: 143/167 HP, Choice Scarf (Spe 165 + 20% = ~198), Atk 112, SpA 177\n- Dark Pulse vs Dragon/Ground: Dark is neutral against both. So 1x.\n- Hydreigon's Dark Pulse: 22 * 80 * 112 / 132 / 50 = 22 * 80 * 0.848 / 50 = 22 * 1.496 = 32.9\n- No STAB (Dark vs Dragon/Ground is neutral)\n- With Choice Scarf, Hydreigon outspeeds their Garchomp\n\nBut wait, their Garchomp moves first if I switch in. Actually no - with Choice Scarf, Hydreigon's speed becomes ~198, which should be faster than their Garchomp (109-169). So Hydreigon would move first.\n\nDark Pulse: ~33 damage. Not a KO.\nDracometeor: 22 * 130 * 177 / 132 / 50 = 22 * 130 * 1.34 / 50 = 22 * 3.484 = 76.7\nWith STAB (Dragon): 76.7 * 1.3 = 99.7\nNot a guaranteed KO either at 185 HP.\n\nHmm, so switching in to try for a KO is risky. Their Garchomp could potentially survive one hit and then hit back hard.\n\nActually, let me reconsider the Toxapex wall strategy:\n\nIf I Recover now (turn 9):\n- Toxapex goes to 157/157\n- Their Garchomp attacks (moves first). If Stone Edge: ~28 damage → Toxapex at 129\n- Toxic ticks: their Garchomp takes 2/16 * 199 ≈ 25 → at ~160 HP\n\nTurn 10:\n- Their Garchomp attacks again: ~28 damage → Toxapex at 101\n- Toxic ticks: 3/16 * 199 ≈ 37 → their Garchomp at ~123 HP\n\nTurn 11:\n- Their Garchomp attacks: ~28 damage → Toxapex at 73\n- Toxic ticks: 4/16 * 199 ≈ 50 → their Garchomp at ~73 HP\n\nTurn 12:\n- Their Garchomp attacks: ~28 damage → Toxapex at 45\n- Toxic ticks: 5/16 * 199 ≈ 62 → their Garchomp at ~11 HP (faints!)\n\nSo Toxapex survives! But this assumes they keep using Stone Edge. If they switch to Earthquake (super effective on Water), the damage would be much higher:\n- Earthquake vs Water = 2x\n- Base damage without STAB: 22 * 100 * 167 / 224 / 50 ≈ 30.5... wait let me recalculate.\n\nActually their Garchomp's Atk is 135-200, let's say ~167.\nEarthquake: 22 * 100 * 167 / 224 / 50 = 22 * 100 * 0.745 / 50 = 22 * 1.49 = 32.8\nWith STAB (Ground): 32.8 * 1.3 = 42.6\nSuper effective on Water: 42.6 * 2 = 85 damage!\n\nThat would be very dangerous. Toxapex at 157 would go to ~72 after one Earthquake.\n\nBut they've been using Stone Edge twice. They might have a limited moveset. Let me think about what's most likely.\n\nGiven the uncertainty, I think the safest play is:\n- Recover now to be at full HP (gives me more buffer)\n- Then continue walling with Toxic\n\nActually, wait. Let me reconsider Baneful Bunker. It has priority +4, so it would block their next move regardless of speed. And if they use a contact move, Toxapex poisons them. But Stone Edge isn't a contact move, so the poison from Baneful Bunker wouldn't trigger. However, it still blocks the hit and gives me a free turn to Recover or Toxic.\n\nBut I can only do one action per turn. If I use Baneful Bunker, their next attack is blocked, but then they'll attack again next turn (unless I block again).\n\nI think the best strategy is:\n1. Recover now to be at full HP\n2. Continue walling with Toxic doing its job\n\nActually, let me reconsider. Their Garchomp is at 93% and toxed. The toxic damage will increase each turn. If they're using Stone Edge (0.5x on Toxapex), Toxapex should outlast them. But if they switch to a super effective move like Earthquake, it gets risky.\n\nLet me go with Recover. It's the safest option - I heal to full HP and continue the Toxic wall strategy. If their Garchomp keeps using Stone Edge, I'll win by Toxic. If they try something else, I'm at full HP and can adapt.\n\nWait, actually one more thought: should I use Baneful Bunker instead? It blocks their next move AND if they use a contact move (like Dragonclaw or Earthquake... wait, Earthquake isn't contact either). Actually most of Garchomp's moves aren't contact. Dragonclaw is not contact. Stone Edge is not contact. Earthquake is not contact. So Baneful Bunker would just block the hit without poisoning them.\n\nI'll go with Recover to maximize my HP for the long wall.\n",
+      "note": "",
+      "tokens": 6899,
+      "latency_ms": 92253,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% MOVE: stoneedge, 27% MOVE: spikes, 21% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2854,
+      "latency_ms": 1229,
+      "cost_usd": 0.0001427,
+      "probabilities": {
+        "MOVE: sandstorm": 0.212244,
+        "MOVE: spikes": 0.272527,
+        "MOVE: stealthrock": 0.165296,
+        "MOVE: stoneedge": 0.349932
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's last Pokémon is Garchomp at 81% HP with Toxic. My Garchomp (72%) can Earthquake for ~114-141 dmg, likely KOing it. If opponent goes first with Stone Edge (~67 dmg), my Garchomp survives at ~65 HP and still gets a follow-up hit next turn. Toxic continues chipping. Switch to Garchomp and go for the kill.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Toxapex is at 157/157 (full HP), active\n- Opponent's Garchomp is at 81% HP with Toxic status\n- I have Garchomp at 72.1% and Hydreigon at 85.6% in my bench\n\nThe opponent's Garchomp has been using Stone Edge repeatedly. It's now at 81% HP and has Toxic on it (which will chip it down by ~3 HP per turn, or more if badly poisoned).\n\nWait, let me re-read the battle log:\n- Turn 8: \"Opposing Garchomp is at 93% (tox) [from] psn\" - this means it got Toxic (badly poisoned)\n- Turn 9: \"Opposing Garchomp is at 81% (tox) [from] psn\" - still toxic\n\nSo the Garchomp has Toxic on it. At level 50, Toxic deals damage based on max HP. The opponent's Garchomp has HP range of 183-215. At 81%, that's roughly 148-174 HP remaining. Toxic at level 50 would deal approximately 1/16 of max HP per turn (for badly poisoned, it starts at 1/16 and increases). Actually, in Pokémon Showdown, Toxic deals damage equal to 1/16 of max HP on the first turn, then increases by 1/16 each subsequent turn.\n\nWait, actually Toxic in Gen 5+ deals: Turn 1: 1/16 max HP, Turn 2: 2/16, Turn 3: 3/16, etc. But it's capped at 1/4 max HP.\n\nThe opponent's Garchomp got Toxic on turn 8 (when it was at 93%). Now it's at 81% on turn 9. The difference is 12%, which could be from Stone Edge damage + toxic damage.\n\nActually, let me reconsider. On turn 8, the Garchomp was at 93% after being hit by Toxapex (which took a Stone Edge hit). Then it got Toxic. On turn 9, it's at 81%. The drop from 93% to 81% is 12%, which includes both the Stone Edge damage and the toxic damage.\n\nNow for turn 10:\n- Toxapex is at full HP (157/157)\n- Opponent's Garchomp is at 81% with Toxic\n\nMy options:\n1. Use Toxic again - but it already has Toxic, so this would do nothing useful (you can't re-apply Toxic to a poisoned Pokémon in Gen 5+)\n2. Use Recover - Toxapex is already full HP, so this wastes PP\n3. Use Baneful Bunker - protects from moves and poisons on contact\n4. Use Haze - removes stat changes (but there are no stat changes currently)\n5. Switch to Garchomp\n6. Switch to Hydreigon\n\nWait, Toxapex is already at full HP. Recover would be wasteful. Toxic won't work since the Garchomp already has Toxic. Haze isn't needed since there are no stat changes.\n\nThe best option seems to be switching to my Garchomp or Hydreigon to finish off the opponent's Garchomp.\n\nLet me calculate damage:\n- My Garchomp (132/183 HP, Life Orb) with Dragonclaw vs opponent's Garchomp at 81%:\n  - Dragonclaw is STAB Dragon physical, BP 80\n  - Opponent's Garchomp is Dragon/Ground, so Dragon is neutral (not super effective)\n  - Wait, actually Dragon attacks on Dragon/Ground are neutral. Ground resists nothing from Dragon.\n  - Actually, let me reconsider: Dragon vs Dragon = neutral. Dragon vs Ground = neutral. So Dragonclaw is neutral STAB.\n  \n  My Garchomp's Attack with Life Orb: Atk 182 * 1.5 (Life Orb) = 273 effective\n  Damage formula: ((2*Level/5 + 2) * BP * Atk / Def) / 50 + 2\n  = ((2*50/5 + 2) * 80 * 182 / 115) / 50 + 2... wait, I need to use the actual stats.\n\nActually, let me just estimate. My Garchomp has Atk 182, opponent's Garchomp has Def in range 103-161. Let's say around 130 average.\n\nDragonclaw: STAB Dragon, BP 80\nDamage ≈ (2*50/5 + 2) * 80 * 182 / 130 / 50 + 2 = (22) * 80 * 182 / 130 / 50 + 2\n= 22 * 14.15 / 50 + 2 ≈ 6.29 + 2 ≈ 8.29... \n\nHmm, that doesn't seem right. Let me use the standard formula:\nDamage = ((2*Level/5 + 2) * Power * Attacker_Atk / Defender_Def) / 50 + 2\n\nWith STAB multiplier of 1.5 and Life Orb of 1.5:\n= (22 * 80 * 182 * 1.5 * 1.5) / (130 * 50) + 2\n= (22 * 80 * 409.5) / 6500 + 2\n= (712,920) / 6500 + 2\n≈ 109.7 + 2 ≈ 112\n\nWait, that seems low. Let me recalculate:\n22 * 80 = 1760\n1760 * 182 = 320,320\n320,320 * 1.5 (STAB) = 480,480\n480,480 * 1.5 (Life Orb) = 720,720\n720,720 / 130 = 5,544\n5,544 / 50 = 110.9\n+ 2 = 112.9\n\nSo Dragonclaw would deal about 113 damage to a Garchomp with Def 130. The opponent's Garchomp is at 81% of its max HP (range 183-215, so ~148-174 HP). 113 damage would likely KO it or get very close.\n\nActually wait - the opponent's Garchomp might have higher Def. If Def is 161:\n720,720 / 161 = 4,476\n4,476 / 50 = 89.5\n+ 2 = 91.5\n\nSo Dragonclaw deals roughly 92-113 damage depending on Def. The opponent's Garchomp has ~148-174 HP remaining (at 81%). So Dragonclaw would likely KO or nearly KO it.\n\nWhat about Earthquake?\nEarthquake: Ground STAB, BP 100\n= (22 * 100 * 182 * 1.5 * 1.5) / (Def * 50) + 2\n= (22 * 100 * 409.5) / (Def * 50) + 2\n\nIf Def is 130: 89,890 / 6500 + 2 = 13.8 + 2... wait that's wrong.\n\nLet me redo:\n22 * 100 = 2200\n2200 * 182 = 400,400\n400,400 * 1.5 (STAB) = 600,600\n600,600 * 1.5 (Life Orb) = 900,900\n900,900 / 130 = 6,930\n6,930 / 50 = 138.6\n+ 2 = 140.6\n\nIf Def is 161:\n900,900 / 161 = 5,596\n5,596 / 50 = 111.9\n+ 2 = 113.9\n\nSo Earthquake deals roughly 114-141 damage. This would almost certainly KO the opponent's Garchomp at 81% HP (148-174 HP).\n\nHydreigon with Dark Pulse:\nDark Pulse is not STAB for Hydreigon (Dark/Dragon), so no STAB bonus.\n= (22 * 80 * 112) / (Def * 50) + 2\nOpponent's Garchomp Def range 103-161, let's say 130:\n22 * 80 = 1760\n1760 * 112 = 197,120\n197,120 / 130 = 1,516.3\n1,516.3 / 50 = 30.3\n+ 2 = 32.3\n\nThat's way too low to KO. Hydreigon would need multiple hits.\n\nWhat about Dracometeor?\n= (22 * 130 * 177) / (Def * 50) + 2\nWith STAB Dragon:\n22 * 130 = 2860\n2860 * 177 = 506,220\n506,220 * 1.5 (STAB) = 759,330\n759,330 / 130 = 5,841\n5,841 / 50 = 116.8\n+ 2 = 118.8\n\nIf Def is 161:\n759,330 / 161 = 4,716\n4,716 / 50 = 94.3\n+ 2 = 96.3\n\nSo Dracometeor deals roughly 96-119 damage. This might KO the Garchomp at 81% (148-174 HP) but it's risky if Def is high.\n\nActually, wait. The opponent's Garchomp has Toxic on it. Each turn it loses more HP from poison. If I switch to my Garchomp and use Earthquake, it should KO.\n\nBut there's a speed consideration: My Garchomp (Spe 169) vs Opponent's Garchomp (Spe 109-169). They could be the same speed or the opponent could be faster. If the opponent is faster, they get to hit first with Stone Edge before I can Earthquake.\n\nStone Edge from opponent's Garchomp:\n= (22 * 100 * Atk) / (My Def 115 * 50) + 2\nIf Atk is around 170:\n22 * 100 = 2200\n2200 * 170 = 374,000\n374,000 / 115 = 3,252\n3,252 / 50 = 65.0\n+ 2 = 67\n\nSo Stone Edge deals about 67 damage to my Garchomp (Def 115). My Garchomp is at 132 HP, so it would survive one hit of Stone Edge (132 - 67 = 65 HP remaining), then I could Earthquake and KO.\n\nActually, if the opponent's Garchomp is faster (Spe up to 169 vs my 169), they go first. But if we're tied in speed, it's random.\n\nLet me think about whether to switch or stay with Toxapex:\n- If I stay with Toxapex and use Baneful Bunker, I protect from the next hit but don't make progress toward KOing them.\n- If I switch to Garchomp, I can try to KO with Earthquake (114-141 damage vs 148-174 HP remaining). This should work most of the time.\n\nActually, let me reconsider. The opponent's Garchomp at 81% HP:\n- If max HP is 183: 81% = 148 HP\n- If max HP is 215: 81% = 174 HP\n\nMy Garchomp Earthquake: 114-141 damage. This would KO if HP ≤ 141, but might not if HP is 174 and Def is high (114 damage).\n\nHmm, that's a bit risky. Let me think about what else I can do.\n\nActually, wait - the Toxic will continue to chip them down. If I switch to Garchomp:\n- Turn 10: Opponent hits with Stone Edge (~67 dmg), my Garchomp goes from 132 to ~65 HP. Then I Earthquake for 114-141 damage. If their Garchomp is at 148 HP, it KOs. If at 174 HP and takes only 114, it survives with 60 HP.\n\nThat's risky. What if I use Dragonclaw instead? It deals 92-113 damage, which is even less reliable for a KO.\n\nWhat about staying on Toxapex and using Baneful Bunker to protect, then switching next turn when the Garchomp is weaker from toxic?\n\nActually, let me reconsider the Toxic damage. The Garchomp got Toxic on turn 8. By turn 10, it's been 2 turns of toxic damage. At level 50:\n- Turn 8 (when Toxic was applied): 1/16 max HP ≈ 11-13 damage\n- Turn 9: 2/16 max HP ≈ 23-27 damage\n\nWait, actually in the battle log, turn 8 shows it went from some value to 93%, and turn 9 shows it at 81%. The toxic damage is part of that.\n\nActually, I think the safest play here is to switch to my Garchomp and use Earthquake. Even if it doesn't KO on the first hit (which is unlikely given the numbers), the Toxic will continue to chip them down and I can follow up.\n\nBut wait - if the opponent's Garchomp is faster, they'll hit me with Stone Edge first. My Garchomp at 132 HP would take ~67 damage from Stone Edge, leaving it at ~65 HP. Then I Earthquake for 114-141 damage.\n\nIf their Garchomp has 148 HP (low end): 148 - 114 = 34 HP remaining (not KO)\nIf their Garchomp has 174 HP (high end): 174 - 114 = 60 HP remaining (not KO)\n\nHmm, that's not great. But wait, the Toxic damage would have already been applied this turn before my move. Let me think about the order:\n1. End of previous turn: Toxic damage applies to opponent's Garchomp\n2. Turn 10 starts: Opponent's Garchomp is at some HP (after toxic)\n3. If opponent goes first: Stone Edge hits my Garchomp\n4. My Garchomp Earthquakes\n\nActually, the toxic damage happens at the end of each turn. So at the start of turn 10, the Garchomp would have already taken toxic damage from the previous turn's end. The 81% shown is after that damage.\n\nSo if I switch to Garchomp and use Earthquake:\n- Best case (I go first): Earthquake for 114-141 vs 148-174 HP → likely KO or near-KO\n- Worst case (they go first): They Stone Edge me (~67 dmg, I'm at ~65 HP), then I Earthquake for 114-141 vs 148-174 HP → might not KO\n\nGiven the uncertainty, maybe I should consider staying on Toxapex. If I use Baneful Bunker:\n- Protects from Stone Edge (and any other move)\n- Poisons on contact (but Garchomp's moves aren't contact... wait, actually in Showdown, does Stone Edge count as contact? No, it doesn't.)\n\nActually, Baneful Bunker protects from the next hit. If I use it, the opponent's Garchomp is at 81% with Toxic. Next turn, toxic will chip it further (3/16 max HP ≈ 34-40 damage). Then their Garchomp would be at roughly 60-70% or lower.\n\nBut this delays the win. Let me think about whether there's a better option.\n\nActually, you know what, let me reconsider. The opponent has only one Pokémon left (their Garchomp). I have three Pokémon with decent HP. Even if my Earthquake doesn't KO on the first try, I can follow up next turn. And the Toxic will keep chipping them down.\n\nLet me go with switching to Garchomp and using Earthquake. It's the most direct path to winning. If it doesn't KO, I can switch back or use Dragonclaw/Earthquake again.\n\nWait, actually - should I just stay on Toxapex and use Baneful Bunker? That guarantees I don't take damage this turn, and thenThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 7430,
+      "latency_ms": 103158,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: stoneedge, 23% MOVE: sandstorm, 23% MOVE: spikes",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2937,
+      "latency_ms": 1139,
+      "cost_usd": 0.00014685,
+      "probabilities": {
+        "MOVE: sandstorm": 0.22586,
+        "MOVE: spikes": 0.22586,
+        "MOVE: stealthrock": 0.1759,
+        "MOVE: stoneedge": 0.37238
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "My Garchomp (58.5% HP, Life Orb) vs their Garchomp (63% HP, Toxic stage 1). Earthquake is neutral on Dragon/Ground (Ground vs Ground = 1x), but with Life Orb's 1.3x it should deal ~100+ damage, enough to KO at 63%. Even if they hit first with Stone Edge (~40 dmg), I survive and still get the follow-up. This is the kill shot.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Garchomp is active at 107/183 (58.5%) HP, with Life Orb\n- Opponent's Garchomp is at 63% HP with Toxic (stage 1)\n- Speed: My Garchomp 169 vs Opposing Garchomp 109-169 (could go either way)\n\nKey considerations:\n- My Garchomp has Earthquake which is super effective on Dragon/Ground (2x). Wait, no - Ground is not super effective against Dragon/Ground. Let me recalculate.\n\nActually, let me check type matchups:\n- Earthquake (Ground) vs Dragon/Ground: Ground is NOT very effective against Ground (0.5x), and neutral against Dragon. So it's 0.5x total. Wait, that's not right either.\n\nLet me think again:\n- Ground vs Dragon: Neutral (1x)\n- Ground vs Ground: Not very effective (0.5x)\n- So Earthquake on Garchomp = 0.5x damage\n\nWait, but in Turn 6, my Garchomp used Earthquake and it was \"super effective\" against Tauros-Paldea-Blaze (Fighting/Fire). That makes sense - Ground is super effective against Fighting.\n\nAnd in Turn 10, the opponent's Garchomp used Stone Edge on my Garchomp and it was \"not very effective\" - Rock vs Dragon/Ground: Rock is not very effective against Dragon (0.5x) and neutral against Ground... wait, actually Rock vs Dragon is not very effective (0.5x), and Rock vs Ground is neutral (1x). So total 0.5x. That checks out.\n\nSo Earthquake on Garchomp:\n- Ground vs Dragon: 1x\n- Ground vs Ground: 0.5x\n- Total: 0.5x damage\n\nWait, but in Turn 6, my Garchomp used Earthquake and it was \"super effective\" against Tauros-Paldea-Blaze (Fighting/Fire):\n- Ground vs Fighting: 2x\n- Ground vs Fire: 1x\n- Total: 2x = super effective. ✓\n\nSo Earthquake on Garchomp would be 0.5x. That's not great.\n\nWhat about Dragonclaw?\n- Dragon vs Dragon: 1x\n- Dragon vs Ground: 1x\n- Total: 1x (neutral)\n\nStone Edge:\n- Rock vs Dragon: 0.5x\n- Rock vs Ground: 1x\n- Total: 0.5x (not very effective) - and only 80% accuracy\n\nSo none of my physical moves are super effective against Garchomp! Earthquake is 0.5x, Dragonclaw is neutral, Stone Edge is 0.5x with low accuracy.\n\nWait, let me reconsider. My Garchomp's stats: Atk 182, HP 183. With Life Orb (1.3x multiplier).\n\nOpponent's Garchomp at 63% HP. Let's say it has around 183-215 HP range. At 63%, that's about 115-135 HP remaining.\n\nEarthquake (0.5x, BP 100):\n- Base damage: ~ (2*182*100)/(4*def) + 8, times 0.5, times 1.3 (Life Orb)\n- If opponent's Def is around 103-161, let's say 130 average\n- Base: (2*182*100)/(4*130) + 8 = 36400/520 + 8 = 70 + 8 = 78\n- With 0.5x: 39\n- With Life Orb 1.3x: ~51 damage\n\nThat's not enough to KO a Garchomp at 63% (which has maybe 115-135 HP).\n\nDragonclaw (neutral, BP 80):\n- Base: (2*182*80)/(4*130) + 8 = 29120/520 + 8 = 56 + 8 = 64\n- With Life Orb 1.3x: ~83 damage\n\nStill might not KO but closer.\n\nHmm, actually wait. Let me reconsider the type chart more carefully.\n\nGround moves vs Dragon/Ground:\n- Ground is super effective against Fire, Fighting, Rock (2x)\n- Ground is not very effective against Grass, Bug, Poison (0.5x)\n- Ground is neutral against Dragon, Water, Electric, Steel, etc.\n- Ground is NOT very effective against Ground? Actually wait...\n\nLet me think about this more carefully. In Pokémon:\n- Ground type attacks are NOT very effective against: Grass, Bug, Poison\n- Ground type attacks are NEUTRAL against: Dragon, Water, Electric, Steel, Fairy, Normal, etc.\n- Ground type is NOT a \"not very effective\" matchup against itself (Ground vs Ground)\n\nWait, actually I need to double-check. Is Ground not very effective against Ground? \n\nLooking at the type chart:\n- Ground attacks are super effective against: Fire, Fighting, Rock\n- Ground attacks are not very effective against: Grass, Bug, Poison\n- Ground is neutral against everything else including Dragon and... itself?\n\nActually, I believe Ground is NOT very effective against Ground. Let me think... No wait, I don't think that's right either. In the type chart, a type being \"not very effective\" against another means it deals 0.5x damage. \n\nGround vs Ground: I believe this is actually neutral (1x). The \"not very effective\" matchups for Ground are Grass, Bug, and Poison only.\n\nLet me reconsider:\n- Earthquake (Ground) vs Dragon/Ground:\n  - Ground vs Dragon: 1x (neutral)\n  - Ground vs Ground: 1x (neutral) -- I'm now thinking this might be neutral\n  - Total: 1x\n\nHmm, but actually in Turn 6, the log says \"Your Garchomp used Earthquake. It was super effective.\" against Tauros-Paldea-Blaze (Fighting/Fire). Ground vs Fighting is 2x, Ground vs Fire is 1x, total 2x = super effective. ✓\n\nAnd in Turn 10: \"Opposing Garchomp used Stone Edge. It was not very effective\" on my Garchomp (Dragon/Ground). Rock vs Dragon is 0.5x, Rock vs Ground is 1x, total 0.5x = not very effective. ✓\n\nSo for Earthquake on Garchomp:\n- If Ground vs Ground is neutral: Total = 1x\n- If Ground vs Ground is 0.5x: Total = 0.5x\n\nI'm now fairly confident that Ground is NOT very effective against Ground in Pokémon. Let me verify with the type chart logic... Actually, I recall that in the official type chart, Ground attacks deal neutral damage to other Ground types. The \"not very effective\" matchups for Ground are only Grass, Bug, and Poison.\n\nSo Earthquake on Garchomp = 1x (neutral).\n\nWith Life Orb:\n- Base damage from Earthquake: (2*182*100)/(4*def) + 8\n- If def is ~130: (36400/520) + 8 = 70 + 8 = 78\n- With Life Orb 1.3x: ~101 damage\n\nOpponent's Garchomp at 63% HP. If max HP is around 183-215, at 63% that's about 115-135 HP.\n\nSo Earthquake might KO or nearly KO! Let's say it deals ~101 damage to a Pokémon with ~115-135 HP. That would likely KO it!\n\nActually wait, I need to account for the fact that my Garchomp is at 58.5% (107/183). The opponent might hit first with Stone Edge.\n\nIf opponent goes first:\n- Stone Edge (0.5x, BP 100, 80% acc) on my Garchomp\n- Base: (2*atk*100)/(4*def) + 8, times 0.5\n- If their Atk is ~135-200, let's say 170 average\n- My Def: 115\n- Base: (2*170*100)/(4*115) + 8 = 34000/460 + 8 = 74 + 8 = 82\n- With 0.5x: 41 damage\n- My Garchomp at 107 HP → 66 HP after hit\n\nThen my Earthquake: ~101 damage to their Garchomp at ~115-135 HP → KO!\n\nIf I go first:\n- Earthquake: ~101 damage to their Garchomp at ~115-135 HP → likely KO!\n\nEither way, Earthquake should be the winning move. Let me go with it.\n\nActually, let me reconsider whether Ground vs Ground is really neutral. In the official Pokémon type chart:\n- Ground is not very effective against: Grass, Bug, Poison\n- Ground is super effective against: Fire, Fighting, Rock\n\nGround vs Ground would be in the \"neutral\" category (1x). Yes, I'm confident it's 1x.\n\nSo Earthquake is neutral on Garchomp. With Life Orb at 1.3x, it should deal enough damage to KO their Garchomp at 63% HP.\n\nLet me also consider: the opponent's Garchomp has Toxic on it. If I don't KO it this turn, it'll take more poison damage next turn (stage 2 = 1/8 max HP). But Earthquake should be enough to finish it off.\n\nDecision: MOVE: earthquake\n",
+      "note": "",
+      "tokens": 5647,
+      "latency_ms": 58878,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
