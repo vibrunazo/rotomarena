@@ -1,0 +1,452 @@
+{
+  "id": "match_20261014_000454_Drex v1_5_vs_Solar Decide_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p1",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    },
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p2",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 16.0,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Drex v1.5||",
+    "|player|p2|Solar Decide Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Hydreigon, L50, M|",
+    "|poke|p1|Kommo-o, L50, M|",
+    "|poke|p1|Gyarados, L50, M|",
+    "|poke|p1|Sylveon, L50, F|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p2|Delphox, L50, F|",
+    "|poke|p2|Glimmora, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Roserade, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|215/215",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|move|p1a: Garchomp|Stealth Rock|p2a: Rotom",
+    "|-sidestart|p2: Solar Decide|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|-damage|p2a: Tauros|88/100|[from] Stealth Rock",
+    "|move|p1a: Garchomp|Earthquake|p2a: Tauros",
+    "|-supereffective|p2a: Tauros|1",
+    "|-damage|p2a: Tauros|0 fnt",
+    "|faint|p2a: Tauros",
+    "|-damage|p1a: Garchomp|194/215|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|-damage|p2a: Garchomp|93/100|[from] Stealth Rock",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|-damage|p2a: Rotom|88/100|[from] Stealth Rock",
+    "|move|p1a: Garchomp|Dragon Tail|p2a: Rotom",
+    "|-damage|p2a: Rotom|19/100",
+    "|-damage|p1a: Garchomp|173/215|[from] item: Life Orb",
+    "|drag|p2a: Garchomp|Garchomp, L50, M|93/100",
+    "|-damage|p2a: Garchomp|87/100|[from] Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|19/100",
+    "|-damage|p2a: Rotom|7/100|[from] Stealth Rock",
+    "|move|p1a: Garchomp|Dragon Tail|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|-damage|p1a: Garchomp|152/215|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|87/100",
+    "|-damage|p2a: Garchomp|81/100|[from] Stealth Rock",
+    "|turn|5",
+    "|",
+    "|move|p2a: Garchomp|Giga Impact|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|72/215",
+    "|-mustrecharge|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|69/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|move|p1a: Garchomp|Dragon Tail|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|-damage|p1a: Garchomp|51/215|[from] item: Life Orb",
+    "|",
+    "|win|Drex v1.5"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 54% BRING: garchomp, 33% BRING: rotom, 5% BRING: roserade\nPick 2: 56% BRING: rotom, 16% BRING: glimmora, 11% BRING: roserade\nPick 3: 62% BRING: taurospaldeablaze, 18% BRING: delphox, 11% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6470,
+      "latency_ms": 2269,
+      "cost_usd": 0.0003235,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 34% BRING: garchomp, 29% BRING: dragapult, 22% BRING: hydreigon\nPick 2: 45% BRING: hydreigon, 24% BRING: dragapult, 11% BRING: kommoo\nPick 3: 63% BRING: dragapult, 13% BRING: gyarados, 13% BRING: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5434,
+      "latency_ms": 4376,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% SWITCH: rotom, 21% SWITCH: taurospaldeablaze, 13% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2238,
+      "latency_ms": 863,
+      "cost_usd": 0.0001119,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.126894,
+        "MOVE: sandstorm": 0.041197,
+        "MOVE: stealthrock": 0.126894,
+        "MOVE: stoneedge": 0.052897,
+        "SWITCH: rotom": 0.442904,
+        "SWITCH: taurospaldeablaze": 0.209213
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: stealthrock, 36% MOVE: dragontail, 14% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1890,
+      "latency_ms": 1886,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.1402,
+        "MOVE: dragontail": 0.3571,
+        "MOVE: stealthrock": 0.3675,
+        "MOVE: stoneedge": 0.0327,
+        "SWITCH: hydreigon": 0.0639,
+        "SWITCH: dragapult": 0.0385
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% SWITCH: taurospaldeablaze, 26% SWITCH: garchomp, 18% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2292,
+      "latency_ms": 923,
+      "cost_usd": 0.0001146,
+      "probabilities": {
+        "MOVE: discharge": 0.180599,
+        "MOVE: electricterrain": 0.085309,
+        "MOVE: risingvoltage": 0.058632,
+        "MOVE: voltswitch": 0.075285,
+        "SWITCH: garchomp": 0.262771,
+        "SWITCH: taurospaldeablaze": 0.337404
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% MOVE: earthquake, 16% MOVE: stealthrock, 15% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1994,
+      "latency_ms": 1988,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.3928,
+        "MOVE: dragontail": 0.1488,
+        "MOVE: stealthrock": 0.1619,
+        "MOVE: stoneedge": 0.0983,
+        "SWITCH: hydreigon": 0.1017,
+        "SWITCH: dragapult": 0.0965
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: garchomp, 44% SWITCH: rotom",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2043,
+      "latency_ms": 1047,
+      "cost_usd": 0.00010215,
+      "probabilities": {
+        "SWITCH: garchomp": 0.562177,
+        "SWITCH: rotom": 0.437823
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% SWITCH: rotom, 11% MOVE: gigaimpact, 4% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2385,
+      "latency_ms": 1025,
+      "cost_usd": 0.00011925,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.112029,
+        "MOVE: sandstorm": 0.007162,
+        "MOVE: stealthrock": 0.041213,
+        "MOVE: stoneedge": 0.011808,
+        "SWITCH: rotom": 0.827788
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: dragontail, 25% MOVE: earthquake, 17% SWITCH: hydreigon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2228,
+      "latency_ms": 1858,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2512,
+        "MOVE: dragontail": 0.398,
+        "MOVE: stealthrock": 0.0635,
+        "MOVE: stoneedge": 0.0294,
+        "SWITCH: hydreigon": 0.1712,
+        "SWITCH: dragapult": 0.0867
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "76% SWITCH: rotom, 13% MOVE: gigaimpact, 6% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2503,
+      "latency_ms": 714,
+      "cost_usd": 0.00012515,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.131253,
+        "MOVE: sandstorm": 0.013834,
+        "MOVE: stealthrock": 0.062,
+        "MOVE: stoneedge": 0.037605,
+        "SWITCH: rotom": 0.755309
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% MOVE: dragontail, 25% MOVE: earthquake, 20% SWITCH: hydreigon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2329,
+      "latency_ms": 2368,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2503,
+        "MOVE: dragontail": 0.3549,
+        "MOVE: stealthrock": 0.0533,
+        "MOVE: stoneedge": 0.0282,
+        "SWITCH: hydreigon": 0.2026,
+        "SWITCH: dragapult": 0.1107
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% MOVE: gigaimpact, 23% MOVE: sandstorm, 23% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2570,
+      "latency_ms": 828,
+      "cost_usd": 0.0001285,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.299724,
+        "MOVE: sandstorm": 0.233425,
+        "MOVE: stealthrock": 0.233425,
+        "MOVE: stoneedge": 0.233425
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: dragontail, 21% SWITCH: hydreigon, 20% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2428,
+      "latency_ms": 2439,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2041,
+        "MOVE: dragontail": 0.3773,
+        "MOVE: stealthrock": 0.0542,
+        "MOVE: stoneedge": 0.0254,
+        "SWITCH: hydreigon": 0.2108,
+        "SWITCH: dragapult": 0.1283
+      }
+    }
+  ]
+}

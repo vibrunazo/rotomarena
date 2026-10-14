@@ -1,0 +1,432 @@
+{
+  "id": "match_20261014_000552_Decider V1_1 27B_vs_Drex v1_5_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p2",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 16.17,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|Drex v1.5||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, F|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Hydreigon, L50, M|",
+    "|poke|p2|Kommo-o, L50, M|",
+    "|poke|p2|Gyarados, L50, M|",
+    "|poke|p2|Sylveon, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|34/100",
+    "|move|p2a: Garchomp|Stealth Rock|p1a: Dragapult",
+    "|-sidestart|p1: Decider V1.1 27B|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, M|100/100",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|23/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|0 fnt",
+    "|faint|p2a: Hydreigon",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|4",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|59/163",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-crit|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|34/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|win|Perplexity Decider V1.1 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 33% BRING: dragapult, 31% BRING: whimsicott, 14% BRING: gholdengo\nPick 2: 28% BRING: gholdengo, 25% BRING: chandelure, 18% BRING: palafin\nPick 3: 31% BRING: chandelure, 26% BRING: palafin, 23% BRING: whimsicott",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5619,
+      "latency_ms": 1537,
+      "cost_usd": 0.00011238,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 44% BRING: garchomp, 23% BRING: dragapult, 19% BRING: hydreigon\nPick 2: 40% BRING: hydreigon, 36% BRING: dragapult, 9% BRING: gyarados\nPick 3: 69% BRING: dragapult, 11% BRING: gyarados, 11% BRING: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5419,
+      "latency_ms": 4351,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "91% MOVE: dragonpulse, 4% MOVE: shadowball, 3% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1961,
+      "latency_ms": 510,
+      "cost_usd": 3.922e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9124440425506556,
+        "MOVE: shadowball": 0.03882795682025541,
+        "MOVE: flamethrower": 0.001798289253276022,
+        "MOVE: phantomforce": 0.02632487803969084,
+        "SWITCH: gholdengo": 0.017383842209846866,
+        "SWITCH: chandelure": 0.003220991126275061
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: stealthrock, 19% MOVE: dragontail, 13% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1882,
+      "latency_ms": 1883,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.1281,
+        "MOVE: dragontail": 0.1941,
+        "MOVE: stealthrock": 0.4431,
+        "MOVE: stoneedge": 0.1187,
+        "SWITCH: hydreigon": 0.0608,
+        "SWITCH: dragapult": 0.0553
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 0% SWITCH: gholdengo, 0% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1813,
+      "latency_ms": 473,
+      "cost_usd": 3.626e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9936618826602494,
+        "SWITCH: gholdengo": 0.003951929753727631,
+        "SWITCH: chandelure": 0.002386187586023075
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: hydreigon, 19% MOVE: dragontail, 18% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1946,
+      "latency_ms": 1964,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.1137,
+        "MOVE: dragontail": 0.1879,
+        "MOVE: stealthrock": 0.0634,
+        "MOVE: stoneedge": 0.1769,
+        "SWITCH: hydreigon": 0.3521,
+        "SWITCH: dragapult": 0.1061
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 0% SWITCH: chandelure, 0% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1937,
+      "latency_ms": 578,
+      "cost_usd": 3.874e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9940686571294785,
+        "SWITCH: gholdengo": 0.002875570224767191,
+        "SWITCH: chandelure": 0.003055772645754524
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: dragontail, 38% SWITCH: dragapult, 6% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2006,
+      "latency_ms": 1901,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0133,
+        "MOVE: dragontail": 0.5149,
+        "MOVE: earthquake": 0.0085,
+        "MOVE: stealthrock": 0.0242,
+        "SWITCH: garchomp": 0.0581,
+        "SWITCH: dragapult": 0.3809
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% SWITCH: dragapult, 7% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1690,
+      "latency_ms": 1925,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.0665,
+        "SWITCH: dragapult": 0.9335
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "84% MOVE: dragonpulse, 11% SWITCH: gholdengo, 5% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2111,
+      "latency_ms": 503,
+      "cost_usd": 4.222e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.8368362967352163,
+        "SWITCH: gholdengo": 0.1100134220418221,
+        "SWITCH: chandelure": 0.0531502812229616
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "64% MOVE: shadowball, 18% MOVE: dragontail, 9% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2013,
+      "latency_ms": 1996,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0481,
+        "MOVE: dragontail": 0.1791,
+        "MOVE: shadowball": 0.6374,
+        "MOVE: willowisp": 0.0441,
+        "SWITCH: garchomp": 0.0914
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% MOVE: dragonpulse, 2% SWITCH: gholdengo, 0% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2170,
+      "latency_ms": 492,
+      "cost_usd": 4.34e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9795862191523779,
+        "SWITCH: gholdengo": 0.015823464581371002,
+        "SWITCH: chandelure": 0.0045903162662511415
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: dragontail, 25% MOVE: earthquake, 24% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2015,
+      "latency_ms": 2107,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2544,
+        "MOVE: dragontail": 0.4715,
+        "MOVE: stealthrock": 0.031,
+        "MOVE: stoneedge": 0.2431
+      }
+    }
+  ]
+}

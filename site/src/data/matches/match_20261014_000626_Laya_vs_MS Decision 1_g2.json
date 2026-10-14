@@ -1,0 +1,830 @@
+{
+  "id": "match_20261014_000626_Laya_vs_MS Decision 1_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1",
+      "role": "p2",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0,
+      "replay_name": "Microsoft-Decision-1"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 11,
+  "duration_seconds": 10.96,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|Microsoft-Decision-1||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, F|",
+    "|poke|p1|Torterra, L50, M|",
+    "|poke|p1|Scrafty, L50, M|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Greninja, L50, F|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Palafin, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, M|202/202",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragapult|U-turn|p1a: Torterra",
+    "|-supereffective|p1a: Torterra|1",
+    "|-damage|p1a: Torterra|118/202",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100|[from] U-turn",
+    "|move|p1a: Torterra|Trailblaze|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|75/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|-damage|p1a: Torterra|93/202|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Garchomp|Stealth Rock|p1a: Torterra",
+    "|-sidestart|p1: Laya|move: Stealth Rock",
+    "|move|p1a: Torterra|Trailblaze|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|51/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|-damage|p1a: Torterra|68/202|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Draco Meteor|p1a: Torterra",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|-unboost|p2a: Garchomp|spa|2",
+    "|faint|p1a: Torterra",
+    "|-damage|p2a: Garchomp|42/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|157/157",
+    "|-damage|p1a: Rotom|138/157|[from] Stealth Rock",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|move|p1a: Rotom|Discharge|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|76/100",
+    "|-status|p2a: Dragapult|par",
+    "|",
+    "|-heal|p1a: Rotom|147/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|37/157",
+    "|move|p1a: Rotom|Rising Voltage|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|55/100 par",
+    "|",
+    "|-heal|p1a: Rotom|46/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|cant|p2a: Dragapult|par",
+    "|move|p1a: Rotom|Rising Voltage|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|34/100 par",
+    "|",
+    "|-heal|p1a: Rotom|55/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, F|177/177",
+    "|-damage|p1a: Torkoal|133/177|[from] Stealth Rock",
+    "|turn|8",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Torkoal",
+    "|-damage|p1a: Torkoal|104/177",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|14/100 par",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p2a: Dragapult|Sucker Punch|p1a: Torkoal",
+    "|-damage|p1a: Torkoal|71/177",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|10",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|42/100",
+    "|move|p1a: Torkoal|Flame Charge|p2a: Garchomp",
+    "|-resisted|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|31/100",
+    "|-boost|p1a: Torkoal|spe|1",
+    "|-damage|p1a: Torkoal|49/177|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Torkoal",
+    "|-supereffective|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|-damage|p2a: Garchomp|21/100|[from] item: Life Orb",
+    "|",
+    "|win|Microsoft-Decision-1"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 43% BRING: torterra, 17% BRING: rotom, 14% BRING: torkoal\nPick 2: 37% BRING: torkoal, 26% BRING: rotom, 16% BRING: scrafty\nPick 3: 59% BRING: rotom, 17% BRING: scrafty, 14% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5313,
+      "latency_ms": 924,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: dragapult, 42% BRING: garchomp, 6% BRING: greninja\nPick 2: 78% BRING: garchomp, 14% BRING: gholdengo, 4% BRING: greninja\nPick 3: 79% BRING: gholdengo, 12% BRING: greninja, 7% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5454,
+      "latency_ms": 2514,
+      "cost_usd": 0.000229068,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: trailblaze, 14% MOVE: bulldoze, 13% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1888,
+      "latency_ms": 43,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.4661,
+        "MOVE: bulldoze": 0.1444,
+        "MOVE: energyball": 0.1073,
+        "MOVE: growth": 0.1294,
+        "SWITCH: torkoal": 0.0565,
+        "SWITCH: rotom": 0.0962
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: uturn, 25% MOVE: suckerpunch, 25% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1886,
+      "latency_ms": 1565,
+      "cost_usd": 7.9212e-05,
+      "probabilities": {
+        "MOVE: hex": 0.020827425698237288,
+        "MOVE: shadowball": 0.15389503522630193,
+        "MOVE: suckerpunch": 0.25373001803274947,
+        "MOVE: uturn": 0.28751377743042805,
+        "SWITCH: garchomp": 0.25373001803274947,
+        "SWITCH: gholdengo": 0.030303725579533754
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% SWITCH: garchomp, 20% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1666,
+      "latency_ms": 466,
+      "cost_usd": 6.9972e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.7981867777396212,
+        "SWITCH: gholdengo": 0.20181322226037882
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: trailblaze, 12% MOVE: growth, 11% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2054,
+      "latency_ms": 46,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.6314,
+        "MOVE: bulldoze": 0.1055,
+        "MOVE: energyball": 0.0611,
+        "MOVE: growth": 0.1215,
+        "SWITCH: torkoal": 0.0307,
+        "SWITCH: rotom": 0.0498
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% MOVE: stealthrock, 24% MOVE: earthquake, 19% MOVE: dracometeor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1987,
+      "latency_ms": 1010,
+      "cost_usd": 8.3454e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.19012550962713634,
+        "MOVE: earthquake": 0.24412598672195293,
+        "MOVE: stealthrock": 0.27663098420739357,
+        "MOVE: swordsdance": 0.14806989577946372,
+        "SWITCH: dragapult": 0.11531693703549668,
+        "SWITCH: gholdengo": 0.025730686628556775
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: trailblaze, 28% MOVE: growth, 15% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2138,
+      "latency_ms": 49,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.3262,
+        "MOVE: bulldoze": 0.1517,
+        "MOVE: energyball": 0.1076,
+        "MOVE: growth": 0.279,
+        "SWITCH: torkoal": 0.0463,
+        "SWITCH: rotom": 0.0892
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% MOVE: dracometeor, 26% MOVE: swordsdance, 23% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2066,
+      "latency_ms": 567,
+      "cost_usd": 8.6772e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.2992555270991557,
+        "MOVE: earthquake": 0.2330604388432685,
+        "MOVE: stealthrock": 0.05892690715520884,
+        "MOVE: swordsdance": 0.26409207574632537,
+        "SWITCH: dragapult": 0.08573814400083273,
+        "SWITCH: gholdengo": 0.05892690715520884
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% SWITCH: rotom, 43% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1887,
+      "latency_ms": 41,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.4263,
+        "SWITCH: rotom": 0.5737
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "discharge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% MOVE: discharge, 25% MOVE: doubleteam, 25% MOVE: risingvoltage",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2205,
+      "latency_ms": 50,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.2544,
+        "MOVE: discharge": 0.2839,
+        "MOVE: risingvoltage": 0.2544,
+        "MOVE: charge": 0.1496,
+        "SWITCH: torkoal": 0.0577
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "27% SWITCH: dragapult, 24% MOVE: swordsdance, 18% MOVE: dracometeor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2227,
+      "latency_ms": 505,
+      "cost_usd": 9.3534e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.1830911738774441,
+        "MOVE: earthquake": 0.06735547872945752,
+        "MOVE: stealthrock": 0.08648614664179399,
+        "MOVE: swordsdance": 0.2350937208298329,
+        "SWITCH: dragapult": 0.26639608608404947,
+        "SWITCH: gholdengo": 0.161577393837422
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: risingvoltage, 19% MOVE: discharge, 16% MOVE: doubleteam",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2277,
+      "latency_ms": 96,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1634,
+        "MOVE: discharge": 0.191,
+        "MOVE: risingvoltage": 0.4108,
+        "MOVE: charge": 0.1293,
+        "SWITCH: torkoal": 0.1055
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% MOVE: suckerpunch, 22% MOVE: hex, 12% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2362,
+      "latency_ms": 500,
+      "cost_usd": 9.9204e-05,
+      "probabilities": {
+        "MOVE: hex": 0.21706770635838152,
+        "MOVE: shadowball": 0.11618797059072798,
+        "MOVE: suckerpunch": 0.5207183268639943,
+        "MOVE: uturn": 0.017818002377720615,
+        "SWITCH: garchomp": 0.09048728247953632,
+        "SWITCH: gholdengo": 0.03772071132963922
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: risingvoltage, 25% MOVE: discharge, 15% MOVE: charge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2376,
+      "latency_ms": 57,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1299,
+        "MOVE: discharge": 0.2543,
+        "MOVE: risingvoltage": 0.3758,
+        "MOVE: charge": 0.1495,
+        "SWITCH: torkoal": 0.0907
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "84% MOVE: suckerpunch, 11% SWITCH: garchomp, 5% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2263,
+      "latency_ms": 461,
+      "cost_usd": 9.5046e-05,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.8391011669957595,
+        "SWITCH: garchomp": 0.11355998733084045,
+        "SWITCH: gholdengo": 0.04733884567339998
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: risingvoltage, 26% MOVE: discharge, 19% MOVE: doubleteam",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2447,
+      "latency_ms": 58,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1938,
+        "MOVE: discharge": 0.2567,
+        "MOVE: risingvoltage": 0.3296,
+        "MOVE: charge": 0.1463,
+        "SWITCH: torkoal": 0.0736
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% MOVE: suckerpunch, 17% SWITCH: garchomp, 8% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2333,
+      "latency_ms": 474,
+      "cost_usd": 9.7986e-05,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.7527119938757002,
+        "SWITCH: garchomp": 0.16795275274451094,
+        "SWITCH: gholdengo": 0.07933525337978886
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: flamethrower, 17% MOVE: fissure, 14% MOVE: firespin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2481,
+      "latency_ms": 58,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.5457,
+        "MOVE: flamecharge": 0.138,
+        "MOVE: fissure": 0.1717,
+        "MOVE: firespin": 0.1446
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "60% MOVE: suckerpunch, 22% SWITCH: garchomp, 17% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2459,
+      "latency_ms": 458,
+      "cost_usd": 0.000103278,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.6044545015671744,
+        "SWITCH: garchomp": 0.22236638425009483,
+        "SWITCH: gholdengo": 0.17317911418273077
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: flamethrower, 19% MOVE: firespin, 16% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2546,
+      "latency_ms": 89,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.5079,
+        "MOVE: flamecharge": 0.1455,
+        "MOVE: fissure": 0.1598,
+        "MOVE: firespin": 0.1868
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "66% MOVE: suckerpunch, 21% SWITCH: garchomp, 13% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2537,
+      "latency_ms": 470,
+      "cost_usd": 0.000106554,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.6572184354499249,
+        "SWITCH: garchomp": 0.21336759302106215,
+        "SWITCH: gholdengo": 0.129413971529013
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: gholdengo, 44% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2433,
+      "latency_ms": 449,
+      "cost_usd": 0.000102186,
+      "probabilities": {
+        "SWITCH: garchomp": 0.4378234991142019,
+        "SWITCH: gholdengo": 0.5621765008857981
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamecharge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% MOVE: flamecharge, 25% MOVE: flamethrower, 25% MOVE: firespin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2655,
+      "latency_ms": 63,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.2548,
+        "MOVE: flamecharge": 0.2798,
+        "MOVE: fissure": 0.2146,
+        "MOVE: firespin": 0.2508
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: garchomp, 18% MOVE: shadowball, 11% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2731,
+      "latency_ms": 936,
+      "cost_usd": 0.000114702,
+      "probabilities": {
+        "MOVE: flashcannon": 0.044558214841667505,
+        "MOVE: recover": 0.10688960072695423,
+        "MOVE: shadowball": 0.1762311583351733,
+        "MOVE: shadowpunch": 0.05721388037893402,
+        "SWITCH: garchomp": 0.6151071457172709
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: flamethrower, 28% MOVE: firespin, 20% MOVE: flamecharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2777,
+      "latency_ms": 70,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.3447,
+        "MOVE: flamecharge": 0.1995,
+        "MOVE: fissure": 0.1788,
+        "MOVE: firespin": 0.277
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "76% MOVE: earthquake, 9% MOVE: dracometeor, 7% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2834,
+      "latency_ms": 481,
+      "cost_usd": 0.000119028,
+      "probabilities": {
+        "MOVE: dracometeor": 0.0906133743546562,
+        "MOVE: earthquake": 0.758696426692087,
+        "MOVE: stealthrock": 0.01784283134008011,
+        "MOVE: swordsdance": 0.07056976690414861,
+        "SWITCH: gholdengo": 0.06227760070902804
+      }
+    }
+  ]
+}
