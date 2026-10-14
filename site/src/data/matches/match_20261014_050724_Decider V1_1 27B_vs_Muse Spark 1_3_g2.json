@@ -1,0 +1,695 @@
+{
+  "id": "match_20261014_050724_Decider V1_1 27B_vs_Muse Spark 1_3_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "muse_spark_1_3",
+      "display_name": "Muse Spark 1.3",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "meta/muse-spark-1.3-contributor",
+      "quantization": null,
+      "username": "Muse Spark 1.3",
+      "role": "p2",
+      "team": "Muse Spark 1.3's team",
+      "model_key": "meta/muse-spark-1.3-contributor",
+      "autopilot_rate": 0.0,
+      "replay_name": "Muse Spark 1.3"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 10,
+  "duration_seconds": 190.09,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|Muse Spark 1.3||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Mimikyu, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Rotom",
+    "|-resisted|p2a: Rotom|1",
+    "|-damage|p2a: Rotom|86/100",
+    "|-status|p2a: Rotom|brn",
+    "|",
+    "|-damage|p2a: Rotom|80/100 brn|[from] brn",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|move|p2a: Rotom|Protect||[still]",
+    "|-fail|p2a: Rotom",
+    "|",
+    "|-damage|p2a: Rotom|75/100 brn|[from] brn",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|detailschange|p1a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p1a: Chandelure|Chandelure|Chandelurite",
+    "|move|p1a: Chandelure|Hex|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|4",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|5",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|27/100",
+    "|move|p2a: Garchomp|Earthquake|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|54/163",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|7",
+    "|",
+    "|switch|p1a: Palafin|Palafin, L50, M|175/175",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Palafin",
+    "|-damage|p1a: Palafin|54/175",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p1a: Palafin|Waterfall|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|56/100",
+    "|-damage|p1a: Palafin|37/175|[from] item: Life Orb",
+    "|cant|p2a: Gholdengo|flinch",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p1a: Palafin|Waterfall|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|13/100",
+    "|-damage|p1a: Palafin|20/175|[from] item: Life Orb",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Palafin",
+    "|-damage|p1a: Palafin|0 fnt",
+    "|faint|p1a: Palafin",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|54/163",
+    "|turn|10",
+    "|",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|win|Perplexity Decider V1.1 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,chandelure,palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 47% BRING: dragapult, 25% BRING: whimsicott, 10% BRING: palafin\nPick 2: 32% BRING: chandelure, 20% BRING: whimsicott, 19% BRING: palafin\nPick 3: 32% BRING: palafin, 29% BRING: whimsicott, 25% BRING: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5598,
+      "latency_ms": 1521,
+      "cost_usd": 0.00011196,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,rotomwash,garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Bring Gholdengo + Rotom-Wash + Scarf Garchomp for balance. Gholdengo beats Pex, Whimsicott, mirror. Rotom walls Palafin and Chandelure, burns physical. Scarf Chomp outspeeds and KOs Dragapult, Chandelure, Palafin. Lead Gholdengo safe vs status.",
+      "hidden_reasoning": "Analyzing team matchup and threats to select three Pokémon that cover Palafin, Dragapult, Whimsicott, Chandelure, Toxapex, and opposing Gholdengo without Mega Evolution.Validating Garchomp’s speed tier and Rotom-Wash’s defensive typing against Palafin and Dragapult.",
+      "note": "",
+      "tokens": 3120,
+      "latency_ms": 11119,
+      "cost_usd": 0.0004415,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% MOVE: flamethrower, 12% MOVE: shadowball, 10% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1934,
+      "latency_ms": 483,
+      "cost_usd": 3.868e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.0012974676706915846,
+        "MOVE: shadowball": 0.12143042892958296,
+        "MOVE: flamethrower": 0.7541695901006774,
+        "MOVE: phantomforce": 0.0954064149320863,
+        "SWITCH: chandelure": 0.00846963405371344,
+        "SWITCH: palafin": 0.019226464313248082
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Keep Gholdengo safe vs Dragapult, it beats Pex/Whimsicott/mirror later. Dragapult likely outspeeds and threatens Ghost/Dragon STAB. Rotom walls both, scouts set, then pivots. Scarf Chomp revenge kills Dragapult later.",
+      "hidden_reasoning": "Evaluating Gholdengo versus Dragapult speed and move matchups to choose the optimal opening action.Comparing damage calculations and type resistances to confirm the optimal move choice.Evaluating speed tiers and damage ranges to compare staying with Gholdengo versus switching to Garchomp.Comparing defensive bulk and offensive coverage of Rotom versus Garchomp against Dragapult's possible sets.",
+      "note": "",
+      "tokens": 4964,
+      "latency_ms": 27730,
+      "cost_usd": 0.0007989,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% SWITCH: chandelure, 34% SWITCH: palafin, 25% MOVE: flamethrower",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1926,
+      "latency_ms": 485,
+      "cost_usd": 3.852e-05,
+      "probabilities": {
+        "MOVE: flamethrower": 0.25067846237639213,
+        "SWITCH: chandelure": 0.40461562115449445,
+        "SWITCH: palafin": 0.3447059164691135
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Remove Dragapult with Scarf Chomp, then Gholdengo sweeps Pex/Whimsicott/mirror. Rotom walls Palafin/Chandelure. Burned Rotom still pivots. Scout Dragapult set first.",
+      "hidden_reasoning": "Evaluating a Pokémon battle turn by comparing move effectiveness, burn impact, and speed tiers to choose a safe switch or revenge option.Assessing type matchups and damage to choose between Volt Switch pivot and direct switch.Evaluating Volt Switch pivot versus direct Garchomp switch against Dragapult's coverage and burn risk.Assessing direct Garchomp switch risk against likely Dragapult STAB while preserving it for the win condition.",
+      "note": "",
+      "tokens": 4683,
+      "latency_ms": 20830,
+      "cost_usd": 0.000691438,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hex",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "94% MOVE: hex [MEGA], 3% MOVE: hex, 2% MOVE: calmmind [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2407,
+      "latency_ms": 512,
+      "cost_usd": 4.814e-05,
+      "probabilities": {
+        "MOVE: hex": 0.02610527775515351,
+        "MOVE: hex [MEGA]": 0.936430528709034,
+        "MOVE: fireblast": 0.0018555273188309257,
+        "MOVE: fireblast [MEGA]": 0.006103607232538919,
+        "MOVE: willowisp": 0.0018734845291579717,
+        "MOVE: willowisp [MEGA]": 0.001088209608891056,
+        "MOVE: calmmind": 0.0014723475211097733,
+        "MOVE: calmmind [MEGA]": 0.017195742194600797,
+        "SWITCH: dragapult": 0.003392675170558609,
+        "SWITCH: palafin": 0.004482599960124297
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Scarf Chomp revenge kills Dragapult/Chandelure. Gholdengo sweeps Pex/Whimsicott/mirror. Rotom pivots vs Chandelure/Palafin despite burn. Volt now for chip + momentum to Chomp/Gholdengo, scout Chandelure move/item.",
+      "hidden_reasoning": "Analyzing a Pokémon battle log to explain why Protect failed on first use for Rotom against Chandelure.Evaluating type matchups and burn effects to justify pivoting Rotom out with Volt Switch.Assessing Volt Switch versus Hydro Pump and Protect while weighing burn damage and predicted switches.",
+      "note": "",
+      "tokens": 3966,
+      "latency_ms": 13497,
+      "cost_usd": 0.000454174,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Preserve Gholdengo for Pex/Whimsicott/mirror. Mega Chandelure threatens Gholdengo with Ghost/Fire, but Scarf Chomp resists Fire and outspeeds. Send Chomp to threaten EQ and revenge kill, scout third mon.",
+      "hidden_reasoning": "Analyzing Pokemon type matchups and speed tiers to choose between Gholdengo and Garchomp against Mega Chandelure.Evaluating Garchomp's speed and Earthquake coverage versus Chandelure's typing and potential status moves.",
+      "note": "",
+      "tokens": 3155,
+      "latency_ms": 9371,
+      "cost_usd": 0.000313974,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: willowisp, 20% SWITCH: dragapult, 13% MOVE: hex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2308,
+      "latency_ms": 484,
+      "cost_usd": 4.616e-05,
+      "probabilities": {
+        "MOVE: hex": 0.1305488524469833,
+        "MOVE: fireblast": 0.034560577481871094,
+        "MOVE: willowisp": 0.44278738486591673,
+        "MOVE: calmmind": 0.08481885914038435,
+        "SWITCH: dragapult": 0.20391551413934575,
+        "SWITCH: palafin": 0.10336881192549889
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: KO Mega Chandelure now with Scarf Chomp EQ before Hex. Keep Gholdengo healthy for Pex/Whimsicott/mirror. Chomp outspeeds Chandelure, revenge kills Dragapult later. Third likely Palafin/Pex.",
+      "hidden_reasoning": "Calculating Garchomp speed with Choice Scarf and move-locking constraints for the battle decision.Evaluating Earthquake damage versus Chandelure while accounting for possible ability and switch risks.",
+      "note": "",
+      "tokens": 3508,
+      "latency_ms": 12585,
+      "cost_usd": 0.00035253,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "71% SWITCH: dragapult, 29% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2009,
+      "latency_ms": 500,
+      "cost_usd": 4.018e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.7125811543951472,
+        "SWITCH: palafin": 0.2874188456048528
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: dragonpulse, 3% SWITCH: palafin, 1% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2340,
+      "latency_ms": 499,
+      "cost_usd": 4.68e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9530917715477641,
+        "MOVE: shadowball": 0.00791341481556303,
+        "MOVE: flamethrower": 0.0009665330873793079,
+        "MOVE: phantomforce": 0.00884361592009992,
+        "SWITCH: palafin": 0.029184664629193606
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Sac Scarf Chomp to scout Dragapult STAB, keep Gholdengo healthy for endgame. Gholdengo Shadow Ball OHKOs Dragapult. Avoid switching Gholdengo into Flamethrower/Shadow Ball. Third still unknown, likely Whimsicott/Pex/Palafin.",
+      "hidden_reasoning": "Analyzing Garchomp's locked move and speed due to Choice Scarf to determine legal actions against Dragapult.Calculating speed tiers and damage interactions to assess outspeeding and move effectiveness.Evaluating damage ranges and type matchups to determine if Garchomp survives or Gholdengo risks Flamethrower.Assessing speed tiers and damage to weigh preserving Gholdengo against risking Garchomp to Draco Meteor.Evaluating switching to Gholdengo to reset the move lock and scout versus staying locked into Earthquake against Dragapult.",
+      "note": "",
+      "tokens": 6598,
+      "latency_ms": 35985,
+      "cost_usd": 0.00097253,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 1% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2187,
+      "latency_ms": 553,
+      "cost_usd": 4.374e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9850267449702347,
+        "SWITCH: palafin": 0.014973255029765362
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Keep Gholdengo full for endgame vs unknown third. Chomp locked to EQ, low HP, expendable. Stay in: if faster KO Dragapult, if slower die for free Gholdengo entry without taking Flamethrower. Don't risk Gholdengo HP on switch.",
+      "hidden_reasoning": "Evaluating Garchomp's locked Earthquake move versus Dragapult's HP and type matchup to determine the KO outcome.Assessing speed tie risk and type resistance to choose between attacking or switching.Comparing staying in for a speed-tie KO versus switching to absorb the resisted hit and secure a free KO.",
+      "note": "",
+      "tokens": 4045,
+      "latency_ms": 14453,
+      "cost_usd": 0.00045453,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "92% SWITCH: palafin, 8% MOVE: dragonpulse",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2188,
+      "latency_ms": 518,
+      "cost_usd": 4.376e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.08086282220956252,
+        "SWITCH: palafin": 0.9191371777904374
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Only Gholdengo left must sweep. KO 33% Dragapult now with Shadow Ball, resist Dragon Pulse. Then handle last unknown with Nasty Plot/Recover. Opp mega spent, Dragapult has Flamethrower/Dragon Pulse.",
+      "hidden_reasoning": "Evaluating Gholdengo vs Dragapult speed and type matchup to decide the KO sequence against the remaining unknown opponent.Confirming type interactions and damage to validate the KO sequence.",
+      "note": "",
+      "tokens": 3667,
+      "latency_ms": 9232,
+      "cost_usd": 0.00036723,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "58% MOVE: waterfall, 22% MOVE: flipturn, 14% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2426,
+      "latency_ms": 497,
+      "cost_usd": 4.852e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.576303104860078,
+        "MOVE: flipturn": 0.220121355410648,
+        "MOVE: closecombat": 0.02940677975089626,
+        "MOVE: aquajet": 0.03589768767912514,
+        "SWITCH: dragapult": 0.13827107229925248
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Only Gholdengo left must sweep both. Palafin 30% and Dragapult 33% both die to Shadow Ball. KO Palafin now, then KO Dragapult next. Resist Dragon Pulse, beware Flamethrower. Keep HP high, Recover if needed.",
+      "hidden_reasoning": "Analyzing the Pokémon battle state and move options for Gholdengo versus Palafin at low HP.Evaluating priority move risk and KO probability for the low-HP Palafin matchup.Confirming Shadow Ball KOs Palafin and also KOs Dragapult on a switch.",
+      "note": "",
+      "tokens": 4075,
+      "latency_ms": 11233,
+      "cost_usd": 0.000431486,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% MOVE: waterfall, 14% MOVE: flipturn, 4% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2490,
+      "latency_ms": 523,
+      "cost_usd": 4.98e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.8063788302536891,
+        "MOVE: flipturn": 0.14073725477375182,
+        "MOVE: closecombat": 0.0030563865169521342,
+        "MOVE: aquajet": 0.01228562146852774,
+        "SWITCH: dragapult": 0.037541906987079335
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Solo Gholdengo must KO both. Shadow Ball KOs 21% Palafin then 33% Dragapult. Survive one Waterfall (~71 dmg), resist Dragon Pulse, beware Flamethrower 2x. No Recover now, attack.",
+      "hidden_reasoning": "Evaluating Gholdengo's win condition against Palafin and Dragapult based on HP and Life Orb recoil.Verifying Shadow Ball damage ranges for Palafin and Dragapult and factoring flinch and speed risks.",
+      "note": "",
+      "tokens": 4033,
+      "latency_ms": 9404,
+      "cost_usd": 0.000414486,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: flamethrower, 19% MOVE: shadowball, 8% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2558,
+      "latency_ms": 510,
+      "cost_usd": 5.116e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.001375637757707205,
+        "MOVE: shadowball": 0.19216096478831546,
+        "MOVE: flamethrower": 0.7294495124400242,
+        "MOVE: phantomforce": 0.07701388501395305
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Solo Gholdengo at 22 HP must KO 33% Dragapult. Likely slower after Pult outsped Garchomp, but Shadow Ball is only win line if we move first or they miss. Any hit KOs us, Recover can't save going second.",
+      "hidden_reasoning": "Evaluating speed and type matchups to decide whether Gholdengo survives Dragapult's possible Flamethrower.Assessing whether Gholdengo outspeeds Dragapult to secure a KO before Flamethrower.",
+      "note": "",
+      "tokens": 4316,
+      "latency_ms": 14103,
+      "cost_usd": 0.000450442,
+      "probabilities": null
+    }
+  ]
+}

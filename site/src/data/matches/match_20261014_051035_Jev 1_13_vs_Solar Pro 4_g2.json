@@ -1,0 +1,406 @@
+{
+  "id": "match_20261014_051035_Jev 1_13_vs_Solar Pro 4_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    },
+    {
+      "config_id": "solar_pro_4",
+      "display_name": "Solar Pro 4",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "upstage/solar-pro4",
+      "quantization": null,
+      "username": "Solar Pro 4",
+      "role": "p2",
+      "team": "Solar Pro 4's team",
+      "model_key": "upstage/solar-pro4",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Pro 4"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 212.2,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13||",
+    "|player|p2|Solar Pro 4||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Aegislash, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Alakazam, L50, M|",
+    "|poke|p2|Slowbro, L50, M|",
+    "|poke|p2|Snorlax, L50, M|",
+    "|poke|p2|Rotom-Heat, L50|",
+    "|poke|p2|Hydreigon, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Garchomp|Dragon Claw|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Aegislash|Aegislash, L50, F|167/167",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Heat, L50|100/100",
+    "|move|p1a: Aegislash|King's Shield||[still]",
+    "|-fail|p1a: Aegislash",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|move|p2a: Rotom|Overheat|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|-unboost|p2a: Rotom|spa|2",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Aegislash|Aegislash, L50, F|167/167",
+    "|turn|4",
+    "|",
+    "|move|p2a: Rotom|Overheat|p1a: Aegislash",
+    "|-supereffective|p1a: Aegislash|1",
+    "|-damage|p1a: Aegislash|95/167",
+    "|-unboost|p2a: Rotom|spa|2",
+    "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+    "|move|p1a: Aegislash|Shadow Ball|p2a: Rotom",
+    "|-damage|p2a: Rotom|59/100",
+    "|-unboost|p2a: Rotom|spd|1",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Rotom|Volt Switch|p1a: Aegislash",
+    "|-crit|p1a: Aegislash",
+    "|-damage|p1a: Aegislash|0 fnt",
+    "|faint|p1a: Aegislash",
+    "|",
+    "|win|Solar Pro 4"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,aegislash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: dragapult, 20% BRING: aegislash, 15% BRING: rotomwash\nPick 2: 33% BRING: gholdengo, 23% BRING: aegislash, 20% BRING: rotomwash\nPick 3: 37% BRING: aegislash, 32% BRING: rotomwash, 17% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6400,
+      "latency_ms": 1383,
+      "cost_usd": 0.0002688,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotomheat,alakazam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "<notes\nPlan: Bring Garchomp (Choice Scarf, handles Steel types with Earthquake), Rotom-Heat (Focus Sash, fast special attacker vs Water/Steel), and Alakazam (fastest, Magic Guard, special sweeper). This trio covers most of their team: Garchomp cracks Aegislash/Corviknight/Gholdengo, Rotom-Heat handles Toxapex/Rotom-Wash/Aegislash, Alakazam outspeeds everything and hits Toxapex super effectively. Watch for Dragapult speed and Rotom-Wash's Water attacks.",
+      "hidden_reasoning": "The opponent has Rotom-Wash, Aegislash, Toxapex, Corviknight, Dragapult, and Gholdengo. This is a very defensive/stall-heavy team with good resistances and hazards. Let me think about my team.\n\nMy team:\n- Garchomp: fast physical dragon/ground, Choice Scarf, Rough Skin. Good against Steel types (Aegislash, Corviknight, Gholdengo) with Earthquake. Weak to Rotom-Wash's Water moves and potentially special attacks.\n- Alakazam: fast special psychic, Life Orb, Magic Guard. Good special attacker, can hit Rotom-Wash and others. Vulnerable to Dark and Ghost.\n- Slowbro: bulky water/psychic, Leftovers, Regenerator. Good against Fire, Ground, Rock. Can handle Toxapex? Scald + Ice Beam. Weak to Dark, Ghost, Bug.\n- Snorlax: massive normal, Sitrus Berry, Thick Fat. Can take hits, Bodypress/Crunch/Earthquake/Rest. Good against many things but weak to Fighting and Ice.\n- Rotom-Heat: fast electric/fire, Focus Sash, Levitate. Thunderbolt, Overheat, VoltSwitch, Will-O-Wisp. Good against Water, Steel. Weak to Ground, Rock, Water.\n- Hydreigon: fast dark/dragon, Expert Belt, Levitate. Dark Pulse, Draco Meteor, Fire Blast, Earthquake. Good special attacker.\n\nOpponent's team analysis:\n- Rotom-Wash: Electric/Water, Levitate. Resists Electric, Water, Steel. Weak to Grass, Ground. Can hit Garchomp with Water moves, Rotom-Heat with Water.\n- Aegislash: Steel/Ghost, Stance Change. Great defensive pivot, resists many things. Weak to Ground, Ghost, Dark, Fire. Garchomp's Earthquake is great here.\n- Toxapex: Poison/Water, bulky. Regenerator or Limber or Merciless. Weak to Electric, Grass, Psychic, Ground. Slowbro's Ice Beam and Scald can work. Alakazam's Psychic too.\n- Corviknight: Flying/Steel, bulky. Pressure/Unnerve/Mirror Armor. Weak to Electric, Fire, Rock. Garchomp Earthquake, Rotom-Heat Overheat/Thunderbolt.\n- Dragapult: Dragon/Ghost, very fast (145-213 speed). Clearbody/Infiltrator/Cursed Body. Weak to Ice, Dragon, Fairy, Ghost, Dark. Alakazam's Focus Blast? No, that's Fighting. Garchomp Dragon Claw? Not very effective against Dragon. Hydreigon Draco Meteor is good.\n- Gholdengo: Steel/Ghost, Good as Gold. Resists Normal, Fighting, Poison. Weak to Fire, Ground, Ghost, Dark, Fairy. Garchomp Earthquake, Rotom-Heat Overheat, Hydreigon Fire Blast/Draco Meteor.\n\nMy strategy: I want to bring a balanced team that can handle their defensive core.\n\nGarchomp is a must-bring: Earthquake hits Aegislash, Corviknight, Gholdengo, Toxapex (neutral), Rotom-Wash (neutral). Choice Scarf makes it fast. Rough Skin punishes physical attackers.\n\nAlakazam: fast special attacker, Magic Guard ignores status. Can hit Rotom-Wash with Thunder Punch? No, Thunder Punch is physical. Psychic/Psyshock hit Toxapex and others. Focus Blast hits Corviknight, Gholdengo, Rotom-Wash. But Alakazam is fragile.\n\nSlowbro: bulky, can handle Toxapex with Scald + Ice Beam. Regenerator helps. But very slow.\n\nSnorlax: massive HP, can take hits. Sitrus Berry activates at 50% HP. Good against many things. But slow.\n\nRotom-Heat: fast, Focus Sash guarantees survival once. Levitate avoids Ground. Thunderbolt hits Water types, Overheat hits Steel. VoltSwitch lets it come in and go out. Will-O-Wisp burns physical attackers.\n\nHydreigon: fast special attacker, Expert Belt boosts super effective. Draco Meteor, Fire Blast, Dark Pulse, Earthquake. Good against Gholdengo, Aegislash, Corviknight.\n\nI think the best trio is:\n1. Garchomp (lead) - handles Steel types, fast with Choice Scarf\n2. Rotom-Heat - fast special attacker, Focus Sash, handles Water/Steel, VoltSwitch for momentum\n3. Alakazam or Hydreigon or Snorlax\n\nLet me think about what the opponent might lead. Rotom-Wash is a common lead for its versatility. Aegislash is also a common lead. Toxapex is defensive.\n\nIf I lead Garchomp, I need to be careful of Rotom-Wash (Water moves) and Toxapex (Scald + spikes). Garchomp vs Rotom-Wash: Garchomp is faster (169 vs 95-151), so it outspeeds. Earthquake is neutral vs Rotom-Wash. Dragon Claw is neutral. Crunch is neutral. Fire Fang is neutral. So Garchomp can trade or win against Rotom-Wash if it's not boosted.\n\nGarchomp vs Aegislash: Aegislash is slower (72-123), Garchomp outspeeds. Earthquake is super effective vs Aegislash (Steel). Good.\n\nGarchomp vs Toxapex: Toxapex is slow (49-95), Garchomp outspeeds. Earthquake is neutral. Toxapex has high defense though. Might not KO.\n\nGarchomp vs Corviknight: Corviknight is slower (78-130), Garchomp likely outspeeds. Earthquake is super effective vs Steel. Good.\n\nGarchomp vs Dragapult: Dragapult is very fast (145-213), might outspeed Garchomp (169). If Dragapult outspeeds, it can hit Garchomp with Dragon Darts/Draco Meteor. Garchomp's Earthquake is neutral vs Dragon. Risky.\n\nGarchomp vs Gholdengo: Gholdengo is slower (93-149), Garchomp outspeeds. Earthquake is super effective vs Steel. Good.\n\nSo Garchomp handles most of their team except Dragapult (speed risk) and Rotom-Wash (special attack risk).\n\nRotom-Heat: Focus Sash guarantees survival once. Thunderbolt hits Rotom-Wash (neutral, but Rotom-Wash resists Electric... wait, Rotom-Wash is Electric/Water, so it resists Electric). Overheat hits Aegislash, Corviknight, Gholdengo (super effective vs Steel). VoltSwitch for switching. Will-O-Wisp burns.\n\nRotom-Heat vs Rotom-Wash: Rotom-Heat is faster (151 vs 95-151). Thunderbolt is not very effective vs Rotom-Wash (Electric/Water resists Electric). Overheat is neutral. So Rotom-Heat struggles against Rotom-Wash.\n\nRotom-Heat vs Aegislash: Aegislash is slower. Overheat is super effective. Good.\n\nRotom-Heat vs Toxapex: Toxapex is slow. Thunderbolt is super effective vs Water. Good.\n\nRotom-Heat vs Corviknight: Corviknight is slower. Overheat is super effective vs Steel. Thunderbolt is neutral. Good.\n\nRotom-Heat vs Dragapult: Dragapult is fast (145-213), Rotom-Heat is 151. Might be close. Overheat is neutral vs Dragon. Thunderbolt is neutral. Not great.\n\nRotom-Heat vs Gholdengo: Gholdengo is slower (93-149). Overheat is super effective vs Steel. Good.\n\nSo Rotom-Heat handles Aegislash, Toxapex, Corviknight, Gholdengo well. Struggles vs Rotom-Wash and Dragapult.\n\nAlakazam: very fast (189), special attacker. Psychic/Psyshock hit Toxapex (super effective), Rotom-Wash (neutral), others. Focus Blast hits Corviknight (super effective), Gholdengo (neutral), Rotom-Wash (neutral). Thunder Punch is physical, hits Rotom-Wash (neutral), others. But Alakazam is fragile, Magic Guard ignores status but not damage.\n\nAlakazam vs Rotom-Wash: Alakazam is faster (189 vs 95-151). Psychic is neutral. Focus Blast is neutral. Thunder Punch is neutral. Rotom-Wash's Water moves are super effective vs Alakazam (Water hits Psychic? No, Water hits Fire/Ground/Rock. Alakazam is pure Psychic, so Water is neutral). Actually Rotom-Wash's Hydro Pump/Steam Eruption is neutral vs Alakazam. So Alakazam can trade with Rotom-Wash.\n\nAlakazam vs Aegislash: Aegislash is slower. Psychic is neutral (Ghost resists Psychic? No, Psychic is neutral vs Ghost. Wait, Aegislash is Steel/Ghost. Psychic is not very effective vs Ghost? No, Psychic is neutral vs Ghost. Actually, since Gen 6, Psychic is neutral vs Ghost. So Psychic is neutral vs Aegislash. Steel resists Psychic? No, Steel doesn't resist Psychic. So Psychic is neutral vs Aegislash. Focus Blast is super effective vs Steel (Fighting vs Steel). Good.\n\nAlakazam vs Toxapex: Toxapex is slow. Psychic is super effective vs Poison (Psychic vs Poison is super effective). Good.\n\nAlakazam vs Corviknight: Corviknight is slower. Focus Blast is super effective vs Steel. Psychic is neutral. Good.\n\nAlakazam vs Dragapult: Dragapult is very fast (145-213), Alakazam is 189. Alakazam outspeeds most Dragapult sets. Psychic is neutral vs Dragon. Focus Blast is neutral vs Dragon. Dark types resist Psychic? No, Dark resists Psychic. Dragapult is Dragon/Ghost, so Psychic is neutral. Good.\n\nAlakazam vs Gholdengo: Gholdengo is slower. Psychic is neutral vs Steel/Ghost. Focus Blast is neutral. Good.\n\nSo Alakazam is a great special sweeper that outspeeds almost everything. Its main weakness is Dark and Ghost moves, and physical attackers.\n\nHydreigon: fast special attacker (165), Expert Belt. Dark Pulse, Draco Meteor, Fire Blast, Earthquake. Good against Gholdengo (Fire Blast/Draco Meteor), Aegislash (Fire Blast/Draco Meteor/Earthquake), Corviknight (Fire Blast/Earthquake), Rotom-Wash (Dark Pulse/Earthquake), Toxapex (Fire Blast/Earthquake), Dragapult (Draco Meteor/Dark Pulse).\n\nHydreigon vs Rotom-Wash: Hydreigon is faster (165 vs 95-151). Dark Pulse is neutral. Earthquake is neutral. Fire Blast is neutral. Rotom-Wash's Water moves are neutral vs Hydreigon (Dragon/Dark, Water is neutral vs Dragon and Dark). So Hydreigon can trade.\n\nHydreigon vs Aegislash: Aegislash is slower. Draco Meteor is neutral vs Steel/Ghost. Fire Blast is super effective vs Steel. Earthquake is super effective vs Steel. Good.\n\nHydreigon vs Toxapex: Toxapex is slow. Fire Blast is neutral. Earthquake is neutral. Dark Pulse is neutral. Toxapex's Poison moves are neutral vs Hydreigon. Good.\n\nHydreigon vs Corviknight: Corviknight is slower. Fire Blast is super effective vs Steel. Earthquake is super effective vs Steel. Good.\n\nHydreigon vs Dragapult: Dragapult is very fast (145-213), Hydreigon is 165. Hydreigon outspeeds most. Draco Meteor is neutral vs Dragon. Dark Pulse is super effective vs Ghost. Good.\n\nHydreigon vs Gholdengo: Gholdengo is slower. Fire Blast is super effective vs Steel. Draco Meteor is neutral. Dark Pulse is super effective vs Ghost. Good.\n\nSo Hydreigon is a great all-around attacker. But it's fragile.\n\nSnorlax: massive HP, can take hits. Sitrus Berry. Bodypress, Crunch, Earthquake, Rest. Good against many things, but slow (50). Weak to Fighting and Ice.\n\nSnorlax vs Rotom-Wash: Snorlax is slower (50 vs 95-151). Rotom-Wash outspeeds and hits with Water (neutral vs Normal). Snorlax can't do much.\n\nSnorlax vs Aegislash: Aegislash is slower (72-123 vs 50). Snorlax is slower? No, Snorlax is 50, Aegislash is 72-123. Aegislash is faster. Aegislash's Shadow Ball is neutral vs Normal. Snorlax's Earthquake is super effective vs Steel. But Snorlax is slow, so Aegislash might KO first.\n\nSnorlax vs Toxapex: Toxapex is slow (49-95), Snorlax is 50. Similar speed. Snorlax's Earthquake is neutral. Toxapex's Scald is neutral. Can trade.\n\nSnorlax vs Corviknight: Corviknight is faster (78-130 vs 50). Corviknight's Brave Bird/Iron Head is neutral vs Normal. Snorlax's Earthquake is super effective vs Steel. But Corviknight is faster.\n\nSnorlax vs Dragapult: Dragapult is much faster (145-213 vs 50). Dragapult KO's Snorlax easily.\n\nSnorlax vs Gholdengo: Gholdengo is faster (93-149 vs 50). Gholdengo's Shadow Ball is neutral vs Normal. Snorlax's Earthquake is super effective vs Steel. But Gholdengo is faster.\n\nSo Snorlax is slow and struggles against fast opponents. It's a late-game cleaner if it survives.\n\nSlowbro: bulky, slow (45). Scald, Ice Beam, Slack Off, Protect. Good against Fire, Ground, Rock. Regenerator helps. Weak to Dark, Ghost, Bug, Grass.\n\nSlowbro vs Rotom-Wash: Slowbro is slower (45 vs 95-151). Rotom-Wash outspeeds. Rotom-Wash's Water moves are neutral vs Water/Psychic. Slowbro's Scald is neutral vs Electric/Water. Ice Beam is neutral. Not great.\n\nSlowbro vs Aegislash: Aegislash is faster (72-123 vs 45). Aegislash's Shadow Ball is neutral vs Water/Psychic. Slowbro's Ice Beam is neutral vs Steel/Ghost. Scald is neutral. Not great.\n\nSlowbro vs Toxapex: Toxapex is slow (49-95 vs 45). Similar speed. Slowbro's Ice Beam is super effective vs Poison? No, Ice is neutral vs Poison. Scald is neutral. Slowbro can handle Toxapex with Scald + Ice Beam, but Toxapex has high defense.\n\nSlowbro vs Corviknight: Corviknight is faster (78-130 vs 45). Corviknight's moves are neutral vs Water/Psychic. Slowbro's Scald is neutral vs Flying/Steel. Ice Beam is neutral. Not great.\n\nSlowbro vs Dragapult: Dragapult is much faster. Dragapult KO's Slowbro.\n\nSlowbro vs Gholdengo: Gholdengo is faster. Gholdengo's Shadow Ball is neutral. Slowbro's Ice Beam is neutral. Not great.\n\nSo Slowbro is slow and struggles against most of their team. It's a defensive pivot but not great here.\n\nNow, what's the best trio?\n\nOption 1: Garchomp, Rotom-Heat, Alakazam\n- Garchomp handles Steel types (Aegislash, Corviknight, Gholdengo) with Earthquake.\n- Rotom-Heat handles Water/Steel types with Overheat/Thunderbolt, Focus Sash for survival.\n- Alakazam is a fast special sweeper that outspeeds almost everything.\n- Weakness: Rotom-Wash (both Garchomp and Rotom-Heat struggle, Alakazam can handle it), Dragapult (Garchomp might be outsped, Rotom-Heat is close, Alakazam outspeeds).\n\nOption 2: Garchomp, Rotom-Heat, Hydreigon\n- Similar to above, but Hydreigon is a more balanced attacker with Dark/Dragon moves.\n- Hydreigon handles Gholdengo, Aegislash, Corviknight, Dragapult well.\n- Weakness: Rotom-Wash (Hydreigon can trade), Toxapex (Hydreigon can handle).\n\nOption 3: Garchomp, Alakazam, Snorlax\n- Garchomp for Steel types, Alakazam for speed, Snorlax for bulk.\n- Snorlax is slow and struggles against fast opponents.\n\nOption 4: Garchomp, Hydreigon, Snorlax\n- Similar, but Snorlax is slow.\n\nOption 5: Rotom-Heat, Alakazam, Hydreigon\n- No Garchomp, so Steel types are harder to handle. Rotom-Heat's Overheat helps, but Garchomp's Earthquake is more reliable.\n\nI think Option 1 or 2 is best. Let me go with Garchomp, Rotom-Heat, Alakazam. Alakazam's speed (189) is incredible, and Magic Guard lets it ignore status. Focus Blast hits Corviknight and Aegislash (Steel). Psychic hits Toxapex (super effective). Psyshock is good for special walls.\n\nActually, let me reconsider. The opponent has Rotom-Wash, which is a problem for Garchomp (Water moves are super effective vs Ground) and Rotom-Heat (Water moves are super effective vs Fire, and Rotom-Wash resists Electric). Alakazam can handle Rotom-Wash with Psychic/Focus Blast/Thunder Punch.\n\nBut Alakazam is fragile. If Rotom-Wash uses Hydro Pump/Steam Eruption, it can KO Alakazam. Alakazam's Thunder Punch is physical, so it's not very powerful (75 BP). Psychic is 90 BP special.\n\nHydreigon might be better than Alakazam here because Hydreigon has Dark Pulse (super effective vs Ghost types like Aegislash, Gholdengo, Dragapult) and Draco Meteor (powerful Dragon move). Hydreigon's Fire Blast hits Steel types super effectively. Hydreigon is also faster than Garchomp? No, Garchomp is 169, Hydreigon is 165. Close.\n\nLet me think about the opponent's likely lead. Rotom-Wash is a common lead because it's versatile and can handle many threats. Aegislash is also common. Toxapex is defensive.\n\nIf I lead G",
+      "note": "",
+      "tokens": 6401,
+      "latency_ms": 57528,
+      "cost_usd": 0.001644444,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: dragondarts, 21% MOVE: shadowball, 17% SWITCH: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2232,
+      "latency_ms": 429,
+      "cost_usd": 9.3744e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.21,
+        "MOVE: dragondarts": 0.44,
+        "MOVE: protect": 0.05,
+        "MOVE: uturn": 0.04,
+        "SWITCH: gholdengo": 0.09,
+        "SWITCH: aegislash": 0.17
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: Opponent chose Dragapult. My Garchomp has Choice Scarf (locked into first move). Dragapult speed unknown (145-213 range vs my 169). Dragonclaw is super effective (80 BP × 2 = 160 effective) vs Dragapult's neutral resistance to Ground. Crunch also super effective with Defense drop chance. Going with Dragonclaw for reliable super effective damage. Will learn Dragapult's moves and speed after this turn.",
+      "hidden_reasoning": "The opponent led with Dragapult. My Garchomp is at 100% HP with Choice Scarf. Dragapult's speed is unknown - it could be faster or slower than my Garchomp (169). \n\nI need to figure out what Dragapult has. My best bet is to use a move that can hit it effectively. Dragonclaw and Crunch are both super effective against Dragon types. Crunch has a 20% chance to lower Defense, which could be useful.\n\nSince I have Choice Scarf, I need to be careful - I can only use the first move I execute. Earthquake is my strongest move (100 BP) and will hit Dragapult neutrally (Ground vs Dragon is neutral). Dragonclaw is 80 BP super effective. Crunch is 80 BP super effective with a Defense drop chance.\n\nGiven that Dragapult could be faster than me, I should probably attack first to avoid taking damage. Earthquake is my strongest option and will do solid neutral damage. But Dragonclaw or Crunch being super effective might be better.\n\nActually, let me think about this more carefully. If Dragapult is faster, it will move first and I'll take damage. If it's slower, I move first. Since I don't know its speed, I should just attack.\n\nEarthquake is my strongest move and will do good damage. It's also reliable (100% accuracy). Dragonclaw and Crunch are super effective but lower BP. \n\nI'll go with Earthquake since it's my strongest move and will do significant damage regardless. If Dragapult is slower, I hit it first. If it's faster, I still get to attack (just after taking damage).\n\nActually, wait - with Choice Scarf, I'm locked into my first move. So I need to pick wisely. Earthquake is a good all-around move that hits hard. Let me go with that.\n\nBut actually, considering Dragapult is a Dragon type, super effective moves might be better. Dragonclaw is 80 BP super effective. That's 1.5x damage = 120 effective BP vs Earthquake's 100 BP neutral. So Dragonclaw actually does more damage super effectively.\n\nHmm, but Earthquake has higher base power. Let me calculate:\n- Earthquake: 100 BP neutral = 100 effective\n- Dragonclaw: 80 BP super effective (2x) = 160 effective\n\nSo Dragonclaw does more damage! And it's 100% accurate. I should use Dragonclaw.\n\nCrunch is also super effective (80 BP * 2 = 160 effective) with a 20% chance to lower Defense. That could be useful too.\n\nI think Dragonclaw is the safest bet - super effective, reliable, no additional RNG to worry about. Let me go with Dragonclaw.\n\nWait, but I also need to consider that if Dragapult is faster, it might kill me or severely damage me before I can attack. But I have to attack anyway since I can't switch to a better matchup without knowing what's coming.\n\nActually, let me reconsider. If Dragapult is faster and uses a strong move like Phantom Force or Draco Meteor, I could be in trouble. But I have to take the risk.\n\nI'll go with Dragonclaw - super effective against Dragon types, reliable, and does good damage.",
+      "note": "",
+      "tokens": 3158,
+      "latency_ms": 13860,
+      "cost_usd": 0.00050751,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Aegislash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "77% SWITCH: aegislash, 23% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1902,
+      "latency_ms": 396,
+      "cost_usd": 7.9884e-05,
+      "probabilities": {
+        "SWITCH: gholdengo": 0.23,
+        "SWITCH: aegislash": 0.77
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "kingsshield",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: kingsshield, 27% SWITCH: gholdengo, 23% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2227,
+      "latency_ms": 419,
+      "cost_usd": 9.3534e-05,
+      "probabilities": {
+        "MOVE: kingsshield": 0.46,
+        "MOVE: shadowball": 0.23,
+        "MOVE: swordsdance": 0.03,
+        "MOVE: protect": 0.01,
+        "SWITCH: gholdengo": 0.27
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Garchomp knocked out Dragapult. Opponent switched to Aegislash (Steel/Ghost, Stance Change). Dragon Claw is not very effective vs Aegislash (0.5x). Earthquake would be super effective but isn't in legal moves (possibly Choice Scarf lock or simulation quirk). Alakazam is useless vs Aegislash (Psychic immune, Focus Blast ineffective vs Ghost). Best option: switch to Rotom-Heat (Focus Sash, neutral coverage with Thunderbolt/Overheat, can burn with Will-O-Wisp, VoltSwitch for momentum). Opponent still has rotomwash, toxapex, corviknight, gholdengo available.",
+      "hidden_reasoning": "Thinking about the battle situation:\n\n1. My Garchomp (Choice Scarf) just knocked out Dragapult with Dragon Claw.\n2. Opponent brought in Aegislash (Steel/Ghost) with Stance Change ability.\n3. Aegislash's speed range is 72-123, so my Garchomp (169 base, 1.5x Choice Scarf = effectively ~253) will outspeed it easily.\n4. Dragon Claw is \"not very effective\" on Aegislash (Steel/Ghost resists Dragon).\n5. I need to consider my options:\n   - Earthquake: Ground move, super effective against Steel (Aegislash is Steel/Ghost). This would be 2x effective. But Garchomp is locked into its first move with Choice Scarf... wait, actually Choice Scarf locks you into the FIRST move you select each turn, but you can switch. Let me re-read.\n   \n   Actually, Choice Scarf: \"Holder's Speed is 1.5x, but it can only select the first move it executes.\" This means once you choose a move, you're locked into it. But you can still switch out. The \"first move it executes\" means if you attack, you're locked into that move. But switching is not a move execution in the same sense.\n\n   Wait, let me reconsider. In Pokémon Showdown, Choice Scarf locks you into the move you choose. If you switch, you don't execute a move, so you're not locked in. But the way the legal actions are presented, I have:\n   1. MOVE: dragonclaw\n   2. SWITCH: rotomheat\n   3. SWITCH: alakazam\n\n   So I can either use Dragon Claw (not very effective) or switch to Rotom-Heat or Alakazam.\n\n6. Against Aegislash:\n   - Dragon Claw: not very effective (0.5x)\n   - Earthquake: super effective (2x) - but I'd need to use it, and Garchomp is locked into Dragon Claw if I choose it... wait, no. The legal actions show dragonclaw as the move option. But Garchomp also has earthquake. Why isn't earthquake listed?\n\n   Hmm, looking at the legal actions again: only dragonclaw is listed as a move option. This might be because Choice Scarf locked Garchomp into dragonclaw from last turn? No, that doesn't make sense - Choice Scarf locks you into the move you choose each turn, not across turns.\n\n   Actually wait - in Pokémon Showdown, when you have Choice Scarf, you pick a move and you're locked into it for that turn. The legal actions should show all moves. But here only dragonclaw is shown. This is strange.\n\n   Let me re-read: \"choicescarf: Holder's Speed is 1.5x, but it can only select the first move it executes.\" \n\n   Maybe the system is showing that since Garchomp used Dragon Claw last turn and has Choice Scarf, it's locked into Dragon Claw? No, that's not how Choice Scarf works. Each turn you choose a new move.\n\n   Actually, I think the issue is that the legal actions are showing what's available, and maybe earthquake isn't shown because... hmm. Let me just work with what's given.\n\n   The legal actions are:\n   1. MOVE: dragonclaw\n   2. SWITCH: rotomheat\n   3. SWITCH: alakazam\n\n   So I can either attack with Dragon Claw (not very effective vs Aegislash) or switch.\n\n7. Strategy considerations:\n   - Aegislash in Shield form has high defense (144-211) and can use King's Shield to protect itself and lower attacker's attack.\n   - Aegislash in Blade form has higher attack (63-112) and uses Blade Dance to boost it.\n   - Stance Change switches between forms when attacking (Blade) or using King's Shield (Shield).\n   - My Garchomp's Earthquake would be super effective against Aegislash's Steel typing, but it's not in the legal moves list.\n   - Dragon Claw is not very effective (0.5x) against Aegislash.\n\n   Since Dragon Claw is not very effective and I can't use Earthquake (not listed), I should consider switching.\n\n   - Rotom-Heat: Levitate (immune to Ground), has Thunderbolt, Overheat, VoltSwitch, Will-O-Wisp. Against Aegislash (Steel/Ghost):\n     - Thunderbolt: neutral (Steel resists Electric? No, Steel does NOT resist Electric. Wait: Steel resists Electric? Let me check. Steel types resist: Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Electric is NOT resisted by Steel. So Thunderbolt is neutral vs Aegislash.)\n     - Overheat: neutral vs Steel/Ghost (Fire is neutral vs Steel and Ghost)\n     - VoltSwitch: same as Thunderbolt but switches out\n     - Will-O-Wisp: burns, but Aegislash is Ghost so it might not work? Actually Will-O-Wisp targets a Pokémon, and Ghost types can be burned. But Aegislash's Ghost typing doesn't prevent burning.\n     \n   - Alakazam: Psychic, Psyshock, Thunderpunch, Focus Blast. Against Aegislash:\n     - Psychic/Psyshock: Ghost types are immune to Psychic! So these won't work at all.\n     - Thunderpunch: neutral (Electric is neutral vs Steel and Ghost)\n     - Focus Blast: Fighting is neutral vs Steel and Ghost? Wait, Fighting is super effective against Steel? No, Steel resists Fighting. And Ghost is immune to Normal and Fighting. So Focus Blast (Fighting) would be... ineffective? Actually, Ghost is immune to Fighting moves. So Focus Blast would do nothing.\n\n   So Alakazam is pretty useless against Aegislash (Psychic moves immune, Focus Blast ineffective due to Ghost immunity).\n\n   Rotom-Heat seems like the better switch. Thunderbolt is neutral, Overheat is neutral. Rotom-Heat can also use Will-O-Wisp to potentially burn Aegislash, which would help. And VoltSwitch allows me to bring Garchomp back in.\n\n   But wait - if I switch to Rotom-Heat, the opponent might switch to something else. They have: rotomwash, toxapex, corviknight, gholdengo still available.\n\n   Let me think about what the opponent might do:\n   - Aegislash is a good counter to Garchomp (resists Dragon, resists Fire, but weak to Ground)\n   - The opponent brought Aegislash to deal with my Garchomp\n   - If I switch to Rotom-Heat, they might switch to Toxapex (which resists Electric and Fire) or Rotom-Wash (which resists Fire and is immune to Electric? No, Rotom-Wash is Water/Electric, so it resists Electric but is weak to... wait, Water/Electric: weak to Grass, weak to Ground. Resists Water, resists Electric, resists Fire.)\n\n   Actually, let me reconsider. The opponent's Aegislash just came in after Dragapult fainted. They're likely testing my response. \n\n   Given that:\n   - Dragon Claw is not very effective (0.5x) - would do maybe 40-50 damage to Aegislash (which has 135-167 HP)\n   - I can't use Earthquake (not in legal moves)\n   - Switching to Alakazam is bad (Psychic immune, Focus Blast ineffective)\n   - Switching to Rotom-Heat gives neutral coverage with Thunderbolt/Overheat\n\n   I think switching to Rotom-Heat is the best option. It keeps momentum, has neutral attacks against Aegislash, and can burn with Will-O-Wisp. If the opponent switches to something else, Rotom-Heat can handle Toxapex (Overheat is super effective vs Poison? No, Fire is neutral vs Poison. But Thunderbolt is neutral. Actually Rotom-Heat struggles against Toxapex.)\n\n   Wait, let me reconsider the whole situation. The opponent led with Dragapult, which I knocked out. Now they brought Aegislash. This suggests they want to counter my Garchomp. \n\n   If I keep Garchomp in and use Dragon Claw (not very effective), I might chip away at Aegislash but it's not ideal. And if Aegislash uses King's Shield, it lowers my attack and protects itself.\n\n   Actually, I realize I should just go with what's available. The legal moves only show dragonclaw for Garchomp. This might be a quirk of the simulation or Choice Scarf behavior. Let me just switch to Rotom-Heat.\n\n   My plan: Switch to Rotom-Heat to avoid wasting Dragon Claw on a not-very-effective hit. Rotom-Heat can use Thunderbolt (neutral) or Overheat (neutral) against Aegislash, or Will-O-Wisp to burn. If opponent switches, I can adapt.\n\n   Let me also note: Rotom-Heat has Focus Sash, so it survives one hit. This is useful if the opponent has a strong move.\n\n   Decision: SWITCH: rotomheat",
+      "note": "",
+      "tokens": 4551,
+      "latency_ms": 50674,
+      "cost_usd": 0.0009882,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: gholdengo, 32% MOVE: shadowball, 29% MOVE: kingsshield",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2341,
+      "latency_ms": 578,
+      "cost_usd": 9.8322e-05,
+      "probabilities": {
+        "MOVE: kingsshield": 0.29,
+        "MOVE: shadowball": 0.32,
+        "MOVE: swordsdance": 0.03,
+        "MOVE: protect": 0.01,
+        "SWITCH: gholdengo": 0.35000000000000003
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "overheat",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Aegislash is in Shield Forme (used King's Shield last turn). Rotom-Heat moves first (151 vs 72-123). Overheat is super effective vs Steel typing and will deal significant damage. Focus Sash protects against one hit if Aegislash attacks in Blade Forme next turn. After this, assess Aegislash's HP and decide whether to continue with Rotom-Heat or switch to Garchomp for Earthquake coverage.",
+      "hidden_reasoning": "The opponent's Aegislash used King's Shield last turn, which means it's in Shield Forme. It has Stance Change, so it will switch to Blade Forme when it attacks. I need to be careful.\n\nRotom-Heat is active with Focus Sash. Aegislash is at 100% HP. Speed: Rotom-Heat 151 vs Aegislash 72-123, so Rotom-Heat moves first.\n\nOptions:\n1. Thunderbolt - neutral damage, 10% paralysis chance\n2. Overheat - super effective vs Steel (Aegislash is Steel/Ghost), but lowers Sp. Atk by 2. With Focus Sash, I can afford to take a hit if Aegislash attacks in Blade Forme.\n3. VoltSwitch - Electric, neutral damage, then switch out for momentum\n4. Will-O-Wisp - burn chance, but Aegislash is Steel type so it's immune to burn? No, Steel is not immune to burn. But Will-O-Wisp has 85% accuracy.\n5. Switch to Garchomp - Garchomp can use Earthquake super effectively vs Aegislash, but Aegislash has high defense (144-211 range). Also Garchomp is locked into Choice Scarf? No, Garchomp has Choice Scarf but it's not active. Wait, Garchomp has Choice Scarf item. If I switch to Garchomp, it will be locked into its move (Dragon Claw was used last turn, so it's locked into Dragon Claw). That's not ideal vs Aegislash since Dragon Claw is not very effective.\n6. Switch to Alakazam - Alakazam is Psychic type, Aegislash is Ghost/Steel. Psychic is immune to Ghost, and Focus Blast is Fighting which is not very effective vs Ghost. Alakazam's Thunder Punch could work but Aegislash has high defense.\n\nBest option: Overheat is super effective vs Aegislash's Steel typing. With Focus Sash, I can survive one hit. Overheat has 90% accuracy and lowers Sp. Atk by 2, but that's a small price to pay for super effective damage. If Aegislash is in Shield Forme, it will use King's Shield next turn (if it attacks) or switch to Blade. But I move first, so I can hit it before it attacks.\n\nActually, let me think about this more carefully. Aegislash used King's Shield last turn, which means it's in Shield Forme. In Shield Forme, Aegislash's moves are defensive (King's Shield, Shield Bash, etc.). It won't attack this turn unless it switches to Blade Forme. But Stance Change triggers when Aegislash attacks - it changes to Blade before attacking. So if Aegislash attacks this turn, it will become Blade and then attack. But I move first (speed 151 vs 72-123), so I can hit it while it's still in Shield Forme.\n\nOverheat is super effective vs Steel (Aegislash's Steel typing). This will do significant damage. With Focus Sash, even if Aegislash attacks in Blade Forme next turn, I'll survive with 1 HP.\n\nVoltSwitch is also good for momentum, but Overheat does more damage and is super effective.\n\nI'll go with Overheat to maximize damage on Aegislash while I have the speed advantage and Focus Sash safety net.\n\nNotes: Aegislash is in Shield Forme (used King's Shield last turn). Rotom-Heat moves first (151 vs 72-123). Overheat is super effective vs Steel typing. Focus Sash protects against one hit. After this, I'll need to handle Aegislash's potential Blade Forme attack or switch to Garchomp for Earthquake if Aegislash switches out.\n\nDecision: MOVE: overheat",
+      "note": "",
+      "tokens": 3662,
+      "latency_ms": 13832,
+      "cost_usd": 0.000510174,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Aegislash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: shadowball, 42% MOVE: kingsshield, 10% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2373,
+      "latency_ms": 430,
+      "cost_usd": 9.9666e-05,
+      "probabilities": {
+        "MOVE: kingsshield": 0.42,
+        "MOVE: shadowball": 0.45,
+        "MOVE: swordsdance": 0.1,
+        "MOVE: protect": 0.03
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "overheat",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Aegislash is in Shield Forme (used King's Shield last turn), full HP. Rotom-Heat has Focus Sash and moves first (151 vs 72-123). Overheat is super effective vs Steel (2x) and should KO Aegislash even at -2 SpA. If it survives, Aegislash will likely attack next turn and Rotom-Heat will faint, but Focus Sash buys one turn. Garchomp is Choice Scarf locked into Dragon Claw (not very effective vs Aegislash), so switching to it is poor. VoltSwitch deals less damage and loses Focus Sash protection. Overheat is the best play to try to eliminate Aegislash now.",
+      "hidden_reasoning": "The opponent's Aegislash is in Shield Forme (used King's Shield last turn). It has full HP. My Rotom-Heat has Focus Sash, so it can survive one hit. Rotom-Heat moves first (151 speed vs Aegislash's 72-123).\n\nAegislash's only revealed move is King's Shield. If it attacks this turn, it would need to be in Blade Forme. But it used King's Shield last turn, which means it was in Shield Forme. After using King's Shield, it stays in Shield Forme. So if it attacks this turn, it would need to switch to Blade Forme first (Stance Change does this automatically before attacking). But King's Shield keeps it in Shield Forme.\n\nWait, let me think about Stance Change mechanics:\n- If Aegislash attacks (any damaging move), it changes to Blade Forme before attacking.\n- If Aegislash uses King's Shield, it changes to Shield Forme before using it.\n\nLast turn, Aegislash used King's Shield, so it's in Shield Forme. This turn, if it uses a damaging move, it would switch to Blade Forme first. But we don't know what moves it has besides King's Shield.\n\nGiven that Rotom-Heat has Focus Sash and moves first, I should attack. Overheat is super effective vs Steel (Aegislash is Steel/Ghost). However, Rotom-Heat already has -2 SpA from last turn's Overheat. \n\nThunderbolt is neutral vs Aegislash (Electric vs Steel/Ghost: Steel resists Electric? No, Steel is neutral to Electric. Ghost is immune to Electric? No, Ghost is neutral to Electric. Wait, Electric moves are not very effective against Ghost? Actually, Ghost is neutral to Electric. Steel is neutral to Electric. So Thunderbolt is neutral.)\n\nOverheat is super effective vs Steel (2x) but neutral vs Ghost. So 2x super effective.\n\nGiven that Aegislash has full HP and Rotom-Heat has Focus Sash, I should use Overheat to try to knock it out. Even with -2 SpA, Overheat's 130 BP at 2x super effective should deal significant damage. If Aegislash survives, it will likely attack next turn in Blade Forme, and Rotom-Heat's Focus Sash will be gone.\n\nAlternatively, I could use VoltSwitch to deal damage and switch to Garchomp for Earthquake coverage. But Garchomp is slower than Aegislash potentially (Garchomp speed 169 vs Aegislash 72-123, so Garchomp is faster). Actually Garchomp at 169 speed would outspeed Aegislash's max 123.\n\nWait, but if I VoltSwitch, I lose Rotom-Heat's Focus Sash protection. And Garchomp doesn't have a Focus Sash.\n\nLet me think about the best play:\n1. Overheat: Super effective, tries to KO Aegislash. If it fails, Aegislash will attack next turn and Rotom-Heat will likely faint (Focus Sash breaks).\n2. Thunderbolt: Neutral damage, less likely to KO.\n3. VoltSwitch: Deal damage and switch to Garchomp. Garchomp can Earthquake (super effective vs Steel) but Aegislash might have Defog or something.\n4. Will-O-Wisp: Burn Aegislash, but it's Steel/Ghost so physical attacks are already limited. And Aegislash's King's Shield reduces damage from physical moves.\n5. Switch to Garchomp: Garchomp can Earthquake (super effective vs Steel). But Aegislash might have a move like Shadow Ball or Sacred Sword.\n\nGiven that Rotom-Heat has Focus Sash and moves first, I think Overheat is the best play to try to knock out Aegislash. If it survives, I can switch to Garchomp next turn.\n\nActually, wait. Let me reconsider. Aegislash's stats range: Def 144-211, SpD 144-211. With Focus Sash, Rotom-Heat survives one hit. Overheat at -2 SpA (so 157 -> 94.2 SpA, roughly 94 SpA) with 130 BP super effective (2x) vs Steel. \n\nRotom-Heat's Overheat base damage at 94 SpA: roughly 94 * 130 / 50 = ~244 base, times 2 for super effective = ~488, plus random factor 0.85-1.0. Against Aegislash's HP (135-167) and Def (144-211). \n\nAt minimum HP (135) and minimum Def (144): 488 * 135 / (144 + 135) = 488 * 135 / 279 = ~235 damage. That's more than 135 HP, so it would KO.\nAt max HP (167) and max Def (211): 488 * 167 / (211 + 167) = 488 * 167 / 378 = ~217 damage. That's more than 167 HP, so it would KO.\n\nWait, but Focus Sash means Rotom-Heat survives with 1 HP if it would be KO'd. But I'm attacking, not defending. Focus Sash only protects the holder from being KO'd. So if I use Overheat and it doesn't KO Aegislash, Aegislash will attack next turn and Rotom-Heat will likely faint (unless Aegislash uses King's Shield again).\n\nActually, if Aegislash uses King's Shield, it reduces damage from physical moves by 50% and raises Defense. But Rotom-Heat's moves are special, so King's Shield doesn't help against them.\n\nLet me just go with Overheat. It's super effective and has a good chance to KO Aegislash.\n\nActually, I should also consider: if I use Overheat and it doesn't KO, Aegislash might switch to Blade Forme and use a damaging move like Shadow Ball or Sacred Sword. Rotom-Heat has levitate so it's immune to Ground, but Shadow Ball is Ghost-type and super effective vs Rotom-Heat? No, Rotom-Heat is Electric/Fire, Ghost is neutral vs Electric and neutral vs Fire. So Shadow Ball would be neutral.\n\nBut if Aegislash uses King's Shield, it stays in Shield Forme and Rotom-Heat survives with Focus Sash. Then I can switch to Garchomp.\n\nI think Overheat is the best play. Let me go with that.\n\nWait, one more consideration: VoltSwitch. If I use VoltSwitch, I deal damage and switch to Garchomp. Garchomp can then Earthquake (super effective vs Steel) and potentially KO Aegislash. But VoltSwitch has lower damage (70 BP) and Aegislash might survive. Then Garchomp would face Aegislash's attack.\n\nActually, Garchomp with Choice Scarf is locked into its first move. If I switch to Garchomp, it will use its locked move (probably Dragon Claw or Earthquake). But Garchomp's Dragon Claw is not very effective vs Aegislash (0.5x). Earthquake would be super effective but Garchomp might be locked into Dragon Claw.\n\nWait, the notes say Garchomp has Choice Scarf and is locked into first move. The first move was Dragon Claw (used turn 1). So Garchomp is locked into Dragon Claw. That's not ideal vs Aegislash.\n\nSo VoltSwitch to Garchomp is not great because Garchomp is locked into Dragon Claw which is not very effective.\n\nTherefore, Overheat is the best play. Let me go with that.\n\nActually, I realize I should double-check: is Garchomp really locked into Dragon Claw? The notes say \"Choice Scarf (locked into first move)\". Choice Scarf locks the Pokémon into its first move after it's used. Garchomp used Dragon Claw on turn 1, so it's locked into Dragon Claw. Yes.\n\nSo switching to Garchomp would mean it uses Dragon Claw, which is not very effective vs Aegislash. Not ideal.\n\nOverheat it is.\n\nLet me also consider: should I use Will-O-Wisp to burn Aegislash? Aegislash is Steel/Ghost, so physical attacks are already limited. And King's Shield reduces physical damage by 50%. Burning would further reduce physical attack, but Aegislash's main threat is probably special attacks (Shadow Ball, etc.) or King's Shield. Will-O-Wisp doesn't help against special attacks.\n\nOverheat is the best play. Let me go with that.\n\nFinal decision: MOVE: overheat",
+      "note": "",
+      "tokens": 4913,
+      "latency_ms": 30677,
+      "cost_usd": 0.000925974,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "58% MOVE: shadowball, 30% MOVE: kingsshield, 9% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2458,
+      "latency_ms": 413,
+      "cost_usd": 0.000103236,
+      "probabilities": {
+        "MOVE: kingsshield": 0.3,
+        "MOVE: shadowball": 0.58,
+        "MOVE: swordsdance": 0.09,
+        "MOVE: protect": 0.03
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Aegislash is at 56% HP in Blade Forme (used Shadow Ball last turn). Rotom-Heat is at 59% HP with broken Focus Sash and -4 SpA. Overheat has 90% accuracy and might not KO Aegislash given Rotom's lowered SpA; if it survives, Shadow Ball likely KO's Rotom next turn. VoltSwitch lets me damage Aegislash slightly then safely switch to Garchomp, which outspeeds Aegislash (169 vs 72-123) and can use Dragon Claw (neutral, but Aegislash's Blade Forme has low defenses). Alakazam is useless vs Aegislash. Best play: VoltSwitch to preserve Rotom-Heat and bring in Garchomp for a faster, safer attack.",
+      "hidden_reasoning": "The opponent's Aegislash is at 56% HP. My Rotom-Heat is at 59.2% HP with Focus Sash (but Focus Sash is already broken since it took damage last turn - wait, let me check).\n\nLooking at the battle log:\n- Turn 4: Rotom used Overheat (super effective), Aegislash is at 56%. Rotom: spa -2. Then Aegislash used Shadow Ball, Rotom is at 74/125 HP, spd -1.\n\nSo Focus Sash is already broken because Rotom took damage from Shadow Ball. It's now at 74/125 HP (59.2%).\n\nAegislash is at 56% HP. Its stats range: HP 135-167. At 56%, that's roughly 76-93 HP remaining.\n\nMy Rotom-Heat has:\n- Thunderbolt: 90 BP, special, 100% acc, 10% paralysis\n- Overheat: 130 BP, special, 90% acc, super effective vs Steel (2x), lowers SpA by 2\n- VoltSwitch: 70 BP, special, 100% acc, switches out after\n- Will-O-Wisp: burn chance\n\nAegislash's revealed moves: King's Shield, Shadow Ball. It's in Shield Forme (used King's Shield last turn). But wait, the log says Turn 4 Aegislash used Shadow Ball, which means it's in Blade Forme now? Let me re-read.\n\nTurn 2: Aegislash used King's Shield (Shield Forme)\nTurn 3: Rotom used Overheat (super effective), Gholdengo fainted, Aegislash came in\nTurn 4: Rotom used Overheat (super effective), Aegislash at 56%. Then Aegislash used Shadow Ball.\n\nSo Aegislash used Shadow Ball in Turn 4, meaning it's in Blade Forme now. It will likely use another attacking move next turn (Shadow Ball again, or maybe something else).\n\nAegislash's stats: Atk 144-211, SpA 144-211 (in Blade Forme, it has high attack/spatk). Shadow Ball is 80 BP special.\n\nMy Rotom-Heat is at 74/125 HP. Aegislash's Shadow Ball did some damage. Let me estimate: Rotom has SpD 127 base, at level 50 that's around 127*2 + 180 = 434? Actually level 50 SpD stat = floor((SpD_base * 2 + IV + EV/4) * level/100) + 5. With max IV/EV: (127*2 + 31 + 252/4) * 0.5 + 5 = (254 + 31 + 63) * 0.5 + 5 = 348 * 0.5 + 5 = 174 + 5 = 179. But Rotom has SpD -1, so 179 * 0.667 = ~119.\n\nShadow Ball 80 BP vs 119 SpD: damage = (80 * 1.5? no, Shadow Ball has no STAB for Aegislash unless it's Ghost type... Aegislash is Steel/Ghost, so Shadow Ball gets STAB 1.5x). So 80 * 1.5 = 120 BP effective. Damage = (22 * 120 / 119) * multiplier... roughly 22 * 1.0 = 22 damage per 100 HP? Actually the formula is complex. Let's just say Shadow Ball did some damage and Rotom is at 74/125.\n\nNow, Aegislash is at 56% HP. If I use Overheat (130 BP, 2x super effective vs Steel), that's 260 BP effective. Rotom's SpA is 157 base, at level 50 with max IV/EV: (157*2 + 31 + 63) * 0.5 + 5 = 348 * 0.5 + 5 = 179. But Rotom has SpA -4, so 179 * 0.39 = ~69.9.\n\nOverheat damage vs Aegislash (Steel, 2x): Aegislash has SpD 63-112 base. In Shield Forme, it has high Def/SpD. Wait, Aegislash's stats: Def 144-211, SpD 144-211 in Shield Forme? No, the stats shown are for level 50 possible range. Aegislash has base 144 Def and 144 SpD. So at level 50 with max IV/EV: (144*2 + 31 + 63) * 0.5 + 5 = 348 * 0.5 + 5 = 179 SpD.\n\nBut Aegislash is in Blade Forme now (used Shadow Ball). In Blade Forme, its defenses are lower: base 63 Def and 63 SpD. So at level 50: (63*2 + 31 + 63) * 0.5 + 5 = (126 + 31 + 63) * 0.5 + 5 = 220 * 0.5 + 5 = 115 SpD.\n\nOverheat 130 BP, 2x super effective = 260 BP effective. Rotom SpA ~70 (with -4). Damage = (22 * 260 / 115) * random(0.85-1.0) * (1 - 0.56) ... wait, damage formula: damage = (((2 * level / 5 + 2) * power * A / D) / 50) * modifier. Level 50: (2*50/5 + 2) = 22. So 22 * 260 * 70 / 115 / 50 = 22 * 260 * 70 / 5750 = 22 * 18200 / 5750 = 400400 / 5750 = ~69.6. With random multiplier 0.85-1.0: 59-70 damage. Aegislash is at 56% of ~135-167 HP = 76-93 HP. So Overheat would deal ~60-70 damage, which might not KO it (it has 76-93 HP). But with luck, it could KO.\n\nActually, let me recalculate more carefully. Aegislash base HP is 135. At level 50 max: (135*2 + 31 + 63) * 0.5 + 5 = (270 + 31 + 63) * 0.5 + 5 = 364 * 0.5 + 5 = 187 HP. At 56%: 104.7 HP. Min HP (min IV/EV): (135*2 + 0 + 0) * 0.5 + 5 = 270 * 0.5 + 5 = 140. At 56%: 78.4 HP.\n\nSo Aegislash has between 78 and 105 HP. Overheat with -4 SpA might deal around 60-75 damage. It's risky.\n\nThunderbolt: 90 BP, neutral vs Steel. Rotom SpA ~70. Aegislash SpD ~115. Damage = 22 * 90 * 70 / 115 / 50 = 22 * 6300 / 5750 = 138600 / 5750 = ~24.1. With random: 20-24 damage. That won't do much.\n\nVoltSwitch: 70 BP, similar to Thunderbolt but switches out. Damage ~18-21. Then I switch to Garchomp or Alakazam.\n\nWill-O-Wisp: 85% accuracy, burns Aegislash. If it burns, Aegislash's physical attacks are halved. But Aegislash in Blade Forme has high attack (144-211 base). If it's physical attacker, burn helps. But Aegislash's moves are King's Shield (status) and Shadow Ball (special). So it's a special attacker. Burn won't help much against Shadow Ball.\n\nWait, Aegislash's revealed moves are only King's Shield and Shadow Ball. It might have more moves we haven't seen. But based on what we know, it's a special attacker with Shadow Ball.\n\nGiven Rotom-Heat is at 59% HP and Aegislash is at 56% HP, and Aegislash will attack next turn (likely Shadow Ball again), I need to consider:\n\n1. Overheat: Might KO Aegislash if damage is high enough, but Rotom will be at -6 SpA after this (already -4, becomes -6). If Aegislash survives, it will hit back with Shadow Ball and likely KO Rotom.\n\n2. VoltSwitch: Switch to Garchomp or Alakazam after hitting Aegislash. But Garchomp is Choice Scarf locked into Dragon Claw (not very effective vs Aegislash's Steel typing? Wait, Dragon Claw is neutral vs Steel. Earthquake would be super effective but Garchomp is locked into Dragon Claw). Alakazam is useless vs Aegislash (Psychic immune, Focus Blast ineffective vs Ghost).\n\n3. Thunderbolt: Low damage, doesn't help much.\n\n4. Will-O-Wisp: Burn chance, but Aegislash is special attacker.\n\n5. Switch to Garchomp: Garchomp is at 100% HP, but locked into Dragon Claw (Choice Scarf). Dragon Claw is neutral vs Aegislash. Aegislash in Blade Forme has low defenses (63 base Def/SpD), so Dragon Claw might do decent damage. But Garchomp is slower (169 vs Aegislash's 72-123 speed, so Garchomp outspeeds). Wait, Garchomp speed is 169, Aegislash speed is 72-123. So Garchomp moves first. Dragon Claw vs Aegislash (Blade Forme, low Def): Dragon Claw 80 BP, neutral. Garchomp Atk 182 base, at level 50 max: (182*2 + 31 + 252/4) * 0.5 + 5 = (364 + 31 + 63) * 0.5 + 5 = 458 * 0.5 + 5 = 234 Atk. Aegislash Def in Blade Forme: 63 base, at level 50 max: (63*2 + 31 + 63) * 0.5 + 5 = 220 * 0.5 + 5 = 115 Def. Damage = 22 * 80 * 234 / 115 / 50 = 22 * 18720 / 5750 = 411840 / 5750 = ~71.6. With random: 61-72 damage. Aegislash has 78-105 HP. So Dragon Claw might not KO, but it's decent damage.\n\nBut wait, Garchomp is Choice Scarf locked. It must use Dragon Claw. If I switch to Garchomp, it will use Dragon Claw next turn. Aegislash will then attack (Shadow Ball or King's Shield). If Aegislash uses King's Shield, it protects itself and lowers attacker's Atk. If it uses Shadow Ball, it's special and Garchomp has SpD 105 base, which is decent.\n\nActually, let me think about the best play here.\n\nRotom-Heat is at 59% HP. Aegislash is at 56% HP. Aegislash will attack next turn. If I stay in and use Overheat, I might KO Aegislash but if I fail (90% accuracy) or it survives, Aegislash will hit back with Shadow Ball and likely KO Rotom.\n\nIf I use VoltSwitch, I can switch to Garchomp or Alakazam. But Alakazam is useless vs Aegislash. Garchomp with Dragon Claw might do some damage but isn't a guaranteed KO.\n\nActually, the best play might be to switch to Garchomp now. Garchomp outspeeds Aegislash (169 vs 72-123). Dragon Claw is neutral vs Steel/Ghost. Aegislash in Blade Forme has low defenses, so Dragon Claw will do significant damage. If it KO's Aegislash, great. If not, Aegislash will attack next turn, but Garchomp has 100% HP and can take a hit better than Rotom-Heat at 59%.\n\nWait, but Garchomp is Choice Scarf locked into Dragon Claw. If I switch to Garchomp, it will use Dragon Claw. Aegislash might use King's Shield (which lowers Atk) or Shadow Ball. If King's Shield, Garchomp's Dragon Claw will be less effective next turn. If Shadow Ball, Garchomp takes special damage.\n\nHmm, let me think about this differently. The opponent's Aegislash is at 56% HP. It has King's Shield and Shadow Ball. It's in Blade Forme (used Shadow Ball last turn). Next turn it will likely attack again (Shadow Ball or maybe King's Shield to protect).\n\nIf I use Overheat:\n- 90% chance to hit, 130 BP, 2x super effective vs Steel\n- Rotom's SpA is -4, so damage is reduced\n- Might KO Aegislash if damage is high enough\n- If it survives, Aegislash attacks next turn and likely KO's Rotom\n- Rotom becomes -6 SpA, useless for future\n\nIf I use VoltSwitch:\n- 70 BP, neutral vs Steel\n- Switch to Garchomp or Alakazam after\n- Garchomp: Dragon Claw next turn, outspeeds, neutral damage\n- Alakazam: useless vs Aegislash\n\nIf I switch to Garchomp directly:\n- Garchomp uses Dragon Claw next turn (Choice Scarf locked)\n- Outspeeds Aegislash\n- Dragon Claw is neutral vs Steel/Ghost\n- Aegislash in Blade Forme has low Def, so decent damage\n- If Aegislash survives, it attacks next turn\n\nIf I switch to Alakazam:\n- Useless vs Aegislash (Psychic immune, Focus Blast ineffective vs Ghost)\n- Alakazam would just take a hit and faint\n\nI think the best play is to switch to Garchomp. Garchomp outspeeds Aegislash and Dragon Claw will do decent damage to Aegislash's low defenses in Blade Forme. If it KO's Aegislash, we make progress. If not, Garchomp can handle the counter-attack better than Rotom-Heat at 59% HP.\n\nActually, wait. Let me reconsider. Rotom-Heat has Focus Sash, but it's already broken (took damage). So Focus Sash is no longer active.\n\nRotom-Heat is at 74/125 HP. If I use Overheat and it fails (10% chance), Aegislash will attack and likely KO Rotom. If it hits, it might KO Aegislash or not. If not, Aegislash attacks and likely KO's Rotom.\n\nVoltSwitch: I hit Aegislash with 70 BP, then switch. The damage is low, but I get to bring in Garchomp or Alakazam. Garchomp is the better option.\n\nActually, I think VoltSwitch is a good play here. It allows me to damage Aegislash slightly and then switch to Garchomp, which outspeeds and can use Dragon Claw. This way, I don't risk Rotom-Heat fainting to a missed Overheat or a counter-attack.\n\nBut wait, VoltSwitch deals damage first, then switches. So Aegislash takes some damage, then I switch to Garchomp. Garchomp then uses Dragon Claw next turn. This is safer than staying in with Rotom-Heat.\n\nAlternatively, I could just switch to Garchomp directly without attacking. This saves Rotom-Heat's PP and keeps it healthy for later. But then Aegislash gets a free turn to attack or set up.\n\nHmm, let me think about what's best for the long term.\n\nThe opponent's team: rotomwash, aegislash, toxapex, corviknight, dragapult (fainted), gholdengo (fainted). So remaining: rotomwash, toxapex, corviknight, aegislash.\n\nMy team: garchomp, alakazam, rotomheat.\n\nIf I can KO Aegislash, the opponent has rotomwash, toxapex, corviknight left. Rotomwash is a problem for my Garchomp (Water/Electric, Levitate, can use Will-O-Wisp, Thunderbolt, etc.). Toxapex is a wall. Corviknight is a Steel/Flying type.\n\nGarchomp is my best attacker. It can use Earthquake (super effective vs Steel, but Aegislash is Ghost too, so neutral? Wait, Earthquake is Ground, super effective vs Steel (2x), but Ghost is immune to Ground? No, Ghost is immune to Normal and Fighting, not Ground. So Earthquake is 2x vs Aegislash's Steel typing. But Garchomp is locked into Dragon Claw due to Choice Scarf.\n\nWait, is Garchomp locked into Dragon Claw? The item is Choice Scarf. Choice Scarf locks the Pokémon into the move it last used. Garchomp last used Dragon Claw in Turn 1. So yes, it's locked into Dragon Claw.\n\nSo",
+      "note": "",
+      "tokens": 7259,
+      "latency_ms": 45191,
+      "cost_usd": 0.00181242,
+      "probabilities": null
+    }
+  ]
+}
