@@ -1,0 +1,596 @@
+{
+  "id": "match_20261014_105608_Jev 1_13_vs_Bonsai 2 27B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 8,
+  "duration_seconds": 413.89,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13||",
+    "|player|p2|Bonsai 2 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Aegislash, L50, F|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Ditto, L50|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Quaquaval, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|4/100",
+    "|move|p2a: Dragapult|Phantom Force||[still]",
+    "|-prepare|p2a: Dragapult|Phantom Force",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Dragapult|[miss]",
+    "|-miss|p1a: Dragapult|p2a: Dragapult",
+    "|move|p2a: Dragapult|Phantom Force|p1a: Dragapult|[from] lockedmove",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|39/100",
+    "|-damage|p1a: Gholdengo|146/162|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|-damage|p2a: Garchomp|30/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|125/125",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Corviknight|Corviknight, L50, F|100/100",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Corviknight",
+    "|-damage|p2a: Corviknight|54/100",
+    "|",
+    "|-heal|p2a: Corviknight|60/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Corviknight",
+    "|-supereffective|p2a: Corviknight|1",
+    "|-damage|p2a: Corviknight|0 fnt",
+    "|faint|p2a: Corviknight",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|30/100",
+    "|turn|7",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Rotom",
+    "|-immune|p1a: Rotom|[from] ability: Levitate",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|4/100",
+    "|turn|8",
+    "|",
+    "|move|p2a: Dragapult|Dragon Darts|p1a: Rotom",
+    "|-damage|p1a: Rotom|80/125",
+    "|-anim|p2a: Dragapult|Dragon Darts|p1a: Rotom",
+    "|-damage|p1a: Rotom|38/125",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|win|Jev 1.13"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 43% BRING: dragapult, 20% BRING: rotomwash, 11% BRING: aegislash\nPick 2: 39% BRING: gholdengo, 24% BRING: rotomwash, 19% BRING: aegislash\nPick 3: 40% BRING: rotomwash, 35% BRING: aegislash, 18% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6274,
+      "latency_ms": 1454,
+      "cost_usd": 0.00026350799999999997,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent is Ghost/Steel heavy: Aegislash, Gholdengo, Corviknight all have Steel; Dragapult and Aegislash have Ghost. Rotom-Wash likely Levitate (Ground immune). Ditto likely Imposter. My plan: Dragapult leads for speed pressure (213 SPE), Garchomp pivots in with Earthquake hitting Steel types SE, Corviknight walls and Defogs. Mega Garchomp is my only Mega option - save it for when I need to break through a wall. Watch for Imposter on switch-ins.",
+      "hidden_reasoning": "Let me analyze the opponent's team and pick my best 3 Pokémon to bring.\n\nOpponent's team:\n- Rotom-Wash (Electric/Water) - Levitate likely\n- Aegislash (Steel/Ghost) - Stance Change likely\n- Dragapult (Dragon/Ghost) - Infiltrator/Cursed Body likely\n- Corviknight (Flying/Steel) - Mirror Armor likely\n- Gholdengo (Steel/Ghost) - Good as Gold likely\n- Ditto (Normal) - Imposter likely\n\nThis is a very Ghost/Steel-heavy team. Let me think about what counters these:\n\n1. **Rotom-Wash**: Levitate means Ground moves don't hit. Electric/Water typing resists a lot. Weak to Grass, Ground (but Levitate), Steel. Actually Rotom-Wash is weak to... let me think. Electric/Water: resists Electric, Water, Grass, Steel, Rock. Weak to Grass, Ground. With Levitate, Ground is useless. So Grass and... hmm. Actually it's neutral to most things.\n\n2. **Aegislash**: Steel/Ghost (or Ghost/Steel). Stance Change means it can switch between Steel/Ghost and Ghost/Steel. Very bulky. Weak to Fighting (Ghost part), Dark (Ghost part). With Steel: resists Normal, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy, Grass, Ice. Weak to Fire, Fighting, Ground.\n\n3. **Dragapult**: Dragon/Ghost. Weak to Ice, Dragon, Ghost, Fairy, Dark. Resists Poison, Bug.\n\n4. **Corviknight**: Flying/Steel. Weak to Ground, Electric. Resists Normal, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy, Grass, Ice. Very bulky.\n\n5. **Gholdengo**: Steel/Ghost. Weak to Fighting, Ground, Dark. Resists Poison, Bug, Ghost, Steel, Fairy, Grass, Ice, Normal, Flying, Psychic, Rock, Dragon.\n\n6. **Ditto**: Imposter likely. Will copy whatever it switches into.\n\nKey threats:\n- Aegislash is a massive wall with Stance Change\n- Corviknight is another bulky wall\n- Gholdengo is very special attack oriented\n- Dragapult is fast and hits hard\n- Rotom-Wash with Levitate resists Ground\n- Ditto with Imposter can copy your lead\n\nMy team:\n- **Garchomp**: Dragon/Ground, Life Orb, Rough Skin. Speed 169. Great physical attacker. Earthquake hits Corviknight, Gholdengo, Dragapult (Dragon is neutral to Ground... wait, Ground is super effective against Steel). Actually Ground is super effective against Steel types. So Earthquake hits Corviknight, Gholdengo for super effective damage. But Rotom-Wash has Levitate so Earthquake misses. Dragonclaw hits Aegislash (Ghost resists Dragon? No, Ghost resists Poison and Bug, but Dragon is neutral to Ghost). Wait, let me reconsider.\n\nActually, let me reconsider the matchups:\n- Garchomp's Earthquake: Super effective vs Steel (Corviknight, Gholdengo), Neutral vs Ground (Dragapult - wait, Dragapult is Dragon/Ghost, so Ground is neutral), Misses Rotom-Wash (Levitate)\n- Garchomp's Dragonclaw: Neutral vs most, but Ghost resists... no, Ghost doesn't resist Dragon. Dragon is neutral to Ghost. So Dragonclaw hits Aegislash neutrally, Dragapult neutrally.\n\nWait, let me recheck. Dragon moves vs Ghost: Dragon is NOT super effective against Ghost. Ghost resists Poison and Bug only (and Normal). So Dragon is neutral to Ghost. Good.\n\n- **Corviknight**: Flying/Steel, Mirror Armor. Very bulky. Defog clears hazards. Heavyslam hits... well it's a Steel move. Against Aegislash (Ghost part), Steel is neutral. Against Gholdengo (Ghost part), Steel is neutral. Against Dragapult (Dragon/Ghost), Steel is neutral. Against Rotom-Wash, Steel resists Electric so it's not great.\n\nActually wait - Corviknight's Heavyslam: Steel move. Vs Aegislash (Steel/Ghost): Steel is neutral to Ghost, and Steel resists Steel? No, Steel moves are super effective against Rock, Ice, Flying. Against Steel type, it's resisted. So vs Aegislash in Steel form, Heavyslam is resisted. In Ghost form, it's neutral.\n\n- **Toxapex**: Poison/Water, Black Belt, Regenerator. Very bulky special defender. Gunkshot (Poison/Physical BP 120) - hits... Poison is super effective against Fairy, but not very useful here. Actually Gunkshot vs Ghost types: Poison is neutral to Ghost. Vs Steel: Poison is resisted by Steel. Hmm.\n\nWait, let me reconsider. Toxapex's Gunkshot:\n- Vs Aegislash (Ghost): Neutral\n- Vs Gholdengo (Ghost): Neutral  \n- Vs Dragapult (Ghost): Neutral\n- Vs Rotom-Wash: Neutral\n- Vs Corviknight (Steel): Resisted\n\nNot great. But Toxapex is a great wall and can Toxic things.\n\n- **Gholdengo**: Steel/Ghost, Expert Belt, Good as Gold. Special attacker. Flashcannon (Steel), Shadowball (Ghost), Thunderbolt (Electric).\n  - Flashcannon vs Aegislash: In Ghost form, Steel is neutral. In Steel form, resisted.\n  - Shadowball vs Rotom-Wash: Ghost is neutral to Electric/Water. Vs Corviknight: Ghost is neutral to Flying/Steel.\n  - Thunderbolt vs Rotom-Wash: Electric is resisted by Water. Vs Corviknight: Electric is super effective!\n\nActually Gholdengo's Thunderbolt hits Corviknight super effectively (Flying type). And Shadowball hits... well, it's a Ghost move. Against Aegislash in Steel form, Ghost is neutral. In Ghost form, Ghost resists Ghost? No, Ghost doesn't resist Ghost. Wait, actually in Gen 9, Ghost moves are NOT effective against Ghost types? Let me think... No, Ghost is neutral to Ghost. Ghost resists Poison and Bug only.\n\nHmm, but Gholdengo has Good as Gold which gives +10% damage when it's the Steel type (which it always is). So all its moves get a boost.\n\n- **Dragapult**: Dragon/Ghost, Light Clay, Infiltrator. Very fast (213 speed). Phantomforce (Ghost/Physical BP 90), Dragondarts (Dragon/Physical BP 50 x2).\n  - Phantomforce hits Aegislash neutrally (in both forms), Gholdengo neutrally, Rotom-Wash neutrally, Corviknight neutrally.\n  - Actually wait: Ghost vs Steel/Ghost (Aegislash in Ghost form): Ghost is neutral to Ghost. In Steel form: Ghost is neutral to Steel.\n  - Phantomforce hits through Protect/Infiltrator.\n\n- **Quaquaval**: Water/Fighting, Focus Sash, Moxie. Close Combat (Fighting/Physical BP 120), Liquidation (Water/Physical BP 85).\n  - Close Combat vs Aegislash: Fighting is super effective against Ghost! So in Ghost form, it's super effective. In Steel form, Fighting is neutral to Steel but... wait, Aegislash in Steel form is Steel/Ghost. Fighting is super effective against Ghost, so it's still super effective regardless of the Steel part? No wait - when a move hits a dual type, you multiply both. Fighting vs Steel: resisted (0.5x). Fighting vs Ghost: super effective (2x). So total: 1x. Neutral!\n  \n  Hmm, that's not great. Let me reconsider.\n\nActually for Aegislash with Stance Change:\n- In Steel form (Steel/Ghost): Fighting is 0.5x (resisted by Steel) x 2x (super effective vs Ghost) = 1x (neutral)\n- In Ghost form (Ghost/Steel): same thing, just the order changes. Still 1x.\n\nSo Close Combat is neutral to Aegislash in both forms. Not ideal.\n\nClose Combat vs Gholdengo (Steel/Ghost): Same calculation, 0.5x x 2x = 1x. Neutral.\nClose Combat vs Dragapult (Dragon/Ghost): Fighting vs Dragon: neutral. Fighting vs Ghost: super effective. So 2x! Super effective!\nClose Combat vs Rotom-Wash: Fighting vs Electric/Water: neutral to both. 1x.\nClose Combat vs Corviknight: Fighting vs Flying/Steel: super effective vs Flying (2x), resisted by Steel (0.5x). Total: 1x. Neutral.\n\nSo Close Combat is only super effective against Dragapult.\n\nLiquidation vs Rotom-Wash: Water vs Electric/Water: neutral to Electric, resisted by Water. 0.5x. Not great.\nLiquidation vs Corviknight: Water vs Flying/Steel: neutral to both. 1x.\nLiquidation vs Gholdengo: Water vs Steel/Ghost: neutral to both. 1x.\n\nHmm, Quaquaval isn't the best choice here.\n\nLet me reconsider my team selection:\n\nThe opponent has a LOT of Ghost typing and Steel typing. Key weaknesses:\n- Fighting is super effective against Ghost (Aegislash, Gholdengo, Dragapult)\n- Ground is super effective against Steel (Corviknight, Gholdengo) but misses Rotom-Wash (Levitate)\n- Dark is super effective against Ghost\n\nMy best options:\n1. **Garchomp** - Earthquake hits Corviknight and Gholdengo super effectively. Dragonclaw can hit things. Very fast. Life Orb boosts damage. This is a great lead or pivot.\n\n2. **Dragapult** - Very fast, Phantomforce hits everything neutrally but it's a strong physical move. Infiltrator lets it bypass Protect. Light Clay boosts moves. But wait, the opponent ALSO has Dragapult! So we'd be mirroring. Still, my Dragapult is faster (213 vs their range 145-213).\n\n3. **Corviknight** - Defog clears hazards, very bulky wall. Can switch into many attacks. Mirror Armor punishes physical attackers. But it's slow and doesn't have great offensive options against this team.\n\n4. **Gholdengo** - Good as Gold boosts all moves. Thunderbolt hits Corviknight super effectively. Shadowball is a Ghost move... but the opponent has lots of Ghost types. Actually, Gholdengo's Flashcannon with Expert Belt could be strong. But it's slow (149 speed).\n\n5. **Toxapex** - Great wall, can Toxic things. Gunkshot isn't great here though. Regenerator helps.\n\n6. **Quaquaval** - Close Combat is only super effective against Dragapult. Not the best fit.\n\nI think my best 3 are:\n- **Garchomp** (lead) - Earthquake hits Corviknight and Gholdengo for super effective damage. Can pivot with Dragonclaw or Stone Edge. Life Orb makes it hit hard.\n- **Dragapult** - Fast, can pressure the opponent. Phantomforce is a strong move. Infiltrator bypasses Protect. But their Dragapult might be faster if they have higher speed... my Dragapult is 213, theirs could be up to 213. It's a coin flip.\n- **Corviknight** - Defog for hazard control, very bulky wall, can switch into many attacks.\n\nActually wait, let me reconsider. The opponent has:\n- Rotom-Wash (Levitate) - Ground immune\n- Aegislash (Stance Change) - Very bulky\n- Dragapult - Fast physical attacker\n- Corviknight - Very bulky wall\n- Gholdengo - Special attacker\n- Ditto (Imposter)\n\nWith Imposter, if I switch in, Ditto copies my Pokémon. This is a big threat.\n\nLet me think about what to bring:\n\nOption 1: Garchomp, Dragapult, Corviknight\n- Garchomp leads with Earthquake (hits Corviknight and Gholdengo super effectively)\n- Dragapult provides speed pressure\n- Corviknight provides Defog and bulk\n\nOption 2: Garchomp, Gholdengo, Corviknight\n- Garchomp for physical offense\n- Gholdengo for special offense (Thunderbolt hits Corviknight SE)\n- Corviknight for Defog and walling\n\nOption 3: Garchomp, Dragapult, Toxapex\n- Garchomp for physical offense\n- Dragapult for speed pressure\n- Toxapex for Toxic and bulk\n\nI think Option 1 is the strongest. Garchomp leads with Earthquake to hit their Corviknight or Gholdengo super effectively. If they lead with Aegislash, I can switch to Dragapult or Corviknight. Their Ditto with Imposter is a threat but if I use Garchomp as lead and it gets Imposter'd, I still have two good Pokémon left.\n\nActually, let me reconsider whether to bring Toxapex instead of Corviknight. Toxapex can Toxic their bulky walls (Aegislash, Corviknight) and force them out. But Corviknight's Defog is very valuable for clearing hazards that Garchomp/Dragapult might set up... wait, I don't have a Pokémon that sets up hazards. So Defog isn't as critical.\n\nHmm, but the opponent could use entry hazards. Let me think...\n\nActually, I'll go with Garchomp, Dragapult, Corviknight. The speed pressure from both Garchomp (169) and Dragapult (213) is important against their team. Corviknight provides a safe switch-in and Defog if needed.\n\nWait, actually let me reconsider the lead. If I lead with Garchomp:\n- Vs Rotom-Wash: Earthquake misses (Levitate). Dragonclaw is neutral. Not great.\n- Vs Aegislash: Earthquake is resisted by Steel (in Steel form) or neutral (in Ghost form). Dragonclaw is neutral.\n- Vs Dragapult: Earthquake is neutral (Dragon/Ghost doesn't resist Ground). Dragonclaw is neutral.\n- Vs Corviknight: Earthquake is super effective! Great.\n- Vs Gholdengo: Earthquake is super effective! Great.\n- Vs Ditto: Depends on what it copies.\n\nSo Garchomp as lead is good if they bring Corviknight or Gholdengo first, but not great against Rotom-Wash or Aegislash.\n\nIf I lead with Dragapult:\n- Vs Rotom-Wash: Phantomforce is neutral. Quick Attack can outspeed.\n- Vs Aegislash: Phantomforce is neutral. Very fast, likely outspeeds.\n- Vs their Dragapult: Speed tie (both 213). Coin flip.\n- Vs Corviknight: Phantomforce is neutral but I'm much faster (213 vs 78-130). Easy KO or big damage.\n- Vs Gholdengo: Phantomforce is neutral, I'm faster (213 vs 93-149). Good.\n- Vs Ditto: Depends on what it copies.\n\nDragapult as lead seems more consistent because it's fast against almost everything except their Dragapult.\n\nLet me go with: **Dragapult, Garchomp, Corviknight**\n\nActually wait - let me reconsider. The format is \"champions\" which means Mega Evolution instead of Terastallization. So I can Mega Evolve my Pokémon! \n\nMega Garchomp: Dragon/Ground, gets +100% to one stat (usually Attack). Mega Garchomp has higher Attack and Speed. This makes it even more threatening.\n\nMega Dragapult: Dragon/Ghost, gets +100% to one stat. Actually, I'm not sure if Dragapult can Mega Evolve in this format. Let me think... In the standard Mega Evolution list, Garchomp can Mega Evolve (Mega Garchomp). Dragapult... I don't think it has a Mega form in the traditional sense. Actually, in Gen 9 Champions format with Mega Evolution instead of Terastallization, I think only Pokémon that have official Mega Evolutions can use them.\n\nActually, looking at this more carefully - in the Showdown format \"gen9championsrotomarenabssregmb\", the \"Mega\" option is available for moves. So I need to check which of my Pokémon can Mega Evolve:\n- Garchomp → Mega Garchomp (yes)\n- Corviknight → No official Mega form\n- Toxapex → No official Mega form\n- Gholdengo → No official Mega form\n- Dragapult → No official Mega form (it's a Gen 8 Pokémon, and I don't think it has a Mega form)\n- Quaquaval → No official Mega form\n\nSo only Garchomp can Mega Evolve. That makes Garchomp even more important to bring.\n\nLet me finalize: **Dragapult, Garchomp, Corviknight**\n\nActually, hmm. Let me reconsider whether Toxapex is better than Corviknight as the third pick. \n\nToxapex advantages:\n- Can Toxic their bulky walls (Aegislash, Corviknight)\n- Regenerator heals on switch\n- Very high SpD (194) can wall special attackers like Gholdengo\n- Black Belt boosts Gunkshot\n\nCorviknight advantages:\n- Defog clears hazards\n- Mirror Armor punishes physical attackers\n- Very high HP and Def\n- Can switch into many attacks\n\nGiven that the opponent has Gholdengo (special attacker), Toxapex's high SpD makes it a great wall. But Corviknight's Defog is useful if they run entry hazards.\n\nI'll stick with Dragapult, Garchomp, Corviknight for now. The speed pressure and physical offense are key against this team.\n\nLet me go with: DRAGULAULT, GARCHOMP, CORVIKNIGHT\n\nWait, actually I want to reconsider one more time. The opponent has BOTH Aegislash AND Corviknight which are both very bulky Steel/Ghost or Flying/Steel types. They also have Gholdengo (Steel/Ghost). That's THREE Steel/Ghost or Steel-heavy Pokémon! Plus Rotom-Wash with Levitate.\n\nAgainst this team, I really need:\n1. Ground moves to hit the Steel types (Garchomp)\n2. Speed to outpace them (Dragapult)\n3. Something to handle Rotom-Wash and Aegislash specifically\n\nFor Rotom-Wash: It resists a lotThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 6377,
+      "latency_ms": 103769,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "70% MOVE: shadowball, 10% SWITCH: gholdengo, 9% MOVE: dragondarts",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2307,
+      "latency_ms": 619,
+      "cost_usd": 9.6894e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.7,
+        "MOVE: dragondarts": 0.09,
+        "MOVE: uturn": 0.03,
+        "MOVE: thunderbolt": 0.01,
+        "SWITCH: gholdengo": 0.1,
+        "SWITCH: rotomwash": 0.07
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "phantomforce",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead matchup: My Dragapult (213 SPE, Light Clay) vs their Dragapult (145-213 SPE). Both Dragon/Ghost. Phantom Force is STAB + super effective per game = massive damage with Light Clay. Will likely KO their lead. After that, pivot to Garchomp for Earthquake on Steel types. Watch for Imposter Ditto later. Save Mega Garchomp for breaking through walls.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Dragapult (213 SPE, Light Clay, Infiltrator) is facing their Dragapult (145-213 SPE range, unknown item/ability)\n- Both are Dragon/Ghost types\n- My Dragapult has Light Clay which boosts physical moves by 1.5x\n- Their Dragapult could be faster or slower depending on investment\n\nKey considerations:\n- Phantom Force is super effective (Ghost vs Ghost... wait, no. Ghost is not super effective against Ghost. Let me re-read.)\n\nWait, looking at the legal actions:\n- dragondarts: \"super effective on dragapult\" - Dragon type hitting Dragon/Ghost? No, Dragon isn't super effective on Dragon. Wait, let me think again.\n\nActually, looking more carefully at the moves:\n- dragondarts (Dragon/Physical) vs Dragapult (Dragon/Ghost): Dragon is NOT super effective against Dragon or Ghost. But the action says \"super effective on dragapult\" - hmm, that's odd. Let me re-read.\n\nWait, actually I think there might be a mistake in my reading. Let me look again:\n- dragondarts: Dragon, Physical, power 50 - vs Dragon/Ghost type. Dragon is neutral against Dragon and Ghost. So this shouldn't be super effective...\n\nHmm, but the game says it's super effective. Maybe I'm wrong about the typing. Actually wait - maybe the opponent's Dragapult has a different typing? No, it clearly says Dragon/Ghost.\n\nActually, let me reconsider. In Pokémon, Dragon moves are NOT super effective against Dragon or Ghost types. They're neutral. So why does the game say \"super effective on dragapult\"?\n\nWait, I think I need to just trust what the game tells me. The game says dragondarts is super effective on their Dragapult. Maybe there's something I'm missing about the typing or ability. Let me just go with what the game states.\n\nActually wait - re-reading: \"super effective on dragapult\" - maybe this is a generic label and it's actually referring to the fact that Dragon moves hit Dragon/Ghost neutrally? No, it explicitly says \"super effective.\"\n\nHmm, let me reconsider. Actually in some contexts, maybe I'm wrong about Dragon vs Ghost. Let me think... No, Dragon is neutral against both Dragon and Ghost. Ghost is neutral against Dragon. So Dragon move vs Dragon/Ghost should be neutral (1x).\n\nBut the game explicitly states it's super effective. I'll trust the game. Maybe there's a special interaction I'm not aware of, or maybe the opponent's Dragapult has an ability that makes it weak to something.\n\nActually, you know what, let me just focus on strategy:\n\nMy options:\n1. dragondarts (50 BP x2, super effective per game) - with Light Clay = 75 BP x2 effectively. This is good for chip damage and speed pressure.\n2. phantomforce (90 BP, super effective per game) - but it disappears turn 1, hits turn 2. With Light Clay = 135 BP. But I lose the move next turn.\n3. quickattack (40 BP, priority +1) - \"no effect on dragapult\" - so this is useless against them!\n4. uturn (70 BP, not very effective) - switches out after hitting. Not great since it's not very effective.\n\nWait, quickattack says \"no effect on dragapult\" - that's interesting. Maybe their ability makes them immune to priority moves? Or maybe it's just a neutral hit with low power. Either way, it's not useful.\n\nStrategy:\n- I should use Phantom Force for the big super effective hit (90 BP x 1.5 Light Clay = 135 BP). This could potentially KO their Dragapult if it's on lower HP investment.\n- Or dragondarts for consistent damage with Light Clay boost.\n\nActually, let me reconsider. With Light Clay:\n- Phantom Force: 90 * 1.5 = 135 BP physical Ghost move vs Dragon/Ghost (super effective per game) = 2x STAB? No wait, my Dragapult is also Dragon/Ghost. So it's STAB + super effective = 4x damage!\n\nWait, my Dragapult is Dragon/Ghost. Phantom Force is a Ghost-type move. Against their Dragon/Ghost:\n- STAB (Ghost): 1.5x\n- Super effective (per game): 2x\n- Light Clay: 1.5x\nTotal: 1.5 * 2 * 1.5 = 4.5x\n\nThat's a massive hit. This could easily KO their Dragapult.\n\nFor dragondarts:\n- Dragon STAB: 1.5x\n- Super effective (per game): 2x  \n- Light Clay: 1.5x\n- Power 50 x 2 hits\nTotal per hit: 50 * 1.5 * 2 * 1.5 = 225 BP equivalent, split into two 112.5 BP hits\n\nBoth are very strong. Phantom Force is a single big hit (135*4.5... wait let me recalculate).\n\nActually, let me be more careful:\n- Base power of Phantom Force: 90\n- STAB (Ghost on Ghost): 1.5x → 135\n- Super effective (per game): 2x → 270\n- Light Clay: 1.5x → 405\n\nThat's a 405 BP equivalent hit. That would almost certainly KO their Dragapult at level 50.\n\nFor dragondarts:\n- Base power: 50\n- STAB (Dragon on Dragon): 1.5x → 75\n- Super effective (per game): 2x → 150\n- Light Clay: 1.5x → 225 per hit, two hits = 450 total\n\nBoth would likely KO. Phantom Force is simpler and guarantees the KO in one turn (well, it hits next turn). Dragondarts hits twice this turn.\n\nI'll go with Phantom Force for the guaranteed KO. It's a clean super effective STAB hit that should take down their lead. Then I can pivot to Garchomp or Corviknight.\n\nActually wait - Phantom Force \"Disappears turn 1. Hits turn 2.\" So it will hit next turn. If their Dragapult is faster, they could do something first. But with Light Clay and the massive damage, even if they survive one turn, I'll have a clean setup.\n\nLet me go with Phantom Force for the big KO hit.\n",
+      "note": "",
+      "tokens": 3863,
+      "latency_ms": 38977,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "phantomforce",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% MOVE: shadowball, 9% SWITCH: rotomwash, 8% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2135,
+      "latency_ms": 444,
+      "cost_usd": 8.967e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.83,
+        "SWITCH: gholdengo": 0.08,
+        "SWITCH: rotomwash": 0.09
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% SWITCH: gholdengo, 45% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1999,
+      "latency_ms": 435,
+      "cost_usd": 8.3958e-05,
+      "probabilities": {
+        "SWITCH: gholdengo": 0.55,
+        "SWITCH: rotomwash": 0.45
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: shadowball, 22% MOVE: poltergeist, 6% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2347,
+      "latency_ms": 421,
+      "cost_usd": 9.8574e-05,
+      "probabilities": {
+        "MOVE: poltergeist": 0.22,
+        "MOVE: nastyplot": 0.02,
+        "MOVE: thunderbolt": 0.03,
+        "MOVE: shadowball": 0.67,
+        "SWITCH: rotomwash": 0.06
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "My Dragapult is at 4.3% HP - must switch before it gets hit. Garchomp's Earthquake is super effective (2x) on Gholdengo's Steel typing. Garchomp has Life Orb for extra damage. Plan: Garchomp hits Gholdengo with EQ, pivot to Corviknight if needed. Watch for Imposter Ditto among remaining 3 opponents.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Dragapult is at 7/163 HP (4.3%) - essentially a zombie\n- Opponent's Gholdengo is at 100% HP\n- I need to switch out before my Dragapult gets hit by anything\n\nGholdengo is Steel/Ghost with Good As Gold (immune to status moves). Let me think about what hits it:\n\n- My Dragapult: Phantom Force is super effective on Ghost, but Garchomp's Earthquake would be super effective on Steel.\n- Garchomp: Earthquake hits Steel types super effectively. Garchomp is Dragon/Ground - Ground is super effective against Steel.\n- Corviknight: Flying/Steel - not great against Steel/Ghost\n\nThe best move here is to switch to Garchomp and use Earthquake on Gholdengo. Earthquake is super effective against Steel (Gholdengo's Steel typing). Garchomp has 182 Atk with Life Orb, so it should deal significant damage.\n\nActually wait - let me check: Ground is super effective against Steel? Yes! Ground moves are super effective against Steel types. So Earthquake would be 2x on Gholdengo.\n\nBut I should switch first since my Dragapult is at 4.3% HP and will likely faint if hit by anything. Let me switch to Garchomp.\n\nActually, I could also use U-turn to switch out while dealing some damage (70 power, 1/4x on Steel/Ghost = very weak). That's not great.\n\nBest option: Switch to Garchomp, then next turn use Earthquake for super effective damage on Gholdengo.\n\nLet me go with SWITCH: garchomp\n",
+      "note": "",
+      "tokens": 3023,
+      "latency_ms": 13758,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: shadowball, 29% MOVE: poltergeist, 28% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2480,
+      "latency_ms": 425,
+      "cost_usd": 0.00010416,
+      "probabilities": {
+        "MOVE: poltergeist": 0.29,
+        "MOVE: nastyplot": 0.08,
+        "MOVE: thunderbolt": 0.01,
+        "MOVE: shadowball": 0.34,
+        "SWITCH: rotomwash": 0.28
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp (73/183) vs Gholdengo (90%). EQ is 4x effective (STAB + SE on Steel). With Life Orb boost, should KO Gholdengo. After KO, opponent has 1 more Pokémon from Rotom-Wash/Aegislash/Corviknight/Ditto. Watch for Imposter Ditto. Save Mega for later if needed.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 73/183 HP (39.9%) with Life Orb\n- Opponent's Gholdengo is at 90% HP with Life Orb and GoodasGold\n- I move first (Garchomp 169 SPE vs Gholdengo 93-149 SPE)\n\nGarchomp's Earthquake is super effective on Gholdengo (Steel/Ghost - Ground is 2x against Steel). With Life Orb, it does 1.3x damage. Let me calculate:\n- Garchomp Atk: 182, with Life Orb: 182 * 1.3 = 236.6\n- Earthquake BP: 100, super effective (2x)\n- Damage formula roughly: (2*236.6*100/100)/194 + 2 ≈ 245.7... wait let me think more carefully.\n\nActually, the damage calculation is complex. Let me just consider: Garchomp's Earthquake with Life Orb and super effective against Steel should do significant damage to Gholdengo. Gholdengo has HP in range 162-194. At 90% HP, it's around 146-175 HP.\n\nGarchomp at 39.9% HP (73/183) - if I use Earthquake, I'll take Life Orb damage (1/10 max = ~18 HP), leaving me at about 55 HP. That's risky but manageable.\n\nThe key question: Can Garchomp KO Gholdengo with Earthquake?\n- Garchomp Atk 182 * 1.3 (Life Orb) = 236.6\n- EQ BP 100, STAB (Ground on Dragon/Ground... wait, Garchomp is Dragon/Ground, so Ground IS STAB)\n- So: 2x STAB, 2x super effective = 4x multiplier\n- Damage ≈ (2 * 236.6 * 100 / 100) / (Gholdengo Def) * 4 + 2\n\nWait, let me recalculate. The damage formula:\n((2*Level/5+2) * Power * STAB * TypeMod * AtkStat / DefStat) / 50 + 2\n\nLevel 50: (2*50/5+2) = 22\nPower: 100\nSTAB: 1.5 (Ground on Dragon/Ground)\nType Mod: 2 (Ground vs Steel)\nAtk: 182 * 1.3 (Life Orb) ≈ 236.6\nDef: Gholdengo Def range 103-161, let's say ~130\n\nDamage = (22 * 100 * 1.5 * 2 * 236.6 / 130) / 50 + 2\n= (22 * 100 * 1.5 * 2 * 236.6) / (130 * 50) + 2\n= (1,564,920) / 6500 + 2\n= 240.7 + 2 ≈ 243\n\nGholdengo at 90% of ~162-194 HP = ~146-175 HP. So Earthquake would KO Gholdengo!\n\nWait, but I need to account for the fact that Garchomp also takes Life Orb damage after attacking. But that doesn't affect the damage dealt.\n\nSo Earthquake should KO Gholdengo. Let me go with that.\n\nAfter KOsing Gholdengo, I'll likely switch to Corviknight or keep Garchomp out. The remaining opponents are from: rotomwash, aegislash, corviknight, ditto (one more to come in).\n\nActually wait - the opponent has 3 Pokémon total (Champions singles format says \"each player brought 3 of their 6\"). They've used Dragapult and Gholdengo. So one more is coming from: rotomwash, aegislash, corviknight, ditto.\n\nLet me go with Earthquake to KO Gholdengo.\n",
+      "note": "",
+      "tokens": 3782,
+      "latency_ms": 27817,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: hydropump, 27% MOVE: willowisp, 23% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2522,
+      "latency_ms": 443,
+      "cost_usd": 0.000105924,
+      "probabilities": {
+        "MOVE: voltswitch": 0.23,
+        "MOVE: thunderbolt": 0.05,
+        "MOVE: hydropump": 0.45,
+        "MOVE: willowisp": 0.27
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 55/183 HP, Life Orb costs 18 HP per attack. Rotom-Wash has Levitate = immune to Earthquake! Must not use EQ. Switching to Corviknight (full HP) for better defense against Rotom-Wash. Remaining opponents: Aegislash, Corviknight, Ditto (Imposter risk). Save Mega Garchomp for later if needed.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 55/183 HP (30.1%) with Life Orb\n- Opponent's Rotom-Wash is at full HP, Levitate (immune to Ground)\n- I have Corviknight at full HP and Dragapult at 4.3% HP\n\nKey observations:\n- Rotom-Wash has Levitate, so Earthquake will NOT hit it! It's immune to Ground moves.\n- Garchomp's options against Rotom-Wash: Dragonclaw (Dragon/Physical), Stoneedge (Rock/Physical), Dragontail (Dragon/Physical, priority -6)\n- Wait, let me re-read the legal actions. The notes say \"super effective on rotomwash\" for earthquake, but Rotom-Wash has Levitate which makes it immune to Ground moves. Let me re-check...\n\nActually wait - looking at the legal actions: \"MOVE: earthquake | Ground, Physical, power 100, 100% accuracy, super effective on rotomwash\"\n\nBut Rotom-Wash has Levitate! That means Earthquake would miss completely. The game might be showing it as \"super effective\" in terms of type matchup (Ground is super effective on Water), but with Levitate, it won't hit at all.\n\nSo I should NOT use Earthquake. Let me think about what to do:\n\nOptions against Rotom-Wash:\n- Dragonclaw: Dragon/Physical - neutral against Electric/Water\n- Stoneedge: Rock/Physical - super effective on... wait, Rock is not super effective on Electric/Water. Actually, Rock is neutral on Water and neutral on Electric. So it's just neutral.\n- Dragontail: Dragon/Physical, priority -6 - forces switch\n\nWait, let me reconsider the type matchups:\n- Rotom-Wash is Electric/Water\n- Ground moves are immune due to Levitate\n- Dragonclaw (Dragon) vs Electric/Water: neutral\n- Stoneedge (Rock) vs Electric/Water: neutral\n- Dragontail (Dragon) vs Electric/Water: neutral, priority -6\n\nHmm, none of Garchomp's physical attacks are super effective on Rotom-Wash. The best options would be to switch to Corviknight which has Flash Cannon (Steel/Special) that is super effective on... wait, Steel is not super effective on Electric/Water either. Actually:\n- Steel vs Water: neutral\n- Steel vs Electric: neutral\n\nWait, let me reconsider. What about Corviknight's moves?\n- Roost: heals\n- Defog: clears hazards (none present)\n- Heavyslam: Steel/Physical - neutral on Rotom-Wash\n- Flash Cannon: Steel/Special - neutral on Rotom-Wash\n\nHmm, none of my team seems to have a strong super effective move against Rotom-Wash. Let me think...\n\nActually wait - Garchomp's Dragonclaw is Dragon type. Dragon vs Electric/Water is neutral. But Garchomp has high Attack (182) and with Life Orb it deals 1.3x damage. So Dragonclaw would deal decent damage.\n\nBut actually, the smartest play here might be to switch to Corviknight. Why?\n1. Garchomp is at only 55/183 HP - vulnerable\n2. Rotom-Wash with Levitate means Earthquake won't work\n3. Corviknight can use Defog (though no hazards) or Roost to heal, or Flash Cannon\n4. Corviknight has Mirror Armor which reflects damage\n\nActually, let me reconsider. Garchomp at 55 HP with Life Orb - if it attacks, it loses 1/10 max HP = ~18 HP, leaving it at ~37 HP. That's very low.\n\nThe best move might be to switch to Corviknight. It's at full HP and can handle Rotom-Wash better. Or I could use Dragonclaw to deal some damage before switching.\n\nActually, let me think about what the opponent is likely to do. They have Aegislash, Corviknight, and Ditto remaining (besides Rotom-Wash). \n\nIf I switch to Corviknight:\n- Corviknight vs Rotom-Wash: Steel/Flying vs Electric/Water\n- Flash Cannon (Steel) is neutral on both types\n- But Corviknight has high Def (172) and SpD (137), making it a good wall\n\nIf I stay with Garchomp and use Dragonclaw:\n- Deals some damage but Garchomp drops to ~37 HP after Life Orb cost\n- Then I'd need to switch next turn anyway\n\nI think switching to Corviknight is the safest play. It preserves my team's health and gives me a better matchup against Rotom-Wash. Corviknight can also use Defog if needed (though no hazards currently).\n\nWait, but actually - should I use Dragonclaw first to chip damage? Garchomp at 55 HP with Life Orb:\n- Dragonclaw deals 80 BP × 1.3 (Life Orb) = effective 104 power\n- Against Rotom-Wash's Def range of 114-174... let's say around 140 average\n- Damage would be roughly: (182/140) × 104 × ~0.9 ≈ 130 damage? That might KO Rotom-Wash!\n\nWait, let me calculate more carefully. At level 50:\n- Garchomp Attack: 182\n- Life Orb: 1.3x multiplier\n- Dragonclaw BP: 80\n- Rotom-Wash Def: let's say around 140 (mid-range)\n\nDamage formula: ((2*50+16)/50 + 2) × (BP/4) × (Atk/Def) × STAB × modifiers\n= (3.32) × 20 × (182/140) × 1 × 1.3\n= 3.32 × 20 × 1.3 × 1.3\n= 3.32 × 20 × 1.69\n= 112.2\n\nSo about 112 damage. Rotom-Wash HP range is 125-157. So Dragonclaw might not KO it, but deals significant damage (about 70-90% of its HP).\n\nHmm, but then Garchomp drops to 55 - 18 = 37 HP. That's very vulnerable.\n\nI think the safest and most strategic play is to switch to Corviknight. It's at full HP, has good defensive stats, and can handle Rotom-Wash well. I can use Defog if needed or Roost to heal.\n\nActually wait - let me reconsider. The opponent just switched in Rotom-Wash after Gholdengo fainted. They might be setting up something or just rotating. \n\nI'll go with switching to Corviknight. It's the safest option and gives me a fresh Pokémon to deal with Rotom-Wash.\n",
+      "note": "",
+      "tokens": 4463,
+      "latency_ms": 41958,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: thunderbolt, 45% MOVE: voltswitch, 3% MOVE: hydropump",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2671,
+      "latency_ms": 455,
+      "cost_usd": 0.000112182,
+      "probabilities": {
+        "MOVE: voltswitch": 0.45,
+        "MOVE: thunderbolt": 0.49,
+        "MOVE: hydropump": 0.03,
+        "MOVE: willowisp": 0.03
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "roost",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight at 60% after Hydro Pump + Leftovers. Both my Steel attacks are 1/4x on Rotom-Wash, so I can't threaten it offensively. Roost to heal to ~98%, tank another turn. Garchomp (30%) is backup but EQ useless vs Levitate. Remaining threats: Aegislash, their Corviknight, Ditto (Imposter). Save Mega for later.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n**My team:**\n- Garchomp: 55/183 (30.1%), Life Orb, PP: EQ 15, DC 24, SE 8, DT 16\n- Corviknight (active): 106/175 (60.6%), Leftovers, PP: Roost 8, Defog 24, Heavyslam 16, Flash Cannon 16\n- Dragapult: 7/163 (4.3%), Light Clay\n\n**Opponent:**\n- Rotom-Wash (active): 100% HP, Levitate, Hydro Pump revealed\n- Remaining unseen: Aegislash, Corviknight, Ditto (Imposter risk)\n\n**Key considerations:**\n1. Corviknight is at 60.6% HP after taking a Hydro Pump hit and healing with Leftovers.\n2. Rotom-Wash has Levitate (immune to Ground), so Garchomp's Earthquake won't work on it.\n3. Rotom-Wash moves first (speed 95-151 vs Corviknight's 87).\n4. My options:\n   - Roost: Heals 50% HP, removes Flying type until end of turn. This would bring me to ~162/175. But I lose my Flying typing for one turn.\n   - Defog: Clears hazards (none currently), but also lowers evasion by 1. Not very useful here since there are no hazards.\n   - Heavyslam: Steel/Physical, 1/4x on Rotom-Wash (Steel is not super effective against Electric/Water... wait, let me check. Steel vs Electric/Water: Steel is neutral to both. Actually wait - the note says \"1/4x on rotomwash\". Let me think about this. Steel attacks are super effective against Rock, Ice, Flying. They're not very effective against Fire, Fighting, Ground. Against Electric/Water... Steel should be neutral. But the game says 1/4x. Hmm, maybe I'm wrong. Actually wait - let me reconsider. The game explicitly states \"1/4x on rotomwash\" for both Heavyslam and Flash Cannon. So I'll trust that.\n   \n   Wait, actually Steel is not very effective against... no. Let me think again. Steel type:\n   - Super effective vs: Rock, Ice, Flying\n   - Not very effective vs: Fire, Fighting, Ground\n   - No effect vs: None (in Gen 6+)\n   \n   Against Electric/Water: Steel should be neutral to both. So why does the game say 1/4x?\n   \n   Hmm, maybe I'm misreading. Let me re-read: \"1/4x on rotomwash\". That's what the game says. Maybe there's some interaction I'm not seeing, or maybe the game is correct and I'm wrong about the typing. Actually wait - could it be that Rotom-Wash has a hidden ability or something? No, it shows Levitate.\n   \n   Actually, you know what, let me just trust the game's stated effectiveness. The game says 1/4x for both Heavyslam and Flash Cannon on Rotom-Wash. So those moves are very weak against it.\n\n5. Switch options:\n   - Switch to Dragapult (4.3% HP) - basically a suicide switch, not useful\n   - Switch to Garchomp (30.1%) - could be useful but EQ doesn't work on Rotom-Wash due to Levitate\n\n**Best strategy:**\n- Corviknight is the best answer to Rotom-Wash here. It's Steel/Flying, which resists Water and Electric... wait, no. Steel resists Water? No. Let me think:\n  - Steel resists: Normal, Flying, Rock, Bug, Steel, Grass, Psychic, Ice, Dragon, Fairy\n  - Steel is weak to: Fire (4x), Fighting (2x), Ground (2x)\n  - Flying resists: Normal, Fighting, Bug\n  - Flying is weak to: Electric (2x), Ice (2x), Rock (2x), Steel (2x)\n  \n  So Corviknight (Steel/Flying):\n  - Resists Water? No, Steel doesn't resist Water. Actually wait... let me reconsider.\n  \n  Hmm, actually I think I need to be more careful:\n  - Steel type resistances: Normal(0.5), Flying(0.5), Rock(0.5), Bug(0.5), Steel(0.5), Grass(0.5), Psychic(0.5), Ice(0.5), Dragon(0.5), Fairy(0.5)\n  - Steel type weaknesses: Fire(4x), Fighting(2x), Ground(2x)\n  \n  So Water is neutral to Steel, and Electric is neutral to Steel. But Flying resists... no, Electric is super effective against Flying (2x).\n  \n  Wait, so Corviknight vs Rotom-Wash:\n  - Hydro Pump (Water): Neutral to Steel, Neutral to Flying = Neutral overall? Actually I think it's just neutral.\n  - But the game showed Corviknight took a Hydro Pump and went from 175 to 96 HP (before Leftovers healing). That's about 43% damage, which seems reasonable for a neutral hit with a BP 110 move.\n\n  Actually wait, let me reconsider. The opponent used Hydro Pump and Corviknight went from full (175) to 96. That's 79 HP lost out of 175, about 45%. With a BP 110 Water move at level 50... that seems like it could be super effective or neutral.\n\n  Hmm, but the game says Corviknight took the hit and is now at 60.6% after Leftovers healing. Let me not overthink this.\n\n**Decision:**\n- Roost would heal Corviknight to ~162/175 (98%), which is great for durability. But I lose Flying typing for one turn, making me vulnerable to Rock/Steel/Ice/Electric attacks. However, Rotom-Wash's known move is Hydro Pump (Water), which wouldn't be super effective against a non-Flying Steel type either way.\n  \n- Actually, wait. If I Roost, I remove my Flying typing. Against Rotom-Wash:\n  - Pure Steel would resist Water? No, it doesn't. Water is neutral to Steel.\n  - But without Flying, Electric attacks (if Rotom uses them) would be neutral instead of super effective. That's actually better!\n  \n- However, the main concern is that Rotom-Wash moves first and could use a strong move. If I Roost, I'm at ~98% HP but lose my Flying typing.\n\n- Actually, let me reconsider. The best play might be to just Roost to heal up and stay in. Corviknight is the natural counter to Rotom-Wash here - it can tank Water moves reasonably well with Steel typing, and its Flash Cannon/Heavyslam are weak (1/4x) but at least I'm not getting KO'd.\n\n- Wait, actually if both my physical and special attacks are 1/4x on Rotom-Wash, then Corviknight can't really threaten it offensively. So the strategy is to tank and switch when needed.\n\n- Let me think about what happens next turn:\n  - If I Roost: Corviknight at ~162 HP (98%), no Flying type. Rotom-Wash attacks first.\n  - If I Defog: No hazards to clear, just wastes a turn and lowers evasion. Bad idea.\n  - If I Heavyslam/Flash Cannon: 1/4x damage, barely scratches. Wastes a turn.\n  - If I switch to Garchomp: Garchomp at 30% HP. Rotom-Wash with Levitate means EQ doesn't work. Garchomp's Dragon Claw is neutral... but Garchomp is weaker than Corviknight defensively against Water/Electric.\n\nI think Roost is the best option here. It heals me significantly and I can tank another turn or two before switching to Garchomp when a better target comes out (like Aegislash or their Corviknight).\n\nActually wait - let me reconsider. If I switch to Garchomp now:\n- Garchomp at 30% HP with Life Orb\n- Rotom-Wash has Levitate, so EQ is useless\n- But Garchomp's Dragon Claw (neutral) or Stone Edge could do something\n- However, Garchomp is weaker than Corviknight against Water-type attacks\n\nI'll go with Roost to heal up and stay in. Corviknight can tank Rotom-Wash's moves for a while.\n\nActually, one more thought: should I switch to Garchomp? The opponent has Aegislash, their Corviknight, and Ditto remaining. If Aegislash comes out, Garchomp could use Dragon Claw (neutral) or Stone Edge (super effective against Steel/Ghost? No - Rock is super effective against Flying, Bug, Ice, but not Steel or Ghost). Actually, Rock vs Steel: neutral. Rock vs Ghost: neutral. So Stone Edge wouldn't be super effective on Aegislash either.\n\nWhat about their Corviknight? Garchomp's EQ would be 4x effective (Ground is super effective against Flying, and... wait no. Ground vs Steel/Flying: Ground is super effective against Flying (2x), neutral to Steel. So 2x total. With Life Orb, that could KO a healthy Corviknight.\n\nBut right now, the active opponent is Rotom-Wash. I should deal with it first.\n\nFinal decision: Roost to heal up and stay in. This gives me maximum durability against whatever Rotom-Wash does next turn.\n",
+      "note": "",
+      "tokens": 5167,
+      "latency_ms": 56775,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent only has Rotom-Wash left (all 3 brought Pokémon seen: Dragapult, Gholdengo both fainted). Rotom-Wash at full HP with Levitate (EQ useless). Garchomp at 30% can survive 1-2 neutral special hits and KO Rotom-Wash with Stone Edge (BP 100, Rock/Physical, neutral on Electric/Water). Dragapult at 4.3% is basically a suicide switch. Switch to Garchomp and go for the kill.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Corviknight just fainted to Rotom-Wash's Thunderbolt (super effective on Flying/Steel)\n- I have Garchomp at 55/183 HP (30%) with Life Orb, and Dragapult at 7/163 HP (4.3%) with Light Clay\n- Opponent has Rotom-Wash at full HP (100%), and their remaining Pokémon are Aegislash, Corviknight, Ditto (Imposter risk)\n\nWait, let me re-read the opponent's team. They brought 3 of 6: Dragapult, Gholdengo, Rotom-Wash. All three have been seen. So the opponent only has Rotom-Wash left!\n\nWait, \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\" - This means they only had 3 Pokémon total in their battle (since it's a singles format where each player brings 3). All three are accounted for: Dragapult (fainted), Gholdengo (fainted), Rotom-Wash (active).\n\nSo the opponent ONLY has Rotom-Wash left! That changes everything.\n\nNow I need to decide what to switch in:\n- Garchomp at 55/183 HP with Life Orb - can use Dragonclaw or Stone Edge on Rotom-Wash\n- Dragapult at 7/163 HP - barely alive, could be used for a last hit\n\nRotom-Wash is Electric/Water with Levitate. Let me think about what hits it:\n- Garchomp's Dragonclaw (Dragon/Physical): Neutral against Electric/Water. Atk 182, BP 80. With Life Orb boost... let me calculate roughly. Actually, I don't need exact numbers - Garchomp at 30% HP can probably take a few hits from Rotom-Wash.\n- Garchomp's Stone Edge (Rock/Physical): Neutral against Electric/Water. BP 100. Better than Dragonclaw.\n- Garchomp's Earthquake: Doesn't work due to Levitate.\n\nRotom-Wash's moves: Hydro Pump (Water/Special, BP 110) and Thunderbolt (Electric/Special, BP 90). Both are super effective against Garchomp? No wait - Garchomp is Dragon/Ground. Water is neutral on Ground, Electric is neutral on Ground. So both are neutral damage to Garchomp.\n\nActually wait - Rotom-Wash's Hydro Pump and Thunderbolt are both special moves. Garchomp has SpD 107. Let me think about whether Garchomp can survive.\n\nGarchomp at 55/183 HP (about 30%). Rotom-Wash with full HP and presumably good SpA stats. Hydro Pump is BP 110, Thunderbolt is BP 90. Both neutral on Dragon/Ground.\n\nIf I switch in Garchomp:\n- I can use Stone Edge (BP 100, Rock/Physical) or Dragonclaw (BP 80, Dragon/Physical) to hit Rotom-Wash\n- Rotom-Wash is at full HP with unknown item and ability Levitate\n- Garchomp's Attack is 182, which is high\n\nActually, let me reconsider. The opponent only has Rotom-Wash left. I need to KO it. \n\nGarchomp at 30% HP can probably survive 1-2 hits from Rotom-Wash and then KO it with Stone Edge or Dragonclaw. Let me go with Garchomp.\n\nActually, wait - should I consider Mega Evolution? \"Mega Evolution available: No\" - so no Mega this turn.\n\nLet me go with switching to Garchomp and using Stone Edge (BP 100) which is the strongest physical move it has that works on Rotom-Wash.\n\nDecision: SWITCH: garchomp\n",
+      "note": "",
+      "tokens": 3678,
+      "latency_ms": 25485,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: hydropump, 29% MOVE: willowisp, 22% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2709,
+      "latency_ms": 651,
+      "cost_usd": 0.000113778,
+      "probabilities": {
+        "MOVE: voltswitch": 0.22,
+        "MOVE: thunderbolt": 0.03,
+        "MOVE: hydropump": 0.46,
+        "MOVE: willowisp": 0.29
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 55/183 HP (Life Orb) vs Rotom-Wash at full HP. Game confirms EQ is super effective on Rotom-Wash despite Levitate listing - trust the engine. This should KO Rotom-Wash in one hit. After KO, opponent has no more Pokémon (all 3 seen: Dragapult, Gholdengo, Rotom-Wash all fainted). This ends the battle.",
+      "hidden_reasoning": "Let me analyze the situation carefully.\n\nMy Garchomp is at 55/183 HP (30.1%) with a Life Orb. The opponent has Rotom-Wash at full HP (100%).\n\nKey facts:\n- Garchomp's Earthquake is listed as \"super effective on rotomwash\" in the legal actions. Wait, but Rotom-Wash has Levitate which makes it immune to Ground moves. Let me re-read...\n\nActually, looking at the legal actions: \"MOVE: earthquake | Ground, Physical, power 100, 100% accuracy, super effective on rotomwash\"\n\nWait, that's strange. Rotom-Wash is Electric/Water with Levitate. Earthquake should be immune to it due to Levitate. But the legal actions say it's \"super effective on rotomwash.\" \n\nHmm, but wait - looking at the battle log more carefully:\n- Turn 5: Corviknight came in against Rotom-Wash\n- Turn 6: Rotom used Thunderbolt (super effective on Corviknight), Corviknight fainted\n- Then Garchomp came in\n\nThe legal actions say Earthquake is \"super effective on rotomwash.\" This is confusing because Levitate should make it immune. But the game is telling me it's super effective, so maybe there's something I'm missing, or perhaps the game has a different interpretation.\n\nWait, actually let me re-read. The opponent's Rotom-Wash stats show \"Ability: levitate\". And in the battle log turn 5, Corviknight took Hydro Pump and Thunderbolt. \n\nBut the legal actions explicitly state Earthquake is \"super effective on rotomwash.\" I should trust what the game tells me. Maybe there's a Gravity field or something? No, it says \"Weather: None | Field: None.\"\n\nActually, wait. Let me re-read the legal actions more carefully. It says \"super effective on rotomwash\" - but this might be an error in the display, or maybe the game is showing what would happen if you used it. But actually, in Pokémon Showdown, the legal actions list shows the actual effects. If Earthquake were immune, it wouldn't say \"super effective.\"\n\nHmm, but actually I think there might be a confusion here. Let me look at this differently. The game says Earthquake is super effective on Rotom-Wash. In the standard type chart, Ground is not super effective on Electric/Water. But maybe in this specific battle setup, something different is happening.\n\nActually, wait - I need to reconsider. Looking at the legal actions again:\n\"1. MOVE: earthquake | Ground, Physical, power 100, 100% accuracy, super effective on rotomwash\"\n\nThis is what the game is telling me. I should trust it. Perhaps there's a Gravity effect or the Levitate isn't actually active for some reason. Or perhaps this is just how the game displays it.\n\nBut wait - in Turn 4, Garchomp used Earthquake and it was \"super effective\" on Gholdengo (Steel/Ghost). That makes sense because Ground is super effective on Steel. And Gholdengo doesn't have Levitate.\n\nFor Rotom-Wash with Levitate, Earthquake should normally be immune. But the game says it's super effective. I'll trust the game's legal actions.\n\nActually, hold on. Let me reconsider whether this might be a display issue. In Showdown, when you look at legal moves, it shows the effectiveness against the current opponent. If it says \"super effective,\" then that's what will happen.\n\nBut actually, I'm now second-guessing myself. Let me think about what makes sense strategically:\n\nIf Earthquake IS super effective (as the game states):\n- Garchomp at 55 HP with Life Orb using EQ (BP 100, SE) against Rotom-Wash at full HP\n- This would likely KO Rotom-Wash easily\n- But Garchomp loses 1/10 max HP = ~18 HP from Life Orb, so it'd be at ~37 HP after\n\nIf Earthquake is NOT effective (immune due to Levitate):\n- I should use Stone Edge (Rock/Physical, BP 100, neutral on Electric/Water)\n- Garchomp at 55 HP with Life Orb: Rock attack would deal decent damage but might not KO in one hit\n\nGiven the game explicitly states Earthquake is \"super effective on rotomwash,\" I'll go with that. The safest bet is to use Earthquake since the game confirms it's super effective.\n\nWait, actually let me reconsider one more time. Could there be a Gravity field? No, it says \"Field: None.\" Could Rotom-Wash not actually have Levitate active? The stats section says \"Ability: levitate\" and the effects section says \"levitate: This Pokemon is immune to Ground.\"\n\nThis is very confusing. But I'll trust the legal actions as displayed by the game. If it says Earthquake is super effective, I'll use it.\n\nActually, you know what, let me reconsider. Maybe I'm overthinking this. The legal actions section is generated by the game engine and shows what will actually happen. If it says \"super effective on rotomwash,\" then that's what will happen. Perhaps there's some mechanic I'm not accounting for, or perhaps the display is just showing the base type effectiveness without factoring in Levitate (which would be a bug). \n\nBut in competitive play, if the game tells me a move is super effective, I should use it. Let me go with Earthquake.\n\nActually wait - let me reconsider one more time. In Pokémon Showdown, the legal moves list DOES account for abilities like Levitate. If a Ground move would be immune, it would typically show \"immune\" or not list it as effective. The fact that it says \"super effective\" strongly suggests that in this specific game state, Earthquake will deal super effective damage to Rotom-Wash.\n\nI'll go with MOVE: earthquake. This should KO Rotom-Wash (BP 100, SE on Electric/Water... wait, Ground is not SE on Water or Electric normally). \n\nHmm, actually Ground is NEUTRAL on both Electric and Water. So \"super effective\" doesn't make sense from a type chart perspective unless there's something else going on.\n\nYou know what, I think there might be an error in the display, OR the game is showing me that it will deal damage (perhaps neutral) and the \"super effective\" label is wrong. But I should still trust the game.\n\nLet me just go with Earthquake since the game says it's super effective. If it works, great - Garchomp KOs Rotom-Wash. If it doesn't work (immune), then I'll have wasted a turn but can switch to Dragapult or try Stone Edge next turn.\n\nActually, you know what, let me just go with Stone Edge to be safe. Rock is neutral on Electric/Water, BP 100, and Garchomp has high Attack (182). With Life Orb boost:\n- Damage = (2*50+1)/50 * 182/174 * 1.3 ≈ roughly... let me not calculate exactly but it should deal significant damage to a full HP Rotom-Wash.\n\nBut wait, if Earthquake IS super effective as the game says, using Stone Edge would be suboptimal because I'd take an extra turn.\n\nI'll trust the game and go with Earthquake. The legal actions explicitly state it's super effective on Rotom-Wash.\n",
+      "note": "",
+      "tokens": 4666,
+      "latency_ms": 43655,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: thunderbolt, 29% MOVE: voltswitch, 15% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2760,
+      "latency_ms": 433,
+      "cost_usd": 0.00011592,
+      "probabilities": {
+        "MOVE: voltswitch": 0.29,
+        "MOVE: thunderbolt": 0.44,
+        "MOVE: hydropump": 0.12,
+        "MOVE: willowisp": 0.15
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Last Pokémon: Dragapult at 7/163 HP (4.3%). All other team members fainted. Rotom-Wash at full HP, I'm faster (213 vs ≤151) so I hit first but will be one-shot after. Max damage is the only goal. No switch possible.",
+      "hidden_reasoning": "Let me analyze the situation carefully.\n\nCurrent state:\n- My Dragapult is at 7/163 HP (4.3%) - basically a suicide switch\n- Opponent's Rotom-Wash is at full HP (100%)\n- I have no other Pokémon left (Garchomp and Corviknight are both fainted)\n\nWait, let me re-read the battle log. The opponent brought 3 of their 6 Pokémon. All 3 have been seen: Dragapult, Gholdengo, Rotom-Wash. All three are now fainted except Rotom-Wash which is still active.\n\nSo I'm down to my last Pokémon - Dragapult at 7/163 HP. The opponent has Rotom-Wash at full HP.\n\nMy options:\n1. MOVE: dragondarts - Dragon, Physical, power 50, hits twice. Against Electric/Water (Rotom-Wash), Dragon is neutral. So this would deal 50*2 = 100 BP damage total. But my Dragapult has Atk 172. Let me calculate: 172/130 * 50 * 2 / 100... Actually, let me think about this differently.\n\nActually wait - Rotom-Wash is Electric/Water. Dragon moves are neutral against it. Water resists nothing from Dragon. Electric resists nothing from Dragon. So Dragon is neutral.\n\nMy Dragapult: Atk 172, HP 7/163\nRotom-Wash: HP 100%, SpD range 114-174\n\nDragondarts: 50 BP x 2 hits = 100 total BP. Physical attack.\nDamage per hit: (172/130) * 50 / Rotom's Def... wait, physical attacks use Defense stat.\n\nActually let me recalculate. The formula is roughly: ((2*Level/5 + 2) * Atk * Power / Def) / 50 + 2\n\nAt level 50: (2*50/5 + 2) = 22\nSo damage per hit ≈ 22 * 172 * 50 / Rotom's Def / 50 + 2\n\nIf Rotom's Def is around 144 (midpoint of 114-174): 22 * 172 * 50 / 144 / 50 + 2 = 22 * 172 / 144 + 2 ≈ 26.3 + 2 ≈ 28 per hit, so ~56 total for two hits.\n\nRotom-Wash HP is around 125-157. So 56 damage won't KO it.\n\n2. MOVE: phantomforce - Ghost, Physical, power 90. Against Electric/Water, Ghost is neutral.\nDamage ≈ 22 * 172 * 90 / Rotom's Def / 50 + 2\nIf Def = 144: 22 * 172 * 90 / 144 / 50 + 2 ≈ 47.3 + 2 ≈ 49 damage. Won't KO.\n\n3. MOVE: quickattack - Normal, Physical, power 40, priority +1. Against Electric/Water, Normal is neutral.\nDamage ≈ 22 * 172 * 40 / 144 / 50 + 2 ≈ 20.9 + 2 ≈ 23 damage. Won't KO.\n\n4. MOVE: uturn - Bug, Physical, power 70. Against Electric/Water, Bug is neutral.\nDamage ≈ 22 * 172 * 70 / 144 / 50 + 2 ≈ 36.6 + 2 ≈ 39 damage. Won't KO.\n\nNone of my moves can KO Rotom-Wash from this state. My Dragapult is at 7/163 HP and will likely faint on the next turn anyway (Rotom's Hydro Pump or Thunderbolt would one-shot it).\n\nWait, but I have no other Pokémon to switch to! All my other two are fainted. So I'm stuck with this nearly-dead Dragapult.\n\nActually wait - let me re-read the rules. \"one Pokémon on the field per side; each player brought 3 of their 6 Pokémon\". So I only have 3 Pokémon total in this battle, and all except Dragapult are fainted. I literally cannot switch.\n\nSo my options are just to use a move. Since I can't KO Rotom-Wash, what should I do?\n\nActually, let me reconsider. Can I even win this? My Dragapult is at 7/163 HP. Rotom-Wash has Hydro Pump (BP 110) and Thunderbolt (BP 90). Either of those would one-shot my Dragapult.\n\nWait - but maybe I should just use Quick Attack to deal some damage, or Phantom Force for more damage. Let me think about what gives the most damage.\n\nActually, let me reconsider the damage calculations more carefully.\n\nMy Dragapult: Atk 172\nRotom-Wash: Def range 114-174 (let's say around 140-150)\n\nFor physical moves against Rotom-Wash (Electric/Water):\n- Dragon: neutral\n- Ghost: neutral  \n- Normal: neutral\n- Bug: neutral\n\nAll are neutral. So the only difference is power.\n\nPhantom Force (90 BP) > U-turn (70 BP) > Dragondarts (50x2=100 total but split) > Quick Attack (40 BP)\n\nWait, Dragondarts hits twice at 50 each. Total damage would be similar to a single 100 BP hit but with two separate calculations (so slightly more due to the +2 in each calculation).\n\nActually for Phantom Force: it's a Ghost move. Rotom-Wash is Electric/Water. Ghost is neutral against both. So yes, neutral.\n\nLet me just go with Phantom Force for maximum single-hit damage. Or actually, since I'm going to faint anyway (7 HP), maybe I should use Quick Attack to at least deal some damage before I faint? No wait, if I use a non-priority move, Rotom-Wash moves first and one-shots me. If I use Quick Attack (priority +1), I get to hit first.\n\nActually, let me reconsider. My Dragapult is at 7/163 HP. Rotom-Wash's Hydro Pump (BP 110) or Thunderbolt (BP 90) would deal way more than 7 damage. So if I use a normal-speed move, Rotom hits first and I faint before my move even lands... wait no, in Pokémon battles, both moves are calculated simultaneously based on speed. If I'm faster, I go first.\n\nMy Dragapult Spe: 213\nRotom-Wash Spe: 95-151\n\nI'm faster! So I always go first unless they use a priority move.\n\nSo if I use Phantom Force (no priority), I hit first with ~49 damage, then Rotom hits back and one-shots me. Net result: I deal ~49 damage to Rotom-Wash before fainting.\n\nIf I use Quick Attack (priority +1), same thing - I hit first with ~23 damage, then Rotom one-shots me. Less damage dealt.\n\nIf I use Dragondarts, I hit twice for ~56 total damage, then Rotom one-shots me.\n\nSo the best option to maximize damage is Phantom Force or Dragondarts.\n\nActually wait - let me recalculate more carefully.\n\nDamage formula: floor(floor(floor(2*Level/5 + 2) * Attack * Power / Defense) / 50) + 2\n\nLevel 50, Atk 172, Rotom's Def ~144 (midpoint):\nBase multiplier: 2*50/5 + 2 = 22\n\nPhantom Force (90 BP): floor(floor(22 * 172 * 90 / 144) / 50) + 2 = floor(floor(68340/144)/50) + 2 = floor(floor(474.58)/50) + 2 = floor(474/50) + 2 = floor(9.48) + 2 = 9 + 2 = 11\n\nHmm, that seems low. Let me recalculate.\n\nActually the formula is: ((2*Level/5 + 2) * Atk * Power / Def) / 50 + 2\n\n= (22 * 172 * 90 / 144) / 50 + 2\n= (346,320 / 144) / 50 + 2\n= 2405 / 50 + 2\n= 48.1 + 2 = ~50\n\nOK so about 50 damage from Phantom Force. That's not enough to KO Rotom-Wash (which has 125-157 HP).\n\nDragondarts: each hit is 50 BP\nPer hit: (22 * 172 * 50 / 144) / 50 + 2 = (189,200/144)/50 + 2 = 1313.9/50 + 2 = 26.3 + 2 = ~28 per hit\nTwo hits: ~56 total\n\nSo Dragondarts deals slightly more damage than Phantom Force (56 vs 50). But neither KOs Rotom-Wash.\n\nSince I'm going to faint anyway, the best strategy is to deal maximum damage. Let me go with Dragondarts for ~56 damage.\n\nActually wait - does it matter? I'm at 7 HP and Rotom will one-shot me regardless. The only question is whether my move even goes off before I faint. Since I'm faster (213 vs max 151), yes, my move goes first.\n\nLet me just go with Dragondarts for maximum damage output.\n\nHmm, but actually let me reconsider. Is there any chance this battle can be won? No - I have no other Pokémon, and my active one is at 7/163 HP. Rotom-Wash will one-shot me next turn regardless of what I do. This is a lost cause.\n\nI'll just go with Dragondarts to deal the most damage possible before fainting.\n",
+      "note": "",
+      "tokens": 5419,
+      "latency_ms": 60782,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
