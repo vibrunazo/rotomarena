@@ -1,0 +1,412 @@
+{
+  "id": "match_20261014_040151_MiniCPM5 2B_vs_Laya_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "minicpm5_2b",
+      "display_name": "MiniCPM5 2B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "minicpm5-2b",
+      "quantization": "Q8_0",
+      "username": "MiniCPM5 2B",
+      "role": "p1",
+      "team": "MiniCPM5 2B's team",
+      "model_key": "openbmb/minicpm5-2b",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniCPM5 2B"
+    },
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p2",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 137.5,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|MiniCPM5 2B||",
+    "|player|p2|Laya||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Alcremie, L50, F|",
+    "|poke|p1|Mudsdale, L50, F|",
+    "|poke|p1|Goodra, L50, M|",
+    "|poke|p1|Bellibolt, L50, M|",
+    "|poke|p1|Typhlosion-Hisui, L50, F|",
+    "|poke|p1|Emboar, L50, F|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Torkoal, L50, F|",
+    "|poke|p2|Torterra, L50, M|",
+    "|poke|p2|Scrafty, L50, F|",
+    "|poke|p2|Sinistcha-Masterpiece, L50|",
+    "|poke|p2|Simisear, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Goodra|Goodra, L50, M|176/176",
+    "|switch|p2a: Torterra|Torterra, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Goodra|Fire Blast|p2a: Torterra",
+    "|-supereffective|p2a: Torterra|1",
+    "|-damage|p2a: Torterra|45/100",
+    "|move|p2a: Torterra|Trailblaze|p1a: Goodra",
+    "|-ability|p1a: Goodra|Sap Sipper|boost",
+    "|-boost|p1a: Goodra|atk|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Goodra|Fire Blast|p2a: Torterra",
+    "|-supereffective|p2a: Torterra|1",
+    "|-crit|p2a: Torterra",
+    "|-damage|p2a: Torterra|0 fnt",
+    "|faint|p2a: Torterra",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Torkoal|Torkoal, L50, F|100/100",
+    "|turn|3",
+    "|",
+    "|move|p1a: Goodra|Earthquake|p2a: Torkoal",
+    "|-supereffective|p2a: Torkoal|1",
+    "|-damage|p2a: Torkoal|46/100",
+    "|move|p2a: Torkoal|Flamethrower|p1a: Goodra",
+    "|-resisted|p1a: Goodra|1",
+    "|-damage|p1a: Goodra|161/176",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p1a: Goodra|Earthquake|p2a: Torkoal",
+    "|-supereffective|p2a: Torkoal|1",
+    "|-damage|p2a: Torkoal|0 fnt",
+    "|faint|p2a: Torkoal",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|turn|5",
+    "|",
+    "|move|p2a: Rotom|Rising Voltage|p1a: Goodra",
+    "|-resisted|p1a: Goodra|1",
+    "|-damage|p1a: Goodra|143/176",
+    "|move|p1a: Goodra|Knock Off|p2a: Rotom",
+    "|-supereffective|p2a: Rotom|1",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|-enditem|p2a: Rotom|Leftovers|[from] move: Knock Off|[of] p1a: Goodra",
+    "|faint|p2a: Rotom",
+    "|",
+    "|win|MiniCPM5 2B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "goodra,typhlosionhisui,bellibolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Bring our three fastest Pokémon to hit early. Goodra (SPD 181), Typhlosionhisui (SPD 150), Bellibolt (SPD 114). Alcremie as backup. Opponent's Rotom can Levitate, so we need to avoid being carried. Keep Mudsdale and Emboar for later.",
+      "hidden_reasoning": "We need to provide the team preview action. The user says: \"Both teams are shown before the battle starts. You bring 3 of your 6 Pokémon (so does your opponent): the only legal action is choosing them, in order (BRING: <species>, <species>, ...). The first one leads; the others wait in the back. The rest sit this battle out.\"\n\nSo we need to output the team preview decision. The format: <notes> ... </notes>, <decision> BRING: ... </decision>. We need to choose 3 of our Pokémon. The opponent's team is listed. We need to pick the best 3 to bring. Since this is the first turn, we have to decide which 3 to bring. The opponent's team includes a Rotom (Electric/Ghost) which can use Levitate, Torkoal (Fire) with possible abilities, etc. We need to think strategically. But the instruction says: \"Your memory and your long-term plan, at most 60 words. Each turn is a fresh request: you will remember nothing of this turn except these notes, which your next turns show you. Use them to plan ahead over several turns (what to set up, what to to remove first, what you expect the opponent to do) and to keep what you have learned about the opponent (its moves, items, speed, habits). Carry forward what still matters and update the rest.\"\n\nSo we need to provide notes about our plan and the opponent's potential moves. Then the decision to bring 3 Pokémon. We need to choose the best 3. Our team: Alcremie (Fairy), Mudsdale (Ground), Goodra (Dragon), Bellibolt (Electric), Typhlosionhisui (Fire/Ghost), Emboar (Fire/Fighting). Opponent: Rotom (Electric/Ghost, possible Levitate), Torkoal (Fire), Torterra (Grass/Ground), Scrafty (Dark/Fighting), Sinistchamasterpiece (Grass/Ghost), Simisear (Fire). We need to pick 3. Likely we want to bring our fast and strong Pokémon. Goodra is fast (SPD 181), Bellibolt is fast (SPD 114), Typhlosionhisui is fast (SPD 150), Emboar is fast (SPD 96). Alcremie is slow (SPD 143). Mudsdale is slow (SPD 86). We need to consider the opponent's Rotom which can Levitate, so we need to avoid being carried by it. Also, we might want to bring a Fairy to counter? But our opponent has no Fairy. So Alcremie could be a good lead. But we need to think about the first turn. The opponent's Rotom can use Levitate to make us take damage. So we might want to bring a Pokémon that can resist or counter. Our Alcremie has Sweet Veil, which protects from status? Actually Sweet Veil prevents status effects? It's a Fairy ability that prevents status effects? I think Sweet Veil prevents status effects on the user and target? Not sure. But we can bring our best 3. Since we have to bring 3, we might want to bring the three with highest speed: Goodra (181), Typhlosionhisui (150), Bellibolt (114). Or maybe Emboar (96) is slower. But we need to consider that the opponent's Rotom can Levitate, so we need to be careful. I think the best strategy is to bring our three fastest to hit first. Goodra, Typhlosionhisui, Bellibolt. But we also have Mudsdale which can do Earthquake and Stealth Rock. However, the opponent's Torkoal is a Fire type, so we might want to bring a Fire resistant? Not sure. I'll just pick the three fastest: Goodra, Typhlosionhisui, Bellibolt. But the order: the leader first. So we need to list them in order. The example: BRING: alcremie, mudsdale, goodra. So we can choose any order. I'll choose Goodra, Typhlosionhisui, Bellibolt. But we need to note our plan. We'll note that we want to bring our fast Pokémon to hit early, and we'll keep Alcremie as a backup. We'll also note that the opponent's Rotom can Levitate, so we need to be careful. We'll keep notes short.\n\nSo output: <notes>Plan: Bring our three fastest Pokémon to hit early. Goodra (SPD 181), Typhlosionhisui (SPD 150), Bellibolt (SPD 114). Alcremie as backup. Opponent's Rotom can Levitate, so we need to avoid being carried. Keep Mudsdale and Emboar for later.</notes> <decision>BRING: goodra, typhlosionhisui, bellibolt</decision>\n\nBut we need to ensure the format exactly. The decision line: BRING: <species>, <species>, <species>. So we'll do that.\n",
+      "note": "",
+      "tokens": 3007,
+      "latency_ms": 10153,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 36% BRING: torterra, 24% BRING: rotom, 13% BRING: torkoal\nPick 2: 32% BRING: torkoal, 26% BRING: rotom, 18% BRING: scrafty\nPick 3: 71% BRING: rotom, 11% BRING: scrafty, 11% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5301,
+      "latency_ms": 848,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Fireblast is super effective on Torterra, dealing damage. No hazards or items to consider. Keep options for later.",
+      "hidden_reasoning": "We need to decide an action for this turn. The user provided the current state: it's Turn 1, Goodra is active, Torterra is active on opponent's side. The opponent's team preview is given, but only Torterra has been seen so far. The legal actions are listed: MOVE dracometeor, earthquake, fireblast, knockoff, SWITCH typhlosionhisui, SWITCH bellibolt. We need to choose one.\n\nWe need to plan. The notes from earlier turns say: \"Team preview: Plan: Bring our three fastest Pokémon to hit early. Goodra (SPD 181), Typhlosionhisui (SPD 150), Bellibolt (SPD 114). Alcremie as backup. Opponent's Rotom can Levitate, so we need to avoid being carried. Keep Mudsdale and Emboar for later.\" But that was earlier. Now it's Turn 1, and the opponent's first move is Torterra. We need to respond.\n\nWe have Goodra active, Torterra active. Goodra's moves: dracometeor, earthquake, fireblast, knockoff. Torterra's moves: eruption, fireblast, focusblast, shadowball (revealed moves: None yet? Actually, the opponent's Torterra revealed moves: None yet. So we don't know its moves yet. But we can guess from its type: Grass/Ground, so it can use grass moves? Actually, Torterra's possible abilities: overgrow, shellarmor. Revealed moves: None yet. So we don't know what moves it can use. But we can assume it might use something like overgrow? Wait, Torterra is a normal Pokémon? Actually, Torterra is a Grass/Ground type. In the game, Torterra can use Grass and Ground moves. But we don't know its moveset. The legal actions are only our moves. So we need to choose a move for Goodra.\n\nGiven the opponent's Torterra, Goodra could use fireblast (super effective on torterra? Fire vs Grass/Ground: Fire is super effective against Grass? Actually, Fire vs Grass is super effective? Let's check: Fire vs Grass: Fire is super effective against Grass? I think Fire is super effective against Grass? Wait, in Pokemon, Fire vs Grass: Fire is super effective against Grass? Actually, Fire is super effective against Grass? No, Fire vs Grass: Fire is super effective against Grass? Let's recall: Fire is super effective against Grass? I think Fire is super effective against Grass? Actually, Fire vs Grass: Fire is super effective against Grass? I'm not sure. But the legal action says \"fireblast ... super effective on torterra\". So it's given. So fireblast is super effective on torterra. Also, dracometeor is Dragon/Special, not super effective on torterra? It says \"dracometeor (Dragon/Special, BP:130), earthquake (Ground/Physical, BP:100), fireblast (Fire/Special, BP:110), knockoff (Dark/Physical, BP:65)\". The legal actions description: \"1. MOVE: dracometeor ... Lowers the user's Sp. Atk by 2.\" \"2. MOVE: earthquake ... not very effective on torterra\". \"3. MOVE: fireblast ... super effective on torterra\". \"4. MOVE: knockoff ... 1.5x damage if foe holds an item. Removes item.\"\n\nSo we need to decide which move to use. The opponent's Torterra is at 100% HP, so it's alive. Goodra could try to set up. Since it's Turn 1, we want to deal damage to Torterra. Fireblast is super effective, so that's a good choice. But we also need to consider that Torterra might have overgrow or shellarmor. Goodra could use knockoff to remove an item? But Torterra doesn't have an item known. So knockoff might not be useful. Earthquake is not very effective on torterra, so maybe not. Dracometeor lowers SpA, which might be bad if we need to hit. So fireblast seems best. But we also have the option to switch. Switching would bring typhlosionhisui or bellibolt to the field. But Torterra is active, and switching might not be as effective if we want to attack. The plan from earlier: bring fastest Pokémon to hit early. Goodra is already the fastest. So maybe we should attack with fireblast. But we need to consider that Torterra might use a move that counters? We don't know Torterra's moves. But we can assume it might use something like overgrow? Actually, Torterra's revealed moves: None yet. So we don't know. But we can still choose fireblast.\n\nThe notes from earlier: \"Your side hazards / conditions: None\". So no hazards. Opponent side hazards: None. So no help from hazards.\n\nWe need to output <notes> and <decision>. The notes should be at most 60 words, summarizing plan. Then decision: one action from legal actions.\n\nI think the best move is fireblast, as it's super effective on torterra and deals damage. But we could also consider dracometeor to lower SpA? Not sure. The opponent's Torterra might be using something like focusblast? But we don't know. Since it's Turn 1, we want to deal damage. Fireblast is super effective, so I'll go with that.\n\nBut wait, the legal actions include SWITCH. Could switching be better? If we switch, we bring typhlosionhisui or bellibolt. But Torterra is active, and switching might not be as effective if we want to attack. The plan from earlier: bring our three fastest Pokémon to hit early. Goodra is already the fastest. So maybe we should attack with fireblast. I'll choose fireblast.\n\nSo decision: MOVE: fireblast.\n\nNow notes: Plan: Fireblast is super effective on Torterra, dealing damage. No hazards or items to consider. Keep options for later.\n\nI'll write that.\n",
+      "note": "",
+      "tokens": 3346,
+      "latency_ms": 25687,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: trailblaze, 17% MOVE: growth, 14% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1882,
+      "latency_ms": 43,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.5556,
+        "MOVE: bulldoze": 0.1394,
+        "MOVE: energyball": 0.0758,
+        "MOVE: growth": 0.1708,
+        "SWITCH: torkoal": 0.0297,
+        "SWITCH: rotom": 0.0288
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Torterra is low on HP, use super effective Fireblast to damage and chance to burn. Avoid hazards. Keep options for later.",
+      "hidden_reasoning": "We are at Turn 2. The opponent's Torterra is at 45% HP, and has used Trailblaze. Our Goodra is at 100% HP, Bellibolt and Typhlosionhisui are also at 100%. We have the option to move or switch. The opponent's team preview shows they have 3 more Pokémon to come. We need to plan.\n\nThe notes from earlier turns: \"Bring our three fastest Pokémon to hit early. Goodra (SPD 181), Typhlosionhisui (SPD 150), Bellibolt (SPD 114). Alcremie as backup. Opponent's Rotom can Levitate, so we need to avoid being carried. Keep Mudsdale and Emboar for later.\" But wait, the opponent's team preview includes Rotom, Torkoal, Torterra, Scrafty, Sinistchamasterpiece, Simisear. Our team currently has Goodra, Bellibolt, Typhlosionhisui. We haven't seen Alcremie yet. So we are at Turn 2, and the opponent's Torterra is down to 45%. We need to decide what to do.\n\nLegal actions: MOVE dracometeor, earthquake, fireblast, knockoff, or SWITCH typhlosionhisui or bellibolt. We need to choose one.\n\nGiven that Torterra is at 45% HP, we might want to focus on it. But Goodra has Earthquake which is Ground/Physical, not very effective on Torterra (Ground vs Grass/Ground is not super effective, but it can hit). Fireblast is super effective on Torterra (Fire vs Grass is super effective). However, Torterra has used Trailblaze, which is a Grass/Physical move. Goodra's ability Sapsipper gives +1 Atk if hit by Grass, and Grass immunity. So if Goodra is hit by a Grass move, it gets +1 Atk and becomes immune to Grass. But Torterra's moves: Trailblaze (Grass/Physical) is the only one revealed. We don't know all its moves. But we can use Fireblast to damage it. However, we also have to consider that Torterra is low on HP, so we might want to set up a removal or something. But we have no hazards. The opponent might bring hazards later.\n\nThe opponent's Rotom can Levitate, so we need to avoid being carried. Our Goodra has high speed, but Torterra's speed is possible range 68-118, so it could move first. But Goodra has 181 speed, so it likely moves first. However, if Torterra moves first, it could use something. But we don't know.\n\nMaybe we should switch a Pokémon to set up? But both switches are to the same health. The notes say \"Bring our three fastest Pokémon to hit early.\" So we might want to keep our fast Pokémon. But we have three fast: Goodra, Typhlosionhisui, Bellibolt. We could switch to bring a different one? But we only have three. The opponent's team preview includes Rotom, Torkoal, etc. We haven't seen them yet. So maybe we should not switch yet, and instead use a move to damage Torterra.\n\nLooking at the moves: Fireblast is super effective on Torterra, and has a 10% chance to burn the target. Torterra is at 45%, so burning it might be useful. But we also have Earthquake which is not very effective. Knockoff is 1.5x if foe holds an item, but Torterra's item is unknown_item. So knockoff might not be great.\n\nGiven that Torterra is down, we might want to focus on it. But we also need to prepare for the opponent's next Pokémon. The opponent's team preview says they will bring 3 more. So we need to be ready.\n\nI think the best move is to use Fireblast to damage Torterra, especially since it's super effective and has a chance to burn it. But we could also use Earthquake to hit adjacent Pokémon. However, the field is empty? The log says \"Field: None\" so no other Pokémon on field. So Earthquake would hit Torterra. But it's not very effective. Fireblast is better.\n\nAlternatively, we could switch to bring a different Pokémon? But we have three fast ones. The notes say \"Keep Mudsdale and Emboar for later.\" But we don't have those. So maybe we should not switch.\n\nI'll go with Fireblast. But let's check the notes: \"Turn 1: Plan: Fireblast is super effective on Torterra, dealing damage. No hazards or items to consider. Keep options for later.\" So they already considered Fireblast. So I'll use Fireblast.\n\nBut wait, the decision format requires one action. So I'll choose MOVE: fireblast.\n\nHowever, the notes should summarize the plan. I'll write: Plan: Torterra is low on HP, use super effective Fireblast to damage and chance to burn. Avoid hazards. Keep options for later.\n\nThen decision: MOVE: fireblast.\n\nBut let's double-check the legal actions: 1. MOVE dracometeor, 2. MOVE earthquake, 3. MOVE fireblast, 4. MOVE knockoff, 5. SWITCH typhlosionhisui, 6. SWITCH bellibolt. So fireblast is option 3.\n\nI'll output that.\n",
+      "note": "",
+      "tokens": 3315,
+      "latency_ms": 11307,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: trailblaze, 16% MOVE: growth, 16% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1928,
+      "latency_ms": 46,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.5509,
+        "MOVE: bulldoze": 0.1578,
+        "MOVE: energyball": 0.0819,
+        "MOVE: growth": 0.1628,
+        "SWITCH: torkoal": 0.0238,
+        "SWITCH: rotom": 0.0227
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: torkoal, 46% SWITCH: rotom",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1595,
+      "latency_ms": 35,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.5429,
+        "SWITCH: rotom": 0.4571
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Earthquake is super effective on Torkoal, dealing damage. Torkoal is the only active opponent Pokémon, so we need to deal with it. Preserve fireblast for later. No hazards or items to consider. Keep options for later.",
+      "hidden_reasoning": "We need to decide an action for Turn 3. The current state: Goodra is active, Torterra is fainted, Torkoal is active on opponent's side. Goodra has PP: dracometeor 8/8, earthquake 16/16, fireblast 6/8, knockoff 32/32. Items: sitrusberry (single use, restores 1/4 max HP when at 1/2 max HP or less). Goodra is at 100% HP. Opponent's Torkoal is active. Legal actions: MOVE dracometeor, earthquake, fireblast, knockoff; SWITCH typhlosionhisui or bellibolt. We need to choose one.\n\nWe need to plan. Goodra is at 100% HP, Torkoal is active. Goodra can use moves. Torkoal is a Fire type, so Goodra's fireblast is super effective? Fireblast is Fire/Special, Torkoal is Fire, so it's super effective? Actually, super effective means the user's attack is higher than target's defense? Wait, in Pokemon, super effective means the user's attack stat is higher than the target's defense stat, or the user's special attack is higher than the target's defense? Actually, super effective means the user's attack stat is higher than the target's defense stat, or the user's special attack is higher than the target's defense? Let's recall: In Pokemon, super effective means the user's attack stat is higher than the target's defense stat, or the user's special attack is higher than the target's defense? Actually, it's about the user's attack stat being higher than the target's defense stat, or the user's special attack being higher than the target's defense? Wait, the standard: Super effective means the user's attack stat is higher than the target's defense stat, or the user's special attack is higher than the target's defense? I'm mixing. Let's think: In Pokemon, a move is super effective if the user's attack stat is higher than the target's defense stat, or the user's special attack is higher than the target's defense? Actually, it's about the user's attack stat being higher than the target's defense stat, or the user's special attack being higher than the target's defense? I'm not sure. But the log says \"fireblast is super effective on torkoal\"? In Turn 2, it said \"Your Goodra used Fire Blast. It was super effective.\" So fireblast on torkoal is super effective. So we can use fireblast. But fireblast has only 6 PP left out of 8. Earthquake is super effective on torkoal? The log says \"earthquake ... super effective on torkoal\". So earthquake is super effective on torkoal. Goodra can use earthquake with 16 PP left. Dracometeor is Dragon/Special, not super effective on torkoal? It says \"dracometeor (Dragon/Special, BP:130)\" but no note about super effective. So likely not super effective. Knockoff is Dark/Physical, 1.5x if foe holds an item. Torkoal has unknown_item, so might hold an item? It says Item: unknown_item. So knockoff could give 1.5x if it holds an item. But we don't know if it holds an item. It's unknown. So knockoff might be risky. Also, Goodra could switch typhlosionhisui or bellibolt. But Torkoal is active, and we want to deal with it. Goodra is faster than Torkoal (111 vs 36-79). So Goodra can move first. We need to consider the opponent's next Pokémon. The opponent brought 3 of the 6 it showed at team preview: 1 more is still to come in, from: rotom, scrafty, sinistchamasterpiece, simisear. So after Torkoal, the next opponent Pokémon will be one of those. We need to set up. Goodra is at 100% HP, Torkoal is at 100% HP. Goodra could use a move to damage Torkoal. Fireblast is super effective, but only 6 PP left. Earthquake is super effective, 16 PP left. So using earthquake might be better to preserve fireblast. Also, Goodra has sitrusberry, but it's at 100% HP, so not at 1/2 max HP, so no effect. So we can use earthquake. But we need to consider if we want to switch. The plan from earlier: bring three fastest Pokémon to hit early. Goodra, Typhlosionhisui, Bellibolt. So we might want to keep them all. Torkoal is a threat. Goodra can use earthquake to super effectively damage Torkoal. Then maybe switch? But we have to choose one action. The opponent's next Pokémon is unknown. So we need to deal with Torkoal now. I think using earthquake is a good move. It's super effective, high power, 100% accuracy. It will damage Torkoal. Then we can switch later. So decision: MOVE: earthquake. But let's check if there's any reason to use fireblast. Fireblast has 6 PP left, 85% accuracy, 10% chance to burn. Burning Torkoal might be useful? Torkoal is Fire type, so burning it might not be super effective. Actually, Torkoal is Fire, so fireblast would be normal or super effective? It's super effective, so it would do more damage. But burning might not be needed. Earthquake is better. So I'll go with earthquake. Also, we could use knockoff if Torkoal holds an item, but unknown. So earthquake is safe. So decision: MOVE: earthquake. Notes: Plan: Earthquake is super effective on Torkoal, dealing damage. Torkoal is the only active opponent Pokémon, so we need to deal with it. Preserve fireblast for later. No hazards or items to consider. Keep options for later.\n",
+      "note": "",
+      "tokens": 3625,
+      "latency_ms": 12500,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% MOVE: flamethrower, 27% MOVE: flamecharge, 14% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1903,
+      "latency_ms": 42,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.3461,
+        "MOVE: flamecharge": 0.2653,
+        "MOVE: fissure": 0.1398,
+        "MOVE: firespin": 0.1273,
+        "SWITCH: rotom": 0.1215
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use Earthquake to damage Torkoal, the only active opponent. Preserve fireblast for later. No hazards or items to consider.",
+      "hidden_reasoning": "We need to decide an action for Turn 4. The opponent's active Pokémon is Torkoal (46% HP). Goodra is active at 161/176 HP. The opponent has revealed Torkoal's moves: flamethrower. Goodra's moves available: dracometeor, earthquake, fireblast, knockoff. We need to choose one action.\n\nWe need to plan. Goodra is at 91.5% HP, Torkoal is at 46% HP. Goodra can use Earthquake (super effective on Torkoal) to damage. But Torkoal is weak to Fire? Torkoal is Fire type, so Fireblast is not super effective (it's same type, so not very effective). Earthquake is super effective on Torkoal (Ground vs Fire). So Earthquake would be good. But we also have Fireblast which could burn Torkoal. However, Torkoal is already at 46% HP, so we might want to finish it off. Earthquake is super effective and guaranteed damage. But we also have to consider that Torkoal might use Flamethrower next. Goodra's PP: earthquake 15/16, so one left. Fireblast 6/8, dracometeor 8/8, knockoff 32/32. So we could use Earthquake to damage Torkoal. But maybe we want to switch? The opponent's next Pokémon will come. The opponent has 3 more to bring. We need to keep options. The notes from earlier turns suggest preserving fireblast for later. But now Torkoal is low. Perhaps we should use Earthquake to bring Torkoal down. However, we also have to consider that Torkoal might be immune to Earthquake? No, Ground vs Fire is super effective. So Earthquake is good. But we also have to consider that Goodra might want to set up for the next opponent. The opponent's next Pokémon could be Rotom, Scrafty, Sinistra, Simisear. We don't know. So we might want to deal with Torkoal now. The legal actions: MOVE dracometeor, earthquake, fireblast, knockoff, SWITCH typhlosionhisui, SWITCH bellibolt. We need to choose one.\n\nI think the best move is Earthquake to damage Torkoal. It's super effective, and Torkoal is low. But we could also use Fireblast to burn Torkoal, but Torkoal is already at 46% HP, so burning might not be as urgent. Earthquake will deal damage. Let's check the damage: Earthquake power 100, super effective on Torkoal. Torkoal's defense? Torkoal's stats: possible range HP 145-177, Atk 94-150, Def 144-211, SpA 94-150, SpD 81-134, Spe 36-79. So defense is high (144-211). Earthquake is Ground/Physical, power 100. Torkoal's defense might take some hit. But it's still super effective. The opponent's next move might be Flamethrower if Torkoal is still alive. So we need to reduce its HP. Earthquake is a good choice. Alternatively, we could use dracometeor to lower Goodra's SpA, but that might be for future. Fireblast could burn Torkoal, but Torkoal is Fire type, so Fireblast is not super effective, but it can burn. However, Torkoal is already low, so we might want to finish it. I think Earthquake is the best. But we also have to consider that Goodra might want to switch to Typhlosion to set up for the next opponent. But Torkoal is the only active opponent, so we should deal with it. So I'll choose MOVE: earthquake.\n\nBut let's check the notes: \"Turn 3: Plan: Earthquake is super effective on Torkoal, dealing damage. Torkoal is the only active opponent Pokémon, so we need to deal with it. Preserve fireblast for later. No hazards or items to consider. Keep options for later.\" That was Turn 3. Now Turn 4, we still have Torkoal active. So we should use Earthquake again? But we have only 15/16 PP, so one left. Using it now would leave 0/16. That's fine. So I'll use Earthquake. Then the opponent might use Flamethrower. So I'll go with that.\n\nThus, decision: MOVE: earthquake [MEGA]? No, Mega is not available. So just MOVE: earthquake.\n\nBut the legal actions list: \"MOVE: earthquake | Ground, Physical, power 100, 100% accuracy, super effective on torkoal | Hits adjacent Pokemon. Double damage on Dig.\" So we can just say MOVE: earthquake. No [MEGA] because not mega. So decision: MOVE: earthquake.\n\nI'll write notes: Plan: Use Earthquake to damage Torkoal, the only active opponent. Preserve fireblast for later. No hazards or items to consider.\n\nThen decision: MOVE: earthquake.\n",
+      "note": "",
+      "tokens": 3460,
+      "latency_ms": 9966,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flamecharge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "26% MOVE: flamecharge, 23% MOVE: flamethrower, 22% SWITCH: rotom",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1977,
+      "latency_ms": 45,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.232,
+        "MOVE: flamecharge": 0.2588,
+        "MOVE: fissure": 0.162,
+        "MOVE: firespin": 0.1223,
+        "SWITCH: rotom": 0.2249
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use knockoff to damage Rotom, which is super effective. Preserve fireblast for later. No hazards or items to consider.",
+      "hidden_reasoning": "We need to decide an action for Turn 5. The opponent's active Pokémon is Rotom (Electric/Ghost) at 100% HP. Our active Pokémon is Goodra (Dragon) at 161/176 HP, with PP: dracometeor 8/8, earthquake 14/16, fireblast 6/8, knockoff 32/32. We also have two other Pokémon: bellibolt and typhlosionhisui, both at 100% HP. The opponent's team has seen all three: Rotom, Torterra (fainted), Torkoal (fainted). So the only active opponent Pokémon is Rotom. We need to choose a move or switch.\n\nLegal actions: MOVE: dracometeor, MOVE: earthquake, MOVE: fireblast, MOVE: knockoff, SWITCH: typhlosionhisui, SWITCH: bellibolt.\n\nWe want to plan. Goodra is Dragon, Rotom is Electric/Ghost. Goodra's moves: dracometeor (Dragon/Special), earthquake (Ground/Physical), fireblast (Fire/Special), knockoff (Dark/Physical). Rotom's revealed moves: none yet (it's at 100% HP, hasn't used any moves yet? Actually, the opponent's Rotom has revealed moves: None yet. So we don't know its moves. But we know it has levitate ability. So it's immune to Ground. So earthquake (Ground) would be nullified by Rotom's levitate. So earthquake is not effective against Rotom. Fireblast is Fire/Special, not super effective on Rotom (Electric). Knockoff is Dark/Physical, super effective on Rotom? The description says \"super effective on rotom\". So knockoff is super effective on Rotom. That could be good. But we need to consider accuracy and PP. Goodra has knockoff PP 32/32, so plenty. Fireblast has 6/8 PP, so limited. Dracometeor has 8/8 PP, limited. Earthquake has 14/16 PP, limited. So we might want to preserve fireblast for later? But we need to deal with Rotom. Rotom is a Ghost/Electric, not super effective to Goodra's moves. Goodra's Earthquake is Ground, but Rotom has levitate immunity to Ground, so earthquake is nullified. Fireblast is Fire, not super effective on Electric, but might be effective. Knockoff is Dark, super effective on Rotom? The description says \"super effective on rotom\". So knockoff would be super effective on Rotom. That could be a good move. But we need to consider if Rotom can use moves that counter knockoff? Rotom is Electric/Ghost, it might have moves like Thunderbolt? But we don't know. The opponent's team preview includes Rotom with possible abilities levitate, but no moves revealed. So we don't know its moves. However, we can assume it might have some moves. But the legal actions are only those listed. So we can choose knockoff to damage Rotom. But we also need to consider that Rotom might be immune to Dark? Not necessarily. Knockoff is Dark/Physical, might be effective. The description says \"super effective on rotom\", so it's likely effective. So I'd consider using knockoff to damage Rotom. But we also have the option to switch. Switching would bring typhlosionhisui or bellibolt to the field. But our active is Goodra, and we need to attack Rotom. Switching might be useful if we want to set up a different strategy. But the opponent only has Rotom active, so we need to deal with it. Goodra can move. So I think the best move is knockoff, since it's super effective on Rotom and has high PP. But we need to check if there's any priority issue. Rotom might have priority? Not sure. But we can just play knockoff. Alternatively, we could use fireblast to burn Rotom? But fireblast is not super effective on Rotom, and accuracy 85%. Knockoff is 100% accuracy, super effective. So knockoff seems better. So decision: MOVE: knockoff. But let's check the notes: we need to keep fireblast for later? The plan from earlier turns said preserve fireblast for later. But now we have a direct super effective move. So I'll use knockoff. Also, we might want to consider that Rotom might have items? Unknown. So knockoff might also remove an item if Rotom holds one. But we don't know. So I'll go with knockoff.\n\nBut wait, the legal actions include MOVE: knockoff. So I'll choose that. I'll write notes: Plan: Use knockoff to damage Rotom, which is super effective. Preserve fireblast for later. No hazards. Then decision: MOVE: knockoff.\n\nBut let's double-check: The opponent's Rotom has levitate, so earthquake is nullified. So earthquake is not good. Fireblast is not super effective, but could still deal damage. Knockoff is super effective and 100% accuracy. So yes.\n\nThus, answer.\n",
+      "note": "",
+      "tokens": 3519,
+      "latency_ms": 10349,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: risingvoltage, 21% MOVE: doubleteam, 19% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1972,
+      "latency_ms": 88,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.2074,
+        "MOVE: discharge": 0.1948,
+        "MOVE: risingvoltage": 0.453,
+        "MOVE: charge": 0.1448
+      }
+    }
+  ]
+}
