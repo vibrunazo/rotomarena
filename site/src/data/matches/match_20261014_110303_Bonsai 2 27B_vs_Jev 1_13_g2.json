@@ -1,0 +1,429 @@
+{
+  "id": "match_20261014_110303_Bonsai 2 27B_vs_Jev 1_13_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p1",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    },
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 418.01,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Bonsai 2 27B||",
+    "|player|p2|Jev 1.13||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Hydreigon, L50, F|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Gardevoir, L50, F|",
+    "|poke|p1|Krookodile, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Aegislash, L50, M|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragapult|Dragon Darts|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|82/183",
+    "|-anim|p2a: Dragapult|Dragon Darts|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-crit|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|-damage|p2a: Dragapult|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Hydreigon|Hydreigon, L50, F|167/167",
+    "|turn|2",
+    "|",
+    "|move|p1a: Hydreigon|Dark Pulse|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Hydreigon|Dark Pulse|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|turn|4",
+    "|",
+    "|move|p1a: Hydreigon|Dark Pulse|p2a: Rotom",
+    "|-damage|p2a: Rotom|41/100",
+    "|move|p2a: Rotom|Will-O-Wisp|p1a: Hydreigon",
+    "|-status|p1a: Hydreigon|brn",
+    "|",
+    "|-heal|p2a: Rotom|47/100|[from] item: Leftovers",
+    "|-damage|p1a: Hydreigon|157/167 brn|[from] brn",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p1a: Hydreigon|Dark Pulse|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|win|Bonsai 2 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 41% BRING: dragapult, 17% BRING: rotomwash, 17% BRING: aegislash\nPick 2: 38% BRING: gholdengo, 20% BRING: rotomwash, 17% BRING: aegislash\nPick 3: 33% BRING: rotomwash, 29% BRING: aegislash, 21% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6427,
+      "latency_ms": 1539,
+      "cost_usd": 0.000269934,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has Ghost-heavy team (Aegislash, Dragapult, Gholdengo) plus Rotom-Wash, Toxapex, Corviknight. My trio: Garchomp leads with SR + Dragon Claw/Stone Edge to pressure; Hydreigon (Choice Scarf) outspeeds everything for Dark Pulse 2x Ghost types and Dracometeor nukes; Toxapex walls special attackers, Toxic, Baneful Bunker. Key: avoid EQ on Ghosts, use Dark/Dragon coverage.",
+      "hidden_reasoning": "Let me analyze the opponent's team and my team to make the best choice for the 3 Pokémon I bring.\n\nOpponent's team:\n- Rotom-Wash (Electric/Water) - Levitate, will be a special attacker\n- Aegislash (Steel/Ghost) - Stance Change, defensive pivot\n- Toxapex (Poison/Water) - Regenerator, tanky\n- Corviknight (Flying/Steel) - Unnerve, physical wall\n- Dragapult (Dragon/Ghost) - Fast special attacker\n- Gholdengo (Steel/Ghost) - Special attacker\n\nMy team:\n- Garchomp (Dragon/Ground) - Life Orb, Sandveil, fast physical attacker\n- Toxapex (Poison/Water) - Leftovers, Regenerator, tanky\n- Hydreigon (Dark/Dragon) - Choice Scarf, Levitate, fast special attacker\n- Corviknight (Flying/Steel) - Metal Coat, Unnerve, physical wall\n- Gardevoir (Psychic/Fairy) - Wise Glasses, Synchronize, special attacker\n- Krookodile (Ground/Dark) - Black Belt, Intimidate, physical attacker\n\nLet me think about what 3 to bring:\n\nKey threats from opponent:\n1. Dragapult - very fast, can outspeed everything on my team. It's a Dragon/Ghost type. Garchomp is weak to Dragon moves (4x). This is a major threat.\n2. Rotom-Wash - Electric/Water, Levitate. Can use Will-O-Wisp, Hydro Pump, etc.\n3. Aegislash - Steel/Ghost, Stance Change. Very defensive.\n4. Toxapex - Poison/Water, Regenerator. Tanky.\n5. Corviknight - Flying/Steel, Unnerve. Physical wall.\n6. Gholdengo - Steel/Ghost, Good as Gold. Special attacker.\n\nMy best options:\n- Garchomp: Great physical sweeper. Earthquake hits Rotom-Wash (2x), Toxapex (2x), Corviknight (4x). Dragon Claw hits Dragapult (1x, but it's weak to Ground... wait, Dragapult is Dragon/Ghost, so Ground is neutral). Garchomp is 4x weak to Dragon moves from Dragapult. But Garchomp can break through many of their physical walls.\n- Hydreigon: Choice Scarf makes it very fast (165 base + scarf = ~207 effective speed). Can outspeed almost everything. Dark Pulse hits Toxapex (4x), Corviknight (4x). Dracometeor is a nuke but lowers SpA. Levitate means immune to Ground.\n- Toxapex: Great wall, can Toxic, Recover, Baneful Bunker. Regenerator helps. Can handle physical attackers.\n- Krookodile: Intimidate drops Attack by 50%, useful against physical attackers. Earthquake hits Rotom-Wash (2x), Toxapex (2x). Payback is weak. Black Belt boosts Knockoff.\n- Corviknight: Metal Coat, Unnerve. Can Defog. Body Press. But it's slow and not very threatening offensively.\n- Gardevoir: Wise Glasses boosts special attacks by 1.5x. Moonblast hits Dragapult (4x), Gholdengo (2x). Psyshock hits Toxapex (4x). But weak to Dark, Ghost, Steel.\n\nLet me think about the best trio:\n\nOption 1: Garchomp, Hydreigon, Toxapex\n- Garchomp leads, sets up SR or attacks\n- Hydreigon with Choice Scarf can outspeed everything and clean up\n- Toxapex as a wall to handle physical attackers\n- This covers both special and physical threats\n- Garchomp handles: Rotom-Wash (Earthquake 2x), Corviknight (Stone Edge 4x or Earthquake 2x)\n- Hydreigon handles: Toxapex (Dark Pulse 4x), Corviknight (Dark Pulse 4x)\n- Toxapex handles: physical attackers, can Toxic\n\nOption 2: Garchomp, Hydreigon, Krookodile\n- Two physical attackers + one fast special\n- Intimidate from Krookodile helps against physical threats\n- But less defensive coverage\n\nOption 3: Hydreigon, Toxapex, Gardevoir\n- More balanced but less offensive power\n- Gardevoir's Moonblast is great against Dragapult (4x) and Gholdengo (2x)\n- But weaker against physical attackers\n\nI think Option 1 (Garchomp, Hydreigon, Toxapex) is the strongest:\n- Garchomp as leader: can set up Stealth Rock or attack immediately. Earthquake hits Rotom-Wash for 2x, Corviknight for 4x. Dragon Claw hits Dragapult neutrally but it's weak to Ground... wait, Dragapult is Dragon/Ghost. Ground is neutral against Ghost and neutral against Dragon? No, Ground is neutral against Dragon (Dragon resists nothing from Ground) and neutral against Ghost (Ghost is immune to Ground). Wait, Ghost is immune to Ground! So Earthquake does NOTHING to Dragapult or Gholdengo.\n\nLet me reconsider:\n- Garchomp's Earthquake: 2x vs Rotom-Wash (Water), 2x vs Toxapex (Poison/Water), 4x vs Corviknight (Flying/Steel)\n- Garchomp's Dragon Claw: neutral vs most, but Dragapult resists Dragon? No, Dragon/Ghost - Dragon is neutral against Ghost and neutral against Dragon. So Dragon Claw is neutral on Dragapult.\n- Garchomp's Stone Edge: 4x vs Corviknight (Flying/Steel), 2x vs Toxapex (Poison/Water... wait, Rock is neutral against Poison and Water). Actually Rock is super effective against Flying, Bug, Ice, Steel. So Stone Edge is 4x on Corviknight (Flying/Steel) and 1x on Toxapex.\n\nHydreigon:\n- Dark Pulse: 4x vs Toxapex (Poison/Water), 4x vs Corviknight (Flying/Steel... wait, Dark is super effective against Ghost and Psychic. Flying/Steel - Dark is neutral against both). So Dark Pulse is 1x on Corviknight. Let me recalculate: Dark is super effective against Ghost and Psychic. Toxapex is Poison/Water - Dark is neutral. Hmm, I was wrong.\n\nLet me redo type matchups:\n- Dark Pulse (Dark): Super effective vs Ghost, Psychic. Not very effective vs Fighting, Dark. Neutral vs everything else.\n  - Vs Rotom-Wash (Electric/Water): Neutral\n  - Vs Aegislash (Steel/Ghost): 2x (Ghost)\n  - Vs Toxapex (Poison/Water): Neutral\n  - Vs Corviknight (Flying/Steel): Neutral\n  - Vs Dragapult (Dragon/Ghost): 2x (Ghost)\n  - Vs Gholdengo (Steel/Ghost): 2x (Ghost)\n\n- Dracometeor (Dragon): Super effective vs Dragon, Flying, Water. Not very effective vs Fire, Grass, Ice, Steel.\n  - Vs Rotom-Wash: Neutral (Water resists Electric but not Dragon... wait, Dragon is neutral against Water). Actually let me think again. Dragon moves are super effective against Dragon, Flying, Water types. So vs Rotom-Wash (Electric/Water): 2x (Water)\n  - Vs Aegislash (Steel/Ghost): 0.5x (Steel resists Dragon)\n  - Vs Toxapex (Poison/Water): 2x (Water)\n  - Vs Corviknight (Flying/Steel): 1x (Flying is 2x, Steel is 0.5x, net 1x)\n  - Vs Dragapult (Dragon/Ghost): 2x (Dragon)\n  - Vs Gholdengo (Steel/Ghost): 0.5x (Steel resists Dragon)\n\n- Earthquake (Ground): Super effective vs Fire, Ice, Rock, Steel. Not very effective vs Grass, Bug. Immune to Ghost.\n  - Vs Rotom-Wash: 2x (Water... wait, Ground is not super effective against Water). Let me redo. Ground is super effective vs Fire, Ice, Rock, Steel. So vs Rotom-Wash (Electric/Water): Neutral. Hmm, I keep making mistakes.\n\nLet me be very careful:\n- Ground type STAB: Super effective vs Fire, Ice, Rock, Steel. Not very effective vs Grass, Bug. No effect on Ghost.\n  - Vs Rotom-Wash (Electric/Water): Electric resists nothing from Ground, Water resists nothing from Ground → Neutral\n  - Vs Aegislash (Steel/Ghost): Steel is 2x weak to Ground, Ghost is immune → Immune!\n  - Vs Toxapex (Poison/Water): Poison resists nothing from Ground, Water resists nothing from Ground → Neutral\n  - Vs Corviknight (Flying/Steel): Flying resists nothing from Ground, Steel is 2x weak to Ground → 2x\n  - Vs Dragapult (Dragon/Ghost): Dragon resists nothing from Ground, Ghost is immune → Immune!\n  - Vs Gholdengo (Steel/Ghost): Steel is 2x weak to Ground, Ghost is immune → Immune!\n\n- Dragon Claw (Dragon): Super effective vs Dragon, Flying, Water. Not very effective vs Fire, Grass, Ice, Steel.\n  - Vs Rotom-Wash: 2x (Water)\n  - Vs Aegislash: 0.5x (Steel)\n  - Vs Toxapex: 2x (Water)\n  - Vs Corviknight: 1x (Flying 2x × Steel 0.5x)\n  - Vs Dragapult: 2x (Dragon)\n  - Vs Gholdengo: 0.5x (Steel)\n\n- Stone Edge (Rock): Super effective vs Flying, Bug, Ice, Steel. Not very effective vs Fire, Fighting, Ground, Rock.\n  - Vs Rotom-Wash: Neutral\n  - Vs Aegislash: 2x (Steel)\n  - Vs Toxapex: Neutral\n  - Vs Corviknight: 4x (Flying × Steel)\n  - Vs Dragapult: Neutral\n  - Vs Gholdengo: 2x (Steel)\n\n- Dark Pulse (Dark): Super effective vs Ghost, Psychic. Not very effective vs Fighting, Dark.\n  - Vs Rotom-Wash: Neutral\n  - Vs Aegislash: 2x (Ghost)\n  - Vs Toxapex: Neutral\n  - Vs Corviknight: Neutral\n  - Vs Dragapult: 2x (Ghost)\n  - Vs Gholdengo: 2x (Ghost)\n\n- Dracometeor (Dragon): Same as Dragon Claw for type matchups.\n  - Vs Rotom-Wash: 2x (Water)\n  - Vs Aegislash: 0.5x (Steel)\n  - Vs Toxapex: 2x (Water)\n  - Vs Corviknight: 1x\n  - Vs Dragapult: 2x (Dragon)\n  - Vs Gholdengo: 0.5x (Steel)\n\n- Moonblast (Fairy): Super effective vs Fighting, Dragon. Not very effective vs Poison, Steel.\n  - Vs Rotom-Wash: Neutral\n  - Vs Aegislash: Neutral\n  - Vs Toxapex: 0.5x (Poison)\n  - Vs Corviknight: 0.5x (Steel)\n  - Vs Dragapult: 2x (Dragon)\n  - Vs Gholdengo: 0.5x (Steel)\n\n- Psyshock (Psychic): Super effective vs Fighting, Psychic. Not very effective vs Dark, Ghost.\n  - Vs Rotom-Wash: Neutral\n  - Vs Aegislash: 0.5x (Ghost)\n  - Vs Toxapex: Neutral\n  - Vs Corviknight: Neutral\n  - Vs Dragapult: 0.5x (Ghost)\n  - Vs Gholdengo: 0.5x (Ghost)\n\n- Knockoff (Dark): Same as Dark Pulse for type matchups.\n\nOK so now let me reconsider the team composition:\n\nGarchomp's best options against opponent:\n- Earthquake: Neutral vs most, 2x vs Corviknight. But immune to Ghost types (Aegislash, Dragapult, Gholdengo).\n- Dragon Claw: 2x vs Rotom-Wash, Toxapex, Dragapult. 0.5x vs Aegislash, Gholdengo.\n- Stone Edge: 4x vs Corviknight, 2x vs Aegislash, Gholdengo.\n\nHydreigon's best options:\n- Dark Pulse: 2x vs Aegislash, Dragapult, Gholdengo. Neutral vs others.\n- Dracometeor: 2x vs Rotom-Wash, Toxapex, Dragapult. 0.5x vs Aegislash, Gholdengo.\n\nToxapex's best options:\n- Toxic: Great against physical attackers (Garchomp, Krookodile, etc.)\n- Baneful Bunker: Reduces damage taken by 1/3 and heals 1/8 HP\n- Recover: Healing\n- Haze: Clears status effects\n\nKrookodile's best options:\n- Earthquake: Neutral vs most (immune to Ghost types)\n- Payback: Dark, 2x vs Aegislash, Dragapult, Gholdengo\n- Knockoff: Dark, 2x vs Aegislash, Dragapult, Gholdengo. Also removes items.\n\nGardevoir's best options:\n- Moonblast: 2x vs Dragapult (Dragon). 0.5x vs Toxapex, Corviknight, Gholdengo.\n- Psyshock: Neutral vs most. 0.5x vs Ghost types.\n- Knockoff: Dark, 2x vs Aegislash, Dragapult, Gholdengo.\n\nCorviknight's best options:\n- Defog: Clears SR\n- Body Press: Fighting, super effective vs... well, it's neutral against most of their team.\n- Roost: Healing\n\nNow, the key threats I need to handle:\n1. Dragapult - very fast (base 145-213), Dragon/Ghost. Can use Draco Meteor, Shadow Ball, etc. It's a major threat because it outspeeds almost everything.\n2. Gholdengo - Steel/Ghost, Good as Gold (immune to status). Special attacker.\n3. Rotom-Wash - Electric/Water, Levitate. Can be a special or physical attacker.\n4. Toxapex - Poison/Water, Regenerator. Tanky.\n5. Aegislash - Steel/Ghost, Stance Change. Very defensive.\n6. Corviknight - Flying/Steel, Unnerve. Physical wall.\n\nMy best 3:\n\nI think Garchomp, Hydreigon, and Toxapex is the strongest trio:\n- Garchomp: Can break through physical walls (Corviknight with Stone Edge 4x), hit Rotom-Wash and Toxapex with Dragon Claw (2x). Life Orb boosts power. Sandveil protects from weather damage.\n- Hydreigon: Choice Scarf makes it the fastest thing on the field (effective speed ~207). Can outspeed Dragapult. Dark Pulse hits Aegislash, Dragapult, Gholdengo for 2x. Dracometeor is a nuke against Rotom-Wash, Toxapex, Dragapult.\n- Toxapex: Great wall. Can Toxic physical attackers, Baneful Bunker to survive hits, Recover to heal. Regenerator helps on switch-in.\n\nThis trio covers:\n- Physical threats: Garchomp and Hydreigon can handle them\n- Special threats: Toxapex walls special attacks (SpD 164)\n- Ghost types: Hydreigon's Dark Pulse is super effective\n- Flying/Steel: Garchomp's Stone Edge is 4x on Corviknight\n- Water: Dragon Claw is 2x\n\nThe main weakness: Earthquake is immune to Ghost types, so Garchomp can't directly hit Aegislash, Dragapult, or Gholdengo with EQ. But Dragon Claw hits them (2x for Dragapult, neutral for others... wait, Dragon Claw vs Gholdengo is 0.5x because of Steel).\n\nActually, let me reconsider. Can I use Krookodile instead of Toxapex?\n- Krookodile: Intimidate drops Attack by 50%, which helps against physical attackers like Dragapult (if it's using physical moves) or Garchomp-like threats. Earthquake is neutral vs most non-Ghost types. Payback/Knockoff are Dark, 2x vs Ghost types.\n\nBut Toxapex provides much better defensive coverage and the Regenerator ability is very useful. I'll stick with Garchomp, Hydreigon, Toxapex.\n\nActually wait - let me reconsider whether to lead with Garchomp or Hydreigon.\n\nIf I lead with Garchomp:\n- Can set up Stealth Rock (harmful to their Ghost types... well, SR doesn't affect Ghosts since they don't take contact damage). Actually SR does affect them on switch-in if they're not immune. Wait, Ghost types are immune to Ground but SR is a Rock type hazard - it deals damage on switch-in regardless of type immunity to Ground. So SR would hit Aegislash, Dragapult, Gholdengo.\n- Can attack immediately with Dragon Claw or Stone Edge\n\nIf I lead with Hydreigon:\n- Choice Scarf makes it very fast, can outspeed almost everything including Dragapult\n- Can use Dark Pulse or Dracometeor immediately\n- But Choice Scarf means it can't switch back in (well, it can but it'll be at 1/4 speed... actually no, Choice Scarf just locks the move and gives +50% speed. You CAN switch out and back in.)\n\nI think leading with Garchomp is better because:\n1. It can set up Stealth Rock to pressure their Ghost types\n2. It has more options (Earthquake, Dragon Claw, Stone Edge)\n3. Hydreigon with Choice Scarf is better as a sweeper after setup\n\nLet me go with: BRING: garchThinking budget reached. Stop thinking and give your final answer now.",
+      "note": "",
+      "tokens": 6376,
+      "latency_ms": 103355,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: dragondarts, 23% MOVE: shadowball, 16% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2240,
+      "latency_ms": 630,
+      "cost_usd": 9.408e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.23,
+        "MOVE: dragondarts": 0.42,
+        "MOVE: protect": 0.04,
+        "MOVE: uturn": 0.05,
+        "SWITCH: gholdengo": 0.1,
+        "SWITCH: rotomwash": 0.16
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp leads vs Dragapult (Dragon/Ghost). Earthquake is useless (Ghost immunity). Dragon Claw is 2x super effective with Life Orb - best option to pressure. SR would help later but Dragapult's speed (145-213) could outpace Garchomp (169), so dealing damage now is priority. Watch for Draco Meteor or Shadow Ball from Dragapult. Plan: KO/pressure Dragapult, then Hydreigon (Choice Scarf) sweeps Ghosts with Dark Pulse 2x, Toxapex walls special attackers.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is leading against their Dragapult\n- Garchomp has Life Orb, Sandveil ability\n- Garchomp stats: HP 183, Atk 182, Def 115, SpA 90, SpD 107, Spe 169\n- Dragapult is Dragon/Ghost, possible speed 145-213\n\nKey considerations:\n1. Garchomp's Dragon Claw is super effective on Dragapult (Dragon type) - but wait, Dragapult is Dragon/Ghost. Dragon moves are NOT super effective on Ghost types... actually let me reconsider. Dragon vs Dragon/Ghost: Dragon is super effective against Dragon, neutral against Ghost. So Dragon Claw would be super effective (2x) because of the Dragon typing.\n\nWait, actually: Dragon attacks are super effective against Dragon and Water. They are not very effective against Grass, Ice, Dragon... no wait. Let me think again.\n\nDragon type moves:\n- Super effective against: Dragon, Water\n- Not very effective against: Grass, Ice, Dragon (wait no)\n\nActually:\n- Dragon is strong against: Dragon, Water\n- Dragon is weak to: Dragon, Ice, Fairy\n\nSo Dragon Claw on a Dragon/Ghost target: Dragon is super effective on Dragon type. Ghost doesn't resist Dragon. So it's 2x damage. Yes, Dragon Claw is super effective.\n\nBut wait - the notes say \"super effective on dragapult\" for dragonclaw. Good.\n\nNow, Garchomp vs Dragapult:\n- Garchomp is Ground/Dragon\n- Dragapult is Dragon/Ghost\n\nGround moves are NOT effective against Ghost (immune). So Earthquake won't work!\nDragon Claw IS super effective (2x on Dragon typing)\nStone Edge is neutral (Rock vs Dragon/Ghost - Rock is not very effective on Dragon, but neutral on Ghost... actually Rock is neutral on both Dragon and Ghost. Wait: Rock is super effective against Flying, Bug, Ice. Not very effective against Fire, Fighting, Steel, Rock. Neutral against Dragon and Ghost. So Stone Edge is neutral.)\n\nSo my best options:\n1. Dragon Claw - 2x damage, 80 BP, Life Orb makes it 1.3x → effectively 2*80*1.3 = 208 effective power\n2. Earthquake - immune to Ghost, useless\n3. Stone Edge - neutral, 100 BP, 80% accuracy, Life Orb → 130 effective power\n\nDragon Claw is clearly the best offensive option here.\n\nBut should I Stealth Rock first? Let me think...\n\nIf I use Stealth Rock:\n- It sets up SR for future switches\n- But Dragapult might switch out or do something else\n- Garchomp's speed (169) vs Dragapult (145-213) - could go either way\n\nActually, let me reconsider. The opponent has a Ghost-heavy team. Stealth Rock would hurt their Ghost types on switch-in (though Ghosts are immune to SR damage... wait no, SR is physical damage from rocks. Ghost types ARE hit by SR because it's not a type-based attack in the traditional sense - actually wait, Stealth Rock deals damage based on typing. Let me think...\n\nStealth Rock: The damage is calculated as if it were a Rock-type move hitting the Pokémon. So:\n- Dragon/Ghost (Dragapult): Rock is neutral against both → takes normal SR damage\n- Steel/Ghost (Gholdengo): Rock is not very effective on Steel → reduced SR damage\n- Ghost types in general: Rock is neutral against Ghost\n\nActually, I need to reconsider. Stealth Rock damage: it's calculated as a Rock-type move. So:\n- Against Dragon/Ghost: Rock is neutral on both → full damage\n- Against Steel/Ghost: Rock is not very effective on Steel → 0.5x damage\n- Against Electric/Water (Rotom-Wash): Rock is neutral on both → full damage\n- Against Poison/Water (Toxapex): Rock is neutral on both → full damage\n\nSo SR would hurt Dragapult, Rotom-Wash, and Toxapex but not much Gholdengo.\n\nBut the immediate threat is Dragapult. Let me think about what's best:\n\nOption 1: Dragon Claw - deals super effective damage to Dragapult\n- Power: 80 * 2 (super eff) * 1.3 (Life Orb) = 208 effective\n- Garchomp Atk 182, so damage ≈ 182 * 208 / 50 / ... let me not calculate exact numbers\n\nOption 2: Stealth Rock - sets up for later, but Dragapult might switch or do something\n\nGiven that Dragapult is a fast threat (could be faster than Garchomp), and Dragon Claw is super effective, I think the best play is to use Dragon Claw to deal significant damage. If Dragapult switches out, we've still done good damage. If it stays, we might KO it.\n\nActually wait - should I consider that Dragapult might have a move that threatens Garchomp? Common Dragapult moves: Draco Meteor, Shadow Ball, U-turn, Sucker Punch, Will-O-Wisp, etc.\n\nIf Dragapult has Draco Meteor (130 BP Dragon), it would be super effective on Garchomp (Dragon/Ground). That's a big threat.\nIf it has Shadow Ball (Ghost), that's neutral on Ground/Dragon... wait, Ghost is not very effective on Dark and Ghost. Garchomp is Dragon/Ground - Ghost is neutral on both. So Shadow Ball would be neutral.\n\nActually, let me reconsider: Should I just use Dragon Claw? It's super effective and deals good damage. Even if Dragapult switches out, we've done meaningful damage. And if it stays, we might KO it or force a switch.\n\nI'll go with Dragon Claw.\n",
+      "note": "",
+      "tokens": 3677,
+      "latency_ms": 35550,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp KO'd by Dragapult's crit Dragon Darts (Life Orb). Switching Hydreigon (Choice Scarf, SpA 177) which outspeeds everything (247.5 vs max 213). Next turn: Dark Pulse (Special, STAB+SE=3x) should KO Dragapult at 90% (~144-170 dmg vs ~147-176 HP). Then sweep remaining Ghosts with Dark Pulse; Toxapex as wall. Watch for Draco Meteor next turn if I don't KO.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- Garchomp fainted on turn 1 to Dragapult's Dragon Darts (critical hit, super effective)\n- Dragapult is at 90% HP with Life Orb\n- I need to switch in either Hydreigon or Toxapex\n\nKey considerations:\n- Dragapult is Dragon/Ghost - it's fast (145-213 Spe range)\n- My Hydreigon has Choice Scarf, so its speed becomes 165 * 1.5 = 247.5, which should outspeed most of the opponent's team including Dragapult\n- Toxapex is very slow (55 Spe), would be at risk from Dragon Darts or Draco Meteor\n\nHydreigon with Choice Scarf:\n- Speed: 169 * 1.5 = 253.5 - this outspeeds everything on the opponent's team\n- Dark Pulse is 2x super effective against Ghost types (Dragapult)\n- Dracometeor is Dragon type, neutral to Ghost but strong BP 130\n\nWait, let me recalculate. Hydreigon base Spe is 165. With Choice Scarf at level 50: 165 * 1.5 = 247.5. Dragapult's max speed range is 213. So Hydreigon with Choice Scarf should outspeed Dragapult.\n\nActually wait - the stats shown are \"Stats at level 50 (possible range)\" which means these are the actual stat values, not base stats. Let me re-read...\n\n\"Stats: [HP 167, Atk 112, Def 112, SpA 177, SpD 110, Spe 165]\" - these are Hydreigon's actual stats at level 50.\n\nDragapult: \"Spe 145-213\" - this is a range because we don't know the exact IVs/EVs.\n\nWith Choice Scarf, Hydreigon's speed becomes 165 * 1.5 = 247.5. Even Dragapult at max speed (213) would be slower than Hydreigon with Choice Scarf. So Hydreigon moves first.\n\nHydreigon should use Dark Pulse on Dragapult:\n- Dark Pulse is Dark type, super effective against Ghost (Dragapult is Dragon/Ghost)\n- 2x STAB? No, Hydreigon is Dark/Dragon, so Dark Pulse is STAB (1.5x) AND super effective against Ghost (2x). Total multiplier: 3x!\n- Wait, actually Dark Pulse is a Dark type move. Hydreigon is Dark/Dragon. So it's STAB at 1.5x. Against Dragon/Ghost, Dark is super effective (2x). So total: 1.5 * 2 = 3x damage.\n\nThat should be devastating on Dragapult at 90% HP.\n\nLet me calculate roughly:\n- Hydreigon Atk: 112\n- Dark Pulse BP: 80\n- Damage formula: (2*112/5 + 2) * 80 / 100 * STAB(1.5) * SE(2) * random(0.85-1.0) / Def\n\nDragapult's Def range: 85-139. Let's say around 110 (middle).\nDamage ≈ (2*112/5 + 2) * 80/100 * 1.5 * 2 / 110\n= (44.8 + 2) * 0.8 * 3 / 110\n= 46.8 * 2.4 / 110\n= 112.32 / 110\n≈ 1.02\n\nHmm, that's only about 1 damage? That doesn't seem right. Let me recalculate.\n\nActually the formula is: ((2*Level/5 + 2) * BP * Atk / Def) / 50 * STAB * SE * random\n\nLevel 50: (2*50/5 + 2) = (20+2) = 22\nSo: 22 * 80 * 112 / 110 / 50 * 1.5 * 2 * random\n= 22 * 80 * 112 / 110 / 50 * 3 * random\n= 22 * 80 * 1.018 / 50 * 3 * random\n= 22 * 162.9 / 50 * 3 * random\nWait, let me redo:\n22 * 80 = 1760\n1760 * 112 = 197,120\n197,120 / 110 = 1,792\n1,792 / 50 = 35.84\n35.84 * 1.5 (STAB) = 53.76\n53.76 * 2 (SE) = 107.52\n* random (0.85-1.0) ≈ 91-107\n\nDragapult at 90% HP: max HP range 163-195, so 90% is about 147-176.\n\nSo Dark Pulse would deal about 91-107 damage to a Pokémon with ~150-175 HP. That's not a guaranteed KO but it deals significant damage.\n\nActually wait, I need to reconsider. The stats shown for Hydreigon are [HP 167, Atk 112, Def 112, SpA 177, SpD 110, Spe 165]. These seem low for a level 50 Pokémon. Let me check - at level 50, a neutral IV/EV Pokémon would have:\n- HP: (31*2+31)*2 + 10 = 194... hmm that doesn't match either.\n\nActually in Showdown, the stats shown are the actual calculated stats. Let me just work with what's given.\n\nAtk 112 is quite low for a physical attacker. But SpA 177 is high. Maybe this Hydreigon is built more for special attacks?\n\nWait, but Dark Pulse is a physical move (BP:80). With Atk 112, it won't hit very hard.\n\nLet me reconsider. Dracometeor is special (BP:130) and would use SpA 177. Against Dragon/Ghost:\n- Dragon type vs Dragon: neutral (1x)\n- So Dracometeor would be neutral damage with STAB at 1.5x\n\nDamage from Dracometeor:\n22 * 130 * 177 / Def / 50 * 1.5 * random\nDragapult SpD range: 85-139, let's say ~110\n= 22 * 130 * 177 / 110 / 50 * 1.5 * random\n= 22 * 130 = 2860\n2860 * 177 = 506,220\n506,220 / 110 = 4,602\n4,602 / 50 = 92.04\n92.04 * 1.5 = 138.06\n* random (0.85-1.0) ≈ 117-138\n\nThat's much better! Dracometeor would deal about 117-138 damage to Dragapult at ~150-175 HP. That could be a KO or near-KO.\n\nBut wait, Dark Pulse with STAB + SE = 3x multiplier:\n22 * 80 * 112 / 110 / 50 * 1.5 * 2 * random\n= 22 * 80 = 1760\n1760 * 112 = 197,120\n197,120 / 110 = 1,792\n1,792 / 50 = 35.84\n35.84 * 3 = 107.52\n* random ≈ 91-107\n\nSo Dark Pulse deals ~91-107 and Dracometeor deals ~117-138. Dracometeor hits harder despite lower BP because of the much higher SpA stat.\n\nBut actually, I should also consider: is Hydreigon's Atk really 112? That seems very low for a Choice Scarf user. Let me re-read...\n\n\"hydreigon (Dark/Dragon) | Ability: levitate | Stats: [HP 167, Atk 112, Def 112, SpA 177, SpD 110, Spe 165]\"\n\nYes, Atk is 112 and SpA is 177. This is a special attacker Hydreigon with Choice Scarf. So Dracometeor would be the better choice.\n\nActually wait - does Choice Scarf work on special attackers? Yes! Choice Scarf boosts speed regardless of attack type. So this is a fast special sweeper.\n\nSo my plan:\n1. Switch in Hydreigon (Choice Scarf, outspeeds everything)\n2. Use Dracometeor to hit Dragapult hard (neutral STAB, BP 130, high SpA)\n3. This should KO or nearly KO Dragapult\n4. Then continue with Dark Pulse for Ghost coverage\n\nActually, let me reconsider whether to use Dark Pulse instead. Even though it deals less damage (~91-107), it's super effective (2x) AND STAB (1.5x). But Dracometeor at ~117-138 is still better raw damage.\n\nHmm, but actually I realize I should double-check: is Dark Pulse physical or special? The problem states \"darkpulse (Dark/Special, BP:80)\". Oh wait, it says SPECIAL! Let me re-read...\n\n\"Moves: darkpulse (Dark/Special, BP:80), dracometeor (Dragon/Special, BP:130), uturn (Bug/Physical, BP:70), nastyplot (Dark/Status, BP:-)\"\n\nOh! Dark Pulse is listed as SPECIAL here. That's unusual - in actual Pokémon games, Dark Pulse is physical. But in this problem, it's defined as special. So both Dark Pulse and Dracometeor use SpA 177.\n\nSo Dark Pulse damage:\n22 * 80 * 177 / Def / 50 * 1.5 (STAB) * 2 (SE vs Ghost) * random\n= 22 * 80 = 1760\n1760 * 177 = 311,520\n311,520 / 110 = 2,832\n2,832 / 50 = 56.64\n56.64 * 3 (STAB + SE) = 169.92\n* random ≈ 144-170\n\nThat's MUCH better! Dark Pulse with SpA 177, STAB, and super effective against Ghost would deal ~144-170 damage. That should KO Dragapult at 90% HP (which is ~147-176).\n\nSo the answer is clear: Switch in Hydreigon and use Dark Pulse to KO Dragapult.\n\nWait, but I need to make sure Hydreigon outspeeds Dragapult. Hydreigon Spe with Choice Scarf: 165 * 1.5 = 247.5. Dragapult max Spe: 213. Yes, Hydreigon moves first.\n\nDecision: SWITCH: hydreigon this turn? No wait - I need to switch in AND attack. But the legal actions only show SWITCH options for this turn. Let me re-read...\n\n\"LEGAL ACTIONS THIS TURN:\n1. SWITCH: hydreigon (100.0% HP)\n2. SWITCH: toxapex (100.0% HP)\"\n\nSo this turn I can only switch. The attack will happen next turn. That makes sense - when a Pokémon faints, you get one turn to switch in your replacement.\n\nSo my decision is: SWITCH: hydreigon\n\nLet me write my notes and decision.\n",
+      "note": "",
+      "tokens": 5285,
+      "latency_ms": 73441,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: dragondarts, 32% MOVE: uturn, 14% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2423,
+      "latency_ms": 657,
+      "cost_usd": 0.000101766,
+      "probabilities": {
+        "MOVE: shadowball": 0.05,
+        "MOVE: dragondarts": 0.34,
+        "MOVE: protect": 0.02,
+        "MOVE: uturn": 0.32,
+        "SWITCH: gholdengo": 0.14,
+        "SWITCH: rotomwash": 0.13
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Choice Scarf locks Hydreigon to Dark Pulse (first move). Outspeeds Dragapult (247.5 vs max 213). DP won't KO at 90% (~30-50 dmg), but chips and has 20% flinch. If Dragapult uses Draco Meteor, it weakens itself. Plan: chip with DP, then switch to Toxapex for Toxic/Baneful Bunker walling. Opponent has 2 hidden Pokémon from Rotom-Wash/Aegislash/Toxapex/Corviknight/Gholdengo.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Hydreigon (Choice Scarf, SpA 177) is active against Dragapult (90% HP, Life Orb)\n- Hydreigon has Choice Scarf, so it can only use Dark Pulse (first move in its set)\n- Wait, actually with Choice Scarf, the Pokémon can only select the first move. Looking at the moves: darkpulse, dracometeor, uturn, nastyplot. So with Choice Scarf, Hydreigon can ONLY use darkpulse.\n\nWait, let me re-read the rules. \"choicescarf: Holder's Speed is 1.5x, but it can only select the first move it executes.\" So yes, Hydreigon can only use Dark Pulse.\n\nNow, Dark Pulse on Dragapult:\n- Dark is super effective on Ghost (2x)\n- Power 80 × 2 = 160 effective power\n- Hydreigon SpA 177 with Choice Scarf doesn't boost SpA, but Speed is boosted\n- Damage calculation: (2×177/5 + 2) × 80 / 130 × STAB(1.2) × SE(2) × random\n\nWait, let me recalculate. The formula is: ((2*Level/5 + 2) * Power * STAB * SE * ... ) / TargetDef\n\nLevel 50: (2*50/5 + 2) = (20+2) = 22\nBase damage: 22 × 80 = 1760\nSTAB (Dark on Dark): 1.2 → 1760 × 1.2 = 2112\nSE (Dark on Ghost): 2 → 2112 × 2 = 4224\nDivide by target SpD: Dragapult SpD range is 85-139\n\nSo damage = 4224 / SpD × random(0.85-1.0)\n\nIf SpD = 85: 4224/85 ≈ 49.7 → ~42-49 damage... wait that seems too low.\n\nWait, I think I'm confusing the formula. Let me reconsider. In Pokémon Showdown at level 50:\n\nDamage = floor(floor(floor(2*Level/5 + 2) * Power / TargetDef) * STAB * SE * Random)\n\nActually the standard formula is:\n((2×Level÷5+2)×Power÷TargetDef) × STAB × SE × (random 85-100%)\n\nSo: ((2×50/5 + 2) × 80 ÷ SpD) × 1.2 × 2 × random\n= (22 × 80 ÷ SpD) × 2.4 × random\n= (1760 ÷ SpD) × 2.4 × random\n\nIf SpD = 85: (1760/85) × 2.4 ≈ 20.7 × 2.4 ≈ 49.7 → ~42-49\nIf SpD = 139: (1760/139) × 2.4 ≈ 12.66 × 2.4 ≈ 30.4 → ~26-30\n\nHmm, that doesn't seem right either. Wait, I think I'm missing something. Let me reconsider.\n\nActually wait - in Pokémon Showdown, the damage formula at level 50 is:\nDamage = floor(floor(floor(2*Level/5 + 2) * Power / TargetDef) * STAB * SE * RandomFactor)\n\nNo wait, that's not right either. The actual formula is:\n\nStep 1: (2×Level÷5 + 2) × Power ÷ TargetDef\nStep 2: Multiply by STAB and SE\nStep 3: Apply random multiplier (0.85-1.0)\nStep 4: Floor the result\n\nSo: (22 × 80 ÷ SpD) × 1.2 × 2 × random(0.85-1.0)\n\nIf SpD = 85: (1760/85) × 2.4 × random = 20.7 × 2.4 × random ≈ 49.7 × random ≈ 42-49\nIf SpD = 139: (1760/139) × 2.4 × random = 12.66 × 2.4 × random ≈ 30.4 × random ≈ 26-30\n\nThat's way too low to KO a Pokémon at 90% HP with ~150-170 HP.\n\nWait, I think I'm making an error. Let me reconsider the formula. \n\nActually in Gen 8+ (which this appears to be given Mega Evolution instead of Terastallization... wait no, it says \"Mega Evolution instead of Terastallization\" so this is a custom format).\n\nHmm, but actually looking at the stats more carefully - these are level 50 Pokémon with base stats. Let me recalculate.\n\nActually, I think the issue is that I need to use the actual stat values, not base stats. The SpD of Dragapult could be anywhere from 85-139 based on the range given.\n\nWait, but even at minimum SpD of 85:\n(22 × 80 / 85) × 1.2 × 2 = (1760/85) × 2.4 = 20.7 × 2.4 = 49.7\n\nThat's only ~42-49 damage. That won't KO a Pokémon with 150+ HP at 90%.\n\nHmm, but wait - I said in my notes \"Dark Pulse (Special, STAB+SE=3x) should KO Dragapult at 90% (~144-170 dmg vs ~147-176 HP)\". Let me recheck.\n\nSTAB for Dark on Dark: 1.2\nSE for Dark on Ghost: 2.0\nTotal multiplier: 1.2 × 2.0 = 2.4, not 3x.\n\nWait, I wrote \"STAB+SE=3x\" in my notes but that's wrong. It should be 2.4x.\n\nHmm, but actually wait. Let me reconsider. Is Dark Pulse super effective on Dragon/Ghost? \n- Dark is super effective on Ghost: 2x\n- Dark is neutral to Dragon: 1x\n- Total: 2x\n\nSo the multiplier is 1.2 (STAB) × 2 (SE) = 2.4.\n\nAt SpD 85: ~49 damage max\nAt SpD 139: ~30 damage max\n\nThat's nowhere near enough to KO. My previous note was wrong.\n\nSo Dark Pulse won't KO Dragapult. It'll deal maybe 30-50 damage, bringing it from 90% to about 70-80%.\n\nGiven that Hydreigon is locked into Dark Pulse (Choice Scarf), and it can't KO Dragapult in one hit...\n\nOptions:\n1. Use Dark Pulse (deal some damage, but won't KO)\n2. Switch to Toxapex\n\nIf I use Dark Pulse:\n- Deals ~30-50 damage to Dragapult (90% → maybe 60-75%)\n- Hydreigon stays in\n- Next turn, if Dragapult uses Draco Meteor (130 power Dragon STAB), it could hit hard\n- Or Dragapult could use other moves\n\nIf I switch to Toxapex:\n- Toxapex is a great wall\n- Can use Baneful Bunker, Toxic, Recover, Haze\n- But Toxapex is slow (Spe 55) and will be at the mercy of priority or faster attackers\n- Dragapult at Spe 145-213 would outspeed Toxapex easily\n\nActually wait - with Choice Scarf, Hydreigon's speed is 165 × 1.5 = 247.5. Dragapult's speed range is 145-213. So Hydreigon outspeeds Dragapult in most cases (unless Dragapult has max speed investment at 213... wait 247.5 > 213, so Hydreigon always outspeeds).\n\nSo Hydreigon will go first every turn against Dragapult.\n\nGiven that Dark Pulse won't KO, what's the best strategy?\n\nOption A: Use Dark Pulse to chip away, then switch when it gets low enough\n- But this is slow and risky if Dragapult has Draco Meteor or other strong moves\n\nOption B: Switch to Toxapex immediately\n- Toxapex can wall a lot of things\n- Can use Toxic on Dragapult\n- Baneful Bunker for protection\n- But Toxapex is very slow and will be hit by priority moves or faster attackers\n\nActually, let me reconsider. The opponent has 3 Pokémon total (they brought 3 of their 6). They've shown Dragapult. The other two are from: rotomwash, aegislash, toxapex, corviknight, gholdengo.\n\nIf I switch to Toxapex:\n- Toxapex can Toxic Dragapult\n- Then use Baneful Bunker or Recover\n- But if the opponent switches to something that hits Toxapex hard (like Corviknight with Steel moves, or Aegislash), it could be problematic\n\nIf I stay with Hydreigon and use Dark Pulse:\n- Chip damage on Dragapult\n- Next turn, if Dragapult doesn't KO me, I can continue chipping\n- Eventually switch when it's weak enough\n\nActually, I think the best play is to use Dark Pulse. Even though it won't KO, it deals meaningful damage and keeps pressure. If Dragapult uses Draco Meteor next turn (which lowers its SpA by 2), that would be a bad move for them since they'd lose their main offensive tool. If they use something else, I can continue chipping or switch.\n\nWait, but actually - let me reconsider whether Dark Pulse could KO. Let me look at the HP range more carefully.\n\nDragapult: HP 163-195 (base), at level 50 with IVs/EVs...\nThe range given is [HP 163-195] which I think represents the actual HP at level 50 considering IVs and EVs.\n\nAt 90%: 147-176 HP remaining.\n\nDark Pulse damage: (22 × 80 / SpD) × 1.2 × 2 × random\n= (1760/SpD) × 2.4 × random\n\nEven at minimum SpD of 85: ~49 max damage. That's nowhere near 147-176 HP.\n\nSo definitely won't KO. Dark Pulse will deal about 30-50 damage, bringing Dragapult to roughly 60-75%.\n\nI think the best strategy is:\n1. Use Dark Pulse this turn (chip damage)\n2. Next turn, if Dragapult is still threatening, switch to Toxapex\n3. Toxapex can Toxic and wall things\n\nActually, you know what, let me reconsider switching immediately. If I switch to Toxapex:\n- Toxapex has Regenerator (recovers 1/3 HP when switched in)\n- Can use Baneful Bunker (blocks damage, poisons attacker)\n- Can Toxic Dragapult\n- But is very slow\n\nThe risk of switching: if the opponent has a priority move or something that hits Toxapex hard. But looking at their team, I don't see obvious priority threats.\n\nActually, I think staying in with Dark Pulse is better because:\n1. I'm outspeeding Dragapult (247.5 vs max 213)\n2. Dark Pulse deals some damage and has a 20% flinch chance\n3. If Dragapult uses Draco Meteor, it weakens itself\n4. I can switch next turn if needed\n\nLet me go with Dark Pulse. It's the only move available (Choice Scarf locks to first move), so actually... wait, is Choice Scarf really locking me? Let me re-read: \"choicescarf: Holder's Speed is 1.5x, but it can only select the first move it executes.\"\n\nYes! With Choice Scarf, I CAN ONLY use Dark Pulse. The other options (Dracometeor, U-turn, Nasty Plot) are not actually available to me because of the Choice Scarf restriction.\n\nWait, but they're listed as legal actions... Let me re-read the legal actions:\n1. MOVE: darkpulse\n2. MOVE: dracometeor\n3. MOVE: uturn\n4. MOVE: nastyplot\n5. SWITCH: toxapex\n\nHmm, all moves are listed as legal. But the Choice Scarf description says \"can only select the first move it executes.\" This is contradictory. \n\nActually, I think in this format, the Choice Scarf restriction means that when you choose a move, it must be the first one. But since all are listed as legal, maybe the format allows any move but the \"first move\" restriction applies differently? Or maybe I'm overthinking this and should just pick Dark Pulse since it's the most logical choice anyway.\n\nActually, re-reading: \"but it can only select the first move it executes.\" This means the Pokémon is locked to its first move (Dark Pulse). The other options being listed might be a quirk of the format, or maybe I'm wrong about Choice Scarf mechanics in this specific game.\n\nRegardless, Dark Pulse is clearly the best choice here:\n- Super effective on Ghost\n- STAB bonus\n- 20% flinch chance\n- Only move that makes sense given the situation\n\nLet me go with Dark Pulse.\n",
+      "note": "",
+      "tokens": 5771,
+      "latency_ms": 79602,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: rotomwash, 48% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2076,
+      "latency_ms": 847,
+      "cost_usd": 8.7192e-05,
+      "probabilities": {
+        "SWITCH: gholdengo": 0.48,
+        "SWITCH: rotomwash": 0.52
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: gholdengo, 17% MOVE: voltswitch, 13% MOVE: thunderbolt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2397,
+      "latency_ms": 1188,
+      "cost_usd": 0.000100674,
+      "probabilities": {
+        "MOVE: voltswitch": 0.17,
+        "MOVE: thunderbolt": 0.13,
+        "MOVE: willowisp": 0.12,
+        "MOVE: protect": 0.06,
+        "SWITCH: gholdengo": 0.52
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Choice Scarf locks Hydreigon to Dark Pulse only. Outspeeds Rotom-Wash (247 vs max 151). DP is neutral on E/W (83-127 dmg), chips hard on 125-157 HP, 20% flinch. Use speed advantage now before switching. If RW survives, switch to Toxapex next turn for Toxic/Baneful Bunker wall. Remaining hidden: Aegislash/Toxapex/Corviknight/Gholdengo (3 of 6 shown, 1 more unseen).",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Hydreigon (Choice Scarf, 167/167 HP) is active against Rotom-Wash (100% HP)\n- Choice Scarf means I can ONLY use Dark Pulse (first move in the list)\n- Hydreigon outspeeds Rotom-Wash (165 vs 95-151 range, so I always go first)\n- Dark Pulse is Super Effective against Ghost... but Rotom-Wash is Electric/Water, not Ghost. So it's neutral.\n- Wait, let me reconsider. Dark Pulse is Dark type. Against Electric/Water (Rotom-Wash), Dark is neutral. So it deals 80 BP damage.\n\nLet me calculate: Hydreigon SpA 177, Rotom-Wash SpD range 114-174.\nDamage = (2*50/50 + 2) * (177/174) * 80 / (SpD) ... let me use the standard formula.\n\nActually, for level 50 vs level 50:\nDamage = ((2*50+2)/50) * (Atk/Def) * BP * STAB * SE / 100 + 2\n= (102/50) * (177/SpD) * 80 * 1 * 1 / 100 + 2\n\nIf SpD is 114: (2.04) * (177/114) * 0.8 + 2 = 2.04 * 1.553 * 0.8 + 2 = 2.546 + 2 = 4.546... wait that's not right.\n\nLet me redo: Damage = floor(floor(floor(2*Level/5+2) * Atk * BP / Def / 100)) * STAB * SE\n\n= floor(floor(floor(102) * 177 * 80 / SpD / 100)) \n\nFor SpD 114: floor(102 * 177 * 80 / 114 / 100) = floor(102 * 1.553 * 0.8) = floor(126.9) ≈ 127\nFor SpD 174: floor(102 * 177 * 80 / 174 / 100) = floor(102 * 1.017 * 0.8) = floor(83.4) ≈ 83\n\nSo Dark Pulse deals roughly 83-127 damage to Rotom-Wash. Rotom-Wash has 125-157 HP. So it won't KO in one hit, but it'll chip significantly.\n\nNow, what should I do? My options are:\n1. MOVE: darkpulse - chip Rotom-Wash with Dark Pulse (neutral, ~83-127 dmg)\n2. SWITCH: toxapex - switch to Toxapex for a wall\n\nLet me think about the strategy:\n- Rotom-Wash is Electric/Water with Levitate\n- My Hydreigon has Choice Scarf locked to Dark Pulse\n- If I use Dark Pulse, it deals neutral damage (83-127) and might flinch (20%)\n- If I switch to Toxapex, I can set up Toxic or Baneful Bunker\n\nActually, let me think about what Rotom-Wash could do. It's Electric/Water with Levitate. Common moves: Volt Switch, Hydro Pump, Surf, Discharge, Will-O-Wisp, etc.\n\nIf I switch to Toxapex:\n- Toxapex is Poison/Water, very bulky (Def 224, SpD 164)\n- It can Toxic Rotom-Wash\n- It has Regenerator for healing\n- But it's slow (Spe 55), so if Rotom-Wash hits first with a strong move...\n\nActually wait - Rotom-Wash Spe range is 95-151. Toxapex Spe is 55. So Rotom-Wash would always go first against Toxapex. That's bad if Rotom-Wash has a strong STAB move.\n\nBut Hydreigon with Choice Scarf (effective Spe 247) outspeeds everything. If I use Dark Pulse now:\n- It deals 83-127 damage to Rotom-Wash (neutral)\n- 20% flinch chance\n- Then Rotom-Wash gets a turn\n\nIf Rotom-Wash uses a strong move like Hydro Pump or Surf, it could deal significant damage to Hydreigon. Hydreigon has 167 HP. A STAB Water move at BP 90 (Surf) against SpD 110:\nDamage = floor(102 * Atk * 90 / 110 / 100) * 1 * 1\nIf Atk is... wait, Rotom-Wash's Attack range is 76-128. But Surf is special. SpA range is 112-172.\nDamage = floor(102 * SpA * 90 / 110 / 100)\nIf SpA 172: floor(102 * 172 * 90 / 110 / 100) = floor(146.5) ≈ 146\nIf SpA 112: floor(102 * 112 * 90 / 110 / 100) = floor(93.7) ≈ 93\n\nSo Surf could deal 93-146 damage to Hydreigon (167 HP). That's a big chunk but not a KO.\n\nWhat about Volt Switch? It would switch out and heal... no, it just switches.\n\nI think the best play is to use Dark Pulse now while I have the speed advantage. It chips Rotom-Wash significantly (83-127 damage on 125-157 HP), and the 20% flinch could give me a free turn. Then next turn, if Rotom-Wash is low enough or has switched out, I can adapt.\n\nActually, let me reconsider switching to Toxapex. If I switch:\n- Toxapex comes in at full HP\n- Rotom-Wash goes first (Spe 95-151 vs 55)\n- Rotom-Wash could use a strong move on Toxapex\n- Toxapex's Def is 224, SpD is 164 - very bulky\n- Against Electric: neutral. Against Water: super effective (Poison resists... wait no)\n\nToxapex is Poison/Water. \n- Electric vs Poison/Water: neutral (Electric is not super effective against Poison or Water)\n- Water vs Poison/Water: super effective (Water is SE against Water? No! Water is NOT super effective against Water. It's neutral.)\n\nWait, let me reconsider type matchups:\n- Toxapex: Poison/Water\n- Electric attacks: Neutral vs both Poison and Water → Neutral\n- Water attacks: Neutral vs Poison, Super Effective vs... wait no. Water is not SE against Water. Water resists Water? No, Water doesn't resist Water. Water is neutral against Water.\n\nActually: Water type resists Fire, Water, Steel. So Water attack on Water-type = neutral (not resisted, not super effective). Wait no - Water attacks are super effective against Ground and Rock, and resisted by Dragon, Grass, Poison, Water. So Water vs Water = resisted! \n\nSo Toxapex would resist Water attacks. And Electric is neutral. That's good for Toxapex.\n\nBut the issue is: if I switch to Toxapex, Rotom-Wash goes first and can hit with a strong move. Even if it's resisted or neutral, it could deal damage. Then Toxapex can Toxic, Recover, etc.\n\nHmm, but actually I think using Dark Pulse now is better because:\n1. I get the speed advantage (I go first)\n2. I chip Rotom-Wash significantly\n3. 20% flinch chance\n4. If Rotom-Wash switches out, I can switch to Toxapex next turn on my terms\n\nLet me go with Dark Pulse. It's the only move I can use anyway (Choice Scarf locks to first move).\n\nWait, actually - Choice Scarf means I CAN ONLY select the first move it executes. The first move in Hydreigon's list is Dark Pulse. So I literally can only use Dark Pulse or switch. There's no other option for a move.\n\nSo my decision is between:\n1. MOVE: darkpulse\n2. SWITCH: toxapex\n\nI'll go with Dark Pulse to chip Rotom-Wash while I have the speed advantage. If it flinches, great. If not, I can switch next turn if needed.\n",
+      "note": "",
+      "tokens": 4764,
+      "latency_ms": 53901,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% MOVE: willowisp, 27% MOVE: voltswitch, 26% MOVE: thunderbolt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2396,
+      "latency_ms": 456,
+      "cost_usd": 0.000100632,
+      "probabilities": {
+        "MOVE: voltswitch": 0.27,
+        "MOVE: thunderbolt": 0.26,
+        "MOVE: willowisp": 0.31,
+        "MOVE: protect": 0.16
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent brought only 3 Pokémon (all seen): Dragapult (KO'd), Gholdengo (KO'd), Rotom-Wash (active). This is their LAST Pokémon! Choice Scarf locks Hydreigon to Dark Pulse (STAB+SE = 2x, neutral on E/W). Outspeeds RW. Dark Pulse should KO at ~170-200 dmg vs 125-157 HP. If it doesn't KO, switch to Toxapex for Toxic/Baneful Bunker grind.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Hydreigon (Choice Scarf, locked to Dark Pulse) is active at 167/167 HP\n- Opponent's Rotom-Wash is active at 100% HP\n- I outspeed Rotom-Wash (247.5 vs max 151)\n\nRotom-Wash is Electric/Water with Levitate. Dark Pulse is neutral against it (Dark is not super effective on Electric or Water). Let me calculate damage:\n\nHydreigon's Dark Pulse: Special, BP 80\n- Hydreigon SpA: 177\n- Rotom-Wash SpD range: 114-174\n- Damage formula: (2*50/50 + 2) * (BP/4) * (Atk/Def) * STAB * SE * modifiers\n\nActually, let me think about this more carefully. At level 50:\n- Hydreigon SpA = 177\n- Rotom-Wash SpD range: 114-174\n\nDark Pulse is neutral (Dark vs Electric/Water). No STAB bonus for Dark on Hydreigon (Hydreigon is Dark/Dragon, so Dark IS STAB!). Wait, yes! Hydreigon is Dark/Dragon, so Dark Pulse gets STAB.\n\nSo: 2x STAB * 1x SE = 2x multiplier\n- Critical? No, just regular hit.\n\nDamage ≈ (2*50/50 + 2) * (80/4) * (177/SpD) * 2 * random(0.85-1.0)\n\nLet me simplify: base = (2+2) * 20 * (177/SpD) * 2\n= 4 * 20 * (177/SpD) * 2\n= 160 * (177/SpD)\n\nIf SpD = 114: 160 * 1.553 ≈ 248 → with random ~211-248\nIf SpD = 174: 160 * 1.017 ≈ 163 → with random ~139-163\n\nRotom-Wash HP range: 125-157\n\nSo at low end (SpD 114, HP 125): ~211-248 damage → KOs\nAt high end (SpD 174, HP 157): ~139-163 damage → might not KO if HP is 157 and damage is 139\n\nHmm, so it's a coin flip whether Dark Pulse KOs Rotom-Wash. Let me think about what to do.\n\nOptions:\n1. Use Dark Pulse - might KO Rotom-Wash (2x STAB+SE), or chip it down\n2. Switch to Toxapex - set up Toxic/Baneful Bunker wall\n\nIf I use Dark Pulse and it KOs, great. If it doesn't KO, I can switch to Toxapex next turn.\n\nActually, let me reconsider. The opponent has already used 3 Pokémon (Dragapult, Gholdengo, and now Rotom-Wash is active). They have 2 more hidden. From the team preview: Rotom-Wash, Aegislash, Toxapex, Corviknight, Dragapult, Gholdengo. They've shown all 6 at preview but only brought 3 of them. Wait, \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\"\n\nSo they brought exactly 3 Pokémon from their 6 shown. All 3 have been seen: Dragapult (fainted), Gholdengo (fainted), Rotom-Wash (active). So Rotom-Wash is their last Pokémon!\n\nWait, that's a huge advantage. If I KO Rotom-Wash with Dark Pulse, I win the battle. Let me make sure this is correct.\n\n\"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\"\n\nYes! They only have 3 Pokémon total in this battle (Champions format - you pick 3 from your 6). All 3 have been revealed: Dragapult, Gholdengo, Rotom-Wash. So if I KO Rotom-Wash, the opponent has no more Pokémon and I win.\n\nSo I should absolutely use Dark Pulse to try to KO Rotom-Wash. Even if it doesn't KO, it's my only option since Choice Scarf locks me to Dark Pulse. And switching to Toxapex would be a mistake because then I'd have to fight Rotom-Wash with Toxapex (which is slow and weak offensively).\n\nWait, actually can I switch? Yes, SWITCH: toxapex is legal. But if I switch to Toxapex, I still need to KO Rotom-Wash eventually. And Toxapex is very slow (55 base speed) vs Rotom-Wash (95-151). So Toxapex would be at a disadvantage.\n\nThe best play is Dark Pulse. It has 20% flinch chance too, which could help if it doesn't KO. And with STAB+SE (2x), it should do significant damage. Let me recalculate more carefully.\n\nActually wait - I need to double check. Is Dark Pulse super effective on Rotom-Wash? No, it's neutral. But it IS STAB because Hydreigon is Dark/Dragon. So the multiplier is 2x (STAB only).\n\nLet me recalculate:\n- Level 50, Hydreigon SpA = 177\n- Rotom-Wash SpD: let's say around 140 (middle of range)\n- HP: let's say around 140 (middle of range)\n\nDamage = floor(floor(floor(2*50/50 + 2) * 80 / 4 * 177 / 140) * 2) * random(0.85, 1.0)\n= floor(floor(4 * 20 * 1.264)) * 2 * random\n= floor(floor(101.1)) * 2 * random  \n= floor(101) * 2 * random\n= 202 * random(0.85-1.0)\n= ~172-202 damage\n\nVs HP of 125-157: This should KO in most cases!\n\nEven at the worst case (SpD 174, HP 157):\n= floor(floor(4 * 20 * 1.017)) * 2 * random\n= floor(floor(81.4)) * 2 * random\n= 81 * 2 * random\n= 162 * random(0.85-1.0)\n= ~138-162 damage\n\nVs HP 157: might not KO (138 < 157), but likely KOs (162 > 157).\n\nSo there's a good chance of KO, maybe 70-80%. And even if it doesn't KO, I can switch to Toxapex and use Toxic + Baneful Bunker to wall. But the opponent has no more Pokémon... wait, if Rotom-Wash survives, they still have it as their last Pokémon. So I'd need to keep chipping until it faints.\n\nActually, let me reconsider. If Dark Pulse doesn't KO, what happens?\n- Turn 5: Rotom-Wash attacks (it's Electric/Water, Levitate)\n- My Hydreigon is at some HP after taking the hit\n- I can switch to Toxapex\n- Then Toxapex walls with Baneful Bunker + Toxic\n\nBut actually, since the opponent has NO more Pokémon, even if Rotom-Wash survives one turn, I just need to eventually KO it. The battle isn't over until all my Pokémon are fainted or all opponent's are fainted.\n\nSo the plan is clear: Use Dark Pulse now. High chance of KO. If not, switch to Toxapex and grind it down.\n\nLet me go with Dark Pulse.\n",
+      "note": "",
+      "tokens": 4724,
+      "latency_ms": 49241,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: thunderbolt, 33% MOVE: voltswitch, 22% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2495,
+      "latency_ms": 452,
+      "cost_usd": 0.00010479,
+      "probabilities": {
+        "MOVE: voltswitch": 0.33,
+        "MOVE: thunderbolt": 0.38,
+        "MOVE: willowisp": 0.07,
+        "MOVE: protect": 0.22
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent brought only 3 Pokémon (all seen): Dragapult (KO), Gholdengo (KO), Rotom-Wash (active, last one). One more Dark Pulse KOs Rotom at 47%. Choice Scarf locks Hydreigon to DP. Outspeeds RW. This is the winning hit.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Hydreigon is at 157/167 HP (94%) and is BRN (burned). It has a Choice Scarf, so it's locked to Dark Pulse.\n- Opponent's Rotom-Wash is at 47% HP with Leftovers.\n- I'm outspeeding Rotom-Wash (165 vs max 151).\n\nThe opponent brought only 3 Pokémon: Dragapult (KO'd), Gholdengo (KO'd), and Rotom-Wash (active). This means Rotom-Wash is their LAST Pokémon!\n\nIf I use Dark Pulse on Rotom-Wash at 47% HP:\n- Dark Pulse is super effective against Electric/Water (Dark vs Electric = 2x)\n- Power 80, SE = 160 effective power\n- Hydreigon's SpA is 177, with Choice Scarf it doesn't boost attack but boosts speed\n- At level 50, base SpA 177 → actual SpA around 139 (at max) or lower depending on IV/EV\n- Let me estimate: 2x SE Dark Pulse from Hydreigon at ~139 SpA vs Rotom-Wash at 47% HP\n\nActually, let me think about this more carefully. The opponent only has 3 Pokémon total (all seen). Two are KO'd. Rotom-Wash is the last one. If I KO it, I win.\n\nDark Pulse: Dark type, power 80, SE against Electric/Water = 2x effective power of 160.\n- Hydreigon SpA: base 177, at level 50 with presumably good IVs/EVs, let's say around 139-145 actual SpA\n- Rotom-Wash HP: 47% of 125-157 = ~59-74 HP remaining\n\nDamage calculation (rough): ((2 * 80 * 160) / 100) * (SpA/Def) ... this is getting complex. Let me just think about whether it KOs.\n\nFrom turn 3, Dark Pulse did damage to Gholdengo and fainted it. From turn 4, Dark Pulse brought Rotom-Wash from full HP to 41% (so ~59-60% damage). Now at 47%, another Dark Pulse should definitely KO it.\n\nWait, let me re-read: Turn 3 says \"Opposing Gholdengo fainted\" - so DP KOs Gholdengo. Turn 4: \"Opposing Rotom is at 41%\" after DP hit. So one DP hit took Rotom from 100% to 41%. Now it's at 47% (healed by Leftovers). Another DP should take it from 47% to well below 0%.\n\nActually wait - the opponent only brought 3 Pokémon. All three have been seen: Dragapult, Gholdengo, Rotom-Wash. Two are KO'd. So if I KO Rotom-Wash, I win the battle!\n\nI should use Dark Pulse to KO Rotom-Wash and end the game. Even though Hydreigon is burned, it doesn't matter for this turn since I just need one more hit.\n\nLet me go with MOVE: darkpulse\n",
+      "note": "",
+      "tokens": 3690,
+      "latency_ms": 22054,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
