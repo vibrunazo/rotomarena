@@ -1,0 +1,359 @@
+{
+  "id": "match_20261014_015148_Solar Decide_vs_GPT-6 Luna_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p2",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 4,
+  "duration_seconds": 34.97,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|GPT-6 Luna||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Delphox, L50, F|",
+    "|poke|p1|Blaziken, L50, F|",
+    "|poke|p1|Sceptile, L50, F|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Glimmora, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Dragonite|Dragonite, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Blaziken|Blaziken, L50, F|155/155",
+    "|move|p2a: Dragonite|Dragon Dance|p2a: Dragonite",
+    "|-boost|p2a: Dragonite|atk|1",
+    "|-boost|p2a: Dragonite|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p1a: Blaziken|Blaziken-Mega, L50, F",
+    "|-mega|p1a: Blaziken|Blaziken|Blazikenite",
+    "|move|p2a: Dragonite|Earthquake|p1a: Blaziken",
+    "|-supereffective|p1a: Blaziken|1",
+    "|-damage|p1a: Blaziken|0 fnt",
+    "|faint|p1a: Blaziken",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|move|p2a: Dragonite|Dragon Claw|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|turn|4",
+    "|",
+    "|move|p2a: Dragonite|Dragon Claw|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 53% BRING: garchomp, 22% BRING: rotom, 14% BRING: blaziken\nPick 2: 41% BRING: rotom, 25% BRING: blaziken, 17% BRING: sceptile\nPick 3: 53% BRING: blaziken, 28% BRING: taurospaldeablaze, 15% BRING: delphox",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6410,
+      "latency_ms": 3634,
+      "cost_usd": 0.00032050000000000004,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragonite,palafin,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Bring Dragonite for Multiscale and setup, Palafin to punish their Fire types and gain Hero form, and Gholdengo for their Grass/Psychic threats. Keep Kingambit away from their Fighting/Fire team; watch for Garchomp’s Dragon/Ground coverage.",
+      "hidden_reasoning": "**Strategizing team composition**\n\nI need to choose a good counter team against an opponent with strong fire and fighting types, like Garchomp, Rotom, and Sceptile. Dragonite is powerful thanks to Multiscale and Earthquake, but Kingambit is vulnerable. Palafin is a good choice since it can hit fire and ground types, and I’m thinking about whether it can transform into Hero. I wonder if bringing three Dragonite, Palafin, and Gholdengo is the best bet, considering Glimmora can counter fire. There’s a lot to consider!**Evaluating potential team leads**\n\nI’m considering Glimmora for hazards, especially against opponents without boots. Toxic Debris sounds great, but I’m not sure about contact attacks. The opponent likely has Fire types, so bringing Palafin as a lead might let me flip it into Hero. I like Dragonite's setup with Lumberry for status protection, but Garchomp is a threat. Gholdengo adds immunity to Fighting and Poison, which is useful. I could lead with Dragonite; it's versatile and has Multiscale, but Palafin could threaten Fire. I think Dragonite is the best lead!",
+      "note": "",
+      "tokens": 2357,
+      "latency_ms": 9250,
+      "cost_usd": 0.0005023,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% SWITCH: blaziken, 35% SWITCH: rotom, 13% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2171,
+      "latency_ms": 1779,
+      "cost_usd": 0.00010855,
+      "probabilities": {
+        "MOVE: sandstorm": 0.06,
+        "MOVE: spikes": 0.007166,
+        "MOVE: stealthrock": 0.01719,
+        "MOVE: stoneedge": 0.127021,
+        "SWITCH: blaziken": 0.443345,
+        "SWITCH: rotom": 0.345278
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use Dragonite’s Multiscale to set up against Garchomp, then attack or sweep. Keep Dragonite healthy for Multiscale; switch it out later to activate Palafin’s Hero form. Opponent’s other two brought Pokémon are still unknown.",
+      "hidden_reasoning": "**Evaluating Dragonite vs. Garchomp**\n\nI need to weigh my options: using Dragonite with full multiscale against Garchomp, which is a threat. Dragon Dance feels risky, but with multiscale, I can take a hit and potentially outpace Garchomp. Speed +1 Dragonite can exceed Garchomp's max speed. I wonder if Dragon Claw will be enough for a one-hit KO? The damage calculations are tricky. If I set up Dragon Dance, I need to consider potential threats, especially since Garchomp might attack first.",
+      "note": "",
+      "tokens": 2167,
+      "latency_ms": 5439,
+      "cost_usd": 0.00037805,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "blastburn",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "75% MOVE: blastburn [MEGA], 15% MOVE: blastburn, 3% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2524,
+      "latency_ms": 1668,
+      "cost_usd": 0.0001262,
+      "probabilities": {
+        "MOVE: blastburn": 0.147326,
+        "MOVE: blastburn [MEGA]": 0.748185,
+        "MOVE: gigaimpact": 0.025601,
+        "MOVE: gigaimpact [MEGA]": 0.010672,
+        "MOVE: overheat": 0.007335,
+        "MOVE: overheat [MEGA]": 0.012093,
+        "MOVE: reversal": 0.009418,
+        "MOVE: reversal [MEGA]": 0.015528,
+        "SWITCH: garchomp": 0.015528,
+        "SWITCH: rotom": 0.008312
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is +1 Attack/+1 Speed with Multiscale intact; Earthquake should hit Blaziken super effectively. Preserve Dragonite if possible for later, and use Palafin to activate Hero form when switching back in. Opponent has also revealed Garchomp; third brought Pokémon unknown.",
+      "hidden_reasoning": "**Evaluating battle strategy**\n\nI'm considering Blaziken, which has +1 attack and speed. Earthquake could potentially knock it out, especially since it might be faster and could have Speed Boost, though that might not matter. Earthquake is super effective against Fire/Fighting, while Dragonite has +1 attack and could KO with a 100 BP move unless it's bulky. Earthquake could be an option here. I should keep my plan and current info organized and formatted correctly.",
+      "note": "",
+      "tokens": 2251,
+      "latency_ms": 3946,
+      "cost_usd": 0.000348425,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: rotom, 38% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1956,
+      "latency_ms": 1439,
+      "cost_usd": 9.78e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.377541,
+        "SWITCH: rotom": 0.622459
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% SWITCH: garchomp, 6% MOVE: poltergeist, 5% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2261,
+      "latency_ms": 685,
+      "cost_usd": 0.00011305,
+      "probabilities": {
+        "MOVE: poltergeist": 0.061696,
+        "MOVE: risingvoltage": 0.02003,
+        "MOVE: voltswitch": 0.054446,
+        "MOVE: willowisp": 0.012149,
+        "SWITCH: garchomp": 0.85168
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is +1 Attack/+1 Speed and still full with Multiscale; Blaziken is down. Rotom shows Levitate, so avoid Earthquake despite the action text. Use Dragon Claw, then reassess; keep Dragonite healthy for Garchomp.",
+      "hidden_reasoning": "**Analyzing battle mechanics**\n\nI’m looking into some battle mechanics involving Dragonite and Rotom. Rotom’s Levitate ability should make it immune to Ground-type moves like Earthquake, but I wonder if the battle engine might ignore that and still consider it super effective. Dragonite’s Dragon Claw could hit Rotom, but I’m calculating whether it could take it down, given their respective stats. I’m thinking using Dragon Claw makes sense to apply damage while keeping my setup intact, so maybe I should avoid Earthquake.**Evaluating attack strategies**\n\nI’m considering Dragonite's potential with Dragon Claw, which might dish out around 80-100% damage at +1 with its physical Dragon STAB. I’m debating whether to use Dragon Dance again, where I risk getting hit by a status effect. Dragonite has a Lumberry to counter that status, especially since Rotom likely wants to use Will-O-Wisp. If I can boost my Attack and Speed enough, I’d outspeed threats like Garchomp. I feel like Dragon Claw is the right move!",
+      "note": "",
+      "tokens": 2602,
+      "latency_ms": 6865,
+      "cost_usd": 0.0004688,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "poltergeist",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: poltergeist, 21% MOVE: voltswitch, 15% MOVE: risingvoltage",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2277,
+      "latency_ms": 1608,
+      "cost_usd": 0.00011385,
+      "probabilities": {
+        "MOVE: poltergeist": 0.574662,
+        "MOVE: risingvoltage": 0.145297,
+        "MOVE: voltswitch": 0.211406,
+        "MOVE: willowisp": 0.068634
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is full at +1 Attack/+1 Speed; Mega Blaziken and Garchomp are down. Rotom is the last opponent and has Levitate, so Earthquake is not an option despite the action text. Dragon Claw now; preserve Palafin and Gholdengo unless needed.",
+      "hidden_reasoning": "**Analyzing battle strategy**\n\nI need to decide on my move, considering that there's a discrepancy between legal rules and battle facts regarding Rotom's immunity due to Levitate. Should I use Dragon Claw? Rotom, being Electric Ghost, would receive neutral damage from it. A +1 Dragon Claw might come close to a knockout, but Dragonite's attack strength makes me uncertain. Earthquake is definitely off the table since it’s immune. I might consider performing Dragon Dance again for another opportunity, but there's a risk involved. Maybe Dragon Claw is my best bet, especially if Rotom retaliates!**Choosing attack strategy**\n\nWith my attack at +1 being 279 and STAB power at 120, I'm estimating the damage against Rotom's HP and Defense, which could result in around 72-116 damage. At +2, I might reach 96-155, possibly getting a high roll knockout. I should use Dragon Claw to avoid unnecessary setup since we're full Multiscale, and Rotom could try to use Will-o-wisp. If I attack now, I can use Extreme Speed for a finish later. So yes, Dragon Claw it is!",
+      "note": "",
+      "tokens": 2730,
+      "latency_ms": 8005,
+      "cost_usd": 0.0005148,
+      "probabilities": null
+    }
+  ]
+}

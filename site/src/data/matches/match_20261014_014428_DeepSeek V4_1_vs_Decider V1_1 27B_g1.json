@@ -1,0 +1,409 @@
+{
+  "id": "match_20261014_014428_DeepSeek V4_1_vs_Decider V1_1 27B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "deepseek_v4_1_flash",
+      "display_name": "DeepSeek V4.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "quantization": null,
+      "username": "DeepSeek V4.1",
+      "role": "p1",
+      "team": "DeepSeek V4.1 Flash's team",
+      "model_key": "deepseek/deepseek-v4.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "DeepSeek V4.1 Flash"
+    },
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p2",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 147.67,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|DeepSeek V4.1 Flash||",
+    "|player|p2|Perplexity Decider V1.1 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Dragonite, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Garganacl, L50, F|",
+    "|poke|p1|Annihilape, L50, F|",
+    "|poke|p1|Gengar, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Palafin, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Chandelure, L50, F|",
+    "|poke|p2|Whimsicott, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|164/164",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Kingambit|Kingambit, L50, F|207/207",
+    "|move|p2a: Dragapult|Flamethrower|p1a: Kingambit",
+    "|-supereffective|p1a: Kingambit|1",
+    "|-damage|p1a: Kingambit|115/207",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Kingambit|Sucker Punch|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Chandelure|Chandelure, L50, F|100/100",
+    "|turn|3",
+    "|",
+    "|detailschange|p2a: Chandelure|Chandelure-Mega, L50, F",
+    "|-mega|p2a: Chandelure|Chandelure|Chandelurite",
+    "|move|p1a: Kingambit|Sucker Punch|p2a: Chandelure",
+    "|-supereffective|p2a: Chandelure|1",
+    "|-damage|p2a: Chandelure|0 fnt",
+    "|faint|p2a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Palafin|Palafin, L50, F|100/100",
+    "|turn|4",
+    "|",
+    "|-end|p1a: Kingambit|fallenundefined|[silent]",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|164/164",
+    "|move|p2a: Palafin|Close Combat|p1a: Gholdengo",
+    "|-immune|p1a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Palafin|Waterfall|p1a: Gholdengo",
+    "|-damage|p1a: Gholdengo|96/164",
+    "|-damage|p2a: Palafin|90/100|[from] item: Life Orb",
+    "|move|p1a: Gholdengo|Thunderbolt|p2a: Palafin",
+    "|-supereffective|p2a: Palafin|1",
+    "|-damage|p2a: Palafin|0 fnt",
+    "|faint|p2a: Palafin",
+    "|-damage|p1a: Gholdengo|80/164|[from] item: Life Orb",
+    "|",
+    "|win|DeepSeek V4.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,chandelure,palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 52% BRING: dragapult, 20% BRING: whimsicott, 9% BRING: gholdengo\nPick 2: 28% BRING: chandelure, 23% BRING: palafin, 20% BRING: gholdengo\nPick 3: 33% BRING: palafin, 27% BRING: whimsicott, 21% BRING: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5616,
+      "latency_ms": 7064,
+      "cost_usd": 0.00011232000000000001,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,kingambit,dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Bring Gholdengo lead to block Whimsicott's Prankster status with Good as Gold and hit Palafin/Toxapex hard. Kingambit handles Dragapult/Gholdengo with Sucker Punch. Dragonite provides Multiscale setup and priority Extreme Speed. Watch for Chandelure's Fire moves; keep Kingambit away from it.",
+      "hidden_reasoning": "We need choose 3. Opponent has Gholdengo, Palafin, Dragapult, Toxapex, Chandelure, Whimsicott. Need bring 3. Our team: Dragonite, Gholdengo, Kingambit, Garganacl, Annihilape, Gengar.\n\nWe need lead. Consider threats: Dragapult fast, Palafin strong, Chandelure special, Whimsicott prankster, Toxapex wall, Gholdengo.\n\nOur best: Gengar mega fast, but frail. Kingambit sucker punch good vs Dragapult/Gholdengo. Dragonite multiscale + DD. Gholdengo lifeorb strong.\n\nLikely opponent leads something. We need a solid core. I'd bring Gholdengo, Kingambit, Dragonite? Or Gengar for speed.\n\nDragapult outspeeds Gengar? Gengar base 178 speed, Dragapult 213 max? Dragapult base speed 142, Gengar 130? Wait Gengar base speed 110, mega 130. Dragapult base 142. So Dragapult faster. Gengar mega speed 178 stat? Actually stats shown: Gengar SPE 178. Dragapult possible 145-213. So Dragapult could be faster. Gengar shadowball can't OHKO Dragapult likely.\n\nKingambit sucker punch handles Dragapult. Gholdengo handles Whimsicott? Whimsicott prankster could encore/leech seed. Gholdengo goodasgold blocks status.\n\nPalafin: water, bulk up? Kingambit iron head? Gholdengo thunderbolt.\n\nToxapex: wall, Garganacl salt cure good. But Garganacl slow.\n\nI think bring: Gholdengo (lead), Kingambit, Dragonite. Gholdengo can handle Whimsicott, Toxapex? Gholdengo make it rain. Kingambit for Dragapult/Gholdengo. Dragonite for Chandelure? Dragonite EQ.\n\nAlternatively bring Gengar for Chandelure? Chandelure ghost/fire, Gengar shadowball.\n\nLet's decide: lead Gholdengo. It's strong special attacker, goodasgold blocks prankster status from Whimsicott. Back: Kingambit, Dragonite.\n\nActually Dragonite with multiscale and DD can sweep if given chance. Kingambit sucker punch priority.\n\nOpponent likely leads Palafin or Dragapult. Gholdengo vs Palafin: thunderbolt. vs Dragapult: shadowball? Dragapult ghost, Gholdengo ghost/steel, shadowball neutral? Dragapult dragon/ghost, ghost hits ghost super effective? Ghost vs Ghost is super effective? No, Ghost vs Ghost is super effective? Actually Ghost is super effective against Ghost and Psychic. Yes Ghost vs Ghost = 2x. So Gholdengo shadowball hits Dragapult 2x. But Dragapult faster, could KO Gholdengo? Dragapult likely physical or special. Gholdengo HP 164, def 115. Dragapult attack 189 max. Dragon darts? Could be.\n\nMaybe lead Kingambit? Sucker punch priority. But Kingambit slow, if opponent leads Whimsicott, prankster encore? Kingambit sucker punch fails if not attacking.\n\nI'll go with Gholdengo lead, Kingambit, Dragonite. That's solid.\n\nNotes: plan, threats.\n\nDecision: BRING: gholdengo, kingambit, dragonite",
+      "note": "",
+      "tokens": 2728,
+      "latency_ms": 11079,
+      "cost_usd": 0.0005688928,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "74% MOVE: flamethrower, 11% MOVE: phantomforce, 10% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1938,
+      "latency_ms": 1331,
+      "cost_usd": 3.876e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.001846601821933108,
+        "MOVE: shadowball": 0.10268403891464181,
+        "MOVE: flamethrower": 0.735716865117892,
+        "MOVE: phantomforce": 0.1076028154399785,
+        "SWITCH: chandelure": 0.016254134183853897,
+        "SWITCH: palafin": 0.03589554452170061
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Switch to Kingambit to wall Dragapult's Ghost/Dragon moves and threaten with Sucker Punch. Watch for Fire Blast. Keep Gholdengo for Palafin/Toxapex. Dragonite handles Chandelure/Whimsicott later. Opponent likely has Palafin, Toxapex, Chandelure, Whimsicott, Gholdengo.",
+      "hidden_reasoning": "We need choose action. Opponent leads Dragapult vs our Gholdengo. Dragapult likely physical or special? Could be Choice Specs/band, or Dragon Dance. Gholdengo can hit with Shadow Ball super effective. But Dragapult faster likely (145-213 vs 149). If it's max speed, outspeeds. Dragapult may have Shadow Ball, Draco Meteor, U-turn, Fire Blast, Thunderbolt, etc. Gholdengo resists Dragon? No, Ghost/Steel: Dragon neutral? Steel resists Dragon? Actually Steel resists Dragon? No, Steel does not resist Dragon. Ghost/Steel: Dragon neutral, Ghost super effective? Ghost vs Ghost super effective. Dragapult's Ghost moves hit Gholdengo super effective. Also Fire moves neutral? Steel weak to Fire, Ghost neutral, so Fire super effective? Fire vs Steel 2x, vs Ghost 1x = 2x. So Chandelure and Dragapult Fire Blast threaten Gholdengo.\n\nBetter to switch to Kingambit? Kingambit resists Ghost (Dark resists Ghost), resists Dragon? Steel resists Dragon? Actually Steel resists Dragon? No, Steel does not resist Dragon. Wait, Steel resists Dragon? Let me recall type chart: Steel resists Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Yes! Steel resists Dragon. So Kingambit (Dark/Steel) resists Dragon and is immune to Ghost? Dark immune to Psychic, Ghost? Dark is immune to Psychic, not Ghost. Dark resists Ghost and Dark. So Kingambit resists Ghost and Dragon, and is immune to Psychic. So Kingambit is a great switch-in to Dragapult. But Dragapult may have Fire Blast? Fire vs Steel 2x, vs Dark 1x = 2x. So Fire Blast hits Kingambit super effective. Also Dragapult may have U-turn (Bug) which is neutral vs Dark/Steel? Bug vs Dark 2x? Bug vs Dark 2x, vs Steel 0.5x = 1x. So U-turn neutral. But Fire Blast is common on Dragapult? Sometimes. Also Dragapult may have Thunderbolt? Electric neutral vs Steel? Electric vs Steel 1x, vs Dark 1x = 1x. So Kingambit can handle most Dragapult sets except Fire Blast.\n\nAlternatively, we could stay in and Shadow Ball. But Dragapult likely outspeeds and can hit Gholdengo with Shadow Ball or Fire Blast. Gholdengo has 164 HP, 115 Def, 111 SpD. Dragapult's Shadow Ball: base 80, STAB, likely 252 SpA? Dragapult SpA base 100, so 167 max. Shadow Ball vs Gholdengo: Ghost vs Ghost 2x, vs Steel 1x? Ghost vs Steel 1x? Actually Ghost vs Steel 1x? Steel resists Ghost? No, Steel does not resist Ghost. Ghost vs Steel 1x. So Ghost vs Ghost/Steel = 2x. So Shadow Ball would be super effective. Damage calc: 252 SpA Dragapult Shadow Ball vs 0 HP/0 SpD Gholdengo: roughly 60-70%? Let's estimate: Dragapult SpA 167, Gholdengo SpD 111. Base power 80 * 1.5 STAB * 2 type = 240 effective. Likely 2HKO. Gholdengo's Shadow Ball vs Dragapult: 185 SpA vs 85-139 SpD. Dragapult HP 163-195. Shadow Ball 80 * 1.5 STAB * 2 type = 240. Likely OHKO? Dragapult is frail. If Gholdengo moves first, it could OHKO. But speed: Gholdengo 149, Dragapult 145-213. If Dragapult is max speed (213), it outspeeds. If not, Gholdengo might outspeed. But Dragapult is often max speed. So likely Dragapult moves first. If it uses Shadow Ball, Gholdengo takes heavy damage but might survive? Let's calculate: 252 SpA Dragapult Shadow Ball vs 0 HP/0 SpD Gholdengo: \nDamage = (((2*50/5+2)*80*167/111)/50+2)*1.5*2 = ((22*80*167/111)/50+2)*3 = ((22*13360/111)/50+2)*3 = ((293920/111)/50+2)*3 = (2647.9/50+2)*3 = (52.96+2)*3 = 54.96*3 = 164.88. So max damage ~165. Gholdengo HP 164. So it's a possible OHKO if max SpA and max roll. Actually 164.88 > 164, so it can OHKO. So staying in is risky.\n\nSwitching to Kingambit is safer. Kingambit resists Ghost and Dragon, and can threaten with Sucker Punch (priority) or Kowtow Cleave. But if Dragapult has Fire Blast, it could hit Kingambit hard. However, Dragapult's Fire Blast is special, and Kingambit has 107 SpD, 207 HP. Fire Blast base 110, no STAB. Damage: 252 SpA Dragapult Fire Blast vs 0 HP/0 SpD Kingambit: ((22*110*167/107)/50+2)*2 = ((22*18370/107)/50+2)*2 = ((404140/107)/50+2)*2 = (3777/50+2)*2 = (75.54+2)*2 = 77.54*2 = 155.08. So ~155 damage, Kingambit survives with ~52 HP. Then Kingambit can Sucker Punch next turn. But if Dragapult uses U-turn, it switches out. \n\nAlternatively, switch to Dragonite? Dragonite is Dragon/Flying, takes neutral from Ghost? Ghost vs Dragon 1x, vs Flying 1x = 1x. Dragon vs Dragon 2x. So Dragapult's Dragon moves hit Dragonite super effective. Also Multiscale halves damage if full HP. But Dragapult might have Dragon Darts. Dragonite could set up Dragon Dance. But Dragapult is faster and can hit with Dragon Darts. Not ideal.\n\nKingambit is the best switch. Also, Kingambit has Sucker Punch to hit Dragapult if it attacks. But if Dragapult switches out, Sucker Punch fails. However, we can use Kowtow Cleave for reliable damage. But Sucker Punch is priority and can OHKO Dragapult? Let's check: Kingambit Atk 205, Black Glasses boosts Dark moves 1.2x. Sucker Punch base 70, STAB 1.5, Black Glasses 1.2 = 70*1.5*1.2 = 126 effective. Dragapult Def 85-139. Damage: ((22*70*205/85)/50+2)*1.5*1.2 = ((22*14350/85)/50+2)*1.8 = ((315700/85)/50+2)*1.8 = (3714/50+2)*1.8 = (74.28+2)*1.8 = 76.28*1.8 = 137.3. Dragapult HP 163-195. So not OHKO unless low Def. But with Supreme Overlord, if we have fainted Pokémon, it gets stronger. Currently none fainted. So Sucker Punch does about 137, leaving Dragapult with ~26-58 HP. Then next turn we can finish with Sucker Punch or Kowtow. But Dragapult might switch out.\n\nAlternatively, we could use Iron Head? Steel vs Dragon? Steel is super effective vs Dragon? No, Steel is not very effective vs Dragon? Wait, Steel vs Dragon: Steel is not very effective? Actually, Steel resists Dragon, but Dragon resists Steel? No, Dragon does not resist Steel. Steel vs Dragon is 1x? Let's check: Steel is super effective against Ice, Rock, Fairy. Not very effective against Fire, Water, Electric, Steel. Dragon takes neutral from Steel. So Iron Head is neutral. Sucker Punch is better due to priority.\n\nSo switching to Kingambit seems best. But wait, we have Gholdengo with Life Orb. Could we use Make It Rain? It hits Dragapult neutral? Steel vs Dragon 1x. But Make It Rain lowers SpA. Shadow Ball is super effective. But speed issue. If we switch, we lose momentum but gain favorable matchup. \n\nWhat about switching to Dragonite? Dragonite has Multiscale, can take a hit and then Dragon Dance. But Dragapult might have Dragon Darts which hits twice, breaking Multiscale? Multiscale halves damage from full HP. Dragon Darts: 50 BP each, two hits. First hit halved, second hit full? Actually Multiscale reduces damage of each hit? Multiscale reduces damage taken by 50% when at full HP. After first hit, HP is not full, so second hit is full. So Dragonite takes about 50% from first, then 100% from second? That could be a lot. Not ideal.\n\nKingambit is the safest. Let's switch to Kingambit.\n\nBut wait, opponent might predict switch and use U-turn or Fire Blast. If they use Fire Blast, Kingambit takes ~155, survives. Then we can Sucker Punch. If they use U-turn, they switch out to something else, and we can react. If they use Shadow Ball, Kingambit takes 0.5x? Ghost vs Dark 0.5x, vs Steel 0.5x? Actually Ghost vs Dark 0.5x, Ghost vs Steel 0.5x? Wait, Ghost vs Steel: Steel does not resist Ghost? Let's check: Ghost is super effective against Ghost and Psychic. Not very effective against Dark and Normal. Steel does not resist Ghost. So Ghost vs Dark/Steel: Dark resists Ghost (0.5x), Steel neutral (1x) = 0.5x. So Kingambit takes 0.5x from Shadow Ball. Very safe.\n\nSo switch to Kingambit is good.\n\nDecision: SWITCH: kingambit\n\nNotes: Plan: Switch to Kingambit to wall Dragapult's Ghost/Dragon moves. Kingambit threatens with Sucker Punch. Watch for Fire Blast. Keep Gholdengo for later. Dragonite in back for setup. Opponent likely has Palafin, Toxapex, Chandelure, Whimsicott, Gholdengo. Need to handle Chandelure with Kingambit? Chandelure Fire hits Kingambit super effective, so keep Kingambit away from Chandelure. Gholdengo can handle Chandelure? Gholdengo resists Fire? Steel weak to Fire, Ghost neutral, so Fire is 2x on Gholdengo. So Gholdengo also weak to Fire. Dragonite resists Fire? Dragon/Flying: Fire vs Dragon 0.5x, vs Flying 1x = 0.5x. So Dragonite is good against Chandelure. Also Dragonite can Earthquake Chandelure? Chandelure has Flash Fire, so Fire moves immune, but Earthquake is Ground, hits Chandelure super effective? Ground vs Ghost 1x? Ground vs Fire 2x? Chandelure is Ghost/Fire: Ground vs Ghost 1x, vs Fire 2x = 2x. So Dragonite's Earthquake hits Chandelure super effective. So Dragonite is good against Chandelure.\n\nSo plan: Kingambit handles Dragapult and Gholdengo. Dragonite handles Chandelure and Palafin? Palafin is Water, Dragonite's Thunderbolt? No, Dragonite doesn't have Thunderbolt. Dragonite has Ice Spinner, which hits Palafin neutral? Ice vs Water 0.5x. Not great. Gholdengo has Thunderbolt for Palafin. So Gholdengo handles Palafin and Toxapex. Kingambit handles Dragapult and Gholdengo. Dragonite handles Chandelure and Whimsicott? Whimsicott is Grass/Fairy, Dragonite's Ice Spinner hits super effective? Ice vs Grass 2x, vs Fairy 1x = 2x. So Dragonite can hit Whimsicott hard. Also Extreme Speed for priority.\n\nSo switch to Kingambit now.\n\nLet's write notes and decision.",
+      "note": "",
+      "tokens": 4887,
+      "latency_ms": 32540,
+      "cost_usd": 0.001395828,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: flamethrower, 1% SWITCH: chandelure, 0% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1939,
+      "latency_ms": 712,
+      "cost_usd": 3.878e-05,
+      "probabilities": {
+        "MOVE: flamethrower": 0.9906764216829618,
+        "SWITCH: chandelure": 0.005072703778206205,
+        "SWITCH: palafin": 0.0042508745388319565
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Kingambit at 55%, Dragapult used Flamethrower. Sucker Punch priority KOs if Dragapult attacks; if it switches, Sucker fails but we survive. Next: if Dragapult gone, watch for Palafin/Toxapex/Chandelure. Keep Gholdengo for Palafin/Toxapex, Dragonite for Chandelure/Whimsicott.",
+      "hidden_reasoning": "We need answer exactly form. Need decide turn. We have Kingambit at 55.6 vs Dragapult. Dragapult used Flamethrower, super effective on Kingambit? Kingambit Dark/Steel, Fire super effective. It did 92 damage? HP 207 ->115, 44.4%. Dragapult likely special? Flamethrower from Dragapult SpA maybe modest? Could be physical? Dragapult has high Atk, but Flamethrower special. We need act. Sucker Punch priority +1, super effective, but Dragapult faster; if it attacks, Sucker Punch goes first due priority. However if Dragapult uses status? likely attacks. Sucker Punch can KO? Let's calculate. Kingambit Atk 205, blackglasses, Sucker Punch 70 BP, super effective vs Dragapult. Dragapult HP range 163-195, Def 85-139. Damage roughly: level 50, Atk 205, BP 70, STAB? Dark no STAB? Kingambit Dark type, yes STAB 1.5. Blackglasses 1.2. Super effective 2. Formula: ((2*50/5+2)*205*70/Def)/50 +2 = (22*205*70/Def)/50+2 = (315700/Def? wait 22*205=4510; *70=315700; /Def; /50 =6314/Def +2). Then modifiers STAB 1.5, item 1.2, SE 2 = 3.6. So damage = (6314/Def +2)*3.6. If Def 85: 6314/85=74.3+2=76.3*3.6=274.7. If Def 139: 45.4+2=47.4*3.6=170.6. Dragapult HP 163-195. So likely KO if Def not max? If max Def 139 and HP 195, damage 170 <195, not KO. But Dragapult likely offensive, Def low. Sucker Punch likely KO. But Sucker Punch fails if Dragapult doesn't attack. Opponent might predict Sucker Punch and switch or use status? Dragapult moves: Flamethrower, maybe U-turn, Shadow Ball, Draco Meteor, Thunderbolt, Will-O-Wisp? It could switch to resist. If we Sucker Punch and they switch, it fails, then we get hit? Actually Sucker Punch fails if target not attacking; if they switch, Sucker Punch fails, then switch happens, no damage to incoming? In Showdown, if Sucker Punch fails due target switching, the switch occurs and then no attack. So we lose momentum. But if they stay and attack, we KO. They might switch to Toxapex or Gholdengo to absorb Dark? Gholdengo resists Dark? Steel/Ghost: Dark is neutral? Dark vs Steel neutral? Dark vs Ghost super effective? Actually Dark is super effective vs Ghost, not very effective vs Steel? Dark vs Steel: neutral? Steel resists Dark? In Gen VI+, Steel resists Dark? Yes Steel resists Dark and Ghost? Wait type chart: Dark is super effective against Ghost and Psychic; not very effective against Fighting, Dark, Fairy; Steel resists Dark? Let's recall: Steel resists Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Does Steel resist Dark? No, Steel does not resist Dark. Dark is neutral vs Steel. Dark vs Ghost is super effective. So Gholdengo Steel/Ghost takes neutral from Dark? Actually Dark vs Ghost super effective, vs Steel neutral => neutral overall? Type effectiveness multiplies: Dark vs Ghost 2x, vs Steel 1x => 2x? Wait dual type: Dark attacking Gholdengo (Steel/Ghost): Dark is super effective against Ghost (2x), not very effective against Steel? Check: Dark vs Steel is 0.5? Let's verify. In Pokémon, Dark-type moves are not very effective against Fighting, Dark, Fairy. Steel does not resist Dark. Actually Steel resists Dark? I think Steel resists Dark and Ghost? Let's check memory: Steel defensive: resists Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. It does NOT resist Dark or Ghost. Wait Ghost is neutral vs Steel? Ghost vs Steel: neutral? Actually Steel resists Ghost? No, Steel does not resist Ghost. In Gen 2-5, Steel resisted Ghost and Dark. From Gen 6 onward, Steel no longer resists Ghost and Dark. So Dark vs Gholdengo: Dark vs Ghost 2x, vs Steel 1x = 2x. So Sucker Punch would be super effective on Gholdengo too. But Gholdengo might be immune? No.\n\nIf we Sucker Punch, likely KO Dragapult. But if they switch to something, Sucker Punch fails. Could use Kowtow Cleave, no priority, but Dragapult faster and can hit us again. We are at 115 HP. Another Flamethrower might KO? Flamethrower did 92 damage. Next Flamethrower would KO Kingambit. So we need to either KO or switch. Sucker Punch is best if they attack. If they switch, we fail and then we are still in vs new Pokémon, but we survive? Actually if Sucker Punch fails due switch, the turn ends with new opponent active and Kingambit still at 115. Then next turn we can act. That's not terrible. But if they stay and use Flamethrower, Sucker Punch goes first and KOs. So Sucker Punch seems optimal. Alternatively switch to Gholdengo to block? Gholdengo resists Fire? Steel resists Fire? Steel is not very effective against Fire? Fire is super effective vs Steel, so Gholdengo takes 2x from Fire? Gholdengo Steel/Ghost: Fire vs Steel 2x, vs Ghost 1x = 2x. So not good. Dragonite resists Fire? Dragon/Flying: Fire vs Dragon 0.5, vs Flying 1? Actually Fire vs Dragon 0.5, vs Flying 1 => 0.5. Dragonite with Multiscale can take Flamethrower easily. But switching Dragonite loses Multiscale? Multiscale halves damage at full HP. Dragonite can set up Dragon Dance. But Dragapult may have Dragon moves. Dragonite is immune to Ground, resists Fire, but Dragapult has Dragon/Ghost moves. Dragonite is weak to Dragon? Dragon vs Dragon 2x, vs Flying 1x = 2x. So Dragapult's Dragon Darts would be super effective. But Dragapult used Flamethrower, maybe it's special? Could be mixed. Dragonite can take a hit with Multiscale. But we want to remove Dragapult. Kingambit Sucker Punch is strong.\n\nGiven Kingambit at 55%, if we Sucker Punch and they switch, we fail but survive. If they attack, we KO. If we switch, we lose Kingambit's chance to KO. I think Sucker Punch is correct. But note Sucker Punch has only 8 PP. We should use it. Also Supreme Overlord: no fainted allies yet, so no boost. Blackglasses boost. Sucker Punch likely KOs Dragapult. Let's do MOVE: suckerpunch.\n\nNeed notes update. Keep concise. Decision line exactly \"MOVE: suckerpunch\". No mega. Ensure format.\n\nNotes: Turn 2: Kingambit at 55%, Dragapult used Flamethrower. Sucker Punch priority KOs if Dragapult attacks; if it switches, Sucker fails but we survive. Next: if Dragapult gone, watch for Palafin/Toxapex/Chandelure. Keep Gholdengo for Palafin/Toxapex. Dragonite for Chandelure/Whimsicott. Need mention.\n\nDecision: MOVE: suckerpunch.",
+      "note": "",
+      "tokens": 4011,
+      "latency_ms": 23625,
+      "cost_usd": 0.000992908,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "68% SWITCH: chandelure, 32% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1815,
+      "latency_ms": 466,
+      "cost_usd": 3.63e-05,
+      "probabilities": {
+        "SWITCH: chandelure": 0.6799479123876722,
+        "SWITCH: palafin": 0.3200520876123279
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "94% MOVE: fireblast [MEGA], 3% MOVE: willowisp [MEGA], 1% MOVE: fireblast",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2375,
+      "latency_ms": 496,
+      "cost_usd": 4.75e-05,
+      "probabilities": {
+        "MOVE: hex": 0.0004932050201448447,
+        "MOVE: hex [MEGA]": 0.0016594110438249926,
+        "MOVE: fireblast": 0.014718591245505024,
+        "MOVE: fireblast [MEGA]": 0.9392841891111723,
+        "MOVE: willowisp": 0.0041264450280243704,
+        "MOVE: willowisp [MEGA]": 0.026980566174021905,
+        "MOVE: calmmind": 0.0007106271435055318,
+        "MOVE: calmmind [MEGA]": 0.007220833347266508,
+        "SWITCH: palafin": 0.004806131886534609
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 3: Kingambit 55% vs Chandelure. Sucker Punch is priority + super effective (~110-130 dmg), likely leaves Chandelure low but not KO'd; Chandelure's Fire move likely KOs Kingambit. Trade Kingambit to cripple Chandelure, then bring Gholdengo (Spe 149 > Chandelure max 145) to finish it clean. Preserve Dragonite (Multiscale) for Palafin/Whimsicott. Watch for Chandelure switching out (Sucker fails).",
+      "hidden_reasoning": "Kingambit at 55% vs Chandelure. Chandelure likely has Fire move (Flamethrower/Fire Blast/Shadow Ball). Kingambit is weak to Fire. Sucker Punch is super effective and priority, but Chandelure may not attack if it uses a status move... but Chandelure likely attacks. Sucker Punch from Kingambit: 70 BP * 1.2 blackglasses * 1.5 SE = strong. But Kingambit is slow, Chandelure will move first with Fire move and likely KO Kingambit (55% HP, Fire super effective). Actually Sucker Punch has +1 priority so Kingambit moves first if Chandelure attacks. Sucker Punch would hit first and could KO Chandelure? Chandelure HP 135-167, Def 99-156. Kingambit Atk 205. Sucker Punch 70 BP, STAB? No, Kingambit is Dark/Steel, Sucker Punch is Dark so STAB 1.5x. Plus blackglasses 1.2x. Plus supremeoverlord 10% per fainted ally - 1 fainted (Dragapult) = 10%. So 70*1.5*1.2*1.1 = 138.6. Against Chandelure Def ~120, that's roughly... damage calc: (2*50/5+2)=22, *70*138.6/... let me just estimate. Likely does significant damage but Chandelure has decent bulk. Might not KO.\n\nActually better: switch to Gholdengo? Gholdengo resists Fire? No, Steel doesn't resist Fire, Ghost doesn't. Gholdengo is neutral to Fire. But Gholdengo can take a hit and hit back with Shadow Ball. Actually Chandelure's Fire moves hit Gholdengo neutrally.\n\nDragonite resists Fire (Dragon/Flying - Flying doesn't resist Fire, Dragon doesn't). Actually Dragonite is neutral to Fire. Hmm, Dragon/Flying: Fire is neutral.\n\nWait, Kingambit is Dark/Steel - Fire is super effective (Steel weak to Fire). So Kingambit is in danger.\n\nBest play: Sucker Punch to try to KO Chandelure before it attacks. If Chandelure uses a Fire move, Sucker Punch goes first. If it KOs, great. If not, Kingambit likely dies.\n\nAlternatively switch to Dragonite to preserve Kingambit. But Dragonite takes neutral Fire. Dragonite with Multiscale could survive.\n\nActually, let me think about Sucker Punch KO. Chandelure max HP 167, min Def 99. Kingambit Atk 205. Damage: level 50, power 70, Atk 205, Def 99. Base damage = ((2*50/5+2)*70*205/99)/50 + 2 = (22*70*205/99)/50+2 = (22*70*2.07)/50+2 = (3187)/50+2 = 63.7+2 = 65.7. Then modifiers: STAB 1.5, blackglasses 1.2, supremeoverlord 1.1 = 65.7*1.5*1.2*1.1 = 130. That's not a KO on 135-167 HP. Hmm, close but not guaranteed.\n\nWait I need to recompute. Actually the formula: Damage = (((2*Level/5+2)*Power*Atk/Def)/50)+2. Level 50: 2*50/5+2 = 22. So (22*70*205/99)/50+2. 22*70=1540, *205=315700, /99=3188.9, /50=63.78, +2=65.78. Then *1.5*1.2*1.1 = 65.78*1.98 = 130.2. So ~130 damage. Chandelure has 135-167 HP. So it survives with a little HP if min HP, or more.\n\nHmm, so Sucker Punch doesn't KO. Then Chandelure KOs Kingambit with Fire move. Bad trade.\n\nBetter to switch. Switch to Dragonite? Dragonite takes Fire neutrally, has Multiscale (halves damage at full HP). Dragonite can then set up Dragon Dance or attack. But Chandelure might have Shadow Ball or Energy Ball.\n\nActually, Gholdengo could come in and threaten with Shadow Ball. But Gholdengo is neutral to Fire too.\n\nHmm, what about switching to Dragonite and using Earthquake? Chandelure is Ghost/Fire, Earthquake is neutral. Ice Spinner neutral. Extreme Speed neutral.\n\nActually, let me reconsider. Kingambit's Sucker Punch does ~130, Chandelure survives. But if Chandelure is at low HP, next turn we can finish. But Kingambit dies to Fire.\n\nAlternatively, Kowtow Cleave: 85 BP, no priority, Chandelure moves first and KOs Kingambit. Bad.\n\nSo best is to switch. Which switch? Dragonite with Multiscale can tank a Fire move and then... Dragonite's moves: Dragon Dance, Extreme Speed, Earthquake, Ice Spinner. Against Chandelure, Earthquake is neutral, Extreme Speed neutral. Not great.\n\nGholdengo: Shadow Ball is super effective on Chandelure (Ghost vs Ghost). Gholdengo can take a Fire move (neutral) and hit back with Shadow Ball. Gholdengo SpA 185, Shadow Ball 80 BP STAB. That could KO Chandelure.\n\nLet me calc: Gholdengo SpA 185, Shadow Ball 80, Chandelure SpD 99-156. Damage = (22*80*185/120)/50+2 = (22*80*1.54)/50+2 = (2710)/50+2 = 54.2+2=56.2, *1.5 STAB = 84.3. Hmm, Chandelure HP 135-167. Not a KO either. With Life Orb 1.3x = 109.6. Still not KO on max HP.\n\nHmm. Chandelure is bulky-ish.\n\nActually wait, Chandelure's SpD is 99-156, could be low. If SpD 99, damage ~84*1.3=109. Not KO.\n\nHmm. Let me think differently. Maybe switch to Gholdengo, take a hit, then next turn. But Chandelure might have Shadow Ball which is super effective on Gholdengo (Ghost vs Ghost). Gholdengo HP 164, SpD 111. Chandelure SpA 148-216. Shadow Ball 80 BP STAB. Damage = (22*80*180/111)/50+2 = (22*80*1.62)/50+2 = (2851)/50+2 = 57+2=59, *1.5=88.5. So Gholdengo takes ~88, survives with ~76. Then Gholdengo Shadow Ball back.\n\nActually, maybe the best is to just Sucker Punch and hope for a KO or high roll, since Chandelure might not even attack (could use Calm Mind or Will-O-Wisp). But Chandelure likely attacks.\n\nHmm, actually let me reconsider: is Chandelure likely to have a Fire move? Yes, definitely. And it will KO Kingambit.\n\nLet me think about what's the best long-term. We have 3 Pokémon: Dragonite, Gholdengo, Kingambit. Opponent has Chandelure + 2 more (from Gholdengo, Palafin, Toxapex, Whimsicott).\n\nKingambit is our check to Gholdengo (Sucker Punch/Kowtow). If we lose Kingambit, Gholdengo becomes harder. But we have our own Gholdengo.\n\nActually, Kingambit at 55% is not that valuable now. Let's preserve it? Or sacrifice it to weaken Chandelure?\n\nIf we Sucker Punch, Chandelure takes ~130 (survives with ~5-37 HP), then KOs Kingambit. Then we bring in Gholdengo or Dragonite to finish Chandelure. That's a decent trade - we lose Kingambit but Chandelure is nearly dead.\n\nActually if Chandelure survives with low HP, we can finish it with Extreme Speed from Dragonite or Shadow Ball from Gholdengo. But Chandelure might switch out.\n\nAlternatively, switch to Dragonite now, preserve Kingambit. Dragonite takes Fire neutrally with Multiscale (halved). Then Dragonite can Dragon Dance or attack.\n\nHmm, but Dragonite's attacks are not great vs Chandelure.\n\nLet me think: what does opponent do? Chandelure likely attacks with Fire. If we switch to Dragonite, Multiscale halves damage. Dragonite survives easily. Then we can Dragon Dance and sweep? But Chandelure might have Will-O-Wisp or Energy Ball.\n\nActually, I think the cleanest is to switch to Gholdengo. Gholdengo resists... no. Hmm.\n\nWait, actually let me reconsider the matchup. Chandelure vs Kingambit: Kingambit is weak to Fire. But Kingambit's Sucker Punch is super effective. The question is whether Sucker Punch KOs.\n\nLet me recompute more carefully with max rolls. Damage range is 85-100% of calc. So 130 * 0.85 to 1.0 = 110-130. Chandelure min HP 135. So no KO even at max roll. Hmm.\n\nActually wait, I should double check supremeoverlord. \"10% more power for each fainted ally, up to 5 allies.\" We have 1 fainted (Dragapult). So 1.1x. Yes.\n\nSo Sucker Punch does ~110-130, Chandelure survives. Then Chandelure KOs Kingambit. Not ideal but weakens Chandelure.\n\nAlternatively, Kowtow Cleave does more (85 BP vs 70) but no priority, so Chandelure attacks first and KOs Kingambit before Kowtow. Unless Chandelure doesn't attack. Bad.\n\nSo options: Sucker Punch (trade Kingambit for ~130 damage on Chandelure) or switch.\n\nI think switching to Gholdengo is good because Gholdengo can threaten Chandelure with Shadow Ball and also handle Palafin/Toxapex. But Gholdengo takes neutral Fire and super effective Shadow Ball.\n\nHmm, actually, let me think about the opponent's likely switch. After Chandelure comes in, opponent might expect us to switch. Chandelure could use a Fire move on whatever we switch to.\n\nLet me just go with Sucker Punch. It's super effective, priority, and if Chandelure attacks we get a big hit. Even if Kingambit dies, we've weakened Chandelure significantly, and we have Gholdengo/Dragonite to clean up.\n\nActually, wait. Let me reconsider. If Chandelure uses a non-attacking move (like Calm Mind or Will-O-Wisp), Sucker Punch fails and Kingambit takes nothing (if Will-O-Wisp, it burns Kingambit). Hmm.\n\nActually, I think the safer and better play is to switch to Gholdengo. Gholdengo is our best special attacker and can handle Chandelure with Shadow Ball. Also Good as Gold blocks status moves like Will-O-Wisp.\n\nWait, Good as Gold blocks status moves targeting Gholdengo. So if Chandelure uses Will-O-Wisp, it fails against Gholdengo. Nice.\n\nBut Chandelure's Fire move hits Gholdengo neutrally. Gholdengo HP 164, SpD 111. Fire Blast 110 BP: damage = (22*110*180/111)/50+2 = (22*110*1.62)/50+2 = (3920)/50+2 = 78.4+2=80.4. So ~80 damage, Gholdengo survives with ~84. Then Gholdengo Shadow Ball back for ~84-110. Chandelure survives.\n\nHmm, this is getting complicated. Let me just make a decision.\n\nI'll go with Sucker Punch. Reasoning: it's super effective priority, and even if it doesn't KO, it heavily damages Chandelure. Kingambit is already at 55% and less valuable. Actually, hmm, but if it doesn't KO and Kingambit dies, we're down a Pokémon and Chandelure is still alive.\n\nAlternatively, switch to Dragonite: Multiscale + neutral Fire = Dragonite takes ~40 damage. Then Dragonite can Dragon Dance. But Chandelure might have Energy Ball (Grass) which is neutral on Dragonite... actually Energy Ball is neutral on Dragon/Flying? Grass vs Dragon neutral, vs Flying neutral. So neutral.\n\nHmm, actually Dragonite with Multiscale is a great pivot. Let me switch to Dragonite.\n\nWait, but Dragonite's best move vs Chandelure is Earthquake (neutral) or Extreme Speed (neutral). Not super effective. So Dragonite can't easily KO Chandelure.\n\nGholdengo's Shadow Ball is super effective. So Gholdengo is the better Chandelure answer.\n\nLet me switch to Gholdengo. Good as Gold blocks Will-O-Wisp, and Shadow Ball threatens Chandelure.\n\nHmm, but Chandelure's Shadow Ball is super effective on Gholdengo too. And Chandelure is faster (90-145 vs Gholdengo 149? Wait Gholdengo Spe 149, Chandelure 90-145). Gholdengo is faster! Gholdengo Spe 149 > Chandelure max 145. So Gholdengo moves first!\n\nSo if we switch to Gholdengo, next turn Gholdengo moves first and can Shadow Ball Chandelure. But this turn we switch, Chandelure attacks Gholdengo. Then next turn Gholdengo attacks first.\n\nActually, if Gholdengo is faster, we could just... hmm, but we're switching this turn.\n\nOK here's the thing: if we switch to Gholdengo this turn, Chandelure gets a free hit. If we Sucker Punch, we get a hit but Kingambit likely dies.\n\nLet me think about the value. Kingambit at 55% is our check to opposing Gholdengo and Dragapult (already dead). Opposing Gholdengo is still possible. Kingambit's Sucker Punch is important for that.\n\nHmm, but Kingambit is weak to Fire and Chandelure is here now.\n\nI think the best play is to switch to Gholdengo. It's faster than Chandelure, blocks status with Good as Gold, and threatens with Shadow Ball. We preserve Kingambit for later (opposing Gholdengo).\n\nActually wait, but if we switch to Gholdengo and Chandelure uses Shadow Ball, Gholdengo takes ~88. Then next turn Gholdengo Shadow Balls first. Chandelure takes ~84-110 (with Life Orb). Chandelure survives. Then Chandelure Shadow Balls again, Gholdengo at ~76-88 = dies? Gholdengo HP 164, took 88, has 76. Second Shadow Ball 88 KOs. Hmm.\n\nSo Gholdengo vs Chandelure is a losing 1v1 if Chandelure has Shadow Ball.\n\nHmm. Let me reconsider.\n\nActually, maybe the best is to Sucker Punch and trade. Let's see: Sucker Punch ~110-130, Chandelure survives with 5-57 HP. Then Chandelure KOs Kingambit. Then we bring in Gholdengo (faster) and Shadow Ball to finish Chandelure. Gholdengo takes no damage. \n\nThat's actually a great line! We trade Kingambit (55%) for Chandelure, and Gholdengo comes in clean.\n\nBut wait, Chandelure might switch out after taking Sucker Punch. If Chandelure switches, Sucker Punch still hits (it's attacking? no, if Chandelure switches, Sucker Punch fails because target isn't attacking). Hmm, actually Sucker Punch fails if the target is switching out. So if Chandelure switches, Sucker Punch fails and Kingambit takes nothing.\n\nHmm, but Chandelure wouldn't switch out necessarily.\n\nActually, let me reconsider: does Chandelure attack or switch? If opponent predicts Sucker Punch, they might switch. But Chandelure is a good matchup vs Kingambit (Fire vs Steel), so they'd likely attack.\n\nOK, I'll go with Sucker Punch. It's the aggressive play that trades well.\n\nHmm, but actually, let me reconsider once more. If Sucker Punch doesn't KO and Chandelure KOs Kingambit, we're at 2 Pokémon (Dragonite, Gholdengo) vs 3 (Chandelure + 2). Chandelure at low HP. We bring Gholdengo, finish Chandelure. Then 2v2. That's fine.\n\nIf we switch to Gholdengo, we keep Kingambit but Gholdengo takes a hit. Then it's a 1v1 that Gholdengo might lose.\n\nI think Sucker Punch is better. Let me go with it.\n\nActually, hold on. Let me reconsider whether Chandelure might not have a Fire move that KOs. Chandelure's Fire moves: Flamethrower (90), Fire Blast (110), Overheat (130), Heat Wave (95). All super effective on Kingambit. Kingambit at 115 HP, Def 140, SpD 107. Fire Blast: (22*110*180/107)/50+2 = (22*110*1.68)/50+2 = (4066)/50+2 = 81.3+2=83.3, *1.5 SE = 125. So KOs Kingambit (115 HP). Yes.\n\nFlamethrower: (22*90*180/107)/50+2 = (22*90*1.68)/50+2 = (3326)/50+2=66.5+2=68.5, *1.5=102.8. Doesn't KO (115 HP)! So if Chandelure uses Flamethrower, Kingambit survives with ~12 HP.\n\nHmm interesting. So it depends on the move. If Flamethrower, Kingambit survives and Sucker Punch hits. If Fire Blast, Kingambit dies.\n\nOK, Sucker Punch is still the play. Let me finalize.\n\nActually, one more consideration: what if Chandelure is Choice-locked or something. Unknown.\n\nI'll go with Sucker Punch.\n\nLet me write notes.",
+      "note": "",
+      "tokens": 6563,
+      "latency_ms": 49471,
+      "cost_usd": 0.0019316584,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% MOVE: closecombat, 1% MOVE: waterfall, 0% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2146,
+      "latency_ms": 486,
+      "cost_usd": 4.292e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.011746331357453543,
+        "MOVE: flipturn": 0.0025113420995037765,
+        "MOVE: closecombat": 0.9840228780984542,
+        "MOVE: aquajet": 0.001719448444588421
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin is the opponent's last Pokémon, so it cannot switch out to become Hero Form; it is stuck in weak Zero Form. Kingambit's Sucker Punch won't KO and risks a 4x Close Combat. Switch to Gholdengo: immune to Fighting, takes Water hits, and outspeeds to KO with Thunderbolt next turn. Preserve Dragonite.",
+      "hidden_reasoning": "We need answer. Need decide turn 4. We have Kingambit 55% vs Palafin full. Opponent brought 3: Dragapult, Chandelure fainted, Palafin active. Palafin likely Zero form? It came in after Chandelure fainted, no switch out yet, so Zero Form stats? Palafin Zero has base stats HP 100 Atk 70 Def 72 SpA 58 SpD 62 Spe 60? Hero form has 100/160/97/106/87/100. At preview stats range maybe Hero? Actually Palafin possible stats range includes Spe 108-167, likely Hero form? Wait Palafin Zero base speed 60 -> level 50 max? With 31 IV/EV neutral: HP 175? Let's compute. Palafin base stats: Zero Form: HP 100, Atk 70, Def 72, SpA 58, SpD 62, Spe 60. Hero Form: HP 100, Atk 160, Def 97, SpA 106, SpD 87, Spe 100. At level 50, max speed Hero with 252+ = 167? Yes. Zero max speed = 112? Preview range 108-167 includes both? It says possible range [108-167], maybe because ability zerotohero changes form? It lists possible stats at level 50 maybe Hero? Hmm.\n\nPalafin just switched in, Zero Form. It will likely use Flip Turn? Or Jet Punch? Palafin Hero has Jet Punch priority water. But it's Zero now, stats weak until switches out. It came in on Kingambit. We have Kingambit at 55%. Palafin likely has Water moves, Fighting moves (Close Combat), Ice Punch, Jet Punch. Kingambit weak to Fighting, neutral Water? Dark/Steel: Water neutral, Fighting 4x? Dark weak to Fighting, Steel weak to Fighting? Actually Steel weak to Fighting, Dark weak to Fighting, so 4x. Palafin may have Close Combat. If it attacks, Sucker Punch priority +1 will hit first. Sucker Punch from Kingambit with Blackglasses, Supreme Overlord (2 fainted allies? Dragapult and Chandelure fainted = 2 allies? Supreme Overlord counts fainted allies on your side, not opponent. Our fainted allies: none? Wait our Kingambit is only one? We have Dragonite, Gholdengo, Kingambit. None fainted. Supreme Overlord boost 0. Blackglasses 1.2. Sucker Punch BP 70 * 1.2 = 84. Against Palafin Zero: Water type, Dark neutral. Atk 205. Damage maybe ~40-50%. Against Hero: Def 97, HP 100, maybe ~35-45%. Not KO. Kowtow Cleave BP 85 *1.2=102, no priority. Palafin faster (if Hero) or maybe Zero speed 60 vs Kingambit 70, Kingambit faster if Zero. But Palafin likely will switch? Wait Palafin's ability: if Zero Form switches out, becomes Hero Form. It just came in, so it's Zero. It might use Flip Turn to switch out and become Hero, or it might attack. If it uses Flip Turn, Sucker Punch fails? Sucker Punch fails if target not attacking? Flip Turn is attacking move, so Sucker Punch works. But if it switches via Flip Turn, it will hit Kingambit and then switch to something? But opponent only has Palafin left? Wait opponent brought 3: Dragapult fainted, Chandelure fainted, Palafin active. That's all 3. So Palafin cannot switch out to another Pokémon because no remaining? Actually if it uses Flip Turn, it would switch out but no other Pokémon available? In singles, if no other Pokémon, Flip Turn won't switch? It might just attack. So Palafin is last Pokémon. It cannot switch. So it's Zero Form permanently? Wait Palafin's Zero to Hero triggers when it switches out. If it's last, it can't switch out, so stays Zero Form. But it might have already transformed? It came in after Chandelure fainted, so it's Zero. It cannot become Hero unless it switches out, which it can't because no bench. So Palafin is Zero Form with weak stats. That's huge. Its speed max 112? Actually Zero base speed 60, max 112. Kingambit speed 70, so Kingambit is faster? Wait Kingambit speed 70, Palafin Zero max speed 112? Let's compute: base 60 at level 50 with 31 IV, 252 EV, neutral: (2*60+31+63)*50/100 +5 = (120+31+63)=214*0.5=107+5=112. So Palafin Zero can be up to 112 speed, faster than Kingambit 70. But if it's Zero, it might still be faster. However, Palafin Zero's attack is low (base 70), so its moves won't do much to Kingambit. It might have Jet Punch priority? Jet Punch is Water priority, but Zero form attack low. It might have Close Combat? Zero form attack 70, Close Combat against Kingambit 4x might still hurt. But Kingambit can Sucker Punch.\n\nWe need decide best move. Kingambit at 55% (115 HP). Palafin full. We have Gholdengo and Dragonite full. We could switch to Gholdengo to take Water/Fighting? Gholdengo is Steel/Ghost, weak to Ghost/Dark, immune to Fighting? Ghost immune to Fighting? Actually Ghost is immune to Fighting. Steel resists Water? Steel resists Water? No, Steel does not resist Water. Gholdengo takes neutral Water, immune Fighting. Good against Palafin's Close Combat. But Palafin might have Ice Punch? Gholdengo neutral. Gholdengo can Thunderbolt for super effective on Water. Gholdengo speed 149, Palafin Zero max 112, so Gholdengo outspeeds and Thunderbolt likely KOs? Palafin Zero HP 175-207, SpD 73-125. Gholdengo SpA 185, Life Orb, Thunderbolt BP 90 * 2 = 180. Damage likely huge, maybe OHKO. So switching to Gholdengo is safe and can KO next turn. But if we switch, Palafin gets a free hit. What can Palafin do? If it uses Flip Turn, it hits Gholdengo? Water vs Steel/Ghost neutral. If it uses Close Combat, immune. If it uses Ice Punch, neutral. If it uses Jet Punch, priority Water, neutral. Gholdengo can take a hit. Then next turn Thunderbolt KO. Alternatively, Kingambit can Sucker Punch now. If Palafin attacks, Sucker Punch hits first. But Sucker Punch may not KO. Then Palafin might KO Kingambit? Palafin Zero attack is low, but Close Combat 4x might KO? Let's estimate: Palafin Zero Atk base 70, max 134? Actually preview Atk range 81-134. If it has 252 Atk, Atk stat 134. Close Combat BP 120 * 4 = 480. Against Kingambit Def 140, HP 115. Damage likely huge, maybe KO. But Sucker Punch goes first. If Sucker Punch doesn't KO, Kingambit dies. Sucker Punch damage: Kingambit Atk 205, BP 70 * 1.2 = 84. Palafin Zero Def base 72, max 136. Damage calc: Level 50, Atk 205, Def 136, BP 84. Damage = (((2*50/5+2)*205*84/136)/50)+2 = ((22*205*84/136)/50)+2 = (22*17220/136)/50 = (378840/136)/50 = 2785/50 = 55.7 +2 = 57.7. HP 175-207. So ~58 damage, not KO. If Palafin is Hero, Def 97, damage ~80. Still not KO. So Sucker Punch won't KO. Then Palafin attacks and likely KOs Kingambit with Close Combat or maybe Water move. So staying in is bad.\n\nSwitch to Gholdengo is better. Gholdengo immune to Fighting, resists? Water neutral. It can take a hit and KO with Thunderbolt. Also Gholdengo has Life Orb, but that's fine. Dragonite also could switch, but Gholdengo is better due to Thunderbolt. So decision: SWITCH: gholdengo.\n\nCheck legal actions: 5. SWITCH: gholdengo. Yes.\n\nNotes: Palafin is last, stuck in Zero Form (can't switch out to become Hero). It has low attack. Switch to Gholdengo to blank Close Combat and threaten Thunderbolt KO. Keep Kingambit for later? Actually Kingambit is low, but can be preserved. Gholdengo outspeeds and KOs. If Palafin uses Flip Turn, it can't switch, so just damage. Next turn Thunderbolt.\n\nNeed output exactly form.",
+      "note": "",
+      "tokens": 4596,
+      "latency_ms": 27882,
+      "cost_usd": 0.001060136,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "88% MOVE: waterfall, 6% MOVE: flipturn, 5% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2113,
+      "latency_ms": 494,
+      "cost_usd": 4.226e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.8839598915992354,
+        "MOVE: flipturn": 0.057871603869404806,
+        "MOVE: closecombat": 0.006187795680178406,
+        "MOVE: aquajet": 0.05198070885118139
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin is the opponent's last Pokémon, stuck in Zero Form (cannot switch to Hero). Gholdengo outspeeds or at worst trades; Life Orb Thunderbolt is super effective and should KO Zero Form Palafin. If it survives, finish next turn. Preserve Dragonite and Kingambit.",
+      "hidden_reasoning": "Palafin is last Pokémon, stuck in Zero Form (can't switch). Gholdengo Thunderbolt super effective. Speed uncertain but Thunderbolt likely KOs Zero Form Palafin (HP 175-207, SpD 73-125). Life Orb Thunderbolt should KO. Go for it.",
+      "note": "",
+      "tokens": 2689,
+      "latency_ms": 2568,
+      "cost_usd": 0.000243516,
+      "probabilities": null
+    }
+  ]
+}

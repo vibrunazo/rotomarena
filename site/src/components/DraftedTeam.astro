@@ -14,6 +14,7 @@ const repairs = [...d.picks.repairs, ...d.repairs];
 <div class="draft hud-panel">
   <div class="draft-head">
     {heading && <h3><a href={`/models/${d.config_id}/`}>{d.display_name}</a></h3>}
+    {d.drafts > 1 && <span class="pill" title={`It built ${d.drafts} teams; its games use them in turn (game 1 draft 1, game 2 draft 2...)`}>draft {d.draft} of {d.drafts}</span>}
     {d.picks.attempts.length > 0 && (d.picks.legal
       ? <span class:list={['pill', d.picks.attempts.length === 1 ? 'accent' : 'warn']} title="Its six Pokémon were all legal and obeyed Species Clause on this attempt">six picked on attempt {d.picks.attempts.length}</span>
       : <span class="pill bad" title="No legal six in five attempts: the illegal picks were swapped for middling legal Pokémon">picks repaired after {d.picks.attempts.length} attempts</span>)}

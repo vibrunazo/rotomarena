@@ -1,0 +1,429 @@
+{
+  "id": "match_20261014_015232_Muse Spark 1_3_vs_Jev 1_13_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "muse_spark_1_3",
+      "display_name": "Muse Spark 1.3",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "meta/muse-spark-1.3-contributor",
+      "quantization": null,
+      "username": "Muse Spark 1.3",
+      "role": "p1",
+      "team": "Muse Spark 1.3's team",
+      "model_key": "meta/muse-spark-1.3-contributor",
+      "autopilot_rate": 0.0,
+      "replay_name": "Muse Spark 1.3"
+    },
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 109.68,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Muse Spark 1.3||",
+    "|player|p2|Jev 1.13||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Dragonite, L50, F|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Mimikyu, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Aegislash, L50, F|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|164/164",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Kingambit|Kingambit, L50, F|207/207",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Kingambit",
+    "|-resisted|p1a: Kingambit|1",
+    "|-damage|p1a: Kingambit|162/207",
+    "|-damage|p2a: Dragapult|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|move|p1a: Kingambit|Kowtow Cleave|p2a: Rotom",
+    "|-damage|p2a: Rotom|28/100",
+    "|",
+    "|-heal|p2a: Rotom|33/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Kingambit|Kowtow Cleave|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|90/100",
+    "|turn|4",
+    "|",
+    "|move|p2a: Dragapult|U-turn|p1a: Kingambit",
+    "|-damage|p1a: Kingambit|127/207",
+    "|-damage|p2a: Dragapult|80/100|[from] item: Life Orb",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|33/100|[from] U-turn",
+    "|move|p1a: Kingambit|Kowtow Cleave|p2a: Rotom",
+    "|-crit|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|80/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Kingambit|Sucker Punch|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|win|Muse Spark 1.3"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 43% BRING: dragapult, 18% BRING: gholdengo, 15% BRING: aegislash\nPick 2: 40% BRING: gholdengo, 20% BRING: rotomwash, 17% BRING: aegislash\nPick 3: 38% BRING: rotomwash, 26% BRING: aegislash, 19% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6373,
+      "latency_ms": 1241,
+      "cost_usd": 0.000267666,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,dragonite,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Lead Gholdengo blocks status, Nasty Plot vs walls, Shadow Ball hits ghosts. Dragonite sets up on Corviknight/Aegislash with Fire Punch/EQ. Kingambit walls Dragapult, Sucker Punch revenge, cleans late. Expect Corviknight/Toxapex + Dragapult.",
+      "hidden_reasoning": "Evaluating team matchup and selecting three Pokemon to counter a stall-heavy opponent lineup.Finalizing the three-Pokemon selection after checking type coverage and speed tiers.Resolving type-chart interactions to confirm coverage against stall and Dragapult.Selecting Gholdengo, Dragonite, and Kingambit to cover stall cores and revenge Dragapult.Reevaluating type matchups and lead options against Corviknight, Dragapult, and Rotom Wash.",
+      "note": "",
+      "tokens": 5623,
+      "latency_ms": 29895,
+      "cost_usd": 0.0009425,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: shadowball, 6% SWITCH: gholdengo, 4% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2197,
+      "latency_ms": 730,
+      "cost_usd": 9.2274e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.86,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: protect": 0.02,
+        "MOVE: uturn": 0.01,
+        "SWITCH: gholdengo": 0.06,
+        "SWITCH: rotomwash": 0.04
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Gholdengo risks OHKO from faster Dragapult Shadow Ball. Kingambit resists Ghost/Dragon, walls it, threatens Sucker Punch. Save Dragonite for Corviknight/Aegislash, Gholdengo for Toxapex/Rotom later.",
+      "hidden_reasoning": "Evaluating Gholdengo vs Dragapult speed and type matchups to choose the turn-one lead.Switching to a damage and resistance comparison to justify the Kingambit pivot.",
+      "note": "",
+      "tokens": 3620,
+      "latency_ms": 12754,
+      "cost_usd": 0.0005306,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "27% SWITCH: rotomwash, 23% MOVE: uturn, 18% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2425,
+      "latency_ms": 431,
+      "cost_usd": 0.00010185,
+      "probabilities": {
+        "MOVE: shadowball": 0.18,
+        "MOVE: dragondarts": 0.08,
+        "MOVE: protect": 0.06,
+        "MOVE: uturn": 0.23,
+        "SWITCH: gholdengo": 0.18,
+        "SWITCH: rotomwash": 0.27
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Kowtow KOs Pult if stays, punishes switch unlike Sucker. Expect hard switch to Corviknight/Toxapex/Rotom. Keep Kingambit healthy, save Dragonite for Corv/Aegi, Gholdengo for Rotom/Toxapex. Learned: LO Dragapult Shadow Ball ~22% to Kingambit.",
+      "hidden_reasoning": "Evaluating type matchups and damage to choose between Sucker Punch and switching for Kingambit versus Dragapult.Assessing Sucker Punch priority and Kowtow Cleave reliability against a potential switch.Evaluating Sucker Punch versus Kowtow Cleave given opponent speed and likely switch to a Dark-resistant target.",
+      "note": "",
+      "tokens": 4388,
+      "latency_ms": 18308,
+      "cost_usd": 0.000631038,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "26% SWITCH: gholdengo, 23% MOVE: voltswitch, 19% MOVE: thunderbolt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2450,
+      "latency_ms": 396,
+      "cost_usd": 0.0001029,
+      "probabilities": {
+        "MOVE: voltswitch": 0.23,
+        "MOVE: thunderbolt": 0.19,
+        "MOVE: willowisp": 0.08,
+        "MOVE: protect": 0.13,
+        "SWITCH: gholdengo": 0.26,
+        "SWITCH: dragapult": 0.11
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Kowtow KOs Rotom if stays, chips switch-in; Sucker fails vs Wisp/switch. Lum cures burn. Expect Corviknight/Aegislash/Toxapex to absorb Dark. Keep Kingambit healthy, save Dragonite for Corv/Aegi, Gholdengo for Rotom/Toxapex.",
+      "hidden_reasoning": "Calculating damage and speed to confirm a KO while accounting for Rotom's move priority and Lum Berry curing burn.Resolving the move choice by weighing Sucker Punch priority against Kowtow Cleave's reliability if a status move is used.Evaluating Sucker Punch versus Kowtow Cleave against likely switch behavior and status risk.",
+      "note": "",
+      "tokens": 4068,
+      "latency_ms": 16795,
+      "cost_usd": 0.000475674,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% SWITCH: dragapult, 25% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2151,
+      "latency_ms": 436,
+      "cost_usd": 9.0342e-05,
+      "probabilities": {
+        "SWITCH: rotomwash": 0.25,
+        "SWITCH: dragapult": 0.75
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: uturn, 21% MOVE: shadowball, 14% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2498,
+      "latency_ms": 690,
+      "cost_usd": 0.000104916,
+      "probabilities": {
+        "MOVE: shadowball": 0.21,
+        "MOVE: dragondarts": 0.11,
+        "MOVE: protect": 0.14,
+        "MOVE: uturn": 0.43,
+        "SWITCH: rotomwash": 0.11
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Kowtow KOs Rotom if it switches in, KOs or mauls Pult if stays. Sucker fails on switch. Kingambit resists Ghost/Dragon, lives one Flamethrower. Save Dragonite healthy for coverage, Gholdengo for Rotom/Toxapex later.",
+      "hidden_reasoning": "Evaluating Kingambit vs Dragapult HP and move priority to decide the next action.Balancing Sucker Punch priority against Kowtow Cleave damage versus Dragapult coverage risk.Evaluating Kowtow Cleave versus Sucker Punch given Dragapult's speed and switch risk.",
+      "note": "",
+      "tokens": 4454,
+      "latency_ms": 18666,
+      "cost_usd": 0.00052293,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: uturn, 28% MOVE: shadowball, 22% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2547,
+      "latency_ms": 407,
+      "cost_usd": 0.000106974,
+      "probabilities": {
+        "MOVE: shadowball": 0.28,
+        "MOVE: dragondarts": 0.13,
+        "MOVE: protect": 0.22,
+        "MOVE: uturn": 0.37
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Dragapult left at 80% LO. Sucker priority KOs before it moves, avoids risking Flamethrower KO on second-moving Kowtow. No switches left so Sucker won't fail unless status.",
+      "hidden_reasoning": "Analyzing the battle state to confirm only Dragapult remains and evaluating if Kowtow Cleave will KO it for the win.Comparing Kowtow Cleave and Sucker Punch damage and priority against Dragapult's speed and possible coverage.",
+      "note": "",
+      "tokens": 3949,
+      "latency_ms": 12792,
+      "cost_usd": 0.000423474,
+      "probabilities": null
+    }
+  ]
+}

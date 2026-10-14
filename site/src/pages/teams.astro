@@ -8,17 +8,26 @@ import reference from '../data/reference_teams.json';
 const all = await allDrafts();
 // One section per benchmark with teams, in the benches' order
 const groups = benches.filter((b) => all.some((d) => d.bench === b.id)).map((bench) => {
-  const drafts = all.filter((d) => d.bench === bench.id)
-    .sort((a, b) => Number(b.legal) - Number(a.legal) || a.attempts.length - b.attempts.length);
+  const benchDrafts = all.filter((d) => d.bench === bench.id);
+  // a model's drafts stay together, in order; models with every draft legal first, then fewer attempts
+  const byModel = new Map<string, Draft[]>();
+  for (const d of benchDrafts) byModel.set(d.config_id, [...(byModel.get(d.config_id) ?? []), d]);
+  const models = [...byModel.values()].map((ds) => ds.sort((a, b) => a.draft - b.draft))
+    .sort((a, b) => Number(b.every((d) => d.legal)) - Number(a.every((d) => d.legal))
+      || a.reduce((n, d) => n + d.attempts.length, 0) - b.reduce((n, d) => n + d.attempts.length, 0));
+  const drafts = models.flat();
+  const legalModels = models.filter((ds) => ds.some((d) => d.legal));
   const legal = drafts.filter((d) => d.legal);
+  // most drafted: a Pokémon counts once per model, in any of its legal drafts
   const picks = Object.entries(
-    legal.flatMap((d) => d.members.map((m) => m.species)).reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
+    legalModels.flatMap((ds) => [...new Set(ds.filter((d) => d.legal).flatMap((d) => d.members.map((m) => m.species)))])
+      .reduce<Record<string, number>>((acc, s) => ((acc[s] = (acc[s] ?? 0) + 1), acc), {}),
   ).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  const unanimous = picks.filter(([, n]) => legal.length > 1 && n === legal.length).map(([s]) => s);
+  const unanimous = picks.filter(([, n]) => legalModels.length > 1 && n === legalModels.length).map(([s]) => s);
   // The meta score: how many of a team's own picks appear in at least one of Smogon's sample teams (Gen 9 OU only)
   const byMeta = [...drafts].filter((d) => d.meta.of > 0 && d.meta.sample_teams > 0)
     .sort((a, b) => b.meta.used - a.meta.used || b.meta.slots - a.meta.slots || a.display_name.localeCompare(b.display_name));
-  return { bench, drafts, legal, picks, unanimous, byMeta, sampleTeams: drafts[0]?.meta.sample_teams ?? 0 };
+  return { bench, drafts, legal: legalModels, picks, unanimous, byMeta, sampleTeams: drafts[0]?.meta.sample_teams ?? 0 };
 });
 const refs = (reference.teams as { title: string; archetype: string; builder: string; url: string; legal: boolean }[]);
 ---
@@ -97,7 +106,7 @@ const refs = (reference.teams as { title: string; archetype: string; builder: st
   )}
 
   <h3>The teams</h3>
-  {drafts.length ? drafts.map((d) => <DraftedTeam draft={d} heading />) : <p class="muted">No model has drafted yet.</p>}
+  {drafts.length ? drafts.map((d) => <DraftedTeam draft={d} heading={d.draft === 1} />) : <p class="muted">No model has drafted yet.</p>}
   </section>
   ))}
 

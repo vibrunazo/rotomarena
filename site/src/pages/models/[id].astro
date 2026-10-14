@@ -146,7 +146,7 @@ const facts: [string, string][] = [
       <p class="prose small muted">Built by the model itself from the rules of each format. <a href="/teams/">How teams are built</a>.</p>
       {drafts.map((d) => (
         <>
-          {drafts.length > 1 && <h3 class="bench-team">{benchTitle(d.bench)}</h3>}
+          {new Set(drafts.map((x) => x.bench)).size > 1 && d.draft === 1 && <h3 class="bench-team">{benchTitle(d.bench)}</h3>}
           <DraftedTeam draft={d} />
         </>
       ))}

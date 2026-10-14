@@ -1,0 +1,454 @@
+{
+  "id": "match_20261014_015148_GPT-6 Luna_vs_Solar Decide_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p1",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    },
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p2",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 6,
+  "duration_seconds": 43.32,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|GPT-6 Luna||",
+    "|player|p2|Solar Decide Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Gliscor, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Primarina, L50, M|",
+    "|poke|p1|Dragonite, L50, M|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p2|Bastiodon, L50, M|",
+    "|poke|p2|Blaziken, L50, F|",
+    "|poke|p2|Excadrill, L50, M|",
+    "|poke|p2|Audino, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|157/157",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Blaziken|Blaziken, L50, F|100/100",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Blaziken",
+    "|-supereffective|p2a: Blaziken|1",
+    "|-damage|p2a: Blaziken|0 fnt",
+    "|faint|p2a: Blaziken",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|-ability|p2a: Tauros|Intimidate|boost",
+    "|-unboost|p1a: Rotom|atk|1",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Tauros",
+    "|-supereffective|p2a: Tauros|1",
+    "|-damage|p2a: Tauros|0 fnt",
+    "|faint|p2a: Tauros",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|turn|3",
+    "|",
+    "|move|p2a: Rotom|Electric Terrain|p2a: Rotom",
+    "|-fieldstart|move: Electric Terrain",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Rotom|[miss]",
+    "|-miss|p1a: Rotom|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Rotom|Electric Terrain||[still]",
+    "|-fail|p2a: Rotom",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Rotom",
+    "|-damage|p2a: Rotom|27/100",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Rotom|Electric Terrain||[still]",
+    "|-fail|p2a: Rotom",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Rotom|[miss]",
+    "|-miss|p1a: Rotom|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Rotom|Electric Terrain||[still]",
+    "|-fail|p2a: Rotom",
+    "|move|p1a: Rotom|Hydro Pump|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "rotom,blaziken,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 50% BRING: rotom, 27% BRING: blaziken, 9% BRING: audino\nPick 2: 59% BRING: blaziken, 17% BRING: taurospaldeablaze, 9% BRING: bastiodon\nPick 3: 43% BRING: taurospaldeablaze, 29% BRING: bastiodon, 23% BRING: excadrill",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6414,
+      "latency_ms": 2742,
+      "cost_usd": 0.0003207,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "rotomwash,gliscor,primarina",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Rotom-Wash, Gliscor, and Primarina cover the opposing Fire/Fighting threats, Excadrill, and Rotom. Lead Rotom-Wash for flexibility; preserve Gliscor to threaten Steel-types and Primarina as a fast answer to the fighters.",
+      "hidden_reasoning": "**Choosing Pokémon for battle**\n\nI'm considering the lineup for my Pokémon team. Rotom-Wash looks like a safe choice, but Gliscor could threaten Excadrill and Bastiodon with Earthquake while also setting up rocks. However, I wonder if Gholdengo might be a better option than Rotom-Wash, especially since it’s immune to Fighting-type attacks. I'll definitely pick Gliscor and Primarina, but maybe I should go with Dragonite instead of Rotom since it can set up against Audino and Bastiodon. Overall, I’m leaning towards using Rotom-Wash, Gliscor, and Primarina.",
+      "note": "",
+      "tokens": 2340,
+      "latency_ms": 8629,
+      "cost_usd": 0.000494925,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% SWITCH: blaziken, 9% SWITCH: taurospaldeablaze, 7% MOVE: electricterrain",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2183,
+      "latency_ms": 1458,
+      "cost_usd": 0.00010915,
+      "probabilities": {
+        "MOVE: electricterrain": 0.069754,
+        "MOVE: risingvoltage": 0.047941,
+        "MOVE: voltswitch": 0.029078,
+        "MOVE: willowisp": 0.013735,
+        "SWITCH: blaziken": 0.749926,
+        "SWITCH: taurospaldeablaze": 0.089566
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Rotom-Wash into opposing Rotom; their moves and item are unknown. Keep Gliscor for Steel-types and Primarina for the Fighting threats. Hydro Pump is the strongest neutral hit; avoid switching Gliscor into possible Water or Electric attacks.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2162,
+      "latency_ms": 5466,
+      "cost_usd": 0.00038755,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: rotom, 44% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1896,
+      "latency_ms": 802,
+      "cost_usd": 9.48e-05,
+      "probabilities": {
+        "SWITCH: rotom": 0.562177,
+        "SWITCH: taurospaldeablaze": 0.437823
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "88% SWITCH: taurospaldeablaze, 7% MOVE: electricterrain, 3% MOVE: risingvoltage",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2195,
+      "latency_ms": 1828,
+      "cost_usd": 0.00010975,
+      "probabilities": {
+        "MOVE: electricterrain": 0.072353,
+        "MOVE: risingvoltage": 0.026617,
+        "MOVE: voltswitch": 0.009792,
+        "MOVE: willowisp": 0.009792,
+        "SWITCH: taurospaldeablaze": 0.881445
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Blaziken was KO’d by Rotom-Wash’s Hydro Pump. Opposing Rotom is still unrevealed; one of Tauros-Paldea-Blaze, Bastiodon, Excadrill, or Audino remains hidden. Hydro Pump is strong into likely Excadrill or Bastiodon switches; preserve Gliscor for Steel-types and Primarina for fighters.",
+      "hidden_reasoning": "**Analyzing move strategy**\n\nI’m considering that the enemy might switch in Excadrill, anticipating an electric move, which makes Hydro Pump a perfect choice since it can hit it hard. It also works well against Bastiodon. Hydro Pump seems to be the best general move here. I wonder if the opponent might stay with Rotom if I opt for an electric move instead? Hydro Pump’s neutral damage would still inflict some impact. I’m updating my notes!",
+      "note": "",
+      "tokens": 2402,
+      "latency_ms": 8052,
+      "cost_usd": 0.00043855,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "electricterrain",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: electricterrain, 28% MOVE: risingvoltage, 22% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2227,
+      "latency_ms": 871,
+      "cost_usd": 0.00011135,
+      "probabilities": {
+        "MOVE: electricterrain": 0.356863,
+        "MOVE: risingvoltage": 0.277925,
+        "MOVE: voltswitch": 0.216449,
+        "MOVE: willowisp": 0.148763
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has KO’d the opposing Blaziken and Tauros-Paldea-Blaze; opposing Rotom is their last Pokémon. Our team is still healthy. Hydro Pump is neutral and strongest into Rotom; watch for its unknown moves and possible speed advantage.",
+      "hidden_reasoning": "**Evaluating Rotom strategies**\n\nI need to choose a strategy against the opposing Rotom, which is an electric and ghost type. I’m considering Pain Split, but if both teams are equal, it might not be effective. Will-o-wisp could work here if their physical attack is dangerous, yet Rotom seems more special-oriented. Hydro Pump is another option, but it’s resisted. Volt Switch is also resisted, but if I can pivot, I might want to try Hydro Pump for damage since it has six PP left.",
+      "note": "",
+      "tokens": 2569,
+      "latency_ms": 6219,
+      "cost_usd": 0.0004373,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "electricterrain",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: electricterrain, 27% MOVE: risingvoltage, 9% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2263,
+      "latency_ms": 965,
+      "cost_usd": 0.00011315,
+      "probabilities": {
+        "MOVE: electricterrain": 0.567841,
+        "MOVE: risingvoltage": 0.268229,
+        "MOVE: voltswitch": 0.076849,
+        "MOVE: willowisp": 0.087081
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has KO’d Blaziken and Tauros-Paldea-Blaze; opposing Rotom is their last Pokémon, at full HP, and has revealed Electric Terrain. Our team remains healthy. Hydro Pump is our strongest neutral attack but missed last turn; avoid Gliscor, which risks a Water move.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2603,
+      "latency_ms": 6061,
+      "cost_usd": 0.0004393,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "electricterrain",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: electricterrain, 29% MOVE: risingvoltage, 12% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2306,
+      "latency_ms": 932,
+      "cost_usd": 0.0001153,
+      "probabilities": {
+        "MOVE: electricterrain": 0.480192,
+        "MOVE: risingvoltage": 0.291251,
+        "MOVE: voltswitch": 0.107145,
+        "MOVE: willowisp": 0.121412
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has KO’d Blaziken and Tauros; opposing Rotom is its last Pokémon at 27%. Hydro Pump dealt heavy damage last time and can finish it if it connects. Keep Rotom-Wash healthy; Gliscor’s Earthquake cannot hit Levitate Rotom.",
+      "hidden_reasoning": "**Evaluating attack strategy**\n\nI need to choose between moves against the opponent Rotom, which is at 27% health. The previous Hydro Pump did about 73% damage, so it could knock it out if it connects. Even though Will-O-Wisp isn’t effective here, Hydro Pump is still my best option, despite its low PP. I’ll note that I need to keep my explanation concise, under 60 words.",
+      "note": "",
+      "tokens": 2520,
+      "latency_ms": 3394,
+      "cost_usd": 0.000377925,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "electricterrain",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: electricterrain, 31% MOVE: risingvoltage, 10% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2343,
+      "latency_ms": 703,
+      "cost_usd": 0.00011715,
+      "probabilities": {
+        "MOVE: electricterrain": 0.505762,
+        "MOVE: risingvoltage": 0.30676,
+        "MOVE: voltswitch": 0.09959,
+        "MOVE: willowisp": 0.087888
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash has KO’d Blaziken and Tauros; opposing Rotom is their last Pokémon at 27% and has revealed Electric Terrain. Hydro Pump previously dealt heavy damage but missed twice; it should KO if it connects. Keep Rotom-Wash healthy.",
+      "hidden_reasoning": "**Evaluating move choices**\n\nI need to decide between using hydro pump or possibly a weaker volt switch, which won't knock out the opponent. Rotom is at 27%, meaning hydro pump could deal 73% damage. Since hydro pump has a limited number of uses and an 80% accuracy, there's a risk of missing. Primarina’s hyper voice is likely neutral against Rotom, which resists it. Moonblast could deal around 50-60% damage, maybe enough to take Rotom out. I should consider that.",
+      "note": "",
+      "tokens": 2603,
+      "latency_ms": 4668,
+      "cost_usd": 0.0004123,
+      "probabilities": null
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "id": "match_20261014_015148_GPT-6 Luna_vs_Solar Decide_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p1",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    },
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p2",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 6,
+  "duration_seconds": 40.52,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|GPT-6 Luna||",
+    "|player|p2|Solar Decide Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Gliscor, L50, F|",
+    "|poke|p1|Dragonite, L50, M|",
+    "|poke|p1|Primarina, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p2|Delphox, L50, F|",
+    "|poke|p2|Glimmora, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Roserade, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Primarina|Primarina, L50, F|157/157",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Rotom",
+    "|-damage|p2a: Rotom|16/100",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|1/100",
+    "|-unboost|p2a: Garchomp|spa|1",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|16/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|1/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Primarina|Moonblast|p2a: Tauros",
+    "|-damage|p2a: Tauros|28/100",
+    "|move|p2a: Tauros|Giga Impact|p1a: Primarina",
+    "|-damage|p1a: Primarina|58/157",
+    "|-mustrecharge|p2a: Tauros",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Primarina|Moonblast|p2a: Tauros",
+    "|-damage|p2a: Tauros|0 fnt",
+    "|faint|p2a: Tauros",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 70% BRING: garchomp, 12% BRING: rotom, 8% BRING: roserade\nPick 2: 44% BRING: rotom, 21% BRING: glimmora, 14% BRING: roserade\nPick 3: 50% BRING: taurospaldeablaze, 24% BRING: delphox, 16% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6461,
+      "latency_ms": 3268,
+      "cost_usd": 0.00032304999999999996,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "primarina,gliscor,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Bring Primarina to pressure Garchomp, Tauros, and Delphox; Gliscor covers Rotom and provides an Electric immunity; Kingambit checks Rotom and Delphox. Preserve Gliscor against Rotom and watch for Tauros’s Fighting attacks.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2411,
+      "latency_ms": 8905,
+      "cost_usd": 0.0005278,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% SWITCH: rotom, 17% SWITCH: taurospaldeablaze, 13% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2211,
+      "latency_ms": 902,
+      "cost_usd": 0.00011055,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.132076,
+        "MOVE: sandstorm": 0.062388,
+        "MOVE: stealthrock": 0.132076,
+        "MOVE: stoneedge": 0.042879,
+        "SWITCH: rotom": 0.460991,
+        "SWITCH: taurospaldeablaze": 0.169589
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Keep Primarina for Garchomp and the Fire types; Moonblast pressures Garchomp now. Save Gliscor for Rotom and Kingambit for Rotom/Delphox. Scarf Primarina is locked into its first move.",
+      "hidden_reasoning": "**Evaluating Moonblast strategy**\n\nI need to consider using Moonblast with a scarf on Primarina to potentially achieve an OHKO against Garchomp. The damage calculations suggest that, with 178 SpA, Moonblast might deal around 75-90% to Garchomp. However, Garchomp's Earthquake poses a significant threat to Primarina, hitting super effectively. Flip Turn could be an option, but it feels weaker, so sticking with Moonblast seems best given the high damage potential against Garchomp. I'll update my notes on this strategy.",
+      "note": "",
+      "tokens": 2109,
+      "latency_ms": 4507,
+      "cost_usd": 0.00033855,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% SWITCH: garchomp, 26% MOVE: discharge, 14% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2272,
+      "latency_ms": 651,
+      "cost_usd": 0.0001136,
+      "probabilities": {
+        "MOVE: discharge": 0.258592,
+        "MOVE: electricterrain": 0.0577,
+        "MOVE: risingvoltage": 0.034997,
+        "MOVE: voltswitch": 0.083952,
+        "SWITCH: garchomp": 0.426346,
+        "SWITCH: taurospaldeablaze": 0.138414
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Choice Scarf-locked into Moonblast; its boosted Speed outruns Rotom’s known range, so finish the weakened Rotom. Preserve Primarina for Garchomp and Fire types; Gliscor covers Electric moves, while Kingambit can pressure Delphox.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2191,
+      "latency_ms": 4249,
+      "cost_usd": 0.000364175,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: rotom, 33% SWITCH: taurospaldeablaze, 6% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2310,
+      "latency_ms": 866,
+      "cost_usd": 0.0001155,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.057366,
+        "MOVE: sandstorm": 0.021104,
+        "MOVE: stealthrock": 0.030706,
+        "MOVE: stoneedge": 0.016436,
+        "SWITCH: rotom": 0.544272,
+        "SWITCH: taurospaldeablaze": 0.330117
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Scarf-locked into Moonblast; finish the 1% Garchomp or punish a switch. Keep Primarina for the Fire types; save Gliscor for Rotom and Kingambit for Delphox.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2348,
+      "latency_ms": 4400,
+      "cost_usd": 0.000384925,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% SWITCH: taurospaldeablaze, 15% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1998,
+      "latency_ms": 869,
+      "cost_usd": 9.99e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.148047,
+        "SWITCH: taurospaldeablaze": 0.851953
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: garchomp, 27% MOVE: gigaimpact, 27% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2323,
+      "latency_ms": 959,
+      "cost_usd": 0.00011615,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.27204,
+        "MOVE: highhorsepower": 0.028673,
+        "MOVE: ragingbull": 0.27204,
+        "MOVE: trailblaze": 0.077941,
+        "SWITCH: garchomp": 0.349306
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Choice Scarf-locked into Moonblast and has the speed advantage over Tauros; keep attacking while it’s effective. Gliscor can threaten Tauros with Earthquake, and Kingambit remains healthy for the remaining 1% Garchomp.",
+      "hidden_reasoning": "**Considering battle strategy**\n\nI’m thinking about the potential risk with Tauros and its ice coverage. I don’t want to reveal too much there. I note that Primarina performs well against fire, and its fairy-type moves are effective against fighting types, so attacking seems like a good choice! I also want to keep my notes concise, aiming for a max of 60 characters. This strategy should give me a strong edge in the battle!",
+      "note": "",
+      "tokens": 2568,
+      "latency_ms": 5959,
+      "cost_usd": 0.0004533,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% MOVE: gigaimpact, 32% MOVE: ragingbull, 13% MOVE: trailblaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2338,
+      "latency_ms": 978,
+      "cost_usd": 0.0001169,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.523791,
+        "MOVE: highhorsepower": 0.026078,
+        "MOVE: ragingbull": 0.317695,
+        "MOVE: trailblaze": 0.132435
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Choice Scarf-locked into Moonblast. Tauros-Paldea-Blaze resists both Fire and Fighting attacks against Primarina, so staying in is relatively safe; Moonblast is neutral damage. Gliscor’s Earthquake threatens Tauros, but preserve it for possible Glimmora/Roserade or Electric coverage.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2715,
+      "latency_ms": 6895,
+      "cost_usd": 0.0005058,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "1",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Choice Scarf-locked into Moonblast and has 58 HP; Tauros is at 28% after revealing Giga Impact. Stay in to finish it before it can act again. Rotom and Garchomp are fainted; Gliscor and Kingambit remain healthy.",
+      "hidden_reasoning": "**Analyzing battle strategy**\n\nI need to make a choice. Is Primarina faster with a scarf? It has a speed of 184, which is indeed quicker than Tauros, whose range is 108-167. If Moonblast hits, it has a 28% chance to knock out the opposing Tauros, which was at 28% after a hit. The Tauros is likely locked into Giga Impact and should recharge next turn, so I can use Moonblast for the potential KO. I should take this action.",
+      "note": "",
+      "tokens": 2590,
+      "latency_ms": 4699,
+      "cost_usd": 0.0004193,
+      "probabilities": null
+    }
+  ]
+}

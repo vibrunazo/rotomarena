@@ -1,0 +1,555 @@
+{
+  "id": "match_20261014_013409_Solar Decide_vs_MiMo V2_6 Flash_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "mimo_v2_6_flash",
+      "display_name": "MiMo V2.6 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "quantization": null,
+      "username": "MiMo V2.6 Flash",
+      "role": "p2",
+      "team": "MiMo V2.6 Flash's team",
+      "model_key": "xiaomi/mimo-v2.6-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiMo V2.6 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 122.93,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|MiMo V2.6 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Delphox, L50, F|",
+    "|poke|p1|Glimmora, L50, M|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Roserade, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Slowking-Galar, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Garchomp|Earthquake|p1a: Rotom",
+    "|-immune|p1a: Rotom|[from] ability: Levitate",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Tauros|Giga Impact|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|move|p2a: Gholdengo|Nasty Plot|p2a: Gholdengo",
+    "|-boost|p2a: Gholdengo|spa|2",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|-damage|p2a: Gholdengo|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|-damage|p2a: Gholdengo|80/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|turn|6",
+    "|",
+    "|move|p1a: Tauros|High Horsepower|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|32/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Tauros",
+    "|-enditem|p1a: Tauros|Focus Sash",
+    "|-damage|p1a: Tauros|1/150",
+    "|-unboost|p1a: Tauros|spd|1",
+    "|-damage|p2a: Gholdengo|23/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|move|p1a: Tauros|High Horsepower|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|64/100",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Tauros",
+    "|-damage|p1a: Tauros|0 fnt",
+    "|faint|p1a: Tauros",
+    "|",
+    "|win|MiMo V2.6 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 56% BRING: garchomp, 26% BRING: rotom, 6% BRING: delphox\nPick 2: 46% BRING: rotom, 22% BRING: glimmora, 13% BRING: roserade\nPick 3: 61% BRING: taurospaldeablaze, 20% BRING: delphox, 12% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6482,
+      "latency_ms": 2632,
+      "cost_usd": 0.0003241,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,gholdengo,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: lead garchomp (sash) for rocks/SD pressure. Gholdengo walls roserade/glimmora and beats tauros; scarf dragapult outspeeds delphox and their garchomp. Opponent likely brings glimmora, delphox, garchomp/rotom. Rotom levitate blocks EQ, so keep gholdengo/dragapult for it. Save dragapult's speed for late cleaning.",
+      "hidden_reasoning": "Their team: rotom (levitate), tauros blaze, delphox, glimmora, garchomp, roserade.\n\nMy team: garchomp (sash, SD, EQ, scaleshot, rocks), kingambit, gholdengo, dragapult scarf, corviknight, slowking-galar.\n\nThreats: glimmora (rock/poison, EQ weakness? glimmora is rock/poison — weak to ground, steel, water, psychic). Gholdengo does well vs glimmora and roserade. Delphox fire/psychic — threatens kingambit and gholdengo... gholdengo takes fire hits hard. Rotom levitate blocks EQ.\n\nGood core: garchomp lead (rocks/SD), gholdengo, kingambit? Or dragapult scarf for speed. Delphox is fast and hits hard; dragapult scarf outspeeds most. Rotom-W? It's rotom (base form? Electric/Ghost — that's Rotom base... actually Rotom is Electric/Ghost with Levitate). It blocks garchomp EQ.\n\nConsider: garchomp lead with sash, set rocks/SD. Back: gholdengo (beats roserade, glimmora, tauros?) and kingambigm (sucker punch beats delphox? Delphox is psychic — sucker punch works if it attacks; kingambit dark/steel resists psychic but weak to fire). Dragapult scarf handles delphox and garchomp mirror.\n\nOpponent likely brings glimmora, delphox, garchomp/rotom/roserade.\n\nI'll bring garchomp, gholdengo, kingambit? Or garchomp, dragapult, gholdengo. Dragapult scarf gives speed control vs delphox and opposing garchomp. Kingambit sucker punch is nice but fire weakness vs delphox/tauros.\n\nI'll go: garchomp, gholdengo, dragapult. Gholdengo beats roserade/glimmora/tauros-ish; dragapult handles delphox and garchomp. Garchomp sets rocks/SD.\n\nActually kingambit with sucker punch + black glasses could sweep late. But delphox fire coverage threatens. Dragapult safer.\n\nLead garchomp.",
+      "note": "",
+      "tokens": 2716,
+      "latency_ms": 9509,
+      "cost_usd": 0.00044443,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% SWITCH: rotom, 20% SWITCH: taurospaldeablaze, 14% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2243,
+      "latency_ms": 850,
+      "cost_usd": 0.00011215,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.10971,
+        "MOVE: sandstorm": 0.051823,
+        "MOVE: stealthrock": 0.14087,
+        "MOVE: stoneedge": 0.058723,
+        "SWITCH: rotom": 0.43391,
+        "SWITCH: taurospaldeablaze": 0.204964
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mirror Garchomp lead. My sash keeps me alive through one hit; roughskin punishes contact moves like ScaleShot. Speed is a tie risk (169 vs up to 169). Reliable EQ is better than 90% acc ScaleShot. If they SD, my EQ still hits hard. Plan: chip with EQ, keep sash intact if possible; Gholdengo handles their backline (rotom/glimmora/roserade).",
+      "hidden_reasoning": "Mirror match. My Garchomp has sash, 169 speed (max). Opponent speed range 109-169. If they're also max speed, speed tie. ScaleShot is super effective, 2-5 hits, and boosts my speed afterward. But 90% accuracy and could miss.\n\nSwordsdance is risky if they attack first. Earthquake is reliable STAB.\n\nIf I'm faster: ScaleShot likely OHKO or near it (25 BP × 2-5 hits, super effective, STAB = 37.5 × hits... at 182 Atk vs ~130 Def, each hit ~30-40 damage, 2 hits = 60-80, 3+ hits KO). Actually 2 hits might not KO.\n\nEarthquake: 100 BP STAB, ~50-60% of opposing chomp. Two hits KO.\n\nSwordsdance then EQ would be huge but risky.\n\nSafest: just earthquake. If I move first, they go to ~40-50%, they hit me (sash activates if they KO me). Then I EQ again next turn.\n\nActually scaleshot super effective is better damage-wise but accuracy risk. Let me go earthquake for reliability.\n\nWait - if they're faster and use scaleshot on me, my sash saves me and roughskin hurts them. Then I EQ.\n\nEarthquake seems safest.",
+      "note": "",
+      "tokens": 2630,
+      "latency_ms": 7011,
+      "cost_usd": 0.0004052,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% SWITCH: taurospaldeablaze, 29% SWITCH: garchomp, 8% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2292,
+      "latency_ms": 934,
+      "cost_usd": 0.0001146,
+      "probabilities": {
+        "MOVE: discharge": 0.083643,
+        "MOVE: electricterrain": 0.057487,
+        "MOVE: risingvoltage": 0.034867,
+        "MOVE: voltswitch": 0.050732,
+        "SWITCH: garchomp": 0.291941,
+        "SWITCH: taurospaldeablaze": 0.48133
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom has Levitate — EQ is useless against it (confirmed turn 1). Good as Gold on Gholdengo blocks Will-O-Wisp, and Gholdengo threatens Rotom with Shadow Ball/Make It Rain while resisting nothing dangerous from their backline. Keep Garchomp's sash intact for a later sweep. Their last mon is likely glimmora/delphox/roserade — Gholdengo checks all three.",
+      "hidden_reasoning": "Rotom is Ghost/Electric with Levitate. Wait — Rotom here is Electric/Ghost? That's unusual (Rotom is Electric/Ghost normally). Ground is super effective on Electric but Ghost... Ground hits Electric super effective; Ghost doesn't resist Ground. So EQ is super effective on Rotom. But wait, turn 1 said \"Opposing Rotom was immune\" — because of Levitate! Levitate makes it immune to Ground. But the legal actions say \"super effective on rotom\" — contradictory. Levitate blocks EQ regardless. Hmm, the action description says super effective, but Levitate immunity applies. Turn 1 already showed immune.\n\nSo EQ won't work. Options: ScaleShot (Dragon, hits Rotom neutrally, 90% acc), Stealth Rock, Swords Dance, or switch.\n\nRotom likely has Will-O-Wisp or Hydro Pump/Thunderbolt. My Garchomp has sash intact. If I set up SD, Rotom may burn me. Switching to Gholdengo: Good as Gold blocks status moves (Will-O-Wisp blocked!). Gholdengo resists... Rotom's electric moves? Gholdengo is Steel/Ghost — Electric hits Steel? No, Electric is neutral on Steel, super effective on... nothing here. Ghost takes... Electric neutral. So Gholdengo takes neutral from Thunderbolt, resists nothing much. Shadow Ball from Rotom would be neutral.\n\nSwitching to Gholdengo seems safe: Good as Gold blocks Will-O-Wisp, and Gholdengo threatens with Shadow Ball/Make It Rain. But if Rotom attacks with Thunderbolt, Gholdengo takes ~neutral damage, lifeorb.\n\nAlternatively, use Stealth Rock to punish switches. Or ScaleShot to chip Rotom (neutral, 2-5 hits, but lowers my Def).\n\nI think switching to Gholdengo is best — it walls Rotom's status and threatens back. Their last mon is unknown (glimmora/delphox/tauros/roserade). Gholdengo handles roserade/glimmora well.\n\nActually, if Rotom attacks with Thunderbolt, Gholdengo takes maybe 30-40%. Fine. Then I can Nasty Plot or Shadow Ball.\n\nSwitch: gholdengo.",
+      "note": "",
+      "tokens": 2988,
+      "latency_ms": 21125,
+      "cost_usd": 0.00047529,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "23% MOVE: gigaimpact, 23% MOVE: highhorsepower, 23% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2398,
+      "latency_ms": 863,
+      "cost_usd": 0.0001199,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.226364,
+        "MOVE: highhorsepower": 0.226364,
+        "MOVE: ragingbull": 0.226364,
+        "MOVE: trailblaze": 0.021055,
+        "SWITCH: garchomp": 0.226364,
+        "SWITCH: rotom": 0.07349
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros-Blaze: Fighting STAB immune (Ghost), Fire STAB resisted by Steel. Gholdengo walls it unless it carries Ground coverage (Stomping Tantrum) or Trailblaze. It outspeeds but can't hit hard. Nasty Plot to +2 makes Gholdengo a win condition vs Rotom/Garchomp too. If it's Ground coverage, I still live and recover after. Plan: set up, then sweep with +2 Shadow Ball / Make It Rain; keep Garchomp sash and scarf Dragapult for cleanup.",
+      "hidden_reasoning": "Tauros-Paldea-Blaze is Fighting/Fire. It likely outspeeds Gholdengo. Fighting moves threaten Gholdengo? Gholdengo is Steel/Ghost — Fighting moves are not very effective on Ghost... actually Ghost is immune to Fighting. So Fighting moves do nothing. Fire moves: Steel resists fire, Ghost neutral → 0.5x. So Gholdengo resists Tauros's STABs partially. But Tauros could have other moves like Raging Bull (fire, hits... Raging Bull is Fire-type physical). Fighting STAB (close combat / raging bull fighting variant) is immune due to ghost.\n\nGholdengo can set up Nasty Plot or hit with Shadow Ball. Tauros's Speed108-167 vs Gholdengo 104 — it moves first. Shadow Ball 80 BP × lifeorb vs Tauros: probably decent damage. Nasty Plot risky but Gholdengo resists its STABs.\n\nIf Tauros has something like Earthquake or Trailblaze... Blaze Tauros moves: Raging Bull, Flame Charge, Close Combat, etc. Shadow Ball at +2 would be huge.\n\nConsider: is Nasty Plot safe? Opponent might switch to Rotom (levitate, but shadow ball hits it). With Nasty Plot, Gholdengo becomes a threat. Tauros likely can't 2HKO Gholdengo with resisted STABs.\n\nActually a safer play: Shadow Ball to chip. But if Tauros is Choiced or uses Raging Bull... Let's consider damage: Tauros Atk up to 178. Close Combat (Fighting, ghost immune —0 damage). Raging Bull fire: 90 BP × 0.5 (steel resist) × ghost neutral = 0.5. With 178 atk vs 115 def... roughly 40 HP? Not threatening much.\n\nNasty Plot seems good — Gholdengo walls Tauros's STABs. But Tauros could have Coverage like Trailblaze or Stomping Tantrum (Ground hits Steel2x, Ghost 1x → 2x). Stomping Tantrum BP 75 with 178 atk vs 115 def: ~35-40%? Lifeorb recoil etc. Still survivable.\n\nNasty Plot then Shadow Ball +2 would sweep. I'll go Nasty Plot. But risk: if Tauros is Anger Point with... no crits likely.\n\nActually consider safer: just Shadow Ball now — 20% chance to lower SpD. Damage:80 BP lifeorb × stab1.5 × 1.3 = 156 effective. vs Tauros def 112-172, HP 150-182. Neutral → maybe 40-55%. Two hits kill.\n\nNasty Plot: Tauros attacks, Gholdengo at maybe 60-70%, then +2 Shadow Ball kills. Then Tauros might kill Gholdengo? unlikely.\n\nI'll go Nasty Plot.",
+      "note": "",
+      "tokens": 3476,
+      "latency_ms": 19356,
+      "cost_usd": 0.00059752,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: garchomp, 27% MOVE: highhorsepower, 17% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2460,
+      "latency_ms": 832,
+      "cost_usd": 0.000123,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.128776,
+        "MOVE: highhorsepower": 0.272618,
+        "MOVE: ragingbull": 0.165351,
+        "MOVE: trailblaze": 0.022378,
+        "SWITCH: garchomp": 0.350048,
+        "SWITCH: rotom": 0.060829
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros used Giga Impact — it must recharge this turn and cannot move. Attack safely to KO or severely weaken it. Shadow Ball at +2 with Life Orb is neutral on Fighting/Fire (Make It Rain is resisted and drops my boost). If it switches to Rotom, Shadow Ball still hits neutrally. Preserve boost; keep sash Garchomp and scarf Dragapult for cleanup.",
+      "hidden_reasoning": "Tauros used Giga Impact, which means it must recharge next turn (in Gen 9, Giga Impact requires recharge turn... actually in modern games, Giga Impact causes recharge). So the opponent is locked into recharge. I can safely attack with Shadow Ball at +2.\n\nShadow Ball at +2 SpA Life Orb:203 SpA, +2 = 406 effective... base 80, would do significant damage to Tauros. Let's just Shadow Ball.\n\nMake It Rain is resisted by Fire. Shadow Ball hits neutrally (Fighting/Fire — Ghost is neutral on both? Ghost vs Fighting: neutral (not very effective actually — Ghost is not very effective against... no, Ghost hits Fighting for... Ghost is neutral against Fighting. Ghost vs Dark is resisted. Ghost vs Normal is immune. Fighting: Ghost is neutral). Ghost vs Fire: neutral. So Shadow Ball is neutral, 80 BP, neutral damage.\n\nShadow Ball +2 Life Orb from 203 SpA: ~406 effective SpA. Against Tauros with maybe 110 SpD, defensive... Should do around 60-70%. Good.\n\nAlternatively Make It Rain 120 BP but resisted (0.5x) = 60 effective, plus drops my SpA back. Shadow Ball is better.\n\nBut wait — Tauros is going to recharge, so it can't move. If I kill it, great. If not, it's still recharging.\n\nActually, could they switch to Rotom? Rotom is Ghost, immune to Fighting but takes Shadow Ball neutrally... actually Shadow Ball vs Electric/Ghost: neutral. Fine either way.\n\nShadow Ball is the right play.",
+      "note": "",
+      "tokens": 3228,
+      "latency_ms": 17507,
+      "cost_usd": 0.0003315032,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: taurospaldeablaze, 38% SWITCH: rotom",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2174,
+      "latency_ms": 884,
+      "cost_usd": 0.0001087,
+      "probabilities": {
+        "SWITCH: rotom": 0.377541,
+        "SWITCH: taurospaldeablaze": 0.622459
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% SWITCH: rotom, 15% MOVE: gigaimpact, 15% MOVE: highhorsepower",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2523,
+      "latency_ms": 669,
+      "cost_usd": 0.00012615,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.151613,
+        "MOVE: highhorsepower": 0.151613,
+        "MOVE: ragingbull": 0.151613,
+        "MOVE: trailblaze": 0.01598,
+        "SWITCH: rotom": 0.529181
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros used Giga Impact turn 4, so it must recharge and cannot move this turn — free hit. Shadow Ball at +2 Life Orb is neutral on Fighting/Fire and should KO or nearly do so; Make It Rain is resisted and drops my boost. If they switch to Rotom, Shadow Ball still hits neutrally. Preserve +2 for Rotom cleanup afterward; sash Garchomp and scarf Dragapult remain in back.",
+      "hidden_reasoning": "Tauros must recharge after Giga Impact. So it can't move this turn. Shadow Ball at +2 with Life Orb, neutral on Fighting/Fire — should do heavy damage or KO. Base 80 * 1.3 LO * 2 boost... Gholdengo SpA 203 → huge. Likely KO.\n\nJust use Shadow Ball. Or Nasty Plot again? No — attack while it's recharging. Shadow Ball is safe (if it switches to Rotom, Shadow Ball is neutral on Electric/Ghost... actually Ghost on Ghost = neutral? Ghost is neutral on Ghost types? No, Ghost is resisted by... Steel and Normal resist Ghost. Ghost on Ghost is neutral. Electric/Ghost — neutral. Fine.)\n\nActually Make It Rain would KO but is resisted and drops boost. Shadow Ball is right.",
+      "note": "",
+      "tokens": 3101,
+      "latency_ms": 7119,
+      "cost_usd": 0.0002888032,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "highhorsepower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: highhorsepower, 30% MOVE: ragingbull, 18% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2552,
+      "latency_ms": 1688,
+      "cost_usd": 0.0001276,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.181148,
+        "MOVE: highhorsepower": 0.49241,
+        "MOVE: ragingbull": 0.298662,
+        "MOVE: trailblaze": 0.02778
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's last mon is Tauros-Blaze (Rotom and Garchomp fainted). It outspeeds but only revealed Giga Impact, which Ghost typing makes immune. Shadow Ball at +2 Life Orb has a strong KO chance; even if it lives, Fire/Fighting STAB can't touch Steel/Ghost unless it has Ground coverage. Keep +2, don't risk losing it by switching. Sash Garchomp and scarf Dragapult are insurance if Gholdengo goes down.",
+      "hidden_reasoning": "Tauros is active at 100%, used Giga Impact turn 5? Wait, log: Turn 5 Rotom came in and fainted to Shadow Ball. So Tauros used Giga Impact turn... let's check. Turn 3 Giga Impact, turn 4 recharge... but turn 4 log shows Garchomp came in (switch) — so Tauros switched out on turn 4 to Garchomp? Actually turn 4: \"Opposing Garchomp came in\" — that was a switch, meaning Tauros was replaced. So Tauros wasn't recharging? Hmm, turn 3 Tauros used Giga Impact, turn 4 opponent switched Tauros out to Garchomp (dodging recharge by switching). Then turn 5, Garchomp fainted, Tauros came back in — no recharge needed since it switched out. So Tauros can move this turn.\n\nTauros at 100%, outspeeds Gholdengo. Giga Impact is 150 BP neutral... against Gholdengo: Fighting/Fire Tauros, Giga Impact is Normal type, neutral vs Steel/Ghost? Ghost is immune to Normal! Wait, Gholdengo is Steel/Ghost — Normal moves are immune. Turn 3 Tauros used Giga Impact and it was immune. So Giga Impact does nothing.\n\nBut Tauros could have other moves — coverage like Stomping Tantrum or Trailblaze. Revealed move only Giga Impact. It might use Giga Impact again and be immune again — but then it must recharge next turn.\n\nShadow Ball at +2 Life Orb: 80 BP * 2 * 1.3 vs Tauros. Tauros SpD range 81-134. Likely KO? Let's estimate: Gholdengo SpA 203 * 2 = 406. Neutral damage: 406*80/ (def-ish)... roughly. At level 50, damage = ((2*50/5+2)*80*406/spd)/50+2 ≈ ((22)*80*406/spd)/50+2 = (714560/spd)/50+2. With SpD ~107: 6678/50 = 133.6 +2 ≈ 136 before... wait that formula: (2*50/5+2)=22, 22*80=1760, 1760*406=714560, /107 = 6678, /50 = 133.6, +2 = 135.6, then STAB none, Life Orb 1.3 → ~176. So ~176 damage vs HP 150-182. Likely KO, maybe not if high HP roll. Shadow Ball is safe. If Tauros switches to something? Only 3 mons: Tauros, Garchomp (fainted), Rotom (fainted). Opponent has only Tauros left! \"The opponent brought 3 of the 6: all have been seen\" — Garchomp and Rotom fainted. So Tauros is the last mon. Shadow Ball neutral... wait, Ghost vs Fire/Fighting: neutral. Good.\n\nIf Shadow Ball doesn't KO, Tauros might hit with coverage. Risk: it outspeeds and could use a Ground move KOing Gholdengo. But Gholdengo at 156/194, likely survives non-STAB coverage? Tauros Blaze has Fire STAB ( resisted by Steel) and Fighting STAB (immune via Ghost). Coverage could be Trailblaze (Grass, super effective? no, Ground... Trailblaze is Grass, neutral on Steel) or Stomping Tantrum (Ground, super effective vs Steel — 2x). Stomping Tantrum 75 BP * 2 = neutral-ish 150 effective. Could do big damage.\n\nAlternative: switch to Garchomp (immune to Ground? no, Garchomp is Dragon/Ground, weak to nothing from Tauros... Fighting resisted? Dragon resists Fire? No — Dragon resists Fire. Fighting: Dragon doesn't resist Fighting, Ground doesn't either. So neutral). But switching loses the +2 boost.\n\nBetter to attack: Shadow Ball likely KO. If it doesn't, we live probably. Let's just Shadow Ball.",
+      "note": "",
+      "tokens": 3980,
+      "latency_ms": 28581,
+      "cost_usd": 0.0005070016,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "highhorsepower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: highhorsepower, 30% MOVE: ragingbull, 18% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2624,
+      "latency_ms": 667,
+      "cost_usd": 0.0001312,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.18048,
+        "MOVE: highhorsepower": 0.490596,
+        "MOVE: ragingbull": 0.297561,
+        "MOVE: trailblaze": 0.031363
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros is their last mon at 1% and outspeeds my Gholdengo; High Horsepower would KO from 45 HP. Switch to scarf Dragapult to tank the hit and KO next turn with any attack. Preserve Gholdengo's +2 boost as backup if Dragapult somehow fails. Garchomp with sash also in reserve.",
+      "hidden_reasoning": "Tauros at 1% will likely outspeed and KO Gholdengo with High Horsepower. Switching to Dragapult (immune to nothing? High Horsepower is Ground - Dragapult not immune) - but Tauros is at 1%, so any hit kills it. Actually Tauros moves first and could KO Gholdengo. Better to switch to something that survives. Actually Tauros only has Giga Impact and High Horsepower revealed. If I switch to Dragapult, Ground hits it neutrally but Dragapult survives easily, then kills Tauros next turn. Or just attack with Shadow Ball - but Tauros outspeeds and KOs Gholdengo first.\n\nWait - does Tauros kill Gholdengo? High Horsepower at 45 HP - yes, super effective, likely KO. So switch to preserve Gholdengo? Or sacrifice it since I have two full HP mons anyway?\n\nI have Garchomp (183 HP, sash) and Dragapult (165 HP, scarf) at full. Even if Gholdengo dies, I'm fine. But Gholdengo at +2 is valuable. Switching to Dragapult: scarf Dragapult outspeeds Tauros, kills with any move. Gholdengo preserved at +2.\n\nBut if I just Shadow Ball, Tauros outspeeds and kills Gholdengo... actually wait, does High Horsepower KO from 45? Probably yes -45 HP, super effective ground move from Atk 117-178. Yes, likely KO.\n\nSwitch to Dragapult seems best - preserves Gholdengo's +2 for potential future (though Tauros is last mon). Actually Tauros is the last mon! So I just need to kill it. Dragapult comes in, survives hit, kills next turn. Or Garchomp with sash.\n\nSimplest: switch to Dragapult, it survives the hit and can kill Tauros.",
+      "note": "",
+      "tokens": 3496,
+      "latency_ms": 9291,
+      "cost_usd": 0.0003478608,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "highhorsepower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: highhorsepower, 28% MOVE: ragingbull, 17% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2758,
+      "latency_ms": 685,
+      "cost_usd": 0.0001379,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.171251,
+        "MOVE: highhorsepower": 0.465509,
+        "MOVE: ragingbull": 0.282346,
+        "MOVE: trailblaze": 0.080893
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros is their last mon at 1% with SpD -1. Any attack KOes; Shadow Ball is neutral and reliable. Dragapult outspeeds unless Tauros has priority (none revealed). Gholdengo's +2 and sash Garchomp stay healthy as backup. Game should end this turn.",
+      "hidden_reasoning": "Tauros at 1%, any hit kills. Shadow Ball is neutral and strong. Just use shadowball.",
+      "note": "",
+      "tokens": 3152,
+      "latency_ms": 2492,
+      "cost_usd": 0.00060958,
+      "probabilities": null
+    }
+  ]
+}

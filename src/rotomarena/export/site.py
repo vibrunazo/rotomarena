@@ -348,18 +348,21 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]], version: s
                bench: Optional[str] = None) -> List[Dict[str, Any]]:
     """Every model's self-built team for the site: the final team, parsed, and each attempt with the validator's
     verdict. Raw answers and reasoning traces stay in data/drafts. The meta score compares against Smogon's Gen 9
-    OU sample teams, so other formats get none."""
-    parsed = {cid: parse_smogon_team(d["team"]).members if d.get("team") else [] for cid, d in drafts.items()}
+    OU sample teams, so other formats get none. A model with several drafts (ruleset.drafts) gets a row per draft,
+    numbered in the order its games play them."""
+    every = [(cid, i + 1, rec, 1 + len(d.get("more") or []))
+             for cid, d in sorted(drafts.items()) for i, rec in enumerate([d] + list(d.get("more") or []))]
+    parsed = {(cid, i): parse_smogon_team(d["team"]).members if d.get("team") else [] for cid, i, d, _ in every}
     sprites = _sprite_ids(app_cfg, sorted({m.species for members in parsed.values() for m in members}))
     usage, sample_teams = smogon_usage() if fmt == "gen9ou" else ({}, 0)
     rows = []
-    for cid, d in sorted(drafts.items()):
+    for cid, number, d, count in every:
         registry = app_cfg.agents.get(cid)
-        counts = [usage.get(_id(m.species), 0) for m in parsed[cid]]
+        counts = [usage.get(_id(m.species), 0) for m in parsed[(cid, number)]]
         filler = fallbacks(d)
-        own = [n for m, n in zip(parsed[cid], counts) if _id(m.species) not in filler]
+        own = [n for m, n in zip(parsed[(cid, number)], counts) if _id(m.species) not in filler]
         rows.append({
-            "config_id": cid, "version": version, "format": fmt, "bench": bench,
+            "config_id": cid, "version": version, "format": fmt, "bench": bench, "draft": number, "drafts": count,
             "display_name": (registry.display_name if registry and registry.display_name else cid),
             "model": d.get("model"), "model_key": d.get("model_key"), "format": d["format"],
             "prompt_version": d["prompt_version"], "drafted_at": d["drafted_at"],
@@ -369,7 +372,7 @@ def draft_rows(app_cfg: AppConfig, drafts: Dict[str, Dict[str, Any]], version: s
                          "tera_type": m.tera_type, "nature": m.nature,
                          "evs": {k: v for k, v in m.evs.items() if v}, "moves": m.moves,
                          "smogon_teams": n, "fallback": _id(m.species) in filler, "notes": set_notes(m, d["format"])}
-                        for m, n in zip(parsed[cid], counts)],
+                        for m, n in zip(parsed[(cid, number)], counts)],
             # The meta score: how many of its own picks appear in at least one of Smogon's sample teams (the referee's
             # fallbacks aren't its choice, so they don't count)
             "meta": {"used": sum(1 for n in own if n), "of": len(own), "slots": sum(own),
