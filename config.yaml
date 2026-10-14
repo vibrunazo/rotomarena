@@ -161,12 +161,14 @@ rulesets:
 # between two reference tiers is halfway, geometrically, between their models' costs; a tier whose model hasn't
 # played isn't shown). Free = costs nothing (local models, free tiers).
 price_tiers:
+  # 14 Oct: fixed round edges, each 4-5x the last (reference models moved: Sonnet got cheaper with caching and fell
+  # out of the tier named after it)
   - {name: "free"}
   - {name: "pocket change", under: 0.002}
-  - {name: "cheap", like: "claude_haiku_5_5"}
-  - {name: "mid", like: "gpt_6_luna_pro", under: 0.08}   # 12 Oct: the line sits between Gemini 3.8 Flash (~$0.053 in c5) and Sonnet (~$0.124)
-  - {name: "expensive", like: "claude_sonnet_5_5"}
-  - {name: "very expensive", like: "claude_opus_5_5"}
+  - {name: "cheap", under: 0.01}
+  - {name: "mid", under: 0.05}
+  - {name: "expensive", under: 0.2}
+  - {name: "very expensive"}
 
 benches:
   - id: "rotom-champ-bench"

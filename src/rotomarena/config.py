@@ -485,7 +485,8 @@ class BenchmarkConfig(BaseModel):
 class PriceTier(BaseModel):
     """A price tier on the site, by cost per game in the main benchmark. `under`: a fixed upper edge in dollars.
     `like`: a reference model; the edge between two reference tiers is halfway (geometrically) between their
-    models' costs, and a tier whose model hasn't played yet isn't shown. The first tier, without either, is 'free'."""
+    models' costs, and a tier whose model hasn't played yet isn't shown. The first tier, without either, is 'free';
+    the last, without either, has no upper edge."""
 
     name: str
     under: Optional[float] = None

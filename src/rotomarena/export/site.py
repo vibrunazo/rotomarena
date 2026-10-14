@@ -462,7 +462,7 @@ def price_tiers(app_cfg: AppConfig, cost: Dict[str, float]) -> List[Dict[str, An
     refs = [(t, cost.get(t.like or "", 0.0)) for t in app_cfg.price_tiers]
     present = [(t, c) for t, c in refs if not t.like or c > 0]
     for i, (t, c) in enumerate(present):
-        if not t.under and not t.like:
+        if i == 0 and not t.under and not t.like:
             tiers.append({"name": t.name, "low": 0.0, "high": 0.0})  # free
             continue
         nxt = present[i + 1] if i + 1 < len(present) else None

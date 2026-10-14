@@ -7,9 +7,14 @@ import { allModels, boardModels, boards, fmtDate, fmtInt, isModel, leaderboardHr
 
 const llms = (await allModels()).filter((m) => isModel(m) && m.games > 0);
 // Each benchmark's standings, top five of its main leaderboard
-const standings = await Promise.all(liveBenches.map(async (bench) => ({
-  bench, models: (await boardModels(bench.main!)).filter((m) => m.games > 0).slice(0, 5),
-})));
+const standings = await Promise.all(liveBenches.map(async (bench) => {
+  const all = (await boardModels(bench.main!)).filter((m) => m.games > 0);
+  // the headline: how many models out-rate PokéChamp, a one-turn damage calculator (when it plays this board)
+  const calc = all.find((m) => m.type === 'pokechamp');
+  const contestants = all.filter(isModel);
+  const above = calc?.rating != null ? contestants.filter((m) => (m.rating ?? -Infinity) > calc.rating!).length : null;
+  return { bench, models: all.slice(0, 5), above, contestants: contestants.length, calc };
+}));
 const stats = [
   [fmtInt(meta.rated_matches), 'rated matches'],
   [fmtInt(meta.turns), 'turns analysed'],
@@ -43,10 +48,14 @@ const stats = [
   </dl>
 
   <h2>Current standings</h2>
-  {standings.map(({ bench, models }) => (
+  {standings.map(({ bench, models, above, contestants, calc }) => (
     <section class="standing">
       <h3><a href={routes.bench(bench.id)}>{bench.title}</a></h3>
       <p class="small muted">{bench.tagline}</p>
+      {above !== null && calc && (
+        <p class="calc"><strong class="num">{above} of {contestants}</strong> models rate above <a href={`/models/${calc.config_id}/`}>{calc.display_name}</a>,
+          a bot that picks each move with a one-turn damage calculator.{above < contestants / 2 ? ' The rest have been outplayed by arithmetic.' : ''}</p>
+      )}
       {models.length ? <LeaderboardTable models={models} compact anchor={boards.find((b) => b.id === bench.main)?.anchor} /> : <p class="muted">No rated games yet: the first ones are being played.</p>}
       <p class="small muted"><a href={routes.bench(bench.id)}>Full {bench.title} leaderboard →</a></p>
     </section>
@@ -74,6 +83,8 @@ const stats = [
   .stats dt { font-size: 1.7rem; font-weight: 500; color: var(--cyan); text-shadow: var(--glow-text); }
   .standing { margin: 1.4rem 0 1.8rem; }
   .standing h3 { margin-bottom: 0.1rem; }
+  .calc { margin: 0.4rem 0 0.8rem; }
+  .calc strong { color: var(--cyan); }
   .standing h3 a { text-decoration: none; }
   .stats dd { margin: 0.2rem 0 0; font: 600 0.75rem/1.2 var(--font-display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
 </style>
