@@ -1,0 +1,412 @@
+{
+  "id": "match_20261014_045554_GLM 5_3 Flash_vs_Solar Decide_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "glm_5_3_flash",
+      "display_name": "GLM 5.3 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "z-ai/glm-5.3-flash",
+      "quantization": null,
+      "username": "GLM 5.3 Flash",
+      "role": "p1",
+      "team": "GLM 5.3 Flash's team",
+      "model_key": "z-ai/glm-5.3-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "GLM 5.3 Flash"
+    },
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p2",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 15.28,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|GLM 5.3 Flash||",
+    "|player|p2|Solar Decide Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Kingambit, L50, M|",
+    "|poke|p1|Primarina, L50, M|",
+    "|poke|p1|Glimmora, L50, M|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p2|Delphox, L50, F|",
+    "|poke|p2|Blaziken, L50, F|",
+    "|poke|p2|Sceptile, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Primarina|Primarina, L50, M|187/187",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Blaziken|Blaziken, L50, F|100/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Blaziken",
+    "|-damage|p2a: Blaziken|33/100",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p2a: Blaziken|Blaziken-Mega, L50, F",
+    "|-mega|p2a: Blaziken|Blaziken|Blazikenite",
+    "|move|p2a: Blaziken|Blast Burn|p1a: Primarina|[miss]",
+    "|-miss|p2a: Blaziken|p1a: Primarina",
+    "|move|p1a: Primarina|Sparkling Aria|p2a: Blaziken",
+    "|-supereffective|p2a: Blaziken|1",
+    "|-damage|p2a: Blaziken|0 fnt",
+    "|faint|p2a: Blaziken",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Primarina|Calm Mind|p1a: Primarina",
+    "|-boost|p1a: Primarina|spa|1",
+    "|-boost|p1a: Primarina|spd|1",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|move|p1a: Primarina|Moonblast|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|move|p2a: Garchomp|Stone Edge|p1a: Primarina",
+    "|-damage|p1a: Primarina|123/187",
+    "|move|p1a: Primarina|Moonblast|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|win|GLM 5.3 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "primarina,gholdengo,garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent is fire-heavy (Blaziken, Delphox, Tauros-Blaze) plus Rotom, Sceptile, Garchomp. Bring Primarina to wall fires, Gholdengo as special sweeper (Good as Gold blocks status), Garchomp for rocks/ground coverage vs Rotom/Delphox. Lead Primarina to scare Blaziken/Delphox.",
+      "hidden_reasoning": "Bring Gholdengo, Dragapult, Primarina? Opponent fire-heavy; Primarina good. Garchomp for Blaziken? Bring Gholdengo, Primarina, Garchomp.",
+      "note": "",
+      "tokens": 1964,
+      "latency_ms": 2134,
+      "cost_usd": 0.0003492,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 46% BRING: garchomp, 22% BRING: rotom, 17% BRING: blaziken\nPick 2: 41% BRING: rotom, 25% BRING: blaziken, 19% BRING: sceptile\nPick 3: 41% BRING: blaziken, 32% BRING: taurospaldeablaze, 19% BRING: delphox",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6440,
+      "latency_ms": 3508,
+      "cost_usd": 0.000322,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% SWITCH: blaziken, 32% SWITCH: rotom, 12% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2179,
+      "latency_ms": 1550,
+      "cost_usd": 0.00010895,
+      "probabilities": {
+        "MOVE: sandstorm": 0.08165,
+        "MOVE: spikes": 0.023393,
+        "MOVE: stealthrock": 0.038569,
+        "MOVE: stoneedge": 0.1188,
+        "SWITCH: blaziken": 0.414654,
+        "SWITCH: rotom": 0.322933
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Primarina vs their Garchomp. Moonblast hits it super effectively and likely does huge damage; I'm slower so I may take a hit (EQ/Scale Shot, Rough Skin irrelevant). Keep Primarina healthy to wall their fire core (Blaziken/Delphox/Tauros). Garchomp later for rocks vs Rotom/Delphox; Gholdengo sweeps late.",
+      "hidden_reasoning": "Moonblast is strong vs Garchomp; Primarina slower, takes a hit. Moonblast likely OHKO? 195 SpA, 95 BP SE vs 183-215 HP Garchomp — likely big damage. Go moonblast.",
+      "note": "",
+      "tokens": 2094,
+      "latency_ms": 2149,
+      "cost_usd": 0.00036765,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "blastburn",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "61% MOVE: blastburn [MEGA], 29% MOVE: blastburn, 2% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2515,
+      "latency_ms": 1811,
+      "cost_usd": 0.00012575,
+      "probabilities": {
+        "MOVE: blastburn": 0.28646,
+        "MOVE: blastburn [MEGA]": 0.606435,
+        "MOVE: gigaimpact": 0.023514,
+        "MOVE: gigaimpact [MEGA]": 0.009802,
+        "MOVE: overheat": 0.007634,
+        "MOVE: overheat [MEGA]": 0.007634,
+        "MOVE: reversal": 0.007634,
+        "MOVE: reversal [MEGA]": 0.014262,
+        "SWITCH: garchomp": 0.018313,
+        "SWITCH: rotom": 0.018313
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "sparklingaria",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Blaziken at 33% (Blaze range) — Sparklingaria KOs it. Primarina stays healthy to wall their fire core. Their Garchomp untouched; my Garchomp can check it later. Third opponent mon unknown (Rotom/Delphox/Tauros/Sceptile). Gholdengo sweeps late; set rocks when safe.",
+      "hidden_reasoning": "Blaziken at 33%, likely Blaze active. Sparklingaria KOs it.",
+      "note": "",
+      "tokens": 2252,
+      "latency_ms": 2392,
+      "cost_usd": 0.000377,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% SWITCH: rotom, 27% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1967,
+      "latency_ms": 699,
+      "cost_usd": 9.835e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.268941,
+        "SWITCH: rotom": 0.731059
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "76% SWITCH: garchomp, 13% MOVE: voltswitch, 5% MOVE: poltergeist",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2277,
+      "latency_ms": 1352,
+      "cost_usd": 0.00011385,
+      "probabilities": {
+        "MOVE: poltergeist": 0.048432,
+        "MOVE: risingvoltage": 0.048432,
+        "MOVE: voltswitch": 0.131652,
+        "MOVE: willowisp": 0.013876,
+        "SWITCH: garchomp": 0.757607
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "calmmind",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's 3: Rotom, Garchomp, Blaziken(dead). Rotom immune to EQ, faster than Primarina. Moonblast is neutral vs Rotom; Calm Mind lets Primarina tank Volt Switch/Thunderbolt and snowball. Keep Primarina healthy vs Rotom; Garchomp handles their Garchomp; Gholdengo sweeps late.",
+      "hidden_reasoning": "Rotom immune to EQ, resists nothing from Primarina? Moonblast neutral. Rotom likely Volt Switch/Thunderbolt. Primarina can Calm Mind and tank. Rotom may switch to Garchomp. Moonblast is fine.",
+      "note": "",
+      "tokens": 2472,
+      "latency_ms": 3106,
+      "cost_usd": 0.0004233,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "90% SWITCH: rotom, 6% MOVE: stoneedge, 3% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2330,
+      "latency_ms": 832,
+      "cost_usd": 0.0001165,
+      "probabilities": {
+        "MOVE: sandstorm": 0.030705,
+        "MOVE: spikes": 0.006851,
+        "MOVE: stealthrock": 0.007763,
+        "MOVE: stoneedge": 0.057364,
+        "SWITCH: rotom": 0.897317
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Their 3: Rotom, Garchomp, dead Blaziken. Primarina at +1/+1, full HP. Moonblast KOs or nearly KOs their Garchomp (4x weak). Then Rotom comes in — Primarina tanks Volt Switch/Tbolt and can CM more. Gholdengo sweeps late; keep Garchomp healthy as backup.",
+      "hidden_reasoning": "Moonblast hits Garchomp super effective, likely big damage. Primarina slower, may take EQ. Moonblast is fine.",
+      "note": "",
+      "tokens": 2538,
+      "latency_ms": 2008,
+      "cost_usd": 0.0004241,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: stoneedge, 30% MOVE: spikes, 18% MOVE: sandstorm",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2329,
+      "latency_ms": 1162,
+      "cost_usd": 0.00011645,
+      "probabilities": {
+        "MOVE: sandstorm": 0.180358,
+        "MOVE: spikes": 0.29736,
+        "MOVE: stealthrock": 0.140463,
+        "MOVE: stoneedge": 0.381818
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Their 3: Garchomp (full), dead Blaziken/Rotom. Primarina +1/+1, full HP. Moonblast at +1 should KO their Garchomp (4x weak). Then only Garchomp left vs my 3 — game won. Keep Gholdengo/Garchomp healthy; no need for rocks.",
+      "hidden_reasoning": "Moonblast likely KOs their Garchomp (4x weak, +1 SpA).",
+      "note": "",
+      "tokens": 2561,
+      "latency_ms": 1383,
+      "cost_usd": 0.0002694,
+      "probabilities": null
+    }
+  ]
+}
