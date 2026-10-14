@@ -1,0 +1,609 @@
+{
+  "id": "match_20261014_070322_Drex v2_0_vs_Bonsai 2 27B_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "drex_v2_0",
+      "display_name": "Drex v2.0",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "nace-ai/drex-v2.0",
+      "quantization": null,
+      "username": "Drex v2.0",
+      "role": "p1",
+      "team": "Drex v2.0's team",
+      "model_key": "nace-ai/drex-v2.0",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v2.0"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 9,
+  "duration_seconds": 493.29,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Drex v2.0||",
+    "|player|p2|Bonsai 2 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Aegislash, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Incineroar, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Hydreigon, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Quaquaval, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Incineroar|Incineroar, L50, M|202/202",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Garchomp|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p1a: Incineroar|Fake Out|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|84/100",
+    "|-damage|p1a: Incineroar|182/202|[from] item: Life Orb",
+    "|cant|p2a: Garchomp|flinch",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Incineroar",
+    "|-supereffective|p1a: Incineroar|1",
+    "|-damage|p1a: Incineroar|24/202",
+    "|move|p1a: Incineroar|Crunch|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|31/100",
+    "|-damage|p1a: Incineroar|4/202|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|194/194",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|44/194",
+    "|",
+    "|-heal|p1a: Gholdengo|56/194|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|70/100",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|-heal|p2a: Toxapex|100/100|[from] ability: Regenerator|[silent]",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Hydreigon",
+    "|-resisted|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|78/100",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Hydreigon",
+    "|-resisted|p2a: Hydreigon|1",
+    "|-crit|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|49/100",
+    "|-unboost|p2a: Hydreigon|spd|1",
+    "|move|p2a: Hydreigon|Dark Pulse|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-crit|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, M|4/202",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Hydreigon|atk|1",
+    "|turn|8",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100",
+    "|move|p1a: Incineroar|Protect||[still]",
+    "|-fail|p1a: Incineroar",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p1a: Incineroar|Will-O-Wisp|p2a: Toxapex|[miss]",
+    "|-miss|p1a: Incineroar|p2a: Toxapex",
+    "|move|p2a: Toxapex|Sludge Bomb|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|0 fnt",
+    "|faint|p1a: Incineroar",
+    "|-damage|p2a: Toxapex|90/100|[from] item: Life Orb",
+    "|",
+    "|win|Bonsai 2 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,gholdengo,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 24% BRING: incineroar, 19% BRING: dragapult, 18% BRING: toxapex\nPick 2: 25% BRING: gholdengo, 24% BRING: dragapult, 18% BRING: toxapex\nPick 3: 29% BRING: dragapult, 26% BRING: toxapex, 26% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5321,
+      "latency_ms": 2204,
+      "cost_usd": 0.00031926,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,toxapex,hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has 3 Ghost types (Aegislash, Gholdengo, Dragapult) + Incineroar. My plan: Garchomp leads with Choice Scarf for speed and Stealth Rock; Toxapex slugs Steel/Ghost with Sludge Bomb (2x) and Toxic; Hydreigon Nasty Plots into Draco Meteor, Dark Pulse hits Ghosts 2x. This trio covers all 6 of their Pokémon.",
+      "hidden_reasoning": "Let me analyze the opponent's team and choose my best 3 Pokémon to bring.\n\nOpponent's team:\n- Aegislash (Steel/Ghost) - Stance Change, defensive tank\n- Gholdengo (Steel/Ghost) - Good as Gold, special attacker\n- Corviknight (Flying/Steel) - Unnerve/Pressure/Mirror Armor, physical wall\n- Toxapex (Poison/Water) - Regenerator, special wall\n- Dragapult (Dragon/Ghost) - Clearbody/Cursed Body, fast special attacker\n- Incineroar (Fire/Dark) - Blaze/Intimidate, physical attacker\n\nMy team:\n- Garchomp (Dragon/Ground) - Choice Scarf, Sandveil, 154 Spe. Earthquake, Dragon Claw, Stone Edge, Stealth Rock\n- Corviknight (Flying/Steel) - Leftovers, Unnerve, 89 Spe. Roost, Body Press, Defog, U-turn\n- Toxapex (Poison/Water) - Life Orb, Regenerator, 57 Spe. Hex, Sludge Bomb, Toxic, Recover\n- Hydreigon (Dark/Dragon) - Focus Sash, Levitate, 165 Spe. Nasty Plot, Draco Meteor, Dark Pulse, U-turn\n- Gholdengo (Steel/Ghost) - Expert Belt, Good as Gold, 149 Spe. Nasty Plot, Shadow Ball, Psychic, Trick\n- Quaquaval (Water/Fighting) - Silk Scarf, Moxie, 137 Spe. Close Combat, Liquidation, Aqua Jet, U-turn\n\nLet me think about what to bring:\n\nThe opponent has a lot of Ghost typing (Aegislash, Gholdengo, Dragapult). This is important.\n\nKey threats to consider:\n- Dragapult: Very fast (145-213 Spe), special attacker with Draco Meteor/Dark Pulse. Can hit my physical walls hard.\n- Gholdengo: Good as Gold means it takes 0 damage from Steel moves. Special attacker.\n- Aegislash: Stance Change, very defensive.\n- Toxapex: Special wall.\n- Corviknight: Physical wall with Unnerve (lowers SpA).\n- Incineroar: Intimidate lowers physical attack.\n\nMy best options:\n\n1. Garchomp - Choice Scarf gives it 231 effective speed (154*1.5), making it the fastest thing on the field. It can break through many things with Earthquake/Dragon Claw/Stone Edge. Sandveil protects from weather damage. However, it's weak to Ice, Flying, and Dragon. Against Ghost types, it's neutral. Against Steel/Ghost (Aegislash, Gholdengo), Ground is immune... wait no, Ground attacks are not affected by Ghost typing. Earthquake hits Aegislash and Gholdengo neutrally (Ground vs Steel/Ghost = neutral). Actually let me check: Ground vs Steel = 0.5x, Ground vs Ghost = 1x. So Ground vs Steel/Ghost = 0.5x. Hmm, that's not great.\n\nWait, let me recalculate. Garchomp is Dragon/Ground. Its Earthquake is Ground type. Against Aegislash (Steel/Ghost): Ground is super effective against... no. Ground is NOT super effective against Steel or Ghost. Ground vs Steel = 0.5x (resisted). Ground vs Ghost = 1x (neutral). So Ground vs Steel/Ghost = 0.5x. That's bad.\n\nDragon Claw vs Aegislash (Steel/Ghost): Dragon vs Steel = 1x, Dragon vs Ghost = 1x. Neutral.\nStone Edge vs Aegislash (Steel/Ghost): Rock vs Steel = 0.5x, Rock vs Ghost = 1x. So 0.5x. Bad.\n\nHmm, Garchomp has a hard time hitting the Steel/Ghost types. But it can hit Incineroar (Fire/Dark) with Earthquake (Ground vs Fire = 1x, Ground vs Dark = 1x, neutral). And Dragon Claw hits Incineroar neutrally too.\n\nActually wait - Garchomp's Stone Edge is Rock type. Rock vs Fire/Dark: Rock vs Fire = 0.5x, Rock vs Dark = 1x. So 0.5x. Not great either.\n\nLet me reconsider. What can hit the Steel/Ghost types well?\n- Electric: Super effective against both Steel and Ghost... wait no. Electric vs Steel = 2x, Electric vs Ghost = 0x (immune). So Electric vs Steel/Ghost = 0x. Bad.\n- Fire: Fire vs Steel = 2x, Fire vs Ghost = 1x. So 2x. Good!\n- Fighting: Fighting vs Steel = 2x, Fighting vs Ghost = 0x. So 0x. Bad.\n- Poison: Poison vs Steel = 2x, Poison vs Ghost = 1x. So 2x. Good!\n- Ground: Ground vs Steel = 0.5x, Ground vs Ghost = 1x. So 0.5x. Bad.\n\nSo for hitting Aegislash and Gholdengo (Steel/Ghost), I want Fire or Poison STAB.\n\nQuaquaval has Liquidation (Water) which is neutral against Steel/Ghost. Close Combat (Fighting) is immune to Ghost... wait no, Fighting vs Ghost = 0x. So Close Combat doesn't hit Aegislash or Gholdengo at all!\n\nHmm, this is tricky. Let me think about what my team can do:\n\n- Garchomp: Can hit Incineroar (Fire/Dark) with Earthquake (neutral), Dragon Claw (neutral). Can hit Toxapex (Poison/Water) with... Ground vs Poison = 0.5x, Ground vs Water = 1x. So 0.5x. Not great.\n- Corviknight: Body Press (Fighting) hits Aegislash/Gholdengo for 0x (Ghost). Roost/Defog are utility. Can hit Incineroar with Body Press (Fighting vs Fire/Dark = 1x).\n- Toxapex: Sludge Bomb (Poison) hits Aegislash/Gholdengo for 2x! Hex hits them neutrally. Toxic is great against physical attackers.\n- Hydreigon: Dark Pulse hits Aegislash/Gholdengo for 2x (Dark vs Ghost = 2x, Dark vs Steel = 1x). Draco Meteor hits them neutrally. Nasty Plot setup.\n- Gholdengo: Shadow Ball hits Aegislash/Gholdengo for... Ghost vs Steel/Ghost = 0.5x (Ghost resists Ghost). Psychic hits them neutrally. Trick is great utility.\n- Quaquaval: Close Combat doesn't hit Ghost types. Liquidation hits them neutrally.\n\nSo the best options to handle the Steel/Ghost core seem to be:\n- Toxapex (Sludge Bomb 2x)\n- Hydreigon (Dark Pulse 2x, Nasty Plot + Draco Meteor)\n- Garchomp (can hit Incineroar, has Choice Scarf for priority)\n\nLet me think about the matchup more carefully:\n\nIf I bring Garchomp, Toxapex, Hydreigon:\n- Garchomp leads with Choice Scarf. It can use Stealth Rock to set up hazards. Earthquake hits Incineroar neutrally (100 BP). Dragon Claw is 80 BP but Dragon type.\n- Against Aegislash/Gholdengo: Garchomp struggles. But it can switch out.\n- Toxapex handles special attackers with Sludge Bomb (2x on Steel/Ghost) and Toxic.\n- Hydreigon with Nasty Plot + Draco Meteor is a huge threat. Dark Pulse hits Ghost types for 2x.\n\nActually, let me reconsider. The opponent has 3 Ghost types out of 6. That's a lot. My team needs to handle them.\n\nHydreigon: Dark Pulse (2x on Ghost) + Nasty Plot + Draco Meteor. Levitate means it's immune to Ground. This is great against the Ghost-heavy team.\n\nToxapex: Sludge Bomb (2x on Steel/Ghost), Toxic, Recover. Life Orb boosts its attacks. Regenerator helps with switching.\n\nGarchomp: Choice Scarf makes it super fast. Can break through Incineroar and Toxapex. But struggles against the Ghost types. However, it can set up Stealth Rock.\n\nAlternative: Garchomp, Hydreigon, Quaquaval\n- Quaquaval has Moxie + Silk Scarf. Close Combat is 120 BP with Moxie stacking. But it doesn't hit Ghost types! This is a problem.\n- Liquidation (85 BP) hits Ghost types neutrally.\n\nI think Garchomp, Toxapex, Hydreigon is the best trio:\n- Garchomp: Fast physical attacker, Stealth Rock, can handle Incineroar and Corviknight\n- Toxapex: Special wall, Sludge Bomb 2x on Steel/Ghost, Toxic\n- Hydreigon: Nasty Plot + Draco Meteor, Dark Pulse 2x on Ghost types\n\nThis gives me coverage against all 6 of their Pokémon. Let me go with this.\n\nActually wait - should I consider Gholdengo instead of Toxapex? Gholdengo has Trick (great utility), Shadow Ball, Psychic, Nasty Plot. But it's slower than Hydreigon and doesn't have the same defensive profile as Toxapex. And its Good as Gold means Steel moves don't hit it, but that's less relevant here since I'm not using many Steel attackers.\n\nI'll go with Garchomp (leader), Toxapex, Hydreigon.\n",
+      "note": "",
+      "tokens": 4402,
+      "latency_ms": 55668,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fakeout",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: fakeout, 17% MOVE: protect, 11% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1888,
+      "latency_ms": 773,
+      "cost_usd": 0.00011328,
+      "probabilities": {
+        "MOVE: fakeout": 0.4728,
+        "MOVE: protect": 0.1723,
+        "MOVE: crunch": 0.1006,
+        "MOVE: willowisp": 0.1107,
+        "SWITCH: gholdengo": 0.0903,
+        "SWITCH: dragapult": 0.0533
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp (Choice Scarf) leads vs Incineroar. EQ is super effective (2x STAB), will KO Incineroar easily despite -1 Atk. After KO, expect one of their Ghost/Steel types to come in. Toxapex handles Steel/Ghost with Sludge Bomb 2x + Toxic; Hydreigon Nasty Plot for Draco Meteor sweep.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is leading with Choice Scarf, atk -1 from Intimidate\n- Opponent's Incineroar (Fire/Dark) is active, 100% HP\n- Garchomp moves first (speed 154 vs Incineroar 72-123)\n\nGarchomp's options:\n1. Earthquake - Ground/Physical, BP 100, super effective on Fire/Dark (2x). With Choice Scarf, speed is 1.5x so it definitely goes first. Atk is -1 from Intimidate. This should deal significant damage to Incineroar.\n2. Dragonclaw - Dragon/Physical, BP 80, neutral\n3. Stoneedge - Rock/Physical, BP 100, super effective on Fire/Dark (2x), but 80% accuracy and high crit ratio\n4. StealthRock - sets up hazard\n\nLet me think about what's best:\n\n- Earthquake is super effective (2x) on Fire/Dark Incineroar. With Choice Scarf giving speed boost, Garchomp goes first. Atk -1 means it deals slightly less damage but still very threatening.\n- Stoneedge is also 2x but has 80% accuracy and high crit ratio. Earthquake is more reliable.\n- StealthRock would be good for setting up, but Incineroar is a threat that can be KO'd or heavily damaged with EQ.\n\nActually, let me think about damage: Garchomp's Atk is 200, with -1 stage it's roughly 200 * (6/7) ≈ 171. Earthquake BP 100, super effective 2x. Against Incineroar with Def range 99-156. Let's say around 128 average. Damage = (2*171*100)/(128+50) * 2 ≈ (34200/178)*2 ≈ 192*2... wait let me recalculate.\n\nActually the formula is: ((2*level/5 + 2) * BP * Atk * STAB * Modifiers) / Def * random\nAt level 50: (2*50/5+2) = 22\nSTAB for Ground on Garchomp: 1.0 (Ground is not Dragon/Ground... wait, Garchomp IS Ground type, so STAB applies! Yes, Earthquake gets STAB.)\n\nSo: (22 * 100 * 171 * 1.0 * 2) / Def\nWith Def ~128: (22*100*171*2)/128 = 752400/128 ≈ 588\n\nIncineroar HP range is 170-202. So Earthquake would KO Incineroar easily even with the -1 Atk.\n\nWait, but Choice Scarf means Garchomp can only use its first move in the moveset. The first move listed is earthquake. So actually, with Choice Scarf, Garchomp CAN ONLY use earthquake! Let me re-read...\n\n\"choicescarf: Holder's Speed is 1.5x, but it can only select the first move it executes.\"\n\nHmm, \"it can only select the first move it executes\" - this is a bit ambiguous. In actual Pokémon games, Choice Scarf means the user can only use the first move in their moveset. Looking at Garchomp's moves: earthquake (1st), dragonclaw (2nd), stoneedge (3rd), stealthrock (4th).\n\nSo with Choice Scarf, Garchomp can ONLY use Earthquake! That simplifies things. The legal actions still list all moves but in reality only earthquake would work... Actually wait, the prompt says \"if your action is not in LEGAL ACTIONS\" - so all listed actions are legal. But Choice Scarf in actual gameplay restricts to first move. However, since the game is presenting all as legal actions, maybe I should just pick Earthquake since it's the most logical choice anyway.\n\nActually, re-reading: \"it can only select the first move it executes\" - this might mean it locks into the first move. So effectively Garchomp can only use Earthquake. Let me just go with Earthquake.\n\nEarthquake will KO Incineroar (super effective 2x, STAB, and Incineroar has low HP). This is clearly the best play.\n\nAfter KOs Incineroar, I'll need to deal with whatever comes next from their remaining team: aegislash, gholdengo, corviknight, toxapex, dragapult (2 more to come in from these 5).\n\nLet me go with Earthquake.\n",
+      "note": "",
+      "tokens": 3398,
+      "latency_ms": 29423,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "crunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% MOVE: crunch, 22% SWITCH: gholdengo, 18% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1869,
+      "latency_ms": 757,
+      "cost_usd": 0.00011214,
+      "probabilities": {
+        "MOVE: protect": 0.1633,
+        "MOVE: crunch": 0.2788,
+        "MOVE: willowisp": 0.162,
+        "SWITCH: gholdengo": 0.2152,
+        "SWITCH: dragapult": 0.1806
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp (Choice Scarf) at 154 HP, -1 Atk from Intimidate. Incineroar at 90% with Life Orb. EQ is super effective + STAB; should KO it cleanly despite the debuff. After KO, expect a Ghost/Steel type to come in. Plan: Toxapex slugs Steel/Ghost with Sludge Bomb (2x) + Toxic; Hydreigon Nasty Plots into Draco Meteor sweep. Watch for Dragapult outspeeding everything.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 154/183 HP (84.2%), with -1 Atk from Intimidate, and has a Choice Scarf.\n- Opponent's Incineroar is at 90% HP, has Life Orb, Intimidate ability.\n- I moved first last turn but flinched from Fake Out.\n- Now it's Turn 2.\n\nKey considerations:\n1. Garchomp with Choice Scarf can only use Earthquake (first move in its moveset). Wait, actually the Choice Scarf says \"it can only select the first move it executes.\" Looking at the legal actions, I can choose any of the moves listed. But wait - Choice Scarf means \"Holder's Speed is 1.5x, but it can only select the first move it executes.\" This means Garchomp can ONLY use Earthquake (the first move in its list).\n\nWait, let me re-read: \"it can only select the first move it executes\" - this is a bit ambiguous. In Pokémon Showdown, Choice Scarf doesn't lock you into a move - that's Choice Band/Choice Specs. Actually wait, no. Let me re-read the description: \"Holder's Speed is 1.5x, but it can only select the first move it executes.\"\n\nHmm, this seems to be a custom rule for this battle. So Garchomp with Choice Scarf can ONLY use Earthquake (the first move in its moveset). That means my legal actions are limited to MOVE: earthquake.\n\nWait, but the legal actions list shows all 4 moves as options. Let me re-read... The legal actions show:\n1. MOVE: earthquake\n2. MOVE: dragonclaw\n3. MOVE: stoneedge\n4. MOVE: stealthrock\n5. SWITCH: toxapex\n6. SWITCH: hydreigon\n\nSo all moves are listed as legal. But the Choice Scarf description says \"it can only select the first move it executes.\" This might mean that if I choose a move other than Earthquake, it will execute Earthquake instead? Or maybe the rule is just flavor text and all moves are actually available?\n\nActually, looking at this more carefully - in standard Pokémon, Choice Scarf gives 1.5x speed but doesn't lock you into a move. The description here says \"it can only select the first move it executes\" which is unusual. But since all moves are listed as legal actions, I'll assume I can choose any of them.\n\nWait, actually re-reading: \"but it can only select the first move it executes\" - maybe this means the Choice Scarf forces you to use Earthquake? But then why would dragonclaw, stoneedge, and stealthrock be listed as legal actions?\n\nI think the safest interpretation is that all listed moves are legal. The Choice Scarf description might just be flavor or I'm misreading it. Let me proceed with the assumption that I can use any of the listed moves.\n\nNow, strategy:\n- Garchomp at 154 HP with -1 Atk vs Incineroar at 90% HP (with Life Orb)\n- Earthquake is super effective (2x STAB on Dragon/Ground hitting Fire/Dark... wait, Ground is neutral to Fire and Dark. Let me check: Ground is super effective against Fire, Rock, Steel. It's neutral against Dark. So EQ is 1.5x? No wait - Ground is super effective against Fire, Rock, and Steel. Against Dark it's neutral. So EQ on Incineroar (Fire/Dark) would be 1.5x from the Fire weakness... \n\nActually let me reconsider: Earthquake is Ground type. Ground is super effective against Fire, Rock, and Steel. It's not very effective against Grass and Bug. Against Dark, it's neutral. So EQ on Incineroar (Fire/Dark) = 1.5x damage from the Fire weakness.\n\nWait, but the legal action says \"super effective on incineroar\" - so it's confirmed as super effective. That makes sense since Ground is super effective against Fire.\n\nWith Choice Scarf: Garchomp Speed = 154 * 1.5 = 231 (base speed stat). Incineroar Speed range is 72-123. So Garchomp definitely moves first.\n\nGarchomp's Attack with -1: base 200, at level 50... Let me estimate. At level 50, a stat of 200 means the actual HP/attack value. With -1 stage, it's reduced by about 1/3 (stage -1 = 2/3 of normal). So effective Attack ≈ 133.\n\nEarthquake: BP 100, STAB Dragon? No, Earthquake is Ground type, and Garchomp is Dragon/Ground, so yes STAB applies. Super effective on Fire/Dark (Fire weakness) = 1.5x.\n\nDamage calculation: ((2*Level/5+2) * BP * STAB * SE / TargetDef) + 2\n= ((2*50/5+2) * 100 * 1.5 * 1.5 / Incineroar Def) + 2\n\nWait, I need to think about this differently. The stats shown are the actual stat values at level 50. Garchomp's Attack is 200 (with -1 it becomes ~133). Incineroar's Defense range is 99-156.\n\nLet me use a simpler approach: With EQ being super effective and STAB, plus the Choice Scarf speed advantage, Garchomp should KO Incineroar at 90% HP with one hit of Earthquake. Even with -1 Atk, it should be a clean KO.\n\nActually, let me reconsider whether I should just use Earthquake to KO Incineroar, or switch out. \n\nIf I use Earthquake:\n- Likely KOs Incineroar (super effective + STAB)\n- Then opponent switches in one of their remaining Pokémon\n- I can then switch to Toxapex or Hydreigon\n\nIf I switch now:\n- I lose the free hit on Incineroar\n- But I preserve Garchomp's HP for later\n\nI think the best play is to Earthquake and KO Incineroar. Then next turn, depending on what comes in, I can switch to the appropriate counter.\n\nActually wait - with Choice Scarf, if the description means I'm locked into Earthquake, then I have no choice anyway. Let me just go with Earthquake.\n\nLet me also consider: should I use Stealth Rock instead? No, Incineroar is still on field and I want to KO it. Also, Stealth Rock would be useful but I can set it up later when a better target comes in.\n\nDecision: MOVE: earthquake - to KO Incineroar.\n",
+      "note": "",
+      "tokens": 4061,
+      "latency_ms": 40598,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% SWITCH: gholdengo, 31% SWITCH: dragapult, 19% MOVE: crunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1959,
+      "latency_ms": 724,
+      "cost_usd": 0.00011754,
+      "probabilities": {
+        "MOVE: protect": 0.1287,
+        "MOVE: crunch": 0.1857,
+        "MOVE: willowisp": 0.0688,
+        "SWITCH: gholdengo": 0.3102,
+        "SWITCH: dragapult": 0.3066
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 57/183 HP, -1 Atk, Choice Scarf. Incineroar at 1% — EQ will KO it easily (super effective on Fire/Dark). After the KO, expect one of their Ghost/Steel types. Toxapex handles Steel/Ghost with Sludge Bomb + Toxic; Hydreigon Nasty Plots into Draco Meteor sweep. Watch for Dragapult outspeeding everything.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 57/183 HP (31.1%), with -1 Atk from Intimidate, and it's holding a Choice Scarf.\n- Opponent's Incineroar is at 1% HP (essentially about to be KO'd).\n- I need to decide: Earthquake to KO Incineroar, or switch out.\n\nIf I use Earthquake:\n- It's super effective on Fire/Dark (Ground is super effective on Fire)\n- Garchomp has -1 Atk from Intimidate\n- With Choice Scarf, Speed is 154 * 1.5 = 231\n- Incineroar is at 1% HP, so Earthquake should easily KO it\n\nIf I switch out:\n- I save Garchomp's remaining HP for the next opponent\n- But Incineroar is at 1% and will likely be KO'd by my EQ anyway\n\nThe smart play here is to use Earthquake to KO Incineroar. It's essentially a free hit - Incineroar is at 1% HP and Ground is super effective on Fire/Dark. Even with -1 Atk, this should easily KO.\n\nAfter the KO, I'll need to deal with whatever comes in next. The remaining opponent Pokémon could be Aegislash, Gholdengo, Corviknight, Toxapex, or Dragapult (2 more from these 5).\n\nLet me go with Earthquake to finish off Incineroar.\n",
+      "note": "",
+      "tokens": 2989,
+      "latency_ms": 13325,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: shadowball, 25% SWITCH: dragapult, 19% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2074,
+      "latency_ms": 783,
+      "cost_usd": 0.00012444,
+      "probabilities": {
+        "MOVE: shadowball": 0.3597,
+        "MOVE: recover": 0.1887,
+        "MOVE: protect": 0.0883,
+        "MOVE: trick": 0.1014,
+        "SWITCH: incineroar": 0.0144,
+        "SWITCH: dragapult": 0.2474
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 31% HP, -1 Atk, Choice Scarf (forced to EQ). Gholdengo at 28% — EQ is super effective + STAB, should KO it. After KO, switch to Toxapex (full HP) to handle remaining Steel/Ghost threats with Sludge Bomb + Toxic. Hydreigon saved for Nasty Plot sweep later. Watch for Dragapult outspeeding everything.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 57/183 HP (31%), with -1 Atk, Choice Scarf\n- Opponent's Gholdengo is at 28% HP with Leftovers\n- Garchomp moves first (speed 154 vs Gholdengo 93-149)\n\nGarchomp's Earthquake is super effective on Gholdengo (Ground > Steel). Let me calculate:\n- Garchomp Atk: 200, -1 = ~178\n- Gholdengo Def: 103-161, let's say around 130 average\n- EQ: 100 BP, super effective (2x), STAB (Ground)\n\nWith Choice Scarf, Garchomp can only use Earthquake (first move). So I must use Earthquake.\n\nGholdengo at 28% HP - Earthquake should KO it easily given the super effectiveness and STAB.\n\nWait, but Garchomp is at 31% HP. If I switch to Toxapex or Hydreigon, I save Garchomp for later. But Garchomp can KO Gholdengo with EQ (super effective). Let me think about whether to KO it now or switch.\n\nGarchomp at 57/183 HP. If I use EQ and KO Gholdengo, that's fine. Then the opponent will bring in their next Pokémon.\n\nIf I switch to Toxapex:\n- Toxapex can handle Steel/Ghost types with Sludge Bomb (2x) + Toxic\n- But Garchomp is at 31% HP and could be a threat if left out\n\nIf I switch to Hydreigon:\n- Hydreigon can Nasty Plot then Draco Meteor\n- But Garchomp is still a threat\n\nActually, let me reconsider. Garchomp with Choice Scarf can ONLY use Earthquake (first move). So my options are:\n1. Use Earthquake - likely KOs Gholdengo at 28%\n2. Switch to Toxapex\n3. Switch to Hydreigon\n\nGholdengo is at 28%. Let me estimate the damage:\n- Garchomp Atk after Intimidate: ~178 (200 * 0.85)\n- Gholdengo Def: let's say around 130 (middle of range)\n- EQ: 100 BP, 2x STAB, 2x super effective = 4x total multiplier\n- Damage formula roughly: ((2*50/50+2)*178*100/(130*50)) * 2 (STAB) * 2 (SE) ≈ ... \n\nActually let me just think about it more simply. Garchomp's EQ on a Steel/Ghost type at 28% HP with -1 Atk... Garchomp's base Atk is 200, so even with -1 it's strong. The super effectiveness and STAB should make this a KO.\n\nBut wait - Gholdengo has GoodasGold which makes it immune to status moves. That doesn't affect EQ though.\n\nI think the safest play is to use Earthquake and KO Gholdengo. Garchomp at 31% HP can still be useful, but after KOs I'll need to switch anyway since the opponent will bring in a new Pokémon.\n\nActually, let me reconsider. If I switch now:\n- Toxapex at full HP can handle whatever comes next\n- But I lose my Garchomp's momentum\n\nIf I use EQ:\n- KO Gholdengo\n- Then switch to Toxapex or Hydreigon for the next turn\n\nI think using Earthquake to KO Gholdengo is the best play. It removes a threat and keeps my momentum. Then I can switch to Toxapex (for its defensive utility against Steel/Ghost) or Hydreigon (for Nasty Plot + Draco Meteor).\n\nLet me go with Earthquake to KO Gholdengo.\n",
+      "note": "",
+      "tokens": 3686,
+      "latency_ms": 25843,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% SWITCH: dragapult, 19% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1803,
+      "latency_ms": 725,
+      "cost_usd": 0.00010818,
+      "probabilities": {
+        "SWITCH: incineroar": 0.1897,
+        "SWITCH: dragapult": 0.8103
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: shadowball, 33% MOVE: dragonclaw, 16% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2104,
+      "latency_ms": 756,
+      "cost_usd": 0.00012624,
+      "probabilities": {
+        "MOVE: shadowball": 0.3782,
+        "MOVE: uturn": 0.1554,
+        "MOVE: protect": 0.0971,
+        "MOVE: dragonclaw": 0.3281,
+        "SWITCH: incineroar": 0.0412
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Critical: Garchomp's Earthquake is completely ineffective against Ghost (immunity). Must switch. Toxapex handles Dragapult with 2x Sludge Bomb + Toxic + Recover. Save Hydreigon for Nasty Plot sweep after Toxapex weakens Dragapult. Opponent has used Incineroar, Gholdengo, Dragapult — all 3 revealed.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 57/183 HP (31%), -1 Atk, Choice Scarf. It's been hit by Crunch and has taken damage.\n- Opponent just switched in Dragapult (Dragon/Ghost) at full HP.\n- I have Toxapex (full HP) and Hydreigon (full HP) available to switch.\n\nKey considerations:\n1. Garchomp is at 31% HP with -1 Atk. It's a Choice Scarf user, so it can only use Earthquake.\n2. Dragapult is Dragon/Ghost - it resists Ground (Earthquake does neutral damage to Ghost, but Dragon/Ground... wait, let me think about this).\n\nActually, let me check type matchups:\n- Earthquake (Ground) vs Dragon/Ghost: Ground is NOT super effective against Ghost (Ghost is immune to Ground!). Wait no - Ghost is immune to Ground moves. So Earthquake would be completely ineffective against Dragapult!\n\nWait, that's a critical point. Ghost types are immune to Ground-type moves. So Earthquake would do ZERO damage to Dragapult.\n\nSo I absolutely cannot stay on Garchomp and use Earthquake. I need to switch.\n\nOptions:\n- Switch to Toxapex (Poison/Water): Can use Sludge Bomb (Poison) which is super effective against Ghost. Also has Toxic, Recover, Hex. This is a good defensive pivot.\n- Switch to Hydreigon (Dark/Dragon): Dark is super effective against Ghost. Has Nasty Plot, Draco Meteor, Dark Pulse, U-turn. Could set up and sweep.\n\nGiven that Dragapult is Dragon/Ghost:\n- Toxapex: Sludge Bomb is 2x STAB on Ghost. Toxic would poison it. Recover to heal. Very safe defensive option.\n- Hydreigon: Dark Pulse is super effective on Ghost. Nasty Plot for setup. But Draco Meteor is Dragon which is neutral against Dragon/Ghost (Dragon resists Dragon).\n\nI think switching to Toxapex is the safest play. It can Toxic Dragapult, use Sludge Bomb for 2x damage, and Recover. Then I can bring in Hydreigon later for the sweep.\n\nActually wait - let me reconsider. Garchomp at 31% HP with Choice Scarf... if I switch, I lose that momentum but save my team. Earthquake does nothing to Ghost, so staying is pointless.\n\nI'll switch to Toxapex to safely handle Dragapult with Sludge Bomb + Toxic, then bring in Hydreigon for the Nasty Plot sweep later.\n",
+      "note": "",
+      "tokens": 3527,
+      "latency_ms": 18439,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "92% MOVE: shadowball, 8% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2071,
+      "latency_ms": 873,
+      "cost_usd": 0.00012426,
+      "probabilities": {
+        "MOVE: shadowball": 0.9151,
+        "SWITCH: incineroar": 0.0849
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Toxapex is useless vs Dragapult: Ghost immune to Poison (Sludgebomb, Toxic fail). Hex only ~9 dmg. Switching out triggers Regenerator (heals 41 HP → Toxapex back to ~129). Hydreigon at full HP with Levitate can Draco Meteor (neutral, ~28 dmg) and Nasty Plot later. Garchomp also useless (Ground immune vs Ghost). Plan: Hydreigon pressures Dragapult, save Toxapex for Steel/Ghost threats (Aegislash/Corviknight).",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Toxapex is at 88/125 HP (70.4%) and is active against Dragapult (full HP)\n- Dragapult outspeeds my entire team (Spe 145-213 vs my max Spe of 165 for Hydreigon, but Toxapex is only 57)\n- I have a Life Orb on Toxapex (not Regenerator item - wait, let me re-read)\n\nWait, looking at the battle log: \"Your Toxapex came in\" and \"Opposing Dragapult used Shadow Ball - Your Toxapex is at 88/125 HP\"\n\nLooking at my team info:\n- Toxapex has Life Orb as item (not Regenerator)\n- But the ability is still Regenerator\n\nSo Toxapex has Life Orb, not a healing item. That's important - it means Sludge Bomb will cost 1/10 HP (12.5 HP) but deal 1.3x damage.\n\nWait, let me re-read: \"Item: lifeorb\" for Toxapex. And the ability is Regenerator. So when I switch out, I heal 1/3 max HP (41 HP).\n\nCurrent situation:\n- Toxapex at 88/125 HP vs Dragapult at full HP\n- Dragapult moves first (speed 145-213 vs 57)\n- My options: Hex, Sludgebomb, Toxic, Recover, Switch to Garchomp, Switch to Hydreigon\n\nKey considerations:\n1. Dragapult will move first every turn against Toxapex\n2. Shadow Ball is super effective on Poison/Water (Ghost > Water? No wait - Ghost is neutral on Water, but Ghost is super effective on... let me think. Ghost is super effective on Dark and Psychic. It's neutral on Water. But Steel/Ghost types... Dragapult is Dragon/Ghost. Its Shadow Ball is Ghost type. Against Toxapex (Poison/Water): Ghost is neutral on both Poison and Water. So Shadow Ball should be neutral.)\n\nWait, but the battle log says \"Opposing Dragapult used Shadow Ball - Your Toxapex is at 88/125 HP\" from 125 to 88 = 37 damage. Let me check: Shadow Ball BP 80, Dragon/Ghost STAB (Ghost on Ghost). Atk range for Dragapult: 126-189. With Life Orb or not...\n\nActually wait - the opponent's Incineroar had a Life Orb. Gholdengo had Leftovers. What about Dragapult? It says \"Item: unknown_item\". Let me just work with what I know.\n\n37 damage from Shadow Ball. If it's STAB Ghost (1.5x) at BP 80, that's 120 effective power. At level 50, a base stat of ~145-167 SpA... let's say around 150. Damage formula roughly: ((2*50/5+2)*1.5*120*150/(100+Def)) + 2. Toxapex SpD is 213. So: (12 * 1.5 * 120 * 150 / 313) + 2 ≈ (12 * 18000 / 313) + 2 ≈ 69000/313 + 2 ≈ 220 + 2 = 222? That seems too high.\n\nHmm, let me recalculate. Actually the damage formula is more complex. Let me just go with what happened: 37 damage from Shadow Ball.\n\nIf Dragapult uses Shadow Ball again next turn (it moves first), that's another ~37 damage, bringing Toxapex to ~51 HP. Then if it uses a stronger move like Draco Meteor or Dark Pulse...\n\nActually, let me think about what's best:\n\nOption 1: Toxic - This is the priority. Badly poison Dragapult. It moves first, so I'll take one more hit, but then Toxic will be in effect. With Toxic, Hex doubles (if it has a status ailment). But wait - does Dragon/Ghost have immunity to Poison? No! Ghost types are immune to Poison. So Toxic won't work on Dragapult!\n\nWait, let me check: Ghost is immune to Poison. Yes, Ghost-type Pokémon are immune to Poison-type moves and effects. So Toxic will fail against Dragapult (Dragon/Ghost).\n\nSo Toxic is useless here.\n\nOption 2: Sludgebomb - Poison type, not very effective on Dragon/Ghost (Poison is neutral on Dragon, but Ghost is immune to Poison!). Wait - is Ghost immune to Poison? Yes! Ghost types are immune to all Poison-type moves and effects. So Sludgebomb will do ZERO damage against Dragapult!\n\nWait, let me double-check. In Pokémon:\n- Ghost is immune to Normal and Fighting\n- Ghost is immune to Poison (yes, this is correct)\n\nSo both Sludgebomb AND Toxic fail against Dragapult. That's a problem for Toxapex.\n\nOption 3: Hex - Ghost type, super effective on Dragon/Ghost. BP 65, doubles if target has status ailment. But Dragapult doesn't have a status ailment (no Toxic worked). So it's just 65 power Ghost STAB... wait, is Toxapex's Hex Ghost type? Yes, Hex is Ghost/Special. Against Dragon/Ghost: Ghost is super effective on Ghost, neutral on Dragon. So 2x multiplier.\n\nWith Life Orb: 1.3x damage. So effective power = 65 * 2 * 1.3 = 169. At Toxapex SpA of 73... that's going to be weak. Let me estimate: ((2*50/5+2)*1.3*169*73/(100+SpD)) + 2. Dragapult SpD range: 85-139, let's say ~110. So: (12 * 1.3 * 169 * 73 / 210) + 2 ≈ (12 * 12417 / 210) + 2 ≈ 153000/210 + 2 ≈ 728 + 2 ≈ 730? No that's way too high.\n\nLet me redo this properly. The damage formula:\nDamage = ((2*Level/5 + 2) * Power * AttackerAtk / DefenderDef) / 50 + 2\n\nFor special: use SpA and SpD.\n\n((2*50/5 + 2) * 65 * 1.3 (STAB? No, Ghost on Ghost is STAB for Toxapex? Wait - Toxapex is Poison/Water. Hex is Ghost type. So it's NOT STAB.)\n\nWait, I need to recheck. Toxapex is Poison/Water. Hex is a Ghost-type move. So there's NO STAB bonus.\n\nSo: ((2*50/5 + 2) * 65 * 1.3 (Life Orb) * 73 (SpA) / (100 + SpD)) / 50 + 2\n= (12 * 65 * 1.3 * 73 / (100 + ~110)) / 50 + 2\n= (12 * 6185 / 210) / 50 + 2\n= (74220 / 210) / 50 + 2\n= 353.4 / 50 + 2\n= 7.07 + 2\n= ~9 damage\n\nThat's basically nothing. Hex won't do meaningful damage.\n\nHmm, so Toxapex is essentially useless against Dragapult:\n- Sludgebomb: immune (Ghost)\n- Toxic: immune (Ghost)\n- Hex: super effective but very low power (~9 damage)\n- Recover: heals 50% = 62 HP\n\nThis is a bad matchup. I should switch out.\n\nOption 4: Switch to Hydreigon - Full HP, Levitate (immune to Ground), Dark/Dragon type. Against Dragapult (Dragon/Ghost):\n- Darkpulse: Dark/Special, BP 80. Neutral on Dragon, super effective on Ghost? No wait - Dark is neutral on Dragon, and... Ghost resists Dark! So Darkpulse is not very effective (0.5x) on Dragon/Ghost.\n\nWait, let me check type matchups for Dark vs Ghost:\n- Ghost resists Dark moves. Yes, Ghost has a 0.5x resistance to Dark.\n\nSo Darkpulse would be 0.5x on Dragon/Ghost. That's bad.\n\nWhat about Draco Meteor? Dragon/Special, BP 130. Neutral on Dragon (Dragon resists Dragon? No - Dragon is neutral against Dragon). Wait:\n- Dragon vs Dragon: neutral (1x)\n- Ghost vs Dragon: neutral (1x)\n\nSo Draco Meteor would be neutral on both types. That's fine but not super effective.\n\nActually wait, let me reconsider the type chart:\n- Dragon attacks: 2x on Dragon, Flying, Water; 0.5x on Fire, Grass, Ice, Dragon... no wait.\n\nDragon is:\n- Super effective against: Dragon, Flying, Water\n- Not very effective against: Fire, Grass, Ice, Dragon (wait, no)\n\nActually: Dragon is super effective against Dragon, Flying, and Water. It's not very effective against Fire, Grass, Ice, and Dragon? No...\n\nLet me be more careful:\n- Dragon STAB: 2x vs Dragon, Flying, Water; 0.5x vs Fire, Grass, Ice, Dragon? \n\nNo. The type chart:\nDragon is weak to: Dragon (resists), Ice (weak), Steel (weak)\nDragon resists: Fire, Water, Grass, Electric\n\nSo Dragon move vs Dragon target: DRAGON RESISTS DRAGON. So it's 0.5x!\n\nWait no. Let me think again. In Pokémon:\n- Dragon type moves are super effective against: Dragon, Flying, Water\n- Dragon type moves are not very effective against: Fire, Grass, Ice, Dragon\n\nHmm, that doesn't sound right either. Let me recall the standard chart:\n\nDragon attacks:\n- 2x: Dragon, Flying, Water\n- 0.5x: Fire, Grass, Ice, Dragon\n\nWait, I think I'm confusing myself. Let me just recall:\n- Dragon is strong against: Dragon, Flying, Water (2x)\n- Dragon is weak to: Ice, Steel (2x)\n- Dragon resists: Fire, Water, Grass, Electric (0.5x)\n\nSo a Dragon move hitting a Dragon target: The target DRAGON RESISTS DRAGON moves? No wait - if Dragon resists Fire, Water, Grass, Electric... that means Dragon-type Pokémon take reduced damage from those types. But what about Dragon-type moves hitting Dragon-type Pokémon?\n\nThe answer is: Dragon moves are NEUTRAL against Dragon targets. Because \"Dragon resists X\" means Dragon-type Pokémon resist X-type attacks. Dragon does NOT resist Dragon. So Dragon vs Dragon is neutral (1x).\n\nOK so Draco Meteor (Dragon) vs Dragapult (Dragon/Ghost):\n- Dragon vs Dragon: 1x (neutral)\n- Dragon vs Ghost: 1x (neutral)\nTotal: 1x\n\nSo Draco Meteor would be neutral damage. At BP 130, Hydreigon SpA 177, Focus Sash... that should do decent damage.\n\nLet me estimate: ((2*50/5+2) * 130 * 177 / (100 + ~110)) / 50 + 2\n= (12 * 130 * 177 / 210) / 50 + 2\n= (12 * 23010 / 210) / 50 + 2\n= (276120 / 210) / 50 + 2\n= 1314.9 / 50 + 2\n= 26.3 + 2\n= ~28 damage\n\nHmm, that's not great either. Dragapult has 163-195 HP range. So Draco Meteor does about 28 damage, which is like 15% of its HP. Not a KO.\n\nWhat about Dark Pulse? BP 80, Dark type:\n- Dark vs Dragon: 1x (neutral)  \n- Dark vs Ghost: 0.5x (Ghost resists Dark)\nTotal: 0.5x\n\nSo Dark Pulse would be very weak. Not useful.\n\nU-turn: Bug/Physical, BP 70. Hydreigon Atk is 112.\n- Bug vs Dragon: 1x\n- Bug vs Ghost: 1x\nNeutral. And it switches me out.\n\nSo switching to Hydreigon gives me Draco Meteor (neutral, ~28 damage) or Dark Pulse (weak). Not great but better than Toxapex which is basically useless.\n\nActually wait - should I switch to Garchomp instead? Garchomp is Dragon/Ground at 57/183 HP with Choice Scarf.\n- Ground vs Ghost: immune! Ghost is immune to Ground.\n- Dragon vs Dragon/Ghost: neutral (as established)\n- So Earthquake and Stone Edge would be useless against Dragapult.\n- Dragonclaw: Dragon/Special, BP 80. Neutral on both types.\n\nGarchomp's Dragonclaw: ((2*50/5+2) * 80 * 90 (SpA) / (100 + ~110)) / 50 + 2\n= (12 * 80 * 90 / 210) / 50 + 2\n= (86400 / 210) / 50 + 2\n= 411.4 / 50 + 2\n= 8.2 + 2\n= ~10 damage\n\nThat's basically nothing. Garchomp is also at low HP and would be one hit from Dragapult's Shadow Ball or Draco Meteor.\n\nSo the best option seems to be switching to Hydreigon. It has full HP, Levitate (immune to Ground), and can use Draco Meteor for neutral damage. Also, if I switch out Toxapex, it triggers Regenerator (heals 1/3 max HP = 41 HP, bringing it back to ~129 HP... wait, it's at 88, so 88 + 41 = 129).\n\nActually wait - does Regenerator trigger when switching out? Yes! \"This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.\" So Toxapex would heal from 88 to 88 + 41 = 129 HP.\n\nSo the plan:\n1. Switch to Hydreigon (full HP, Levitate)\n2. Use Draco Meteor for neutral damage on Dragapult\n3. If needed, Nasty Plot to boost SpA and sweep later\n4. Keep Toxapex in reserve (healed by Regenerator)\n\nActually, let me reconsider. Should I use Recover on Toxapex first? That would heal 50% = 62 HP, bringing it to 150/125... wait, max is 125. So it would go from 88 to 125 (capped). But then Dragapult moves first and hits again for ~37 damage, leaving Toxapex at 88 again. And I've wasted a turn.\n\nNo, switching to Hydreigon is better. Let me go with that.\n\nWait, actually - one more thought. What if I use Hex? Even though it only does ~9 damage, it's super effective and... no, 9 damage is basically nothing. Not worth the turn.\n\nDecision: SWITCH: hydreigon\n\nThis makes sense because:\n1. Toxapex is completely useless against Ghost (immune to Poison)\n2. Hydreigon has full HP and Levitate\n3. Draco Meteor will do neutral damage (~28)\n4. I can Nasty Plot next turn if needed\n5. Toxapex heals via Regenerator when switched out\n\nLet me go with switching to Hydreigon.\n",
+      "note": "",
+      "tokens": 6803,
+      "latency_ms": 93571,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% MOVE: shadowball, 19% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2203,
+      "latency_ms": 949,
+      "cost_usd": 0.00013218,
+      "probabilities": {
+        "MOVE: shadowball": 0.8131,
+        "SWITCH: incineroar": 0.1869
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon active at 78%, Focus Sash won't trigger (not full HP). Dragapult at 100%, Dragon/Ghost. Darkpulse is 3x effective (2x Ghost × 1.5 STAB) with 20% flinch. Incineroar still alive at 1% but switched out. Remaining unseen: Aegislash, Corviknight, Toxapex. Plan: pressure Dragapult now, save Garchomp/Toxapex for Steel/Ghost threats.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n**My team:**\n- Garchomp: 57/183 (31%), Choice Scarf, -1 Atk\n- Toxapex: 125/125 (100%), Life Orb\n- Hydreigon (active): 131/167 (78%), Focus Sash, Levitate\n\n**Opponent's team:**\n- Dragapult (active): 100% HP, Dragon/Ghost\n- Incineroar: 1% HP (Fire/Dark) - basically dead\n- Gholdengo: Fainted (Steel/Ghost)\n- Remaining unseen: Aegislash, Corviknight, Toxapex\n\n**Key considerations:**\n\n1. Dragapult is a Dragon/Ghost type. It's immune to Ground and Poison. My Hydreigon is Dark/Dragon with Levitate.\n   - Darkpulse: Super effective on Ghost (2x), neutral on Dragon. BP 80, 20% flinch chance.\n   - Draco Meteor: Super effective on Dragon (2x), neutral on Ghost. BP 130, lowers SpA by 2.\n   - Nasty Plot: Raises SpA by 2.\n\n2. Hydreigon has Focus Sash - if it's at full HP and would be KO'd, it survives with 1 HP. But it's at 78% HP now, so Focus Sash won't trigger (it only works when HP is full).\n\n3. Speed: Hydreigon Spe 165 vs Dragapult Spe 145-213. Could go either way.\n\n4. If I use Draco Meteor: It's super effective on Dragon (2x), neutral on Ghost. With SpA 177, BP 130, 2x STAB... wait, Hydreigon is Dark/Dragon, so Dragon move gets STAB. So it's 2x (super effective) × 1.5 (STAB) = 3x multiplier. That's a big hit. But it lowers SpA by 2.\n\n   Actually wait - let me recalculate. Draco Meteor on Hydreigon: Dragon type, so STAB applies. Against Dragon/Ghost: Dragon is super effective (2x), Ghost is neutral. So total: 2x × 1.5 (STAB) = 3x. With SpA 177 and BP 130... that's a massive hit.\n\n   But it lowers SpA by 2, making subsequent Draco Meteors weaker.\n\n5. If I use Darkpulse: Super effective on Ghost (2x), neutral on Dragon. No STAB for Dark? Wait, Hydreigon IS Dark/Dragon, so Dark move gets STAB too! So Darkpulse: 2x (super effective) × 1.5 (STAB) = 3x. BP 80, 20% flinch.\n\n   Actually wait - is Darkpulse super effective on Ghost? Yes, Dark is super effective against Ghost. And Hydreigon has Dark typing so it gets STAB. So 2x × 1.5 = 3x. That's also very strong.\n\n6. Nasty Plot: Sets up for a sweep. But Dragapult could KO me with Shadow Ball (Ghost, super effective on... wait, Ghost is not super effective on Dark/Dragon). Let me check:\n   - Shadow Ball on Hydreigon (Dark/Dragon): Ghost is neutral to Dark and Dragon. So it's just STAB for the opponent if they have a Ghost-type move. Actually Shadow Ball is always Ghost type regardless of user. Against Dark/Dragon: Ghost is neutral to both. So it's neutral damage.\n\n   Wait, but in Turn 6, Shadow Ball was \"not very effective\" on Hydreigon. That means... hmm, let me re-read. \"Opposing Dragapult used Shadow Ball - It was not very effective - Your Hydreigon is at 131/167 HP\". \n\n   Wait, that's strange. Ghost should be neutral to Dark/Dragon. Unless... Oh wait, maybe I'm wrong about the typing. Let me reconsider. Actually, looking at it again:\n   - Ghost vs Dark: Neutral (Ghost resists nothing from Dark, and Dark doesn't resist Ghost)\n   - Ghost vs Dragon: Neutral\n   \n   Hmm, but the battle log says \"not very effective.\" That's odd. Unless there's something else going on. Wait - maybe I'm misreading. Let me re-read: \"Opposing Dragapult used Shadow Ball - It was not very effective - Your Hydreigon is at 131/167 HP\"\n\n   Actually wait, maybe the damage calculation shows it went from 167 to 131, which is 36 damage. If Shadow Ball (BP 80) with some SpA... Let's say Dragapult has SpA around 150-167. Damage = (2*150/5+2)*80/167 ≈ 149 * 80/167 ≈ 71. That would be too much for \"not very effective.\"\n\n   Hmm, but the log explicitly says \"not very effective.\" I'll trust the battle log. Maybe there's a typing interaction I'm missing, or maybe it's just how the game calculated it. Actually wait - could it be that Hydreigon has some resistance? No, Dark/Dragon doesn't resist Ghost.\n\n   Actually, you know what, let me just trust the battle log. It says \"not very effective.\" Maybe there's a stat interaction or something I'm not accounting for. Regardless, Shadow Ball did 36 damage (167-131).\n\n   Wait, actually re-reading: Turn 5 says \"Your Toxapex is at 88/125 HP\" from Shadow Ball. That's 37 damage on a Poison/Water type. Ghost is super effective on... no wait, Ghost is neutral to Poison and Water. Hmm.\n\n   Actually, I think the battle log might just be showing it as \"not very effective\" for some reason I'm not seeing, or maybe I have the typing wrong. Let me just proceed with what I know.\n\n7. **Strategy decision:**\n   - Hydreigon is my best option against Dragapult right now.\n   - Options: Nasty Plot, Draco Meteor, Darkpulse, U-turn, switch to Garchomp, switch to Toxapex.\n   \n   Let me think about what's best:\n   \n   a) **Nasty Plot**: Sets up +2 SpA. Then next turn I can hit with a stronger attack. But risk: Dragapult could KO me (though at 78% HP and Focus Sash won't trigger since not full). Shadow Ball did 36 damage, so it would take about 4 hits to KO. Nasty Plot is safe for now.\n   \n   b) **Darkpulse**: 3x effective (2x Ghost × 1.5 STAB), BP 80. With SpA 177: Damage ≈ (2*177/5+2)*80/def * 3 / 50... let me estimate. If Dragapult has Def around 100-140, and SpD is what matters for special attacks. SpD range is 85-139. Let's say ~110. Damage ≈ (2*177/5+2)*80/110 * 3 / 50... Actually the formula is: ((2*level/5+2) * BP * STAB * type_mod) / Def, then divided by 50 for level 50.\n   \n   Let me simplify: With SpA 177, BP 80, 3x multiplier (2x Ghost × 1.5 STAB):\n   Base = (2*50/5+2) * 80 * 3 / Def = (22) * 240 / Def = 5280 / Def\n   If SpD is ~110: 5280/110 ≈ 48 damage. Plus the 20% flinch chance.\n   \n   Actually wait, I need to reconsider. The formula for level 50 in Pokémon Showdown:\n   Damage = ((2*SpA + 32) * BP / Def) * (STAB × Type) / 50\n   \n   Hmm, let me just estimate roughly. With SpA 177 and a 3x effective move at BP 80 against a moderate SpD:\n   - Roughly: (177/100) * 80 * 3 / (SpD/100) ≈ 1.77 * 240 / (SpD/100)\n   - If SpD = 110: ≈ 1.77 * 240 / 1.1 ≈ 386... that seems too high.\n   \n   Let me just think in terms of what we know from the battle. Shadow Ball (BP 80, Ghost) did 36 damage on Hydreigon (SpD 110). So a BP 80 move with some SpA does ~36 damage against SpD 110.\n   \n   If Dragapult's SpA is similar to what it showed (let's say ~150-170), and Shadow Ball did 36 on SpD 110...\n   \n   For Darkpulse: BP 80, but with 3x multiplier instead of whatever Shadow Ball had. If Shadow Ball was neutral (1x) or \"not very effective\" (0.5x)... \n   \n   Actually the log says \"not very effective\" for Shadow Ball on Hydreigon. That's confusing because Ghost should be neutral to Dark/Dragon. But if it IS 0.5x, then:\n   - Shadow Ball: BP 80 × 0.5 = effective 40, did 36 damage\n   - Darkpulse: BP 80 × 2 (Ghost) × 1.5 (STAB) = effective 240... wait no.\n   \n   Hmm, I'm overcomplicating this. Let me just think about it differently.\n   \n   If Shadow Ball (BP 80) at \"not very effective\" did 36 damage on SpD 110:\n   - Effective BP = 40 (if 0.5x)\n   - Damage per effective BP ≈ 36/40 ≈ 0.9\n   \n   For Darkpulse (BP 80, 2x Ghost × 1.5 STAB = 3x):\n   - Effective BP = 240\n   - Expected damage ≈ 240 * 0.9 ≈ 216... that would be a KO!\n   \n   Wait, but that seems too high. Let me reconsider. Maybe \"not very effective\" is wrong or I'm misunderstanding the typing.\n   \n   Actually, you know what, let me just go with Darkpulse. It's super effective (2x on Ghost), has STAB (Dark), and a 20% flinch chance. Even if it doesn't KO, it deals significant damage and might flinch. And I can follow up next turn.\n   \n   Actually, wait. Let me reconsider Nasty Plot vs Darkpulse:\n   \n   - If I Nasty Plot now: SpA goes from 177 to 243. Next turn, Darkpulse would be even stronger. But Dragapult could hit me with Shadow Ball (or Draco Meteor if it has it). At 78% HP, I have ~131 HP. Shadow Ball did 36 damage, so I can take about 3 more hits.\n   \n   - If I Darkpulse now: I deal big damage to Dragapult (maybe KO or near-KO), and the flinch gives me a free turn. Risk: if it doesn't KO and Dragapult hits back, I lose some HP.\n   \n   Given that Dragapult is at 100% HP and I want to pressure it, I think Darkpulse is the better choice. It's immediate damage with STAB + super effective + flinch chance. If it KOs or nearly KOs, great. If not, I can Nasty Plot next turn.\n   \n   Actually, let me reconsider once more. The opponent has 3 Pokémon: Dragapult (active), Incineroar (1% HP - basically dead but still in the party? No wait, in singles you only have one active at a time. The \"opponent's team\" shows all their Pokémon. Incineroar is at 1% HP but it was switched out for Gholdengo. So Incineroar is still alive at 1% HP and could be brought back.)\n   \n   Wait, in Pokémon Showdown singles, when a Pokémon faints it's gone for the rest of the battle. But Incineroar is at 1% HP - it hasn't fainted yet! It was switched out (for Gholdengo). So it's still alive and could be brought back.\n   \n   Hmm, but at 1% HP, if I bring in Garchomp or Toxapex, Incineroar could potentially KO them with Crunch/Fire Blast. But that's a concern for later.\n   \n   For now, my priority is dealing with Dragapult. Let me go with Darkpulse.\n\n   Actually, wait. Let me reconsider whether Draco Meteor might be better:\n   - Draco Meteor: BP 130, super effective on Dragon (2x), STAB (Dragon type). So 2x × 1.5 = 3x. But it lowers SpA by 2.\n   - Darkpulse: BP 80, super effective on Ghost (2x), STAB (Dark type). So 2x × 1.5 = 3x. No stat drop. 20% flinch.\n   \n   Both are 3x effective! But Draco Meteor has higher BP (130 vs 80) so it deals more damage. However, it lowers SpA by 2, making future attacks weaker. Darkpulse has the flinch chance and no stat drop.\n   \n   If I use Draco Meteor: ~130/80 = 1.6x more damage than Darkpulse. But then my SpA drops from 177 to 145 (with Nasty Plot it'd be 243 → 211).\n   \n   For a one-shot KO attempt, Draco Meteor might be better. But for sustained pressure, Darkpulse is safer.\n   \n   Given that Dragapult is at 100% HP and I want to either KO or severely weaken it, let me think about what would KO:\n   \n   If Shadow Ball (BP 80, \"not very effective\" = 0.5x) did 36 damage on SpD 110:\n   - Base damage formula: ((2*SpA+32)*BP*mod)/(Def*50) approximately\n   - 36 ≈ ((2*SpA+32)*80*0.5)/(110*50) = ((2*SpA+32)*40)/5500\n   - 36 * 5500 / 40 = 2*SpA + 32\n   - 4950 = 2*SpA + 32\n   - SpA ≈ 2464... that's way too high. My formula is wrong.\n   \n   Let me try a different approach. In Pokémon, the damage formula at level 50:\n   Damage = floor(floor((floor(2*level/5+2) * BP * STAB * TypeMod) / Def) * SpA / 100) ... no that's not right either.\n   \n   The actual formula is:\n   Step 1: ((2*SpA + 32) * BP) / (4*Def) [this gives the base before STAB/type]\n   Wait no, it's:\n   Damage = floor(floor((floor(2*level/5+2) * BP * STAB * TypeMod) / Def) * SpA / 100) ... I'm getting confused.\n   \n   Let me just use the known data point: Shadow Ball (BP 80, Ghost type, \"not very effective\" = 0.5x multiplier) did 36 damage on Hydreigon with SpD 110.\n   \n   If Dragapult's SpA is X, then:\n   36 ≈ some function of X * 80 * 0.5 / 110\n   \n   For Darkpulse (BP 80, 2x Ghost × 1.5 STAB = 3x):\n   Damage ≈ 36 * (3/0.5) = 36 * 6 = 216? That would be a guaranteed KO on any Pokémon with ≤200 HP.\n   \n   Hmm, but that seems too high. Let me reconsider whether \"not very effective\" is accurate or if I'm misreading the typing.\n   \n   Actually, you know what - Ghost IS neutral to Dark and Dragon in standard Pokémon typing. There's no resistance. So \"not very effective\" doesn't make sense for Shadow Ball on Hydreigon. Unless... wait, is there some ability or item that reduces damage? Focus Sash only prevents KO, it doesn't reduce damage.\n   \n   I'll just trust the battle log and move on. The key point is: Darkpulse should deal significant damage to Dragapult (super effective + STAB). Let me go with it.\n\n   Final decision: **Darkpulse** - super effective (2x Ghost), STAB (Dark), 20% flinch chance, no stat drops. This pressures Dragapult immediately and the flinch gives me a free turn to set up or switch.\n",
+      "note": "",
+      "tokens": 7167,
+      "latency_ms": 99553,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: protect, 30% MOVE: willowisp, 22% MOVE: crunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2481,
+      "latency_ms": 1381,
+      "cost_usd": 0.00014886,
+      "probabilities": {
+        "MOVE: fakeout": 0.1035,
+        "MOVE: protect": 0.3734,
+        "MOVE: crunch": 0.2212,
+        "MOVE: willowisp": 0.302
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Incineroar at 1% is essentially dead. Opponent has only one Pokémon left to bring in (Aegislash, Corviknight, or their Toxapex). Switching Hydreigon out preserves it for later. Toxapex at full HP with Life Orb can handle any remaining threat: Hex super effective on Ghost types, Sludge Bomb neutral on Steel, Toxic for wear. Garchomp at 31% is too fragile to lead against their last pick.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n**My team:**\n- Garchomp: 57/183 (31.1%) - Choice Scarf, atk -1\n- Toxapex: 125/125 (100%) - Life Orb\n- Hydreigon (active): 83/167 (49.7%) - Focus Sash, Atk -1, SpD -1\n\n**Opponent:**\n- Incineroar (active): 1% HP (Fire/Dark) - Life Orb, Intimidate\n- Gholdengo: Fainted\n- Dragapult: Fainted\n- Remaining unseen: Aegislash, Corviknight, Toxapex\n\n**Key observations:**\n- Hydreigon is at 83/167 HP with Focus Sash. Focus Sash only triggers if HP is full (167/167). Since it's at 83/167, Focus Sash won't trigger.\n- Incineroar is at 1% HP - essentially dead. One hit will KO it.\n- Hydreigon has Atk -1 and SpD -1 from Intimidate and Shadow Ball (wait, the notes say SpD -1 but looking at the log, it was \"Your Hydreigon: spd -1\" which is Speed -1, not SpD). Let me re-read...\n\nLooking at Turn 7:\n- \"Your Hydreigon: spd -1\" - this is Speed -1 from the critical hit? No wait, that doesn't make sense. Let me re-read.\n\nActually looking more carefully at Turn 7:\n- Opposing Dragapult used Shadow Ball (critical hit) → Hydreigon at 83/167\n- \"Your Hydreigon: spd -1\" - Hmm, this is odd. Maybe it's a typo or I'm misreading. Actually wait - looking at the current state: \"Boosts: Atk -1, SpD -1\". So it has Atk -1 (from Intimidate) and SpD -1. But in the log it says \"spd -1\" which might be a formatting issue for SpD -1.\n\nWait, actually re-reading the battle log more carefully:\nTurn 7: \"Your Hydreigon: spd -1\" - this could be Speed -1 or SpD -1. The current state shows \"Boosts: Atk -1, SpD -1\". So it's SpD -1.\n\n**Current situation:**\n- Incineroar is at 1% HP. It's essentially a free switch.\n- Hydreigon can use Dark Pulse (not very effective on Fire/Dark... wait, Dark is not very effective on Dark? No, Dark is neutral on Dark. Let me check: Dark vs Fire = neutral, Dark vs Dark = not very effective. So Dark Pulse would be not very effective on Incineroar.)\n- Actually the legal actions say \"not very effective on incineroar\" for Dark Pulse. That's because Dark is not very effective against Dark type.\n\n**What should I do?**\n- Incineroar is at 1% HP. Any super effective or neutral hit will KO it.\n- Hydreigon's options:\n  - Nasty Plot: Raises SpA by 2, but doesn't damage Incineroar\n  - Draco Meteor: Dragon/Special, BP 130, lowers SpA by 2. Dragon vs Fire/Dark = neutral. With Life Orb... wait, Hydreigon has Focus Sash not Life Orb. Atk is -1 but this is a special move so SpA matters. SpA is 177 base. Draco Meteor would deal significant damage and likely KO Incineroar at 1%.\n  - Dark Pulse: Not very effective on Incineroar (Dark vs Dark). Would be weak.\n  - U-turn: Bug/Physical, BP 70. Bug vs Fire/Dark = neutral. Physical, so Atk -1 applies. Might not KO at 1%... actually at 1% HP, even a weak move might KO it. But let's think about what's best.\n\nActually, Incineroar is at 1% HP. Let me calculate:\n- Hydreigon SpA 177 (base), level 50. With no boosts to SpA... wait, the stat range shows SpA 177. \n- Draco Meteor: BP 130, Dragon type vs Fire/Dark = neutral. Damage would be roughly (2*50+16)*177/100 * 130 / (def) ... this is getting complex. At 1% HP, almost any hit will KO it.\n\nActually, the simplest approach: Incineroar is at 1%. I should just switch out to a fresh Pokémon and let them deal with whatever comes next. Or I can use U-turn to safely switch while dealing some damage.\n\nWait, but if I use U-turn, I switch to Garchomp or Toxapex. If the opponent switches in their next threat (Aegislash, Corviknight, or Toxapex), I want to be ready.\n\nActually, let me think about this differently:\n- Incineroar is at 1% HP - it's basically dead\n- The opponent will likely switch out with Incineroar (since it's at 1%)\n- Or they might try to KO Hydreigon first\n\nIf I use Draco Meteor: It'll likely KO Incineroar, but lower my SpA by 2. Then I'm left with a weakened Hydreigon facing their next threat.\n\nIf I use U-turn: Bug/Physical BP 70 vs Fire/Dark (neutral). With Atk -1... Atk base is 112. At level 50, that's roughly (2*50+16)*112/100 = 128 * 0.9 (Atk -1) ≈ 115. Damage from U-turn: 115 * 70 / def... Incineroar Def is 99-156. Let's say ~127 average. Damage ≈ 115*70/127 ≈ 63 HP. At 1% of 170-202 HP, that's about 1.7-2 HP. So U-turn would KO Incineroar and switch me out safely.\n\nIf I use Nasty Plot: Doesn't damage Incineroar. They could switch in a threat and hit my Hydreigon.\n\nI think the best move is **U-turn**. It KOs Incineroar (at 1%, even a weak Bug move will do it), and switches me out to a fresh Pokémon. I can bring in Garchomp or Toxapex to handle their next threat.\n\nWait, but which Pokémon would I switch to? U-turn automatically switches to the next Pokémon in my party. My team order is: Garchomp (31%), Toxapex (100%), Hydreigon (active). So U-turn would switch to... actually in Showdown, U-turn switches to the next available Pokémon in your party. Since Hydreigon is active and I have Garchomp and Toxapex, it would switch to whichever is next in the queue.\n\nHmm, but I can't control which one comes out with U-turn. Let me think about whether that matters.\n\nActually, looking at this more carefully - if I use U-turn, I'll switch to either Garchomp or Toxapex (whichever is next in my party order). The opponent will then likely switch in their next threat.\n\nAlternatively, I could just SWITCH to Toxapex (100% HP) and let them deal with Incineroar. But then I'd be using a turn where nothing happens (Incineroar at 1% might just faint from residual damage or the opponent switches).\n\nActually wait - if I switch out, Incineroar is still at 1%. The opponent will likely switch it out too. So switching to Toxapex would be safe and keep my Hydreigon alive for later.\n\nBut actually, the smartest play might be:\n1. Use U-turn to KO Incineroar and switch out (safe)\n2. Or use Draco Meteor to KO Incineroar but weaken myself\n\nLet me go with **U-turn**. It's the safest option - it KOs the nearly-dead Incineroar, switches me out safely, and I don't take any damage or stat changes. The opponent will have to switch in their next threat (Aegislash, Corviknight, or Toxapex), and I'll be facing them with a fresh Pokémon.\n\nActually wait - I need to reconsider. If I U-turn, which Pokémon comes out? In Showdown, when you use U-turn, it switches to the next Pokémon in your party that isn't fainted. My party order is Garchomp (1st), Toxapex (2nd), Hydreigon (3rd/active). So after Hydreigon, it would go back to Garchomp (the first one).\n\nGarchomp at 31% HP with Choice Scarf and Atk -1... that's not great. But it can still do Earthquake on Steel types (Aegislash, Corviknight) which is super effective.\n\nAlternatively, I could SWITCH to Toxapex directly. That way I have a fresh, healthy Pokémon ready for whatever comes next.\n\nHmm, let me think about what's best:\n- If opponent switches in Aegislash (Steel/Ghost): Garchomp's Earthquake is 2x effective. Toxapex can use Hex (Ghost) which is super effective on Ghost. Both work.\n- If opponent switches in Corviknight (Flying/Steel): Garchomp's Earthquake is 2x effective. Toxapex's Sludge Bomb is neutral (Poison vs Steel/Ghost... wait, Corviknight is Flying/Steel, not Ghost). Sludge Bomb would be neutral on Corviknight.\n- If opponent switches in their Toxapex: Garchomp can use Dragon Claw or Earthquake. Toxapex can use Hex (Ghost) which is super effective.\n\nI think SWITCH to Toxapex is the safest play. It keeps my Hydreigon alive for later, and Toxapex at full HP with Life Orb can handle most threats. But wait - Toxapex has Life Orb? That's interesting. With Life Orb, its Sludge Bomb would be boosted.\n\nActually, let me reconsider U-turn vs Switch:\n- U-turn: KOs Incineroar (guaranteed at 1%), switches to Garchomp (31% HP)\n- Switch to Toxapex: Incineroar stays at 1%, I have fresh Toxapex\n\nIf I switch to Toxapex, the opponent might just let Incineroar stay and hit my Toxapex with Crunch (Dark vs Poison/Water = neutral). At 1% HP though, it's basically a free switch. The opponent will likely switch out their Incineroar anyway since it's at 1%.\n\nI'll go with **U-turn** to cleanly KO Incineroar and transition. Even though Garchomp comes out at low HP, it can still threaten with Earthquake on Steel types. And the Choice Scarf gives it speed advantage.\n\nWait, actually let me reconsider one more time. The opponent has 3 Pokémon total (they brought 3 of their 6). Two are fainted (Gholdengo, Dragapult). Incineroar is at 1%. So the opponent only has ONE Pokémon left to bring in - either Aegislash, Corviknight, or Toxapex.\n\nSo after this turn, the battle will be:\n- My Hydreigon → switches to Garchomp (via U-turn) or Toxapex (via Switch)\n- Opponent's Incineroar (1%) → switches to their last Pokémon\n\nIf I U-turn: Garchomp (31%, Choice Scarf, Atk -1) vs opponent's last threat\nIf I Switch to Toxapex: Toxapex (100%, Life Orb) vs opponent's last threat\n\nToxapex at 100% is much safer. Let me go with SWITCH to Toxapex.\n\nBut wait - if I switch to Toxapex, Incineroar is still on the field at 1%. The opponent might try to use a move on my Toxapex before switching out. But at 1%, they probably won't waste a turn. They'll likely just switch out.\n\nActually, you know what, let me just go with U-turn. It's clean - KOs the threat, and I get to face their last Pokémon with Garchomp. Garchomp can handle Steel types (Aegislash, Corviknight) with Earthquake. If it's their Toxapex, Garchomp can use Dragon Claw or Stone Edge.\n\nHmm, but Garchomp at 31% HP is vulnerable. If the opponent brings in Aegislash with Stance Change (becomes Ghost/Steel), Garchomp's Earthquake would be super effective (2x). That could work.\n\nIf Corviknight: Earthquake is 2x effective. Good.\nIf their Toxapex: Dragon Claw is neutral, Earthquake is neutral. Garchomp at 31% might not survive a few hits.\n\nI think SWITCH to Toxapex is safer overall. Toxapex at 100% HP with Life Orb can handle any of the three remaining threats:\n- Aegislash (Steel/Ghost): Hex is super effective, Sludge Bomb is neutral\n- Corviknight (Flying/Steel): Sludge Bomb is neutral, Toxic works\n- Their Toxapex: Hex is super effective\n\nLet me go with SWITCH to Toxapex.\n\nWait, but I should also consider: if I switch to Toxapex, the opponent's Incineroar at 1% might use a last move on my Toxapex before switching out. But that's unlikely - they'd just switch out. And even if it hits, Crunch (Dark/Physical) vs Toxapex (Poison/Water) is neutral. At 1% HP with Life Orb... the damage would be minimal.\n\nFinal decision: **SWITCH: toxapex**\n\nThis keeps my Hydreigon safe for later, gives me a fresh full-HP Pokémon to face their last threat, and Toxapex can handle any of the remaining options (Aegislash, Corviknight, or their Toxapex).\n",
+      "note": "",
+      "tokens": 6555,
+      "latency_ms": 82153,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: willowisp, 35% MOVE: crunch, 28% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2407,
+      "latency_ms": 1031,
+      "cost_usd": 0.00014442,
+      "probabilities": {
+        "MOVE: protect": 0.2839,
+        "MOVE: crunch": 0.3539,
+        "MOVE: willowisp": 0.3622
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Incineroar at 1% HP must be KOs'd this turn. Sludge Bomb (neutral, 90BP + Life Orb) will easily KO it. After that, opponent brings last pick (Aegislash/Corviknight/Toxapex). Toxapex full HP is my best answer to any of those: Hex on Ghost types, Toxic for wear, Sludge Bomb neutral on Steel. Garchomp at 31% too fragile to lead.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Toxapex is active at 125/125 HP (full health)\n- Opponent's Incineroar is at 1% HP (essentially dead, 1/170-202 HP)\n- Incineroar used Protect last turn and failed (it was already at 1%)\n- I need to deal with the remaining threats: Aegislash, Corviknight, or their Toxapex\n\nIncineroar is at 1% - it's basically dead. I should use Toxic on it to ensure it dies next turn, or use Sludge Bomb/Hex to KO it.\n\nWait, Incineroar is Fire/Dark. Let me check:\n- Hex: Ghost/Special, BP 65, \"not very effective on incineroar\" - so it's not super effective (Fire/Dark resists Ghost? No... Dark doesn't resist Ghost. Wait, let me think. Ghost is neutral to Fire and Dark. Actually wait - the log says \"not very effective on incineroar\". Hmm, that's odd. Let me re-read: \"Ghost, Special, power 65, 100% accuracy, not very effective on incineroar | Power doubles if the target has a status ailment.\"\n\nWait, Ghost is neutral to Fire and Dark. But the log says it's \"not very effective\". Maybe I'm wrong about the typing. Actually, let me reconsider - maybe there's something else going on. The legal actions say it's not very effective. I'll trust that.\n\n- Sludge Bomb: Poison/Special, BP 90, 30% chance to poison. Poison is neutral to Fire/Dark. So this would be neutral effectiveness.\n- Toxic: Badly poisons the target. This would work on Incineroar (Fire/Dark doesn't resist Poison).\n\nSince Incineroar is at 1%, I should just KO it. Sludge Bomb with Life Orb: 90 * 1.3 = 117 BP. At level 50, Toxapex SpA is 73. Let me estimate: (2*50+16)*73/50 + 8 = 118*73/50 + 8 ≈ 172.94 + 8 ≈ 181 damage... wait that's too high. Let me recalculate.\n\nActually, the damage formula is: ((2*level+2)*power*atk/spd)/(50*def) + 2\n= ((2*50+2)*90*73)/(50*def) + 2\n= (102*90*73)/(50*def) + 2\n= 671,460/(50*def) + 2\n\nIncineroar's Def range is 99-156. Let's say around 127 (middle).\n= 671,460/6350 + 2 ≈ 105.7 + 2 ≈ 108 damage\n\nWith Life Orb: 108 * 1.3 ≈ 140 damage\n\nIncineroar's HP range is 170-202, so at 1% it has about 1.7-2 HP. So Sludge Bomb will definitely KO it.\n\nBut wait - should I just Toxic it? If Incineroar is at 1%, it might faint from the next turn's damage anyway. But actually, if I use Toxic, Incineroar won't faint this turn (Toxic doesn't deal damage). It would need to take damage next turn to die.\n\nActually, the simplest thing: use Sludge Bomb to KO Incineroar. That removes the threat and forces them to bring in their last Pokémon.\n\nAlternatively, I could Toxic it - but since it's at 1%, it'll probably faint from any hit anyway. Let me just KO it with Sludge Bomb.\n\nWait, actually let me reconsider. If I use Sludge Bomb and it KOs Incineroar, the opponent will bring in their last Pokémon (Aegislash, Corviknight, or Toxapex). Then I'll have to deal with that.\n\nIf I use Toxic instead, Incineroar is still at 1% and will likely faint next turn from residual damage or when it attacks. But actually, Toxic doesn't deal damage - the poison damage comes at end of turn. At 1% HP (about 2 HP), even 1/8 max HP poison damage would be about 21-25 damage, which would KO it.\n\nHmm, but if I use Toxic and Incineroar is still alive next turn, it could attack me. If I use Sludge Bomb, it's guaranteed dead this turn.\n\nLet me go with Sludge Bomb to guarantee the KO. It's neutral effectiveness (Poison vs Fire/Dark), 90 BP with Life Orb should easily KO a 1% HP Pokémon.\n\nActually wait - let me reconsider whether I should switch out instead. My Toxapex is at full HP. If I switch to Hydreigon, it would take damage from Incineroar's next move (if it doesn't faint). But Incineroar is at 1%...\n\nNo, the safest play is to KO Incineroar with Sludge Bomb. Then whatever comes in, I can deal with it.\n\nLet me go with Sludge Bomb.\n",
+      "note": "",
+      "tokens": 4580,
+      "latency_ms": 33958,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
