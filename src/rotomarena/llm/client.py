@@ -221,6 +221,7 @@ class LLMClient:
         self.config = provider_config
         self.only_providers: Optional[List[str]] = None  # OpenRouter: serve this model only by these providers
         self.batch = None  # a llm.batch.BatchQueue: this model's turns go through OpenRouter's Batch API
+        self.relay = None  # a llm.relay.RelayQueue: a person answers this model's turns through its chat app
         self.provider_name = provider_name
         self.default_model = provider_config.default_model
         self.temperature = provider_config.temperature
@@ -312,6 +313,9 @@ class LLMClient:
                         await local_servers.ensure_loaded(self._port)  # swap mode: load this model first
                         start_time = time.perf_counter()  # latency excludes the wait and the load
                         response = await self._client.chat.completions.create(**create_kwargs)
+                elif self.relay is not None:  # answered by hand, through the model's chat app (minutes)
+                    start_time = time.perf_counter()
+                    response = await self.relay.submit(create_kwargs)
                 elif self.batch is not None:  # answered when its batch completes (minutes to hours)
                     start_time = time.perf_counter()
                     response = await self.batch.submit(create_kwargs)

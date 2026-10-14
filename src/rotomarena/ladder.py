@@ -710,3 +710,38 @@ async def fill(app_cfg: AppConfig, budget: int, free_only: bool = True, log: Cal
 
 def describe_void_matches(state: LadderState, max_autopilot: float) -> List[Tuple[str, str]]:
     return [(m.match_id, reason) for m in state.matches if (reason := void_reason(m, max_autopilot))]
+
+
+def relay_opponents(app_cfg: AppConfig, config_id: str, state: LadderState) -> List[str]:
+    """Whom a relayed model meets: the active models and control bots nearest its rating, never a local model (the
+    GPU belongs to the round robin running beside it)."""
+    mine = state.ratings.get(config_id)
+    ids = [k for k in round_robin_ids(app_cfg) if k != config_id and not local_servers.local_agents([app_cfg.agents[k]])]
+    rated = [k for k in ids if state.ratings.get(k) and state.ratings[k].rating is not None]
+    if not mine or mine.rating is None:
+        return rated
+    return sorted(rated, key=lambda k: abs(state.ratings[k].rating - mine.rating))
+
+
+async def relay_sets(app_cfg: AppConfig, config_id: str, games: int, opponents: Optional[List[str]] = None,
+                     log: Callable[[str], None] = print) -> int:
+    """Plays `games` more games of a model answered by hand through its chat app (llm.relay), one at a time, a set
+    of up to ladder.games_per_set per opponent (its drafts in turn). Its caps don't apply (these are extra games,
+    tagged as relayed), nor the stall guard (a person takes minutes a turn). Returns games played."""
+    from rotomarena.llm import relay
+
+    relay.relayed.add(config_id)
+    app_cfg.ladder.parallel_games = 1
+    app_cfg.ladder.stall_minutes = 7 * 24 * 60
+    app_cfg.local_llm.manage = False  # leaves the round robin's local servers alone
+    state = version_state(app_cfg)
+    order = opponents or relay_opponents(app_cfg, config_id, state)
+    played = 0
+    for opponent in order:
+        if played >= games:
+            break
+        size = min(app_cfg.ladder.games_per_set, games - played)
+        app_cfg.ladder.cap_exempt_pairs.append([config_id, opponent])
+        log(f"relay: {config_id} vs {opponent}, {size} game(s)")
+        played += await play_set(config_id, opponent, app_cfg, 0, games=size)
+    return played

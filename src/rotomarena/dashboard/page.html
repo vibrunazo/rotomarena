@@ -79,6 +79,18 @@
   .controls button.danger:hover { border-color: var(--bad); color: var(--bad); }
   .controls button:disabled { opacity: 0.5; cursor: wait; }
   #notice { margin: -6px 0 14px; color: var(--text-dim); }
+  /* Relay: a model's turns answered by hand through its chat app */
+  .relay-start { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .relay-start select, .relay-start input, .relay textarea { background: var(--inset); color: var(--text); border: 1px solid var(--line-strong);
+    border-radius: 8px; padding: 6px 8px; font: 0.9rem var(--font-body); }
+  .relay-start input { width: 4.5rem; }
+  .relay-req { border-top: 1px solid var(--line); padding: 10px 0; }
+  .relay textarea { width: 100%; min-height: 5.5rem; font: 0.8rem/1.4 var(--font-mono); }
+  .relay textarea.prompt { min-height: 4rem; max-height: 9rem; color: var(--text-dim); }
+  .relay .row { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+  .relay button { font: 600 0.8rem var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text);
+    background: var(--panel); border: 1px solid var(--line-strong); border-radius: 8px; padding: 6px 14px; cursor: pointer; }
+  .relay button:hover { border-color: var(--cyan); }
 </style>
 </head>
 <body>
@@ -94,6 +106,20 @@
     </span>
   </header>
   <p id="notice" class="small" hidden></p>
+
+  <section class="panel relay" id="relay" style="margin-bottom:14px">
+    <h2>Relay <span class="faint small" style="text-transform:none;letter-spacing:0">· a model played by hand through its chat app</span></h2>
+    <div class="relay-start">
+      <select id="relay-model"></select>
+      <input id="relay-games" type="number" min="1" max="30" value="3" aria-label="Games">
+      <button type="button" id="relay-start">Start relay games</button>
+      <button type="button" id="relay-stop" hidden>Stop relay</button>
+      <span class="small muted" id="relay-state"></span>
+    </div>
+    <p class="small faint" style="margin:0">For each prompt: copy it into a <b>new</b> chat (no earlier turns, no extensions or tools),
+      paste the whole answer back here and send. The game waits for you.</p>
+    <div id="relay-requests"></div>
+  </section>
 
   <section class="grid tiles" id="tiles"></section>
 
@@ -232,6 +258,68 @@ document.querySelectorAll('.controls button').forEach((btn) => btn.addEventListe
   btn.disabled = false;
   setTimeout(refresh, 1500);
 }));
+
+// Relay panel: polled on its own, and redrawn only when the waiting prompts change (not while you type)
+let relayShown = '';
+async function copyText(area, button) {
+  area.focus(); area.select();
+  let ok = false;
+  try { await navigator.clipboard.writeText(area.value); ok = true; } catch (e) {}
+  if (!ok) { try { ok = document.execCommand('copy'); } catch (e) {} }  // plain http (the phone over the LAN): no clipboard API
+  button.textContent = ok ? 'Copied' : 'Selected: copy it';
+  setTimeout(() => { button.textContent = 'Copy prompt'; }, 2500);
+}
+async function relayRefresh() {
+  let d;
+  try { d = await (await fetch('api/relay', {cache: 'no-store'})).json(); } catch (e) { return; }
+  const sel = document.getElementById('relay-model');
+  if (!sel.options.length) {
+    sel.innerHTML = d.models.map((m) => `<option value="${esc(m)}"${m === 'gemini_4_argon' ? ' selected' : ''}>${esc(m)}</option>`).join('');
+  }
+  document.getElementById('relay-start').hidden = d.running;
+  document.getElementById('relay-stop').hidden = !d.running;
+  document.getElementById('relay-state').textContent = d.running
+    ? (d.pending.length ? `${d.pending.length} prompt(s) waiting for you` : 'Relay games running: the next prompt comes after the opponent moves')
+    : '';
+  const ids = d.pending.map((r) => r.id).join(',');
+  if (ids === relayShown) return;
+  relayShown = ids;
+  document.getElementById('relay-requests').innerHTML = d.pending.map((r) => `
+    <div class="relay-req" data-id="${esc(r.id)}">
+      <div><b>${esc(r.model || '')}</b> <span class="muted">${esc(r.label || '')}${r.retry ? ' · second try' : ''}</span>
+        <span class="faint small">· ${r.prompt.length.toLocaleString()} characters</span></div>
+      <textarea class="prompt" readonly>${esc(r.prompt)}</textarea>
+      <div class="row"><button type="button" class="copy">Copy prompt</button></div>
+      <textarea class="answer" placeholder="Paste the whole answer here"></textarea>
+      <div class="row"><button type="button" class="send">Send answer</button><span class="small muted note"></span></div>
+    </div>`).join('');
+  document.querySelectorAll('.relay-req').forEach((box) => {
+    box.querySelector('.copy').addEventListener('click', (e) => copyText(box.querySelector('.prompt'), e.target));
+    box.querySelector('.send').addEventListener('click', async () => {
+      const text = box.querySelector('.answer').value;
+      const note = box.querySelector('.note');
+      if (!text.trim()) { note.textContent = 'Paste the answer first.'; return; }
+      const r = await fetch('api/relay/answer/' + box.dataset.id, {method: 'POST', body: text});
+      note.textContent = (await r.json()).message;
+      setTimeout(relayRefresh, 1000);
+    });
+  });
+}
+document.getElementById('relay-start').addEventListener('click', async () => {
+  const model = document.getElementById('relay-model').value, games = document.getElementById('relay-games').value;
+  if (!confirm(`Start ${games} relay game(s) of ${model}? Its opponents' turns cost what they usually do.`)) return;
+  const r = await fetch(`api/relay/start?model=${encodeURIComponent(model)}&games=${encodeURIComponent(games)}`, {method: 'POST'});
+  document.getElementById('relay-state').textContent = (await r.json()).message;
+  setTimeout(relayRefresh, 3000);
+});
+document.getElementById('relay-stop').addEventListener('click', async () => {
+  if (!confirm('Stop the relay games? The game in progress is lost.')) return;
+  const r = await fetch('api/relay/stop', {method: 'POST'});
+  document.getElementById('relay-state').textContent = (await r.json()).message;
+  relayShown = null; setTimeout(relayRefresh, 1000);
+});
+relayRefresh();
+setInterval(relayRefresh, 5000);
 
 async function refresh() {
   try {

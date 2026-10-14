@@ -60,3 +60,41 @@ def _listeners(port: int) -> list:
     """PIDs listening on this local port (netstat)."""
     out = subprocess.run(["netstat", "-ano", "-p", "TCP"], capture_output=True, text=True, creationflags=NO_WINDOW).stdout
     return sorted({int(m.group(1)) for m in re.finditer(rf"^\s*TCP\s+\S+:{port}\s+\S+\s+LISTENING\s+(\d+)", out, re.MULTILINE)})
+
+
+RELAY_PID = RUNS / "relay" / "pid"
+
+
+def relay_pid() -> Optional[int]:
+    """The relay games' process while it runs."""
+    try:
+        pid = int(RELAY_PID.read_text().strip())
+    except (OSError, ValueError):
+        return None
+    return pid if _alive(pid) else None
+
+
+def start_relay(config_id: str, games: int) -> str:
+    """Plays `games` games of `config_id` answered by hand (rotomarena ladder relay), beside any round robin."""
+    if relay_pid():
+        return "Relay games are already going."
+    if not re.fullmatch(r"[a-z0-9_]+", config_id) or not 1 <= games <= 30:
+        return "Pick a model and 1-30 games."
+    RELAY_PID.parent.mkdir(parents=True, exist_ok=True)
+    log = open(RUNS / "relay" / "relay.log", "a", encoding="utf-8")
+    proc = subprocess.Popen([sys.executable, "-m", "rotomarena.cli", "ladder", "relay", config_id, "--games", str(games)],
+                            cwd=ROOT, stdout=log, stderr=log, creationflags=NO_WINDOW | NEW_GROUP, close_fds=True)
+    RELAY_PID.write_text(str(proc.pid))
+    return f"Started {games} relay game(s) of {config_id}. Prompts appear in the Relay panel."
+
+
+def stop_relay() -> str:
+    """Stops the relay games; the one in progress is lost (it isn't saved)."""
+    pid = relay_pid()
+    if not pid:
+        return "No relay games are going."
+    subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)], capture_output=True, creationflags=NO_WINDOW)
+    RELAY_PID.unlink(missing_ok=True)
+    for leftover in (RUNS / "relay").glob("*.json"):  # prompts nobody will answer now
+        leftover.unlink(missing_ok=True)
+    return "Stopped the relay games."

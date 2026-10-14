@@ -60,6 +60,7 @@ class BaseBenchmarkPlayer(Player):
         self.answer_attempts = answer_attempts  # tries per decision (ruleset.answer_attempts)
         self.battle_state = battle_state  # which battle state the player reads (ruleset.battle_state)
         self.mirror_of: Optional[str] = None  # a control bot's name, when it plays a copy of this player's team
+        self.match_tags: List[str] = []  # copied into each game it plays (MatchTelemetry.tags), e.g. a relayed model's
         self.notes_shown = notes_shown  # battle state 3: its latest notes each turn shows (ruleset.notes_shown)
         self.notes: Dict[str, Dict[int, str]] = {}  # battle tag -> {turn: the notes it wrote then} (state 3)
         self.identity = identity or PlayerIdentity(

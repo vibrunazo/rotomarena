@@ -128,6 +128,7 @@ class MatchRunner:
         telemetry = recorder.finalize(
             players=players, winner=winner, total_turns=total_turns, duration_sec=duration
         )
+        telemetry.tags = sorted(set(getattr(challenger, "match_tags", []) + getattr(opponent, "match_tags", [])))
 
         breadcrumbs_path = None
         replay_html_path = None

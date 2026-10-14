@@ -209,6 +209,10 @@ def llm_client_for(agent_cfg: AgentConfig, app_config: AppConfig) -> LLMClient:
         from rotomarena.llm.batch import shared_queue
 
         client.batch = shared_queue(providers[agent_cfg.provider or "openrouter"].get_api_key())
+    from rotomarena.llm import relay
+
+    if agent_cfg.name in relay.relayed:  # `ladder relay`: a person answers through the model's chat app
+        client.relay = relay.shared_queue()
     return client
 
 
@@ -249,7 +253,7 @@ def create_agent_instance(
         identity=identity,
         # a batched model's turn waits for its batch: up to OpenRouter's 24-hour window
         turn_timeout=max(app_config.ruleset.turn_timeout, 26 * 3600) if agent_cfg.batch.get(app_config.ruleset.version)
-        else app_config.ruleset.turn_timeout,
+        or agent_cfg.name in relayed_ids() else app_config.ruleset.turn_timeout,
         battle_format=app_config.ruleset.format,
         pick=app_config.ruleset.pick,
         answer_attempts=app_config.ruleset.answer_attempts or 1,
@@ -263,7 +267,7 @@ def create_agent_instance(
     )
 
     if agent_cfg.type == "direct_llm":
-        return DirectLLMPlayer(
+        player = DirectLLMPlayer(
             llm_client=llm_client,
             model=resolved_model,
             temperature=agent_cfg.temperature,
@@ -272,6 +276,11 @@ def create_agent_instance(
             thinking_budget=agent_cfg.thinking(app_config.ruleset)[1],
             **common,
         )
+        if agent_cfg.name in relayed_ids():
+            from rotomarena.llm.relay import tag
+
+            player.match_tags = [tag(agent_cfg.name)]
+        return player
     if agent_cfg.type == "decision":
         return DecisionPlayer(client=decision_client, **common)
     if agent_cfg.type == "pokechamp":
@@ -283,6 +292,12 @@ def create_agent_instance(
     if agent_cfg.type == "random":
         return RandomBenchmarkPlayer(**common)
     raise ValueError(f"Unknown agent type '{agent_cfg.type}'")
+
+
+def relayed_ids() -> set:
+    from rotomarena.llm.relay import relayed
+
+    return relayed
 
 
 def resolved_model(agent_cfg: AgentConfig, app_config: AppConfig) -> Optional[str]:

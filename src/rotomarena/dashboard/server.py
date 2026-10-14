@@ -16,7 +16,8 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 from rotomarena.config import AppConfig
-from rotomarena.dashboard.control import start_run, stop_run
+from rotomarena.dashboard.control import relay_pid, start_relay, start_run, stop_relay, stop_run
+from rotomarena.llm import relay as hand_relay
 from rotomarena.dashboard.relay import relay
 from rotomarena.dashboard.status import live_battles, sim_battle_lines, status
 from rotomarena.replay_names import live_names, rename_players
@@ -113,6 +114,11 @@ def serve(config_file: str, host: str, port: int) -> None:
                 lines = rename_players(lines, names(room))
                 body = {"lines": lines, "ended": ended, "thoughts": thoughts(room, tstart)}
                 self._send(200, "application/json", json.dumps(body).encode("utf-8"))
+            elif path == "/api/relay":  # prompts of a model played by hand, waiting for their answers
+                body = {"running": bool(relay_pid()), "pending": hand_relay.pending(),
+                        "models": [k for k, a in AppConfig.load(config_file).agents.items()
+                                   if a.active and a.type == "direct_llm"]}
+                self._send(200, "application/json", json.dumps(body).encode("utf-8"))
             elif path == "/api/status":
                 try:
                     self._send(200, "application/json", current())
@@ -127,6 +133,18 @@ def serve(config_file: str, host: str, port: int) -> None:
                 message = start_run()
             elif path == "/api/run/stop":
                 message = stop_run(AppConfig.load(config_file))
+            elif path == "/api/relay/start":
+                query = self.path.partition("?")[2]
+                model = m.group(1) if (m := re.search(r"(?:^|&)model=([a-z0-9_]+)", query)) else ""
+                games = int(m.group(1)) if (m := re.search(r"(?:^|&)games=(\d+)", query)) else 0
+                message = start_relay(model, games)
+            elif path == "/api/relay/stop":
+                message = stop_relay()
+            elif path.startswith("/api/relay/answer/"):
+                length = int(self.headers.get("Content-Length") or 0)
+                text = self.rfile.read(min(length, 200_000)).decode("utf-8", "replace")
+                ok = text.strip() and hand_relay.answer(path[len("/api/relay/answer/"):], text)
+                message = "Answer sent." if ok else "That prompt is no longer waiting (or the answer was empty)."
             elif path == "/api/monitor/stop":
                 message = "The monitor stopped. Start it again with scripts/monitor.ps1."
                 threading.Timer(0.5, lambda: os._exit(0)).start()

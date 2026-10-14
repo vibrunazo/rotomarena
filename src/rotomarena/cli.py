@@ -672,6 +672,34 @@ def ladder_round_robin(
     _print_ratings(app_cfg)
 
 
+@ladder_app.command("relay")
+def ladder_relay(
+    config_id: str = typer.Argument(..., help="The model a person answers for, through its chat app"),
+    games: int = typer.Option(3, "--games", "-n", help="Games to play"),
+    opponents: Optional[str] = typer.Option(None, "--opponents", help="Comma-separated config ids (default: the "
+                                            "nearest rated, never a local model)"),
+    config_file: str = typer.Option("config.yaml", "--config", "-c", help="Config file"),
+):
+    """Games of a model answered by hand through its chat app (Gemini 4 Argon in the Gemini app): each turn's prompt
+    waits on the run monitor's Relay panel for its answer. Runs beside the round robin; the games are tagged
+    relay:<app>:<model> and count apart from the API's."""
+    from rotomarena.ladder import RunHalted, relay_sets
+
+    app_cfg = AppConfig.load(config_file)
+    _register_rules(app_cfg)
+
+    async def _run():
+        async with engine.battles(app_cfg):
+            n = await relay_sets(app_cfg, config_id, games, opponents.split(",") if opponents else None,
+                                 log=console.print)
+            console.print(f"relay: {n} game(s) played")
+
+    try:
+        asyncio.run(_run())
+    except RunHalted as e:
+        _report_halt(e, app_cfg)
+
+
 @ladder_app.command("fill")
 def ladder_fill(
     budget: int = typer.Option(8, "--budget", "-b", help="Maximum games to play"),

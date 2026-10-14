@@ -154,12 +154,17 @@ def _median(values: Iterable[float]) -> Optional[float]:
 def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]:
     """Behaviour across every match a model played in the exported versions, rated or not."""
     turns: List[TurnBreadcrumb] = []
-    tera_turns, mega_turns, played, formats = [], [], 0, set()
+    priced_turns: List[TurnBreadcrumb] = []  # cost and tokens: not from games relayed through a chat app (no API bill)
+    tera_turns, mega_turns, played, priced, formats = [], [], 0, 0, set()
     for m in matches:
         for p in m.players:
             if p.config_id != config_id:
                 continue
             played += 1
+            relayed = any(t.startswith("relay:") and t.endswith(f":{config_id}") for t in m.tags)
+            if not relayed:
+                priced += 1
+                priced_turns.extend(player_turns(m, p.role))
             formats.add("mega" if is_champions(m.format) else "tera")  # Champions has Mega Evolution, not Tera
             mine = player_turns(m, p.role)
             turns.extend(mine)
@@ -174,7 +179,7 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
     choices = [parse_choice(b.chosen_action) for b in turns if b.decision_source == "model"]
     moves = Counter(c["target"] for c in choices if c["kind"] == "move")
     thoughts = [t for t in (_thought(b) for b in turns) if t.strip()]
-    metrics = [b.llm_metrics for b in turns if b.llm_metrics]
+    metrics = [b.llm_metrics for b in priced_turns if b.llm_metrics]
     hallucinations = Counter(
         m.group(1) for b in turns if b.decision_source == "invalid" and (m := _PROPOSED.search(b.reasoning))
     )
@@ -188,7 +193,7 @@ def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]
         "hallucinated_move_rate": round(sources.get("invalid", 0) / n, 3),
         "tokens_per_turn": round(statistics.mean(x.get("completion_tokens", 0) for x in metrics)) if metrics else None,
         "cost_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics), 4),
-        "cost_per_game_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics) / played, 4) if played else 0.0,
+        "cost_per_game_usd": round(sum(x.get("cost_usd", 0.0) for x in metrics) / priced, 4) if priced else 0.0,
         "switch_rate": round(sum(1 for c in choices if c["kind"] == "switch") / (len(choices) or 1), 3),
         "signature_move": moves.most_common(1)[0][0] if moves else None,
         "most_used_pokemon": Counter(b.active_pokemon for b in turns).most_common(1)[0][0] if turns else None,
