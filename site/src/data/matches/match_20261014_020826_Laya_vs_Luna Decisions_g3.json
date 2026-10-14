@@ -1,0 +1,571 @@
+{
+  "id": "match_20261014_020826_Laya_vs_Luna Decisions_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "gpt_6_luna_decisions",
+      "display_name": "GPT-6 Luna Decisions",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna-decisions",
+      "quantization": null,
+      "username": "Luna Decisions",
+      "role": "p2",
+      "team": "GPT-6 Luna Decisions's team",
+      "model_key": "openai/gpt-6-luna-decisions",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna Decisions"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 7,
+  "duration_seconds": 4.88,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|GPT-6 Luna Decisions||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, M|",
+    "|poke|p1|Torterra, L50, M|",
+    "|poke|p1|Scrafty, L50, F|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Scizor, L50, F|",
+    "|poke|p2|Clefable, L50, M|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Greninja, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, M|202/202",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Greninja|Greninja, L50, F|100/100",
+    "|switch|p1a: Scrafty|Scrafty, L50, F|172/172",
+    "|-ability|p1a: Scrafty|Intimidate|boost",
+    "|-unboost|p2a: Greninja|atk|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p2a: Greninja|Greninja-Mega, L50, F",
+    "|-mega|p2a: Greninja|Greninja|Greninjite",
+    "|move|p2a: Greninja|Ice Beam|p1a: Scrafty",
+    "|-start|p2a: Greninja|typechange|Ice|[from] ability: Protean",
+    "|-damage|p1a: Scrafty|102/172",
+    "|-status|p1a: Scrafty|frz",
+    "|cant|p1a: Scrafty|frz",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Greninja|Ice Beam|p1a: Scrafty",
+    "|-damage|p1a: Scrafty|41/172 frz",
+    "|cant|p1a: Scrafty|frz",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Greninja|Ice Beam|p1a: Scrafty",
+    "|-damage|p1a: Scrafty|0 fnt",
+    "|faint|p1a: Scrafty",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torterra|Torterra, L50, M|202/202",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, M|177/177",
+    "|move|p2a: Greninja|Ice Beam|p1a: Torkoal",
+    "|-resisted|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|130/177",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Greninja|Hydro Pump|p1a: Torkoal",
+    "|-supereffective|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torterra|Torterra, L50, M|202/202",
+    "|turn|7",
+    "|",
+    "|move|p2a: Greninja|Ice Beam|p1a: Torterra",
+    "|-supereffective|p1a: Torterra|2",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|faint|p1a: Torterra",
+    "|",
+    "|win|GPT-6 Luna Decisions"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,scrafty",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 41% BRING: torterra, 17% BRING: torkoal, 16% BRING: scrafty\nPick 2: 34% BRING: torkoal, 33% BRING: scrafty, 15% BRING: rotom\nPick 3: 39% BRING: scrafty, 35% BRING: rotom, 16% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5322,
+      "latency_ms": 994,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,greninja,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 31% BRING: garchomp, 28% BRING: greninja, 25% BRING: rotomwash\nPick 2: 49% BRING: greninja, 39% BRING: rotomwash, 5% BRING: clefable\nPick 3: 96% BRING: rotomwash, 3% BRING: clefable, 1% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4770,
+      "latency_ms": 1114,
+      "cost_usd": 0.000477,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Scrafty",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% SWITCH: scrafty, 18% MOVE: trailblaze, 14% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1865,
+      "latency_ms": 44,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.1754,
+        "MOVE: bulldoze": 0.0882,
+        "MOVE: energyball": 0.0882,
+        "MOVE: growth": 0.1283,
+        "SWITCH: torkoal": 0.1366,
+        "SWITCH: scrafty": 0.3832
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Greninja",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% SWITCH: greninja, 18% MOVE: dragonclaw, 1% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1655,
+      "latency_ms": 792,
+      "cost_usd": 0.0001655,
+      "probabilities": {
+        "MOVE: earthquake": 0.0,
+        "MOVE: swordsdance": 0.01,
+        "MOVE: dragonclaw": 0.18,
+        "MOVE: stoneedge": 0.01,
+        "SWITCH: greninja": 0.79,
+        "SWITCH: rotomwash": 0.01
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "zenheadbutt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "22% MOVE: zenheadbutt, 20% MOVE: trailblaze, 13% MOVE: zenheadbutt [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2251,
+      "latency_ms": 51,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.1976,
+        "MOVE: trailblaze [MEGA]": 0.0926,
+        "MOVE: fling": 0.0744,
+        "MOVE: fling [MEGA]": 0.1117,
+        "MOVE: zenheadbutt": 0.2171,
+        "MOVE: zenheadbutt [MEGA]": 0.1286,
+        "MOVE: encore": 0.0553,
+        "MOVE: encore [MEGA]": 0.0528,
+        "SWITCH: torkoal": 0.0346,
+        "SWITCH: torterra": 0.0352
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icebeam",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "65% MOVE: icebeam [MEGA], 12% MOVE: icebeam, 9% MOVE: hydropump",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2010,
+      "latency_ms": 582,
+      "cost_usd": 0.000201,
+      "probabilities": {
+        "MOVE: icebeam": 0.12,
+        "MOVE: icebeam [MEGA]": 0.65,
+        "MOVE: hydropump": 0.09,
+        "MOVE: hydropump [MEGA]": 0.07,
+        "MOVE: flipturn": 0.02,
+        "MOVE: flipturn [MEGA]": 0.01,
+        "MOVE: darkpulse": 0.01,
+        "MOVE: darkpulse [MEGA]": 0.02,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: rotomwash": 0.0
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "zenheadbutt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% MOVE: zenheadbutt, 12% MOVE: trailblaze [MEGA], 11% MOVE: zenheadbutt [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2261,
+      "latency_ms": 51,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.1046,
+        "MOVE: trailblaze [MEGA]": 0.1167,
+        "MOVE: fling": 0.1079,
+        "MOVE: fling [MEGA]": 0.0895,
+        "MOVE: zenheadbutt": 0.3075,
+        "MOVE: zenheadbutt [MEGA]": 0.1096,
+        "MOVE: encore": 0.0615,
+        "MOVE: encore [MEGA]": 0.0587,
+        "SWITCH: torkoal": 0.0226,
+        "SWITCH: torterra": 0.0213
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icebeam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: icebeam, 19% MOVE: hydropump, 7% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1845,
+      "latency_ms": 348,
+      "cost_usd": 0.0001845,
+      "probabilities": {
+        "MOVE: icebeam": 0.72,
+        "MOVE: hydropump": 0.19,
+        "MOVE: flipturn": 0.07,
+        "MOVE: darkpulse": 0.01,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: rotomwash": 0.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "zenheadbutt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: zenheadbutt, 12% MOVE: fling [MEGA], 10% MOVE: trailblaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2305,
+      "latency_ms": 55,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.1047,
+        "MOVE: trailblaze [MEGA]": 0.0803,
+        "MOVE: fling": 0.0841,
+        "MOVE: fling [MEGA]": 0.115,
+        "MOVE: zenheadbutt": 0.3655,
+        "MOVE: zenheadbutt [MEGA]": 0.0999,
+        "MOVE: encore": 0.051,
+        "MOVE: encore [MEGA]": 0.0487,
+        "SWITCH: torkoal": 0.0305,
+        "SWITCH: torterra": 0.0203
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icebeam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: icebeam, 1% MOVE: hydropump, 1% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1883,
+      "latency_ms": 581,
+      "cost_usd": 0.0001883,
+      "probabilities": {
+        "MOVE: icebeam": 0.97,
+        "MOVE: hydropump": 0.01,
+        "MOVE: flipturn": 0.01,
+        "MOVE: darkpulse": 0.01,
+        "SWITCH: garchomp": 0.0,
+        "SWITCH: rotomwash": 0.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torterra",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: torterra, 38% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1795,
+      "latency_ms": 39,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.3849,
+        "SWITCH: torterra": 0.6151
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% SWITCH: torkoal, 25% MOVE: trailblaze, 10% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2120,
+      "latency_ms": 48,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.2465,
+        "MOVE: bulldoze": 0.1028,
+        "MOVE: energyball": 0.0788,
+        "MOVE: growth": 0.0893,
+        "SWITCH: torkoal": 0.4827
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icebeam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "91% MOVE: icebeam, 3% MOVE: hydropump, 2% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1940,
+      "latency_ms": 360,
+      "cost_usd": 0.000194,
+      "probabilities": {
+        "MOVE: icebeam": 0.91,
+        "MOVE: hydropump": 0.03,
+        "MOVE: flipturn": 0.02,
+        "MOVE: darkpulse": 0.01,
+        "SWITCH: garchomp": 0.02,
+        "SWITCH: rotomwash": 0.01
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: flamethrower, 23% MOVE: flamecharge, 15% SWITCH: torterra",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2146,
+      "latency_ms": 49,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.4074,
+        "MOVE: flamecharge": 0.2285,
+        "MOVE: fissure": 0.1014,
+        "MOVE: firespin": 0.108,
+        "SWITCH: torterra": 0.1546
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% MOVE: hydropump, 20% MOVE: flipturn, 11% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2055,
+      "latency_ms": 644,
+      "cost_usd": 0.0002055,
+      "probabilities": {
+        "MOVE: icebeam": 0.02,
+        "MOVE: hydropump": 0.61,
+        "MOVE: flipturn": 0.2,
+        "MOVE: darkpulse": 0.02,
+        "SWITCH: garchomp": 0.04,
+        "SWITCH: rotomwash": 0.11
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torterra",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: trailblaze, 23% MOVE: bulldoze, 22% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2179,
+      "latency_ms": 50,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.3577,
+        "MOVE: bulldoze": 0.2274,
+        "MOVE: energyball": 0.1945,
+        "MOVE: growth": 0.2204
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icebeam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: icebeam, 1% MOVE: hydropump, 1% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2080,
+      "latency_ms": 384,
+      "cost_usd": 0.000208,
+      "probabilities": {
+        "MOVE: icebeam": 0.97,
+        "MOVE: hydropump": 0.01,
+        "MOVE: flipturn": 0.01,
+        "MOVE: darkpulse": 0.0,
+        "SWITCH: garchomp": 0.01,
+        "SWITCH: rotomwash": 0.0
+      }
+    }
+  ]
+}

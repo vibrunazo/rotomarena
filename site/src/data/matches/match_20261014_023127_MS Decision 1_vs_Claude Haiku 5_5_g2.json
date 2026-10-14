@@ -1,0 +1,451 @@
+{
+  "id": "match_20261014_023127_MS Decision 1_vs_Claude Haiku 5_5_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1",
+      "role": "p1",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0,
+      "replay_name": "Microsoft-Decision-1"
+    },
+    {
+      "config_id": "claude_haiku_5_5",
+      "display_name": "Claude Haiku 5.5",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "anthropic/claude-haiku-5.5",
+      "quantization": null,
+      "username": "Claude Haiku 5.5",
+      "role": "p2",
+      "team": "Claude Haiku 5.5's team",
+      "model_key": "anthropic/claude-haiku-5.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Claude Haiku 5.5"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 44.51,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Microsoft-Decision-1||",
+    "|player|p2|Claude Haiku 5.5||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Greninja, L50, M|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Palafin, L50, F|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Sinistcha, L50|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Incineroar|Incineroar, L50, F|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Dragapult|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Sucker Punch||[still]",
+    "|-fail|p1a: Dragapult",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Dragapult",
+    "|-unboost|p1a: Dragapult|atk|1",
+    "|-unboost|p1a: Dragapult|spa|1",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, F|100/100|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|Sucker Punch|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|95/100",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|turn|3",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|0 fnt",
+    "|faint|p2a: Kingambit",
+    "|-end|p2a: Kingambit|fallenundefined|[silent]",
+    "|-damage|p1a: Garchomp|165/183|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|4",
+    "|",
+    "|detailschange|p2a: Garchomp|Garchomp-Mega, L50, F",
+    "|-mega|p2a: Garchomp|Garchomp|Garchompite",
+    "|move|p2a: Garchomp|Dragon Claw|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|-damage|p2a: Garchomp|87/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|5",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|win|Claude Haiku 5.5"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,garchomp,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Incineroar leads for Fake Out and Intimidate. Garchomp (Mega) is my main sweeper threat. Kingambit handles Dragapult, which is Ghost-weak to Dark, and is sturdy against Garchomp and Gholdengo. Watch Dragapult's speed and Gholdengo's Make It Rain. Their Greninja and Palafin are unknown sets so far.",
+      "hidden_reasoning": "I need to narrow my team down to three from incineroar, garchomp, kingambit, gholdengo, sinistcha, and corviknight, weighing them against the opponent's likely threats like Dragapult, Garchomp, Gholdengo, and Greninja. Incineroar's intimidate and utility moves make it a strong pick, and I'm leaning toward pairing it with garchomp and kingambit, though I'm still weighing alternatives.\n\n",
+      "note": "",
+      "tokens": 3249,
+      "latency_ms": 10113,
+      "cost_usd": 0.00051421,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 49% BRING: dragapult, 38% BRING: garchomp, 5% BRING: corviknight\nPick 2: 77% BRING: garchomp, 15% BRING: gholdengo, 3% BRING: corviknight\nPick 3: 78% BRING: gholdengo, 14% BRING: greninja, 7% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5457,
+      "latency_ms": 10118,
+      "cost_usd": 0.000229194,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: suckerpunch, 25% MOVE: shadowball, 20% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1911,
+      "latency_ms": 457,
+      "cost_usd": 8.0262e-05,
+      "probabilities": {
+        "MOVE: hex": 0.030212103726188946,
+        "MOVE: shadowball": 0.2529628474000478,
+        "MOVE: suckerpunch": 0.41706525206435485,
+        "MOVE: uturn": 0.06395902409024584,
+        "SWITCH: garchomp": 0.19700766364312952,
+        "SWITCH: gholdengo": 0.03879310907603303
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opening: Dragapult is Ghost-immune to Fake Out and resists Fire, so Flare Blitz is weak here. I'm using Parting Shot to bring in Kingambit: Dark resists Ghost and Dragon, Steel resists Dragon, and Kingambit's Dark attacks are super effective on Dragapult. Parting Shot also drops its Atk further. Dragapult outspeeds everything, so expect a Dragon Darts or Shadow Ball next turn. Watch for Gholdengo, Garchomp, Greninja and Palafin as the other three; Garchomp has Sand Veil or Rough Skin.",
+      "hidden_reasoning": "Since Incineroar is on the field first turn, Fake Out is usable, but Dragapult's Ghost typing makes it immune to the Normal-type move entirely. I'm also noting that Flare Blitz would be resisted since Dragapult is part Dragon type.\n\nI'm weighing Flare Blitz for chip damage against pivoting out with Parting Shot. Bringing in Kingambit looks appealing since its Dark-type attacks like Kowtow Cleave hit Dragapult super effectively, while Dragapult's Dragon and Ghost moves are resisted by Kingambit's Dark/Steel typing — though Dragapult's superior speed means it gets to attack Kingambit first regardless.\n\nParting Shot wins out since it further cripples Dragapult's weakened Attack stat while safely bringing in Kingambit as a solid counter.\n\n",
+      "note": "",
+      "tokens": 4234,
+      "latency_ms": 6404,
+      "cost_usd": 0.00087581,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Parting Shot dropped Dragapult to Atk -2 and SpA -1. I'm switching Incineroar out for Kingambit, which hits Dragapult hard with Dark moves (Ghost-weakness) and resists its Dragon and Ghost attacks. Dragapult outspeeds everything, so expect Shadow Ball or Dragon Darts. Opponent's remaining options: Garchomp, Gholdengo, Greninja, Corviknight, Palafin. Garchomp may have Sand Veil or Rough Skin. Garchomp (mine) is my Mega sweeper for later.",
+      "hidden_reasoning": "Dragapult's stats are lowered to Atk -2, SpA -1. Since Incineroar used Parting Shot, it must switch out, and the only legal option here is to bring in Kingambit.\n\n",
+      "note": "",
+      "tokens": 3461,
+      "latency_ms": 2380,
+      "cost_usd": 0.000327515,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: suckerpunch, 37% SWITCH: garchomp, 9% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1953,
+      "latency_ms": 451,
+      "cost_usd": 8.2026e-05,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.5373272559919444,
+        "SWITCH: garchomp": 0.3692992622454356,
+        "SWITCH: gholdengo": 0.09337348176262004
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is at Atk -2 and SpA -1 after Parting Shot, so it is a weak attacker now. Kingambit is Dark/Steel, so Dark moves hit Dragapult super effectively and its Dragon and Ghost attacks are resisted. Kowtow Cleave does not check accuracy, so I'll use it. Dragapult outspeeds Kingambit and has Sucker Punch, which fails against non-attackers. Next: Garchomp (Mega) is my sweeper, Incineroar can Fake Out, and Gholdengo and Greninja are still unseen threats.",
+      "hidden_reasoning": "Kingambit's Kowtow Cleave hits hard against Dragapult's Ghost typing with guaranteed accuracy, and with Dragapult already at -2 Attack, Sucker Punch would fail since it needs the opponent to be attacking.\n\n",
+      "note": "",
+      "tokens": 3805,
+      "latency_ms": 3327,
+      "cost_usd": 0.00041819,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% SWITCH: garchomp, 20% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1859,
+      "latency_ms": 515,
+      "cost_usd": 7.8078e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.7981867801399695,
+        "SWITCH: gholdengo": 0.20181321986003056
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% MOVE: earthquake, 11% MOVE: swordsdance, 4% MOVE: dracometeor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2146,
+      "latency_ms": 514,
+      "cost_usd": 9.0132e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.044749037029676836,
+        "MOVE: earthquake": 0.7931956367389414,
+        "MOVE: stealthrock": 0.030755533386717097,
+        "MOVE: swordsdance": 0.10734735935931056,
+        "SWITCH: gholdengo": 0.023952433485354016
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is down. Opposing Garchomp (Dragon/Ground) is now active and outspeeds Kingambit. Its Earthquake is 2x on my Kingambit, so Kingambit must trade quickly. Kowtow Cleave is my strongest reliable hit: it ignores accuracy and is neutral on Garchomp. Sucker Punch fails if Garchomp uses a status move. Next: Incineroar or Garchomp (Mega) should come in to handle Garchomp, with Incineroar's Intimidate and Fake Out helping. Still unseen: Gholdengo, Greninja, Corviknight, or Palafin.",
+      "hidden_reasoning": "Garchomp is now in against my Kingambit at 198/207 HP. Since Kingambit is Dark/Steel, Garchomp's Earthquake hits for double damage, which is concerning, while my Kowtow Cleave would only be neutral damage back.\n\nGarchomp outspeeds Kingambit, so it'll likely hit first with Earthquake for heavy damage before I can retaliate with Kowtow Cleave.\n\nKingambit at 198 HP would survive even a 2x Earthquake from Garchomp, taking maybe 40-50% damage, but Sucker Punch only works if Garchomp attacks rather than uses a status move, making it unreliable. Kowtow Cleave is the safer, guaranteed choice.\n\n",
+      "note": "",
+      "tokens": 5083,
+      "latency_ms": 7746,
+      "cost_usd": 0.000907115,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit fainted to Garchomp's Earthquake. Opposing Garchomp is at 90% with Life Orb, and its Earthquake is only neutral on my Dragon/Ground Garchomp. I'm switching in Garchomp to take the hit, then Mega Evolving it. Next turn, Dragon Claw is 2x on their Garchomp; Earthquake is neutral. Incineroar stays back for Intimidate and Fake Out later. Still unseen: Gholdengo, Greninja, Corviknight, or Palafin. Their Dragapult is down.",
+      "hidden_reasoning": "I'm checking the type matchup here: opposing Garchomp's Earthquake against my Mega Garchomp, since Ground-type moves don't resist each other, so I need to factor in that neutral damage when assessing the risk.\n\nDragon Claw would hit for super effective damage (2x) against their Dragon/Ground typing, while Stone Edge stays neutral. Speed-wise, both Garchomp lines are close enough that I'm weighing whether switching to my own Garchomp or committing to the Mega gives me the better edge in this exchange.\n\nComparing options, Garchomp absorbs EQ neutrally while Incineroar would take a 2x hit from it, making Garchomp the clearly safer switch-in here.\n\n",
+      "note": "",
+      "tokens": 4726,
+      "latency_ms": 6299,
+      "cost_usd": 0.000757465,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: earthquake, 24% MOVE: dracometeor, 15% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2274,
+      "latency_ms": 485,
+      "cost_usd": 9.5508e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.23961955659450293,
+        "MOVE: earthquake": 0.507274635527208,
+        "MOVE: stealthrock": 0.0605853118362667,
+        "MOVE: swordsdance": 0.14533660774131257,
+        "SWITCH: gholdengo": 0.047183888300709756
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "Our Garchomp (169 Spe) likely outspeeds their Life Orb Garchomp (109-169 Spe range). Dragon Claw is 2x on their Dragon/Ground Garchomp, so I'm Mega Evolving and hitting it now. Their Garchomp's Earthquake is neutral on ours. Incineroar stays in reserve for Intimidate and Fake Out. Still unseen: Gholdengo, Greninja, Corviknight, or Palafin, one of which will come in.",
+      "hidden_reasoning": "Comparing speed tiers: our Garchomp at 169 outpaces theirs, which is at 90% HP holding Life Orb and likely to repeat Earthquake. Mega Garchomp's Sand Force ability keeps its speed at base 102, and Dragon Claw would hit for super-effective damage against their Garchomp.\n\nI'll go ahead and Mega Evolve, then use Dragon Claw.\n\n",
+      "note": "",
+      "tokens": 4931,
+      "latency_ms": 4649,
+      "cost_usd": 0.00066584,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: shadowball, 21% MOVE: recover, 13% MOVE: shadowpunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2288,
+      "latency_ms": 471,
+      "cost_usd": 9.6096e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.08791452427972478,
+        "MOVE: recover": 0.21089595513474388,
+        "MOVE: shadowball": 0.5732746425382883,
+        "MOVE: shadowpunch": 0.12791487804724297
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo (Steel/Ghost, Good as Gold, immune to status) is the new threat. Earthquake is super effective on it, and my Mega Garchomp (158 Spe) moves first. Dragon Claw is weak here. Expect Gholdengo's special attacks, possibly Make It Rain or Shadow Ball. Incineroar is healthy in reserve for Intimidate and Fake Out. Still unseen: Greninja, Corviknight, Palafin. Corviknight would resist Earthquake and be a switch target for Incineroar's Flare Blitz. Gholdengo's Ghost typing also means Stone Edge and Ground attacks need care.",
+      "hidden_reasoning": "Gholdengo is Steel/Ghost, so Earthquake hits it super effectively, and Mega Garchomp's 222 base Attack should land a huge hit despite Gholdengo's solid defense and immunity to status from Good as Gold. I'll go with Earthquake.\n\n",
+      "note": "",
+      "tokens": 4392,
+      "latency_ms": 3022,
+      "cost_usd": 0.000594585,
+      "probabilities": null
+    }
+  ]
+}

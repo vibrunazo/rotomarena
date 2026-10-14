@@ -1,0 +1,497 @@
+{
+  "id": "match_20261014_020754_Mercury Decide_vs_Drex v1_5_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "mercury_decide",
+      "display_name": "Mercury Decide",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "inception/mercury-decide",
+      "quantization": null,
+      "username": "Mercury Decide",
+      "role": "p1",
+      "team": "Mercury Decide's team",
+      "model_key": "inception/mercury-decide",
+      "autopilot_rate": 0.0,
+      "replay_name": "Mercury Decide"
+    },
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p2",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 16.04,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Mercury Decide||",
+    "|player|p2|Drex v1.5||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Scizor, L50, M|",
+    "|poke|p1|Metagross, L50|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Hydreigon, L50, F|",
+    "|poke|p2|Kommo-o, L50, M|",
+    "|poke|p2|Gyarados, L50, F|",
+    "|poke|p2|Sylveon, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Draco Meteor|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-crit|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|-unboost|p1a: Dragapult|spa|2",
+    "|faint|p2a: Garchomp",
+    "|-damage|p1a: Dragapult|147/163|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|35/100",
+    "|-damage|p1a: Dragapult|131/163|[from] item: Life Orb",
+    "|",
+    "|switch|p1a: Metagross|Metagross, L50|155/155|[from] U-turn",
+    "|move|p2a: Hydreigon|Dragon Tail|p1a: Metagross",
+    "|-resisted|p1a: Metagross|1",
+    "|-damage|p1a: Metagross|140/155",
+    "|drag|p1a: Dragapult|Dragapult, L50, F|131/163",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|0 fnt",
+    "|faint|p2a: Hydreigon",
+    "|-damage|p1a: Dragapult|115/163|[from] item: Life Orb",
+    "|",
+    "|switch|p1a: Metagross|Metagross, L50|140/155|[from] U-turn",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Scizor|Scizor, L50, M|177/177",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Scizor",
+    "|-damage|p1a: Scizor|119/177",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|detailschange|p1a: Scizor|Scizor-Mega, L50, M",
+    "|-mega|p1a: Scizor|Scizor|Scizorite",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Scizor",
+    "|-damage|p1a: Scizor|73/177",
+    "|move|p1a: Scizor|Knock Off|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|-enditem|p2a: Dragapult|Choice Scarf|[from] move: Knock Off|[of] p1a: Scizor",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|win|Mercury Decide"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,metagross,scizor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 43% BRING: dragapult, 26% BRING: metagross, 12% BRING: scizor\nPick 2: 34% BRING: metagross, 30% BRING: scizor, 21% BRING: garchomp\nPick 3: 57% BRING: scizor, 21% BRING: garchomp, 19% BRING: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5577,
+      "latency_ms": 3089,
+      "cost_usd": 0.00011153999999999999,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 40% BRING: garchomp, 27% BRING: dragapult, 20% BRING: hydreigon\nPick 2: 39% BRING: hydreigon, 32% BRING: dragapult, 11% BRING: gyarados\nPick 3: 64% BRING: dragapult, 13% BRING: kommoo, 12% BRING: gyarados",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5428,
+      "latency_ms": 4424,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "91% MOVE: dracometeor, 3% SWITCH: scizor, 2% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1967,
+      "latency_ms": 877,
+      "cost_usd": 3.934e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.9058678724575491,
+        "MOVE: shadowball": 0.016591545618805225,
+        "MOVE: phantomforce": 0.024140562186165684,
+        "MOVE: uturn": 0.011403191422376158,
+        "SWITCH: metagross": 0.014641987617686624,
+        "SWITCH: scizor": 0.027354840697417167
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: stealthrock, 20% MOVE: dragontail, 11% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1885,
+      "latency_ms": 1893,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.0969,
+        "MOVE: dragontail": 0.2044,
+        "MOVE: stealthrock": 0.4344,
+        "MOVE: stoneedge": 0.1057,
+        "SWITCH: hydreigon": 0.0825,
+        "SWITCH: dragapult": 0.0762
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% SWITCH: hydreigon, 27% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1673,
+      "latency_ms": 1884,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: hydreigon": 0.7329,
+        "SWITCH: dragapult": 0.2671
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: uturn, 5% MOVE: dracometeor, 4% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2165,
+      "latency_ms": 784,
+      "cost_usd": 4.33e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.04870290213219679,
+        "MOVE: shadowball": 0.001219253007068392,
+        "MOVE: phantomforce": 0.0008379795198917593,
+        "MOVE: uturn": 0.8632795447837545,
+        "SWITCH: metagross": 0.04298016027854435,
+        "SWITCH: scizor": 0.04298016027854435
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: dragontail, 12% MOVE: stealthrock, 10% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1988,
+      "latency_ms": 1973,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0426,
+        "MOVE: dragontail": 0.732,
+        "MOVE: earthquake": 0.0116,
+        "MOVE: stealthrock": 0.1171,
+        "SWITCH: dragapult": 0.0967
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: metagross, 38% SWITCH: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1827,
+      "latency_ms": 607,
+      "cost_usd": 3.654e-05,
+      "probabilities": {
+        "SWITCH: metagross": 0.622459324198198,
+        "SWITCH: scizor": 0.37754067580180184
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "70% MOVE: uturn, 29% MOVE: dracometeor, 1% SWITCH: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2197,
+      "latency_ms": 884,
+      "cost_usd": 4.394e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.2904904860375393,
+        "MOVE: shadowball": 0.0004948854015007968,
+        "MOVE: phantomforce": 0.00038541713821942716,
+        "MOVE: uturn": 0.6968504500879473,
+        "SWITCH: metagross": 0.001838722330202415,
+        "SWITCH: scizor": 0.009940039004590808
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: dragontail, 16% SWITCH: dragapult, 5% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2197,
+      "latency_ms": 1572,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0314,
+        "MOVE: dragontail": 0.7349,
+        "MOVE: earthquake": 0.0175,
+        "MOVE: stealthrock": 0.0515,
+        "SWITCH: dragapult": 0.1647
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "59% SWITCH: metagross, 41% SWITCH: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1897,
+      "latency_ms": 1046,
+      "cost_usd": 3.794e-05,
+      "probabilities": {
+        "SWITCH: metagross": 0.5926665999540697,
+        "SWITCH: scizor": 0.4073334000459302
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Scizor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: scizor, 24% MOVE: meteormash [MEGA], 9% MOVE: bulletpunch [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2693,
+      "latency_ms": 1653,
+      "cost_usd": 5.386e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.03306127636974749,
+        "MOVE: meteormash [MEGA]": 0.24429162579831443,
+        "MOVE: zenheadbutt": 0.012162563875317316,
+        "MOVE: zenheadbutt [MEGA]": 0.03519354550034816,
+        "MOVE: bulletpunch": 0.02272266079207276,
+        "MOVE: bulletpunch [MEGA]": 0.08986986678154703,
+        "MOVE: stealthrock": 0.00835919975411597,
+        "MOVE: stealthrock [MEGA]": 0.006115721185598169,
+        "SWITCH: dragapult": 0.031058194895027275,
+        "SWITCH: scizor": 0.5171653450479113
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% MOVE: shadowball, 5% MOVE: uturn, 1% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2154,
+      "latency_ms": 1871,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0511,
+        "MOVE: dragontail": 0.0067,
+        "MOVE: shadowball": 0.9294,
+        "MOVE: willowisp": 0.0128
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "knockoff",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "76% MOVE: knockoff [MEGA], 12% MOVE: knockoff, 10% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2758,
+      "latency_ms": 728,
+      "cost_usd": 5.516e-05,
+      "probabilities": {
+        "MOVE: xscissor": 0.0037463200233341675,
+        "MOVE: xscissor [MEGA]": 0.001467080000469617,
+        "MOVE: knockoff": 0.11654462763403904,
+        "MOVE: knockoff [MEGA]": 0.759966390950267,
+        "MOVE: uturn": 0.0012946935562582436,
+        "MOVE: uturn [MEGA]": 0.0008898290005360473,
+        "MOVE: defog": 0.001008308355451422,
+        "MOVE: defog [MEGA]": 0.0006929995224171191,
+        "SWITCH: dragapult": 0.011539478057312895,
+        "SWITCH: metagross": 0.10285027289991451
+      }
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "id": "match_20261014_021152_Decider V1_1 27B_vs_MiMo V2_6 Flash_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "mimo_v2_6_flash",
+      "display_name": "MiMo V2.6 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "quantization": null,
+      "username": "MiMo V2.6 Flash",
+      "role": "p2",
+      "team": "MiMo V2.6 Flash's team",
+      "model_key": "xiaomi/mimo-v2.6-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiMo V2.6 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 212.59,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|MiMo V2.6 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, F|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Slowking-Galar, L50, F|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Palafin, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|23/100",
+    "|move|p2a: Garchomp|Stealth Rock|p1a: Dragapult",
+    "|-sidestart|p1: Decider V1.1 27B|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|84/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|-damage|p1a: Chandelure|102/135|[from] Stealth Rock",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|-damage|p1a: Dragapult|143/163|[from] Stealth Rock",
+    "|turn|4",
+    "|",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|39/100",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Whimsicott|Whimsicott, L50, F|167/167",
+    "|-damage|p1a: Whimsicott|147/167|[from] Stealth Rock",
+    "|turn|5",
+    "|",
+    "|-end|p2a: Kingambit|fallenundefined|[silent]",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Whimsicott|Dazzling Gleam|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|87/100",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Gholdengo|Make It Rain|p1a: Whimsicott",
+    "|-supereffective|p1a: Whimsicott|1",
+    "|-damage|p1a: Whimsicott|0 fnt",
+    "|-unboost|p2a: Gholdengo|spa|2",
+    "|faint|p1a: Whimsicott",
+    "|",
+    "|win|MiMo V2.6 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,chandelure,whimsicott",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 52% BRING: dragapult, 20% BRING: whimsicott, 8% BRING: gholdengo\nPick 2: 33% BRING: chandelure, 21% BRING: whimsicott, 19% BRING: gholdengo\nPick 3: 32% BRING: whimsicott, 25% BRING: palafin, 24% BRING: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5622,
+      "latency_ms": 1455,
+      "cost_usd": 0.00011244,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,gholdengo,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: bring offensive core garchomp (rocks/SD), scarf gholdengo, kingambit. Scarf gholdengo (~223 Spe) outspeeds everything except scarf dragapult; kingambit's sucker punch covers dragapult. Garchomp sets Stealth Rock turn 1. Opponent's likely core: dragapult, gholdengo, palafin/toxapex. Watch for whimsicott prankster and chandelure flame body. Toxapex is their main wall — wear it down, don't overpredict.",
+      "hidden_reasoning": "Let me think about the opponent's team: gholdengo, palafin, dragapult, toxapex, chandelure, whimsicott.\n\nMy team: garchomp, gholdengo, kingambit, slowkinggalar, corviknight, palafin.\n\nGood core: garchomp (stealthrock, earthquake, scaleshot, swordsdance), gholdengo scarf, kingambit. That's a strong offensive core. Alternatively palafin over kingambit for whimsicott/toxapex.\n\nOpponent threats: dragapult outspeeds garchomp; chandelure flashfire/flamebody; whimsicott prankster (maybe leech seed/sub/encore/tailwind). Toxapex walls garchomp somewhat but earthquake hits.\n\nKingambit handles dragapult (sucker punch), gholdengo, chandelure (sucker). Whimsicott fairy moves hit kingambit; but kingambit with ironhead... Whimsicott could have play rough? Grass/fairy — moonblast possible.\n\nGholdengo scarf outspeeds a lot. Good vs toxapex (make it rain, though toxapex resists... steel vs poison resists: toxapex poison/water resists steel? Poison resists steel? No — Steel is resisted by Fire, Water, Electric, Steel. Poison doesn't resist steel. Actually Poison resists... poison resists fighting, bug, grass, fairy, poison. So steel hits toxapex neutrally. But toxapex has high spd. Shadow ball is super effective vs poison? Ghost vs poison — neutral. Hmm.\n\nCorviknight handles whimsicott, palafin, toxapex? Corv is defensive. Palafin flip turn momentum.\n\nI think garchomp, gholdengo, kingambit is solid offense. But toxapex walls garchomp/kingambit... kingambit has ironhead, kowtowcleave (dark hits pex neutrally). Pex is bulky.\n\nMaybe garchomp, gholdengo, corviknight? Lacks power vs toxapex.\n\nAlternative: palafin lead with flip turn, garchomp, kingambig. Palafin zero to hero: after switching out once, becomes hero form with huge attack. Flip turn lets it come back. Palafin handles toxapex (wave crash), chandelure (jet punch), whimsicott.\n\nLet's think lead. Opponent leads maybe dragapult, whimsicott, gholdengo.\n\nBring: garchomp, gholdengo, palafin? Palafin + gholdengo scarf + garchomp. Toxapex is a problem — palafin wave crash hits it hard, gholdengo make it rain.\n\nI'd go: garchomp, gholdengo, kingambit — but toxapex could wall. Actually palafin beats toxapex and chandelure; kingambit beats dragapult and gholdengo.\n\nOpponent's likely 3: dragapult, gholdengo, palafin? Or whimsicott.\n\nConsider bring: gholdengo, kingambit, palafin. Missing garchomp (stealth rock, wallbreaking). Hmm.\n\nOr garchomp lead with rocks, gholdengo scarf, kingambit. Palafin needs switch-in to become hero form; without it palafin stays base form... Actually in this format (national bat singles), palafin's zerotohero: hero form after switching out. Base palafin is weak.\n\nI'll bring: garchomp, gholdengo, kingambit — solid. Toxapex: garchomp EQ is neutral (poison/water: ground hits... water resists? no. poison? no. EQ neutral on toxapex but pex has high defense). Gholdengo make it rain/shadow ball neutral. Kingambit kowtow neutral. Pex is stall — but with leftover pex they may recover. Still, three attackers should break.\n\nAlternative: replace kingambit with palafin: palafin wave crash handles pex and chandelure; but loses dragapult answer (sucker punch). Gholdengo scarf outspeeds dragapult? Dragapult spe range up to 213, gholdengo 149. Scarf gholdengo: 149*1.5 = 223 — but that's my gholdengo at 149 (max). So scarf gholdengo outspeeds most dragapults except max speed scarf... dragapult base 142, at level 50 max142ish? Range given 145-213 — the 213 would be scarf. Max unscarfed dragapult ~142? Actually level 50 max speed dragapult = 142 (0 IV... wait) — stats say range 145-213 including items. Likely unscarfed max ~145-149. Scarf gholdengo at 149*1.5=223 outspeeds all except scarf dragapult (213 < 223). So gholdengo scarf is fine.\n\nKingambit sucker punch handles dragapult anyway.\n\nI'll go garchomp, gholdengo, kingambit. Lead garchomp for stealth rock / swordsdance pressure.\n\nActually consider lead gholdengo scarf to catch lead toxapex/whimsicott? Garchomp lead gets rocks up turn 1, good.\n\nNotes: plan, opponent info.",
+      "note": "",
+      "tokens": 3443,
+      "latency_ms": 38669,
+      "cost_usd": 0.0004666816,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: dragonpulse, 2% MOVE: shadowball, 2% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1976,
+      "latency_ms": 521,
+      "cost_usd": 3.952e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9523123246481557,
+        "MOVE: shadowball": 0.02128951510789092,
+        "MOVE: flamethrower": 0.0014548326006385628,
+        "MOVE: phantomforce": 0.01959687214129365,
+        "SWITCH: chandelure": 0.003533492298790827,
+        "SWITCH: whimsicott": 0.0018129632032302492
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 1 vs Dragapult: Stealth Rock is highly valuable here — chips dragapult, gholdengo, chandelure, whimsicott, palafin on every switch. Garchomp can likely sponge one Dragon Pulse/Dragon Darts. Scaleshot is tempting but risks wasting turns if they switch to toxapex (walls it). Set rocks now, then evaluate: Scaleshot/SD next depending on their response. Their last two are unknown — toxapex likely.",
+      "hidden_reasoning": "Dragapult vs Garchomp turn 1. Dragapult could be physical or special. Scaleshot is super effective and boosts speed. But if dragapult outspeeds and uses Dragon Darts/Dragon Pulse, garchomp takes damage. Scale Shot gives +1 Spe after, helping.\n\nIf Dragapult is scarf special, it could OHKO or heavily damage. Let's consider: Scaleshot is 2-5 hits at 25 BP, SE = 50 BP effective per hit, ~2.5x damage on average vs neutral. It's a good offensive option and boosts speed. But Garchomp with roughskin + lifeorb... Stealth Rock helps the rest of the team.\n\nIf Dragapult switches out to toxapex or gholdengo, Stealth Rock is better value. But if dragapult stays in and attacks, garchomp takes damage. Setting rocks turn 1 risks taking a hit but is generally fine — garchomp is bulky enough.\n\nActually, going for scaleshot is aggressive; if dragapult is special-attacking with Dragon Pulse, garchomp survives likely (183 HP, SpD 107). Let's think about damage: level 50 Dragon Pulse from160 SpA dragapult: ~40-50% to garchomp probably. Then scaleshot KO's or nearly.\n\nI'll go with stealthrock — standard safe play. But if dragapult uses Dragon Darts (physical) it could hurt. Hmm.\n\nActually with lifeorb and roughskin, sponging a hit isn't great. Stealth Rock is valuable against their team (chandelure, dragapult, gholdengo, whimsicott, palafin — all weak or neutral). Setting rocks turn 1 when dragapult might just use U-turn or set up is fine.\n\nAlternative: Scaleshot forces damage now. If dragapult is a special set with Thunderbolt/Flamethrower, garchomp survives and scaleshot does good damage.\n\nI think Stealth Rock is the safer standard play and gives lasting value. Let's go with it.",
+      "note": "",
+      "tokens": 2803,
+      "latency_ms": 16992,
+      "cost_usd": 0.0004704,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 0% SWITCH: whimsicott, 0% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1828,
+      "latency_ms": 750,
+      "cost_usd": 3.656e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.993143352526935,
+        "SWITCH: chandelure": 0.0033790409891332686,
+        "SWITCH: whimsicott": 0.0034776064839317465
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Garchomp at 43/183 with Life Orb recoil pending — nearly dead. Risking scaleshot means dying for nothing if Dragapult outspeeds (range 145-213 vs my 169). Switch to Kingambit: Dragon Pulse is 0.5x vs Steel, so it tanks easily, and Sucker Punch threatens revenge. Then SD or Kowtow next turn depending on their response. Preserve Garchomp as late-game fodder/chip.",
+      "hidden_reasoning": "Garchomp at 43/183, Dragapult used Dragon Pulse (special). Scaleshot is super effective but Garchomp might be outsped. If Dragapult outspeeds, another Dragon Pulse kills Garchomp. But Garchomp has 169 Spe, Dragapult range 145-213.\n\nOptions: switch to kingambit (sucker punch revenge) or gholdengo. Or risk scaleshot.\n\nIf I switch to kingambit, Dragapult likely Dragon Pulses again — kingambit takes neutral-ish? Dragon vs Dark/Steel: Dragon is not very effective vs Steel (0.5), neutral vs Dark. So ~0.5x damage. Kingambit has 207 HP, good SpD 107. Then sucker punch next turn.\n\nBut if they predict switch and set up... Dragapult could use Dragon Dance? It revealed Dragon Pulse (special). Could be special attacker.\n\nAlternatively, sacrifice Garchomp for damage: scaleshot if we outspeed. Speed tie uncertain. If we're slower, we die and get nothing.\n\nSwitching to kingambit seems safest — preserves Garchomp at 43 for later (maybe as death fodder or chip). Actually Garchomp at 43 is nearly dead anyway; life orb recoil kills it after any attack.\n\nHmm, life orb: Garchomp loses 10% (18 HP) after attacking. 43-18 = 25. Survives own attack but dies to any hit.\n\nI think switching to kingambit is good: it tanks Dragon Pulse, then threatens with sucker punch. Opponent might switch to toxapex or palafin. Kingambit with black glasses and SD is a win condition.\n\nActually consider: if I switch to gholdengo (scarf), it outspeeds dragapult unless scarf. Shadow ball is super effective vs ghost... wait, gholdengo is Steel/Ghost, shadowball vs Dragapult (Dragon/Ghost) — ghost hits ghost super effective. Scarf gholdengo shadow ball would likely OHKO or 2HKO dragapult. But if dragapult is also scarf and faster (213 vs 149... wait gholdengo spe 149, scarf would be ~223). Scarf gholdengo at 149*1.5 = 223.5, outspeeds max dragapult 213. So scarf gholdengo outspeeds everything.\n\nBut if dragapult is scarf too, gholdengo still faster (223 > 213). So gholdengo switch-in: outspeeds, shadow ball. Dragapult at 100% — shadow ball from 185 SpA... likely 2HKO. Dragapult has low SpD (85-139). Shadow ball 80 BP * STAB 1.5 = 120 effective, vs ~110 SpD. Probably ~50-60% damage. Then dragapult survives and hits back with Dragon Pulse (neutral vs steel? Dragon vs Steel 0.5x, ghost... Dragon Pulse is Dragon type: 0.5x vs Steel). So gholdengo tanks it well.\n\nHmm but gholdengo is my win condition with scarf. Taking chip is okay.\n\nKingambit: sucker punch is nice but dragapult can just use a status or switch. Kingambit takes Dragon Pulse at 0.5x — small damage.\n\nWhich is better? Kingambit is a setup wincon with SD. Gholdengo scarf is a cleaner. Dragapult is a threat to both (dragon pulse vs kingambit 0.5x, vs gholdengo 0.5x).\n\nActually, if I switch to kingambit, dragapult likely Dragon Pulses again (predicting stay or switch). Kingambit takes ~15-20%. Then I can SD or sucker punch.\n\nIf dragapult is special-attacking with Dragon Pulse, it might have Thunderbolt/Hydro Pump for coverage. Kingambit weak to Fighting, Fire... Chandelure is on their team.\n\nI'll go with kingambit — sucker punch pressure, and it's the safer sponge. Then SD next turn if dragapult switches.\n\nActually wait — could also just let Garchomp die with scaleshot for damage. If Garchomp outspeeds, scaleshot 2-5 hits at 25 BP * STAB * LO * SE = ~62.5 per hit effective... vs dragapult def ~110. Each hit ~25-30%? 5 hits could KO. But risk of being outsped and losing Garchomp for nothing, and Garchomp is dead weight anyway at 43 with LO.\n\nPreserving Garchomp at 43: it can still get one attack off later (life orb recoil kills it after). It's basically a revenge-kill fodder. Not very valuable.\n\nI think switching to kingambit is the strongest play — it's a full-HP wincon that walls dragapult's dragon pulse.\n\nLet me decide: SWITCH: kingambit.",
+      "note": "",
+      "tokens": 3635,
+      "latency_ms": 76816,
+      "cost_usd": 0.00068012,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% SWITCH: chandelure, 37% MOVE: dragonpulse, 19% SWITCH: whimsicott",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1999,
+      "latency_ms": 562,
+      "cost_usd": 3.998e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.3718478384331107,
+        "SWITCH: chandelure": 0.4381471721966709,
+        "SWITCH: whimsicott": 0.1900049893702185
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 3: Dragapult revealed special Dragon Pulse (only ~33 to Kingambit). Kowtow Cleave is reliable, never misses, and hits Dragapult super effective with STAB + black glasses — likely a OHKO/near-OHKO if it stays, and solid neutral chip on a switch (toxapex/palafin take neutral Dark). Avoid sucker punch risk (fails on switch) and avoid getting greedy with SD while Dragapult still threatens. Preserve Garchomp at 43 HP as fodder.",
+      "hidden_reasoning": "Dragapult revealed Dragon Pulse (special). Kingambit tanks it. Now, what will they do? They might switch to toxapex or stay. Sucker Punch fails if they switch to a non-attacking... actually sucker punch works if target attacks; if they switch, sucker punch fails against the incoming Pokémon only if it doesn't attack — actually sucker punch fails if target isn't attacking, and if they switch, the new Pokémon's action determines... sucker punch fails on switch (the incoming mon's move isn't known as attack at time). Actually if opponent switches, Sucker Punch fails.\n\nKowtow Cleave is reliable, super effective, doesn't miss. Against Dragapult it does big damage. If they switch to toxapex, kowtow is resisted? Toxapex is Poison/Water — Dark is neutral vs Poison (poison resists... no, Poison resists Dark? Poison resists Dark? Dark resists... let's recall: Poison is not resistant to Dark. Dark vs Poison: neutral. Poison vs Dark: Poison is resisted by... Ghost/Dark — Poison moves are resisted by... hmm. Toxapex takes neutral from Dark.\n\nAlso Kingambit is slower; Dragapult likely attacks again with Dragon Pulse doing ~35 HP (33 before). Kingambit at 174, takes ~33 → 141. Then Kowtow does huge super effective damage to Dragapult (85 * 1.2 black glasses * 2 STAB = ~204 base effective... in practice likely OHKO or near). Kowtow cleave on Dragapult: base 85, STAB 1.5, black glasses 1.2 = 153 power equivalent, vs physically frail Dragapult (def 85-139). Attack 205. Likely OHKO or close.\n\nRisk: they switch. But damage on switch-in is fine too.\n\nSwordsdance risk: if Dragapult attacks again, takes 33, still fine, and SD makes Kingambit a win condition. But Dragapult might have Thunder Wave or Draco Meteor. They've shown Dragon Pulse twice — likely scarf/special attacker.\n\nSafest: Kowtow Cleave for guaranteed damage / KO. But if they switch to toxapex, kowtow does maybe 30-40%. SD would be better long-term vs toxapex.\n\nActually consider: sucker punch if they attack — priority, super effective, 70 * 1.2 * 2 = decent, likely 2HKO/4HKO. But fails on switch.\n\nI think Kowtow Cleave: reliable, high damage either way, no risk. Alternatively SD — Kingambit behind SD with sucker punch is a game closer, and taking one more Dragon Pulse (33 dmg) is safe. But they could have... Dragon Pulse did 33 to Kingambit (174 after). So SD costs ~33 HP, leaving 141. Risk: they switch to something that threatens, e.g., palafin (jet punch?) — palafin hero form has huge attack; Kowtow after SD still ok.\n\nHmm, I lean Kowtow: if Dragapult stays, it likely dies; if it switches, we chip the incoming. SD is greedier but Kingambit with supreme overlord + SD could sweep. Given toxapex is their wall, kowtow on toxapex does neutral moderate damage.\n\nI'll go Kowtow Cleave — reliable super-effective damage, kills Dragapult if it stays.",
+      "note": "",
+      "tokens": 3467,
+      "latency_ms": 21246,
+      "cost_usd": 0.0006111,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% SWITCH: dragapult, 25% SWITCH: whimsicott",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1918,
+      "latency_ms": 744,
+      "cost_usd": 3.836e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.7533277314312512,
+        "SWITCH: whimsicott": 0.24667226856874874
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: flamethrower, 3% SWITCH: whimsicott, 0% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2284,
+      "latency_ms": 522,
+      "cost_usd": 4.568e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.0005153084163922353,
+        "MOVE: shadowball": 0.0013799893329854722,
+        "MOVE: flamethrower": 0.9712692914600041,
+        "MOVE: phantomforce": 0.0011098989257745879,
+        "SWITCH: whimsicott": 0.02572551186484357
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 4: Kowtow Cleave is the safe play — super effective STAB + black glasses likely OHKOs Dragapult at 87%, and if they switch (toxapex/palafin/gholdengo/whimsicott) it still lands solid neutral chip. Sucker Punch fails on a switch, so avoid it. Don't SD while Dragapult still threatens. Their last mon is unknown from gholdengo/palafin/toxapex/whimsicott.",
+      "hidden_reasoning": "Turn 4: Dragapult at 87%, Kingambit active. Kowtow Cleave super effective should KO. But if they switch to toxapex, Kowtow does neutral chip. Sucker punch fails on switch. Kowtow cleave is the safe play — it hits whatever comes in.\n\nActually, could they switch to palafin or toxapex? Kowtow cleave is best.",
+      "note": "",
+      "tokens": 2975,
+      "latency_ms": 23531,
+      "cost_usd": 0.00044758,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Whimsicott",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dazzlinggleam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% MOVE: dazzlinggleam, 12% MOVE: leechseed, 7% MOVE: grassyterrain",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2295,
+      "latency_ms": 515,
+      "cost_usd": 4.59e-05,
+      "probabilities": {
+        "MOVE: taunt": 0.006409004830678388,
+        "MOVE: leechseed": 0.12325255351881416,
+        "MOVE: grassyterrain": 0.0729523296703326,
+        "MOVE: dazzlinggleam": 0.7973861119801748
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's last mon is Whimsicott (Dragapult/Chandelure fainted) — just beat it. Kingambit at 82 likely dies to Moonblast/Energy Ball and Whimsicott outspeeds. Switch to Gholdengo: Steel resists Fairy/Grass, Good as Gold blocks Trick/status, then Scarf Make It Rain cleans. Preserve Kingambit's Sucker Punch as backup; Garchomp 43HP is fodder only.",
+      "hidden_reasoning": "Whimsicott at 88%, Kingambit at 82/207. Whimsicott Grass/Fairy — could have Moonblast, Energy Ball, U-turn, Trick, Substitute, etc. Iron Head is super effective (Steel vs Fairy). Kingambit likely dies to a Fairy move. Whimsicott outspeeds.\n\nIf Whimsicott attacks, Kingambit likely faints (Moonblast/Energy Ball). But we could switch to Gholdengo which resists... Gholdengo Steel/Ghost: resists Fairy? Steel resists Fairy, Ghost weak to nothing Fairy. Actually Steel resists Moonblast. Gholdengo is immune to... Whimsicott's priority status moves don't matter for Good as Gold (immune to status moves targeting it!). Good as Gold makes Gholdengo immune to status moves — so Trick/Encore/Leech Seed etc fail.\n\nBest play: switch to Gholdengo? But Whimsicott might U-turn or set Substitute. Gholdengo scarf makeitrain hits Whimsicott hard.\n\nAlternatively Sucker Punch: fails if not attacking. Iron Head super effective — if Whimsicott attacks Kingambit and KIingambit survives, Iron Head could KO. Does Kingambit survive a Moonblast? Whimsicott SpA 87-141, Moonblast 95 BP... Kingambit SpD 107, HP 82/207. Probably dies. Energy Ball too.\n\nSwitching Kingambit out preserves it as priority revenger. Gholdengo is a good switch: immune to status moves, resists Fairy, resists Grass (Steel resists Grass? Steel resists Grass yes... actually Steel resists: Normal, Flying, Rock, Bug, Steel, Grass, Psychic, Ice, Dragon, Fairy). Gholdengo takes little from Whimsicott's attacks. Scarf Make It Rain likely OHKOs or heavy.\n\nBut Whimsicott could have Trick or Substitute. Good as Gold blocks Trick. Sub — infiltrator doesn't matter, substitute is fine.\n\nI think switch to gholdengo is best. Alternatively keep Kingambit and Iron Head—if Whimsicott doesn't kill, we win. Risky.\n\nTheir last Pokémon unknown... they said all 3 seen: dragapult, chandelure, whimsicott. So last mon is whimsicott's teammate — wait, \"The opponent brought 3 of the 6: all have been seen.\" So the remaining opponent mons: whimsicott active plus... they've fainted dragapult and chandelure, so whimsicott is the last. Wait that means opponent has only whimsicott left? Fainted: dragapult, chandelure. So Whimsicott is the last one. Great.\n\nWe have 3 mons: Garchomp 43HP, Gholdengo full, Kingambit 82. We just need to beat Whimsicott.\n\nIf Whimsicott kills Kingambit, we bring in Gholdengo, scarf makeitrain. Should be fine. But preserving Kingambit's sucker punch as insurance is good.\n\nActually simplest: switch to Gholdengo, tank whatever, then scarf Make It Rain. Whimsicott can't status Gholdengo. Risk: Whimsicott has Trick... blocked. U-turn? neutral-ish on Gholdengo (Bug vs Steel = 0.5, Ghost... U-turn Bug: Steel resists, Ghost doesn't resist. 0.5x). Fine.\n\nI'll switch to gholdengo.",
+      "note": "",
+      "tokens": 3843,
+      "latency_ms": 22264,
+      "cost_usd": 0.000485324,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dazzlinggleam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: dazzlinggleam, 10% MOVE: grassyterrain, 4% MOVE: taunt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2377,
+      "latency_ms": 976,
+      "cost_usd": 4.754e-05,
+      "probabilities": {
+        "MOVE: taunt": 0.03696547369575996,
+        "MOVE: leechseed": 0.0031351058509180374,
+        "MOVE: grassyterrain": 0.1002947373630062,
+        "MOVE: dazzlinggleam": 0.8596046830903159
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "makeitrain",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Two hits left: Whimsicott alone at 88%. Scarf Make It Rain is STAB super effective and should KO even through bulk; Good as Gold blocks any Prankster status (Stun Spore/Leech Seed), and Dazzling Gleam only did ~21 earlier so Gholdengo survives if it moves first. No switch exists for them — just fire the strongest move.",
+      "hidden_reasoning": "Make It Rain: STAB 120, super effective on Whimsicott (Steel vs Grass/Fairy — Fairy weak to Steel, Grass resists... actually Steel is super effective against Fairy, neutral against Grass? Steel vs Grass: Grass resists... no. Type chart: Steel is not very effective against Fire, Water, Electric, Steel. Grass — Steel is neutral vs Grass. Fairy: Steel super effective. So overall super effective. Yes, it says super effective.\n\nWhimsicott at 88%. Scarf Gholdengo outspeeds max 149 vs 184... wait, whimsicott range 122-184. If whimsicott outspeeds, it can use Dazzling Gleam (80 BP, resisted by Steel) — did ~21 to Gholdengo earlier (162→141). So Gholdengo survives even if it moves second. Make It Rain should KO at 88%? Scarf Gholdengo SpA ~185-203...120 BP STAB super effective vs Whimsicott's SpD85-139. Likely KO. Also Whimsicott might have priority moves (Prankster Stun Spore/Leech Seed) — Good as Gold blocks status moves. So Make It Rain is safe.\n\nIf Whimsicott switches — no, all 3 seen, only Whimsicott remains. So Make It Rain wins.",
+      "note": "",
+      "tokens": 3441,
+      "latency_ms": 12283,
+      "cost_usd": 0.0003299408,
+      "probabilities": null
+    }
+  ]
+}

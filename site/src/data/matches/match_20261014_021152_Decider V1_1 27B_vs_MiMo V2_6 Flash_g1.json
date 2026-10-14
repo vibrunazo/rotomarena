@@ -1,0 +1,552 @@
+{
+  "id": "match_20261014_021152_Decider V1_1 27B_vs_MiMo V2_6 Flash_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "mimo_v2_6_flash",
+      "display_name": "MiMo V2.6 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "quantization": null,
+      "username": "MiMo V2.6 Flash",
+      "role": "p2",
+      "team": "MiMo V2.6 Flash's team",
+      "model_key": "xiaomi/mimo-v2.6-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiMo V2.6 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 287.91,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|MiMo V2.6 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Slowking-Galar, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|84/100",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-crit|p2a: Kingambit",
+    "|-damage|p2a: Kingambit|14/100",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Palafin|Palafin, L50, M|175/175",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|move|p1a: Palafin|Close Combat|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p1a: Palafin|Waterfall|p2a: Gholdengo",
+    "|-crit|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|45/100",
+    "|-damage|p1a: Palafin|158/175|[from] item: Life Orb",
+    "|cant|p2a: Gholdengo|flinch",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Palafin|Waterfall|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|9/100",
+    "|-damage|p1a: Palafin|141/175|[from] item: Life Orb",
+    "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+    "|-heal|p2a: Gholdengo|59/100",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|move|p1a: Palafin|Waterfall|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|62/100",
+    "|-damage|p1a: Palafin|120/175|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|-damage|p1a: Palafin|103/175|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Palafin",
+    "|-damage|p1a: Palafin|0 fnt",
+    "|faint|p1a: Palafin",
+    "|",
+    "|win|MiMo V2.6 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,chandelure,palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 40% BRING: dragapult, 23% BRING: whimsicott, 12% BRING: palafin\nPick 2: 26% BRING: chandelure, 22% BRING: palafin, 19% BRING: gholdengo\nPick 3: 35% BRING: palafin, 26% BRING: whimsicott, 22% BRING: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5646,
+      "latency_ms": 1747,
+      "cost_usd": 0.00011292,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,kingambit,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent threats: Palafin (needs EQ), Dragapult (scarf? Kingambit sucker), Chandelure (flashfire/flamebody risk for Garchomp), Whimsicott (prankster status — Gholdengo's Good as Gold blocks it), Toxapex (Gholdengo breaks it), Gholdengo mirror.",
+      "hidden_reasoning": "Opponent threats: Palafin, Dragapult, Chandelure, Whimsicott, Gholdengo, Toxapex.\n\nMy picks: Garchomp (sash, SD, EQ, scaleshot, rocks), Kingambit, Gholdengo. Or Dragapult scarf.\n\nGarchomp lead with sash + rocks is good. Kingambit handles Dragapult/Gholdengo/Chandelure. Gholdengo handles Toxapex/Whimsicott.\n\nWhimsicott prankster could be annoying but Gholdengo's Good as Gold blocks status.\n\nBring: garchomp, kingambit, gholdengo.",
+      "note": "",
+      "tokens": 2339,
+      "latency_ms": 8751,
+      "cost_usd": 0.00033977,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "90% MOVE: dragonpulse, 4% MOVE: shadowball, 3% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1975,
+      "latency_ms": 510,
+      "cost_usd": 3.95e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9005946323638837,
+        "MOVE: shadowball": 0.04321836164760393,
+        "MOVE: flamethrower": 0.003384867845518489,
+        "MOVE: phantomforce": 0.030885297430846018,
+        "SWITCH: chandelure": 0.009181407738316539,
+        "SWITCH: palafin": 0.012735432973831264
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 1: Garchomp lead vs Dragapult, uncertain speed. Kingambit walls both Dragapult STABs (Dragon 0.5x, Ghost 0.25x) and preserves Garchomp's sash for a later Palafin/Chandelure sweep. Plan: pivot to Kingambit, then Swords Dance if they switch, sucker punch to revenge Dragapult later. Watch for Will-O-Wisp/Earthquake coverage.",
+      "hidden_reasoning": "Garchomp vs Dragapult. Dragapult could be physical or special. Garchomp has focus sash. Scaleshot is super effective, hits 2-5 times, gives +Spe and -Def. If I'm slower, Dragapult hits first — could be Dragon Darts/Shadow Ball. Sash survives one hit.\n\nSwitching to Kingambit: Dragon Darts resisted? Kingambit is Dark/Steel — Dragon resisted? No, Dark/Steel takes neutral from Dragon, resisted from... actually Dragon hits Steel resisted, Dark neutral → 0.5x. Ghost (Shadow Ball) hits Dark0.5x, Steel 0.5x → 0.25x. So Kingambit walls Dragapult's STABs. But if it's a special attacker with Fire coverage? Flamethrower would hurt Kingambit.\n\nScaleshot is the aggressive play; sash guarantees survival of one hit, then super-effective multi-hit. Risk: if Dragapult outspeeds and uses Dragon Darts, Garchomp survives via sash (100 BP... Dragon Darts is 50x2 = 100 total), then scaleshot likely KOes. But scaleshot accuracy 90%, 2-5 hits. Two hits = 50 BP dragon STAB, super effective = ~100 BP effective; Dragapult has low defenses (85-139 def), Garchomp Atk 182. Could be a 2HKO or more.\n\nAlternatively Stealth Rock + sash keeps. Hmm.\n\nSwitching to Kingambit is safest: takes little from Dragapult, and Defiant if they... no stat drops. Kingambit threatens with sucker punch later.\n\nI think switching to Kingambit is the solid play — sash preserved on Garchomp for later. But if Dragapult predicts switch and uses something like Will-O-Wisp (bad for Kingambit) or Earthquake (Kingambit neutral? Ground hits Steel 2x, Dark 1x → 2x) — risky. Or switching to Gholdengo: Ghost/Steel takes 0.25x from Dragon, 0.5x from Ghost — very good too. But then Dragapult might be physical with Dragon Darts (0.25x) — Gholdengo is a great wall too. Gholdengo has Good as Gold, no status.\n\nActually Gholdengo is the better pivot: takes almost nothing, threatens Shadow Ball. But Gholdengo doesn't KO a bulky Dragapult quickly without Nasty Plot.\n\nConsider: Garchomp with sash — using Stealth Rock is also good but Dragapult can U-turn.\n\nAggressive: scaleshot — if it connects well, Garchomp gets +1 Spe (outspeeds everything), then Sweep with EQ/SD. But sash broken and -1 Def.\n\nHmm. Risk: Dragapult likely Scarf? Range 145-213. If Garchomp moves first with scaleshot, big value.\n\nI'd go with switching to Kingambit for safety? But Kingambit is my wincon vs Palafin/... Actually Kingambit with sucker punch beats Dragapult too.\n\nGiven uncertainty about speed, safest strong play: switch to gholdengo? Then if Dragapult uses Dragon Darts, 0.25x, tiny damage. Then I can nastyplot / shadowball. But if opponent has Chandelure (Fire) in back, Gholdengo could get trapped... not trapping unless Shadow Tag (no).\n\nAlternatively, Garchomp sash: use Stealth Rock — gets hazards, sash survives one hit. But then Dragapult U-turns out.\n\nI think the highest expected value: switch to Kingambit, sash intact, Kingambit walls Dragapult's STABs (0.25x ghost, 0.5x dragon), and Defiant + sucker punch. Risk of Earthquake/Fire coverage.\n\nActually consider Gholdengo: Dragon resist 0.5 → Ghost/Dragon: Dragon 0.5, Ghost 0.5 → wait Gholdengo is Steel/Ghost. Dragon vs Steel 0.5, vs Ghost 1 → 0.5. Ghost vs Steel 0.5, Ghost 0.5 → 0.25. So Gholdengo takes 0.25 from Ghost, 0.5 from Dragon. Kingambit: Dragon 0.5x, Ghost 0.25x. Kingambit better vs both STABs. But Kingambit weak to Ground/Fire; Gholdengo weak to Fire/Ground too (both take 2x from Fire? Steel 2x, Ghost 1 → 2x; Ground: Steel 2x, Ghost 1 → 2x). Both weak to Fire/Ground.\n\nKingambit has more HP bulk. I'll switch to Kingambit. If Dragapult uses Dragon Darts, Kingambit takes little, then can SD or sucker.\n\nActually wait — sucker punch is only 8 PP, priority. Fine.\n\nAlternatively stay in and scaleshot — if Garchomp outspeeds, likely 2-3 hits, Dragapult at ~50-70% after, Garchomp gets +1 Spe. But then Dragapult hits back with Dragon Darts (sash triggers if needed... sash already used? No — sash used only if hit; if Garchomp goes first, sash intact when hit). Hmm: if Garchomp goes first and deals damage, then Dragapult hits back, sash survives, then next turn Garchomp +1 Spe outspeeds and EQ/SS finishes. That's actually a strong line! If Dragapult goes first, Garchomp survives via sash, then scaleshots.\n\nEither way Garchomp survives one hit and is at +1 Spe after. Scaleshot is 90% accuracy though — miss = waste. And 2 hits minimum only 50 BP.\n\nBut downside: Garchomp at -1 Def after, sash broken. If it's a weak hit... Fine.\n\nHmm, but Dragapult might be faster AND use a move like Fire Blast/Knowing Garchomp. U-turn escapes.\n\nConsider what's more consistent: switching keeps sash and full HP Garchomp for Palafin later (EQ sweep). Dragapult may U-turn or Dragon Darts. Kingambit takes ~10-20%. Then next turn I can SD as Dragapult switches (they'd fear sucker punch) — actually if they switch to toxapex/palafin on Kingambit, SD free.\n\nI lean switch to kingambit — safe, preserves sash Garchomp, Kingambit sets up. Note risk: opponent predicting switch uses Earthquake (2x on Kingambit) — Dragapult doesn't usually run EQ but can.\n\nAlternatively use stealth rock with Garchomp — sash survives, rocks chip Chandelure/Palafin... but Palafin is Water, Chandelure 2x rock. Rock helps vs Chandelure/Whimsicott (Whimsicott 2x? Grass/Fairy: Rock 1x... Fairy: rock 0.5, grass 1 → 0.5. Chandelure: Fire/Ghost — rock 2x on fire, 1x ghost → 2x).\n\nI'll go with the switch to kingambit.",
+      "note": "",
+      "tokens": 3880,
+      "latency_ms": 32006,
+      "cost_usd": 0.00077924,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% SWITCH: chandelure, 30% SWITCH: palafin, 29% MOVE: dragonpulse",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1939,
+      "latency_ms": 469,
+      "cost_usd": 3.878e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.293981582467208,
+        "SWITCH: chandelure": 0.40156621420749217,
+        "SWITCH: palafin": 0.30445220332529976
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 1: Kingambit walled Dragapult's Dragon Pulse (only 32 dmg). Dragapult likely special-attacking set. Sucker punch risks failing if they switch; Kowtowcleave is a safe, accurate SE hit that 2x's Ghost/Dragon and still hits any switch-in hard with Black Glasses. If Kowtowcleave doesn't KO, revenge with sucker punch next turn.",
+      "hidden_reasoning": "Dragapult used Dragon Pulse (special). Kingambit walls it. Sucker punch is super effective, priority. If Dragapult attacks, sucker punch kills likely. But if they switch, sucker fails.\n\nKowtowcleave is safer —85 BP super effective, doesn't need prediction. Dragapult defense is low (85-139). Kingambit Atk 205, blackglasses 1.2x. Kowtow cleave vs Dragon/Ghost: Dark is 2x on Ghost, 1x on Dragon → 2x. 85*2*1.2 = 204 power. Likely OHKO.\n\nBut Dragapult might switch out to Toxapex or something. Kowtowcleave still hits anything decently. Go with kowtowcleave — safer than sucker punch which fails on switch.\n\nActually sucker punch priority matters if Dragapult is faster and could kill Kingambit — but Dragon Pulse did only 32 HP (175 from 207). Kingambit survives another. Kowtowcleave is safe.",
+      "note": "",
+      "tokens": 2696,
+      "latency_ms": 9983,
+      "cost_usd": 0.000365204,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% SWITCH: dragapult, 35% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1836,
+      "latency_ms": 489,
+      "cost_usd": 3.672e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.6453257591078982,
+        "SWITCH: palafin": 0.3546742408921017
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: flamethrower, 1% SWITCH: palafin, 0% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2182,
+      "latency_ms": 472,
+      "cost_usd": 4.364e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.00038335653842804554,
+        "MOVE: shadowball": 0.0013847512599220535,
+        "MOVE: flamethrower": 0.9856656369669524,
+        "MOVE: phantomforce": 0.0010441731213231044,
+        "SWITCH: palafin": 0.011522082113374264
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 3: Dragapult stayed in with Dragon Pulse — Kingambit resists both STABs heavily, safe to stay. Kowtowcleave (306 BP eff.) should OHKO Dragapult and still crushes any switch-in (Toxapex/Palafin take big neutral damage). Sucker punch risks failing on a switch; Kowtowcleave never misses or fails. Save sucker punch for priority revenge later. Garchomp sash intact for endgame.",
+      "hidden_reasoning": "Kingambit at 175/207. Dragapult revealed Dragon Pulse (special). Sucker punch is super effective, priority, and likely KO or heavy damage. Dragapult HP 163-195, sucker punch at 70 BP * 2 (SE) * 1.2 (black glasses) * Kingambit attack 205 vs defense ~85-139... Base120 atk stat205. Sucker punch = 70 * STAB 1.5 * 1.2 * 2 = 252 BP effective. Against physical bulk of Dragapult (Def 85-139) — likely KO or close.\n\nBut sucker fails if they switch. Risk: they could switch to Toxapex or Palafin. Kowtowcleave is safe, always hits, 85 BP SE. Sucker punch is riskier but higher damage and priority.\n\nIf they stay in, Dragapult outspeeds and hits Kingambit with Dragon Pulse or Ghost move (Shadow Ball/Hex). Kingambit resists both heavily. So risk of staying in is low.\n\nSucker punch KO chance: 252 BP * 1.5 STAB wait no. Sucker punch is Dark, Kingambit is Dark/Steel, STAB 1.5x. 70 * 1.5 * 1.2 * 2 (SE vs Ghost) = 252. Attack 205 vs Def ~110 average. Damage ~ 205*252/110/2 * random≈ 237/2... wait damage formula: ((2*50/5+2)*252*205/def)/50+2 ≈ (22*252*205/def)/50+2 = (1135320/def)/50. For def 110: 10321/50 = 206+2 = 208... that's too high. Level 50: (2*50/5+2)=22. 22*252=5544. 5544*205=1136520. /110 = 10332. /50 = 206. +2 = 208. HP max 195. So OHKO even with high def? Def 139: 1136520/139=8176/50=163+2=165. HP min 163. So likely OHKO or near. With minimum damage roll ~85%: 140-165. Dragapult HP 163-195. Might not OHKO if high HP.\n\nKowtowcleave: 85*1.5*1.2*2 = 306 BP. Definitely OHKO if it stays.\n\nRisk of sucker: switch. Risk of kowtow: Dragapult attacks first, weakly, then we take a hit — but we resist. Actually Kowtowcleave almost certainly OHKOs Dragapult. And even on switch, it hits whatever comes in hard.\n\nSucker punch risk: if they switch, fails, we waste a turn. Kowtowcleave is safer and still kills. But sucker guarantees we move first if they stay in — doesn't matter since we survive their hit.\n\nGo with kowtowcleave — safest, no failure condition.\n\nActually wait — could they switch to Toxapex? Toxapex resists Dark (Poison resists Dark? Poison resists... Dark is resisted by Dark, Fighting, Steel... Poison doesn't resist Dark. Actually Toxapex is Poison/Water: Dark hits neutral (Water neutral, Poison neutral). Kowtowcleave neutral on Toxapex. Fine.\n\nKingambit with Defiant vs Intimidate? Not relevant.\n\nGo kowtowcleave.",
+      "note": "",
+      "tokens": 3617,
+      "latency_ms": 27821,
+      "cost_usd": 0.00047452,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% MOVE: closecombat, 2% MOVE: waterfall, 0% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2193,
+      "latency_ms": 533,
+      "cost_usd": 4.386e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.01560060318095797,
+        "MOVE: flipturn": 0.0027027486271184297,
+        "MOVE: closecombat": 0.977252151252742,
+        "MOVE: aquajet": 0.004444496939181718
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 4: Kingambit at 31 HP faces Palafin (Zero Form, likely switches out to activate Hero Form, or attacks with Jet Punch/Wave Crash). Sucker punch fails on a switch; Kingambit dies to any hit. Switching to Gholdengo absorbs Water (Steel resists), threatens back with Make It Rain/Shadow Ball. Preserve Kingambit's priority for later revenge. Garchomp sash intact for endgame sweep.",
+      "hidden_reasoning": "Kingambit at 31 HP vs Palafin. Palafin likely switches out to activate Hero Form, or attacks now. If Palafin switches out now (Zero Form), it becomes Hero Form next time. Palafin might use Flip Out / Jet Punch. Jet Punch is priority Water move that would KO Kingambit. Sucker punch fails if they switch. Kowtowcleave is safe but Palafin resists? No, Dark is neutral on Water. Kowtowcleave does decent damage but Palafin resists nothing here. Palafin Water/Ground? No, pure Water.\n\nActually Palafin in Zero Form is weak, might switch out to activate Hero Form. If it switches, Kowtowcleave hits the incoming Pokémon (Toxapex or Whimsicott). Kingambit at 31 HP dies to anything. Better to sack Kingambit and go Garchomp? Or switch to Gholdengo which walls Palafin (Water resisted by Steel, and neutral Ghost... Palafin doesn't have Ghost moves likely).\n\nGholdengo resists Water (Steel), so it's a good switch. But Palafin Hero Form with Jet Punch could be a problem. Gholdengo has good bulk.\n\nPlan: Switch to Gholdengo to absorb Palafin's Water attack, then set up Nasty Plot or attack. Save Kingambit as a Sucker Punch revenge later (31 HP, priority still useful).\n\nSucker punch could work if Palafin attacks—Kowtowcleave might not KO Zero Form Palafin but Sucker Punch does decent damage too. But if Palafin switches, Sucker punch fails and Kingambit stays in with low HP.\n\nSwitching to Gholdengo seems safest—absorbs Water hits, threatens Palafin with Make It Rain/Shadow Ball. Keep Kingambit for priority later.",
+      "note": "",
+      "tokens": 3275,
+      "latency_ms": 16385,
+      "cost_usd": 0.0005313,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "89% MOVE: waterfall, 6% MOVE: flipturn, 4% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2251,
+      "latency_ms": 467,
+      "cost_usd": 4.502e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.8942758092494436,
+        "MOVE: flipturn": 0.06254478213901862,
+        "MOVE: closecombat": 0.0030524835902017836,
+        "MOVE: aquajet": 0.0401269250213358
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 5: Palafin in Zero Form (weak CC) will likely switch out to activate Hero Form; opponent's last is Gholdengo. Shadow Ball is the safe middle ground: neutral on Palafin, 2x on opposing Gholdengo (Steel doesn't resist Ghost). Nasty Plot risks a free setup turn only if they give it, but Shadow Ball chips anything switching in. Gholdengo outspeeds nothing certain; keep HP high for a possible Hero Palafin revenge. Garchomp sash intact for endgame; Kingambit at 31 HP holds sucker punch revenge.",
+      "hidden_reasoning": "Palafin used Close Combat (Zero Form likely, low attack). Palafin will likely switch out to activate Hero Form. Gholdengo: Shadow Ball hits Palafin neutrally? Palafin is Water type — Shadow Ball is neutral. Make It Rain is not very effective.\n\nPalafin at low attack in Zero Form; but if it switches out, it comes back Hero Form. Shadow Ball is safe: hits whatever switches in (Toxapex? No, opponent's third is Gholdengo). Opponent's remaining: Palafin, Gholdengo. Shadow Ball hits Gholdengo for... Steel resists Ghost? Gholdengo is Steel/Ghost — Ghost hits Steel neutrally? Ghost is not very effective against Steel? Actually Ghost is not very effective vs Dark only... wait, Ghost is not very effective against Dark; Steel resists Ghost? Type chart: Ghost → Steel is neutral? Ghost is resisted by Dark, and... Ghost is not very effective against Steel? No — Steel resists: Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Ghost is not in that list. So Ghost hits Gholdengo neutrally... but Gholdengo is Ghost type itself, so Ghost → Ghost is neutral too? Ghost is not very effective against... nothing relevant. Actually Ghost is neutral vs Ghost? No, Ghost is super effective against Ghost! Ghost → Ghost = 2x. So Shadow Ball 2x vs Gholdengo (Steel doesn't resist Ghost). Great.\n\nSo Shadow Ball is the best: hits Palafin neutrally, hits opposing Gholdengo super effectively. Nasty Plot could be punished by switch to... nothing major threatens Gholdengo except Palafin Hero Form Water move. Shadow Ball is safe.\n\nAlternatively, expect Palafin to switch to Gholdengo — Shadow Ball 2x. Yes, Shadow Ball.",
+      "note": "",
+      "tokens": 3344,
+      "latency_ms": 15320,
+      "cost_usd": 0.000359352,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: waterfall, 3% MOVE: aquajet, 2% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2320,
+      "latency_ms": 500,
+      "cost_usd": 4.64e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.9501771552511958,
+        "MOVE: flipturn": 0.021446804833515753,
+        "MOVE: closecombat": 0.0009169437177187191,
+        "MOVE: aquajet": 0.02745909619756988
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "recover",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin still Zero Form (slower attacks, low Atk), but outspeeds Gholdengo. It may switch to activate Hero Form this turn — Recover punishes that with free healing; if it attacks, I take ~60 then heal 97 (net +37). Keep Gholdengo healthy as Palafin wall. Garchomp sash intact for endgame sweep; Kingambit at 31 HP holds sucker punch revenge on weakened target. Opponent's last unseen mon is Gholdengo (mirror).",
+      "hidden_reasoning": "Palafin is in Zero Form still (it needs to switch out to become Hero Form). It's at 90% HP with Life Orb. It's faster than Gholdengo (108-167 vs 104).\n\nWait, actually Palafin in Zero Form - is it still Zero Form? The log says \"Opposing Palafin\" with zerotohero ability. It hasn't switched out yet, so it's still Zero Form. Zero Form stats are low - it's basically a weak Pokemon until it switches out.\n\nBut it's still using Life Orb Waterfall which did significant damage (89/194, took ~105 HP including crit and flinch).Key considerations:\n- Palafin is faster than Gholdengo\n- If Palafin attacks again, Gholdengo takes another ~50-60 HP (Waterfall at 80 BP, Life Orb, but Zero Form attack is low... actually wait, the damage was significant - from 194 to 89 = 105 damage from one Waterfall crit + Life Orb recoil? Actually Life Orb recoil is ~19 HP, so Waterfall did ~86 damage with a crit. Without crit it'd be maybe ~55-60 damage.)\n\nActually wait - Gholdengo already took damage. Let me recalculate. Gholdengo went from presumably 194 to 89 over turns. Turn 5: Palafin used Waterfall, crit, Gholdengo at 89. So Waterfall crit did about 105 HP worth of damage (but Life Orb recoil is on Palafin, not Gholdengo). So Waterfall crit did ~105 damage. Without crit it might do ~70 damage. That would leave Gholdengo at ~19 HP after another non-crit hit.\n\nHmm, but actually Gholdengo is weak to nothing from Waterfall (Steel resists Water? No - Water is neutral on Steel/Ghost... actually Steel resists Water? No. Water is resisted by Grass, Water, Dragon. Steel doesn't resist Water. So Waterfall is neutral on Gholdengo).\n\nWait, actually looking at damage: 194 max HP, took a crit Waterfall and is now at 89. So took 105 damage. With Life Orb Palafin Zero Form... Zero Form has low attack (81-134 range). A crit at ~1.5x could do a lot.\n\nIf Palafin attacks again with Waterfall (non-crit), it could do maybe 60-70 damage, leaving Gholdengo at ~19-29 HP. Risky.\n\nOptions:\n1. Recover - heals97 HP, getting back to ~186/194. But Palafin attacks first and could do damage first. Still net positive.\n2. Shadow Ball - does neutral damage to Palafin. With Life Orb, maybe 40-50% to Zero Form Palafin?\n3. Switch to Garchomp - sash intact, but Waterfall would break sash.\n4. Nasty Plot - risky setup, Palafin attacks first.\n\nIf I Recover, Palafin hits me for ~60, I heal97, net +37. Good position.\nIf I Shadow Ball, Palafin hits me for ~60 (might KO if low), I deal maybe 40-50% to Palafin.\n\nActually, Gholdengo has 89 HP. If Waterfall does ~60 non-crit, I survive at ~29 HP. Shadow Ball with Life Orb from203 SpA... against Palafin Zero Form with low SpD (73-125)... that should do significant damage. Maybe 60-70%?\n\nHmm, but Palafin is threatening. Let me think about the endgame:\n- Opponent has Palafin (90%) and Gholdengo (full, unseen in battle)\n- I have Garchomp (full, sash), Kingambit (31 HP), Gholdengo (89 HP)\n\nIf Palafin switches out to activate Hero Form, then comes back, it'll be much stronger. \n\nI think Recover is the safe play - keep Gholdengo healthy to wall Palafin's Water attacks and threaten with Shadow Ball/Make It Rain.\n\nActually, if Palafin switches out this turn to activate Hero Form, Recover gives me a free heal. If Palafin attacks, I take ~60 and heal 97 = net positive.\n\nLet me go with Recover. It's the safe, consistent play.",
+      "note": "",
+      "tokens": 4072,
+      "latency_ms": 35680,
+      "cost_usd": 0.0005253416,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "96% MOVE: waterfall, 2% MOVE: flipturn, 1% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2399,
+      "latency_ms": 1020,
+      "cost_usd": 4.798e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.9647575211251372,
+        "MOVE: flipturn": 0.0210914202966366,
+        "MOVE: closecombat": 0.0007840105531672081,
+        "MOVE: aquajet": 0.013367048025059006
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's Palafin is their LAST mon (Dragapult, Chandelure fainted) — it cannot switch, so it stays Zero Form forever. Waterfall does ~97 to Gholdengo (would drop me to 19); it can't beat Palafin by trading. Garchomp resists Water (Dragon half) and tanks any CC too, sash intact. Switch Garchomp in, then Earthquake; rough skin chips too. Preserve Gholdengo (116) and Kingambit sucker punch (31) as backup.",
+      "hidden_reasoning": "Palafin at 80% HP, Life Orb. My Gholdengo at 116/194. Palafin outspeeds. If Palafin attacks with Waterfall, it does ~60-70 damage (previous Waterfall did 116-19... wait turn 5: 116 → 19? Actually turn 5: Gholdengo at 19/194 after Waterfall from full-ish... let's see turn 4 end state unknown. Turn 5 Waterfall brought it to 19, then Recover to 116. So Waterfall does ~97 damage from full? No—from 116? Let's recount: Turn 5: Palafin used Waterfall, Gholdengo at 19/194. So before turn 5 Gholdengo had19+damage. Turn 4 Gholdengo came in, CC immune. So Gholdengo was full194 at start of turn 5? Then Waterfall did 175 damage? That seems too much for Zero Form Palafin with Life Orb. Hmm, actually critical hit in turn 5? No, turn 5 says \"A critical hit\" — yes turn 5 had a critical hit. 194 → 19 = 175 damage with crit. Non-crit would be ~87.\n\nTurn 6: Waterfall from 116 → 19 = 97 damage (no crit mentioned, but maybe). Hmm, 97 damage non-crit from Zero Form Palafin with Life Orb... that's high but possible with low Gholdengo Def? Gholdengo Def 115. Palafin Atk range 81-134, Zero Form base90 Atk. At level 50, base 90 Atk ~ 110. Waterfall 80 BP × 1.3 Life Orb × STAB 1.5 = 156 raw... vs Def 115. Could be ~60-70. 97 seems high but maybe.\n\nAnyway, Gholdengo at 116, will take ~97 and die?116-97 = 19. Survives barely if no crit. But then Palafin gets Life Orb recoil... Actually Palafin at 80%, will drop to 70%.\n\nIf Palafin switches out to activate Hero Form, Gholdengo attacks nothing. Shadow Ball is safe chip either way.\n\nOptions: Recover keeps Gholdengo alive but gives Palafin free turn or switch to Hero form. If Palafin switches to Hero form, Recover is fine (heal), but Hero Palafin will be devastating.\n\nBetter: Attack with Shadow Ball. If Palafin stays, Shadow Ball does 80 BP Ghost vs Water — neutral, ~35-40% maybe. Palafin at 80% → ~45%. If Palafin switches to Gholdengo (opponent's last), Shadow Ball does big damage.\n\nActually wait, opponent's team: Palafin, Dragapult (fainted), Chandelure (fainted). So Palafin is opponent's LAST mon! Opponent has only Palafin left. So no switching to Gholdengo — that note was wrong; opponent brought Palafin, Dragapult, Chandelure.\n\nSo opponent's only mon is Palafin at 80%. It must stay in. It will likely attack with Waterfall (or CC which Gholdengo is immune to). Hero Form requires switching out — but it has no other mons! Wait, if all others fainted, can it switch? No — switching requires a healthy bench mon. Palafin can't switch, so it stays Zero Form forever. \n\nSo Palafin stays Zero Form, attacks Waterfall. Gholdengo at 116 takes ~97 → ~19, then can Recover. Or Gholdengo attacks.\n\nMy remaining: Garchomp (sash, full), Kingambit (31 HP, sucker punch), Gholdengo (116).\n\nPalafin Waterfall does ~97 to Gholdengo. Gholdengo Shadow Ball: 80 BP, SpA 203, Life Orb, vs Palafin SpD ~99-125. Could do ~50-60%. Palafin at 80% → ~25%. Then Palafin Waterfalls, Gholdengo at 19, Recover... loops.\n\nAlternatively switch to Kingambit? Sucker punch priority,70 BP × black glasses vs Palafin — Palafin resists? Dark vs Water: neutral. Kingambit Atk 205, sucker punch 70 BP × 1.2 blackglasses = ~84 effective. Palafin Def ~82-136. Could do 40-50%. Palafin at 80% → maybe 40%. Then Palafin Waterfalls and kills Kingambit (31 HP, no priority... Kingambit slower, but sucker punch goes first). So Kingambit gets one sucker punch then dies.\n\nBetter plan: Sucker punch chip, then Gholdengo finishes, or Garchomp finishes.\n\nActually Garchomp: 169 speed vs Palafin 108-167 — Garchomp likely faster (169 > 167 max). Earthquake 100 BP vs Water, Palafin Def lowish. Garchomp Atk 182, EQ does big damage — likely 70-90% to Palafin. Rough Skin + sash safety.\n\nPlan: Keep Gholdengo in, use Shadow Ball to chip Palafin, tank a hit? If Gholdengo takes97 → 19 HP, then next turn Recover or attack. Risky with crit.\n\nSafer: switch to Garchomp, tank Waterfall (Garchomp bulk decent, Water neutral... wait Water vs Dragon/Ground: Dragon resists Water, Ground neutral → 0.5x resisted!). Garchomp takes ~half damage. Then EQ next turn.\n\nBut Palafin might use CC (Fighting) — vs Garchomp: Fighting not very effective vs... Dragon/Ground: Fighting hits... Ground neutral, Dragon neutral? Fighting is not very effective vs... Poison, Bug, Fairy... Fighting neutral on Dragon and Ground? Actually Fighting is not very effective vs Ghost (immune), Poison, Bug, Fairy. Neutral on Dragon, Ground. So CC does neutral to Garchomp — ~40%?\n\nHmm. But opponent revealed CC and Waterfall. Palafin in Zero form, CC is 120 BP but its Atk is halved (Zero Form Atk... actually Palafin Zero Form has base 90 Atk? Hero form160. Zero form stats: HP 100, Atk 90... hmm actually Palafin zero form base Atk is 90, Hero160? Let me think: Palafin zero:100/70/72/60/62/100? No. Palafin: HP 100, Atk 70 (Zero) / 160 (Hero)? Actually Palafin zero form Atk is 70? The data given: Atk 81-134 range which corresponds to base... at level 50, base 70 → ~95, base 90 → ~112. Range 81-134 covers possible ivs/evs.\n\nGiven CC did nothing (immune on Gholdengo), Waterfall is the threat.\n\nSafest: switch Garchomp in on Waterfall (resisted), then EQ next turn for big damage. Garchomp sash intact anyway.\n\nBut Palafin could crit or use CC. Even so Garchomp is healthy183 HP.\n\nAlternatively stay in with Gholdengo and Shadow Ball — Palafin at 80%, Shadow Ball ~40-50%, bring to ~35%, then Gholdengo takes97 → 19 HP. Then next turn either Recover (Palafin attacks again, could kill) or attack.\n\nActually if Gholdengo can KO Palafin in 2 Shadow Balls while surviving 2 Waterfalls... 116 - 97 = 19, survive hit 1. Then hit 2: Shadow Ball from 19... Palafin at ~30% after 2 shadow balls? First SB: 116 damage... no, SB damage on Palafin ~45% each. 80% → 35% → dead-ish with 2 hits, but Gholdengo survives hit 1 (19 HP) and dies to hit 2 before attacking? Order: Palafin faster. Turn 7: Palafin attacks first → Gholdengo 19, then SB → Palafin 35%. Turn 8: Palafin attacks → Gholdengo dies, no SB. So Gholdengo does 1 SB then dies unless Recover.\n\nBetter to preserve Gholdengo or go to Garchomp.\n\nI'll switch to Garchomp: Waterfall resisted (~45-50 damage with Life Orb), Garchomp easily tanks. Then EQ. If opponent uses CC, Garchomp takes moderate damage. Garchomp sash intact as backup.\n\nWait, but if I switch to Garchomp and Palafin attacks, then next turn Garchomp EQs — Palafin at 80%, EQ from Garchomp Atk 182, 100 BP, STAB, vs Palafin Def ~110: likely 60-80%. Might not KO. Then Palafin Waterfalls Garchomp (resisted, sash). Then EQ again KO.\n\nAlternatively Kingambit sucker punch chip first.\n\nAlso: could Palafin switch out? No bench mons left (Dragapult and Chandelure fainted). Confirmed: opponent brought 3, all seen, two fainted. So Palafin can't switch — stays Zero Form. Good.\n\nDecision: switch to Garchomp. Hmm, but is that losing tempo? Gholdengo Shadow Ball chips now while taking a hit. Actually let's consider: Gholdengo at 116 survives one Waterfall (~97) at 19, then could Recover to 116 again — infinite stalemate unless crit. That's bad if Palafin outdamages... actually Gholdengo can't win by Recovering.\n\nPlan: switch Garchomp, tank hit, EQ. This is strong. But opponent may predict switch and... doesn't matter, Palafin has only Waterfall/CC.\n\nActually risk: opponent uses CC on Garchomp switch-in. CC 120 BP vs Garchomp neutral, Palafin Atk maybe ~110ish with Life Orb: ~50-60% to Garchomp. Then Garchomp EQs. Fine.\n\nAnother option: use Shadow Ball now for chip then bring Garchomp. Chipping Palafin helps EQ range. Gholdengo takes 97 → 19. Then switch Garchomp next turn with Gholdengo at 19 (still has Recover value later... at 19 it's mostly dead).\n\nHmm. Which is better? Shadow Ball chip (~40-45%) puts Palafin at ~35-40%, then EQ from Garchomp would KO. But Gholdengo takes big hit and is left at 19.\n\nIf I switch directly to Garchomp, Palafin at80%, EQ does ~70% maybe leaving it at 10%, then Palafin hits Garchomp resisted, then EQ KOs. Two-turn KO either way, but Gholdengo preserved at 116 with chip damage taken by Garchomp instead.\n\nGarchomp taking Waterfall resisted (~45) is much better than Gholdengo taking 97. Switch to Garchomp.\n\nActually careful: Garchomp has Rough Skin + Sash. Switching in on Waterfall (resisted) — safe.\n\nLet's do SWITCH: garchomp.",
+      "note": "",
+      "tokens": 5830,
+      "latency_ms": 126190,
+      "cost_usd": 0.00120778,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% MOVE: waterfall, 15% MOVE: closecombat, 3% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2490,
+      "latency_ms": 500,
+      "cost_usd": 4.98e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.7926279426472139,
+        "MOVE: flipturn": 0.019054692909139616,
+        "MOVE: closecombat": 0.15369515202101644,
+        "MOVE: aquajet": 0.0346222124226301
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 7 plan holds: Palafin is opponent's last mon, stuck Zero Form, can't switch. Garchomp outspeeds (169 vs ≤167) and resists Water. Waterfall did ~68; rough skin + life orb already dropped it to 58%. Earthquake now — two neutral hits KO; Palafin's returns only chip toward sash-less range but it loses 22.5% per contact turn. Gholdengo (116) and sucker-punch Kingambit (31) stay as backup.",
+      "hidden_reasoning": "Garchomp at 115/183, Palafin at 58%. Earthquake from Garchomp (182 Atk) vs Palafin... Palafin Zero Form defense maybe ~82-136. EQ should do good damage. Palafin Waterfall does ~57 to Garchomp (from 183→115). Sash not active (not full HP).\n\nGarchomp faster probably (169 vs max 167). If Palafin slower, EQ two-shots. Rough skin + life orb chips.\n\nJust EQ. If Palafin Waterfalls again, Garchomp drops to ~58, then another to ~0... but sash not active. Rough skin/life orb will chip Palafin: 58% - 12.5% roughskin - 10% lifeorb ≈ 35% after this turn if Palafin attacks. Then next EQ finishes.\n\nGo earthquake.",
+      "note": "",
+      "tokens": 3468,
+      "latency_ms": 15237,
+      "cost_usd": 0.00031542,
+      "probabilities": null
+    }
+  ]
+}

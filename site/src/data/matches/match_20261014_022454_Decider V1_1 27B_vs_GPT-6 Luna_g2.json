@@ -1,0 +1,496 @@
+{
+  "id": "match_20261014_022454_Decider V1_1 27B_vs_GPT-6 Luna_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p2",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 55.2,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|GPT-6 Luna||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, M|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Glimmora, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Palafin|Palafin, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Palafin",
+    "|-damage|p2a: Palafin|45/100",
+    "|move|p2a: Palafin|Flip Turn|p1a: Dragapult",
+    "|-resisted|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|136/163",
+    "|",
+    "|detailschange|p2a: Palafin|Palafin-Hero, L50, M",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100|[from] Flip Turn",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|136/163",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|55/100",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Whimsicott|Whimsicott, L50, M|167/167",
+    "|turn|4",
+    "|",
+    "|move|p1a: Whimsicott|Dazzling Gleam|p2a: Kingambit",
+    "|-damage|p2a: Kingambit|33/100",
+    "|move|p2a: Kingambit|Iron Head|p1a: Whimsicott",
+    "|-supereffective|p1a: Whimsicott|1",
+    "|-enditem|p1a: Whimsicott|Focus Sash",
+    "|-damage|p1a: Whimsicott|1/167",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p1a: Whimsicott|Dazzling Gleam|p2a: Kingambit",
+    "|-crit|p2a: Kingambit",
+    "|-damage|p2a: Kingambit|0 fnt",
+    "|faint|p2a: Kingambit",
+    "|-end|p2a: Kingambit|fallenundefined|[silent]",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Dragonite|Dragonite, L50, M|100/100",
+    "|turn|6",
+    "|",
+    "|move|p2a: Dragonite|Extreme Speed|p1a: Whimsicott",
+    "|-damage|p1a: Whimsicott|0 fnt",
+    "|faint|p1a: Whimsicott",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,chandelure,whimsicott",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 48% BRING: dragapult, 22% BRING: whimsicott, 10% BRING: gholdengo\nPick 2: 28% BRING: chandelure, 22% BRING: whimsicott, 22% BRING: gholdengo\nPick 3: 30% BRING: whimsicott, 26% BRING: toxapex, 25% BRING: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5592,
+      "latency_ms": 1653,
+      "cost_usd": 0.00011184000000000001,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "palafin,dragonite,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Bring Palafin to pivot with Flip Turn and activate Hero form; keep Dragonite healthy for a Multiscale setup or Extreme Speed cleanup. Preserve Kingambit to pressure Gholdengo and Dragapult with Sucker Punch.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2424,
+      "latency_ms": 11502,
+      "cost_usd": 0.000533925,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: dragonpulse, 31% MOVE: phantomforce, 20% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1931,
+      "latency_ms": 511,
+      "cost_usd": 3.862e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.4514974719091738,
+        "MOVE: shadowball": 0.2007233378079237,
+        "MOVE: flamethrower": 0.009327238305278249,
+        "MOVE: phantomforce": 0.3100644351466829,
+        "SWITCH: chandelure": 0.014900407507209583,
+        "SWITCH: whimsicott": 0.013487109323731625
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flipturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin should Flip Turn to activate Hero form and pivot; bring Kingambit in to pressure Dragapult with Sucker Punch or Kowtow Cleave. Save Dragonite’s Multiscale for a later setup opportunity.",
+      "hidden_reasoning": "**Deciding on match strategy**\n\nI need to decide between using Palafin against Dragapult. Flip Turn could deal damage while allowing me to pivot and bring in Kingambit. Since Dragapult is likely faster and could use Draco or Thunderbolt, Flip Turn seems smart to activate Kingambit. Dragapult is immune to Fighting due to its Ghost type, so Kingambit has a good matchup, but I need to be wary of Fire coverage. I think switching Dragonite retains Multiscale, but it could get hit. I’ll aim for Flip Turn into Kingambit after doing some damage.",
+      "note": "",
+      "tokens": 2099,
+      "latency_ms": 4159,
+      "cost_usd": 0.000327175,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin took Dragon Pulse but Flip Turn activated Hero form; switch it out now and preserve it for a later sweep. Bring Kingambit in to pressure Dragapult with Sucker Punch/Kowtow Cleave. Dragonite is still healthy; save Multiscale for setup or cleanup.",
+      "hidden_reasoning": "**Evaluating switch options**\n\nOkay, I need to choose a switch. Palafin just succeeded with Flip Turn, meaning I likely have to decide between Kingambit and Dragapult. Dark type threats can target ghost types, and I’m considering Sucker Punch. Dragonite is immune to Dragon Pulse, so maybe it’s best to preserve that option. Dragonite could set up Dragon Dance, but Dragapult can still use Dragon Pulse, which isn’t a huge threat. I think pivoting to Kingambit while it's at full health seems like a good choice. Plus, Palafin transforms when it switches!",
+      "note": "",
+      "tokens": 2088,
+      "latency_ms": 4623,
+      "cost_usd": 0.000335925,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% SWITCH: chandelure, 28% SWITCH: whimsicott, 25% MOVE: dragonpulse",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1965,
+      "latency_ms": 468,
+      "cost_usd": 3.93e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.2539094230876029,
+        "SWITCH: chandelure": 0.4669726008600059,
+        "SWITCH: whimsicott": 0.2791179760523911
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin activated Hero form but is at 46%; preserve it. Kingambit is healthy and threatens Dragapult with Black Glasses-boosted Kowtow Cleave, which also hits a switch. Keep Dragonite at full HP for Multiscale setup or cleanup; watch for Gholdengo and Whimsicott among their remaining Pokémon.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2386,
+      "latency_ms": 5843,
+      "cost_usd": 0.000427175,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "64% SWITCH: dragapult, 36% SWITCH: whimsicott",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1860,
+      "latency_ms": 480,
+      "cost_usd": 3.72e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.6435067428821573,
+        "SWITCH: whimsicott": 0.3564932571178427
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: flamethrower, 3% SWITCH: whimsicott, 0% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2208,
+      "latency_ms": 486,
+      "cost_usd": 4.416e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.0005959569953993125,
+        "MOVE: shadowball": 0.0015300005752676914,
+        "MOVE: flamethrower": 0.9682275197838396,
+        "MOVE: phantomforce": 0.0012415836314120937,
+        "SWITCH: whimsicott": 0.028404939014081226
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin activated Hero form but is at 46%; preserve it. Kingambit is healthy and threatens Dragapult with Black Glasses-boosted Kowtow Cleave, likely finishing it. Keep Dragonite at full HP for Multiscale setup or cleanup. Opponent has revealed Dragapult’s Dragon Pulse; Chandelure fainted, with one unseen pick still to come.",
+      "hidden_reasoning": "**Evaluating move choices**\n\nI need to decide on a move strategy. Dragapult's Dragon Pulse seems to be a special attack option, but it also has Sucker Punch. Kowtow Cleave could potentially allow Dragapult to survive another hit. Kingambit’s dark boost could be valuable as it can benefit from the Supreme Overlord ability. It’s tricky because I need to think about the opponent’s likely switches. Kowtow hits Gholdengo effectively, while Toxapex might resist. I need to weigh my options carefully here!**Calculating damage potential**\n\nI'm looking at how Dragapult's Kowtow Cleave might play out. With an attack of 205, it could deal around 156 to 184 damage against a defender with 100-139 defense, which is promising. That puts the opponent's HP between 135-162 at 83%, so it might be a knockout. Sucker Punch would do less damage, around 125-145, so I'm leaning toward Kowtow. The opponent might switch, but I still think it’s a solid choice. I’ll make a note to stick with Kowtow!",
+      "note": "",
+      "tokens": 2810,
+      "latency_ms": 8787,
+      "cost_usd": 0.0005623,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Whimsicott",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dazzlinggleam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "59% MOVE: dazzlinggleam, 32% MOVE: leechseed, 8% MOVE: grassyterrain",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2196,
+      "latency_ms": 487,
+      "cost_usd": 4.392e-05,
+      "probabilities": {
+        "MOVE: taunt": 0.008036581988866118,
+        "MOVE: leechseed": 0.3182945032246074,
+        "MOVE: grassyterrain": 0.07942010196346123,
+        "MOVE: dazzlinggleam": 0.5942488128230652
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is at 55% and Whimsicott is their last Pokémon. Iron Head is super effective; keep pressure on rather than switching. Palafin is weakened, while Dragonite is still at full health with Multiscale and can clean up if needed.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2758,
+      "latency_ms": 5487,
+      "cost_usd": 0.000463925,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dazzlinggleam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% MOVE: dazzlinggleam, 4% MOVE: leechseed, 2% MOVE: grassyterrain",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2250,
+      "latency_ms": 496,
+      "cost_usd": 4.5e-05,
+      "probabilities": {
+        "MOVE: taunt": 0.01323700312852944,
+        "MOVE: leechseed": 0.039613733815525715,
+        "MOVE: grassyterrain": 0.01838736582095846,
+        "MOVE: dazzlinggleam": 0.9287618972349865
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is at 70/207 HP; Whimsicott is at 1% with Focus Sash already broken. Iron Head should finish it despite moving second. Dragonite is full with Multiscale; Palafin is at 46%. Opponent’s Chandelure and Dragapult are fainted.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2719,
+      "latency_ms": 3672,
+      "cost_usd": 0.000415175,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Whimsicott is at 1% with Focus Sash broken. Bring in full-health Dragonite; Multiscale should cushion Dazzling Gleam, then Extreme Speed finishes it. Palafin remains weakened but available if needed.",
+      "hidden_reasoning": "**Evaluating switch decision**\n\nI'm deciding between switching to Dragonite or Palafin. Whimsicott's sash is broken, and I wonder if Dazzling Gleam would hit Dragonite neutrally since Fairy is super effective against Dragon types. Dragonite might survive with Multiscale, but the priority ExtremeSpeed is a factor, though Whimsicott is likely faster. Palafin's Jet Punch offers priority too, but it's neutral damage. If I switch to Dragonite and take the Gleam, I can still counter with ExtremeSpeed next turn.**Deciding on switch**\n\nI think keeping Dragonite and retaining Palafin could be beneficial. Whimsicott might use Dazzling Gleam, but thanks to Dragonite's Multiscale, it can survive. The berry doesn't seem helpful here. ExtremeSpeed is a strong move at neutral 80 against Whimsicott. I need to consider that Fairy resists Dragonite, but Normal moves are neutral. The calculation leads me to decide: switching to Dragonite seems like the right call!",
+      "note": "",
+      "tokens": 2691,
+      "latency_ms": 7507,
+      "cost_usd": 0.00047355,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dazzlinggleam",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "68% MOVE: dazzlinggleam, 21% MOVE: taunt, 9% MOVE: leechseed",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2354,
+      "latency_ms": 514,
+      "cost_usd": 4.708e-05,
+      "probabilities": {
+        "MOVE: taunt": 0.21015767176678168,
+        "MOVE: leechseed": 0.09099407520622513,
+        "MOVE: grassyterrain": 0.023546097596893013,
+        "MOVE: dazzlinggleam": 0.6753021554301001
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "extremespeed",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is full HP with Multiscale; Whimsicott is at 1% with Focus Sash broken. Finish it with priority Extreme Speed. Palafin remains at 46% if needed; Kingambit is fainted.",
+      "hidden_reasoning": "**Choosing ESpeed strategy**\n\nI need to decide on using Extreme Speed. Since Whimsicott has a whimsical nature with a grass/fairy typing, it could be neutral at a 1% kill rate. However, this seems risky as I should be focused on the priority of the attack. I want the output to be concise, under 60 words, and I must ensure that I include the exact tags related to the opponent being killed and the remaining.",
+      "note": "",
+      "tokens": 2639,
+      "latency_ms": 3094,
+      "cost_usd": 0.000379675,
+      "probabilities": null
+    }
+  ]
+}
