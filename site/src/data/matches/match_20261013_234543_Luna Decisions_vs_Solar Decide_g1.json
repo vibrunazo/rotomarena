@@ -1,0 +1,444 @@
+{
+  "id": "match_20261013_234543_Luna Decisions_vs_Solar Decide_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261013",
+  "players": [
+    {
+      "config_id": "gpt_6_luna_decisions",
+      "display_name": "GPT-6 Luna Decisions",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna-decisions",
+      "quantization": null,
+      "username": "Luna Decisions",
+      "role": "p1",
+      "team": "GPT-6 Luna Decisions's team",
+      "model_key": "openai/gpt-6-luna-decisions",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna Decisions"
+    },
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p2",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 5,
+  "duration_seconds": 8.48,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|GPT-6 Luna Decisions||",
+    "|player|p2|Solar Decide Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Scizor, L50, M|",
+    "|poke|p1|Clefable, L50, M|",
+    "|poke|p1|Kingambit, L50, M|",
+    "|poke|p1|Greninja, L50, M|",
+    "|poke|p2|Rotom, L50|",
+    "|poke|p2|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p2|Delphox, L50, F|",
+    "|poke|p2|Glimmora, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Roserade, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|100/100",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Rotom",
+    "|-damage|p2a: Rotom|32/100",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|11/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p2a: Rotom|Rotom, L50|32/100",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Rotom",
+    "|-crit|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|11/100",
+    "|move|p1a: Garchomp|Earthquake|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Tauros|Tauros-Paldea-Blaze, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Tauros",
+    "|-supereffective|p2a: Tauros|1",
+    "|-enditem|p2a: Tauros|Focus Sash",
+    "|-damage|p2a: Tauros|1/100",
+    "|move|p2a: Tauros|Giga Impact|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|100/183",
+    "|-mustrecharge|p2a: Tauros",
+    "|-damage|p2a: Tauros|0 fnt|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|faint|p2a: Tauros",
+    "|",
+    "|win|GPT-6 Luna Decisions"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotomwash,clefable",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: garchomp, 21% BRING: greninja, 20% BRING: rotomwash\nPick 2: 58% BRING: rotomwash, 28% BRING: greninja, 6% BRING: clefable\nPick 3: 38% BRING: clefable, 28% BRING: greninja, 27% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4787,
+      "latency_ms": 1229,
+      "cost_usd": 0.0004787,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 64% BRING: garchomp, 23% BRING: rotom, 5% BRING: roserade\nPick 2: 41% BRING: rotom, 25% BRING: glimmora, 17% BRING: roserade\nPick 3: 61% BRING: taurospaldeablaze, 20% BRING: delphox, 11% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6461,
+      "latency_ms": 2753,
+      "cost_usd": 0.00032304999999999996,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "94% MOVE: dragonclaw, 3% SWITCH: rotomwash, 2% SWITCH: clefable",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1669,
+      "latency_ms": 405,
+      "cost_usd": 0.0001669,
+      "probabilities": {
+        "MOVE: earthquake": 0.01,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.94,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.03,
+        "SWITCH: clefable": 0.02
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% SWITCH: rotom, 16% MOVE: gigaimpact, 16% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2235,
+      "latency_ms": 910,
+      "cost_usd": 0.00011175,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.162136,
+        "MOVE: sandstorm": 0.021943,
+        "MOVE: stealthrock": 0.086785,
+        "MOVE: stoneedge": 0.126271,
+        "SWITCH: rotom": 0.44073,
+        "SWITCH: taurospaldeablaze": 0.162136
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: dragonclaw, 32% MOVE: earthquake, 18% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1742,
+      "latency_ms": 432,
+      "cost_usd": 0.0001742,
+      "probabilities": {
+        "MOVE: earthquake": 0.32,
+        "MOVE: swordsdance": 0.03,
+        "MOVE: dragonclaw": 0.37,
+        "MOVE: stoneedge": 0.07,
+        "SWITCH: rotomwash": 0.18,
+        "SWITCH: clefable": 0.03
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: garchomp, 24% SWITCH: taurospaldeablaze, 19% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2292,
+      "latency_ms": 724,
+      "cost_usd": 0.0001146,
+      "probabilities": {
+        "MOVE: discharge": 0.187704,
+        "MOVE: electricterrain": 0.078247,
+        "MOVE: risingvoltage": 0.041883,
+        "MOVE: voltswitch": 0.100471,
+        "SWITCH: garchomp": 0.350678,
+        "SWITCH: taurospaldeablaze": 0.241017
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: dragonclaw, 0% MOVE: earthquake, 0% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1823,
+      "latency_ms": 394,
+      "cost_usd": 0.0001823,
+      "probabilities": {
+        "MOVE: earthquake": 0.0,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 1.0,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: rotom, 29% SWITCH: taurospaldeablaze, 5% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2323,
+      "latency_ms": 669,
+      "cost_usd": 0.00011615,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.05081,
+        "MOVE: sandstorm": 0.007792,
+        "MOVE: stealthrock": 0.021181,
+        "MOVE: stoneedge": 0.008829,
+        "SWITCH: rotom": 0.618995,
+        "SWITCH: taurospaldeablaze": 0.292393
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% SWITCH: taurospaldeablaze, 15% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2011,
+      "latency_ms": 1528,
+      "cost_usd": 0.00010055,
+      "probabilities": {
+        "SWITCH: garchomp": 0.148047,
+        "SWITCH: taurospaldeablaze": 0.851953
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: earthquake, 0% MOVE: swordsdance, 0% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1954,
+      "latency_ms": 446,
+      "cost_usd": 0.0001954,
+      "probabilities": {
+        "MOVE: earthquake": 1.0,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.0,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% SWITCH: garchomp, 29% MOVE: gigaimpact, 22% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2338,
+      "latency_ms": 898,
+      "cost_usd": 0.0001169,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.285332,
+        "MOVE: highhorsepower": 0.016097,
+        "MOVE: ragingbull": 0.222217,
+        "MOVE: trailblaze": 0.005922,
+        "SWITCH: garchomp": 0.470432
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: earthquake, 1% MOVE: dragonclaw, 0% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2001,
+      "latency_ms": 514,
+      "cost_usd": 0.0002001,
+      "probabilities": {
+        "MOVE: earthquake": 0.99,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.01,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% MOVE: gigaimpact, 41% MOVE: ragingbull, 4% MOVE: highhorsepower",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2355,
+      "latency_ms": 935,
+      "cost_usd": 0.00011775,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.522147,
+        "MOVE: highhorsepower": 0.037824,
+        "MOVE: ragingbull": 0.406649,
+        "MOVE: trailblaze": 0.03338
+      }
+    }
+  ]
+}

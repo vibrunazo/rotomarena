@@ -1,0 +1,452 @@
+{
+  "id": "match_20261013_230629_Decider V1_1 27B_vs_Claude Haiku 5_5_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261013",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "claude_haiku_5_5",
+      "display_name": "Claude Haiku 5.5",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "anthropic/claude-haiku-5.5",
+      "quantization": null,
+      "username": "Claude Haiku 5.5",
+      "role": "p2",
+      "team": "Claude Haiku 5.5's team",
+      "model_key": "anthropic/claude-haiku-5.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Claude Haiku 5.5"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 44.96,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|Claude Haiku 5.5||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Sinistcha, L50|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Dragapult|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Incineroar",
+    "|-damage|p2a: Incineroar|69/100",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Dragapult",
+    "|-unboost|p1a: Dragapult|atk|1",
+    "|-unboost|p1a: Dragapult|spa|1",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Chandelure|Chandelure, L50, F|135/135",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Chandelure",
+    "|-supereffective|p1a: Chandelure|1",
+    "|-damage|p1a: Chandelure|0 fnt",
+    "|faint|p1a: Chandelure",
+    "|-damage|p2a: Gholdengo|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|Flamethrower|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|39/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|-damage|p2a: Gholdengo|29/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Palafin|Palafin, L50, M|175/175",
+    "|turn|4",
+    "|",
+    "|move|p1a: Palafin|Waterfall|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|-damage|p1a: Palafin|158/175|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|detailschange|p2a: Garchomp|Garchomp-Mega, L50, M",
+    "|-mega|p2a: Garchomp|Garchomp|Garchompite",
+    "|move|p1a: Palafin|Waterfall|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|68/100",
+    "|-damage|p1a: Palafin|141/175|[from] item: Life Orb",
+    "|move|p2a: Garchomp|Earthquake|p1a: Palafin",
+    "|-damage|p1a: Palafin|0 fnt",
+    "|faint|p1a: Palafin",
+    "|",
+    "|win|Claude Haiku 5.5"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,palafin,chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 44% BRING: dragapult, 23% BRING: whimsicott, 11% BRING: palafin\nPick 2: 28% BRING: palafin, 23% BRING: chandelure, 19% BRING: whimsicott\nPick 3: 35% BRING: chandelure, 26% BRING: whimsicott, 22% BRING: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5613,
+      "latency_ms": 1574,
+      "cost_usd": 0.00011226,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,garchomp,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Lead Incineroar for Intimidate and Fake Out support, with Garchomp (Mega) as the main sweeper and Gholdengo for special damage. Opponent threats: Dragapult (very fast), Gholdengo, Chandelure (special), Toxapex (bulky, walls physical). Expect Toxapex and Palafin to be hard for Garchomp. Save Parting Shot for switching and use Protect to scout.",
+      "hidden_reasoning": "I'm weighing my team against their Gholdengo, Palafin, Dragapult, Toxapex, Chandelure, and Whimsicott, considering which three of my six—Incineroar, Garchomp, Gholdengo, Sinistcha, Corviknight, Dragapult—give the best coverage and synergy against their bulky and special threats.\n\nI'll go with Incineroar, Garchomp, and Gholdengo, leading with Incineroar to use intimidate and fake out to blunt their early momentum.\n\n",
+      "note": "",
+      "tokens": 3286,
+      "latency_ms": 4179,
+      "cost_usd": 0.000595125,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% MOVE: dragonpulse, 10% SWITCH: palafin, 6% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1975,
+      "latency_ms": 501,
+      "cost_usd": 3.95e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.7865904666686038,
+        "MOVE: shadowball": 0.03497305944894168,
+        "MOVE: flamethrower": 0.006803854293196157,
+        "MOVE: phantomforce": 0.004423933724613588,
+        "SWITCH: palafin": 0.10392865166027881,
+        "SWITCH: chandelure": 0.06328003420436604
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Fake Out is useless here (Dragapult is Ghost-type and immune). Dragapult outspeeds us, so I used Parting Shot to cut its Atk and SpA and bring in Gholdengo. Gholdengo's Shadow Ball is super effective on Dragapult. Dragapult has Atk -1 from Intimidate. Opponent threats: Dragapult (fast, Clear Body/Infiltrator/Cursed Body possible), Gholdengo, Chandelure, Toxapex, Palafin, Whimsicott. Keep Garchomp for a later Mega sweep.",
+      "hidden_reasoning": "Right, Dragapult's Ghost typing makes it immune to Fake Out entirely, so that move is wasted here. Flare Blitz is also only neutral/resisted against the Dragon side and Dragapult outspeeds anyway, so I need to weigh other options instead.\n\nI'm considering Parting Shot to further cripple Dragapult's Atk/SpA (already at -1 from Intimidate) while pivoting into Garchomp or Gholdengo, though I need to check how those switch-ins actually fare against Dragapult's Ghost/Dragon coverage before committing — Gholdengo in particular could eat a super-effective Ghost hit. Protect to scout the incoming move is also worth considering as a safer alternative this turn.\n\nRight, Dragon actually resists Electric, but Shadow Ball is super effective on Dragapult's Ghost typing, so Gholdengo can threaten it that way. I'll go with Parting Shot switching into Gholdengo.\n\n",
+      "note": "",
+      "tokens": 4510,
+      "latency_ms": 7803,
+      "cost_usd": 0.001007135,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is now at Atk -2 and SpA -1 from Intimidate and Parting Shot, so it is much weaker. Switching to Gholdengo, whose Shadow Ball is super effective on Dragapult (Ghost/Dragon). Gholdengo may be slower than Dragapult, so expect a hit first. Opponent known: Dragapult (Dragon Pulse; Clear Body/Infiltrator/Cursed Body), Gholdengo, Chandelure, Toxapex, Palafin, Whimsicott. Keep Garchomp for a later Mega sweep, and watch for Toxapex and Palafin walling it.",
+      "hidden_reasoning": "Dragapult's stats are lowered now with Atk -2 and SpA -1, still at full health. Since Gholdengo's Shadow Ball hits Dragapult's Ghost typing for super effective damage, switching to Gholdengo looks like the strong play here.\n\n",
+      "note": "",
+      "tokens": 3644,
+      "latency_ms": 3434,
+      "cost_usd": 0.000415865,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% SWITCH: chandelure, 46% SWITCH: palafin, 7% MOVE: dragonpulse",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1938,
+      "latency_ms": 495,
+      "cost_usd": 3.876e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.07068893838895053,
+        "SWITCH: palafin": 0.45594993050325716,
+        "SWITCH: chandelure": 0.4733611311077922
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is at -2 Atk and -1 SpA from Intimidate and Parting Shot, so it is weak now. Gholdengo (Life Orb) is active. Shadow Ball is super effective on Dragapult (Ghost/Dragon). Gholdengo may be slower, so expect a Dragon Pulse first. Incineroar (69.8%) is in reserve for Fake Out or Parting Shot. Garchomp is the Mega sweeper for later. Watch Toxapex and Palafin as walls. Opponent known: Dragapult, Gholdengo, Chandelure, Toxapex, Palafin, Whimsicott.",
+      "hidden_reasoning": "Dragapult's at Atk -2, SpA -1, while Gholdengo is holding Life Orb. Checking the typing, Shadow Ball hits Dragapult's Ghost typing super effectively since Dragon isn't weak to Ghost but Ghost itself is.\n\nMeanwhile Dragon Pulse from Dragapult is just neutral against Gholdengo's Steel/Ghost typing since Steel doesn't resist Dragon anymore. So Shadow Ball is clearly the better pick here.\n\n",
+      "note": "",
+      "tokens": 4032,
+      "latency_ms": 5174,
+      "cost_usd": 0.000509365,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% SWITCH: dragapult, 37% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1865,
+      "latency_ms": 1190,
+      "cost_usd": 3.73e-05,
+      "probabilities": {
+        "SWITCH: palafin": 0.3670617630055263,
+        "SWITCH: dragapult": 0.6329382369944737
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "64% MOVE: flamethrower, 25% MOVE: shadowball, 6% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2209,
+      "latency_ms": 2068,
+      "cost_usd": 4.418e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.002096542075257335,
+        "MOVE: shadowball": 0.2482950378286164,
+        "MOVE: flamethrower": 0.639468191666712,
+        "MOVE: phantomforce": 0.05629544172486642,
+        "SWITCH: palafin": 0.05384478670454768
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is at -2 Atk and -1 SpA from Intimidate and Parting Shot, so its physical threat is reduced. Gholdengo (Life Orb) is active at 148/164. Shadow Ball is super effective on Dragapult (Ghost/Dragon) and should deal heavy damage. Dragapult may outspeed Gholdengo and hit with Dragon Pulse first. Garchomp (Mega) is the later sweeper, and Incineroar (69.8%) is in reserve for Fake Out or Parting Shot. Threats still unrevealed: Toxapex and Palafin as walls, Gholdengo, and Whimsicott. Dragapult's ability is unknown (Clear Body, Infiltrator, or Cursed Body).",
+      "hidden_reasoning": "Tracking Dragapult's stat drops: intimidate took Atk down once, then Parting Shot dropped both Atk and SpA again, leaving it at -2 Atk and -1 SpA while still at full HP. Now I'm checking the Shadow Ball matchup against Dragapult's Ghost/Dragon typing for effectiveness.\n\nShadow Ball with Life Orb off Gholdengo's strong SpA stat should hit for double damage, likely dealing heavy damage or possibly a KO given Dragapult's HP range, so Shadow Ball looks like the right call.\n\n",
+      "note": "",
+      "tokens": 4356,
+      "latency_ms": 4369,
+      "cost_usd": 0.000492615,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "89% MOVE: waterfall, 6% MOVE: aquajet, 4% MOVE: flipturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2231,
+      "latency_ms": 507,
+      "cost_usd": 4.462e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.8899277207474902,
+        "MOVE: flipturn": 0.03782132704651255,
+        "MOVE: closecombat": 0.01323667590485572,
+        "MOVE: aquajet": 0.05901427630114146
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is at 48 HP on Life Orb, and Palafin (Zero Form, Water) is active at full HP. Thunderbolt is super effective on Palafin and should deal close to a KO. If Palafin moves first, Gholdengo may faint. Garchomp (Mega) is still the late sweeper, and Incineroar (69.8%) can Fake Out or Parting Shot. Palafin may switch out and turn into Hero Form, so expect a stronger Palafin after a switch. Dragapult and Chandelure are down. Still unseen: Toxapex, Whimsicott, and Gholdengo's moves.",
+      "hidden_reasoning": "Gholdengo is at 48/164 HP while Palafin is fully healthy, currently in Zero form but will switch to its powerful Hero form with strong Water-type attacks like Jet Punch once it swaps out. I'm weighing Gholdengo's remaining options against that threat.\n\nWith Life Orb and super effectiveness, that's roughly 170-196 damage against Palafin's ~190 HP, likely close to a KO but not guaranteed given the damage roll variance. The risk is Gholdengo only has 48 HP left, so if Palafin survives and outspeeds, Waterfall probably finishes it off either way—but Thunderbolt still gives the best shot at taking Palafin down first.\n\n",
+      "note": "",
+      "tokens": 5146,
+      "latency_ms": 6690,
+      "cost_usd": 0.000774875,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo has fainted. Opponent's Palafin (Zero Form, Life Orb, 90%) is active and has shown Waterfall. Opponent has lost Chandelure and Dragapult; Toxapex and Whimsicott are unseen. Garchomp at full HP is the best switch-in: Dragon resists Water and Garchomp is likely faster. Garchomp can Mega (Garchompite) and sweep later. Incineroar (69.8%) is weak to Water, so keep it for Parting Shot or Fake Out later.",
+      "hidden_reasoning": "With Gholdengo down, I need to check who can handle Palafin's Waterfall safely — weighing Garchomp's Water weakness from its Ground typing against other options.\n\nIncineroar isn't great here then. Garchomp is actually the better switch-in—Dragon resists Water, so even with Ground's weakness factored in, it nets out neutral overall. I'll switch to Garchomp.\n\n",
+      "note": "",
+      "tokens": 4867,
+      "latency_ms": 6288,
+      "cost_usd": 0.000713035,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% MOVE: waterfall, 37% MOVE: closecombat, 7% MOVE: aquajet",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2387,
+      "latency_ms": 520,
+      "cost_usd": 4.774e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.5337884750030168,
+        "MOVE: flipturn": 0.02316889843129063,
+        "MOVE: closecombat": 0.3683535773725507,
+        "MOVE: aquajet": 0.07468904919314177
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "Garchomp is faster than Palafin (Zero Form, Life Orb, 90%). Mega Garchomp Earthquake is neutral and strong against Palafin, and Dragon resists Water. Opponent is likely to switch to Toxapex or Whimsicott. Incineroar (69.8%) is weak to Water; keep it for Parting Shot or Fake Out. Still unseen: Toxapex, Whimsicott.",
+      "hidden_reasoning": "Checking speed tiers: Garchomp at 169 likely outpaces Palafin, and I'm weighing whether Mega Garchomp's Sand Force-boosted Earthquake or Dragon Claw hits harder against a pure Water-type Palafin at 90% HP, since neither move is super effective but raw power matters here.\n\nWhimsicott would be Grass-type if it switched in, but Whimsicott is actually Grass/Fairy with no Flying typing, so Earthquake only gets resisted at 0.5x rather than being immune — still a reasonable option either way.\n\n",
+      "note": "",
+      "tokens": 5167,
+      "latency_ms": 5761,
+      "cost_usd": 0.00068211,
+      "probabilities": null
+    }
+  ]
+}

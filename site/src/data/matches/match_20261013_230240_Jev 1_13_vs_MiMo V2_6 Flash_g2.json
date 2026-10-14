@@ -1,0 +1,472 @@
+{
+  "id": "match_20261013_230240_Jev 1_13_vs_MiMo V2_6 Flash_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261013",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    },
+    {
+      "config_id": "mimo_v2_6_flash",
+      "display_name": "MiMo V2.6 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "xiaomi/mimo-v2.6-flash",
+      "quantization": null,
+      "username": "MiMo V2.6 Flash",
+      "role": "p2",
+      "team": "MiMo V2.6 Flash's team",
+      "model_key": "xiaomi/mimo-v2.6-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiMo V2.6 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 161.35,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13||",
+    "|player|p2|MiMo V2.6 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Aegislash, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Slowking-Galar, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Volcarona, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|125/125",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Corviknight|Corviknight, L50, F|100/100",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Corviknight",
+    "|-supereffective|p2a: Corviknight|1",
+    "|-damage|p2a: Corviknight|20/100r",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Corviknight",
+    "|-supereffective|p2a: Corviknight|1",
+    "|-damage|p2a: Corviknight|0 fnt",
+    "|faint|p2a: Corviknight",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|4",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Rotom",
+    "|-damage|p1a: Rotom|58/125",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Gholdengo",
+    "|-damage|p2a: Gholdengo|53/100",
+    "|",
+    "|-heal|p1a: Rotom|65/125|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|6",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|win|MiMo V2.6 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: dragapult, 17% BRING: rotomwash, 17% BRING: aegislash\nPick 2: 34% BRING: gholdengo, 22% BRING: rotomwash, 18% BRING: aegislash\nPick 3: 39% BRING: rotomwash, 24% BRING: aegislash, 22% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6433,
+      "latency_ms": 1567,
+      "cost_usd": 0.000270186,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,garchomp,corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's team is fat/stall-leaning: toxapex, corviknight, aegislash, rotom-wash, plus gholdengo/dragapult. Scarf gholdengo outspeeds everything except their dragapult; Trick cripples a wall. Mega garchomp breaks once walls are softened. Corviknight checks toxapex/rotom and sets Iron Defense Body Press pressure. Plan: scarf gholdengo chips/tricks, sweep later with garchomp.",
+      "hidden_reasoning": "Team preview. My team's strengths: gholdengo scarf, garchomp mega, dragapult lifeorb. Opponent has toxapex, aegislash, rotom-wash, corviknight, dragapult, gholdengo.\n\nGood core: garchomp (mega), gholdengo, dragapult — but dragapult vs their dragapult... Scarf gholdengo is good. Slowking-galar handles toxapex with futuresight/sludgebomb? Actually gholdengo makeitrain hits toxapex? Toxapex resists... Poison/Water: neutral to Steel? Poison resists... no, Water resists Steel? Water doesn't resist Steel. Poison doesn't resist Steel. Actually Steel hits Poison super effectively? Poison resists... Steel is super effective vs Ice/Rock/Fairy. Poison resists... hmm, Poison resists Bug, Grass, Fairy, Fighting, Poison. Not Steel. So Toxapex takes neutral from Steel but is specially bulky.\n\nCorviknight bodypress setup could beat toxapex/aegislash. Their team is bulky stall-ish (toxapex, corviknight, aegislash, rotom). Gholdengo scarf + trick could cripple. \n\nConsider: lead gholdengo (scarf, makeitrain/trick), garchomp mega, corviknight (bodypress). Or slowking for regenerator/futuresight.\n\nTheir likely lead: rotom-wash or toxapex. Gholdengo threatens toxapex (Make it Rain 2HKO probably, and they can't status it with Good as Gold... actually they can't burn/Toxic gholdengo). Scarf gholdengo outspeeds most of their team except dragapult.\n\nGarchomp mega with swordsdance+scaleshot can break. Corviknight with irondefense/bodypress walls toxapex/rotom.\n\nI'll bring: gholdengo, garchomp, corviknight. Alternatively dragapult instead of corviknight — but dragapult's lifeorb damage vs their bulky mons is meh; corviknight's bodypress is a good answer to toxapex and aegislash (except aegislash shadow ball).\n\nActually gholdengo + garchomp + dragapult is more offensive, but their team is fat — corviknight gives a defensive pivot and bodypress.\n\nLead gholdengo: scarf makeitrain vs anything is decent; trick vs toxapex/rotom cripples. Let's do gholdengo first.",
+      "note": "",
+      "tokens": 2752,
+      "latency_ms": 17660,
+      "cost_usd": 0.0002842224,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% MOVE: shadowball, 8% SWITCH: gholdengo, 5% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2219,
+      "latency_ms": 407,
+      "cost_usd": 9.3198e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.83,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: protect": 0.02,
+        "MOVE: uturn": 0.01,
+        "SWITCH: gholdengo": 0.08,
+        "SWITCH: rotomwash": 0.05
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Scarf Gholdengo at 149 Spe outspeeds max Dragapult (213) after 1.5x. Shadow Ball is super effective vs Dragon/Ghost and has no SpA drop, unlike Make It Rain. Fire it; if it doesn't KO, chip again next turn. Dragapult is their fastest threat — removing it opens Mega Garchomp's late sweep.",
+      "hidden_reasoning": "Shadow Ball is super effective on Dragapult. Scarf Gholdengo likely outspeeds (149*1.5 = 223.5, above 213 max). So Shadow Ball should KO or heavily damage. Dragapult is frail physically but specially 85-139 SpD. Shadow Ball 80 BP * 185 SpA... likely 60-80%. Could be two-hit KO. Risk: Dragapult could be scarf too and outspeed? Our scarf gives 223 speed, above max 213. So we move first.\n\nMakeitrain would be resisted (Dragapult Dragon resists Steel? No, Dragon doesn't resist Steel. Ghost/Dragon: Steel is neutral on Ghost, resisted... Dragon resists Steel? No — Dragon resists Fire, Water, Grass, Electric. Steel hits Dragon super effectively actually. Wait, Steel is super effective against Dragon. So makeitrain would be SE but drops SpA -2. Shadow Ball is SE (Ghost vs Ghost... Dragapult is Dragon/Ghost, Ghost hits Ghost SE, Dragon neutral → SE). Shadow Ball with no drop is better.\n\nGo shadowball.",
+      "note": "",
+      "tokens": 2582,
+      "latency_ms": 2515,
+      "cost_usd": 0.00052558,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% SWITCH: rotomwash, 39% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1869,
+      "latency_ms": 486,
+      "cost_usd": 7.8498e-05,
+      "probabilities": {
+        "SWITCH: gholdengo": 0.39,
+        "SWITCH: rotomwash": 0.61
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: thunderbolt, 32% SWITCH: gholdengo, 24% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2167,
+      "latency_ms": 412,
+      "cost_usd": 9.1014e-05,
+      "probabilities": {
+        "MOVE: voltswitch": 0.24,
+        "MOVE: thunderbolt": 0.4,
+        "MOVE: willowisp": 0.01,
+        "MOVE: protect": 0.03,
+        "SWITCH: gholdengo": 0.32
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Rotom-Wash lead. Scarf Gholdengo only ~neutral Shadow Ball (~30-40% on bulky Rotom) and could be outsped (Spe 95-151 vs my 149). Switching Garchomp risks Will-O-Wisp ruining its late sweep. Corviknight walls Rotom's STABs and holds Lumberry to absorb a burn — safest scout. From there, U-turn to bring Garchomp/Gholdengo back in safely or set Iron Defense on a wall (toxapex/corviknight/aegislash) later.",
+      "hidden_reasoning": "Rotom-Wash levitates, blocks shadowball? No, shadowball hits Rotom (not immune). Shadow ball is neutral vs Water/Electric. Scarf Gholdengo at 149 Spe vs Rotom 95-151 — could be slower. If Rotom outspeeds, it can Volt Switch or Hydro Pump, but Gholdengo is Steel/Ghost — takes neutral from both. Shadow Ball is only ~30-40% on bulky Rotom. Hmm.\n\nBetter: switch to Corviknight, which walls Rotom-Wash (Water/Electric moves are neutral/... actually Water and Electric are neutral to Steel/Flying; Corviknight takes ~30% from Hydro Pump but has Roost). Corviknight also can't be burned? Lumberry helps. Alternatively U-turn later.\n\nSwitching Garchomp risks Willowisp/Hydro Pump — Garchomp weak to Dragon... Rotom can't hurt Garchomp much without Thunderbolt (neutral, super effective? Ground/Dragon takes neutral from Electric? Ground resists Electric? No — Ground is immune to Electric, but Dragon/Ground takes... Ground's Electric immunity applies, but Dragon doesn't resist... actually Ground-type gives Electric immunity, so Garchomp is immune to Thunderbolt? No! Garchomp is Ground/Dragon — Ground gives Electric immunity, yes. So Garchomp immune to Volt Switch/Thunderbolt, only takes Hydro Pump (neutral, ~30%). But Rotom could have Will-O-Wisp — Garchomp has Lumberry? No, Corviknight has Lumberry. Garchomp's Rough Skin. Garchomp switching in could get burned, bad for sweep.\n\nCorviknight is safest: immune to nothing relevant, no status worry with Lumberry, takes little. Then U-turn or scout. If Rotom burns Corviknight, Lumberry absorbs. I'll switch to Corviknight.",
+      "note": "",
+      "tokens": 2855,
+      "latency_ms": 23374,
+      "cost_usd": 0.00047754,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% MOVE: thunderbolt, 31% MOVE: voltswitch, 15% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2395,
+      "latency_ms": 405,
+      "cost_usd": 0.00010059,
+      "probabilities": {
+        "MOVE: voltswitch": 0.31,
+        "MOVE: thunderbolt": 0.52,
+        "MOVE: willowisp": 0.01,
+        "MOVE: protect": 0.01,
+        "SWITCH: gholdengo": 0.15
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "roost",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight at 41 HP, Rotom outspeeds and KOs with Thunderbolt (did 164). Staying in = likely death, but that gives a free switch to Garchomp/Gholdengo with zero burn risk — better than switching Garchomp into a potential Will-O-Wisp. Roost is the best stay-in play: if they burn, Lumberry absorbs and I heal to ~143; if they attack, Corviknight goes down and I bring in Garchomp safely. Their last mon is unknown (aegislash/toxapex/corviknight/gholdengo).",
+      "hidden_reasoning": "Corviknight at 41/205, Rotom outspeeds. Thunderbolt did ~164 damage? Wait, Corviknight went from 205 to 41, so 164 damage — that's a lot, likely specs or high roll. Another Thunderbolt KOs.\n\nOptions: Roost heals 102 → 143, but Rotom likely KOs with another Thunderbolt... actually 41 HP, Tbolt did 164, so it KOs regardless. Roost won't save.\n\nU-turn: deals chip damage and switches out — but Corviknight dies to Tbolt before moving (Rotom faster). So U-turn doesn't execute if Corviknight faints first.\n\nSwitch to Gholdengo: Scarf Gholdengo outspeeds Rotom (149 vs up to 151 — could tie or lose). Shadow Ball does ~30-40%. Risky but preserves Corviknight.\n\nSwitch to Garchomp: risks Will-O-Wisp, but Rotom revealed only Thunderbolt. Garchomp at full HP takes Tbolt... Ground/Dragon takes neutral from Electric? No — Ground is immune to Electric! Garchomp is immune to Thunderbolt. Rotom has Levitate so Earthquake won't hit... but Mega Garchomp... still Levitate.\n\nActually wait — Garchomp is immune to Electric. Switching Garchomp in on Thunderbolt is free. Then Rotom likely switches or uses Will-O-Wisp/Hydro Pump. Garchomp can Swords Dance. But burn ruins it — Lumberry is on Corviknight, not Garchomp.\n\nHmm, but if Rotom uses Will-O-Wisp, Garchomp gets burned and its sweep is ruined. That's the risk noted earlier.\n\nGholdengo: immune to... Shadow Ball from their gholdengo later. Scarf Gholdengo at 149 Spe vs Rotom 95-151. If Rotom is fast (151), it outspeeds. Gholdengo takes Tbolt super effectively — 164 damage would KO Gholdengo (162 HP). Very risky.\n\nBest: switch to Garchomp. Immune to Thunderbolt. If they burn, we lose Garchomp's physical sweep but still have Gholdengo. Alternatively sacrifice Corviknight to get a free switch.\n\nActually, sacrificing Corviknight: it's at 41 HP, basically dead. Letting it die gives a free switch to Garchomp or Gholdengo without risk. That's actually clean — Corviknight can't do anything meaningful (Rotom outspeeds and KOs).\n\nBut wait — if I switch now, I bring in Garchomp on a Thunderbolt (immune) — same result as letting Corviknight die and bringing Garchomp in freely, except I keep Corviknight alive at 41 HP for later (death fodder or U-turn slow pivot... no slow U-turn here).\n\nKeeping Corviknight at 41 HP: could be useful as death fodder later to give a clean switch. Or Roost to heal — but Rotom KOs first.\n\nActually, could Rotom use Will-O-Wisp instead of Thunderbolt? It revealed Thunderbolt. If I switch to Garchomp and they burn, bad. If I let Corviknight die and they burn... Corviknight has Lumberry! It absorbs the burn. Then Garchomp comes in free.\n\nHmm, but if Corviknight stays in and Rotom uses Thunderbolt, Corviknight dies → free switch. If Rotom uses Will-O-Wisp, Corviknight's Lumberry absorbs it, Corviknight survives at 41, then... still slower, dies next turn to Tbolt.\n\nStaying in and letting Corviknight go down seems safest — no risk to Garchomp. Then bring in Garchomp or Gholdengo freely.\n\nBut which action? If I stay in, I should use Roost (in case they switch or use a weaker move) or U-turn (chip + switch if we move first — we don't). Body Press does damage if we survive.\n\nActually if Rotom attacks, Corviknight dies regardless. Roost only helps if Rotom switches or uses a non-damaging move. U-turn only works if we move first (we don't) or if they switch.\n\nHmm — if they switch, Roost heals Corviknight. If they attack, Corviknight dies. Roost seems best for the \"they switch\" case.\n\nAlternatively, switch to Garchomp now — immune to Tbolt, and if they burn, we're in trouble.\n\nI think sacrificing Corviknight is cleanest. Use Roost — best case heals, worst case they KO and I get free switch.\n\nWait, but if they use Will-O-Wisp and I Roost, Lumberry absorbs burn, Corviknight at ~143 HP... no wait, Roost heals first? Order: Roost happens (heal to 143), then they burn? No — they move first (faster). So they burn first (Lumberry absorbs), then I Roost to 143. That's great!\n\nActually if they Tbolt first, Corviknight at 41 dies before moving. So Roost only works if they use a status move or switch.\n\nLet me just sacrifice: use Roost as best-case option. If Corviknight dies, free switch next turn.\n\nActually — could I switch to Garchomp and be immune? Yes, but burn risk. Corviknight dying gives me the same free switch with zero risk. Go with Roost.\n\nHmm, but one consideration: keeping Corviknight alive at 41 as death fodder later is valuable. If I stay in and it dies, I lose that. But I'd still have Gholdengo and Garchomp — 2v2 situation (they have 3). Actually they have 3 remaining (rotom + 2 unseen), I'd have 2. Being down in count is bad.\n\nWait, currently: I have 3 alive (all), they have 2 alive (rotom + 1 unseen... no, dragapult fainted, so 2 remaining: rotom + 1 of the 4 unseen... actually \"1 more is still to come in\" — so they have rotom active + 1 in reserve = 2 alive). I have 3 alive. If Corviknight dies, it's 2v2.\n\nBeing 2v2 with Gholdengo (scarf) and Garchomp (mega) vs their rotom + 1 is fine.\n\nAlternatively keep Corviknight alive as fodder — but it's slower than everything relevant probably.\n\nI'll go with Roost — best case scenario heals, worst case they KO and I get free switch to Garchomp.",
+      "note": "",
+      "tokens": 4171,
+      "latency_ms": 38543,
+      "cost_usd": 0.00078238,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight fainted; must pick a replacement. Garchomp can't touch Rotom (Levitate blocks EQ) and risks a burn/hydro. Scarf Gholdengo likely outspeeds (149 Spe vs Rotom 95-151) and fires neutral Shadow Ball for solid damage. Preserve Mega Garchomp for the late sweep against their last unknown mon. Bring in Gholdengo now.",
+      "hidden_reasoning": "Corviknight fainted. Now I must choose a replacement: garchomp or gholdengo.\n\nRotom-Wash is active with Levitate, so Garchomp's Earthquake won't hit it. Gholdengo with Scarf could outspeed and hit with Shadow Ball (neutral) or Make It Rain (neutral but lowers SpA).\n\nGarchomp can't touch Rotom (Levitate) - Earthquake immune, Scaleshot neutral but weak-ish, and Rotom can Hydro Pump/Tbolt.\n\nGholdengo with Scarf: Shadow Ball does decent neutral damage. If Rotom outspeeds (Spe 95-151 vs my 149), it could Tbolt. But Gholdengo is Steel/Ghost - Tbolt is neutral (not SE like on Corviknight).\n\nActually, wait - Gholdengo is Steel/Ghost. Electric is neutral on Steel, resisted... no, Electric vs Steel = resisted. Ghost takes neutral from Electric. So Electric is neutral on Gholdengo.\n\nLet me think about who to bring in. Garchomp can Mega Evolve and has high attack. But can't hit Rotom with EQ. Scaleshot is dragon - neutral on Rotom (Water/Electric: Dragon neutral on both). \n\nGholdengo with Scarf could fire Shadow Ball. If Scarf outspeeds Rotom, good. If Rotom is faster, it Tbolts for neutral damage.\n\nI think Gholdengo is safer - Scarf likely outspeeds, Shadow Ball does good damage. Let's bring in Gholdengo.\n\nActually, considering Mega Garchomp is my win condition, I should preserve it. Gholdengo can handle Rotom.\n\nSwitch to gholdengo.",
+      "note": "",
+      "tokens": 5731,
+      "latency_ms": 13165,
+      "cost_usd": 0.0009178400000000001,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: thunderbolt, 36% SWITCH: gholdengo, 24% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2363,
+      "latency_ms": 432,
+      "cost_usd": 9.9246e-05,
+      "probabilities": {
+        "MOVE: voltswitch": 0.24,
+        "MOVE: thunderbolt": 0.37,
+        "MOVE: willowisp": 0.01,
+        "MOVE: protect": 0.02,
+        "SWITCH: gholdengo": 0.36
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Scarfed Gholdengo (149 Spe) vs Rotom (95-151): may be outsped, but T-bolt is not very effective vs my Steel/Ghost, and Good as Gold blocks any Will-O-Wisp. Shadow Ball is neutral, reliable chip (Focus Blast only marginally stronger, 70% acc). Preserve Garchomp as last mon for late sweep vs their remaining toxapex/aegislash/corviknight/gholdengo.",
+      "hidden_reasoning": "Scarfed Gholdengo. Rotom-Wash is Electric/Water. Shadow Ball is neutral. Make It Rain is resisted 1/4x (Steel vs Water = 1/2, Steel vs Electric = 1/2 → 1/4). Focus Blast: Fighting vs Water = 1x, Fighting vs Electric = 1x → neutral, 120 BP but 70% accuracy.\n\nShadow Ball: 80 BP neutral. Focus Blast: 120 BP neutral at 70% accuracy. Expected power of Focus Blast = 120 * 0.7 = 84, slightly better than 80. But miss risk... Shadow Ball is safer and consistent.\n\nActually, wait — speed: my149 vs Rotom 95-151. Could be outsped. If Rotom outspeeds and uses Thunderbolt, it's super effective against... wait, Gholdengo is Steel/Ghost. Electric vs Steel = 1/2, Electric vs Ghost = 1x → 1/2x, neutral-ish (not very effective overall? Let's compute: Electric vs Steel = 0.5, Electric vs Ghost = 1.0 → combined 0.5 → \"not very effective\").\n\nHmm wait, in the log earlier: \"Opposing Rotom used Thunderbolt - It was super effective - Your Corviknight fainted\". Corviknight is Flying/Steel: Electric vs Flying = 2x, Electric vs Steel = 0.5x → 1x neutral. But log said super effective... Hmm, that's a discrepancy. Actually wait, Electric vs Flying is 2x, Electric vs Steel is 0.5x → net 1x = neutral. The log says super effective. Maybe the log is inconsistent, but I should trust... Actually maybe in this simulation it's treated differently. Regardless.\n\nAgainst Gholdengo (Steel/Ghost): Electric: Steel resists (0.5), Ghost takes 1 → 0.5, not very effective. But log said super effective against Corviknight which should be neutral. Hmm.\n\nAlternatively maybe Rotom has a different move. It revealed Thunderbolt. Let's just consider: if Rotom outspeeds and T-bolts Gholdengo, it does maybe 30-40%. Gholdengo at full HP can take it.\n\nKey decision: I'm scarfed. I should fire Shadow Ball (neutral, consistent). Or Trick to cripple Rotom with Choice Scarf? Trick would lock Rotom into a move — that could be very useful. If I Trick the Scarf onto Rotom, it becomes locked into Thunderbolt, which is not very effective vs Gholdengo and Garchomp (Ground resists... wait Garchomp is Dragon/Ghost? No — Garchomp is Dragon/Ground here? The listing says \"garchomp (Dragon/Ghost)\" — interesting, Dragon/Ghost, that's odd (probably a modified format). Electric vs Dragon = 0.5, Electric vs Ghost = 1 → 0.5.\n\nHmm, but Trick: Good as Gold makes ME immune to status moves, but Trick is used by me on the foe — that's fine. Wait, does Good as Gold block the opponent's status moves against me? Yes, \"This Pokemon is immune to Status moves.\" So I can't be tricked/taunted etc.\n\nTrick would give Rotom my Choice Scarf and give me Rotom's item (unknown). That locks Rotom into Thunderbolt which is not very effective against both my mons. That seems strong. But I lose Scarf, becoming149 speed, potentially outsped by their last mon.\n\nAlternatively just Shadow Ball for damage.\n\nConsider: Their remaining mon is unknown (aegislash, toxapex, corviknight, gholdengo). Scarf Gholdengo is my main speed control. Garchomp can Mega? \"Mega Evolution available: No\" — hmm, that says No. Wait, that's weird — garchompite is held but Mega Evolution available: No? Maybe mega was already used? Actually earlier turns didn't show mega. Hmm, \"Mega Evolution available: No\" — perhaps because Garchomp isn't active? Or because mega already happened? Actually in the first turn I might have mega evolved... log doesn't show. Let's just note it.\n\nActually the LEGAL ACTIONS don't include [MEGA] markers, so mega isn't available this turn (probably because Gholdengo is active, and Garchomp's mega... hmm, actually mega should be available when Garchomp is in). The status says \"Mega Evolution available: No\". So mega can't be used. Maybe it was already used (some formats one mega per battle) — but Garchomp hasn't been out. Or maybe the simulator tracks mega only when the holder is active; since Gholdengo is active, mega not available. Yes, likely that.\n\nPlan: Shadow Ball for consistent damage. If Rotom is bulky, Shadow Ball does maybe 35-45%. Two-shot. But if Rotom outspeeds, I take a T-bolt first (~30%).\n\nTrick: locking Rotom into Thunderbolt is great long-term, but I lose my Scarf which is essential for outspeeding whatever remains (their last mon could be Dragapult-like fast... their remaining options are aegislash, toxapex, corviknight, gholdengo — all slow-ish except Gholdengo at 149 max). Actually my Gholdengo at 149 naturally already outspeeds most of those (Gholdengo max 149, tie). Toxapex slow, Corviknight slow, Aegislash slow. So Scarf is less critical vs those! But their active Rotom could be fast (up to 151).\n\nHmm, if I Trick Rotom into Scarf, it locks into Thunderbolt, and I get Rotom's item (probably Leftovers or Choice... unknown). Losing my Scarf means speed ties with opposing Gholdengo (149 vs up to 149) — risky.\n\nAlternative: Shadow Ball now. Rotom likely switches or uses Hydro Pump/Volt Switch.\n\nI think the aggressive consistent play: Shadow Ball. It's neutral, hits everything on their team except... Aegislash (Steel/Ghost: Ghost vs Steel = 0.5, vs Ghost = 2 → 1x neutral), Toxapex (Poison/Water: Ghost neutral), Corviknight (Steel/Flying: Ghost neutral... Ghost vs Steel 0.5, vs Flying 1 → 0.5, resisted), Gholdengo (Steel/Ghost: 0.5*2 = 1 neutral). So Shadow Ball is good coverage generally.\n\nAlso consider Focus Blast for damage: 120 BP neutral, 70% acc. Expected slightly higher. But missing a T-bolt reply turn could be costly. Also, Focus Blast would be better vs their incoming Toxapex? Fighting vs Poison = 2x, vs Water = 1 → 2x super effective. Hmm, if they switch to Toxapex, Focus Blast would be super effective. But Shadow Ball vs Toxapex: Ghost vs Poison 1, vs Water 1 → neutral.\n\nBut they're unlikely to switch Rotom out into Toxapex when Rotom has momentum. Actually Rotom might Volt Switch — but only Thunderbolt revealed.\n\nI'll go Shadow Ball — reliable chip, and if Scarf Rotom... actually if Rotom outspeeds me and I'm scarfed at 149, Rotom max 151 — a small chance it outspeeds. Even so, T-bolt is not very effective vs Gholdengo.\n\nWait, but the log said T-bolt was \"super effective\" on Corviknight (should be neutral). If the simulator considers it SE on Corviknight... maybe it treats Electric vs Flying2x and Steel... maybe Steel resists only 0.5...2*0.5=1. Odd. Unless Corviknight here is pure Flying? No, it's Flying/Steel. Anyway.\n\nFor Gholdengo Steel/Ghost: 0.5 * 1 = 0.5 → NVE. Fine.\n\nLet's decide: MOVE: shadowball.\n\nActually, one more consideration: could Rotom use Will-O-Wisp? Good as Gold blocks status moves targeting me! Great — Gholdengo is immune to Will-O-Wisp. So Shadow Ball is quite safe. If Rotom outspeeds and T-bolts, ~30%; I fire back ~40%.\n\nDecision: shadowball.\n\nNotes should be ≤60 words, carrying plan forward.",
+      "note": "",
+      "tokens": 4591,
+      "latency_ms": 34144,
+      "cost_usd": 0.0009198,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: thunderbolt, 36% SWITCH: gholdengo, 22% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2435,
+      "latency_ms": 429,
+      "cost_usd": 0.00010227,
+      "probabilities": {
+        "MOVE: voltswitch": 0.22,
+        "MOVE: thunderbolt": 0.4,
+        "MOVE: willowisp": 0.0,
+        "MOVE: protect": 0.02,
+        "SWITCH: gholdengo": 0.36
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom at 52%; Shadow Ball did ~46% last turn so may not KO — but I survive another T-bolt (would leave ~12 HP) and finish next turn. Switching Garchomp risks T-bolt/Will-O-Wisp and Garchomp can't touch Levitate Rotom with EQ. Spam Shadow Ball to remove Rotom, preserve Garchomp for their last mon (toxapex/aegislash/corviknight/gholdengo).",
+      "hidden_reasoning": "Rotom at 52%, Shadow Ball did ~46% last turn (from 100 to 46... actually Rotom healed, so Shadow Ball did about 46%). Another Shadow Ball should KO. But if Rotom outspeeds, T-bolt does ~26% (87→61... wait it did 75 HP damage, 87 was after? Gholdengo at 87/162 after taking T-bolt. So T-bolt did ~26% of my HP... actually 162-87=75, that's 46% of my HP. Hmm, wait: Gholdengo at 87/162 after T-bolt. So T-bolt did 75 damage from 162. That's 46%.\n\nIf Rotom outspeeds and uses T-bolt again, I go to 12/162 — survive, then Shadow Ball KOs. If I'm faster, Shadow Ball KOs first (46% damage vs 52% HP — might not KO!). Shadow Ball did 46% last time (100→46 before Leftovers heal to 52). So 52% - another 46% = 6%. Rotom survives with ~6% and Leftovers heals it.\n\nHmm, so Shadow Ball might not KO. But Rotom would be at 6% + Leftovers. Then next turn another Shadow Ball finishes it.\n\nAlternatively switch to Garchomp — but Rotom can T-bolt Garchomp (super effective) or Will-O-Wisp. Garchomp at 183 HP, T-bolt would do significant damage. Risky.\n\nActually, if I'm faster, Shadow Ball brings Rotom to ~6%, Rotom T-bolts me (46%), I'm at ~12 HP. Next turn Shadow Ball KOs. If Rotom is faster, T-bolt first (I go to 12), then Shadow Ball (Rotom to 6%). Either way I survive at 12 HP and Rotom at ~6%.\n\nWait — but Focus Blast? Only legal action is shadowball or switch.\n\nActually, could Rotom have Hydro Pump? It revealed only T-bolt. If Rotom uses Hydro Pump, that's neutral on Gholdengo and could do more. But it's been spamming T-bolt.\n\nShadow Ball is the play. Even if it doesn't KO, I survive and finish next turn. Preserve Garchomp for last mon.\n\nActually wait — if Rotom is faster and uses T-bolt, I survive at 12 HP. Then Shadow Ball. Rotom at 6% + Leftovers. Next turn I'm faster? Scarf 149 vs Rotom 95-151. If Rotom is faster (151), it outspeeds and KOs me with T-bolt at 12 HP. Then Garchomp comes in.\n\nHmm, so I might lose Gholdengo. But Garchomp can then handle Rotom? No — Levitate blocks EQ, and Rotom can T-bolt Garchomp super effectively. Garchomp would need Scale Shot... that's Dragon, neutral, 25 BP × hits. Not great.\n\nActually Mega Garchomp — but \"Mega Evolution available: No\"? That's odd. Oh wait, maybe it means already mega evolved or... no, Garchomp hasn't mega evolved. Let me re-read: \"Mega Evolution available: No\" — hmm, that's strange. Maybe the format doesn't allow it here, or it's already used? Actually maybe it's a display quirk. But I should trust it.\n\nIf Mega isn't available, Garchomp with EQ can't hit Rotom (Levitate). Scale Shot is weak. Swords Dance + Scale Shot could work but T-bolt hurts.\n\nBest play: Shadow Ball now. Try to KO Rotom with Gholdengo.\n\nLet me just Shadow Ball.",
+      "note": "",
+      "tokens": 3575,
+      "latency_ms": 28237,
+      "cost_usd": 0.000533,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: shadowball, 37% MOVE: poltergeist, 4% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2447,
+      "latency_ms": 418,
+      "cost_usd": 0.000102774,
+      "probabilities": {
+        "MOVE: poltergeist": 0.37,
+        "MOVE: shadowball": 0.55,
+        "MOVE: protect": 0.04,
+        "MOVE: nastyplot": 0.04
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mirror match: my Scarf Gholdengo (eff. Spe ~223) likely outspeeds theirs unless also scarfed. Shadow Ball is STAB super-effective from my 185 SpA — should KO or nearly KO. If they outspeed and fire SE Shadow Ball I'm at 53%, may survive. Garchomp preserved as backup; note Mega Evolution shows unavailable, so Garchomp is base form. Fire Shadow Ball.",
+      "hidden_reasoning": "Mirror match: my Scarf Gholdengo at 149 Spe vs their Gholdengo 93-149. If they're unscarfed max speed they tie at 149; if scarfed too, tie. Shadow Ball is super effective. Their Shadow Ball would also be super effective on me — I'm at 87/162 (54%). A super effective Shadow Ball from their Gholdengo (SpA 137-203) would likely KO me from 53%.\n\nIf I outspeed (scarf guarantees at least tie... actually if they're not scarfed, my 149*1.5 = 223.5, I definitely outspeed). Wait — I have choicescarf, so my effective speed is 149 * 1.5 = ~223. Their max possible is 149 unscarfed or 149*1.5 if scarfed. So unless they're also scarfed, I outspeed easily.\n\nShadow Ball super effective should KO their Gholdengo from 100%. My SpA is 185, Shadow Ball 80 BP * 2 = 160 effective. Against their SpD 99-157... should do solid damage. Let me estimate: 185 SpA, 80 BP STAB... wait Shadow Ball is STAB for me (Ghost). So 80 BP * 1.5 STAB * 2 SE = 240 effective power. Against ~128 SpD (neutral 0 IV)... should easily KO or come close.\n\nActually let me just fire Shadow Ball — it's super effective STAB from 185 SpA. Should KO.\n\nIf they outspeed (both scarfed tie), I might faint. But switching to Garchomp risks a super effective hit too (Ghost SE on... no, Ghost is neutral on Dragon/Ground). Actually Shadow Ball vs Garchomp is neutral. But then Garchomp can't hit back well without Mega... wait, \"Mega Evolution available: No\" — hmm, that's odd. Maybe already used? No, it says available: No. So Garchomp can't mega evolve?\n\nRegardless, Shadow Ball with my Gholdengo is the strong play. Fire it.",
+      "note": "",
+      "tokens": 3272,
+      "latency_ms": 3043,
+      "cost_usd": 0.00047666,
+      "probabilities": null
+    }
+  ]
+}

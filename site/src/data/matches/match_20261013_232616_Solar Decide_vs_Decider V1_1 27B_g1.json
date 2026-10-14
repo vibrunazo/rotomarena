@@ -1,0 +1,479 @@
+{
+  "id": "match_20261013_232616_Solar Decide_vs_Decider V1_1 27B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261013",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p2",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 8.96,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|Perplexity Decider V1.1 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Delphox, L50, M|",
+    "|poke|p1|Glimmora, L50, F|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Roserade, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Chandelure, L50, M|",
+    "|poke|p2|Whimsicott, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Rotom",
+    "|-damage|p1a: Rotom|50/125",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|49/183",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|50/125",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|49/183",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|turn|5",
+    "|",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Tauros",
+    "|-damage|p1a: Tauros|68/150",
+    "|move|p1a: Tauros|Giga Impact|p2a: Dragapult",
+    "|-immune|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Tauros",
+    "|-damage|p1a: Tauros|0 fnt",
+    "|faint|p1a: Tauros",
+    "|",
+    "|win|Perplexity Decider V1.1 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 39% BRING: dragapult, 19% BRING: whimsicott, 16% BRING: gholdengo\nPick 2: 28% BRING: gholdengo, 24% BRING: palafin, 21% BRING: chandelure\nPick 3: 29% BRING: chandelure, 28% BRING: palafin, 23% BRING: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5637,
+      "latency_ms": 1814,
+      "cost_usd": 0.00011274000000000001,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 66% BRING: garchomp, 19% BRING: rotom, 6% BRING: roserade\nPick 2: 49% BRING: rotom, 23% BRING: glimmora, 11% BRING: roserade\nPick 3: 64% BRING: taurospaldeablaze, 18% BRING: delphox, 10% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6449,
+      "latency_ms": 2833,
+      "cost_usd": 0.00032245,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "88% MOVE: dragonpulse, 5% MOVE: shadowball, 3% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1971,
+      "latency_ms": 484,
+      "cost_usd": 3.942e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.8779490402489579,
+        "MOVE: shadowball": 0.05083430883487135,
+        "MOVE: flamethrower": 0.002925579444552712,
+        "MOVE: phantomforce": 0.03402370351933219,
+        "SWITCH: gholdengo": 0.030088043622142784,
+        "SWITCH: chandelure": 0.004179324330143021
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% SWITCH: rotom, 17% MOVE: stealthrock, 17% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2242,
+      "latency_ms": 664,
+      "cost_usd": 0.0001121,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.135374,
+        "MOVE: sandstorm": 0.030206,
+        "MOVE: stealthrock": 0.173824,
+        "MOVE: stoneedge": 0.014268,
+        "SWITCH: rotom": 0.472503,
+        "SWITCH: taurospaldeablaze": 0.173824
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% MOVE: dragonpulse, 3% SWITCH: gholdengo, 2% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1869,
+      "latency_ms": 525,
+      "cost_usd": 3.738e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9502752197278037,
+        "SWITCH: gholdengo": 0.031227785657974853,
+        "SWITCH: chandelure": 0.01849699461422157
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "68% SWITCH: garchomp, 13% SWITCH: taurospaldeablaze, 8% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2293,
+      "latency_ms": 919,
+      "cost_usd": 0.00011465,
+      "probabilities": {
+        "MOVE: discharge": 0.081617,
+        "MOVE: electricterrain": 0.043686,
+        "MOVE: risingvoltage": 0.018211,
+        "MOVE: voltswitch": 0.038553,
+        "SWITCH: garchomp": 0.683369,
+        "SWITCH: taurospaldeablaze": 0.134563
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 1% SWITCH: gholdengo, 1% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1942,
+      "latency_ms": 483,
+      "cost_usd": 3.884e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9879005542529089,
+        "SWITCH: gholdengo": 0.006763831417245833,
+        "SWITCH: chandelure": 0.005335614329845196
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% SWITCH: rotom, 27% SWITCH: taurospaldeablaze, 13% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2326,
+      "latency_ms": 868,
+      "cost_usd": 0.0001163,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.128331,
+        "MOVE: sandstorm": 0.032447,
+        "MOVE: stealthrock": 0.099944,
+        "MOVE: stoneedge": 0.01968,
+        "SWITCH: rotom": 0.44792,
+        "SWITCH: taurospaldeablaze": 0.271677
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "82% SWITCH: taurospaldeablaze, 18% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2010,
+      "latency_ms": 875,
+      "cost_usd": 0.0001005,
+      "probabilities": {
+        "SWITCH: garchomp": 0.182426,
+        "SWITCH: taurospaldeablaze": 0.817574
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "66% MOVE: dragonpulse, 24% SWITCH: gholdengo, 10% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2094,
+      "latency_ms": 521,
+      "cost_usd": 4.188e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.6625980071952374,
+        "SWITCH: gholdengo": 0.23592022605267055,
+        "SWITCH: chandelure": 0.1014817667520919
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "75% SWITCH: garchomp, 13% MOVE: gigaimpact, 8% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2355,
+      "latency_ms": 937,
+      "cost_usd": 0.00011775,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.129802,
+        "MOVE: highhorsepower": 0.037189,
+        "MOVE: ragingbull": 0.078729,
+        "MOVE: trailblaze": 0.007323,
+        "SWITCH: garchomp": 0.746958
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "64% MOVE: dragonpulse, 27% SWITCH: gholdengo, 10% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2147,
+      "latency_ms": 524,
+      "cost_usd": 4.294e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.6356485589320463,
+        "SWITCH: gholdengo": 0.26819762501517935,
+        "SWITCH: chandelure": 0.09615381605277427
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: gigaimpact, 41% MOVE: ragingbull, 12% MOVE: highhorsepower",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2366,
+      "latency_ms": 933,
+      "cost_usd": 0.0001183,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.412909,
+        "MOVE: highhorsepower": 0.1183,
+        "MOVE: ragingbull": 0.412909,
+        "MOVE: trailblaze": 0.055881
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "94% MOVE: dragonpulse, 4% SWITCH: gholdengo, 2% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2201,
+      "latency_ms": 482,
+      "cost_usd": 4.402e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9391739214758436,
+        "SWITCH: gholdengo": 0.039082684298797854,
+        "SWITCH: chandelure": 0.021743394225358696
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ragingbull",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% MOVE: ragingbull, 25% MOVE: gigaimpact, 15% MOVE: highhorsepower",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2409,
+      "latency_ms": 881,
+      "cost_usd": 0.00012045,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.249374,
+        "MOVE: highhorsepower": 0.151253,
+        "MOVE: ragingbull": 0.527926,
+        "MOVE: trailblaze": 0.071447
+      }
+    }
+  ]
+}

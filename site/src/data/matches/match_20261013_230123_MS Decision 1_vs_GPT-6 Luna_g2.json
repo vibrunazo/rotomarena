@@ -1,0 +1,354 @@
+{
+  "id": "match_20261013_230123_MS Decision 1_vs_GPT-6 Luna_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261013",
+  "players": [
+    {
+      "config_id": "microsoft_decision_1",
+      "display_name": "Microsoft-Decision-1",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "microsoft/microsoft-decision-1",
+      "quantization": null,
+      "username": "MS Decision 1",
+      "role": "p1",
+      "team": "Microsoft-Decision-1's team",
+      "model_key": "microsoft/microsoft-decision-1",
+      "autopilot_rate": 0.0,
+      "replay_name": "Microsoft-Decision-1"
+    },
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p2",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 4,
+  "duration_seconds": 29.59,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Microsoft-Decision-1||",
+    "|player|p2|GPT-6 Luna||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Greninja, L50, M|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Glimmora, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Dragonite|Dragonite, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Sucker Punch||[still]",
+    "|-fail|p1a: Dragapult",
+    "|move|p2a: Dragonite|Dragon Dance|p2a: Dragonite",
+    "|-boost|p2a: Dragonite|atk|1",
+    "|-boost|p2a: Dragonite|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|Sucker Punch|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|88/100",
+    "|move|p2a: Dragonite|Dragon Claw|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|turn|3",
+    "|",
+    "|move|p2a: Dragonite|Dragon Claw|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|-damage|p2a: Dragonite|75/100|[from] ability: Rough Skin|[of] p1a: Garchomp",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|4",
+    "|",
+    "|move|p2a: Dragonite|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 50% BRING: dragapult, 35% BRING: garchomp, 5% BRING: corviknight\nPick 2: 78% BRING: garchomp, 14% BRING: gholdengo, 4% BRING: corviknight\nPick 3: 78% BRING: gholdengo, 14% BRING: greninja, 7% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5439,
+      "latency_ms": 3276,
+      "cost_usd": 0.000228438,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragonite,kingambit,palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Lead Dragonite and preserve Multiscale for a Dragon Dance opening; Kingambit checks Dragapult and Gholdengo with Sucker Punch. Save Palafin to pressure Garchomp and opposing Palafin. Watch for faster Dragapult and Greninja.",
+      "hidden_reasoning": "**Selecting team strategy**\n\nI need to select three Pokémon: fast dragons, Gholdengo, Greninja, Corviknight, and Palafin. Maybe I should lead with Dragonite? Its Multiscale and Lumberry make it strong against lead Pokémon, except possibly Gholdengo. Kingambit could be useful as it can counter Dragapult, Gholdengo, and Greninja, though it's weak against fighting types. Palafin offers robust water coverage and Flip Turn options. Dragonite is great for setups, especially against Garchomp or Dragapult, but I must consider the composition carefully. Overall, choosing Dragonite, Kingambit, and Palafin feels solid!",
+      "note": "",
+      "tokens": 2165,
+      "latency_ms": 6561,
+      "cost_usd": 0.00040705,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: suckerpunch, 26% SWITCH: garchomp, 21% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1875,
+      "latency_ms": 487,
+      "cost_usd": 7.875e-05,
+      "probabilities": {
+        "MOVE: hex": 0.027818775022669825,
+        "MOVE: shadowball": 0.20555448924603809,
+        "MOVE: suckerpunch": 0.43515885714867253,
+        "MOVE: uturn": 0.04586540610469718,
+        "SWITCH: garchomp": 0.26393718870617994,
+        "SWITCH: gholdengo": 0.0216652837717425
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Set up Dragonite while Multiscale is intact; +1 Speed should outpace even max-Speed Dragapult. Keep Kingambit available for Ghost threats and Palafin for opposing Ground/Water threats.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2105,
+      "latency_ms": 4282,
+      "cost_usd": 0.0003388,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "69% MOVE: suckerpunch, 25% SWITCH: garchomp, 6% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1775,
+      "latency_ms": 627,
+      "cost_usd": 7.455e-05,
+      "probabilities": {
+        "MOVE: suckerpunch": 0.6896720844004278,
+        "SWITCH: garchomp": 0.2537161885621047,
+        "SWITCH: gholdengo": 0.05661172703746749
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is +1 Atk/+1 Spe and still has Multiscale; Dragonclaw threatens Dragapult, while its Sucker Punch is only dangerous if I attack. Keep Kingambit for Ghost threats and Palafin for Garchomp/opposing Palafin.",
+      "hidden_reasoning": "**Formulating a strategy**\n\nI’m considering using a neutral attack against Dragapult instead of something like Earthquake, since it won’t escape the move and doesn’t kill. Gholdengo would be super effective here! But wait, if Sucker Punch failed, they probably expect another attack, so I think Dragon Claw could be effective. Oh, and I should keep in mind that Multiscale halves the Sucker Punch damage. So my choice is Dragon Claw. Let's stick to the plan!",
+      "note": "",
+      "tokens": 2405,
+      "latency_ms": 7332,
+      "cost_usd": 0.000447925,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% SWITCH: garchomp, 20% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1671,
+      "latency_ms": 963,
+      "cost_usd": 7.0182e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.7981867801399694,
+        "SWITCH: gholdengo": 0.2018132198600306
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: dracometeor, 23% MOVE: swordsdance, 9% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1974,
+      "latency_ms": 516,
+      "cost_usd": 8.2908e-05,
+      "probabilities": {
+        "MOVE: dracometeor": 0.5415666024558562,
+        "MOVE: earthquake": 0.09411017536862014,
+        "MOVE: stealthrock": 0.09411017536862014,
+        "MOVE: swordsdance": 0.22575854769017606,
+        "SWITCH: gholdengo": 0.04445449911672744
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is +1 Atk/+1 Spe at 88% after KOing Dragapult; Dragon Claw should hit Garchomp super effectively. Preserve Kingambit for Ghost/Steel threats and Palafin for opposing Water/Ground threats. Opponent has one of Gholdengo, Greninja, Corviknight, or Palafin remaining.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2491,
+      "latency_ms": 5549,
+      "cost_usd": 0.00042455,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "70% MOVE: shadowball, 14% MOVE: recover, 9% MOVE: shadowpunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1982,
+      "latency_ms": 499,
+      "cost_usd": 8.3244e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.06526135485795359,
+        "MOVE: recover": 0.13815828931845342,
+        "MOVE: shadowball": 0.7016256447989188,
+        "MOVE: shadowpunch": 0.09495471102467433
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is +1 Atk/+1 Spe, at 127/168, and has already KOed Dragapult and Rough Skin Garchomp. Use super-effective Earthquake on Gholdengo while Dragonite outspeeds; beware a possible Air Balloon. Keep Kingambit and Palafin healthy for the opponent’s final Pokémon, likely Greninja, Corviknight, or Palafin.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2563,
+      "latency_ms": 4099,
+      "cost_usd": 0.00041405,
+      "probabilities": null
+    }
+  ]
+}
