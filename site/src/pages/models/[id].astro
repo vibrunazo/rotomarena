@@ -16,7 +16,7 @@ const llm = isModel(m);
 const currentBoards = boards.filter((b) => !b.archived && m.boards[b.id]);
 const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x));
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
-const matches = (await matchEntries()).filter((e) => e.data.players.some((p) => p.config_id === m.config_id));
+const matches = (await matchEntries()).filter((e) => !e.data.void_reason && e.data.players.some((p) => p.config_id === m.config_id));  // rated games only: voided ones aren't its record
 // Its own team in each bench (one per bench's current version)
 const drafts = (await getCollection('drafts')).map((e) => e.data).filter((d) => d.config_id === m.config_id);
 const benchTitle = (id: string | null) => benches.find((b) => b.id === id)?.title ?? '';
