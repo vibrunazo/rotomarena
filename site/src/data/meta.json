@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T00:57:15+00:00",
+  "generated_at": "2026-10-14T01:49:28+00:00",
   "game": "pokemon",
   "formats": [
     "gen9championsrotomarenabssregmb",
@@ -8,9 +8,10 @@
   "version": "c5",
   "versions": [
     "s4",
-    "c4",
+    "c5",
     "s1",
     "s2",
+    "c4",
     "c3",
     "c2",
     "c1"
@@ -38,6 +39,85 @@
       "draft_prompt": "63c78295eef1",
       "control_team": "opponent's",
       "decision_draft_prompt": "bad10b3b4a9e"
+    },
+    "c5": {
+      "version": "c5",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 8192,
+      "draft_max_output_tokens": 8192,
+      "turn_timeout": 7200.0,
+      "format": "gen9championsrotomarenabssregmb",
+      "thinking_exceptions": {
+        "claude_sonnet_5_5": 4096
+      },
+      "agent_versions": {
+        "pokechamp": 4
+      },
+      "provider_routing": {
+        "deepseek_v4_1_flash": [
+          "Fireworks",
+          "Novita",
+          "DeepInfra",
+          "Together"
+        ],
+        "claude_sonnet_5_5": [
+          "Anthropic"
+        ],
+        "claude_opus_5_5": [
+          "Anthropic"
+        ],
+        "claude_fable_5_1": [
+          "Anthropic"
+        ]
+      },
+      "team_mode": "draft",
+      "pick": 3,
+      "answer_attempts": 2,
+      "battle_state": 3,
+      "drafts": 3,
+      "draft_prompts": 2,
+      "notes_shown": 3,
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "battle_prompt": "8978284d4c8b",
+      "dex_text": "61e96483d90c",
+      "decision_prompt": "5869c554b249",
+      "draft_prompt": "09e628a45602",
+      "control_team": "opponent's",
+      "decision_draft_prompt": "d7c512fb79a3",
+      "thinking_budget": 4096
+    },
+    "s1": {
+      "version": "s1",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "fixed",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965"
+    },
+    "s2": {
+      "version": "s2",
+      "profile": "ladder",
+      "reasoning": "medium",
+      "max_output_tokens": 4096,
+      "turn_timeout": 7200.0,
+      "team_mode": "draft",
+      "teams": [
+        "balance",
+        "hyper_offense"
+      ],
+      "format": "gen9ou",
+      "battle_prompt": "ba3dda5d9965",
+      "draft_prompt": "3a8760325e8d"
     },
     "c4": {
       "version": "c4",
@@ -73,35 +153,6 @@
       "draft_prompt": "b0a500bd511d",
       "control_team": "opponent's",
       "decision_draft_prompt": "d7c512fb79a3"
-    },
-    "s1": {
-      "version": "s1",
-      "profile": "ladder",
-      "reasoning": "medium",
-      "max_output_tokens": 4096,
-      "turn_timeout": 7200.0,
-      "team_mode": "fixed",
-      "teams": [
-        "balance",
-        "hyper_offense"
-      ],
-      "format": "gen9ou",
-      "battle_prompt": "ba3dda5d9965"
-    },
-    "s2": {
-      "version": "s2",
-      "profile": "ladder",
-      "reasoning": "medium",
-      "max_output_tokens": 4096,
-      "turn_timeout": 7200.0,
-      "team_mode": "draft",
-      "teams": [
-        "balance",
-        "hyper_offense"
-      ],
-      "format": "gen9ou",
-      "battle_prompt": "ba3dda5d9965",
-      "draft_prompt": "3a8760325e8d"
     },
     "c3": {
       "version": "c3",
@@ -203,12 +254,12 @@
       "bench": null,
       "versions": [
         "s4",
-        "c4"
+        "c5"
       ],
       "anchor": "bonsai_2_27b",
       "archived": false,
-      "rated_matches": 959,
-      "models": 26
+      "rated_matches": 436,
+      "models": 41
     },
     {
       "id": "gen9ou-own-teams",
@@ -263,10 +314,25 @@
       "category": "Pokémon",
       "bench": "rotom-champ-bench",
       "versions": [
-        "c4"
+        "c5"
       ],
       "anchor": "gpt_oss_20b",
       "archived": false,
+      "rated_matches": 329,
+      "models": 40
+    },
+    {
+      "id": "champions-bss-own-teams-c4",
+      "title": "Champions BSS · own teams (c4)",
+      "description": "The fourth Champions version (retired 13 Oct): models saw the last few turns instead of the whole battle log, kept no notes from turn to turn, built one team instead of three, and thought within 2,048 tokens.",
+      "kind": "benchmark",
+      "category": "Pokémon",
+      "bench": "rotom-champ-bench",
+      "versions": [
+        "c4"
+      ],
+      "anchor": "gpt_oss_20b",
+      "archived": true,
       "rated_matches": 852,
       "models": 26
     },
@@ -325,13 +391,14 @@
       "status": "live",
       "boards": [
         "champions-bss-own-teams",
+        "champions-bss-own-teams-c4",
         "champions-bss-own-teams-c3",
         "champions-bss-own-teams-c2",
         "champions-bss-own-teams-c1"
       ],
       "main": "champions-bss-own-teams",
-      "rated_matches": 1217,
-      "models": 26
+      "rated_matches": 1546,
+      "models": 41
     },
     {
       "id": "rotom-gen9-bench",
@@ -435,9 +502,7 @@
     "games_per_set": 4,
     "precision": 100.0,
     "neighbour_repeats": 2,
-    "ceiling": {
-      "c5": 9
-    },
+    "ceiling": {},
     "provisional_games": 16,
     "max_autopilot": 0.5,
     "bootstrap_samples": 1000,
@@ -458,28 +523,28 @@
     {
       "name": "cheap",
       "low": 0.002,
-      "high": 0.01002
+      "high": 0.01188
     },
     {
       "name": "mid",
-      "low": 0.01002,
+      "low": 0.01188,
       "high": 0.08
     },
     {
       "name": "expensive",
       "low": 0.08,
-      "high": 0.14621
+      "high": 0.12274
     },
     {
       "name": "very expensive",
-      "low": 0.14621,
+      "low": 0.12274,
       "high": null
     }
   ],
-  "matches": 1398,
-  "rated_matches": 1371,
-  "void_matches": 27,
+  "matches": 1754,
+  "rated_matches": 1700,
+  "void_matches": 54,
   "retracted_matches": 55,
-  "turns": 40070,
-  "tokens": 96375978
+  "turns": 49779,
+  "tokens": 122098792
 }

@@ -213,16 +213,16 @@ benchmarks:
     bench: "rotom-champ-bench"
     category: "Pokémon"
     description: "Pokémon Champions singles under Regulation M-B: each model builds six from the regulation's list, with Champions' Stat Points and Mega Stones, and brings three of them to each battle."
-    versions: ["c4"]
+    versions: ["c5"]   # public from 13 Oct (c4 archived below)
     anchor: "gpt_oss_20b"   # local open weights, plays early and often (Bonsai plays last: c4 had no ratings for hours)
-  # c5's check run (13 Oct): played and rated, not on the site until it replaces c4 above
-  - id: "champions-bss-own-teams-c5"
-    title: "Champions BSS Reg M-B · own teams (c5)"
+  - id: "champions-bss-own-teams-c4"
+    title: "Champions BSS · own teams (c4)"
     bench: "rotom-champ-bench"
     category: "Pokémon"
-    versions: ["c5"]
+    description: "The fourth Champions version (retired 13 Oct): models saw the last few turns instead of the whole battle log, kept no notes from turn to turn, built one team instead of three, and thought within 2,048 tokens."
+    versions: ["c4"]
     anchor: "gpt_oss_20b"
-    hidden: true
+    archived: true
   - id: "champions-bss-own-teams-c3"
     title: "Champions BSS · own teams (c3)"
     bench: "rotom-champ-bench"
