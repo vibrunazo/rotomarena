@@ -1,0 +1,408 @@
+{
+  "id": "match_20261014_055725_Jev 1_13_vs_DeepSeek V4_1_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    },
+    {
+      "config_id": "deepseek_v4_1_flash",
+      "display_name": "DeepSeek V4.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "quantization": null,
+      "username": "DeepSeek V4.1",
+      "role": "p2",
+      "team": "DeepSeek V4.1 Flash's team",
+      "model_key": "deepseek/deepseek-v4.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "DeepSeek V4.1 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 224.17,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13||",
+    "|player|p2|DeepSeek V4.1 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Aegislash, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Garganacl, L50, F|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Annihilape, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, F|100/100",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|78/100",
+    "|-unboost|p2a: Kingambit|spd|1",
+    "|-damage|p1a: Dragapult|147/163|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|125/125",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Rotom",
+    "|-damage|p1a: Rotom|28/125",
+    "|",
+    "|-heal|p1a: Rotom|35/125|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|147/163",
+    "|turn|4",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|35/125",
+    "|turn|5",
+    "|",
+    "|move|p1a: Rotom|Volt Switch|p2a: Kingambit",
+    "|-damage|p2a: Kingambit|28/100",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|win|DeepSeek V4.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 44% BRING: dragapult, 16% BRING: aegislash, 16% BRING: gholdengo\nPick 2: 40% BRING: gholdengo, 20% BRING: rotomwash, 17% BRING: aegislash\nPick 3: 36% BRING: rotomwash, 27% BRING: aegislash, 21% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6439,
+      "latency_ms": 1486,
+      "cost_usd": 0.000270438,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,kingambit,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Lead Gholdengo to block Will-O-Wisp/Thunder Wave and set up Nasty Plot. Kingambit provides Sucker Punch priority for Dragapult/Gholdengo. Scarf Dragapult gives speed control and revenge killing. Watch for Aegislash King's Shield and Toxapex Regenerator.",
+      "hidden_reasoning": "We need choose 3 of 6. Opponent has Rotom-Wash, Aegislash, Toxapex, Corviknight, Dragapult, Gholdengo. We need to pick a strong core. Our team: Dragonite (Multiscale DD), Gholdengo (NP LO), Garganacl (Salt Cure wall), Kingambit (Sucker Punch), Annihilape (Bulk Up), Dragapult (Scarf).\n\nOpponent likely brings bulky stuff: Toxapex, Corviknight, Rotom-Wash. Maybe Dragapult or Gholdengo.\n\nWe want to break Toxapex/Corviknight. Gholdengo with Nasty Plot + Shadow Ball/Make It Rain handles Toxapex? Toxapex has high SpD. Make It Rain steel vs poison water is neutral. Shadow Ball ghost vs poison water neutral. But Gholdengo can NP and break. Garganacl Salt Cure helps vs Corviknight/Toxapex.\n\nKingambit with Black Glasses handles Gholdengo? Kingambit Sucker Punch vs Ghost is super effective. Also handles Dragapult (dark vs ghost). Annihilape handles Toxapex? Bulk Up + Rage Fist, Taunt to block Recover/Toxic.\n\nOur Dragonite is physical with DD, Multiscale. Could be good vs Corviknight? Ice Spinner? No, Ice Spinner hits Corviknight neutral (Flying/Steel takes neutral from Ice? Steel resists Ice, Flying neutral, so neutral). Earthquake hits Steel super? Ground vs Steel super, but Corviknight is Flying so Ground is immune? No, Corviknight Flying/Steel, Ground is immune (Flying). So Earthquake doesn't hit Corviknight. Ice Spinner neutral. ExtremeSpeed.\n\nDragapult scarf is fast, hits Ghost/Dragon. But opponent may have Gholdengo (steel/ghost) which resists Dragon.\n\nI think bring Gholdengo, Kingambit, Garganacl? Or Dragapult for speed control? Opponent's Dragapult may be fast, but ours is scarf so we outspeed all non-scarf.\n\nLet's consider: opponent's likely threats: Dragapult (fast, can be special or physical), Gholdengo (NP LO), Rotom-Wash (Will-O-Wisp, Volt Switch), Toxapex (Regenerator, Toxic), Corviknight (Iron Defense Body Press, Defog?).\n\nWe need to break Toxapex/Corviknight. Garganacl with Salt Cure + Iron Defense + Body Press is a good win condition. Gholdengo NP can break. Kingambit is strong with Sucker Punch and Supreme Overlord.\n\nMaybe bring: Gholdengo, Kingambit, Dragapult? But then no Garganacl for Toxapex. Toxapex walls Kingambit? Kingambit has Kowtow Cleave dark, Toxapex resists dark? Poison/Water: Dark neutral, Steel neutral. So Kingambit can hit Toxapex with Iron Head? Steel vs Poison/Water neutral. Not great. But Kingambit with Swords Dance can break.\n\nGholdengo with Nasty Plot + Shadow Ball hits Toxapex neutral, but Toxapex has Regenerator and Recover. Make It Rain steel neutral. Could be a stall war.\n\nGarganacl Salt Cure is super effective vs Toxapex? Rock vs Poison/Water: Rock is super effective against Water? No, Rock vs Water is neutral? Actually Rock is super effective against Flying, Bug, Fire, Ice. Rock vs Water: neutral. Rock vs Poison: neutral. So Salt Cure is neutral. But Salt Cure does residual damage (1/8 per turn) which bypasses Regenerator? It still chips. Garganacl with Iron Defense + Body Press can beat Corviknight? Corviknight is Flying/Steel, Body Press fighting vs Steel super effective? Fighting vs Steel super effective, vs Flying neutral (Flying resists Fighting? Actually Flying resists Fighting, so Fighting vs Flying/Steel: Steel is weak to Fighting, Flying resists Fighting, so neutral overall). Wait: Flying resists Fighting (0.5), Steel is weak to Fighting (2x), so 1x. So Body Press is neutral vs Corviknight. But Garganacl can boost Iron Defense to increase Body Press, and Corviknight Iron Defense too.\n\nAnnihilape with Bulk Up + Rage Fist is good vs Toxapex? Rage Fist ghost vs Poison/Water: ghost is neutral. But Annihilape can Taunt to block Toxic/Recover. Drain Punch fighting vs Poison/Water: neutral. But Annihilape has Defiant, so if opponent uses Defog or Intimidate, boosts. Not relevant.\n\nI think a solid core: Gholdengo (special breaker), Kingambit (physical breaker / priority), Garganacl (wall/stallbreaker). But we need speed control? Opponent's Dragapult could be faster than Gholdengo (base 142 vs 84? Actually Gholdengo base speed 84, Dragapult 142. Our Dragapult is scarf, so it outspeeds. But if we don't bring Dragapult, opponent's Dragapult outspeeds all. However, Kingambit has Sucker Punch to hit Dragapult. Gholdengo might be faster than Toxapex/Corviknight.\n\nLead: Gholdengo? Or Garganacl? Gholdengo can NP on Toxapex/Corviknight, but careful of Rotom-Wash Volt Switch. Garganacl is safe lead, can Salt Cure.\n\nMaybe bring: Gholdengo, Kingambit, Garganacl. Lead Gholdengo? Or Garganacl? I'll lead Gholdengo to threaten immediate pressure. But Gholdengo with Life Orb is fragile. Opponent might lead Rotom-Wash with Volt Switch or Will-O-Wisp. Gholdengo is immune to Will-O-Wisp? No, Good as Gold blocks status moves, so Will-O-Wisp is blocked. Volt Switch is an attack, so it works. Gholdengo can take a hit? Rotom-Wash SpA ~150, Volt Switch maybe not very strong. Gholdengo can Nasty Plot.\n\nAlternatively lead Garganacl, set up Salt Cure. Garganacl is very bulky, can handle Rotom-Wash, Toxapex, Corviknight. But Corviknight might have Defog or Iron Defense.\n\nI think bring: Gholdengo, Kingambit, Dragapult? No, Garganacl is better for Toxapex.\n\nLet's decide: BRING: gholdengo, garganacl, kingambit.\n\nLead: gholdengo. If opponent leads Rotom-Wash, we can NP or Shadow Ball. If they lead Toxapex, we NP. If they lead Corviknight, we NP or Make It Rain. If they lead Dragapult, we are in trouble because Dragapult outspeeds and can hit Gholdengo with Shadow Ball? Gholdengo resists Ghost? Steel resists Ghost? Actually Steel takes neutral from Ghost? Ghost vs Steel is neutral? Steel resists Ghost? No, Steel is weak to Ghost? Wait: Steel resists many types, but Ghost is neutral against Steel? Let's check: Steel weaknesses: Fire, Fighting, Ground. Resistances: Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Ghost is neutral. So Gholdengo takes neutral from Ghost. Dragapult's Shadow Ball would be neutral. But Gholdengo is slower, so Dragapult might hit first. However, Gholdengo can't do much back? Make It Rain steel vs Dragapult (Dragon/Ghost) is super effective? Steel vs Dragon: neutral? Actually Steel is neutral vs Dragon, Steel vs Ghost: neutral. So Make It Rain is neutral. Shadow Ball is super effective vs Ghost? Ghost vs Ghost: super effective. So Gholdengo can hit Dragapult with Shadow Ball, but Dragapult is faster. If Dragapult is scarf, it outspeeds. Our Gholdengo is not scarf. So Dragapult is a threat.\n\nMaybe better lead Kingambit? Kingambit with Sucker Punch can hit Dragapult. But if opponent leads Rotom-Wash, Kingambit is weak to? Rotom-Wash has Will-O-Wisp, which Kingambit doesn't like. Also Volt Switch. Kingambit can Swords Dance or Kowtow Cleave.\n\nActually, our team is somewhat slow. Opponent's Dragapult is a big threat. We have our own Dragapult with scarf to revenge kill. Maybe we should bring Dragapult as speed control. But then we drop one of the others. Which one? Gholdengo is good vs Toxapex/Corviknight. Kingambit is good vs Gholdengo/Dragapult. Garganacl is good vs physical attackers and stall. We can't have all.\n\nMaybe bring: Dragapult (scarf), Gholdengo, Kingambit. This gives speed control, special breaker, physical priority. But no Garganacl means Toxapex/Corviknight could be annoying. However, Gholdengo with Nasty Plot can break Toxapex? Let's calculate: Gholdengo SpA 185, Nasty Plot +2. Shadow Ball vs Toxapex: Toxapex SpD ~180, HP ~140. Shadow Ball damage: (80 BP * 2? no, ghost vs poison/water neutral) so 80 * (185/180) * 1.5? No, no STAB? Gholdengo is Steel/Ghost, so Shadow Ball gets STAB. So 80 * 1.5 = 120 BP. At +2, 240 BP. Toxapex HP 140, SpD 180. Damage roughly 240/180 * 0.5? Actually formula: (2*50/5+2)*BP*Atk/Def / 50 +2. At level 50: (22)*BP*Atk/Def /50 +2. For +2 SpA 185*2=370. So 22 * 120 * 370 / 180 / 50 +2 = 22*120=2640; *370=976800; /180=5426; /50=108.5 +2 = 110.5. Toxapex HP ~140, so it's a 2HKO. But Toxapex can Recover. If Gholdengo has Life Orb, it does more. So Gholdengo can break Toxapex. Corviknight: SpD ~120, HP ~190. Shadow Ball neutral? Ghost vs Steel/Flying: Steel resists Ghost? Actually Steel resists Ghost? No, Steel is neutral to Ghost. Flying is neutral. So Shadow Ball neutral. Make It Rain steel vs Steel/Flying: Steel resists Steel, so 0.5x. Not great. But Gholdengo can use Shadow Ball. Corviknight might have Iron Defense and Body Press, but Gholdengo is special, so Body Press doesn't hit it. Corviknight can't do much back except maybe Brave Bird? If it has Brave Bird, it could hit Gholdengo? Corviknight Atk ~120, Brave Bird vs Steel/Ghost: Flying vs Steel neutral? Flying vs Steel: Steel resists Flying? Actually Steel resists Flying. So Brave Bird is 0.5x. So Gholdengo walls Corviknight. So Gholdengo can set up NP on Corviknight and Toxapex.\n\nSo Gholdengo is a good breaker. Kingambit is good for Sucker Punch and hitting Gholdengo/Dragapult. Dragapult scarf gives speed control and can revenge kill.\n\nWhat about Rotom-Wash? Rotom-Wash can Volt Switch and Will-O-Wisp. Gholdengo blocks Will-O-Wisp. Rotom-Wash's Volt Switch is electric vs Steel/Ghost: Electric vs Steel is neutral? Actually Electric vs Steel is neutral? Steel resists Electric? No, Steel is weak to Electric? Wait: Steel does not resist Electric. Steel resists: Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. Electric is neutral. So Volt Switch does neutral. Rotom-Wash SpA ~150, Volt Switch 70 BP. Gholdengo SpD ~111, HP 164. Damage: 22*70*(150/111)/50+2 = 22*70=1540; *1.35=2079; /50=41.6+2=43.6. So about 44 damage. Gholdengo can take a few. So Gholdengo can set up on Rotom-Wash too. But Rotom-Wash might have Hydro Pump? Water vs Steel: Steel resists Water? No, Steel is weak to Water? Actually Steel does not resist Water. Water vs Steel is neutral? Wait: Steel resists Water? No, Water is neutral against Steel. So Hydro Pump would be neutral. But Rotom-Wash often runs Volt Switch, Hydro Pump, Will-O-Wisp, Thunder Wave/Pain Split. Gholdengo blocks Thunder Wave and Will-O-Wisp. So Gholdengo is a good answer to Rotom-Wash.\n\nSo Gholdengo is a strong lead. But if opponent leads Dragapult, Gholdengo is in trouble. Dragapult can Shadow Ball Gholdengo. But Gholdengo can also Shadow Ball Dragapult, but Dragapult is faster. So if opponent leads Dragapult, we should switch to Kingambit? Kingambit resists Ghost? Dark/Steel: Ghost vs Dark is 0.5? Ghost vs Dark: Dark is weak to Ghost? No, Dark is weak to Ghost? Actually Ghost is super effective against Ghost and Psychic. Dark is immune to Psychic, but Ghost vs Dark is neutral? Let's check: Dark is weak to Fighting, Bug, Fairy. Resists Dark, Ghost? No, Dark does not resist Ghost. Dark is immune to Psychic. Ghost is neutral against Dark. So Kingambit takes neutral from Ghost. But Kingambit has Sucker Punch to hit Dragapult. However, Dragapult might U-turn out. So it's a guessing game.\n\nMaybe we lead Dragapult? Our Dragapult with scarf can U-turn to scout. But if we lead Dragapult, opponent might lead Toxapex or Corviknight, which wall it. Dragapult can U-turn out to Gholdengo. So a common lead is Dragapult scarf U-turn. But we only have 3 Pokémon, so we need to be careful.\n\nGiven the team, I think the best three are: Gholdengo, Kingambit, Dragapult. This covers special breaker, physical priority, and speed control. Garganacl is left out. But Garganacl is our only answer to opposing Kingambit? Opponent doesn't have Kingambit. They have Aegislash, Toxapex, Corviknight, Rotom-Wash, Dragapult, Gholdengo. Garganacl would be good vs Corviknight, Toxapex, Rotom-Wash. But Gholdengo handles those. Kingambit handles Gholdengo and Dragapult. Dragapult handles speed. So this seems balanced.\n\nBut what about Aegislash? Aegislash is Steel/Ghost. Kingambit's Sucker Punch is super effective? Dark vs Ghost: super effective. Dark vs Steel: neutral? Dark vs Steel is neutral? Actually Dark is neutral against Steel. So Dark vs Steel/Ghost: Ghost is weak to Dark? Dark vs Ghost: Dark is super effective against Ghost. So Sucker Punch is 2x vs Aegislash? Wait: Dark vs Ghost is super effective (2x). Dark vs Steel is 0.5x? Let's check: Dark is not very effective against Steel? Actually Dark is neutral against Steel? No, Dark is resisted by Steel? I think Steel resists Dark? Let's verify: Steel resists Normal, Grass, Ice, Flying, Psychic, Bug, Rock, Dragon, Steel, Fairy. It does not resist Dark. So Dark vs Steel is neutral. So Dark vs Steel/Ghost: Ghost weak to Dark (2x), Steel neutral, so 2x overall. So Kingambit's Sucker Punch is super effective vs Aegislash. But Aegislash in Shield Form has high defenses, but Kingambit can Swords Dance. Also Aegislash's Shadow Ball is neutral vs Kingambit? Ghost vs Dark/Steel: Ghost vs Dark neutral, vs Steel neutral, so neutral. But Kingambit's Sucker Punch only works if Aegislash attacks. Aegislash might use King's Shield to block. So it's tricky.\n\nGholdengo vs Aegislash: Gholdengo's Shadow Ball is super effective vs Aegislash (Ghost vs Ghost 2x). Make It Rain steel vs Aegislash: Steel vs Steel 0.5, vs Ghost neutral, so 0.5x. So Shadow Ball is better.\n\nDragapult vs Aegislash: Dragapult's Shadow Ball is super effective. But Dragapult is faster? Aegislash base speed 60, so Dragapult outspeeds. So Dragapult can hit Aegislash.\n\nSo our team can handle Aegislash.\n\nNow, what about Toxapex? Gholdengo can NP and Shadow Ball. But Toxapex might have Haze? Not listed. It has Regenerator. If it switches out, it regains HP. So we need to pressure it. Gholdengo with Life Orb can do significant damage. Kingambit can also hit Toxapex with Iron Head? Steel vs Poison/Water: neutral. Kowtow Cleave dark: neutral. So not great. Dragapult's Draco Meteor is Dragon vs Poison/Water: neutral. Shadow Ball neutral. So Gholdengo is the best bet.\n\nCorviknight: Gholdengo can NP and Shadow Ball. Corviknight can't do much back. But Corviknight might have U-turn or Brave Bird. If it has U-turn, it can pivot out. But Gholdengo can handle.\n\nSo I'll go with Gholdengo, Kingambit, Dragapult.\n\nLead: I think lead Gholdengo to threaten immediate NP. If opponent leads Dragapult, we can switch to Kingambit. If opponent leads Rotom-Wash, we can NP. If opponent leads Toxapex, we NP. If opponent leads Corviknight, we NP. So Gholdengo is a safe lead.\n\nAlternatively, lead Dragapult to U-turn scout. But if we lead Dragapult and opponent leads Rotom-Wash, Dragapult's Shadow Ball is neutral, but Rotom-Wash might Volt Switch. Dragapult can U-turn to Gholdengo. That's good. But if opponent leads Dragapult, our Dragapult is scarf, so we outspeed and can U-turn or Shadow Ball. But opponent's Dragapult might also be scarf? If both scarf, speed tie. Risky.\n\nI'll lead Gholdengo. It's slower, but it can set up NP. If opponent leads Dragapult, we are in trouble. But we can switch to Kingambit. Kingambit takes neutral from Shadow Ball, and can Sucker Punch. But if Dragapult uses U-turn, it can pivot. So it's a gamble.\n\nMaybe lead Kingambit? Kingambit can Sucker Punch Dragapult, but if opponent leads Rotom-Wash, Kingambit is weak to Will-O-Wisp? No, Kingambit is Dark/Steel, Will-O-Wisp is Fire? Will-O-Wisp is Fire type? Actually Will-O-Wisp is Fire type? No, Will-O-Wisp is Fire type? Wait, Will-O-Wisp is Fire type? No, Will-O-Wisp is Fire type? I think Will-O-Wisp is Fire type. Let me check: Will-O-Wisp is a Fire-type status move. Yes, it's Fire type. So Dark/Steel: Fire vs Steel is super effective! So Will-O-Wisp doesn't do damage, but it burns. Burn halves physical attack. So Kingambit would be crippled. Also Rotom-Wash can Volt Switch. So Kingambit is not a good lead against Rotom-Wash.\n\nSo Gholdengo is better lead because it blocks Will-O-Wisp and Thunder Wave.\n\nThus: BRING: gholdengo, kingambit, dragapult. Lead gholdengo.\n\nWait, we have 6 Pokémon, but we only bring 3. The order matters: first is lead. So BRING: gholdengo, kingambit, dragapult.\n\nLet's double-check if there's any reason to bring Garganacl instead of Dragapult. Garganacl is a great wall, but our team is offensive. Without Dragapult, we lack speed control and a way to revenge kill opponent's Dragapult. Kingambit's Sucker Punch is unreliable if opponent doesn't attack. So Dragapult is important.\n\nI'll go with that.\n\nNow, the decision is just the bring. Since it's team preview, the only legal action is BRING. So I'll output that.\n\nNotes: Plan: Lead Gholdengo to block status and set up Nasty Plot. Keep Kingambit for Sucker Punch on Dragapult/Gholdengo. Dragapult as scarf revenge killer. Watch for Aegislash's King's Shield. Toxapex can be broken by Gholdengo's Shadow Ball.\n\nDecision: BRING: gholdengo, kingambit, dragapult",
+      "note": "",
+      "tokens": 6590,
+      "latency_ms": 51805,
+      "cost_usd": 0.004044495,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "82% MOVE: shadowball, 8% SWITCH: gholdengo, 5% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2219,
+      "latency_ms": 390,
+      "cost_usd": 9.3198e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.82,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: protect": 0.02,
+        "MOVE: uturn": 0.02,
+        "SWITCH: gholdengo": 0.08,
+        "SWITCH: rotomwash": 0.05
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Switch to Kingambit to absorb Dragapult's Ghost/Dragon moves and threaten Sucker Punch. If they switch to a wall, set up Swords Dance. Keep Gholdengo for Rotom-Wash/Toxapex to block status. Watch for Fire Blast on Kingambit.",
+      "hidden_reasoning": "We need answer exact form. Need decide turn 1. We have Gholdengo vs opposing Dragapult. Need infer likely sets. Opponent brought 3 of 6: rotomwash, aegislash, toxapex, corviknight, dragapult, gholdengo. Lead Dragapult. Our Gholdengo. Need choose action.\n\nWe need plan. Gholdengo vs Dragapult: Dragapult likely physical or special? In Champions? Could be Choice Band/Specs? Our Gholdengo has Life Orb, 149 speed. Opposing Dragapult speed range 145-213. If max speed 213, outspeeds. If modest? Could be physical with 145? Dragapult common sets: Choice Specs/Scarf? In this meta maybe Dragon Darts, U-turn, Shadow Ball, Fire Blast, Thunder Wave? We have Good as Gold blocks status. Shadow Ball super effective on Dragapult. Make It Rain also neutral? Steel vs Dragon/Ghost: Steel neutral vs Dragon? Steel vs Ghost neutral? Actually Steel vs Dragon neutral, vs Ghost neutral. Shadow Ball Ghost vs Dragon/Ghost: Ghost is super effective vs Ghost, neutral vs Dragon? Ghost vs Dragon neutral? Ghost vs Dragon: neutral? Type chart: Ghost is super effective against Ghost and Psychic; not very effective against Dark; immune Normal. Dragon resists? Dragon doesn't resist Ghost. So Shadow Ball is super effective on Dragapult due Ghost typing. Good.\n\nIf we use Shadow Ball, if Dragapult faster and attacks, we may take damage. But Gholdengo bulky. If we Nasty Plot, we risk taking hit and maybe being KO? Dragapult special Shadow Ball vs Gholdengo: Ghost vs Steel? Ghost vs Steel is neutral? Ghost vs Steel: not very effective? Wait Steel resists Ghost? Type chart: Ghost is not very effective against Steel? Actually Ghost is neutral against Steel? Let's recall: Steel resists Normal, Flying, Rock, Bug, Steel, Grass, Ice, Dragon, Fairy, Psychic? No, Steel resists Normal, Flying, Rock, Bug, Steel, Grass, Ice, Dragon, Fairy, Psychic? Wait Psychic is resisted by Steel? Yes Steel resists Psychic. Ghost? Steel does NOT resist Ghost. Ghost is super effective vs Ghost and Psychic, neutral vs Steel. So Shadow Ball neutral on Gholdengo. Dragapult physical Phantom Force? Not likely.\n\nIf we Nasty Plot, we set up. But opponent could switch to Toxapex/Corviknight/Aegislash/Gholdengo. Gholdengo with Nasty Plot can break. But if Dragapult uses U-turn, it may pivot. We need decide.\n\nMaybe best to attack with Shadow Ball to damage Dragapult. If we Nasty Plot, we may get hit and then next turn we can attack. But if Dragapult is Choice Specs, it might do heavy damage. Our Gholdengo has 164 HP, 111 SpD. Dragapult SpA max 167. Shadow Ball 80 BP, STAB? Dragapult Ghost STAB. Damage: 167 SpA vs 111 SpD, 80*1.5=120. Approx (42*167*120/111/50)+2 = (42*167*120)/(111*50)= (841,680)/(5550)=151.6? Wait formula: ((2*50/5+2)*Power*Atk/Def)/50 +2 = (22*120*167/111)/50+2 = (22*20040/111)/50+2 = (440880/111)/50+2 = 3971/50+2=79.4+2=81.4. So ~81 damage. Gholdengo 164 HP, so ~50%. If Life Orb? Opponent item unknown. If Choice Specs, 1.5x = 122 damage. Could 2HKO. If we Nasty Plot, we take ~50-75%, then next turn we can Shadow Ball. But if Dragapult is faster, it attacks again and we might faint before attacking? Actually turn order: if Dragapult faster, it attacks first. Turn 1: we Nasty Plot, it attacks. Turn 2: it attacks first, we might faint before using Shadow Ball. So risky.\n\nIf we Shadow Ball turn 1: if we are faster, we attack first. If we are slower, it attacks first, then we attack. Either way we get damage. Shadow Ball from Gholdengo: SpA 185, Life Orb 1.3, STAB? Gholdengo Ghost STAB. Power 80*1.5=120. Against Dragapult SpD 85-139. If 85, damage: 22*120*185/85/50+2 = (22*22200/85)/50+2 = (488400/85)/50+2 = 5745/50+2=114.9+2=116.9. Life Orb 1.3 = 152. So likely OHKO? Dragapult HP 163-195. If SpD 85, 152 damage, not OHKO if HP 163. But if SpD lower? Actually Dragapult SpD min 85. 152 < 163. So not OHKO. If we Nasty Plot then Shadow Ball next turn, +2 SpA: 185*2=370? Actually +2 doubles. Damage ~ 2x = 304, OHKO. But risk.\n\nMaybe switch to Kingambit? Kingambit resists Ghost? Dark/Steel: Ghost vs Dark is not very effective? Ghost vs Dark: not very effective (0.5). Ghost vs Steel neutral. So Ghost does 0.5x to Kingambit. Also Sucker Punch priority. If we switch to Kingambit, we take hit on switch? Dragapult might use U-turn or Shadow Ball. Kingambit can then Sucker Punch. But Dragapult may switch out. Also Kingambit is slow, but Sucker Punch priority. If Dragapult attacks, Sucker Punch works. If it uses U-turn, Sucker Punch fails? Sucker Punch only works if target is attacking. U-turn is an attack, so Sucker Punch would hit before U-turn? Actually Sucker Punch has +1 priority, U-turn has 0, so Sucker Punch hits first. But if Dragapult switches, Sucker Punch fails. So switching to Kingambit might be good to threaten.\n\nBut we have Gholdengo out. Opponent might expect us to attack. We need choose best.\n\nLet's think about opponent's team: Rotom-Wash, Aegislash, Toxapex, Corviknight, Dragapult, Gholdengo. Our team: Gholdengo, Kingambit, Dragapult. We need bring 3? Already brought? At team preview we chose? The log says \"Leads: Opposing Dragapult came in, Your Gholdengo came in\". So we already brought Gholdengo, Kingambit, Dragapult? Actually our team in battle is those three. So we have only these three. Opponent has 6 but brought 3? The log says \"The opponent brought 3 of the 6 it showed at team preview: 2 more are still to come in, from: rotomwash, aegislash, toxapex, corviknight, gholdengo\". So opponent has 3 total, one is Dragapult, two unknown from list. So we need to handle.\n\nOur Gholdengo is Life Orb, Nasty Plot, Shadow Ball, Make It Rain, Recover. Kingambit Black Glasses, Sucker Punch, Kowtow Cleave, Swords Dance, Iron Head. Dragapult Choice Scarf, Shadow Ball, Draco Meteor, U-turn, Fire Blast.\n\nOpponent's Dragapult could be physical or special. If physical, it might have Dragon Darts, U-turn, Phantom Force, Fire Blast? But we don't know.\n\nGiven Gholdengo has Good as Gold, it blocks status moves like Will-O-Wisp, Thunder Wave. So opponent's Dragapult might not carry status. It might be Choice Specs or Life Orb.\n\nWhat is best turn 1? I think using Shadow Ball is safe and does big damage. If we Nasty Plot, we risk being 2HKO. But if we Shadow Ball, we might not KO, but we damage. Then next turn we can decide. However, if Dragapult is faster and uses Shadow Ball, we take ~50%, then we attack and deal ~150, leaving it low. Then next turn it might attack again and we might faint? Actually if we take 50% turn 1, we are at ~50%. Turn 2, if it attacks first, we take another 50% and faint before we can attack. So if we Shadow Ball turn 1, we attack after it if it's faster. So turn 1: it attacks, we attack. Turn 2: it attacks first, we faint. So we trade 1 for 1? We deal ~150, it deals ~80. If it's Choice Specs, it deals ~120. Turn 1: it attacks (120), we attack (150). We are at 44 HP. Turn 2: it attacks first, we faint. We didn't KO it. So we lose Gholdengo and it survives with ~13 HP. Not good.\n\nIf we Nasty Plot turn 1: it attacks (120), we Nasty Plot. Turn 2: it attacks first, we faint. We did nothing. Bad.\n\nIf we switch to Kingambit turn 1: Dragapult attacks Gholdengo? Actually switch happens before moves? In Pokémon, switching has priority +6? Actually switch happens before all moves. So we switch Gholdengo out, Kingambit in. Then Dragapult's move targets Kingambit. If it uses Shadow Ball, it's not very effective (0.5x). Damage: 167 SpA vs Kingambit SpD 107. Shadow Ball 80*1.5=120, but 0.5x = 60. Formula: 22*60*167/107/50+2 = (22*10020/107)/50+2 = (220440/107)/50+2 = 2060/50+2=41.2+2=43.2. If Choice Specs, ~65. Kingambit has 207 HP, so takes ~43-65. Then next turn, Kingambit can Sucker Punch. If Dragapult is faster, it will attack, Sucker Punch goes first (priority +1) and hits. Sucker Punch from Kingambit: Atk 205, Black Glasses 1.2x, STAB Dark 1.5x, power 70. Against Dragapult Def 85-139. If Def 85: 22*70*205/85/50+2 = (22*14350/85)/50+2 = (315700/85)/50+2 = 3714/50+2=74.3+2=76.3. STAB 1.5 = 114.5. Black Glasses 1.2 = 137.4. Not OHKO (HP 163-195). If Dragapult is at full, Sucker Punch does ~137. Then Dragapult attacks, does maybe 0? Actually Dragapult's Ghost move is 0.5x, so ~43. Kingambit survives. Then next turn, Kingambit can Sucker Punch again? But Dragapult might switch. If it stays, Sucker Punch again does ~137, total 274, KO. But Dragapult might switch to a counter. So switching to Kingambit seems good: it walls Ghost moves and threatens Sucker Punch.\n\nBut what if Dragapult uses U-turn? U-turn is Bug, vs Kingambit: Bug vs Dark is super effective? Bug vs Dark: super effective? Type chart: Bug is super effective against Psychic, Dark, Grass. Yes Bug is super effective against Dark. But Kingambit is Dark/Steel. Bug vs Dark = 2x, Bug vs Steel = 0.5x? Actually Bug vs Steel: not very effective (0.5). So overall Bug vs Dark/Steel = 2 * 0.5 = 1x neutral. So U-turn does neutral damage. If Dragapult uses U-turn, it will switch out after dealing damage. Sucker Punch would hit before U-turn? Sucker Punch has +1 priority, U-turn has 0. So Sucker Punch hits first, then U-turn. But if Dragapult is switching, Sucker Punch still hits because U-turn is an attack. So we get damage and it switches. That's fine.\n\nWhat if Dragapult uses Dragon Darts? Dragon vs Kingambit: Dragon vs Steel = 0.5x, Dragon vs Dark = 1x? Actually Dragon vs Steel is 0.5, Dragon vs Dark is 1. So overall 0.5x. So Kingambit resists Dragon too. So Kingambit is a great switch-in.\n\nThus switching to Kingambit seems best. But wait, we have Gholdengo out. If we switch, we lose momentum? But we can bring Gholdengo back later. Kingambit can set up Swords Dance if they switch to a wall. But we need to be careful of Toxapex (Scald burn? But Kingambit is Steel, immune to poison, but Scald can burn. Toxapex has Regenerator. Corviknight has Body Press? Aegislash has King's Shield. Rotom-Wash has Will-O-Wisp? But Gholdengo blocks status. Kingambit doesn't. So if they switch to Rotom-Wash, it might Will-O-Wisp Kingambit. But we can switch back to Gholdengo to block. So it's a mind game.\n\nGiven turn 1, opponent's Dragapult is active. They might expect us to attack with Gholdengo. If we switch to Kingambit, we gain favorable matchup. I think switch to Kingambit is strong.\n\nAlternatively, we could use Make It Rain? Steel vs Dragapult neutral, but Make It Rain lowers our SpA. Not ideal.\n\nShadow Ball is super effective. But as analyzed, if we stay in, we might get 2HKO'd. However, if we are faster, we attack first. Our Gholdengo speed 149. Opposing Dragapult speed range 145-213. If it's not max speed, we might be faster. If we are faster, we Shadow Ball first. If we deal ~150, and it survives with ~13 HP, then it attacks and deals ~80. We are at ~84 HP. Turn 2: we are faster again? If we are faster, we attack first and KO it. So if we are faster, we win the exchange. If we are slower, we lose. So it's a speed tie gamble. Our Gholdengo has 149 speed. Dragapult's base speed is 142. At level 50, max speed with positive nature and 252 EVs is 213. But if it's not max speed, it could be lower. Common Dragapult sets: Choice Specs often run Timid max speed (213). Choice Band often Jolly max speed (213). But some run Modest (194) or Adamant (194). If it's Modest, speed 194, still faster than 149. If it's not invested, speed 145? Actually base 142, neutral no EVs: 142? At level 50, base 142 neutral 0 EVs: 142? Let's calculate: base 142, level 50, IV 31, EV 0, neutral: HP? Speed = floor((2*142+31+0)*50/100)+5 = floor((284+31)*0.5)+5 = floor(315*0.5)+5 = 157+5=162. So even with 0 EVs neutral, it's 162, faster than 149. So opposing Dragapult will almost certainly be faster than our Gholdengo unless it has negative nature or 0 IVs. So we are slower. Thus if we stay in, we take hit first, then attack. Turn 2, it attacks first again and we faint. So staying in is bad.\n\nTherefore, switch to Kingambit is the best move. Kingambit resists Ghost and Dragon, and can threaten with Sucker Punch. Also, if they switch out, we can set up Swords Dance or attack.\n\nLet's check legal actions: SWITCH: kingambit is legal. So decision: SWITCH: kingambit.\n\nBut wait, we need to consider if opponent might use a move that hits Kingambit super effectively. Dragapult's moves: likely Shadow Ball, Draco Meteor, Fire Blast, U-turn. Fire Blast vs Kingambit: Fire vs Steel = 2x, Fire vs Dark = 1x? Actually Fire vs Dark is 1x. So Fire Blast is 2x on Kingambit. That could hurt. Dragapult SpA 167, Fire Blast 110 BP. Damage: 22*110*167/107/50+2 = (22*18370/107)/50+2 = (404140/107)/50+2 = 3777/50+2=75.5+2=77.5. 2x = 155. Kingambit has 207 HP, so takes ~155. That's a lot. If Choice Specs, 1.5x = 232, OHKO. So if Dragapult has Fire Blast and is Choice Specs, switching Kingambit in on Fire Blast could be bad. But would Dragapult use Fire Blast on Gholdengo? Gholdengo is Steel/Ghost, Fire is super effective? Fire vs Steel = 2x, Fire vs Ghost = 1x. So Fire Blast is 2x on Gholdengo too. So if they predict switch, they might use Fire Blast. But if they use Fire Blast on Gholdengo, it would do: 22*110*167/111/50+2 = (22*18370/111)/50+2 = (404140/111)/50+2 = 3640/50+2=72.8+2=74.8. 2x = 149.6. Gholdengo has 164 HP, so it survives with ~14 HP. If Choice Specs, 1.5x = 224, OHKO. So if they have Specs Fire Blast, they could OHKO Gholdengo. But would they lead with Dragapult against Gholdengo? They might expect us to switch. So they might use Fire Blast. If we switch to Kingambit, we take 2x Fire Blast, which could be ~155, leaving us at ~52 HP. Not ideal but survivable if not Specs. If Specs, we faint. But if we stay, we faint anyway. So switching is still better because we at least have a chance if they don't have Specs or if they use Shadow Ball.\n\nAlternatively, we could switch to Dragapult? Our Dragapult is Choice Scarf, speed 213. If we switch to Dragapult, we are faster than opposing Dragapult (if it's not Scarf). Our Dragapult can then use Shadow Ball or Draco Meteor. But opposing Dragapult might use Shadow Ball on our Dragapult? Ghost vs Dragon/Ghost: Ghost is super effective on Ghost? Actually Ghost vs Ghost = 2x. So Shadow Ball would be super effective on our Dragapult. Our Dragapult has 165 HP, 95 SpD. Damage: 22*120*167/95/50+2 = (22*20040/95)/50+2 = (440880/95)/50+2 = 4640/50+2=92.8+2=94.8. 2x? Wait Ghost vs Ghost is 2x? Yes, Ghost is super effective against Ghost. So 94.8 * 2 = 189.6. That would OHKO our Dragapult. So switching to Dragapult is risky if they use Shadow Ball. But if they use Fire Blast, our Dragapult takes neutral? Fire vs Dragon = 0.5x, Fire vs Ghost = 1x? Actually Fire vs Dragon is 0.5, Fire vs Ghost is 1. So overall 0.5x. So Dragapult resists Fire. But Shadow Ball is dangerous. So Kingambit is safer against Ghost.\n\nWhat about switching to Gholdengo? Already out.\n\nSo Kingambit is the best switch. Let's finalize.\n\nNotes: Plan: Switch to Kingambit to absorb Dragapult's Ghost/Dragon moves and threaten Sucker Punch. If they switch to a wall, set up Swords Dance. Keep Gholdengo for Rotom-Wash/Toxapex to block status. Watch for Fire Blast on Kingambit.\n\nDecision: SWITCH: kingambit\n\nCheck legal actions: 5. SWITCH: kingambit (100.0% HP). So answer exactly.\n\nWe need output in exact form.",
+      "note": "",
+      "tokens": 6689,
+      "latency_ms": 56651,
+      "cost_usd": 0.0021756504,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% SWITCH: rotomwash, 23% SWITCH: gholdengo, 19% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2471,
+      "latency_ms": 467,
+      "cost_usd": 0.000103782,
+      "probabilities": {
+        "MOVE: shadowball": 0.18,
+        "MOVE: dragondarts": 0.06,
+        "MOVE: protect": 0.04,
+        "MOVE: uturn": 0.19,
+        "SWITCH: gholdengo": 0.23,
+        "SWITCH: rotomwash": 0.3
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit at 78% with SpD -1. Opposing Dragapult used Shadow Ball, likely special and lacks Fire Blast. Kowtow Cleave hits hard whether Dragapult stays or switches, and we survive another Shadow Ball. Keep Gholdengo for Rotom/Toxapex, Dragapult for speed control. Watch for Fire Blast later.",
+      "hidden_reasoning": "We need answer exactly form. Need decide turn. We have Kingambit active at 78%, SpD -1, vs opposing Dragapult 90% Life Orb. We know it used Shadow Ball, likely special attacker? Opposing Dragapult could be special or mixed. Our Kingambit Dark/Steel. Shadow Ball not very effective. We have Sucker Punch priority +1, super effective. But Sucker Punch fails if target not attacking. Opponent likely attacks? They might switch to a wall like Corviknight/Toxapex/Aegislash to absorb Sucker Punch. If they switch, Sucker Punch fails. Kowtow Cleave is safe, no accuracy check, 85 BP Dark, super effective. But Dragapult faster; if it attacks, we take damage. Kingambit HP 162/207, SpD -1. Opposing Dragapult Life Orb Shadow Ball did maybe ~45? Actually from 207 to 162 = 45 damage, not very effective. So it's likely special. If it uses Shadow Ball again, we survive? 45 damage, we at 162, next maybe 45, survive. But if it uses Fire Blast? Dragapult can have Fire Blast? Our Dragapult has Fire Blast, but opposing could. Fire Blast on Kingambit is super effective? Fire vs Steel/Dark: Fire is super effective on Steel, neutral on Dark? Actually Fire vs Steel = 2x, vs Dark = 1x, so 2x. Could do heavy. But they revealed Shadow Ball only. They might predict switch and use Fire Blast? Hmm.\n\nWe need choose best action. Sucker Punch priority can KO? Let's calculate. Kingambit Atk 205, Blackglasses 1.2, Sucker Punch 70 BP, Dark, super effective on Dragapult (Ghost/Dragon? Dark vs Ghost = 2x, vs Dragon = 1x, so 2x). Supreme Overlord: no fainted allies, so 1.0. Damage roughly: level 50, Atk 205, Def Dragapult ~85-139. Sucker Punch 70 * 1.2 * 2 = 168 effective BP. Likely OHKO? Dragapult HP 163-195, at 90% ~147-175. Probably KO. Kowtow Cleave 85 BP *1.2*2 = 204, also KO. But Sucker Punch priority ensures we hit first if they attack. If they switch, Sucker Punch fails, but Kowtow Cleave hits the switch-in. Which is better? If they stay and attack, Sucker Punch wins. If they switch, Kowtow Cleave hits incoming. But if they switch to something that resists Dark (e.g., Toxapex? Dark vs Poison/Water neutral? Dark vs Poison = 1x, vs Water = 1x, so neutral. Corviknight: Dark vs Flying/Steel = 1x? Dark vs Steel = 1x, vs Flying = 1x, neutral. Aegislash: Dark vs Steel/Ghost = 2x? Dark vs Ghost = 2x, vs Steel = 1x, so 2x. Gholdengo: Dark vs Steel/Ghost = 2x. Rotom-Wash: Dark vs Electric/Water = 1x. So Kowtow Cleave would hit hard on Aegislash/Gholdengo, neutral on others. Sucker Punch if they switch fails, giving them free turn. But if they stay and attack, Sucker Punch KOs. Opponent likely knows Kingambit has Sucker Punch. They might switch to a wall to avoid Sucker Punch. However, they might also just attack because they are faster and can KO? Can Dragapult KO Kingambit? It did 45 with Shadow Ball. Kingambit has 162 HP. If it uses Shadow Ball again, 45, we survive. If it uses Fire Blast, maybe 90? Still survive? Let's estimate Fire Blast: SpA 152? Opposing Dragapult SpA range 108-167. Our Kingambit SpD 107, -1 stage means SpD * 2/3 = ~71. Fire Blast 110 BP * 2x = 220. Damage could be high. But they revealed Shadow Ball, not Fire Blast. They might have Fire Blast. But if they had Fire Blast, they might have used it turn 1? They used Shadow Ball, which was not very effective. Maybe they predicted Kingambit switch? Actually turn 1: our Gholdengo vs their Dragapult. We switched to Kingambit. They used Shadow Ball on Kingambit. They might have expected Gholdengo? Shadow Ball on Gholdengo is super effective? Ghost vs Steel/Ghost: Ghost vs Ghost = 2x, vs Steel = 1x? Actually Ghost vs Steel = 1x? Wait Ghost is not very effective on Steel? In Gen 6+, Ghost vs Steel = 1x? Actually Steel resists Ghost? No, Steel does not resist Ghost. Ghost is neutral on Steel. Ghost vs Ghost = 2x. So Shadow Ball on Gholdengo would be 2x. On Kingambit, Ghost vs Dark = 0.5x? Dark resists Ghost? Yes, Dark is immune to Psychic, resists Ghost? Actually Dark resists Ghost and Dark. So Ghost vs Dark = 0.5x. Ghost vs Steel = 1x. So overall 0.5x. That matches \"not very effective\". So they used Shadow Ball expecting Gholdengo? Or just used it. They might not have Fire Blast. But Dragapult commonly has Fire Blast for Steel types. However, our Kingambit is Dark/Steel, Fire is 2x. They might have it. If they have Fire Blast, they could KO? Let's calculate max: SpA 167, Fire Blast 110, 2x, vs SpD 107 -1. Damage = (((2*50/5+2)*110*167/71)/50+2)*2? Actually formula: ((2*50/5+2)*110*167/71)/50+2 = (22*110*167/71)/50+2 = (22*18370/71)/50+2 = (404140/71)/50+2 = 5692/50+2 = 113.8+2=115.8. Then *2 = 231.6. That would OHKO Kingambit (162 HP). So if they have Fire Blast, they can KO. But they used Shadow Ball turn 1, maybe they don't have Fire Blast or predicted switch? Actually if they had Fire Blast, they might have used it on Kingambit turn 1? They used Shadow Ball, which was not very effective. That suggests they either don't have Fire Blast, or they mispredicted. But they might have Fire Blast and chose Shadow Ball because they thought we would switch to Gholdengo? Wait turn 1: our Gholdengo was in. They used Shadow Ball. We switched to Kingambit. So their Shadow Ball hit Kingambit. If they had Fire Blast, they might have used it expecting Kingambit switch? But they used Shadow Ball. So likely they don't have Fire Blast, or they are special Dragapult with Shadow Ball, Draco Meteor, U-turn, maybe Thunderbolt? But Fire Blast is common. However, they might have chosen Shadow Ball because it's safe. Hard to know.\n\nGiven we have Sucker Punch, it's a strong option. But if they switch, we lose momentum. Kowtow Cleave is safer. However, if they stay and attack, Kowtow Cleave will be slower, they hit us first. We might survive one Shadow Ball, then KO with Kowtow Cleave. But if they have Fire Blast, we die before moving. Sucker Punch would KO them first if they attack. So Sucker Punch is better against attacking Dragapult. If they switch, Sucker Punch fails, but we can then react next turn. The risk of Sucker Punch failing is they get a free switch and we do nothing. But if we use Kowtow Cleave and they switch, we hit the switch-in. Which is better? We need consider opponent's likely move. They saw our Kingambit. They know Kingambit has Sucker Punch. They might predict Sucker Punch and switch to a resist/immune? Dark resists? No Dark immunity except maybe? None. They might switch to Toxapex to take it, or Corviknight. But if they switch, they avoid Sucker Punch. However, if they switch, they lose Dragapult's Life Orb damage? They might just attack because they are faster and can KO with Fire Blast if they have it. But they used Shadow Ball turn 1, so maybe they don't have Fire Blast. If they only have Shadow Ball, it does 45, we survive and KO with Sucker Punch. So Sucker Punch seems good.\n\nBut wait: Sucker Punch fails if target is not attacking. If they use a status move? Dragapult doesn't have status typically. They might use U-turn? U-turn is an attack, so Sucker Punch hits. If they switch, Sucker Punch fails. But if they use U-turn, they attack and switch? Actually U-turn is an attack, so Sucker Punch will hit before U-turn? Sucker Punch has +1 priority, U-turn has 0, so Sucker Punch hits first. If it KOs, they don't switch. So Sucker Punch is good.\n\nWhat about our Kingambit's SpD -1? That makes us more vulnerable. But we can KO.\n\nLet's check if Sucker Punch KOs. Damage calc: Kingambit Atk 205, Blackglasses 1.2, Sucker Punch 70, Dark, 2x on Dragapult. Supreme Overlord 1.0. Dragapult Def range 85-139. Let's take average 112. Damage = (((2*50/5+2)*70*205/112)/50+2)*1.2*2? Actually formula: ((22*70*205/112)/50+2) = (22*14350/112)/50+2 = (315700/112)/50+2 = 2818.75/50+2 = 56.375+2=58.375. Then *1.2*2 = 140.1. Dragapult HP at 90% of 163-195 = 147-175. So 140 might not KO if max HP and high Def? Let's calculate max HP 195, 90% = 175.5. Def max 139. Damage: ((22*70*205/139)/50+2) = (22*14350/139)/50+2 = (315700/139)/50+2 = 2271.2/50+2 = 45.4+2=47.4. *1.2*2 = 113.8. That's less than 175. So Sucker Punch might not KO if they have max HP and Def. But typical Dragapult is offensive, low Def. Our Kingambit has 205 Atk, which is high. But opposing Dragapult could be bulky? Unlikely. Still, it might not OHKO. Kowtow Cleave has 85 BP, so damage ~ 140 * 85/70 = 170. That might KO. Let's recalc Kowtow: 85 BP, 1.2, 2x. Damage = 58.375 * (85/70) * 1.2 * 2? Actually base 58.375 was for 70 BP without items? Wait I included items? Let's do properly.\n\nDamage formula: ((2*Level/5+2)*Power*Atk/Def)/50 + 2. Then modifiers.\nLevel 50: (2*50/5+2) = 22.\nAtk = 205.\nDef = 112 (average).\nPower = 70.\nBase = (22*70*205/112)/50 + 2 = (22*14350/112)/50 + 2 = (315700/112)/50 + 2 = 2818.75/50 + 2 = 56.375 + 2 = 58.375.\nModifiers: Blackglasses 1.2, type 2x, Supreme Overlord 1.0. So 58.375 * 1.2 * 2 = 140.1.\nFor Kowtow: Power 85. Base = (22*85*205/112)/50 + 2 = (22*17425/112)/50 + 2 = (383350/112)/50 + 2 = 3422.77/50 + 2 = 68.455 + 2 = 70.455. *1.2*2 = 169.1.\nSo Kowtow does ~169, Sucker ~140. Dragapult at 90% HP: if max HP 195, 90% = 175.5. So Kowtow might not KO either if max HP. But typical Dragapult HP is 163-195, often 163 (0 HP investment) or 195 (252 HP). Offensive Dragapult usually 0 HP, so 163. 90% of 163 = 146.7. Sucker 140 might not KO, Kowtow 169 would KO. So Kowtow is more likely to KO. But Sucker has priority. If we use Sucker and it doesn't KO, they might KO us back? They already did 45 with Shadow Ball. If they do another 45, we survive. But if they have Fire Blast, we die. So Sucker is risky if it doesn't KO and they have Fire Blast. But if they have Fire Blast, they would have used it turn 1? Maybe not.\n\nWhat about switching? We could switch to Gholdengo to block Shadow Ball? Gholdengo is immune to Shadow Ball? No, Ghost vs Steel/Ghost: Ghost is neutral on Steel, 2x on Ghost? Actually Gholdengo is Steel/Ghost. Ghost vs Ghost = 2x, Ghost vs Steel = 1x? Wait Steel does not resist Ghost. So Ghost vs Steel/Ghost = 2x? Let's check: Ghost is super effective on Ghost. Steel is not resistant to Ghost. So Ghost vs Gholdengo = 2x. So Shadow Ball would be super effective on Gholdengo. So switching to Gholdengo is bad. Switching to Dragapult? Our Dragapult is Dragon/Ghost. Shadow Ball on Dragapult: Ghost vs Ghost = 2x, vs Dragon = 1x, so 2x. Also bad. So switching is not good.\n\nWe could use Swords Dance? If they switch, we get +2. But if they attack, we take damage. Not ideal.\n\nGiven we want to remove Dragapult, and Sucker Punch has priority, it's a good move. But if they switch, we lose. However, if they switch, they likely bring in a wall like Toxapex or Corviknight. Then we can switch to Gholdengo or Dragapult to handle. But we lose Kingambit's momentum. Alternatively, Kowtow Cleave is safe and hits hard. If they stay, we take a hit but likely survive and KO. If they switch, we hit the switch-in. Kowtow Cleave seems more consistent. But if they have Fire Blast, we die before moving. So Sucker Punch is better against Fire Blast. Which is more likely? Opponent used Shadow Ball turn 1. They might not have Fire Blast. Also, they might predict Sucker Punch and switch. But if they predict Sucker Punch, they might switch to a Dark resist? None. They might switch to Toxapex to take it, but Toxapex takes neutral from Dark. Actually Toxapex is Poison/Water, Dark is neutral. So it would take ~140 damage? Toxapex has high Def, so it would take less. But they might switch to Corviknight, which resists Dark? Corviknight is Flying/Steel. Dark vs Steel = 1x, vs Flying = 1x, so neutral. Actually Dark is not resisted by Steel or Flying. So no resist. Aegislash is Steel/Ghost, Dark is 2x. Gholdengo is Steel/Ghost, Dark is 2x. Rotom-Wash is Electric/Water, Dark is 1x. So no immunity. So switching doesn't avoid damage entirely, but they can take it better. However, Sucker Punch fails on switch, so they take 0. That's a big advantage for them. So if they predict Sucker Punch, they will switch. If they predict Kowtow, they might stay and attack. So it's a guessing game.\n\nWhat is the best play? We have Kingambit with Sucker Punch. It's a classic 50/50. Often, using Sucker Punch is good if you think they will attack. They might attack because they are faster and can KO with Fire Blast if they have it. But they used Shadow Ball turn 1, so maybe they don't have Fire Blast. If they don't have Fire Blast, they can't KO us, so they might switch to avoid Sucker Punch. If they switch, we lose. But if we use Kowtow, we hit the switch-in. So Kowtow is safer against a switch. But if they stay and attack, Kowtow is slower, we take a hit, but we likely survive and KO. So Kowtow seems like the safer, more consistent play. However, if they have Fire Blast, we die. But we don't know. Given they used Shadow Ball, it's likely they don't have Fire Blast, or they would have used it. So Kowtow is probably better.\n\nLet's check our Kingambit's HP: 162/207. If they use Shadow Ball again, it does ~45, we go to 117, then we use Kowtow and KO. If they use Fire Blast, we die. But if they had Fire Blast, they might have used it turn 1. So I lean Kowtow Cleave.\n\nBut wait, Sucker Punch has priority and if it KOs, we take no damage. If it doesn't KO, we take damage. Kowtow is slower, we take damage first. But we survive Shadow Ball. So Kowtow is fine.\n\nWhat about the SpD drop? It makes us more vulnerable to special attacks. But Shadow Ball is special, so it does more? Actually SpD -1 means we take more damage. The 45 damage was after SpD -1? Turn 1: they used Shadow Ball, then it says \"Your Kingambit: spd -1\". That means the SpD drop was from Shadow Ball? Shadow Ball has a 20% chance to lower SpD. So it happened. So the 45 damage was before the drop? Actually the drop happened after damage. So next Shadow Ball will do more. Let's recalc: SpD 107, -1 stage means SpD * 2/3 = 71.3. So damage will be higher. Shadow Ball: SpA 152 (average), BP 80, Ghost, 0.5x on Kingambit. Base damage: ((22*80*152/71.3)/50+2) = (22*12160/71.3)/50+2 = (267520/71.3)/50+2 = 3752/50+2 = 75+2=77. Then *0.5 = 38.5. Wait that's less than 45? Actually turn 1 damage was 45. Maybe SpA was higher. Let's use max SpA 167. ((22*80*167/71.3)/50+2) = (22*13360/71.3)/50+2 = (293920/71.3)/50+2 = 4122/50+2 = 82.4+2=84.4. *0.5 = 42.2. Still around 42. So 45 is plausible. With SpD -1, next Shadow Ball might do ~45-50. We have 162 HP, so we survive. So Kowtow is safe.\n\nBut what if they use Draco Meteor? Draco Meteor is Dragon, 130 BP, special. On Kingambit: Dragon vs Steel = 0.5x? Actually Dragon vs Steel = 0.5x (Steel resists Dragon). Dragon vs Dark = 1x. So overall 0.5x. So not very effective. So they might not use Draco Meteor. They might use Fire Blast if they have it. But they used Shadow Ball, so maybe they don't have Fire Blast. So Kowtow is good.\n\nI'll choose Kowtow Cleave. But wait, Sucker Punch is super effective and priority. If they stay and attack, Sucker Punch KOs and we take no damage. If they switch, Sucker Punch fails. Kowtow Cleave hits the switch-in. Which is better? If they switch, Kowtow does damage to the switch-in, which is good. If they stay, Kowtow takes a hit but KOs. So Kowtow is good in both cases (unless they have Fire Blast and KO us). Sucker Punch is only good if they stay and attack. So Kowtow is more consistent. I'll go with Kowtow Cleave.\n\nLet's check legal actions: MOVE: kowtowcleave is legal. So decision: MOVE: kowtowcleave.\n\nBut wait, we have Blackglasses, so Dark moves boosted. Kowtow Cleave never misses. Good.\n\nLet's write notes. Keep concise. Plan: Use Kowtow Cleave to hit Dragapult or switch-in. If Dragapult stays, we likely survive Shadow Ball and KO. If they switch, we damage incoming. Keep Gholdengo for Rotom/Toxapex, Dragapult for speed control. Watch for Fire Blast on Kingambit. SpD -1 makes us vulnerable to special attacks.\n\nDecision: MOVE: kowtowcleave\n\nCheck form: <notes>...</notes> <decision>MOVE: kowtowcleave</decision>\n\nEnsure exactly.",
+      "note": "",
+      "tokens": 7116,
+      "latency_ms": 60258,
+      "cost_usd": 0.0023037504,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% SWITCH: gholdengo, 23% MOVE: voltswitch, 16% MOVE: thunderbolt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2496,
+      "latency_ms": 431,
+      "cost_usd": 0.000104832,
+      "probabilities": {
+        "MOVE: voltswitch": 0.23,
+        "MOVE: thunderbolt": 0.16,
+        "MOVE: willowisp": 0.05,
+        "MOVE: protect": 0.14,
+        "SWITCH: gholdengo": 0.31,
+        "SWITCH: dragapult": 0.11
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 3: Rotom-Wash at 28%, likely switches out to preserve it. Use Kowtow Cleave to hit whatever comes in; Sucker Punch risks failing on a switch. Keep Gholdengo for status blocking and Dragapult as speed control. Watch for Aegislash, Toxapex, Corviknight, or opposing Gholdengo next.",
+      "hidden_reasoning": "We need answer. Need decide turn. We have Kingambit active vs Rotom-Wash at 28%. We have Kowtow Cleave likely KOs? Let's calculate. Kingambit Atk 205, Blackglasses, Kowtow 85 Dark. Rotom HP 28% of maybe 125-157. At 28% ~35-44 HP. Kowtow definitely KOs unless switch. But opponent may switch to resist? Rotom is Electric/Water, Dark neutral? Dark vs Water neutral, vs Electric neutral. Kowtow will KO. Sucker Punch priority but fails if Rotom doesn't attack. Rotom likely will switch or use Will-O-Wisp? At 28%, opponent likely switches to preserve Rotom. If we use Kowtow Cleave, hits incoming. Sucker Punch could fail if they switch. So use Kowtow Cleave. Also SpD -1 irrelevant. Need notes update. Decision MOVE: kowtowcleave.\n\nNeed ensure exact form. Notes <=60 words. Include plan.",
+      "note": "",
+      "tokens": 2673,
+      "latency_ms": 5889,
+      "cost_usd": 0.0003056984,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "78% SWITCH: dragapult, 22% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2197,
+      "latency_ms": 429,
+      "cost_usd": 9.2274e-05,
+      "probabilities": {
+        "SWITCH: rotomwash": 0.22,
+        "SWITCH: dragapult": 0.78
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: uturn, 21% MOVE: shadowball, 14% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2544,
+      "latency_ms": 521,
+      "cost_usd": 0.000106848,
+      "probabilities": {
+        "MOVE: shadowball": 0.21,
+        "MOVE: dragondarts": 0.1,
+        "MOVE: protect": 0.14,
+        "MOVE: uturn": 0.46,
+        "SWITCH: rotomwash": 0.09
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit at 78% with SpD -1. Opposing Dragapult likely lacks Fire Blast (used Shadow Ball turn 1). Sucker Punch has priority, hits Dragapult super effectively, and prevents U-turn shenanigans. If it switches, Rotom is at 28% and can be handled next. Keep Gholdengo for Rotom.",
+      "hidden_reasoning": "We need answer exact form. Need decide turn. We have Kingambit active vs opposing Dragapult at 90%, likely Life Orb, revealed Shadow Ball. Our Kingambit SpD -1, HP 78%. Opponent has Rotom 28%, Gholdengo fainted, Dragapult active. Opponent brought 3: Rotom, Gholdengo, Dragapult. So remaining: Rotom at 28 and Dragapult 90. Need win.\n\nWe need choose move. Kingambit vs Dragapult: Dragapult faster, likely Shadow Ball or maybe Fire Blast? It used Shadow Ball turn1 on Kingambit, not very effective, SpD drop. It has Life Orb. Our Kingambit can Sucker Punch priority +1, super effective? Dark vs Dragon/Ghost: Dark is super effective on Ghost, neutral on Dragon? Actually Dark vs Ghost super effective, vs Dragon neutral, so 2x? Dragapult Dragon/Ghost: Dark 2x vs Ghost, 1x vs Dragon => 2x. Sucker Punch 70 BP * blackglasses 1.2 * supreme overlord? One fainted ally (opponent's Gholdengo? Wait supremeoverlord counts fainted allies on our side? \"for each fainted ally\" means our fainted Pokémon. We have none fainted? Our team: Gholdengo, Kingambit, Dragapult all alive. Opponent's Gholdengo fainted, not ally. So no boost. Sucker Punch 70*1.2*2 = 168 effective. Kowtow Cleave 85*1.2*2=204, but no priority, Dragapult faster. If Dragapult attacks, Sucker Punch goes first and likely KOs? Need calc. Dragapult HP 90% of ~163-195 = ~147-175. Kingambit Atk 205. Sucker Punch BP 70, Dark, 2x, blackglasses. Damage likely high. Let's estimate: Level 50, Atk 205, Def Dragapult ~85-139. Damage = (((2*50/5+2)*70*205/Def)/50)+2 * modifiers. 2*50/5=20+2=22. 22*70=1540. *205=315700. /Def (say 100) =3157. /50=63. +2=65. *1.2*2=156. HP ~170. So Sucker Punch likely does ~156, not KO if full HP, but at 90% maybe ~153-175. Could KO if low HP/def. Kowtow Cleave 85 BP: 22*85=1870*205=383350/100=3833/50=76.6+2=78.6*2.4=188.6, likely KO. But Dragapult faster, so if we use Kowtow, it attacks first. Can we survive Shadow Ball? Kingambit HP 162/207, SpD -1. Dragapult SpA 108-167, Life Orb. Shadow Ball vs Steel? Ghost vs Steel: neutral? Ghost vs Steel is neutral? Actually Ghost is not very effective against Dark? Kingambit Dark/Steel: Ghost vs Dark is 0.5? Ghost vs Steel is 0.5? Let's check: Ghost offensive: vs Steel 0.5, vs Dark 0.5? In Gen VI+, Ghost vs Steel is 0.5? Actually Steel resists Ghost? Yes Steel resists Ghost and Dark? Steel resists Ghost, Dark, etc. Dark resists Ghost. So Ghost vs Dark/Steel is 0.25x? Wait Dark is immune to Psychic, resists Ghost and Dark. Steel resists Ghost, Dark, etc. So Ghost vs Kingambit is 0.25x. Turn1 Shadow Ball did 45 damage (207->162) with SpD -1? It was not very effective. So another Shadow Ball maybe ~45-60. We survive. But Dragapult might use Fire Blast? Fire vs Steel 2x, vs Dark neutral, so 2x. Fire Blast 110 BP, SpA maybe 152, Life Orb. Could do significant. But it used Shadow Ball turn1, maybe its set is special with Shadow Ball, Draco Meteor, Fire Blast, U-turn? If it has Fire Blast, it could KO Kingambit? Let's estimate Fire Blast vs Kingambit: SpA 152, Def? Kingambit SpD 107, HP 207. Fire Blast 110, 2x, Life Orb 1.3. Damage: 22*110=2420*152=367840 / SpD 107 =3437 /50=68.7+2=70.7 *2*1.3=183.8. Kingambit at 162 HP, so Fire Blast would KO. But turn1 it used Shadow Ball, not Fire Blast, maybe because Shadow Ball was chosen? Could be it doesn't have Fire Blast. But opposing Dragapult could have Fire Blast. If we Sucker Punch, we go first and likely KO? Need ensure Sucker Punch KOs. If not, we might get hit by Fire Blast and die. But Sucker Punch only works if target is attacking. If Dragapult uses Fire Blast, Sucker Punch goes first and hits. If it KOs, good. If not, we die. If Dragapult uses Shadow Ball, Sucker Punch goes first, we survive if not KO? Actually if we use Sucker Punch, we hit first. If it doesn't KO, Dragapult then uses Shadow Ball, we survive. If it uses Fire Blast, we hit first, if not KO, we die. So Sucker Punch is best. Kowtow Cleave is risky because Dragapult faster and could Fire Blast KO. Switch to Gholdengo? Gholdengo immune to Shadow Ball? Ghost vs Steel? Gholdengo Steel/Ghost: Ghost vs Ghost 2x? Actually Ghost vs Ghost is 2x. So Shadow Ball would be super effective on Gholdengo. Not good. Switch to Dragapult? Our Dragapult faster? Opposing Dragapult speed 145-213, ours 213 with Choice Scarf? Our Dragapult has choicescarf, speed 213? Actually base 142, level 50, max speed 213 with positive nature? With Choice Scarf, speed 213*1.5=319? Wait stats given: dragapult Spe 213. That's likely with Choice Scarf? The stats list says Spe 213. Base Dragapult speed 142, at level 50 max is 213 with Timid? Actually 142 base at level 50 max is 213. With Choice Scarf, it would be 319. But the stat shown is 213, maybe it's not including item? In Showdown, stats shown are final including item? Usually item effects not shown in stats. So our Dragapult speed 213, opposing possible 145-213. If opposing is max speed 213, tie. But we have Choice Scarf, so we are faster. But switching to Dragapult would take a hit. Opposing Dragapult might use Shadow Ball on our Dragapult? Ghost vs Dragon/Ghost: Ghost vs Ghost 2x, vs Dragon 1x => 2x. Our Dragapult HP 165, SpD 95. Shadow Ball from opposing Dragapult likely does heavy damage. Not ideal.\n\nBetter to use Sucker Punch. It has priority, super effective, and if Dragapult attacks, we hit first. If Dragapult switches, Sucker Punch fails, but then we get free turn? Actually if it switches, Sucker Punch fails, and we don't attack. But opponent might switch to Rotom at 28%? Rotom is at 28%, could switch in to take Sucker Punch? Sucker Punch on Rotom: Dark vs Electric/Water neutral. But if they switch, Sucker Punch fails because target not attacking? Wait Sucker Punch fails if target is not attacking. If opponent switches, the target is not attacking, so Sucker Punch fails. Then Rotom comes in, and we don't hit it. That would be bad. But opponent likely won't switch because Rotom is low and Dragapult is their main threat. They might attack with Dragapult. So Sucker Punch is good.\n\nAlternatively, use Kowtow Cleave to hit if they switch, but risk being outsped and KO'd by Fire Blast. Since we don't know if they have Fire Blast, but they used Shadow Ball turn1, maybe they don't have Fire Blast or chose Shadow Ball because it was safe? Actually turn1: Opposing Dragapult used Shadow Ball on Kingambit. It was not very effective. If it had Fire Blast, it would have used it for super effective damage. So likely it does NOT have Fire Blast. It might have Draco Meteor, Shadow Ball, U-turn, maybe Thunderbolt? But no Fire Blast. So we can safely use Kowtow Cleave? But Dragapult is faster, so it will attack first. If it uses Shadow Ball, we survive and then Kowtow Cleave KOs. If it uses Draco Meteor, Dragon vs Steel? Dragon vs Steel is 0.5? Actually Dragon vs Steel is 0.5, vs Dark 1x, so 0.5. Not very effective. So we survive. If it uses U-turn, it will switch out after hitting us. Then Kowtow Cleave hits the incoming? Actually if it uses U-turn, it attacks first, then switches. Our Kowtow Cleave would hit the switched-in Pokémon? In singles, if opponent uses U-turn, they switch after the move, then our move targets the new Pokémon? Actually turn order: Dragapult uses U-turn, deals damage, then switches out. Then our Kingambit uses Kowtow Cleave on the new Pokémon. That could be good if we hit Rotom or something. But if we use Sucker Punch, and Dragapult uses U-turn, Sucker Punch goes first? Sucker Punch has +1 priority, U-turn has 0, so Sucker Punch goes first. But Sucker Punch only works if target is attacking. U-turn is an attacking move, so Sucker Punch will hit Dragapult before it uses U-turn. That's good. So Sucker Punch is better against U-turn.\n\nThus Sucker Punch seems best. It has priority, hits Dragapult hard, and prevents U-turn shenanigans. If Dragapult uses Shadow Ball, we hit first. If it uses Fire Blast (unlikely), we hit first and might KO. If it switches, Sucker Punch fails, but then we face Rotom at 28%? Actually if they switch, Sucker Punch fails, and we don't attack. Then next turn we can handle Rotom. But losing a turn is not terrible. However, if they switch to Rotom, we could have used Kowtow Cleave to hit Rotom. But Rotom is at 28%, Kowtow Cleave would KO? Dark vs Electric/Water neutral, 85 BP *1.2 = 102. Rotom HP 28% of ~140 = 39. So yes, Kowtow Cleave would KO Rotom. But if we use Sucker Punch and they switch to Rotom, Sucker Punch fails, Rotom comes in, and we don't damage it. Then next turn we can attack. But Rotom might use Will-O-Wisp or something. Still, we have Gholdengo to block status. So it's okay.\n\nGiven opponent's Dragapult is at 90% and is a big threat, we want to damage it. Sucker Punch is the safest way to ensure we hit it if it attacks. I'll choose Sucker Punch.\n\nLet's craft notes: Kingambit at 78%, SpD -1. Opposing Dragapult likely no Fire Blast (used Shadow Ball turn1). Sucker Punch priority hits Dragapult hard; if it switches, we lose a turn but Rotom is low. Keep Gholdengo for Rotom/Toxapex? Toxapex not seen, but opponent brought 3: Rotom, Gholdengo, Dragapult. So no Toxapex. Gholdengo fainted. So only Rotom and Dragapult left. We need to KO Dragapult. Sucker Punch.\n\nDecision: MOVE: suckerpunch\n\nCheck legal actions: 1. MOVE: suckerpunch. Yes.\n\nAnswer exact form.",
+      "note": "",
+      "tokens": 5348,
+      "latency_ms": 40679,
+      "cost_usd": 0.0013782384,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: voltswitch, 30% MOVE: thunderbolt, 19% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2511,
+      "latency_ms": 399,
+      "cost_usd": 0.000105462,
+      "probabilities": {
+        "MOVE: voltswitch": 0.34,
+        "MOVE: thunderbolt": 0.3,
+        "MOVE: willowisp": 0.17,
+        "MOVE: protect": 0.19
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's Dragapult and Gholdengo are fainted; only Rotom-Wash remains at 28%. Sucker Punch risks failing if Rotom uses status, so use safe Kowtow Cleave to KO. No need to switch; Kingambit wins if it connects.",
+      "hidden_reasoning": "We need answer exact form. Need decide turn. We have Kingambit active vs Rotom-Wash at 28%. Opponent has only Rotom active, but brought 3: Rotom, Dragapult fainted, Gholdengo fainted. Wait opponent brought 3 all seen: Rotom, Dragapult, Gholdengo. Dragapult and Gholdengo fainted. So only Rotom-Wash remains at 28%. We need KO it. Kingambit has Kowtow Cleave Dark physical. Rotom-Wash Electric/Water, Dark neutral? Dark vs Electric/Water neutral. Sucker Punch priority but fails if Rotom not attacking. Rotom likely will attack? At 28%, it may switch? No other Pokémon left, cannot switch. It must act. It could use Will-O-Wisp, Volt Switch, Hydro Pump, Pain Split? If it uses status, Sucker Punch fails. Kowtow Cleave is safe and likely KOs? Need calc. Kingambit Atk 205, Blackglasses, Supreme Overlord: fainted allies? Our team: none fainted? We have 3, none fainted. Opponent fainted 2, but Supreme Overlord counts fainted allies (our fainted). So 0 boost. Kowtow Cleave 85 BP Dark *1.2 blackglasses = 102 effective. Rotom HP 28% of ~125-157 = ~35-44 HP. Kingambit Atk 205 vs Rotom Def 114-174. Likely does massive damage. Even neutral, should KO. Sucker Punch also KOs if it attacks, but risk status. Kowtow Cleave is safe. Also Rotom might be faster and use Will-O-Wisp, but we still KO. So MOVE: kowtowcleave.\n\nNeed notes at most 60 words. Mention Rotom only remaining, use Kowtow Cleave safe KO. If somehow survives, next? But likely KO. Keep Gholdengo/Dragapult for any? Battle ends. Notes concise.\n\nDecision line exactly: MOVE: kowtowcleave\n\nEnsure no extra.",
+      "note": "",
+      "tokens": 3073,
+      "latency_ms": 8408,
+      "cost_usd": 0.000404516,
+      "probabilities": null
+    }
+  ]
+}
