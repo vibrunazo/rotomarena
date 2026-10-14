@@ -42,7 +42,14 @@ restarts or updates, and console windows invite being closed. The monitor shows 
 models' thoughts, costs and a time range; its Stop run button also stops the Showdown and local model servers.
 While a run plays, don't start another battle or ladder command: it would need the same Showdown server (refused).
 
-Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`.
+Ladder commands (see README): `ladder status`, `ladder place <config id>`, `ladder fill --budget N`, `export-site`,
+`ladder relay <config id> --games N` (a model answered by hand through its chat app: each turn's prompt waits on the
+run monitor's Relay panel; games tagged `relay:<app>:<model>`, rated, left out of cost figures).
+A version's first games are its smoke test: `ladder.ceiling: {<version>: N}` caps every model at N games against free
+opponents (anchor, PokéChamp, chimps) until lifted, so paid tests count. Games voided by hand (`voided` in a match's
+breadcrumbs.json, with the reason) aren't rated and don't use up caps; `tags` mark games to retire later (e.g.
+`superseded:medium-effort:<model>`, played before c5's 4,096-token budget). A rule change mid-version can be recorded
+as an amendment in data/rulesets/<version>.json instead of a new version when the affected games are tagged.
 For ladder tests, point `--config` at a scratch config with its own `ruleset.version` and `telemetry.output_dir`
 so test games never land in a real benchmark.
 
@@ -67,6 +74,11 @@ uv run rotomarena battle --p1 pokechamp --p2 heuristic --games 1
      priority and effectiveness, ability and item effects, the opponent's stats as their possible range with a speed
      comparison, and Mega Evolution instead of Tera in Champions. No damage calcs or switch-in matchups (Showdown
      shows none). Tooltip texts: `data/dex/<mod>.json` from `node scripts/dump_dex_text.js <gen9|champions>`.
+   - c5 (played now; docs/plan-c5.md): battle state 3 (the task stated plainly, the whole battle log, the model's own
+     `<notes>` from its last 3 turns as memory, ordered for prompt caching; single-option turns played without asking,
+     "forced"), a **4,096-token thinking budget** in an 8,192 cap (per-model exceptions where a budget doesn't work),
+     three drafts per model played in turn, the simulator engine, and against a control bot the model is told it
+     faces a copy of its own team.
    - `ROTOMARENA_PROMPT_LOG=<file.jsonl>` logs every LLM turn's messages and answer (prompt work; use a scratch config).
    - Every breadcrumb records its `decision_source` (`model`, `timeout`, `api_error`, `parse_error`, `invalid`, `error`).
    - Ladder runs (`place`, `place-all`, `fill`) stop with exit code 3 on a provider limit (402, a daily quota, or a 429

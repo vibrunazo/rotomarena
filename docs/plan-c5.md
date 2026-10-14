@@ -202,6 +202,33 @@ Before c5 starts:
   smoke test (after c4's run, which uses the GPU).
 - The all-model smoke test (2 games each against PokéChamp under c5, raw answers read), then drafting.
 
+### c5 is played (13-14 Oct)
+Smoke tests became the first real games: a **check run** (`ladder.ceiling`) capped every model at 2 games, then 9,
+all against free opponents (the anchor, PokéChamp, the chimps); a watcher read every game for failed turns, answers
+near the cap, reasoning spilled into answers and slow turns. Then the ceiling was lifted: the planned caps (cheap
+120, DeepSeek V4.1 Flash and Solar Pro 4 60, mid 21, Opus and Sonnet 18, other expensive 9) and pairings. c5 replaced
+c4 on the site on 13 Oct (c4 archived).
+
+Found by the check run and fixed:
+- **Dropped**: Mistral Large 4 and Hy4 Preview (think to the cap at any effort or budget), Nemotron 3 Ultra (NVIDIA's
+  free endpoint down). Their unrepresentative games are voided by hand; Nemotron's valid ones stay.
+- **A 4,096-token budget for everyone** instead of medium effort (an amendment recorded in data/rulesets/c5.json):
+  measured per model, it changes Solar Pro 4, Qwen 27B, Qwen Max Prime, MiMo Pro, Grok, GLM 5.3, DeepSeek V4 Pro and
+  Nemotron, whose 32 earlier games are tagged `superseded:medium-effort:<model>` and still count. **To do: void them
+  once those models have enough games under the budget.** Exceptions: Gemini 4 Argon high effort (it barely thinks
+  at any budget); Sonnet, Qwen Flash and MiniMax keep their own 4,096 entries (MiniMax overshoots it anyway: ~4%
+  of its turns cut off).
+- **Bugs**: a lowered evasion crashed battle state 3 (two games void, the run halted itself); a recharge turn crashed
+  decision models, which now also play single-option turns without asking; batched answers were all rejected
+  (`service_tier: "batch"`); Claude cached nothing (now cache breakpoints, ~43% of Opus's input from cache).
+- **Against a control bot** the model is told it faces a copy of its own team (DeepSeek sacked a Pokémon to scout a
+  move it already had); the 19 PokéChamp games before that note were voided by hand and replayed.
+- **Hand-voided games don't use up caps** (`games_played`); the monitor's status no longer re-reads every match file
+  per model (a minute per refresh, now seconds).
+- Gemini 4 Argon added (13 Oct). **Relay games**: Argon played by hand in the Gemini app (Máx.) through the monitor's
+  Relay panel, tagged `relay:gemini-app-max:gemini_4_argon`, rated but left out of cost figures.
+- Ornith ran out of GPU memory twice with 2 slots (one game lost); if it recurs, give it 1 slot.
+
 ## 5. Scheduling: placement, then neighbours
 
 Replaces the fixed round robin (325 pairs x 3 games, everyone against everyone):
