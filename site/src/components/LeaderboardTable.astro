@@ -2,7 +2,7 @@
 // The main table. Click a column header to sort. Only rated models (language and decision) get a rank; bots are scenery.
 import { routes } from '../lib/routes';
 import Rating from './Rating.astro';
-import { fmtCost, fmtPct, isModel, meta, provisionalTitle, roleLabel, roleTitle, type Model } from '../lib/data';
+import { fmtCost, fmtPct, isModel, meta, provisionalTitle, quantTitle, roleLabel, roleTitle, type Model } from '../lib/data';
 
 interface Props { models: Model[]; compact?: boolean; anchor?: string }
 const { models, compact = false, anchor } = Astro.props;
@@ -59,7 +59,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
             <a href={routes.model(m.config_id)}>{m.display_name}</a>
             {roleLabel(role(m)) && <span class="pill" title={roleTitle(role(m), m.type)}>{roleLabel(role(m))}</span>}
             {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
-            {m.quantization && <span class="muted small"> {m.quantization}</span>}
+            {m.quantization && <span class="muted small quant" title={quantTitle(m.quantization)}> {m.quantization}</span>}
           </td>
           <td class="r" data-value={m.rating ?? -1}><Rating model={m} /></td>
           <td class="r num" data-value={m.games}>{m.games}</td>

@@ -4,7 +4,7 @@ import MatchList from '../../components/MatchList.astro';
 import { getCollection, render } from 'astro:content';
 import Rating from '../../components/Rating.astro';
 import DraftedTeam from '../../components/DraftedTeam.astro';
-import { allModels, benches, boardHref, boardModels, boards, fmtCost, fmtLongDate, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, roleLabel, type Model } from '../../lib/data';
+import { allModels, benches, boardHref, boardModels, boards, fmtCost, fmtLongDate, fmtPct, isModel, mainBoard, matchEntries, meta, provisionalTitle, quantTitle, roleLabel, type Model } from '../../lib/data';
 
 export async function getStaticPaths() {
   return (await allModels()).map((model) => ({ params: { id: model.config_id }, props: { model } }));
@@ -65,7 +65,7 @@ const facts: [string, string][] = [
   <p class="muted small id-line">
     {m.model && <code>{m.model}</code>}
     {m.provider && <span> via {m.provider === 'local' ? 'llama.cpp, on one consumer GPU' : m.provider}</span>}
-    {m.quantization && <span> · {m.quantization}</span>}
+    {m.quantization && <span> · <span class="quant" title={quantTitle(m.quantization)}>{m.quantization}</span></span>}
     {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
   </p>
 

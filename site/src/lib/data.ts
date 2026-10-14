@@ -116,3 +116,15 @@ export const fmtDate = (d: string) => (d.length === 8 ? `${d.slice(0, 4)}-${d.sl
 export function winner(match: Match) {
   return match.players.find((p) => p.role === match.winner_role) ?? null;
 }
+
+/** What a quantization label means, for its tooltip: local models run with their weights compressed to fit the GPU. */
+export function quantTitle(q: string): string {
+  const what: Record<string, string> = {
+    PQ2_0: "PrismML's 2-bit format for ternary weights: every weight is −1, 0 or +1, packed two bits each. Bonsai is a ternary model, so this is its own format, not a squeezed copy.",
+    MXFP4: 'A 4-bit floating-point format (microscaling FP4): the form OpenAI released GPT-OSS in.',
+    Q4_K_M: "llama.cpp's 4-bit format (K-quant, medium): about a third of the full model's size, slightly less precise than it.",
+    Q8_0: "llama.cpp's 8-bit format: about half the full model's size and nearly as precise.",
+    'UD-Q4_K_M': "Unsloth's dynamic version of llama.cpp's 4-bit format: the layers that matter most are kept at higher precision.",
+  };
+  return `Quantization: we run this model on our own GPU with its weights stored compressed. ${what[q] ?? `${q} is the format used.`}`;
+}
