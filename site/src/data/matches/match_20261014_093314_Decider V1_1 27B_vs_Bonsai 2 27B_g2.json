@@ -1,0 +1,626 @@
+{
+  "id": "match_20261014_093314_Decider V1_1 27B_vs_Bonsai 2 27B_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p1",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    },
+    {
+      "config_id": "bonsai_2_27b",
+      "display_name": "Bonsai 2 27B",
+      "agent_type": "direct_llm",
+      "provider": "local",
+      "model": "bonsai",
+      "quantization": "PQ2_0",
+      "username": "Bonsai 2 27B",
+      "role": "p2",
+      "team": "Bonsai 2 27B's team",
+      "model_key": "prism-ml/ternary-bonsai-2-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Bonsai 2 27B"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 9,
+  "duration_seconds": 551.23,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.1 27B||",
+    "|player|p2|Bonsai 2 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Palafin, L50, F|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Chandelure, L50, F|",
+    "|poke|p1|Whimsicott, L50, F|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Hydreigon, L50, M|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Gardevoir, L50, M|",
+    "|poke|p2|Krookodile, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|27/100",
+    "|move|p2a: Garchomp|Stealth Rock|p1a: Dragapult",
+    "|-sidestart|p1: Decider V1.1 27B|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, M|100/100",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|23/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Hydreigon",
+    "|-supereffective|p2a: Hydreigon|1",
+    "|-damage|p2a: Hydreigon|0 fnt",
+    "|faint|p2a: Hydreigon",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, M|100/100",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|-damage|p1a: Gholdengo|152/162|[from] Stealth Rock",
+    "|move|p2a: Toxapex|Toxic|p1a: Gholdengo",
+    "|-immune|p1a: Gholdengo|[from] ability: Good as Gold",
+    "|",
+    "|-heal|p1a: Gholdengo|162/162|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Toxapex|Baneful Bunker|p2a: Toxapex",
+    "|-singleturn|p2a: Toxapex|move: Protect",
+    "|move|p1a: Gholdengo|Nasty Plot|p1a: Gholdengo",
+    "|-boost|p1a: Gholdengo|spa|2",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Toxapex|Baneful Bunker|p2a: Toxapex",
+    "|-singleturn|p2a: Toxapex|move: Protect",
+    "|move|p1a: Gholdengo|Nasty Plot|p1a: Gholdengo",
+    "|-boost|p1a: Gholdengo|spa|2",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Toxapex|Baneful Bunker||[still]",
+    "|-fail|p2a: Toxapex",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|0 fnt",
+    "|faint|p2a: Toxapex",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|27/100",
+    "|turn|8",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|-damage|p2a: Garchomp|18/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|-damage|p1a: Dragapult|143/163|[from] Stealth Rock",
+    "|turn|9",
+    "|",
+    "|move|p1a: Dragapult|Dragon Pulse|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|win|Perplexity Decider V1.1 27B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 49% BRING: dragapult, 18% BRING: whimsicott, 11% BRING: gholdengo\nPick 2: 27% BRING: gholdengo, 27% BRING: palafin, 21% BRING: chandelure\nPick 3: 34% BRING: palafin, 33% BRING: chandelure, 19% BRING: whimsicott",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5637,
+      "latency_ms": 1469,
+      "cost_usd": 0.00011274000000000001,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,toxapex,hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has 3 Ghost types (Gholdengo, Dragapult, Chandelure) plus Water (Palafin), Steel (Gholdengo), Fire (Chandelure), Grass/Fairy (Whimsicott). Garchomp leads with Stealth Rock, hits Gholdengo super effectively. Toxapex walls physical attackers and provides Toxic. Hydreigon with Choice Scarf outspeeds all and hits Ghost types super effectively with Dark Pulse. This trio covers most threats well.",
+      "hidden_reasoning": "Let me analyze the opponent's team and my team to make the best choice for bringing 3 Pokémon.\n\nOpponent's team:\n- Gholdengo (Steel/Ghost) - Good as Gold, likely a physical attacker or status user\n- Palafin (Water) - Zero to Hero, likely a physical sweeper\n- Dragapult (Dragon/Ghost) - Very fast, likely a special sweeper with Dracometeor\n- Toxapex (Poison/Water) - Wall, Regenerator\n- Chandelure (Ghost/Fire) - Special attacker\n- Whimsicott (Grass/Fairy) - Prankster, fast support\n\nMy team:\n- Garchomp (Dragon/Ground) - Life Orb, Sandveil, 169 SPE. Earthquake, Dragonclaw, Stoneedge, Stealth Rock\n- Toxapex (Poison/Water) - Leftovers, Regenerator, 55 SPE. Toxic, Recover, Baneful Bunker, Haze\n- Hydreigon (Dark/Dragon) - Choice Scarf, Levitate, 165 SPE. Dark Pulse, Dracometeor, U-turn, Nasty Plot\n- Corviknight (Flying/Steel) - Metal Coat, Unnerve, 87 SPE. Defog, Roost, Body Press, U-turn\n- Gardevoir (Psychic/Fairy) - Wise Glasses, Synchronize, 145 SPE. Moonblast, Psyshock, Dazzling Gleam, Knockoff\n- Krookodile (Ground/Dark) - Black Belt, Intimidate, 158 SPE. Earthquake, Payback, Stoneedge, Knockoff\n\nLet me think about what to bring:\n\nThe opponent has a lot of Ghost types (Gholdengo, Dragapult, Chandelure). My Garchomp is Dragon/Ground which resists Ghost? No, Ground is immune to... wait, Ground is not immune to Ghost. Ghost hits Ground normally. But Dragon/Ground takes neutral from Ghost.\n\nActually, let me reconsider. Ground is weak to Water, Grass, Ice, Fighting, Bug. It resists Poison, Rock, Fire, Electric. It's immune to Ground.\n\nGhost types: Gholdengo (Steel/Ghost), Dragapult (Dragon/Ghost), Chandelure (Ghost/Fire)\n\nMy options for countering Ghosts:\n- Garchomp: Dragon/Ground - takes neutral from Ghost, but can hit with Earthquake/Dragonclaw/Stoneedge. Ground is immune to... no, Ground isn't immune to Ghost. But Garchomp can hit them hard.\n- Krookodile: Ground/Dark - Dark resists Ghost! So Krookodile resists Ghost attacks. Can hit with Earthquake/Payback/Stoneedge/Knockoff.\n- Hydreigon: Dark/Dragon - Dark resists Ghost! Levitate means it's not affected by Ground moves. Choice Scarf gives speed boost.\n\nFor the Water types (Palafin):\n- Garchomp: Dragon/Ground - takes neutral from Water, but can hit with Earthquake (super effective vs Water? No, Ground is super effective vs Rock, Steel, Fire, Electric, Ice. Not Water). Actually Ground is not super effective against Water. But Garchomp's Dragonclaw hits Water neutrally.\n- Krookodile: Ground/Dark - takes neutral from Water. Earthquake is not super effective vs Water.\n\nFor the Steel type (Gholdengo):\n- Garchomp: Dragon/Ground - Ground is super effective vs Steel! Earthquake and Stoneedge hit hard.\n- Krookodile: Ground/Dark - Ground is super effective vs Steel! Earthquake hits hard.\n\nFor the Fire type (Chandelure):\n- Garchomp: Dragon/Ground - takes neutral from Fire, but can hit with Dragonclaw/Earthquake.\n- Krookodile: Ground/Dark - takes neutral from Fire, can hit with Earthquake/Payback.\n\nFor the Grass/Fairy type (Whimsicott):\n- Garchomp: Dragon/Ground - takes super effective from Fairy! Bad matchup.\n- Krookodile: Ground/Dark - takes super effective from Fairy! Bad matchup.\n- Hydreigon: Dark/Dragon - takes neutral from Fairy, resists Ghost.\n\nFor the Water type (Palafin):\n- Garchomp: Dragon/Ground - takes neutral from Water\n- Krookodile: Ground/Dark - takes neutral from Water\n- Hydreigon: Dark/Dragon - takes neutral from Water\n\nLet me think about what 3 to bring:\n\nOption 1: Garchomp, Toxapex, Hydreigon\n- Garchomp handles Gholdengo (Ground super effective), Palafin (can hit with Dragonclaw/Earthquake)\n- Toxapex is a wall, can handle physical attackers like Palafin, Garchomp's opponent\n- Hydreigon with Choice Scarf can outspeed everything and hit Ghost types with Dark Pulse\n\nOption 2: Garchomp, Krookodile, Hydreigon\n- Two Ground types for Gholdengo/Palafin coverage\n- Hydreigon for Ghost resistance and speed\n- But no defensive pivot or status support\n\nOption 3: Garchomp, Toxapex, Krookodile\n- Garchomp leads, sets up Stealth Rock\n- Toxapex as a wall\n- Krookodile for physical pressure\n- But both Garchomp and Krookodile are weak to Fairy (Whimsicott)\n\nOption 4: Hydreigon, Garchomp, Toxapex\n- Hydreigon with Choice Scarf leads - outspeeds everything, can hit Ghost types\n- Garchomp for physical pressure and Stealth Rock\n- Toxapex as a defensive pivot\n\nI think Option 1 (Garchomp, Toxapex, Hydreigon) is the best choice:\n- Garchomp: Leads with Stealth Rock, hits Gholdengo super effectively with Earthquake/Stoneedge, can hit Palafin with Dragonclaw\n- Toxapex: Wall that can handle physical attackers, has Toxic for status, Baneful Bunker for protection\n- Hydreigon: Choice Scarf gives it speed advantage over everything, Dark Pulse hits Ghost types super effectively (Gholdengo, Dragapult, Chandelure), Dracometeor for big damage\n\nThis team covers most threats:\n- Garchomp handles Steel (Gholdengo) and can pressure Water (Palafin)\n- Toxapex walls physical attackers and provides Toxic\n- Hydreigon with Choice Scarf outspeeds everything and hits Ghost types hard\n\nThe main weakness is Whimsicott's Fairy typing which hits both Garchomp and Krookodile super effectively, but Hydreigon resists it (Dark/Dragon takes neutral from Fairy). And Toxapex takes neutral from Fairy.\n\nActually wait - let me reconsider. Whimsicott with Prankster could use U-turn or other moves. But I think the Garchomp/Toxapex/Hydreigon trio is solid.\n\nLet me go with: BRING: garchomp, toxapex, hydreigon\n",
+      "note": "",
+      "tokens": 3821,
+      "latency_ms": 41834,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "90% MOVE: dragonpulse, 3% MOVE: shadowball, 3% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1966,
+      "latency_ms": 587,
+      "cost_usd": 3.932e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.8991385508670896,
+        "MOVE: shadowball": 0.033820637576129416,
+        "MOVE: flamethrower": 0.001713108938166868,
+        "MOVE: phantomforce": 0.03236628516750618,
+        "SWITCH: gholdengo": 0.025303831802039902,
+        "SWITCH: palafin": 0.007657585649068129
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp leads vs Dragapult. Speed uncertain (169 vs 145-213). Setting up Stealth Rock first for free long-term pressure on switches. If SR doesn't threaten enough, I'll switch to Hydreigon (Choice Scarf) next turn for guaranteed speed and super-effective Dark Pulse on Ghost types. Watch for Gholdengo/Chandelure later in the battle.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is leading against their Dragapult\n- Garchomp has Life Orb, Sandveil ability\n- Dragapult is Dragon/Ghost, possible abilities: Clearbody, Infiltrator, Cursed Body\n- Speed: Garchomp 169 vs Dragapult 145-213 (could go either way)\n\nKey considerations:\n- Garchomp's Earthquake hits Dragapult neutrally (Ground is neutral to Dragon/Ghost)\n- Garchomp's Dragonclaw hits Dragapult super effectively (Dragon is super effective on Dragon/Ghost... wait, no. Dragon is NOT super effective on Ghost. Let me reconsider.\n\nActually, let me check type matchups:\n- Ground vs Dragon/Ghost: Ground is neutral to Dragon, and Ground is immune to Ghost. So Earthquake would be neutral damage.\n- Dragon vs Dragon/Ghost: Dragon is neutral to Dragon (Dragon resists Dragon), and Dragon is neutral to Ghost. Wait, no - Dragon is not super effective on Dragon. Dragon moves are neutral against Dragon types. And Dragon is neutral against Ghost.\n\nWait, let me re-read the legal actions. It says \"dragonclaw | Dragon, Physical, power 80, 100% accuracy, super effective on dragapult\". So the game says Dragonclaw is super effective on Dragapult. Let me trust that.\n\nActually wait - Dragon/Ghost: Dragon moves are neutral against Dragon (Dragon resists Dragon), but... hmm. Actually in Pokémon, Dragon is NOT super effective against Dragon. Dragon attacks are neutral to Dragon types. But the game says it's super effective. Let me just go with what the game says.\n\nWait, I need to re-check. In Gen 9:\n- Dragon vs Dragon: Neutral (Dragon resists Dragon)\n- Dragon vs Ghost: Neutral\n\nSo Dragonclaw should be neutral on Dragapult. But the game says \"super effective on dragapult.\" Maybe I'm wrong about the type chart. Let me just trust the game's description.\n\nActually, wait. Let me reconsider. In some generations or with specific mechanics... No, I think the game might have an error, or I'm misremembering. Let me just go with what the game says - Dragonclaw is super effective on Dragapult.\n\nHmm, but actually in standard Pokémon:\n- Dragon type resists Dragon moves (0.5x)\n- Ghost type is neutral to Dragon moves\n\nSo Dragonclaw should be 0.5x on Dragapult. But the game explicitly states it's \"super effective on dragapult.\" I'll trust the game.\n\nWait, actually I just realized - maybe I'm wrong. Let me think again... No, in all generations, Dragon is not super effective against Dragon. Dragon resists Dragon. So this seems like an error in the game description. But I should follow what the game says.\n\nActually, you know what, let me just focus on strategy:\n\n1. Stealth Rock: Sets up entry hazards. This is very important for setting up a long-term advantage. It will hurt any Ghost-type that switches in (Gholdengo, Chandelure) and Steel-type (Gholdengo).\n\n2. Earthquake: Neutral damage to Dragapult. With Life Orb, it's 1.3x boosted. Garchomp's Attack is 182, so with Life Orb that's ~237 effective attack. Against Dragapult's Def of 85-139... this could be significant damage.\n\n3. Dragonclaw: If super effective as stated, this would deal more damage than Earthquake despite lower base power.\n\n4. Stoneedge: Rock is neutral to Dragon/Ghost (Rock is neutral to both). 80% accuracy, high crit ratio.\n\n5. Switch to Toxapex: Toxapex can wall physical attackers and set up Toxic. But Dragapult might be a special attacker (it has Dracometeor in its potential moveset from the preview... wait no, that's my Hydreigon).\n\n6. Switch to Hydreigon: With Choice Scarf, it would outspeed everything. Dark Pulse is super effective on Ghost types. This could KO Dragapult if it's a special attacker.\n\nLet me think about what's best here:\n\n- If I use Stealth Rock first, I set up hazards for the whole battle. This is very valuable.\n- If I use Earthquake/Dragonclaw, I try to damage or KO Dragapult.\n- If I switch to Hydreigon with Choice Scarf, Dark Pulse (super effective on Ghost) could be a big threat.\n\nActually, looking at this more carefully:\n- Garchomp's Earthquake: 182 Atk × 100 BP / 50 = ~364 base damage, × 1.3 Life Orb = ~473, divided by Dragapult's Def (85-139). Against low Def (85): ~556 HP damage - KO. Against high Def (139): ~340 HP damage - not a KO but significant.\n- Garchomp's Dragonclaw: 182 Atk × 80 BP / 50 = ~291 base, × 1.3 Life Orb = ~378, if super effective (×2) = ~756. Against low Def: KO easily. Against high Def: still very strong.\n\nWait, but I'm not sure Dragonclaw is actually super effective. The game says it is though. Let me trust the game.\n\nActually, let me reconsider. In standard Pokémon type chart:\n- Dragon attacks vs Dragon: 0.5x (resist)\n- Dragon attacks vs Ghost: 1x (neutral)\n\nSo Dragonclaw should be 0.5x on Dragapult. But the game says \"super effective.\" This is confusing. I'll go with what the game states.\n\nStrategy decision:\n- Stealth Rock is very important to set up early. It will hurt Gholdengo (Steel/Ghost - takes SR damage from both Steel and Ghost weaknesses... wait, SR hits based on type. Steel resists Rock? No, Steel is neutral to Rock. Ghost is immune to Ground but neutral to Rock. So Gholdengo would take normal SR damage.)\n\nActually, Stealth Rock:\n- Gholdengo (Steel/Ghost): Steel resists Rock (0.5x), Ghost is neutral to Rock. Combined: 0.5x. Not great.\n- Palafin (Water): Water is neutral to Rock. Normal damage.\n- Dragapult (Dragon/Ghost): Dragon is neutral to Rock, Ghost is neutral to Rock. Normal damage.\n- Toxapex (Poison/Water): Poison resists... no wait. Poison is neutral to Rock. Water is neutral to Rock. Normal damage.\n- Chandelure (Ghost/Fire): Both neutral to Rock. Normal damage.\n- Whimsicott (Grass/Fairy): Grass resists Rock? No, Grass is neutral to Rock. Fairy is neutral to Rock. Normal damage.\n\nHmm, Stealth Rock isn't super great against this team since none of them are weak to Rock. But it still does some damage on switch-in.\n\nLet me reconsider: Maybe I should just hit with Earthquake or Dragonclaw to try to KO Dragapult, or switch to Hydreigon for a better matchup.\n\nActually, the best play might be:\n- Use Stealth Rock to set up (it's free and sets up long-term value)\n- OR use Dragonclaw/Earthquake to damage/KO Dragapult\n- OR switch to Hydreigon for a better matchup\n\nGiven that Garchomp vs Dragapult is a bit of a mismatch (Dragapult can outspeed, and if it has Clearbody it resists stat drops), I think the best options are:\n\n1. Stealth Rock - free setup, no risk\n2. Dragonclaw - if super effective as stated, could KO or deal massive damage\n3. Switch to Hydreigon - Choice Scarf Dark Pulse is a great answer to Ghost types\n\nI think Stealth Rock is the safest and most valuable first move. It's free (doesn't cost HP), sets up long-term pressure, and I can still fight Dragapult next turn. But if Dragonclaw is truly super effective, it could KO Dragapult immediately.\n\nActually, let me reconsider the speed issue. Garchomp 169 vs Dragapult 145-213. If Dragapult is faster (up to 213), it moves first. If I use Stealth Rock and Dragapult is faster, it attacks first then I set up SR. If I use Dragonclaw and Dragapult is faster, it might KO me or deal significant damage before I can hit back.\n\nGiven the uncertainty in speed, Stealth Rock seems safest as it's a status move that doesn't risk taking a hit (well, it still takes a hit if opponent is faster, but at least I'm not committing to an attack).\n\nActually wait - all moves take hits if the opponent is faster. The only difference is whether I deal damage or set up hazards. If Dragapult is faster and has a strong move, I could get KO'd either way.\n\nLet me think about what's most likely:\n- If I use Dragonclaw (super effective per game): Could KO Dragapult if it's not too bulky. Risk: if Dragapult is faster and hits back hard.\n- If I use Stealth Rock: Sets up hazards. Risk: same - Dragapult could hit first.\n- If I switch to Hydreigon: Choice Scarf guarantees speed advantage. Dark Pulse (super effective on Ghost) would be a strong answer.\n\nActually, switching to Hydreigon with Choice Scarf seems like the strongest play. It guarantees speed priority, and Dark Pulse is super effective on Ghost types. This removes the immediate threat of Dragapult.\n\nBut wait - if I switch to Hydreigon, I lose Garchomp's potential SR setup. And Hydreigon's Dark Pulse (BP 80) might not KO a healthy Dragapult. Let me calculate:\n- Hydreigon SpA 177 × 80 BP / 50 = ~283 base damage\n- Super effective on Ghost: ×2 = ~566\n- Against Dragapult's SpD (85-139): \n  - Low SpD (85): ~666 HP damage - KO\n  - High SpD (139): ~407 HP damage - not a KO but big chip\n\nHmm, so Dark Pulse might or might not KO Dragapult. But it's still a strong move.\n\nAlternatively, I could use Stealth Rock with Garchomp to set up hazards, then switch next turn if needed.\n\nI think the best play is Stealth Rock. It's:\n1. Free (no HP loss)\n2. Sets up long-term pressure\n3. Doesn't commit me to a specific attack\n4. I can still deal damage next turn or switch\n\nLet me go with Stealth Rock.\n",
+      "note": "",
+      "tokens": 4732,
+      "latency_ms": 60182,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 0% SWITCH: palafin, 0% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1818,
+      "latency_ms": 508,
+      "cost_usd": 3.636e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9945373766285271,
+        "SWITCH: gholdengo": 0.0027073639355150417,
+        "SWITCH: palafin": 0.0027552594359576076
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 27.9% HP is too damaged to stay in. Dragonclaw is super effective but may not KO Dragapult, and if Dragapult goes first (speed range includes >169), it KOs Garchomp before I can attack. Switching to Hydreigon with Choice Scarf guarantees speed (247 eff) and provides a strong Ghost-type answer with super-effective Dark Pulse. Stealth Rock is already set for pressure on switches.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 51/183 HP (27.9%) after taking a Dragon Pulse hit\n- I set up Stealth Rock on turn 1\n- Opponent's Dragapult is at full HP (100%)\n- Speed: Garchomp 169 vs Dragapult 145-213 - uncertain who goes first\n\nOptions:\n1. Earthquake - Ground/Physical, BP 100. Not very effective on Dragon/Ghost (neutral). Would deal decent damage but Garchomp is already at low HP.\n2. Dragonclaw - Dragon/Physical, BP 80. Super effective on Dragapult! This would be a strong hit.\n3. Stoneedge - Rock/Physical, BP 100, 80% accuracy. Neutral on Dragon/Ghost.\n4. Stealth Rock - Already set up, no need to do it again (and I only have 31 PP left).\n5. Switch to Toxapex - Safe switch, but loses momentum.\n6. Switch to Hydreigon - Choice Scarf outspeeds everything, can hit Ghost types with Dark Pulse super effectively.\n\nLet me think about what's best:\n\n- Garchomp is at 27.9% HP. It can take one more Dragon Pulse and likely die (Dragon Pulse BP 85, super effective on Dragon/Ghost... wait, Dragapult is Dragon/Ghost. Earthquake is Ground type - neutral on Ghost, but Ground is not very effective on... no wait. Let me recalculate.\n\nActually, let me reconsider the typing:\n- Garchomp is Dragon/Ground\n- Dragapult is Dragon/Ghost\n\nDragon Pulse (Dragon) vs Dragon/Ground: Super effective (Dragon hits Dragon super effectively). That's what happened - it hit for super effective damage.\n\nEarthquake (Ground) vs Dragon/Ghost: Ground is neutral on Dragon, and Ghost is immune to Ground! Wait no - Ghost is not immune to Ground. Let me think again.\n\nGround type moves:\n- Super effective against: Fire, Electric, Rock, Ice, Steel\n- Not very effective against: Grass, Bug, Flying, Fairy\n- No effect against: Ghost\n\nSo Earthquake would have NO EFFECT on Dragapult (Ghost type)! That's a critical mistake I almost made.\n\nDragonclaw (Dragon) vs Dragon/Ghost: Super effective on Dragon, neutral on Ghost. So it's super effective overall! BP 80 x 2 = effective BP 160.\n\nStoneedge (Rock) vs Dragon/Ghost: Neutral on both. BP 100.\n\nSo the best offensive option is Dragonclaw (super effective, BP 80). But Garchomp is at 51/183 HP and will likely die from Life Orb recoil + taking another hit.\n\nActually wait - does Garchomp have a Life Orb? Yes! \"Item: lifeorb\". So it loses 1/10 max HP after attacking = ~18 HP. After Dragonclaw, Garchomp would be at about 51 - 18 = 33 HP. Then if Dragapult hits back with Dragon Pulse (super effective), that's roughly... let me estimate.\n\nDragapult's Dragon Pulse: BP 85, super effective on Dragon/Ground.\nGarchomp's SpD is 107. At level 50, Garchomp has HP 183.\n\nActually, I don't know Dragapult's exact stats. But it already hit for significant damage (183 - 51 = 132 HP lost from one Dragon Pulse). So another Dragon Pulse would likely KO Garchomp.\n\nSo if I use Dragonclaw:\n- Garchomp deals super effective damage to Dragapult\n- Garchomp loses Life Orb recoil (~18 HP) → ~33 HP\n- Dragapult hits back with Dragon Pulse (super effective) → Garchomp dies\n\nBut how much damage does Dragonclaw do? Let's estimate. Garchomp Atk 182, Dragonclaw BP 80, super effective (x2). Against Dragapult with Def 85-139...\n\nActually, the key question is: can I KO Dragapult with Dragonclaw before it KOs me?\n\nIf Garchomp goes first (speed 169 vs Dragapult's possible 145-213):\n- If Garchomp goes first: Dragonclaw hits super effectively. Then Dragapult hits back and likely KOs Garchomp.\n- If Dragapult goes first: Dragon Pulse KOs Garchomp (or nearly KOs it), then Garchomp might not get to attack.\n\nGiven the uncertainty, switching might be safer. But let me think about what's strategically best.\n\nOption: Switch to Hydreigon with Choice Scarf.\n- Hydreigon outspeeds everything (Choice Scarf gives +50% speed, so 165 * 1.5 = 247.5 effective speed)\n- Dark Pulse is super effective on Ghost types (Dark hits Ghost super effectively)\n- Hydreigon at full HP can safely switch in and deal damage\n\nOption: Switch to Toxapex.\n- Safe wall, but doesn't do much offensive pressure\n- Can set up Toxic or use Baneful Bunker\n\nI think switching to Hydreigon is the best move here. Garchomp is too damaged to be useful (27.9% HP), and Dragonclaw might not KO Dragapult before taking a super effective hit back. Hydreigon with Choice Scarf guarantees speed advantage and can deal super effective Dark Pulse damage to Ghost types.\n\nActually, let me reconsider. Can Dragonclaw KO Dragapult? \n\nGarchomp Atk 182, Dragonclaw BP 80, STAB (Dragon), super effective on Dragon type (x2).\nEffective power = 80 * 2 (STAB) * 2 (super effective) = 320\n\nDragapult Def range: 85-139. Let's say around 110 average.\nAt level 50, the damage formula... this is complex but roughly:\nDamage ≈ (2*Level/5 + 2) * Power * Atk * STAB * SE / Def / 50\n\nWith STAB and super effective: Power = 80, STAB = 1.4, SE = 2\nEffective power multiplier = 1.4 * 2 = 2.8\n\nRough damage estimate: (2*50/5 + 2) * 80 * 182 * 2.8 / Def / 50\n= (20+2) * 80 * 182 * 2.8 / Def / 50\n= 22 * 80 * 182 * 2.8 / Def / 50\n= 22 * 40768 / Def / 50... \n\nHmm, let me just estimate more simply. A level 50 Dragon/Ground with Atk 182 hitting a Dragon/Ghost with Def ~110 with super effective Dragonclaw (BP 80, STAB x1.4, SE x2):\n\nThis is roughly: base damage would be around 30-40% of HP for a neutral hit at these stats. With STAB and super effective, it could be 50-70%+ of Dragapult's HP.\n\nDragapult HP range: 163-195. Let's say ~180.\nIf Dragonclaw does ~50-60% damage, that's about 90-108 damage. That might not KO it.\n\nActually, I'm overcomplicating this. The key strategic point is:\n1. Garchomp is at 27.9% HP - very vulnerable\n2. Dragonclaw is super effective but may not KO\n3. If Dragapult goes first (possible since its speed range includes values above 169), it KOs Garchomp before I can attack\n4. Switching to Hydreigon with Choice Scarf guarantees speed and provides a strong Ghost-type answer\n\nI'll switch to Hydreigon. It's the safest and most strategically sound move. Hydreigon at full HP with Choice Scarf can outspeed everything and deal super effective Dark Pulse damage to any Ghost type that comes out.\n",
+      "note": "",
+      "tokens": 4374,
+      "latency_ms": 48290,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: dragonpulse, 0% SWITCH: palafin, 0% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1942,
+      "latency_ms": 500,
+      "cost_usd": 3.884e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9945728232710225,
+        "SWITCH: gholdengo": 0.0027089728858004777,
+        "SWITCH: palafin": 0.0027182038431770024
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "darkpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon (Choice Scarf, 23% HP) outspeeds Dragapult at 247 eff speed. Dark Pulse is STAB + super effective on Ghost, dealing ~136-172 damage to full HP Dragapult. This should bring it to very low HP or KO. Stealth Rock already set for pressure. Plan: hit hard now, then switch to Toxapex (100% HP) as a wall against physical threats like Garchomp/Gholdengo. Watch for Chandelure/Whimsicott later.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Hydreigon is at 39/167 HP (23.4%) and has Choice Scarf\n- Opponent's Dragapult is at 100% HP\n- Stealth Rock is set on opponent's side\n- Hydreigon has Levitate (immune to Ground) and Choice Scarf\n\nHydreigon with Choice Scarf: Speed 165 * 1.5 = 247 effective speed. This should outspeed Dragapult (max 213).\n\nOptions:\n1. Dark Pulse - Super effective on Ghost, 80 BP, 20% flinch chance. With Choice Scarf, this is the only move I can use (wait, no - Choice Scarf means \"it can only select the first move it executes\" - actually re-reading: \"Holder's Speed is 1.5x, but it can only select the first move it executes.\" Hmm, that's unusual. Wait, let me re-read the legal actions. All moves are listed as legal, so I think Choice Scarf here just means speed boost and I can pick any move. The \"first move\" note might be a quirk of this format. Let me just go with what's legal.\n\nActually wait - looking at the notes from earlier turns: \"Hydreigon with Choice Scarf outspeeds all and hits Ghost types super effectively with Dark Pulse.\" And in Turn 2, it says \"Switching to Hydreigon with Choice Scarf guarantees speed (247 eff) and provides a strong Ghost-type answer with super-effective Dark Pulse.\"\n\nSo the plan was to use Dark Pulse on Dragapult. Let me calculate:\n- Hydreigon SpA: 177\n- Dark Pulse: 80 BP, Super Effective (x2) = effective 160\n- Damage formula: ((2*50/5+2) * 160 * 177 / (Def of Dragapult)) / 50 + 2\n\nDragapult's SpD range: 85-139. Let's say around 110-120 average.\n- With SpD 110: ((2*50/5+2) * 160 * 177 / 110) / 50 + 2 = (22 * 160 * 177 / 110) / 50 + 2 = (22 * 259.3) / 50 + 2 = 5704 / 50 + 2 = 114 + 2 = 116\n- With SpD 139: ((2*50/5+2) * 160 * 177 / 139) / 50 + 2 = (22 * 203.8) / 50 + 2 = 4483 / 50 + 2 = 89.7 + 2 = 91.7\n\nSo Dark Pulse does roughly 92-116 damage to Dragapult at 100% HP (max ~195). That's about 47-71% of its HP. Not a KO but significant damage.\n\nWait, let me recalculate more carefully:\nDamage = ((2*Level/5 + 2) * Power * Attacker_SpA / Defender_SpD) / 50 + 2\n= ((2*50/5 + 2) * 80 * 177 / SpD) / 50 + 2 (times STAB? No, Dark Pulse is not Dragon type, so no STAB. But it IS super effective on Ghost.)\n\nWait, Hydreigon is Dark/Dragon. Dark Pulse is a Dark move. So there's no STAB bonus here since the user is Dark/Dragon and the move is Dark... actually yes, there IS STAB! Dark Pulse is a Dark-type move and Hydreigon is Dark/Dragon. So STAB applies (x1.5).\n\nSo: ((2*50/5 + 2) * 80 * 177 / SpD) / 50 + 2, with x1.5 STAB and x2 SE\n= ((22) * 80 * 177 / SpD) / 50 * 1.5 * 2 + 2\n= (311040 / SpD) / 50 * 3 + 2\n= (6220.8 / SpD) * 3 + 2\n\nWith SpD 110: 6220.8/110 * 3 + 2 = 56.55 * 3 + 2 = 169.7 + 2 ≈ 172\nWith SpD 139: 6220.8/139 * 3 + 2 = 44.75 * 3 + 2 = 134.3 + 2 ≈ 136\n\nDragapult max HP is 195. So Dark Pulse does roughly 136-172 damage, which is about 70-88% of its HP. That's a big hit but might not KO.\n\nActually wait, let me reconsider. The STAB: Hydreigon is Dark/Dragon. Dark Pulse is a Dark move. Yes, STAB applies.\n\nSo Dark Pulse should deal significant damage (136-172) to Dragapult at full HP. This would bring it down to about 23-59 HP. Not a guaranteed KO but very damaging.\n\nGiven that Hydreigon is already at 23% HP and Choice Scarf means I can't switch out easily (well, I can still switch), the best play is:\n- Use Dark Pulse to deal massive damage to Dragapult\n- If it doesn't KO, I can switch to Toxapex next turn\n\nActually, should I consider switching to Toxapex instead? Toxapex at 100% HP would be a great wall. But then I lose the chance to damage Dragapult significantly. And if Dragapult switches out, I've wasted the turn.\n\nI think Dark Pulse is the best move here. It deals massive super-effective STAB damage and might even KO depending on exact stats. Even if it doesn't KO, it weakens Dragapult significantly for when I switch in Toxapex or Garchomp later.\n\nLet me go with Dark Pulse.\n",
+      "note": "",
+      "tokens": 4164,
+      "latency_ms": 39717,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon fainted after two Dragon Pulses. Switching to full-HP Toxapex as the best wall against Dragapult's special attacks. Baneful Bunker will halve first-hit damage, Toxic pressures switches, Recover heals. Garchomp at 28% is too fragile to face a healthy Dragapult. SR already set for pressure on their next switch.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Hydreigon just fainted after taking two Dragon Pulses from Dragapult.\n- I have Garchomp at 51/183 (27.9%) and Toxapex at 157/157 (100%).\n- The opponent's Dragapult is at 100% HP.\n- Stealth Rock is set on the opponent's side.\n\nI need to switch to either Garchomp or Toxapex.\n\nLet me think about which is better:\n\n**Toxapex (100% HP):**\n- Very bulky with 224 Def and 164 SpD\n- Can take Dragon Pulse from Dragapult (Dragon is neutral to Poison/Water, so it takes normal damage)\n- Has Baneful Bunker which reduces damage taken by 50% on first hit\n- Has Toxic for status pressure\n- Has Recover for healing\n- Slow (Spe 55), but can wall physical attackers\n- Against Dragapult: Dragon Pulse is neutral to Poison/Water. With 164 SpD, it should take manageable damage.\n\n**Garchomp (27.9% HP):**\n- Already damaged from taking a Dragon Pulse\n- Has Earthquake which is super effective against Steel types (Gholdengo) but not Ghost/Dragon\n- Against Dragapult: Earthquake is neutral to Dragon/Ghost, Dragonclaw is neutral, Stoneedge is neutral\n- Garchomp's Dragonclaw is 80 BP Dragon/Physical - neutral to Dragon/Ghost\n- Actually, Ground moves are immune to Electric but don't hit Ghost. Dragonclaw hits Dragon/Ghost neutrally.\n- At 27.9% HP, it's very fragile and could be KO'd by another Dragon Pulse or even a super effective move\n\nToxapex is clearly the better choice here. It's at full HP, can wall Dragapult with Baneful Bunker (halving damage on first hit), and provides a defensive pivot. I can use Toxic to pressure switches, Recover to heal, and Haze if needed.\n\nLet me go with Toxapex.\n",
+      "note": "",
+      "tokens": 2936,
+      "latency_ms": 15530,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% SWITCH: gholdengo, 32% MOVE: dragonpulse, 21% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2096,
+      "latency_ms": 513,
+      "cost_usd": 4.192e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.32416662759972864,
+        "SWITCH: gholdengo": 0.4656194911251779,
+        "SWITCH: palafin": 0.21021388127509336
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Toxapex at full HP is the best wall vs Dragapult's Dragon Pulse (SpD 164). Applying Toxic pressures them to switch; if they do, SR hits their next Pokémon. Garchomp at 28% is too fragile for now. Watch for Gholdengo/Chandelure later.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Toxapex is at full HP (157/157) and just switched in against Dragapult\n- Dragapult is at 100% HP, Dragon/Ghost type\n- I have Stealth Rock set on their side\n- Garchomp is at 28% HP with Life Orb\n- Hydreigon fainted\n\nMy options:\n1. Toxic - badly poisons Dragapult, pressures them to switch\n2. Recover - heals 50% (but I'm already full)\n3. Baneful Bunker - priority +4 protect, poisons on contact\n4. Haze - removes stat changes (none currently)\n5. Switch to Garchomp (at 28% HP)\n\nBest strategy: Toxapex is a great wall against Dragapult's Dragon Pulse. I should use Baneful Bunker to protect from the next turn's attack and poison them on contact, or Toxic to pressure them into switching.\n\nActually, let me think about this more carefully:\n- Dragapult will likely use Dragon Pulse again (it's been using it every turn)\n- Toxapex can take Dragon Pulse well (Dragon is neutral to Poison/Water, and Toxapex has high SpD 164)\n- Baneful Bunker gives priority +4 protection AND poisons on contact - this is great because it guarantees a free turn while applying poison pressure\n- Toxic would also be good for long-term pressure\n\nI think Baneful Bunker is the best choice here. It:\n1. Protects from Dragon Pulse (priority +4, so it goes first)\n2. Poisons Dragapult on contact (if they use a physical move... wait, Dragon Pulse is special)\n3. Actually, Baneful Bunker poisons on contact - but Dragon Pulse isn't a contact move\n\nWait, let me reconsider. Baneful Bunker protects from the move and poisons on contact. If Dragapult uses Dragon Pulse (special, non-contact), it just gets protected from. The poison only triggers on contact moves.\n\nSo if I use Baneful Bunker:\n- It goes first (priority +4)\n- Protects Toxapex from whatever Dragapult does\n- If it's a contact move, poisons them; if not, just protects\n\nIf I use Toxic:\n- Badly poisons Dragapult\n- Gives pressure to switch\n- But Toxapex takes the hit this turn\n\nGiven that Dragapult has been using Dragon Pulse every turn, and Toxapex can tank it well (SpD 164 vs Dragon Pulse), I think Toxic is the better play. It applies long-term pressure and forces them to consider switching. If they switch, SR hits them. If they stay, they're poisoned.\n\nActually wait - let me reconsider Baneful Bunker. Even though Dragon Pulse isn't a contact move, it still gives me a free turn. And if they try something else (like a physical move), I poison them. It's safer because I don't take any damage this turn.\n\nBut Toxic is also very strong here because:\n- Dragapult has been using Dragon Pulse repeatedly\n- Toxapex can tank it\n- The poison pressure forces decisions\n- If they switch, SR hits them\n\nI'll go with Toxic. It's the most impactful move here - applying bad poison to a full HP Dragon/Ghost that's been spamming Dragon Pulse. Toxapex can take the hit and the poison will force them to make a decision.\n\nActually, let me reconsider once more. The opponent has 2 more Pokémon to bring in from: gholdengo, palafin, toxapex, chandelure, whimsicott. They've only used Dragapult so far.\n\nIf I Toxic Dragapult and it switches, SR hits their next Pokémon. If they stay, Dragon Pulse + poison damage will chip them down over turns.\n\nI'll go with Toxic.\n",
+      "note": "",
+      "tokens": 3455,
+      "latency_ms": 24108,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "69% MOVE: nastyplot, 23% MOVE: shadowball, 3% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2361,
+      "latency_ms": 531,
+      "cost_usd": 4.722e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.02717112825379798,
+        "MOVE: nastyplot": 0.6900680678469038,
+        "MOVE: shadowball": 0.22575884671396887,
+        "MOVE: recover": 0.002271400478642604,
+        "SWITCH: dragapult": 0.023163937520484918,
+        "SWITCH: palafin": 0.03156661918620174
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "banefulbunker",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Toxapex at full HP vs Gholdengo (Steel/Ghost, GoodasGold, Leftovers). Toxic/Haze won't work due to GoodasGold. Garchomp at 28% is too fragile. Baneful Bunker protects from one turn of damage and may poison on contact. Next turn I can switch or continue walling. Watch for their remaining Pokémon (palafin, toxapex, chandelure, whimsicott).",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Toxapex is at full HP (157/157), active\n- Opponent's Gholdengo is at 100% HP, active\n- Garchomp is at 27.9% HP (51/183)\n- Hydreigon fainted\n- Stealth Rock is set on opponent's side\n- Gholdengo has GoodasGold (immune to status moves) and Leftovers\n- Toxapex was already Toxic'd in turn 4 but Gholdengo was immune\n\nKey considerations:\n- Gholdengo is Steel/Ghost, so it's immune to Toxic (Ghost immunity)\n- Gholdengo has GoodasGold, so it's immune to status moves entirely\n- My Toxapex can't really do much to Gholdengo with Toxic (immune) or Haze (GoodasGold)\n- Baneful Bunker would protect from a hit and poison on contact\n- Recover would heal but I'm already at full HP\n\nGholdengo's stats: SpA 137-203, Spe 93-149. It moves first against my Toxapex (55 speed).\n\nWhat can Gholdengo do to Toxapex?\n- Steel/Ghost vs Poison/Water: \n  - If it uses a Ghost move: neutral to Water, super effective to... no, Ghost is neutral to Water and neutral to Poison. Actually Ghost is neutral to both Poison and Water.\n  - If it uses a Steel move: neutral to Poison, super effective to... Steel is neutral to Poison and neutral to Water. Wait, Steel vs Water is neutral. Steel vs Poison is neutral.\n  - If it uses a Dark move (if it has one): super effective to Ghost? No, Dark is neutral to Ghost. Dark is super effective to Ghost... wait no. Dark is super effective to Ghost and Psychic. But Gholdengo IS Ghost type, so it wouldn't use Dark on itself.\n\nActually, let me think about what Gholdengo's moves might be. It's Steel/Ghost. Common moves:\n- Iron Head (Steel)\n- Shadow Ball (Ghost)\n- Will-O-Wisp (Fire) - but GoodasGold means immune to status... wait, GoodasGold makes it immune to status moves affecting ITSELF, not that it can't use them. Actually no, GoodasGold says \"This Pokémon is immune to Status moves.\" This means status moves don't affect Gholdengo. It can still USE status moves on others.\n\nWait, let me re-read: \"goodasgold: This Pokemon is immune to Status moves.\" So Gholdengo is immune to being affected by status moves. That's why Toxic didn't work.\n\nSo what should I do?\n- Toxapex at full HP vs Gholdengo at full HP\n- Gholdengo moves first (speed 93-149 vs my 55)\n- If Gholdengo uses a Ghost move (like Shadow Ball), it's neutral to Toxapex. With SpA up to 203, that could be significant damage.\n- If Gholdengo uses a Steel move, also neutral.\n\nMy options:\n1. Toxic - won't work (GoodasGold)\n2. Recover - I'm already at full HP, so this is wasted\n3. Baneful Bunker - protects from one hit and poisons on contact. This would block Gholdengo's first attack. But Gholdengo might not use a contact move... Actually, many of Gholdengo's moves aren't contact. Shadow Ball isn't contact. Iron Head IS contact. Will-O-Wisp isn't contact.\n\nActually, Baneful Bunker is like Protect but poisons on contact. If Gholdengo uses a non-contact move, it still blocks the hit. So it's essentially Protect + poison on contact. This would save me from one turn of damage.\n\n4. Haze - won't work (GoodasGold)\n5. Switch to Garchomp - Garchomp is at 27.9%, and Gholdengo is Steel/Ghost. Earthquake is neutral to Steel/Ghost. Dragonclaw is super effective to Ghost but not Steel... wait, Dragon is neutral to Steel and super effective to Ghost. So Dragonclaw would be super effective (4x? No, Dragon is super effective to Ghost, neutral to Steel, so 2x). Actually wait - Dragon vs Steel/Ghost: Dragon is super effective to Ghost (2x), neutral to Steel (1x). Combined: 2x. That's good.\n\nBut Garchomp at 27.9% might not survive a hit from Gholdengo. Let me think...\n\nActually, the best play here might be Baneful Bunker. It protects from one turn of damage. If Gholdengo uses a contact move (like Iron Head), it also poisons it. Even if it doesn't poison, I save a turn. Then next turn I can switch or use another move.\n\nBut wait - if I use Baneful Bunker and Gholdengo switches out, I wasted the turn. However, Gholdengo is at full HP with Leftovers, so switching seems unlikely unless they're trying to set up something.\n\nAlternatively, I could just Recover (even though I'm at 100%, it's a safe move that does nothing but wastes a turn). Actually no, Recover at 100% HP would just do nothing useful.\n\nLet me think about what Gholdengo likely has:\n- Shadow Ball or Dark Pulse (Ghost/Dark)\n- Iron Head or Metal Claw (Steel)\n- Will-O-Wisp (Fire status)\n- Maybe Nasty Plot? No, that's not typical for Gholdengo.\n\nIf Gholdengo uses Shadow Ball (Ghost): neutral to Toxapex. With SpA 137-203 and BP 80... let's estimate. At max SpA 203: damage = (2*203/5+2)*80/100 * HP/HP. Roughly (406/5+2)*0.8 = (81.2+2)*0.8 = 83.2*0.8 = 66.6, times STAB... wait Ghost is not STAB for Steel/Ghost. Actually it IS STAB! Ghost type gets STAB from Ghost moves. So 1.5x. That's about 100 damage. Toxapex has 157 HP, so that's about 64% damage. Not a KO but significant.\n\nIf Gholdengo uses Iron Head (Steel): neutral to Poison/Water. BP 80, STAB. Similar damage calculation. At max Atk... wait, Gholdengo's Atk range is 72-123. That's low. So physical moves would do less damage.\n\nActually, I think the best play is Baneful Bunker. It guarantees I survive one turn of damage from whatever Gholdengo does (unless it's a priority move like Quick Guard... but Gholdengo probably doesn't have that). And if it uses a contact move, I poison it.\n\nWait, but what about switching? If I switch to Garchomp:\n- Garchomp at 27.9% HP\n- Gholdengo is Steel/Ghost\n- Earthquake: neutral (Ground vs Steel/Ghost = neutral)\n- Dragonclaw: super effective to Ghost, neutral to Steel = 2x STAB... wait, Dragonclaw is Dragon type. Dragon is super effective to Ghost (2x), neutral to Steel (1x). So 2x damage. But Garchomp's Atk is 182, so it could do decent damage.\n- But Garchomp might not survive a hit from Gholdengo at 27.9% HP.\n\nI think Baneful Bunker is the safest play. It protects me for one turn, and if Gholdengo uses a contact move, I poison it (which would be useful since GoodasGold only makes it immune to status moves affecting ITSELF - wait, does that mean it's also immune to being poisoned? Let me re-read: \"This Pokemon is immune to Status moves.\" \n\nHmm, in Pokémon Showdown, GoodasGold says \"This Pokémon is immune to Status moves.\" This typically means status moves don't affect it. But what about poison from contact? In the actual game, GoodasGold makes the Pokémon immune to all status effects (including poison). So Baneful Bunker's poison effect might not work on Gholdengo.\n\nActually wait - in Showdown, GoodasGold is described as making the Pokemon immune to Status moves. But does it also make it immune to being poisoned by contact? Let me think... In Gen 9, GoodasGold says \"This Pokémon is immune to Status moves.\" I believe this means status moves don't affect it, but poison from contact (like Baneful Bunker) might still work because it's not a \"status move\" per se - it's a side effect of a physical move.\n\nActually, in Showdown, I think GoodasGold does make the Pokemon immune to being poisoned by any means. Let me reconsider.\n\nHmm, but even if the poison doesn't work, Baneful Bunker still protects from one turn of damage. That's valuable.\n\nLet me go with Baneful Bunker. It's the safest option - I guarantee survival for this turn, and potentially poison Gholdengo (if GoodasGold doesn't block contact poison). Next turn, I can assess what happens.\n\nActually wait - let me reconsider. If I use Baneful Bunker and Gholdengo switches out, I've wasted a turn. But if Gholdengo attacks, I'm safe for one turn. Given that Gholdengo is at full HP with Leftovers and GoodasGold, it probably wants to stay in and attack.\n\nI'll go with Baneful Bunker.\n",
+      "note": "",
+      "tokens": 4913,
+      "latency_ms": 55581,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: nastyplot, 22% MOVE: shadowball, 5% MOVE: flashcannon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2420,
+      "latency_ms": 498,
+      "cost_usd": 4.84e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.05323995905079594,
+        "MOVE: nastyplot": 0.6335985762399117,
+        "MOVE: shadowball": 0.21755559997033252,
+        "MOVE: recover": 0.0032065696426589727,
+        "SWITCH: dragapult": 0.04199194583254606,
+        "SWITCH: palafin": 0.05040734926375482
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "banefulbunker",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo at full HP with +2 SpA (Nasty Plot) is the main threat. GoodasGold makes it immune to status moves (Toxic/Haze fail). Toxapex at 100% HP can wall its attacks. Baneful Bunker gives a free turn of protection. Garchomp at 28% is too fragile to switch in against full-HP Gholdengo. SR already set on opponent side. Need to survive Gholdengo's boosted special/physical moves and force a switch or outlast it.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n**My team:**\n- Garchomp: 51/183 (27.9%) - Life Orb, Sandveil\n- Toxapex (active): 157/157 (100%) - Leftovers, Regenerator\n- Hydreigon: Fainted\n\n**Opponent's team:**\n- Gholdengo (active): 100% HP, +2 SpA, GoodasGold, Leftovers\n- Dragapult: 100% HP, Dragon Pulse user\n- One more from: palafin, toxapex, chandelure, whimsicott\n\n**Key observations:**\n- Gholdengo has +2 SpA (Nasty Plot) and is at full HP with Leftovers\n- Gholdengo is Steel/Ghost - immune to Toxic (GoodasGold makes it immune to status moves entirely)\n- Toxapex is at full HP, can wall Gholdengo's special attacks\n- Garchomp is at 27.9% - very fragile\n- SR is set on opponent's side\n\n**What should I do?**\n\nGholdengo with +2 SpA and GoodasGold is a threat. It has Nasty Plot (revealed) but what are its other moves? Steel/Ghost type... likely has moves like Iron Head, Shadow Ball, etc.\n\nToxapex at full HP can wall Gholdengo's special attacks well (SpD 164). But Gholdengo is +2 SpA which means its special attacks hit harder.\n\nOptions:\n1. **Baneful Bunker** - Protects from one turn of damage, poisons on contact. This gives me a free turn to recover or switch. Since Gholdengo has GoodasGold (immune to status), it can't be poisoned by Toxic, but Baneful Bunker's poison is on contact so it might work differently... Actually wait, GoodasGold makes the Pokémon immune to status moves. Does that mean it's immune to being poisoned? Let me think... GoodasGold: \"This Pokemon is immune to Status moves.\" This means Gholdengo can't be affected by status moves. But Baneful Bunker's poison effect - is that a status effect applied to the target? Actually, looking at it more carefully, Baneful Bunker poisons on contact. If Gholdengo attacks with a physical move (contact), it would get poisoned. But if it uses a special move, no contact happens.\n\nActually, wait - GoodasGold makes Gholdengo immune to status moves. Does this mean it's immune to being poisoned? In Pokémon Showdown, GoodasGold is \"This Pokemon is immune to Status moves.\" This typically means it can't be affected by status effects like poison, paralysis, etc. So Baneful Bunker's poison might not work on Gholdengo.\n\n2. **Haze** - Removes stat changes. This would remove Gholdengo's +2 SpA boost! This is very valuable because it resets their Nasty Plot investment. However, Haze also removes my own stat changes (I don't have any). But wait - does Haze work on a Pokémon with GoodasGold? GoodasGold makes the target immune to status moves. Haze is a status move... So Haze might not work on Gholdengo!\n\nActually, let me reconsider. In Showdown, GoodasGold's description is \"This Pokemon is immune to Status moves.\" This means it cannot be affected by status moves. So Haze (a status move) would fail against Gholdengo. Same with Toxic - which already failed as shown in the battle log.\n\n3. **Recover** - Heals Toxapex by 50%. But Toxapex is already at full HP, so this would be wasted.\n\n4. **Toxic** - Already tried and it's immune (GoodasGold).\n\n5. **Switch to Garchomp** - Garchomp is at 27.9% HP. It could use Earthquake on Gholdengo (Ground is super effective against Steel... wait, no. Ground is NOT super effective against Steel. Actually, Ground moves are not very effective against Steel? No wait - Ground is neutral against Steel. Let me think again: Ground vs Steel = Not Very Effective (0.5x). So Earthquake would deal 0.5x damage to Gholdengo. That's not great.\n\nActually wait - Garchomp is Dragon/Ground. Against Steel/Ghost Gholdengo:\n- Earthquake (Ground): Ground vs Steel = NE (0.5x), Ground vs Ghost = Neutral (1x). Combined: 0.5x\n- Dragonclaw (Dragon): Dragon vs Steel = NE (0.5x), Dragon vs Ghost = SE (2x). Combined: 1x\n- Stoneedge (Rock): Rock vs Steel = NE (0.5x), Rock vs Ghost = Neutral (1x). Combined: 0.5x\n\nSo Garchomp doesn't have great coverage against Gholdengo. Earthquake would be 0.5x, Dragonclaw would be neutral. Not ideal.\n\n**Best strategy:**\n- Toxapex at full HP is the best wall here\n- Baneful Bunker gives me a free turn (protects from damage) and potentially poisons on contact\n- Since Gholdengo has GoodasGold, it's immune to status moves, so Toxic/Haze won't work\n- But Baneful Bunker's poison is a secondary effect of the move itself, not a separate status move. However, if GoodasGold makes it immune to ALL status effects (including being poisoned), then the poison might not work either.\n\nActually, in Showdown, I believe GoodasGold prevents the Pokémon from being affected by status moves, but the poison from Baneful Bunker is applied as part of the move's effect. Let me think... In competitive Pokémon, GoodasGold typically means the Pokémon can't be poisoned, paralyzed, etc. So the poison from Baneful Bunker likely won't work either.\n\nBut Baneful Bunker still protects from one turn of damage! That's valuable. It gives me a free turn to recover (though already at full HP) or just survive.\n\nActually, since Toxapex is at full HP, maybe I should consider switching. But Garchomp is at 27.9% and would take a hit from SR if it switches in... wait, SR is on the opponent's side, so it affects my Pokémon when they switch in. Garchomp already took SR damage (it's at 51/183 which includes SR damage). If I switch to Garchomp, it would take SR again? No - SR only applies once per Pokémon. Actually, in Showdown, SR damages the Pokémon when it switches in. Since Garchomp was already on the field and took SR, switching it back out and in wouldn't reapply SR... actually wait, I'm not sure about that. Let me reconsider.\n\nActually, looking at the battle log:\n- Turn 1: Garchomp came in (lead), used Stealth Rock\n- Turn 2: Hydreigon switched in, took Dragon Pulse\n- Turn 3: Toxapex switched in\n- Turn 4: Gholdengo switched in, \"Opposing Gholdengo is at 93% [from] Stealth Rock\"\n\nSo SR was set by my Garchomp on turn 1. When Gholdengo switched in on turn 4, it took SR damage (went from 100% to 93%). So SR affects the opponent's Pokémon when they switch in.\n\nIf I switch to Garchomp, it would take SR damage again? Actually no - in Showdown, SR damages a Pokémon each time it switches in. But since Garchomp was already on the field and presumably took SR when it first came in... hmm, actually looking at the battle log, Garchomp started at 183 HP and is now at 51/183 after two Dragon Pulses. Let me calculate:\n- Turn 1: Took Dragon Pulse (SE). If Dragon Pulse BP is 85, damage = (2*85*Atk*SpA)/(def) + 2... Actually let me just look at the numbers. Garchomp went from 183 to 51/183 after one Dragon Pulse on turn 1. Wait no - \"Your Garchomp is at 51/183 HP\" after turn 1's Dragon Pulse. Then turn 2 Hydreigon took a hit, turn 3 Hydreigon fainted. So Garchomp only took ONE Dragon Pulse and went from 183 to 51? That's a huge hit.\n\nWait, let me re-read:\nTurn 1: Opposing Dragapult used Dragon Pulse → Your Garchomp is at 51/183 HP\nSo one Dragon Pulse dropped Garchomp from 183 to 51 (lost 132 HP). That's about 72% damage.\n\nActually wait - the battle log says \"It was super effective\" for turn 1. Dragon Pulse is Dragon type, Garchomp is Dragon/Ground. Dragon vs Dragon = SE (2x), Dragon vs Ground = Neutral (1x). So it's 2x. That makes sense for a big hit.\n\nOK so Garchomp took one Dragon Pulse and is at 51/183. If I switch to Garchomp now, would it take SR? In Showdown, I believe SR damages the Pokémon when it enters the field. Since Garchomp was already on the field (it was the lead), switching it out and back in might reapply SR. But actually, I think once a Pokémon has taken SR damage, it doesn't take it again unless... hmm, I'm not 100% sure about the exact mechanics here.\n\nLet me focus on what's most important: **Gholdengo with +2 SpA is the immediate threat.** It can hit Toxapex hard with a special move. What moves does Gholdengo have? We only know Nasty Plot was used. Common Gholdengo movesets include: Iron Head, Shadow Ball, Dark Pulse, Nasty Plot, etc.\n\nIf Gholdengo uses a physical move (Iron Head), Toxapex's Def is 224 which is great. If it uses a special move (Shadow Ball, Dark Pulse), Toxapex's SpD is 164 which is also good.\n\nWith +2 SpA, Gholdengo's special attacks are significantly boosted. Shadow Ball at +2 SpA would hit Toxapex for... let's estimate. If Gholdengo has ~170 SpA base (mid-range), with +2 that's 170*4 = 680 effective. Against Toxapex SpD 164: damage ≈ (2*90*680)/(164) ≈ 750/164... wait I need to use the actual formula.\n\nActually, let me just think strategically. Toxapex at full HP should be able to survive a few hits from Gholdengo even with +2 SpA. The question is whether I can outlast it or force a switch.\n\n**Best move: Baneful Bunker**\n- Protects from one turn of damage (free turn)\n- If Gholdengo uses a physical contact move, it might poison (though GoodasGold may prevent this)\n- Gives me time to think about next turn\n- Toxapex is already at full HP so I don't need Recover\n\nActually, wait. Let me reconsider Haze. Even though GoodasGold makes Gholdengo immune to status moves... does Haze work differently? In Showdown, I believe the immunity to \"status moves\" means the move itself fails when used against that Pokémon. So Haze would fail against Gholdengo.\n\nWhat about switching to Garchomp? Garchomp at 27.9% could potentially KO Gholdengo with a strong hit... but as I calculated, Garchomp's moves aren't very effective against Steel/Ghost. Earthquake is NE (0.5x), Dragonclaw is neutral. Even with Life Orb boosting, it probably won't KO a full HP Gholdengo.\n\nI think **Baneful Bunker** is the best choice here. It protects Toxapex from one turn of damage, giving me a free turn. On the next turn, I can decide whether to switch or continue walling.\n\nWait, actually - should I consider that Gholdengo might use Nasty Plot again? No, it already used Nasty Plot (we saw \"Opposing Gholdengo used Nasty Plot\" on turn 5). It probably won't use it again unless it's a multi-use move... but Nasty Plot is typically used once.\n\nLet me go with Baneful Bunker to protect Toxapex and gain a free turn.\n",
+      "note": "",
+      "tokens": 5633,
+      "latency_ms": 71431,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: shadowball, 16% MOVE: nastyplot, 11% MOVE: flashcannon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2458,
+      "latency_ms": 846,
+      "cost_usd": 4.916e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.10515265446115087,
+        "MOVE: nastyplot": 0.16000488851206834,
+        "MOVE: shadowball": 0.55376139127214,
+        "MOVE: recover": 0.003389036036295526,
+        "SWITCH: dragapult": 0.07865046918427583,
+        "SWITCH: palafin": 0.09904156053406937
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "banefulbunker",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo at +4 SpA, 100% HP, GoodasGold (immune to status). Toxapex at 100% is the only viable wall. Toxic/Haze/Recover all useless here. Garchomp at 28% would be one-shot by +4 SpA special attacks. Must keep using Baneful Bunker to stall until opponent switches or runs out of PP. SR on their side will hit next switch-in.",
+      "hidden_reasoning": "Let me analyze the situation carefully.\n\nCurrent state:\n- My Toxapex is at 100% HP (157/157) with Leftovers, active\n- Opponent's Gholdengo is at 100% HP with +4 SpA from Nasty Plot, GoodasGold, Leftovers\n- Garchomp at 28% HP (51/183)\n- Hydreigon fainted\n- Stealth Rock on opponent side\n\nGholdengo has +4 SpA. With GoodasGold, it's immune to status moves (Toxic, Haze won't work). It has Nasty Plot revealed. What other moves does Gholdengo have? From the team preview, Gholdengo is Steel/Ghost. Its possible moves could include: Iron Head, Shadow Ball, Dark Pulse, Bolt Tap, etc. But I only know it used Nasty Plot.\n\nWait - GoodasGold makes it immune to status moves. So Toxic and Haze won't work. That's already established.\n\nGholdengo at +4 SpA is extremely dangerous. Let me think about what it can do:\n- If it uses a special move like Shadow Ball (Ghost/Special, BP 80) or Dark Pulse (Dark/Special, BP 80), with +4 SpA boost...\n- Actually, Gholdengo's base SpA is in range 137-203. With +4 (which is x4 multiplier for special attack), that's massive.\n\nWait, let me recalculate. In Pokémon, stat boosts: +1 = x1.5, +2 = x2, +3 = x2.5, +4 = x3. So +4 SpA means 3x the base SpA.\n\nIf Gholdengo has base SpA of ~170 (mid-range), with +4 that's ~510 effective SpA. That's incredibly powerful.\n\nWhat can Toxapex do?\n- Baneful Bunker: Protects from damage, and if it's a contact move, poisons the opponent. But Gholdengo is Steel/Ghost - would a contact move hit it? Yes, Ghost types can be hit by physical moves. But wait, does GoodasGold affect this? No, GoodasGold only makes it immune to status moves. Contact damage from Baneful Bunker should still work.\n\nActually, let me reconsider. Baneful Bunker is a priority +4 move that protects. If Gholdengo uses a contact move (like Iron Head), Toxapex would be protected AND poison Gholdengo. But if Gholdengo uses a non-contact special move (Shadow Ball, Dark Pulse, etc.), Toxapex just gets protected for one turn.\n\nThe problem: Gholdengo has +4 SpA and is at 100% HP. If I keep using Baneful Bunker, it's like a cat-and-mouse game. Each turn I protect, but Gholdengo keeps healing with Leftovers. Eventually Gholdengo might use a non-contact move that I can't block... wait, no, Baneful Bunker blocks ALL moves for one turn.\n\nActually, the issue is: if I keep using Baneful Bunker forever, Gholdengo just stands there taking poison damage from contact (if it uses physical moves) or nothing (if it uses special moves). But Gholdengo has Leftovers healing 1/16 HP each turn. And Toxapex also has Leftovers.\n\nWait - can I switch to Garchomp? Garchomp is at 28% HP. If Garchomp switches in, it takes Stealth Rock damage (already set). But Garchomp's Earthquake would hit Gholdengo... wait, Gholdengo is Steel/Ghost. Ground moves are NOT effective against Ghost types! Ghost is immune to Ground. So Earthquake won't work on Gholdengo.\n\nWhat about Dragon Claw? Dragon is neutral to Steel/Ghost. Stone Edge? Rock is super effective against... no, Rock is neutral to Steel and neutral to Ghost. Actually wait:\n- Rock vs Steel: not very effective (0.5x)\n- Rock vs Ghost: neutral (1x)\n- So Rock vs Steel/Ghost: 0.5x\n\nDragon Claw vs Steel/Ghost: Dragon is neutral to both, so 1x.\n\nGarchomp's Earthquake won't work on Gholdengo at all (Ghost immunity).\n\nSo switching to Garchomp doesn't help much against Gholdengo specifically.\n\nLet me think about what else I can do with Toxapex:\n- Baneful Bunker: Protects for one turn, poisons on contact\n- Recover: Heals 50% HP (but already at 100%)\n- Toxic: Won't work (GoodasGold)\n- Haze: Won't work (GoodasGold)\n\nSo my only useful moves are Baneful Bunker and Recover. Since Toxapex is at 100%, Recover is useless. So Baneful Bunker is the best option.\n\nBut wait - if I keep using Baneful Bunker, what happens? Gholdengo will eventually need to do something. If it uses a physical contact move (Iron Head?), it gets poisoned AND blocked. If it uses a special non-contact move (Shadow Ball), it just gets blocked.\n\nThe problem is: Gholdengo has +4 SpA. Even with one turn of protection, if it switches out and comes back, or if I run out of Baneful Bunker PP... but I have 14 PP left, that's plenty.\n\nActually, the real question is: can I force a switch? If Gholdengo keeps using Nasty Plot (which is already at +4, max), it's wasting turns. But it might not - it might use an actual attack.\n\nLet me think about this differently. The opponent has 3 Pokémon total. They've used Dragapult and Gholdengo. One more is coming from: palafin, toxapex, chandelure, whimsicott.\n\nIf I keep walling with Baneful Bunker, eventually the opponent might switch out to bring in their third Pokémon. That's actually what I want - I want them to switch so I can deal with a different threat.\n\nBut there's a risk: if Gholdengo uses a non-contact special move (like Shadow Ball) and I'm not using Baneful Bunker, it could do massive damage with +4 SpA. Let me estimate:\n- Gholdengo base SpA ~170, with +4 = 510 effective\n- Shadow Ball BP 80, Ghost type is neutral to Poison/Water\n- Damage formula roughly: (2*510/50+2) * 80/100 * 157/157... this would be huge. Probably one-shot or near one-shot Toxapex.\n\nSo I MUST use Baneful Bunker every turn to protect from Gholdengo's attacks. The only question is whether this is sustainable.\n\nActually, wait. Let me reconsider. If Gholdengo uses a contact move like Iron Head (Steel/Physical, BP 80):\n- Toxapex is protected by Baneful Bunker\n- Gholdengo gets poisoned (1/16 HP per turn)\n- But Gholdengo also has Leftovers healing 1/16 HP\n\nSo the poison and leftovers cancel out for Gholdengo. That's not great.\n\nIf Gholdengo uses a non-contact move:\n- Toxapex is protected\n- No damage to either side from that turn (except Leftovers on both)\n\nEither way, I'm just stalling. The opponent will eventually switch or use up PP.\n\nActually, I think the best strategy here is to keep using Baneful Bunker. It's the only move that protects me from Gholdengo's +4 SpA attacks. I can't do much else - Toxic and Haze don't work, Recover is useless at full HP, and switching to Garchomp (28% HP) against a +4 SpA Gholdengo would be suicidal.\n\nWait, actually let me reconsider switching. If I switch to Garchomp:\n- Garchomp takes Stealth Rock damage (already on opponent side, so it hits when Garchomp switches in... wait no, SR is on the OPPONENT's side. So when my Pokémon switches IN, they take SR damage from the opponent's SR? No wait - SR is set ON the opposing side. That means when the opponent's Pokémon switches in, they take SR damage. My Pokémon switching in doesn't take SR damage.\n\nActually, let me re-read: \"Stealth Rock set on the opposing side\" - this means SR is on the opponent's field. So when the opponent's Pokémon switches in, it takes SR damage. When MY Pokémon switches in, it does NOT take SR damage (since there are no SR on my side).\n\nSo if I switch to Garchomp:\n- Garchomp doesn't take SR damage (SR is on opponent side)\n- But Garchomp at 28% HP vs +4 SpA Gholdengo... if Gholdengo uses a special move, it could one-shot Garchomp.\n\nGarchomp's SpD is 107. Gholdengo with +4 SpA (effective ~510) using Shadow Ball (BP 80, neutral):\nRough damage: ((2*510/50+2)*80/100)/100 * 183 ≈ (22.4*0.8)/100 * 183 ≈ 32.7% of max HP... wait that doesn't seem right.\n\nLet me use a simpler formula. At level 50:\nDamage = ((2*Atk/5 + 2) * BP / TargetDef) / 50 + 2, then * STAB * type * random factor\n\nFor Gholdengo's special attack on Garchomp:\n- SpA effective: base ~170 * 3 (for +4) = 510... wait no. The stat boost multiplier for +4 is x3? Let me recall:\n  - +1: x1.5\n  - +2: x2\n  - +3: x2.5\n  - +4: x3\n  \nSo effective SpA = base_sp * 3. If base SpA is ~170, effective is ~510.\n\nActually in Pokémon, the formula uses the actual stat value, not base. At level 50, a stat of 170 base would be roughly: (2*170+5)*50/100 + 5 = 175 at minimum... but with IVs and EVs it could be higher. Let's say the actual SpA stat is around 180-200. With +4, that becomes ~540-600.\n\nFor a special attack:\nDamage = ((2*SpA/5 + 2) * BP / Def) / 50 + 2\n\nWith SpA ~570, BP 80, Garchomp Def 115:\n= ((2*570/5 + 2) * 80/115) / 50 + 2\n= ((228 + 2) * 0.696) / 50 + 2\n= (230 * 0.696) / 50 + 2\n= 160.08 / 50 + 2\n= 3.2 + 2 = 5.2... \n\nHmm, that formula doesn't seem right for level 50. Let me use the standard damage formula:\n\nDamage = floor(floor(floor(2*Level/5 + 2) * Attack * Power / Defense) / 50) + 2\n\nAt level 50: (2*50/5 + 2) = 22\nAttack (effective SpA with +4): let's say ~180 base → actual stat maybe 190-210. With +4 (x3): ~570-630. Let's use 600.\n\nDamage = floor(floor(22 * 600 * 80 / 115) / 50) + 2\n= floor(floor(22 * 600 * 80 / 115) / 50) + 2\n= floor(floor(1,056,000 / 115) / 50) + 2\n= floor(floor(9182.6) / 50) + 2\n= floor(9182 / 50) + 2\n= floor(183.64) + 2\n= 183 + 2 = 185\n\nGarchomp has 51 HP. So yes, a single Shadow Ball from +4 SpA Gholdengo would one-shot Garchomp easily.\n\nSo switching to Garchomp is definitely bad. I should stay with Toxapex and use Baneful Bunker.\n\nMy decision: MOVE: banefulbunker\n\nThis continues the walling strategy. Toxapex at 100% HP can tank this indefinitely (well, until PP runs out, but I have 14 PP). The opponent will eventually need to switch or run out of options. If they switch, I can then deal with their next Pokémon.\n\nActually wait - one more thought. Could Gholdengo use a move that bypasses Baneful Bunker? No, Baneful Bunker blocks all moves (it's like Protect but with poison on contact). The only thing that bypasses it is... nothing really in normal battle. It has priority +4 so it goes first.\n\nI'll go with Baneful Bunker.\n",
+      "note": "",
+      "tokens": 5933,
+      "latency_ms": 77362,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: shadowball, 22% MOVE: flashcannon, 3% MOVE: nastyplot",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2506,
+      "latency_ms": 682,
+      "cost_usd": 5.012e-05,
+      "probabilities": {
+        "MOVE: flashcannon": 0.22324291383909325,
+        "MOVE: nastyplot": 0.026868839699543876,
+        "MOVE: shadowball": 0.7159555385620848,
+        "MOVE: recover": 0.0012614849595429206,
+        "SWITCH: dragapult": 0.023299947410785494,
+        "SWITCH: palafin": 0.009371275528949743
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp at 51/183 HP vs full-HP +4 SpA Gholdengo (GoodasGold, Leftovers). Earthquake is super effective on Steel and will KO Gholdengo. Life Orb costs ~18 HP but I'll survive. After KO, opponent brings last Pokémon (from palafin/toxapex/chandelure/whimsicott) which takes SR damage. I'm down to my last Pokémon at ~33 HP - need to survive whatever comes in.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- My Garchomp is at 51/183 HP (27.9%) with Life Orb\n- Opponent's Gholdengo is at 100% HP with +4 SpA, GoodasGold, Leftovers\n- I have Stealth Rock set on opponent's side\n- My Toxapex and Hydreigon are fainted\n- I still have one Pokémon left to bring in (from palafin, toxapex, chandelure, whimsicott)\n\nGarchomp is at 27.9% HP. Let me check if Garchomp can KO Gholdengo:\n- Garchomp's Earthquake is super effective on Steel/Ghost (Steel weakness to Ground)\n- Garchomp Atk: 182, Life Orb gives 1.3x multiplier\n- Gholdengo Def range: 103-161\n\nEarthquake damage calculation:\n- Base power 100, super effective (2x), physical\n- Damage = (2*Level/5 + 2) * BP * Atk / Def / 50 + 2\n- With Life Orb: * 1.3\n- Super effective: * 2\n\nLet me estimate with Gholdengo's lowest Def (103):\n- (2*50/5 + 2) = 42\n- 42 * 100 * 182 / 103 / 50 + 2 = 42 * 100 * 182 / 5150 + 2 = 764,400 / 5150 + 2 ≈ 148.4 + 2 = 150.4\n- With Life Orb: 150.4 * 1.3 = 195.5\n- Super effective: 195.5 * 2 = 391\n\nWait, that seems too high. Let me recalculate properly.\n\nActually in Pokémon Showdown, the formula is:\nDamage = ((2*Level/5 + 2) * Power * Attacker_Atk / Defender_Def / 50 + 2) * STAB * Type_Multiplier * Other_modifiers\n\nLevel 50: (2*50/5 + 2) = 42\nPower: 100\nAtk: 182\nDef: let's say 103 (lowest) or 161 (highest)\n\nBase damage = (42 * 100 * 182 / 103 / 50 + 2) = (764400/5150 + 2) = (148.43 + 2) = 150.43\n\nWith Life Orb: 150.43 * 1.3 = 195.56\nSuper effective (Ground on Steel): * 2 = 391.1\n\nGholdengo HP range: 162-194\n\nSo Earthquake would KO Gholdengo easily even at its highest HP (194). Even with Def 161:\nBase damage = (42 * 100 * 182 / 161 / 50 + 2) = (764400/8050 + 2) = (94.96 + 2) = 96.96\nWith Life Orb: 96.96 * 1.3 = 126.05\nSuper effective: 126.05 * 2 = 252.1\n\nStill KOs Gholdengo (max HP 194).\n\nSo Earthquake will KO Gholdengo! I should use it.\n\nBut wait - Garchomp is at 51/183 HP. If Garchomp uses Earthquake, it will take damage from the Life Orb (1/10 max HP = 18.3 HP), leaving it at about 32.7 HP. But since it KOs Gholdengo, that's fine.\n\nActually, let me reconsider. The opponent has Stealth Rock on their side. If I switch in another Pokémon after KOing Gholdengo, it will take SR damage. But I only have one more Pokémon to bring in from the remaining team.\n\nWait, looking at my team:\n- garchomp (active) - 51/183 HP\n- toxapex [FAINTED]\n- hydreigon [FAINTED]\n\nI only have Garchomp left! I don't have a fourth Pokémon to switch in. The \"one more is still to come in\" refers to the OPPONENT's team, not mine.\n\nSo if I KO Gholdengo with Earthquake, my Garchomp will be at about 32 HP (51 - 18 from Life Orb = 33). Then the opponent will bring in their next Pokémon (from palafin, toxapex, chandelure, whimsicott), and it will take SR damage.\n\nActually wait - I need to re-read. \"The opponent brought 3 of the 6 it showed at team preview: 1 more is still to come in\" - this means the opponent has 4 Pokémon total (they showed 6 at preview but only brought 3... no wait, they said \"brought 3 of their 6 Pokémon\" in the rules. So they have 3 Pokémon on their team. They've used Dragapult and Gholdengo, so they have 1 more left from: palafin, toxapex, chandelure, whimsicott.\n\nSo my situation: I only have Garchomp left (Toxapex and Hydreigon are fainted). If I KO Gholdengo, I'll be at ~33 HP facing their last Pokémon with SR damage on switch-in.\n\nBut I HAVE to do something. Earthquake KOs Gholdengo. Let me go with that.\n\nActually wait - can I use Stealth Rock again? No, that wouldn't help since it's already set. And it doesn't KO anything.\n\nLet me think about whether there's a better option:\n- Earthquake: KOs Gholdengo (super effective)\n- Dragonclaw: Not very effective on Steel/Ghost... wait, Dragon is not very effective on Steel? No, Dragon is neutral against Steel. But Ghost resists Dragon. So Dragonclaw would be 0.5x (Ghost resistance). Bad choice.\n- Stoneedge: Rock is super effective on Ghost but not very effective on Steel. Net: 2 * 0.5 = 1x (neutral). Also 80% accuracy. Not great.\n- Stealth Rock: Already set, won't do anything useful.\n\nEarthquake is clearly the best move. It's super effective (Ground > Steel), will KO Gholdengo, and I'll have my last Pokémon at low HP but alive.\n\nLet me go with Earthquake.\n",
+      "note": "",
+      "tokens": 4571,
+      "latency_ms": 41821,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% SWITCH: dragapult, 15% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2270,
+      "latency_ms": 502,
+      "cost_usd": 4.54e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.8540414317745582,
+        "SWITCH: palafin": 0.14595856822544184
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% MOVE: dragonpulse, 1% MOVE: shadowball, 1% SWITCH: palafin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2613,
+      "latency_ms": 517,
+      "cost_usd": 5.226e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.9822519208833843,
+        "MOVE: shadowball": 0.008151469298690515,
+        "MOVE: flamethrower": 0.0002458788914663962,
+        "MOVE: phantomforce": 0.002842900563808117,
+        "SWITCH: palafin": 0.006507830362650576
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Last Pokémon at 33 HP. Dragapult (Dragon/Ghost) at 87% is active. Earthquake is IMMUNE on Ghost - cannot use. Dragonclaw is the only reliable damaging move that hits (per prompt, super effective). Stoneedge also hits but 80% acc. I'll likely get KO'd by Dragon Pulse next turn regardless. Go for max damage with guaranteed hit.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Garchomp is at 33/183 HP (18%) with Life Orb\n- Opponent's Dragapult is at 87% HP, Dragon/Ghost type\n- I have Stealth Rock already set on opponent's side\n- I'm down to my last Pokémon (Toxapex and Hydreigon are fainted)\n- Garchomp has: Earthquake, Dragonclaw, Stoneedge, StealthRock\n\nKey considerations:\n1. Garchomp is at 33 HP - very fragile\n2. Dragapult is Dragon/Ghost - takes super effective from Ground (Earthquake) and Rock (Stoneedge)\n3. But wait - Dragonclaw is Dragon type, which is NOT super effective on Dragon/Ghost. Let me re-check the legal actions note: \"super effective on dragapult\" for dragonclaw. Wait, that doesn't make sense. Dragon vs Dragon/Ghost... Dragon attacks are neutral against Dragon types. Ghost is immune to Dark and Ground. \n\nWait, let me re-read. The legal action says \"dragonclaw | Dragon, Physical, power 80, 100% accuracy, super effective on dragapult\". Hmm, that's odd. Dragon vs Dragon/Ghost should be neutral (Dragon is not super effective against Dragon). Unless... wait, maybe I'm wrong. Let me think again.\n\nActually, looking at the type chart:\n- Dragon attacks vs Dragon: Neutral\n- Dragon attacks vs Ghost: Neutral\n- So Dragonclaw would be NEUTRAL on Dragapult\n\nBut the legal actions say \"super effective on dragapult\" for dragonclaw. That's strange. Let me just go with what the game says. Maybe there's something I'm missing, or maybe it's a mistake in the prompt. I'll trust the game's description.\n\nWait, actually re-reading: \"dragonclaw | Dragon, Physical, power 80, 100% accuracy, super effective on dragapult\" - this might be an error in the prompt, but I should follow what the game tells me. However, let me think about what's most practical.\n\nActually, Earthquake is Ground type:\n- Ground vs Dragon/Ghost: Ground is NEUTRAL against Dragon, and GROUND IS IMMUNE to Ghost... wait no. Ground attacks are NOT super effective on Ghost (Ghost is immune to Ground). So Earthquake would be NEUTRAL or actually... \n\nWait, let me reconsider the type matchups:\n- Ground attacks vs Ghost: Ghost is IMMUNE to Ground attacks!\n\nSo Earthquake would do ZERO damage to Dragapult because it's a Ghost type!\n\nAnd Dragonclaw (Dragon) vs Dragon/Ghost: Neutral.\n\nStoneedge (Rock) vs Dragon/Ghost: Rock is NEUTRAL against Dragon, and NEUTRAL against Ghost. So neutral.\n\nHmm wait, let me reconsider. The legal actions say dragonclaw is \"super effective on dragapult.\" Maybe I should trust that. But logically it shouldn't be super effective...\n\nActually, you know what, let me just re-read the type chart more carefully:\n- Dragon vs Dragon: 1x (neutral)\n- Dragon vs Ghost: 1x (neutral)\n\nSo Dragonclaw should be neutral on Dragapult. The \"super effective\" note might be an error in the prompt.\n\nBut Earthquake (Ground) vs Ghost: GHOST is IMMUNE to GROUND attacks. So Earthquake would do 0 damage!\n\nStoneedge (Rock) vs Dragon/Ghost: Rock vs Dragon = 1x, Rock vs Ghost = 1x. Neutral.\n\nSo my best options against Dragapult are:\n- Dragonclaw: neutral, power 80\n- Stoneedge: neutral, power 100, 80% accuracy\n- Earthquake: IMMUNE (0 damage) - BAD IDEA\n- StealthRock: already set, would just re-set it\n\nWait, but the prompt says dragonclaw is \"super effective on dragapult.\" Let me trust the game. If the game says it's super effective, maybe there's a reason I'm not seeing. Or maybe it's just an error in the prompt generation.\n\nGiven that Garchomp is at 33 HP (18%), and Dragapult is at 87%:\n- Dragonclaw (power 80): With Life Orb boost (1.3x), effective power = 80 * 1.3 = 104. Against a neutral target with ~163-195 HP... Let's say 175 HP. Damage ≈ (2*50/100 + 2) * 104 * 182 / 175 / 100 ≈ roughly 200+ damage? Wait, let me calculate more carefully.\n\nActually at level 50:\n- Garchomp Attack: 182 (base stat given)\n- Dragapult HP: let's say around 179 (midpoint of 163-195)\n\nDamage formula: ((2*Level/5 + 2) * Power * Atk / Def) / 50 + 2\n= ((2*50/5 + 2) * 80 * 182 / Def) / 50 + 2\n\nIf Dragapult Def is around 112 (midpoint of 85-139):\n= ((20 + 2) * 80 * 182 / 112) / 50 + 2\n= (22 * 80 * 182 / 112) / 50 + 2\n= (22 * 130.4) / 50 + 2\n= 2869 / 50 + 2\n= 57.4 + 2 = 59.4\n\nWith Life Orb: 59.4 * 1.3 = 77.2\n\nSo Dragonclaw would deal about 77 damage to a ~179 HP Dragapult at 87% (which is ~156 HP). That's not enough to KO in one hit.\n\nWith Stoneedge (power 100, 80% accuracy):\n= ((22) * 100 * 182 / 112) / 50 + 2\n= (22 * 162.5) / 50 + 2\n= 3575 / 50 + 2\n= 71.5 + 2 = 73.5\n\nWith Life Orb: 73.5 * 1.3 = 95.6\n\nStill not enough to KO a 156 HP Dragapult in one hit.\n\nHmm, so I can't KO Dragapult with a single hit. But I'm at 33 HP and any Dragon Pulse from Dragapult would likely KO me (Dragon Pulse is super effective on Garchomp).\n\nWait - Dragon Pulse vs Garchomp:\n- Dragon Pulse is Dragon/Special, power 85\n- Garchomp SpD: 107\n- Dragapult SpA: let's say around 137 (midpoint of 108-167)\n\nDamage: ((2*50/5 + 2) * 85 * 137 / 107) / 50 + 2\n= (22 * 85 * 137 / 107) / 50 + 2\n= (22 * 109.4) / 50 + 2\n= 2407 / 50 + 2\n= 48.1 + 2 = 50.1\n\nSo Dragon Pulse would deal about 50 damage to my Garchomp at 33 HP. That's a KO!\n\nSo I'm basically one-hit from being KO'd by Dragapult. My options:\n1. Use Dragonclaw or Stoneedge to try to chip it down, but I'll likely get KO'd next turn\n2. Use StealthRock (already set, so this would just re-set it - actually SR is already on the field, so using it again might not do anything new)\n\nWait, actually looking at the battle log: \"Stealth Rock set on the opposing side\" in Turn 1. And now \"Opponent side hazards / conditions: Stealth_Rock\". So SR is already there. Using StealthRock again would... I think it just refreshes it or does nothing since it's already there.\n\nGiven that I'm at 33 HP and will likely be KO'd by Dragon Pulse, my best bet is to do as much damage as possible before dying. Stoneedge has higher power (100 vs 80) but lower accuracy (80% vs 100%). \n\nActually wait - let me reconsider. The prompt says dragonclaw is \"super effective on dragapult.\" If I trust that, then:\n- Dragonclaw with super effectiveness: damage would be doubled\n- 77.2 * 2 = 154.4\n\nThat WOULD KO a 156 HP Dragapult! \n\nHmm, but logically Dragon is not super effective on Dragon/Ghost. I'm confused by the prompt. Let me just go with what makes strategic sense.\n\nActually, you know what, let me re-examine. Maybe the prompt has a typo and it's actually saying something else. Or maybe in this specific game version, there's some mechanic I'm not aware of. \n\nLet me just go with Stoneedge since:\n1. It has higher power (100)\n2. Rock is neutral on both Dragon and Ghost (so no immunity issue like Ground/Ghost)\n3. 80% accuracy is a risk but the damage is higher\n\nActually wait, I should reconsider. If Earthquake does 0 damage to Ghost types, and Dragonclaw might be neutral or super effective (per the prompt), and Stoneedge is neutral...\n\nLet me go with Stoneedge for maximum damage potential. Even at 80% accuracy, if it hits, it deals more damage than Dragonclaw. And if it misses, I'm dead anyway since Dragapult will KO me next turn.\n\nActually, let me reconsider one more time. The prompt explicitly says \"dragonclaw | Dragon, Physical, power 80, 100% accuracy, super effective on dragapult\". If the game is telling me it's super effective, I should trust it. That means:\n- Dragonclaw: 77.2 * 2 = ~154 damage → KOs Dragapult at 156 HP\n- Stoneedge: 95.6 damage → doesn't KO\n\nIf dragonclaw is truly super effective, it's the better choice because it has 100% accuracy AND would KO.\n\nBut I'm really skeptical about Dragon being super effective on Dragon/Ghost. In standard Pokémon, it's not. But the game prompt says so...\n\nI'll go with Stoneedge. Here's my reasoning:\n- Even if dragonclaw is \"super effective\" per the prompt (which seems like an error), the 80% accuracy of stoneedge vs 100% of dragonclaw matters\n- Actually no, if dragonclaw KOs and stoneedge doesn't, I should take the KO\n\nUgh, let me just think about this differently. The most important thing is: what actually does damage to Dragapult?\n\nGround (Earthquake): IMMUNE on Ghost → 0 damage. DON'T USE THIS.\nDragon (Dragonclaw): Neutral or \"super effective\" per prompt → some damage\nRock (Stoneedge): Neutral → some damage\n\nIf I have to pick between Dragonclaw (80 power, 100% acc) and Stoneedge (100 power, 80% acc):\n- Expected damage with Dragonclaw: 77.2 * 1.0 = 77.2\n- Expected damage with Stoneedge: 95.6 * 0.8 = 76.5\n\nThey're roughly equal in expected value! But Dragonclaw has guaranteed hits while Stoneedge might miss. If Stoneedge misses, I deal 0 damage and get KO'd. If it hits, I deal more damage.\n\nGiven that I'm going to die next turn anyway (Dragapult's Dragon Pulse will KO me at 33 HP), the risk of Stoneedge missing is significant. Let me go with Dragonclaw for guaranteed damage.\n\nWait, but if dragonclaw IS super effective as the prompt says, then it would be:\n- Dragonclaw: 77.2 * 2 = 154.4 → KOs!\n\nIn that case, Dragonclaw is clearly the best choice - guaranteed KO.\n\nI'll go with Dragonclaw. It's the safest bet: either way (neutral or super effective), it deals damage, and if it's super effective as stated, it KOs.\n\nActually, I realize I should also consider: will Dragapult move first? Speed check: Garchomp 169 vs Dragapult 145-213. It could go either way. If Dragapult goes first, it uses Dragon Pulse and KOs my Garchomp before I can attack. If I go first, I get to hit.\n\nGiven the uncertainty, I'll just go with Dragonclaw as it's the most reliable option that deals damage to a Ghost-type (unlike Earthquake which would be immune).\n",
+      "note": "",
+      "tokens": 6054,
+      "latency_ms": 74835,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
