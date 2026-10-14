@@ -21,7 +21,7 @@ from typing import Any, Dict, Optional, Set
 from openai.types.chat import ChatCompletion
 
 RELAY_DIR = Path(__file__).resolve().parents[3] / "runs" / "relay"  # the run monitor reads it too
-CHANNEL = "gemini-app"
+CHANNEL = "gemini-app-max"  # the app's thinking setting (Máx.), matching the API games' high effort
 relayed: Set[str] = set()  # config ids `ladder relay` plays by hand in this process
 _ids = itertools.count(1)
 
