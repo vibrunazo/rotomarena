@@ -1,0 +1,454 @@
+{
+  "id": "match_20261014_031927_Laya_vs_DeepSeek V4_1_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "deepseek_v4_1_flash",
+      "display_name": "DeepSeek V4.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "quantization": null,
+      "username": "DeepSeek V4.1",
+      "role": "p2",
+      "team": "DeepSeek V4.1 Flash's team",
+      "model_key": "deepseek/deepseek-v4.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "DeepSeek V4.1 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 308.97,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|DeepSeek V4.1 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, M|",
+    "|poke|p1|Torterra, L50, F|",
+    "|poke|p1|Scrafty, L50, M|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, M|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Garganacl, L50, M|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|poke|p2|Gengar, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, F|202/202",
+    "|switch|p2a: Dragonite|Dragonite, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Dragonite|Ice Spinner|p1a: Torterra",
+    "|-supereffective|p1a: Torterra|2",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|faint|p1a: Torterra",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|157/157",
+    "|turn|2",
+    "|",
+    "|move|p2a: Dragonite|Dragon Dance|p2a: Dragonite",
+    "|-boost|p2a: Dragonite|atk|1",
+    "|-boost|p2a: Dragonite|spe|1",
+    "|move|p1a: Rotom|Rising Voltage|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|84/100",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Dragonite|Dragon Dance|p2a: Dragonite",
+    "|-boost|p2a: Dragonite|atk|1",
+    "|-boost|p2a: Dragonite|spe|1",
+    "|move|p1a: Rotom|Rising Voltage|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|52/100",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Dragonite|Ice Spinner|p1a: Rotom",
+    "|-damage|p1a: Rotom|12/157",
+    "|move|p1a: Rotom|Rising Voltage|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|23/100",
+    "|",
+    "|-heal|p1a: Rotom|21/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Dragonite|Ice Spinner|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, M|177/177",
+    "|turn|6",
+    "|",
+    "|move|p2a: Dragonite|Earthquake|p1a: Torkoal",
+    "|-supereffective|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|",
+    "|win|DeepSeek V4.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 51% BRING: torterra, 17% BRING: torkoal, 15% BRING: rotom\nPick 2: 38% BRING: torkoal, 27% BRING: rotom, 15% BRING: scrafty\nPick 3: 67% BRING: rotom, 14% BRING: sinistchamasterpiece, 13% BRING: scrafty",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5307,
+      "latency_ms": 872,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragonite,gholdengo,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent likely sun team: Torkoal (Drought), Simisear, Torterra, Sinistcha, Scrafty, Rotom. Lead Dragonite with Multiscale+Lumberry to set up DD or hit Torterra with Ice Spinner. Gholdengo handles Rotom/Sinistcha with Shadow Ball. Kingambit as late-game Sucker Punch cleaner. Save Gengar out; frail vs sun.",
+      "hidden_reasoning": "We need choose 3. Opponent has Rotom (Electric/Ghost), Torkoal (Fire, likely Drought), Torterra (Grass/Ground), Scrafty (Dark/Fighting), Sinistcha (Grass/Ghost), Simisear (Fire).\n\nWe need a lead. Gengar mega is fast and strong, but frail. Dragonite with Multiscale + Lumberry is a good lead. Gholdengo good vs Rotom? Rotom ghost/electric, Gholdengo steel/ghost - shadowball hits. Kingambit strong.\n\nOpponent likely sun team (Torkoal Drought, Simisear, Torterra). Sinistcha grass/ghost.\n\nLet's pick Dragonite lead (Multiscale, DD, ExtremeSpeed, EQ, Ice Spinner). Then Gholdengo and Kingambit. Actually Gengar mega could be great vs Sinistcha and Torterra? Gengar shadowball hits Sinistcha super effectively (ghost vs ghost). Sludge wave hits grass. But Gengar frail.\n\nDragonite: Ice Spinner hits Torterra 4x, EQ hits Torkoal/Simisear. ExtremeSpeed priority. Good lead.\n\nGholdengo: Make It Rain, Shadow Ball, Thunderbolt. Good vs Rotom (shadowball), Torkoal (thunderbolt? no, make it rain neutral). \n\nKingambit: Sucker Punch, Kowtow Cleave, Iron Head. Good vs Sinistcha (dark), Rotom (dark? ghost - dark super effective).\n\nI'll bring dragonite, gholdengo, kingambit. Lead dragonite.\n\nActually consider Annihilape - bulk up, drain punch, rage fist, taunt. Defiant. Could be good vs Scrafty intimidate. But Kingambit better.\n\nLet's go with Dragonite, Gholdengo, Kingambit.",
+      "note": "",
+      "tokens": 2386,
+      "latency_ms": 18360,
+      "cost_usd": 0.000304976,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% MOVE: trailblaze, 15% MOVE: bulldoze, 10% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1869,
+      "latency_ms": 44,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.6127,
+        "MOVE: bulldoze": 0.1513,
+        "MOVE: energyball": 0.0682,
+        "MOVE: growth": 0.0977,
+        "SWITCH: torkoal": 0.028,
+        "SWITCH: rotom": 0.042
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icespinner",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead vs Torterra: Ice Spinner is 4x SE, likely OHKO or heavy damage. Don't Dragon Dance — Torterra can hit Dragonite with Stone Edge/Earthquake. Plan: KO Torterra now, then use Gholdengo vs Rotom/Sinistcha, Kingambit as Sucker Punch cleaner. Sun may come from Torkoal later.",
+      "hidden_reasoning": "Torterra lead. Ice Spinner 4x super effective. But Torterra may be defensive with Shell Armor. Dragonite has Multiscale; opponent might have Rock/Ice coverage (Torterra often has Stone Edge, or Earthquake). Let's just hit Ice Spinner to remove Torterra. Actually could also Dragon Dance. Ice Spinner likely KOs or heavily damages. Do Ice Spinner.",
+      "note": "",
+      "tokens": 2192,
+      "latency_ms": 3646,
+      "cost_usd": 0.00053625,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: rotom, 46% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1531,
+      "latency_ms": 32,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.4571,
+        "SWITCH: rotom": 0.5429
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: risingvoltage, 24% MOVE: charge, 16% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1820,
+      "latency_ms": 42,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1544,
+        "MOVE: discharge": 0.1644,
+        "MOVE: risingvoltage": 0.3823,
+        "MOVE: charge": 0.2355,
+        "SWITCH: torkoal": 0.0634
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Rotom active. Dragonite full HP with Multiscale. Dragon Dance is safe: Rotom's attacks are neutral and halved; Lum cures Will-O-Wisp. If Rotom stays, Ice Spinner next. If it switches to Torkoal, EQ; to Scrafty/Sinistcha, switch Gholdengo. Keep Kingambit for late Sucker Punch.",
+      "hidden_reasoning": "We need answer exact form. Need decide turn 2. Dragonite active full HP vs Rotom. Rotom Electric/Ghost Levitate. Our Dragonite moves: Ice Spinner neutral? Ice vs Electric/Ghost neutral? Ice vs Electric 1x, Ghost 1x. Earthquake listed super effective on rotom? Wait Rotom Electric/Ghost with Levitate immune Ground, but legal says super effective on rotom? Actually Rotom base Electric/Ghost, Ground vs Electric super effective, but Levitate immune. Showdown may indicate \"no effect\" due levitate? Legal says earthquake super effective on rotom, maybe because ability not accounted? But effects levitate immune Ground. So Earthquake will fail due Levitate. ExtremeSpeed no effect on Rotom (Ghost immune Normal). Dragon Dance safe? Rotom may attack. Ice Spinner neutral 80. Dragonite likely can DD? But Rotom could Will-O-Wisp, Thunderbolt, Volt Switch, Shadow Ball. We have Multiscale full. If DD, Rotom may status/burn, Lum cures. But if it attacks, multiscale halves. Need plan.\n\nWe need choose best. Dragonite vs Rotom: Ice Spinner does neutral, maybe 2HKO? Rotom HP 125-157, Def 87-141. Dragonite Atk 204. Ice Spinner 80 neutral. Damage maybe 35-50%. Rotom can threaten. Dragon Dance boosts, but Rotom may be faster? Speed range 99-157, Dragonite 132. If Rotom invested, could outspeed. If we DD, +1 speed to 198, outspeed all Rotom. Then next turn can Ice Spinner/EQ? But EQ still levitate. Ice Spinner neutral. ExtremeSpeed no effect. Dragonite has no good move vs Rotom except Ice Spinner neutral. Maybe switch to Gholdengo? Gholdengo resists? Rotom Electric/Ghost: Gholdengo Steel/Ghost. Electric neutral? Steel resists? Ghost? Gholdengo immune to Normal/Fighting, resists Grass/Ice/Flying/Rock/Steel/Psychic/Fairy? Electric neutral, Ghost super effective? Ghost vs Ghost 2x. Rotom likely has Shadow Ball? Could hit Gholdengo super effective. Gholdengo can Shadow Ball Rotom super effective? Ghost vs Ghost 2x. Gholdengo SpA 185, Shadow Ball 80. Likely OHKO? Rotom HP 125-157, SpD 87-141. Life Orb. Shadow Ball 2x. Damage huge. But Rotom may outspeed? Gholdengo speed 149, Rotom 99-157. Could be faster. If Rotom uses Shadow Ball, Gholdengo takes 2x maybe. But Gholdengo can take? HP 164, SpD 111. Rotom SpA 103-161. Shadow Ball 2x likely 60-80%. Could be risky.\n\nKingambit vs Rotom: Dark/Steel. Rotom Electric/Ghost. Ghost vs Dark? Ghost neutral? Dark resists Ghost. Electric neutral. Kingambit can Sucker Punch (Dark) vs Rotom: Dark vs Electric/Ghost neutral? Dark vs Ghost 2x? Wait Dark is super effective vs Ghost, not very vs Dark? Rotom Electric/Ghost: Dark vs Ghost 2x, vs Electric 1x => 2x. Sucker Punch priority +1, but Rotom may not attack? If Rotom attacks, Sucker Punch hits. Kowtow Cleave also 2x. Kingambit slow 70, but Sucker Punch priority. Could switch to Kingambit to threaten Rotom. But Rotom may Will-O-Wisp, then Sucker Punch fails? Sucker Punch only works if target uses damaging move. If Rotom uses Will-O-Wisp, Sucker fails. Kowtow Cleave no priority, Kingambit slower, Rotom can burn. But Kingambit has Lum? No, blackglasses. Burn halves attack. Not ideal.\n\nDragonite can Dragon Dance. If Rotom uses Will-O-Wisp, Lum cures, then we have +1 Atk/Spe. Next turn Ice Spinner likely KO? Let's calculate: +1 Atk Dragonite 204*1.5=306. Ice Spinner 80 neutral vs Rotom Def 87-141. Damage maybe 70-90%. Could KO if low def. If Rotom attacks, Multiscale halves, we survive. Then next turn we outspeed and Ice Spinner. But if Rotom uses Volt Switch, it switches out, we get +1. That's fine. If Rotom uses Thunder Wave? Lum cures. If Rotom uses Nasty Plot? We get +1. So Dragon Dance seems good. But if Rotom is faster and uses Thunderbolt, we take maybe 30% after Multiscale. Then next turn we outspeed and Ice Spinner. If it doesn't KO, Rotom may hit again. But we have Lum.\n\nAlternatively, attack with Ice Spinner now. If Rotom is faster and uses Thunderbolt, we take damage, then we hit. If we DD, we get boost and maybe survive. Since Dragonite has Multiscale, DD is safe. But Rotom could use Will-O-Wisp, Lum cures, we get +1. Then next turn we can Ice Spinner. If Rotom uses Thunderbolt, we take ~25-30%, then next turn +1 speed, Ice Spinner. If Rotom uses Volt Switch, it switches to something else, we have +1. That could be good. But if it switches to Torkoal, sun, etc. We can then maybe EQ? But Rotom is gone.\n\nWhat is best? Dragon Dance sets up for sweep. But Rotom is Ghost, ExtremeSpeed useless. Earthquake useless due Levitate. Ice Spinner is only attack. Dragon Dance then Ice Spinner. If Rotom stays, we likely KO next turn. If it switches, we have +1 and can hit incoming. But incoming could be Torkoal (Fire) or Scrafty etc. Ice Spinner vs Torkoal neutral? Ice vs Fire not very? Ice vs Fire 0.5. Earthquake vs Torkoal 2x. So if Torkoal comes in, we can EQ. But if Rotom stays, we need Ice Spinner. So DD is good.\n\nHowever, Rotom may have Will-O-Wisp. Lum Berry cures burn. Then we are +1. Good.\n\nCould also switch to Gholdengo to threaten Shadow Ball. But Rotom may Volt Switch out, and Gholdengo takes hit. Gholdengo is slower? Speed 149 vs Rotom 99-157. If Rotom faster, it can Volt Switch, we take damage, then we face something else. Gholdengo can handle Sinistcha? But Rotom is active. Maybe better to keep Dragonite and DD.\n\nLet's consider opponent's team: sun team. Torkoal likely Drought. Rotom is Electric/Ghost, maybe defensive. If we DD, Rotom might use Will-O-Wisp to cripple. Lum cures. Then we can Ice Spinner. If Rotom uses Thunderbolt, we take damage but Multiscale. Then next turn we outspeed and Ice Spinner. If Rotom uses Volt Switch, it switches out, we get +1. Then we can hit whatever comes. If Torkoal comes, we can EQ. If Scrafty comes, Ice Spinner? Scrafty Dark/Fighting, Ice neutral? Actually Ice vs Fighting neutral, vs Dark neutral. EQ neutral? Ground vs Dark neutral, vs Fighting neutral. But we have +1. Could be okay.\n\nWhat if Rotom uses Nasty Plot? We get +1, then next turn we outspeed and Ice Spinner. Rotom may be +2 SpA, but we KO? If not, we might be in trouble. But likely Ice Spinner 2HKO? Let's estimate: Dragonite Atk 204, +1 = 306. Rotom Def 87-141. Ice Spinner 80. Damage formula: (2*50/5+2)*80*306/Def /50 +2. For Def 100: (22)*80*306/100/50 +2 = 22*80*3.06/50? Actually (2*50/5+2)=22. 22*80=1760. 1760*306/100=5385.6. /50=107.7 +2=109.7. Rotom HP 125-157. So ~110 damage. If Def 87, ~126. If Def 141, ~78. So not guaranteed OHKO. But with Life Orb? Dragonite no Life Orb. So Ice Spinner +1 does 78-126. Rotom HP 125-157. So if high HP/Def, survives. Then Rotom can hit back. But we have Multiscale? After first hit, Multiscale broken. If Rotom attacked turn 1, we took damage, Multiscale broken. Then turn 2 we DD, Rotom attacks again, we take full damage. Then turn 3 we Ice Spinner, Rotom survives, hits again. Could be bad. So maybe attacking immediately is better? If we Ice Spinner now, we do ~55-85 damage. Rotom may hit us. Then next turn we can Ice Spinner again. But if Rotom is faster, it hits twice. With Multiscale, first hit halved. Second hit full. We might survive. But if Rotom uses Will-O-Wisp, we get burned, Lum cures, but we lose attack? Actually Lum cures burn immediately, so no attack drop. Then we can Ice Spinner next turn. But if we attack now, we don't get boost. Hmm.\n\nMaybe switch to Gholdengo is better. Gholdengo can take a hit? Rotom's Shadow Ball vs Gholdengo: Ghost vs Ghost 2x. Gholdengo SpD 111, HP 164. Rotom SpA 103-161. Shadow Ball 80. Damage: (22*80*SpA/SpD)/50+2. For SpA 130, SpD 111: 22*80=1760. 1760*130/111=2061. /50=41.2 +2=43.2. 2x = 86.4. So ~86 damage. Gholdengo HP 164, survives. Then Gholdengo can Shadow Ball back. Gholdengo SpA 185, Life Orb. Shadow Ball 80 2x vs Rotom. Damage: (22*80*185/Def)/50+2 *1.3? Life Orb 1.3. For Def 100: 22*80=1760. 1760*185/100=3256. /50=65.1 +2=67.1. 2x=134.2. *1.3=174.5. That OHKOs Rotom (HP 125-157). So Gholdengo can switch in, take a hit, and OHKO back. But if Rotom uses Volt Switch, it switches out before Gholdengo can hit? Volt Switch is Electric, vs Gholdengo Steel: Electric neutral? Steel doesn't resist Electric. So Volt Switch does neutral damage. Rotom would switch out, Gholdengo takes damage, then we face new Pokémon. That might be okay. But if Rotom uses Will-O-Wisp, Gholdengo is immune? Gholdengo has Good as Gold, so it blocks status moves like Will-O-Wisp! Yes, Good as Gold makes it immune to status moves. So Rotom's Will-O-Wisp, Thunder Wave, etc. are blocked. That's huge. So switching to Gholdengo is very safe. Rotom can only attack with damaging moves. Gholdengo resists? Rotom's moves: Thunderbolt, Shadow Ball, Volt Switch. Gholdengo takes neutral from Electric, 2x from Ghost. But Gholdengo can OHKO with Shadow Ball. Also Gholdengo is immune to status. So switching to Gholdengo seems excellent. But we lose Dragonite's Multiscale? Dragonite is full HP, can switch out and come back later with Multiscale intact? Multiscale only works at full HP. If we switch out, it stays full HP, so when it comes back, Multiscale will be active again. So switching is good.\n\nBut wait, if we switch to Gholdengo, Rotom might use Volt Switch and switch to Torkoal. Then we have Gholdengo vs Torkoal. Torkoal likely sets sun. Gholdengo can hit Torkoal with Thunderbolt? Torkoal Fire, Thunderbolt neutral? Actually Electric vs Fire neutral. Shadow Ball neutral? Ghost vs Fire neutral. Make It Rain? Steel vs Fire not very. Gholdengo might not be ideal vs Torkoal. But we can switch back to Dragonite for EQ. However, if Rotom uses Volt Switch, it goes to Torkoal, sun goes up. Then we have Gholdengo out. Torkoal might use Stealth Rock or Yawn? Gholdengo blocks Yawn? Yawn is status, blocked. Torkoal might use Lava Plume. Gholdengo takes neutral? Fire vs Steel 2x? Wait Steel is weak to Fire? Actually Steel takes 2x from Fire? No, Steel resists Fire? Let's check: Fire vs Steel is 2x? In Pokémon, Fire is super effective against Steel? Yes, Fire is super effective against Steel. So Gholdengo (Steel/Ghost) takes 2x from Fire. Torkoal's Lava Plume would be 2x. That could hurt. So if Rotom Volt Switches to Torkoal, Gholdengo is in a bad spot. But we can switch out to Dragonite? Dragonite takes neutral from Fire? Dragon/Flying: Fire is neutral? Actually Fire vs Dragon 0.5, vs Flying 1? Fire vs Dragon 0.5, vs Flying 1, so neutral? Wait Fire vs Dragon is 0.5, Fire vs Flying is 1, so total 0.5? No, dual type multipliers multiply: 0.5 * 1 = 0.5. So Dragonite resists Fire. So Dragonite is good vs Torkoal. So if Rotom Volt Switches, we can switch to Dragonite next turn. But we lose momentum.\n\nAlternatively, we can Dragon Dance now. If Rotom Volt Switches, we get +1 and then face Torkoal. Dragonite with +1 can EQ Torkoal for 2x. That's great. If Rotom stays, we DD, then next turn Ice Spinner. If Rotom uses Will-O-Wisp, Lum cures, we get +1. If Rotom uses Thunderbolt, we take damage but Multiscale halves. Then next turn we outspeed and Ice Spinner. If Rotom survives, we might be in trouble. But we can also switch to Gholdengo later.\n\nWhat is the best move? Let's think about opponent's likely play. Rotom is Electric/Ghost. It might be a defensive Rotom with Will-O-Wisp, Volt Switch, Thunderbolt, Shadow Ball. Or it could be Rotom-Heat? But it's Electric/Ghost, so base Rotom. It might have Levitate. It likely carries Will-O-Wisp to cripple physical attackers. Our Dragonite is physical. If we DD, it might Will-O-Wisp. Lum cures, so we get +1 and no burn. That's a win. If we attack with Ice Spinner, it might Will-O-Wisp, Lum cures, but we don't get boost. Then next turn we can DD? But we already used Lum. If it burns again, we get burned. So DD now is better because it forces Rotom to either status (cured) or attack. If it attacks, we get +1 and then can attack. If it statuses, we get +1 and Lum cures. So DD seems optimal.\n\nBut what if Rotom uses Volt Switch? Then it switches out, we get +1. That's also good. So DD is safe and sets up. The only risk is if Rotom uses a move that KOs? Unlikely with Multiscale. Rotom's Thunderbolt vs Dragonite: Electric vs Dragon/Flying. Electric vs Dragon 0.5, vs Flying 2x? Wait Electric vs Flying is 2x! Yes, Electric is super effective against Flying. So Electric vs Dragon/Flying: 0.5 * 2 = 1x neutral? Actually Dragon resists Electric (0.5), Flying is weak to Electric (2x). So total 1x neutral. So Thunderbolt is neutral. With Multiscale, halved. So Dragonite takes ~25-30% max. Safe.\n\nShadow Ball vs Dragonite: Ghost vs Dragon 1x, vs Flying 1x? Ghost vs Dragon 1x, vs Flying 1x. Neutral. So also neutral. So Rotom can't hit Dragonite super effectively. So DD is very safe.\n\nThus, I think Dragon Dance is the best move. Then next turn we can Ice Spinner or switch depending on what Rotom does. If Rotom stays, we Ice Spinner. If it switches to Torkoal, we EQ. If it switches to Scrafty, we Ice Spinner? Scrafty Dark/Fighting, Ice neutral, but we have +1. Actually Ice vs Fighting neutral, vs Dark neutral. EQ neutral. But we can also switch to Gholdengo for Scrafty? Gholdengo resists Fighting? Ghost immune to Fighting? Gholdengo Ghost/Steel: Fighting vs Ghost 0? Ghost is immune to Fighting. Steel is weak to Fighting? Actually Steel is weak to Fighting? No, Steel resists Fighting? Wait: Fighting vs Steel is 2x? Let's recall: Fighting is super effective against Normal, Rock, Steel, Ice, Dark. So Fighting vs Steel is 2x. But Ghost is immune to Fighting. So dual type: Ghost immunity overrides? In Pokémon, if one type is immune, the move does 0 damage regardless of other type. So Gholdengo is immune to Fighting. So Gholdengo is great vs Scrafty. So if Rotom switches to Scrafty, we can switch to Gholdengo next turn. But we have +1 Dragonite. We could also just Ice Spinner? Scrafty might have Intimidate, lowering our attack. But we have +1, so net 0. Ice Spinner neutral. Might not KO. Better to switch to Gholdengo. But we can decide next turn.\n\nSo for now, Dragon Dance is the play.\n\nLet's write notes and decision. Notes should be concise, max 60 words. Include plan: DD now, Lum cures status, then Ice Spinner if Rotom stays, EQ if Torkoal, switch Gholdengo if Scrafty/Sinistcha. Keep Gholdengo for Rotom/Sinistcha. Kingambit late.\n\nDecision: MOVE: dragondance\n\nCheck legal actions: 1. MOVE: dragondance. Yes.\n\nFormat exactly:\n<notes>\n...\n</notes>\n<decision>\nMOVE: dragondance\n</decision>\n\nEnsure no extra text.",
+      "note": "",
+      "tokens": 6458,
+      "latency_ms": 98269,
+      "cost_usd": 0.002012808,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: risingvoltage, 18% MOVE: doubleteam, 18% MOVE: charge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1893,
+      "latency_ms": 48,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1758,
+        "MOVE: discharge": 0.1731,
+        "MOVE: risingvoltage": 0.384,
+        "MOVE: charge": 0.1758,
+        "SWITCH: torkoal": 0.0912
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 3: Dragonite +1 Atk/Spe, 142/168, Multiscale gone. Rotom likely stays or switches to Torkoal. Dragon Dance again to +2; then Ice Spinner KOs Rotom, or Earthquake hits Torkoal. Lum Berry cures status. Keep Gholdengo for Rotom/Sinistcha, Kingambit for late Sucker Punch. Avoid Scrafty with Kingambit.",
+      "hidden_reasoning": "We need answer. Need decide turn 3. Dragonite +1 Atk +1 Spe, 142/168, Multiscale still? Multiscale only if full HP, so no longer active. Rotom active Electric/Ghost Levitate. Earthquake says super effective on rotom? Wait Rotom Electric/Ghost with Levitate immune Ground. But legal action says earthquake super effective on rotom? That's odd, maybe because Rotom base Electric/Ghost, Ground hits Electric super effective but Levitate immune. Showdown may list \"super effective\" but immunity? Actually Levitate makes Ground no effect. So Earthquake won't hit. Ice Spinner neutral? Ice vs Electric/Ghost neutral. ExtremeSpeed no effect on Rotom? Normal vs Ghost immune. Dragon Dance more boosts. We have +1. Rotom used Rising Voltage 26 damage to Dragonite at full with Multiscale? Wait turn 2 Dragonite used DD, Rotom Rising Voltage, Dragonite 142/168. At full HP with Multiscale, damage halved. Rising Voltage maybe 52 base? 26 after halving. Now no Multiscale, next Rising Voltage likely ~52, leaving 90. Could DD again to +2, then Ice Spinner? But Rotom may switch to Torkoal/Scrafty/Sinistcha/Simisear. Need plan.\n\nWe need choose action. Dragonite +1 Atk +1 Spe. Ice Spinner likely 2HKO Rotom? Rotom HP 125-157, Def 87-141. Dragonite Atk 204 +1 = 306. Ice Spinner 80 BP neutral. Damage roughly (0.44*306*80/100? formula) maybe 100-120? Let's estimate: level 50, Atk 306, Def 100, BP 80: ((2*50/5+2)*80*306/100)/50 +2 = (22*80*306/100)/50 = (22*244.8)/50=107.7+2=109.7 * modifiers. Rotom HP ~140, so not OHKO. If Rotom Def 87, ~126. Not OHKO. But maybe with +1 and Life? no item. So Ice Spinner does ~50-70%. Rotom could retaliate. Dragon Dance again to +2, then Ice Spinner likely OHKO? At +2 Atk 408, damage ~146, likely OHKO. But risk Rotom uses Will-O-Wisp? Lum cures once. Or Volt Switch? Rising Voltage. If we DD again, we take another ~50, at 90 HP. Then next turn Ice Spinner KO. But if Rotom switches to Torkoal, we have +2 and can EQ? Torkoal Fire, EQ super effective. But Torkoal may have Drought, sun. Dragonite +2 Spe 264? Actually base 132 +1 = 198, +2 = 264? Rotom max 157, so outspeed. Torkoal slow. Simisear max 168, +2 outspeed. Scrafty slow. Sinistcha max 134. So +2 outspeeds all. Good.\n\nBut maybe better to attack now with Ice Spinner to damage Rotom, then if it stays, KO next. However Rotom could switch to Torkoal to absorb Ice? Torkoal takes neutral from Ice? Fire not resist Ice. Torkoal high Def. Or Scrafty resists? Dark/Fighting neutral to Ice? Fighting weak? Ice vs Fighting neutral? Actually Ice vs Fighting neutral? Fighting takes neutral from Ice? Fighting is weak to Flying/Psychic/Fairy, resists Rock/Bug/Dark? Ice neutral. Sinistcha Grass/Ghost neutral? Grass weak to Ice? Grass takes super effective from Ice. So Sinistcha would fear Ice Spinner. Scrafty maybe takes neutral. Torkoal neutral. Rotom neutral.\n\nIf we DD again, we risk Rotom using Will-O-Wisp, but Lum cures. Or it could use Thunder Wave? Lum cures. Or it could switch to Torkoal setting sun. Then we have +2 and can EQ Torkoal. But if Torkoal has Yawn? Not sure. Torkoal likely defensive. Dragonite +2 EQ vs Torkoal: Torkoal Fire, Ground super effective. Torkoal Def 144-211, HP 145-177. Dragonite Atk 408, EQ 100 BP super effective 2x. Damage huge: ~ (22*100*408/150)/50*2 = (22*272)/50*2=119.7*2=239, OHKO. So good.\n\nWhat about Rotom's Rising Voltage: if Electric Terrain? No. Rising Voltage doubles if target is grounded? Actually Rising Voltage power doubles if target is grounded? Wait Rising Voltage: power 70, doubles if target is on Electric Terrain. No terrain. So 70 BP. Rotom SpA 103-161. Against Dragonite SpD 120, HP 168. Damage maybe 40-50 without Multiscale. So we can take one more.\n\nCould also switch to Gholdengo to handle Rotom? Gholdengo immune to Normal? Not relevant. Gholdengo resists Electric? Steel resists? Steel does not resist Electric. Ghost neutral. Gholdengo has Good as Gold blocks status. Rotom may have Will-O-Wisp, Thunder Wave, etc. Gholdengo can Shadow Ball Rotom super effective? Ghost vs Ghost super effective. But Rotom is Electric/Ghost, Shadow Ball 2x. Gholdengo SpA 185, Life Orb. Shadow Ball likely OHKO? Rotom HP 125-157, SpD 87-141. Damage: (22*80*185/100)/50+2 = (22*148)/50=65+2=67 *1.5 Life Orb=100 *2 SE=200. OHKO. So Gholdengo can switch in and KO Rotom. But switching loses Dragonite boosts. However Dragonite is at 142/168, +1. Could be valuable to keep. But Rotom might use Volt Switch? If we switch to Gholdengo, Rotom might use Shadow Ball? Rotom Electric/Ghost, could have Shadow Ball. Gholdengo takes neutral? Ghost vs Steel? Ghost vs Steel neutral? Actually Ghost is not very effective against Steel? Wait Ghost vs Steel: Steel resists Ghost? In Gen 6+, Steel resists Ghost? Yes, Steel resists Ghost and Dark? Actually Steel resists Normal, Flying, Rock, Bug, Steel, Grass, Ice, Dragon, Fairy? Ghost? Let's recall type chart: Steel resists Normal, Flying, Rock, Bug, Steel, Grass, Ice, Dragon, Fairy. It does NOT resist Ghost or Dark. Ghost is neutral vs Steel. So Gholdengo takes neutral from Shadow Ball. But Gholdengo has 164 HP, 111 SpD. Rotom SpA up to 161. Shadow Ball 80 BP neutral: damage ~ (22*80*161/111)/50+2 = (22*116)/50=51+2=53. So Gholdengo takes ~53. Fine.\n\nBut if we switch, we lose Dragonite's boosts. Dragonite can still be used later. But we have Kingambit as cleaner. Maybe better to keep Dragonite and DD again? Let's think opponent's team: Torterra fainted. Remaining: Rotom, Torkoal, Scrafty, Sinistcha, Simisear. They brought 3 of 6, so two more unknown. Likely sun team: Torkoal, Simisear, Sinistcha? Or Scrafty. Rotom is active. If we DD again, we get +2. Then we can sweep with Ice Spinner/EQ. But Rotom might switch to Torkoal to set sun, then we EQ. Or it might stay and attack. If it stays, we take another Rising Voltage, then next turn Ice Spinner KO. But if it uses Will-O-Wisp, Lum cures, but then we lose Lum. Still +2. If it uses Thunder Wave, Lum cures. If it uses Volt Switch, it switches out and we don't get to hit it. But then we have +2 and can hit whatever comes in. That's fine.\n\nWhat if Rotom uses Nasty Plot? Unlikely. Or it could use Shadow Ball. Damage similar.\n\nRisk: Rotom might have Choice Specs? Rising Voltage did 26 with Multiscale, so without Multiscale ~52. If it has Specs, maybe 78. Dragonite at 142, after one more hit ~64. Then next turn we KO. But if it crits, could KO? 52*1.5=78, crit 117, Dragonite 142 -> 25. Not KO. So safe.\n\nBut what if Rotom switches to Scrafty? Scrafty Dark/Fighting. Dragonite +2 Ice Spinner vs Scrafty: Ice vs Fighting? Fighting is weak to Flying, Psychic, Fairy. Ice is neutral. But Scrafty is Dark/Fighting, Ice neutral. However Scrafty has Intimidate? If it switches in, Intimidate lowers Dragonite's Atk by 1, so +2 becomes +1. That could be annoying. But we can still hit. Or it could be Moxie. If Scrafty comes in, we might want to switch to Gholdengo? Gholdengo's Make It Rain is Steel vs Dark? Steel vs Dark neutral? Actually Steel vs Dark: Dark resists? Dark is weak to Fighting, Bug, Fairy. Steel is neutral. Shadow Ball vs Dark? Ghost vs Dark: Dark resists Ghost? Dark is immune to Psychic, resists Ghost and Dark? Yes, Dark resists Ghost. So Gholdengo's Shadow Ball is not very effective vs Scrafty. Make It Rain is Steel, neutral. Thunderbolt neutral. So Gholdengo can handle Scrafty with Make It Rain? But Scrafty has high SpD. Might be tough. Kingambit can handle Scrafty? Kingambit Dark/Steel, Scrafty Dark/Fighting. Fighting is 4x super effective vs Kingambit? Kingambit is Dark/Steel, Fighting is 4x? Dark weak to Fighting, Steel weak to Fighting? Steel is weak to Fighting? Yes, Steel is weak to Fighting. So 4x. Kingambit should avoid Scrafty. Dragonite with +2 can hit Scrafty with Ice Spinner neutral, or EQ? EQ vs Scrafty neutral? Ground vs Dark/Fighting: Ground is neutral vs Dark, super effective vs? Fighting is neutral to Ground? Actually Ground vs Fighting: Flying is immune, but Fighting takes neutral? Ground is not very effective vs Grass, Bug; super effective vs Fire, Electric, Poison, Rock, Steel. Fighting is neutral. So EQ neutral. Ice Spinner neutral. ExtremeSpeed no effect? Normal vs Fighting neutral? Normal vs Fighting: Fighting is weak to Flying/Psychic/Fairy, resists? Normal is neutral vs Fighting? Actually Normal vs Fighting: Fighting takes neutral from Normal? Wait Fighting is weak to Flying, Psychic, Fairy. It resists Rock, Bug, Dark. Normal is neutral. So ExtremeSpeed hits Scrafty neutral. But Scrafty has high Def. Dragonite +2 Atk 408, Ice Spinner 80 BP neutral vs Scrafty Def 121-183. Damage ~ (22*80*408/150)/50 = (22*217.6)/50=95.7+2=97.7. Scrafty HP 140-172. Not OHKO. But Scrafty might be slower. Dragonite +2 Spe 264, Scrafty max 121. So we can hit twice. But Scrafty could use Sucker Punch? Scrafty has Sucker Punch? Possibly. If we attack, Sucker Punch might hit first. But Dragonite is faster, but Sucker Punch has priority. Scrafty Atk 99-156. Sucker Punch 70 BP Dark vs Dragonite. Dragonite Def 115. Damage: (22*70*156/115)/50+2 = (22*94.9)/50=41.7+2=43.7. Not huge. Dragonite can take it. So DD again seems good.\n\nBut wait, we already used Dragon Dance once. If we use again, we get +2. Then next turn we can Ice Spinner. But if Rotom switches to Torkoal, Torkoal might set sun. Then we EQ. But if Torkoal has Yawn? Not sure. Torkoal could use Yawn, then we fall asleep? Lum cures sleep? Lum Berry cures any status, including sleep. So we can wake up. But if we are asleep, we lose a turn. However Lum Berry is single use. If we already used it? We haven't used it yet. So if Torkoal uses Yawn, we get drowsy, then next turn sleep, Lum cures. So we lose one turn. But we have +2. Might be okay.\n\nAlternatively, we could attack now with Ice Spinner. If Rotom stays, it takes ~50-70%. Then next turn we can KO with Ice Spinner or ExtremeSpeed? ExtremeSpeed no effect on Rotom. So Ice Spinner again. But if Rotom switches to Torkoal, Ice Spinner does neutral to Torkoal, not great. Then we have +1 and Torkoal sets sun. We might be in worse position. So DD again is better to get +2 and then hit whatever comes.\n\nWhat about switching to Gholdengo? Gholdengo can OHKO Rotom with Shadow Ball. But if Rotom switches to Torkoal, Gholdengo's Shadow Ball is not very effective? Ghost vs Fire neutral? Fire resists? Fire does not resist Ghost. Actually Fire is neutral to Ghost. But Torkoal has high SpD? Torkoal SpD 81-134. Gholdengo Shadow Ball vs Torkoal: neutral. Damage ~ (22*80*185/134)/50+2 = (22*110)/50=48.4+2=50.4 *1.5 Life Orb=75.6. Torkoal HP 145-177. Not OHKO. Make It Rain is Steel vs Fire: not very effective? Steel vs Fire: Fire resists Steel? Actually Fire is weak to Rock, Ground, Water. Fire resists Bug, Steel, Fire, Grass, Ice, Fairy. So Steel is not very effective vs Fire. So Gholdengo can't do much to Torkoal. Thunderbolt neutral. So if Rotom switches to Torkoal, Gholdengo is not ideal. Dragonite with EQ is better.\n\nThus, Dragon Dance again seems best. Let's check if there's any risk of Rotom using Trick? It could Trick a Choice item onto Dragonite? Unlikely. Or it could use Will-O-Wisp, but Lum cures. Or it could use Thunder Wave, Lum cures. Or it could use Volt Switch, switching out. If it Volt Switches, it brings in something else, and we have +2. That's fine.\n\nWhat if Rotom uses Rising Voltage again? We take ~52, go to 90. Then next turn we Ice Spinner. If Rotom stays, we KO? At +2, Ice Spinner damage ~146, Rotom HP ~140, so likely OHKO. If it doesn't KO, we can ExtremeSpeed? No, ExtremeSpeed no effect. But we can Ice Spinner again. But Rotom might KO us? Rotom's Rising Voltage ~52, we have 90, so we survive. So safe.\n\nWhat if Rotom uses Shadow Ball? Similar damage. What if it uses Nasty Plot? Then it boosts, but we KO next turn.\n\nSo DD again is safe and sets up for sweep.\n\nBut wait, we already have +1. If we DD again, we get +2. Is there a cap? +6 max. So fine.\n\nLet's consider if we should switch to Gholdengo to preserve Dragonite? Dragonite is at 142/168, not full. Multiscale is gone. If we switch, we lose boosts. But we can bring Dragonite back later? In singles, switching resets boosts. So we would lose +1. That seems bad. We want to keep Dragonite's boosts and sweep. So stay in.\n\nThus decision: MOVE: dragondance.\n\nBut let's double-check legal actions: 1. MOVE: dragondance. Yes.\n\nWe need output notes and decision. Notes should be concise, at most 60 words. Include plan: DD again to +2, then Ice Spinner/EQ depending on switch. Rotom likely stays or switches to Torkoal; if Torkoal, EQ. Keep Gholdengo for Rotom/Sinistcha, Kingambit for late Sucker Punch. Lum cures status.\n\nLet's craft final.",
+      "note": "",
+      "tokens": 6134,
+      "latency_ms": 91152,
+      "cost_usd": 0.001833328,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% MOVE: risingvoltage, 22% MOVE: discharge, 19% MOVE: charge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1947,
+      "latency_ms": 50,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1544,
+        "MOVE: discharge": 0.2178,
+        "MOVE: risingvoltage": 0.3535,
+        "MOVE: charge": 0.1863,
+        "SWITCH: torkoal": 0.088
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icespinner",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 4: Dragonite +2 Atk/Spe, 88 HP. Rotom full, Levitate makes Earthquake useless. Ice Spinner is only move that hits Rotom; likely KOs or leaves it low. If Rotom switches to Torkoal/Simisear, Ice Spinner is resisted, but we can EQ next turn. Keep Gholdengo for Sinistcha, Kingambit for late Sucker Punch. Plan: Ice Spinner now.",
+      "hidden_reasoning": "We need answer. Need decide turn 4. Dragonite at 88/168, +2 Atk/Spe, vs Rotom full. Rotom used Rising Voltage twice. Dragonite can Ice Spinner? Rotom Electric/Ghost, Ice neutral? Ice vs Electric/Ghost neutral. Earthquake is super effective? Ground vs Electric: super effective, but Rotom has Levitate, immune to Ground. Legal says earthquake super effective on rotom? Wait Rotom Electric/Ghost with Levitate immune to Ground. Showdown legal action says \"super effective on rotom\" maybe because Electric weak Ground, but Levitate makes no effect. Need not use EQ. Ice Spinner neutral 80 BP with +2 Atk likely KOs? Rotom HP 125-157, Def 87-141. Dragonite Atk 204 +2 = 408? Level 50. Ice Spinner 80 neutral. Damage likely high. Rotom maybe bulky? Let's estimate: Atk 204, +2 = 408. Level 50 formula: ((2*50/5+2)*BP*Atk/Def)/50 +2 = (22*80*408/Def)/50. Def maybe 100. = (22*80*408/100)/50 = (718080/100? wait 22*80=1760; *408=718080; /100=7180.8; /50=143.6 +2 =145.6. Rotom HP ~140. So likely KO. If Def 141: 22*80*408/141=5092; /50=101.8+2=103.8, not KO if HP 157? Hmm Rotom possible Def 87-141. If max Def and HP, maybe not KO. But likely Rotom is offensive? Rising Voltage special, maybe Rotom-W? Actually Rotom base form Electric/Ghost? Rotom base has Levitate, stats HP 50, SpA 95, Spe 91. At level 50 max HP 157? Rotom base HP 50 -> max 157? Def 107? Wait Rotom base Def 77? Let's check: Rotom base stats: HP 50, Atk 50, Def 77, SpA 95, SpD 77, Spe 91. At level 50 max Def with 252 EVs neutral = 141? Yes. HP max 157. So if max Def/HP, Ice Spinner +2 might not KO. But Rotom likely invested SpA/Spe, so Def lower. Also Dragonite has +2 Spe, so faster. If Ice Spinner doesn't KO, Rotom may attack again. Dragonite at 88 HP. Rising Voltage: if Electric Terrain? No weather none, field none. Rising Voltage BP 70 normally, doubles if target is grounded? Actually Rising Voltage doubles power if target is on Electric Terrain. No terrain. So BP 70. Rotom SpA maybe 161 max. Damage to Dragonite: Dragonite SpD 120, HP 168. 70 BP special. Estimate: ((22*70*161/120)/50)+2 = (22*70=1540; *161=247940; /120=2066; /50=41.3+2=43.3. Dragonite at 88, so survives two more? Actually took 54 from first? Wait turn 2: 168 -> 142 = 26 damage. Turn 3: 142 -> 88 = 54 damage. Why increased? Maybe Rising Voltage doubled? Or Rotom got boost? Wait no terrain. Maybe Rotom used Rising Voltage and it was super effective? Electric vs Dragon/Flying: Electric is super effective vs Flying? Actually Electric vs Flying is super effective? Yes Electric is super effective against Flying. Dragonite Dragon/Flying, so Electric is 2x super effective. So damage ~54. So next hit ~54, Dragonite at 88 -> 34, survives. Then can attack again. But if Rotom switches to Torkoal, etc.\n\nWe need choose action. Dragonite +2. Ice Spinner likely best to KO Rotom. Earthquake is useless due Levitate. ExtremeSpeed no effect on Rotom (Ghost immune Normal). Dragon Dance again? At +2 already, could go +3 but Rotom may attack. Better attack now. Ice Spinner neutral but likely KOs. If not, Dragonite survives one more hit? At 88, next Rising Voltage ~54, leaves 34. Then can Ice Spinner again. But if Rotom uses Will-O-Wisp? Lum Berry cures. If Rotom uses Volt Switch? Could switch. But Ice Spinner is safest. Also if Rotom switches to Torkoal, Ice Spinner neutral? Torkoal Fire, Ice not very effective? Ice vs Fire 0.5. Earthquake would hit Torkoal super effective, but if Rotom stays, EQ immune. We need predict. Rotom likely stays because it can damage Dragonite. But opponent might switch to Torkoal to tank Ice Spinner? Torkoal Fire resists Ice. However Dragonite has Earthquake for Torkoal. But if we use Ice Spinner and they switch Torkoal, we do little. If we use Earthquake and they stay Rotom, immune. Which is more likely? Rotom at full HP, Dragonite at 52% with +2. Opponent may think Rotom can finish with Rising Voltage? But Dragonite outspeeds and can KO. They might switch to Torkoal to absorb Ice Spinner and set sun? Torkoal likely has Drought. If they switch Torkoal, our Ice Spinner does 0.5x, not great. But we have Earthquake. However if we Earthquake and they stay Rotom, we do nothing and take damage. But we can then Ice Spinner next turn. But if they switch Torkoal, Earthquake is super effective and likely KOs? Torkoal Def high 211, HP 177. Dragonite +2 Atk 408, EQ 100 BP super effective 2x. Damage: ((22*100*408/211)*2)/50? Actually formula: (22*100*408/211)/50 +2 = (897600/211=4254)/50=85+2=87, *2=174. Torkoal HP max 177, so likely KO if max Def? 174 < 177, might survive with 3 HP. But if less Def, KO. So Earthquake could KO Torkoal. But if Rotom stays, EQ immune. Which is better? We need consider opponent's likely move. Rotom used Rising Voltage twice. It might expect to KO Dragonite? Dragonite at 88, next Rising Voltage does ~54, not KO. So Rotom cannot KO. Opponent knows Dragonite can KO Rotom with Ice Spinner? Maybe they don't know moveset? They saw Ice Spinner turn 1 vs Torterra. So they know Dragonite has Ice Spinner. They might switch to Torkoal to resist Ice. But Torkoal is weak to Earthquake. They might not know Dragonite has Earthquake? We haven't revealed it. So they might switch Torkoal thinking it resists Ice. If we predict switch, Earthquake is great. But if they stay, we waste turn and take damage. However Dragonite can survive one more hit. If we EQ and they stay, Rotom takes no damage, then we can Ice Spinner next turn and KO. But we take ~54, leaving 34. Then next turn we Ice Spinner, KO Rotom. Then we are at 34 HP with +2, facing next opponent. That's risky but okay. If we Ice Spinner and they switch Torkoal, we do little, then Torkoal might set sun or attack. Dragonite at 88, Torkoal might use Eruption? Or Yawn? We could then switch to Gholdengo? But we lose momentum.\n\nGiven Rotom is likely to stay because it's faster? Actually Dragonite is faster. Rotom might use Volt Switch to pivot? If Rotom uses Volt Switch, it switches out and deals damage. Then we hit incoming with Ice Spinner. If it's Torkoal, Ice Spinner weak. If it's Scrafty, Ice Spinner neutral? Scrafty Dark/Fighting, Ice neutral? Actually Ice vs Fighting neutral, vs Dark neutral. If Sinistcha, Ice super effective? Grass/Ghost, Ice super effective? Ice vs Grass 2x, vs Ghost neutral, so 2x. Simisear Fire, Ice 0.5. So Ice Spinner is good vs Sinistcha, bad vs Torkoal/Simisear.\n\nMaybe best to use Ice Spinner because it hits Rotom and most switch-ins except Torkoal/Simisear. But Earthquake hits Torkoal and Simisear? Fire weak Ground? Fire is weak Ground? Ground vs Fire 2x. So EQ hits Torkoal and Simisear super effective, but Rotom immune, Sinistcha neutral? Ground vs Grass 0.5, vs Ghost neutral? Actually Ground vs Grass 0.5, so Sinistcha resists. Scrafty neutral? Ground vs Dark neutral, vs Fighting neutral. So EQ is good vs Torkoal/Simisear, bad vs Rotom/Sinistcha.\n\nWe need decide based on opponent's likely action. They have Rotom at full, Dragonite at 52% with +2. They might think Rotom can take an Ice Spinner? Let's calculate if Rotom survives Ice Spinner. Rotom base Def 77, max 141. If they invested in HP/SpA, Def maybe 87-100. Ice Spinner +2 Atk 204. Damage vs Def 100: ~145, HP 125-157. If HP 125, KO. If HP 157, Def 100, damage 145, survives with 12. So not guaranteed KO. If Rotom has max HP and some Def, it might survive. Then Rotom can attack again, leaving Dragonite at 34. Then next turn Dragonite can Ice Spinner again and KO. But if Rotom uses Will-O-Wisp, Lum Berry cures, but then we lose Lum. If Rotom uses Volt Switch, it switches out after dealing damage. Then we hit incoming. If incoming is Torkoal, Ice Spinner does little. So maybe Earthquake is better to hit Torkoal on switch. But if Rotom stays, EQ does nothing, and we take damage. Then next turn we can Ice Spinner. But if Rotom uses Volt Switch, it switches to Torkoal, and our EQ hits Torkoal super effective. That's good. If Rotom stays and uses Rising Voltage, we take damage but survive. Then next turn we Ice Spinner and KO. So Earthquake might be a good prediction against Volt Switch or switch to Torkoal. But if Rotom stays and uses Rising Voltage, we lose a turn but still okay. However if Rotom uses Will-O-Wisp, Lum cures, but we take no damage? Actually Will-O-Wisp no damage, Lum cures. Then we can Ice Spinner next turn. So Earthquake is safe if Rotom doesn't attack? But if Rotom attacks, we take 54, leaving 34. Then next turn we Ice Spinner, KO. Then we are at 34 HP. That's risky but we have Gholdengo and Kingambit full. Dragonite at +2 can still be useful. But if we Ice Spinner now, we might KO Rotom and preserve HP if it doesn't attack? Actually if we Ice Spinner and KO, we take no damage this turn. That's better. If we Ice Spinner and it doesn't KO, we take damage. But if we EQ and it stays, we take damage and don't damage Rotom. So Ice Spinner seems more proactive.\n\nWhat about Dragon Dance again? At +2, +3 would make Ice Spinner guaranteed KO even on max Def. But we take another Rising Voltage, leaving 34. Then next turn Ice Spinner KO. That's similar to EQ but we get +3. But if they switch to Torkoal, we wasted turn. Not ideal.\n\nI think Ice Spinner is the best move. It hits Rotom, and if they switch to Torkoal, we do little but we can then switch to Gholdengo or use EQ next turn. But we don't know. However, the legal actions list says earthquake is super effective on rotom, which is misleading because of Levitate. The system might not account for Levitate? Actually it says \"super effective on rotom\" but Rotom has Levitate, so it's immune. The legal actions might be generated by a simple type chart ignoring abilities? That's dangerous. We must remember Levitate. So Earthquake will do nothing to Rotom. So Ice Spinner is the only damaging move that hits Rotom (ExtremeSpeed no effect). So Ice Spinner is the clear choice if we want to attack Rotom. If we predict switch, we could EQ, but if they stay, we do nothing. Given Rotom is at full and we are at 52%, they might stay to attack. So Ice Spinner.\n\nLet's craft notes and decision. Notes should update: Dragonite +2, 88 HP, Rotom full, Levitate makes EQ useless. Plan: Ice Spinner to KO Rotom; if it survives, next turn Ice Spinner again. Keep Gholdengo for Sinistcha/Torkoal? Actually Gholdengo good vs Torkoal? Gholdengo Steel/Ghost, Torkoal Fire, Gholdengo resists Fire? Steel resists Fire, Ghost neutral. Gholdengo can hit Torkoal with Shadow Ball? Torkoal Fire, Shadow Ball neutral? Actually Ghost vs Fire neutral. Make It Rain Steel vs Fire 0.5. Thunderbolt vs Torkoal neutral? Electric vs Fire neutral. So Gholdengo not great vs Torkoal. Kingambit with Sucker Punch can hit Torkoal? Dark vs Fire neutral, Steel vs Fire 0.5. So Kingambit not great. Dragonite EQ is best vs Torkoal. So if Torkoal comes in, we need Dragonite to EQ. So maybe we should EQ if we predict Torkoal switch. But Rotom is active. Hmm.\n\nLet's think opponent's perspective: They have Rotom vs Dragonite. Dragonite used Dragon Dance twice, so it's +2. They know Dragonite has Ice Spinner (used on Torterra). They might fear Ice Spinner KOing Rotom. Rotom's HP is full. They might switch to Torkoal to resist Ice Spinner and set sun. Torkoal is Fire, resists Ice. They also have Scrafty, Sinistcha, Simisear. Torkoal is a good switch-in to Ice Spinner. If they switch Torkoal, our Ice Spinner does 0.5x, not great. But if we use Earthquake, we hit Torkoal super effective and likely KO. So predicting the switch to Torkoal, Earthquake is excellent. But if they stay, we waste turn. However, if they stay, Rotom will attack, we take ~54, leaving 34. Then next turn we can Ice Spinner and KO. So we lose some HP but still get KO. If they switch to Torkoal and we EQ, we KO Torkoal and keep Dragonite at 88. That's a huge win. So EQ is high risk high reward. Which is more likely? Opponent sees Dragonite at 52% with +2. They might think Rotom can finish it off with Rising Voltage? But Rising Voltage does ~54, not enough to KO from 88. They might not know exact damage? They might think it can KO? Actually from 88, 54 is not KO. They might have calculated. They might also have Volt Switch to pivot. If they use Volt Switch, they switch out and deal damage. Then our EQ would hit the incoming. If incoming is Torkoal, EQ hits. If incoming is Scrafty, EQ neutral. If Sinistcha, EQ 0.5. So EQ is good vs Torkoal/Simisear, bad vs Sinistcha/Scrafty. Ice Spinner is good vs Rotom/Sinistcha, bad vs Torkoal/Simisear. Which is more likely to come in? Torkoal is a common switch-in to Ice. Also they might have Drought Torkoal to set sun for Simisear? Simisear is Fire, benefits from sun. So Torkoal is likely. Also Torkoal is slow, can take a hit? But EQ from +2 Dragonite likely KOs. So if they switch Torkoal, they lose it. They might not switch if they fear EQ. But they haven't seen EQ. So they might not know Dragonite has EQ. Dragonite commonly has Earthquake. But they might assume. Actually Dragonite's common moves: Dragon Dance, Extreme Speed, Earthquake, Ice Spinner. So they might expect EQ. So they might not switch Torkoal because they fear EQ. They might stay and attack, or switch to something that resists EQ like Sinistcha (Grass/Ghost resists Ground? Ground vs Grass 0.5, vs Ghost neutral, so 0.5). Sinistcha resists EQ and Ice? Ice vs Grass 2x, so Ice Spinner is super effective on Sinistcha. So Sinistcha is not a good switch-in to Ice Spinner. Scrafty resists? Scrafty Dark/Fighting: Ice neutral, Ground neutral. So Scrafty takes both neutrally. Simisear: Fire, Ice 0.5, Ground 2x. So Simisear resists Ice but weak to Ground. Torkoal: Fire, Ice 0.5, Ground 2x. So both Fire types resist Ice and are weak to Ground. So if they want to resist Ice, they switch to Torkoal or Simisear, but both are weak to Ground. So if they predict Ice Spinner, they might switch to Torkoal/Simisear, but if we predict that, we use EQ. This is a classic prediction. Given Dragonite is at +2 and can KO Rotom with Ice Spinner, the opponent might switch to a resist. But they also know Dragonite has EQ? Not revealed. So they might risk it. I think Ice Spinner is safer because it guarantees damage on Rotom if it stays, and if it switches to Torkoal, we can then switch to something else or use EQ next turn. But if we Ice Spinner and they switch Torkoal, we do little, then Torkoal might set sun or attack. Dragonite at 88, Torkoal might use Eruption? Torkoal SpA 150, Eruption BP 150, Fire. Dragonite Dragon/Flying, Fire not very effective? Fire vs Dragon 0.5, vs Flying 1, so 0.5? Actually Fire vs Dragon 0.5, vs Flying 1, so 0.5x. So Dragonite resists Fire. So Torkoal's Fire moves are not very effective. Torkoal might use Stone Edge? Torkoal can learn Stone Edge? Yes, Torkoal can learn Stone Edge, Rock vs Flying 2x, vs Dragon 1, so 2x. That could hurt. But Torkoal is slow. Dragonite is faster. So if we Ice Spinner and they switch Torkoal, we do 0.5x, then next turn we can EQ and KO Torkoal. But we take a hit from Torkoal? Torkoal might use Stone Edge, which could KO Dragonite at 88? Let's estimate: Torkoal Atk 150 max, Stone Edge 100 BP, 2x vs Dragonite. Dragonite Def 115. Damage: ((22*100*150/115)*2)/50 = (330000/115=2869)/50=57.4+2=59.4, *2=118.8. Dragonite at 88 would be KO'd. So if Torkoal comes in and uses Stone Edge, Dragonite dies. So we can't just Ice Spinner into Torkoal if it has Stone Edge. But does Torkoal commonly have Stone Edge? Torkoal often has Stealth Rock, Rapid Spin, Lava Plume, Yawn, Body Press, etc. In competitive, Torkoal usually defensive, not Stone Edge. But it can. However, if it's Drought Torkoal, it might be defensive. So maybe not Stone Edge. But still, we don't want to give Torkoal a free turn. So EQ is better if we predict Torkoal.\n\nWhat about switching to Gholdengo? Gholdengo is immune to Normal, resists Fire? Steel resists Fire. Gholdengo can take Torkoal's Fire moves easily. But Rotom's Rising Voltage? Electric vs Steel neutral? Actually Electric vs Steel neutral. Gholdengo SpD 111, HP 164. Rising Voltage from Rotom: 70 BP, SpA 161. Damage: ((22*70*161/111)/50)+2 = (22*70=1540; *161=247940; /111=2233; /50=44.6+2=46.6. Gholdengo takes ~47, survives. But Gholdengo can hit Rotom with Shadow Ball? Ghost vs Electric neutral? Actually Ghost vs Electric neutral. Shadow Ball 80 BP, SpA 185. Rotom HP 125-157, SpD 87-141. Damage: ((22*80*185/100)/50)+2 = (22*80=1760; *185=325600; /100=3256; /50=65+2=67. Not KO. Gholdengo can use Make It Rain? Steel vs Electric neutral? Actually Steel vs Electric neutral. Make It Rain 120 BP, but lowers SpA. Could be good. But Gholdengo is our special attacker. Switching to Gholdengo might be safe. But we have Dragonite at +2, which is a threat. We don't want to lose boosts. But if we switch, we lose boosts. Dragonite at 88 HP is fragile. Maybe switching to Gholdengo is better to preserve Dragonite for later? But Dragonite is our win condition with +2. If we switch, we lose boosts. But if we stay, we might get KO'd by a predicted switch to Torkoal with Stone Edge,",
+      "note": "",
+      "tokens": 7436,
+      "latency_ms": 86773,
+      "cost_usd": 0.0022946784,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% MOVE: risingvoltage, 20% MOVE: discharge, 20% MOVE: charge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2016,
+      "latency_ms": 51,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1543,
+        "MOVE: discharge": 0.2012,
+        "MOVE: risingvoltage": 0.3819,
+        "MOVE: charge": 0.2012,
+        "SWITCH: torkoal": 0.0614
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icespinner",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 5: Rotom at 13%, Ice Spinner KOs it. Dragonite at 39 HP with +2 boosts will likely fall to the next mon, but removing Rotom is worth it. After Dragonite faints, bring Gholdengo (Life Orb) to handle Sinistcha/Simisear, save Kingambit for late Sucker Punch. Watch for Torkoal (Drought) or Scrafty (Intimidate).",
+      "hidden_reasoning": "Rotom at 13%, Ice Spinner KOs. But Dragonite at 39 HP. Ice Spinner kills Rotom. Do it.\n\nActually Rotom at 13% - Ice Spinner definitely KOs. Then next opponent comes in. Dragonite survives at 39 HP but will likely die to next. Fine.\n\nAlternatively switch to preserve Dragonite. But Dragonite at 39 HP with +2 is valuable. Ice Spinner KOs Rotom, then Dragonite likely dies to next mon. That's a fair trade - we take out Rotom.\n\nActually, better: switch to Gholdengo to preserve Dragonite? But Dragonite at 39 HP won't survive much anyway. Ice Spinner to remove Rotom now.\n\nLet me just Ice Spinner.",
+      "note": "",
+      "tokens": 2778,
+      "latency_ms": 4377,
+      "cost_usd": 0.000292656,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: flamethrower, 16% MOVE: firespin, 15% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2041,
+      "latency_ms": 53,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.5581,
+        "MOVE: flamecharge": 0.1389,
+        "MOVE: fissure": 0.1456,
+        "MOVE: firespin": 0.1574
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 6: Dragonite at 39 HP, +2 Atk/Spe, faces Torkoal. Earthquake is super effective and strongest option; ExtremeSpeed is weaker. If Torkoal survives, Dragonite likely faints, then bring Gholdengo to handle remaining Sinistcha/Simisear/Scrafty, saving Kingambit for late Sucker Punch.",
+      "hidden_reasoning": "We need answer. Need decide turn. Dragonite at 39 HP +2 Atk/Spe vs Torkoal. Earthquake super effective. Torkoal likely bulky physical defense high. Dragonite +2 Atk 204? Earthquake BP100. Torkoal HP 145-177 Def 144-211. Damage maybe: level 50, Atk stat with +2 = 204*2? Actually stat 204 at +2 = 408? Damage formula. Likely does significant maybe KO? Torkoal Fire, Ground weak. But Torkoal may have Drought? If switches in, weather none? It came in after Rotom fainted, no Drought? Log says Weather None, so ability not Drought or maybe suppressed? Torkoal possible White Smoke/Shell Armor. It may have Yawn/Stealth Rock? We need attack. Dragonite at 39, can die to any hit. Earthquake likely best. Could ExtremeSpeed? Torkoal slower, EQ stronger. If Torkoal survives, Dragonite dies. But we have Gholdengo/Kingambit. Use Earthquake. Need notes concise. Decision MOVE: earthquake. Ensure exact format.",
+      "note": "",
+      "tokens": 2962,
+      "latency_ms": 6309,
+      "cost_usd": 0.000339136,
+      "probabilities": null
+    }
+  ]
+}

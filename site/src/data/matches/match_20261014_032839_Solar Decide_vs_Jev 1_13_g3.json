@@ -1,0 +1,449 @@
+{
+  "id": "match_20261014_032839_Solar Decide_vs_Jev 1_13_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 11.75,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|Jev 1.13||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Bastiodon, L50, M|",
+    "|poke|p1|Blaziken, L50, M|",
+    "|poke|p1|Excadrill, L50, F|",
+    "|poke|p1|Audino, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Aegislash, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Corviknight, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Blaziken|Blaziken, L50, M|155/155",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Blaziken",
+    "|-damage|p1a: Blaziken|88/155",
+    "|-unboost|p1a: Blaziken|spd|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p1a: Blaziken|Blaziken-Mega, L50, M",
+    "|-mega|p1a: Blaziken|Blaziken|Blazikenite",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Blaziken",
+    "|-damage|p1a: Blaziken|0 fnt",
+    "|faint|p1a: Blaziken",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|-ability|p1a: Tauros|Intimidate|boost",
+    "|-unboost|p2a: Dragapult|atk|1",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Tauros",
+    "|-damage|p1a: Tauros|63/150",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|63/150",
+    "|-ability|p1a: Tauros|Intimidate|boost",
+    "|-unboost|p2a: Dragapult|atk|1",
+    "|turn|5",
+    "|",
+    "|move|p1a: Tauros|Raging Bull|p2a: Dragapult",
+    "|-resisted|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|75/100",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Tauros",
+    "|-damage|p1a: Tauros|0 fnt",
+    "|faint|p1a: Tauros",
+    "|",
+    "|win|Jev 1.13"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 51% BRING: dragapult, 15% BRING: garchomp, 13% BRING: aegislash\nPick 2: 36% BRING: garchomp, 24% BRING: gholdengo, 16% BRING: rotomwash\nPick 3: 31% BRING: gholdengo, 30% BRING: rotomwash, 29% BRING: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6496,
+      "latency_ms": 1236,
+      "cost_usd": 0.000272832,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "rotom,blaziken,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 58% BRING: rotom, 21% BRING: blaziken, 9% BRING: audino\nPick 2: 53% BRING: blaziken, 25% BRING: taurospaldeablaze, 8% BRING: bastiodon\nPick 3: 39% BRING: bastiodon, 39% BRING: taurospaldeablaze, 16% BRING: excadrill",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6405,
+      "latency_ms": 3821,
+      "cost_usd": 0.00032025,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% MOVE: shadowball, 7% SWITCH: rotomwash, 4% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2222,
+      "latency_ms": 459,
+      "cost_usd": 9.3324e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.85,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: uturn": 0.02,
+        "MOVE: dragondance": 0.01,
+        "SWITCH: garchomp": 0.04,
+        "SWITCH: rotomwash": 0.07
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Blaziken",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% SWITCH: blaziken, 12% MOVE: risingvoltage, 10% MOVE: electricterrain",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2231,
+      "latency_ms": 1485,
+      "cost_usd": 0.00011155,
+      "probabilities": {
+        "MOVE: electricterrain": 0.096594,
+        "MOVE: risingvoltage": 0.124029,
+        "MOVE: voltswitch": 0.031359,
+        "MOVE: willowisp": 0.021553,
+        "SWITCH: blaziken": 0.629871,
+        "SWITCH: taurospaldeablaze": 0.096594
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: shadowball, 22% SWITCH: rotomwash, 18% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2418,
+      "latency_ms": 408,
+      "cost_usd": 0.000101556,
+      "probabilities": {
+        "MOVE: shadowball": 0.42,
+        "MOVE: dragondarts": 0.1,
+        "MOVE: uturn": 0.04,
+        "MOVE: dragondance": 0.04,
+        "SWITCH: garchomp": 0.18,
+        "SWITCH: rotomwash": 0.22
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "blastburn",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "74% MOVE: blastburn [MEGA], 19% MOVE: blastburn, 2% MOVE: gigaimpact",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2572,
+      "latency_ms": 1581,
+      "cost_usd": 0.0001286,
+      "probabilities": {
+        "MOVE: blastburn": 0.187385,
+        "MOVE: blastburn [MEGA]": 0.741122,
+        "MOVE: gigaimpact": 0.01743,
+        "MOVE: gigaimpact [MEGA]": 0.010572,
+        "MOVE: overheat": 0.005659,
+        "MOVE: overheat [MEGA]": 0.007266,
+        "MOVE: substitute": 0.002359,
+        "MOVE: substitute [MEGA]": 0.005659,
+        "SWITCH: rotom": 0.010572,
+        "SWITCH: taurospaldeablaze": 0.011979
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "68% SWITCH: rotom, 32% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1987,
+      "latency_ms": 1499,
+      "cost_usd": 9.935e-05,
+      "probabilities": {
+        "SWITCH: rotom": 0.679179,
+        "SWITCH: taurospaldeablaze": 0.320821
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% MOVE: shadowball, 11% SWITCH: rotomwash, 7% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2426,
+      "latency_ms": 431,
+      "cost_usd": 0.000101892,
+      "probabilities": {
+        "MOVE: shadowball": 0.79,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: uturn": 0.01,
+        "MOVE: dragondance": 0.01,
+        "SWITCH: garchomp": 0.07,
+        "SWITCH: rotomwash": 0.11
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "91% SWITCH: taurospaldeablaze, 6% MOVE: electricterrain, 2% MOVE: risingvoltage",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2286,
+      "latency_ms": 938,
+      "cost_usd": 0.0001143,
+      "probabilities": {
+        "MOVE: electricterrain": 0.057859,
+        "MOVE: risingvoltage": 0.021285,
+        "MOVE: voltswitch": 0.008873,
+        "MOVE: willowisp": 0.00691,
+        "SWITCH: taurospaldeablaze": 0.905072
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% MOVE: shadowball, 29% SWITCH: garchomp, 15% MOVE: dragondarts",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2589,
+      "latency_ms": 422,
+      "cost_usd": 0.000108738,
+      "probabilities": {
+        "MOVE: shadowball": 0.35,
+        "MOVE: dragondarts": 0.15,
+        "MOVE: uturn": 0.04,
+        "MOVE: dragondance": 0.05,
+        "SWITCH: garchomp": 0.29,
+        "SWITCH: rotomwash": 0.12
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "91% SWITCH: rotom, 5% MOVE: gigaimpact, 3% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2397,
+      "latency_ms": 1497,
+      "cost_usd": 0.00011985,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.045485,
+        "MOVE: overheat": 0.005432,
+        "MOVE: ragingbull": 0.027588,
+        "MOVE: trailblaze": 0.007904,
+        "SWITCH: rotom": 0.91359
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: shadowball, 34% SWITCH: garchomp, 12% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2663,
+      "latency_ms": 437,
+      "cost_usd": 0.000111846,
+      "probabilities": {
+        "MOVE: shadowball": 0.34,
+        "MOVE: dragondarts": 0.1,
+        "MOVE: uturn": 0.03,
+        "MOVE: dragondance": 0.07,
+        "SWITCH: garchomp": 0.34,
+        "SWITCH: rotomwash": 0.12
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ragingbull",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: ragingbull, 22% MOVE: gigaimpact, 22% MOVE: trailblaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2427,
+      "latency_ms": 909,
+      "cost_usd": 0.00012135,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.217895,
+        "MOVE: overheat": 0.102926,
+        "MOVE: ragingbull": 0.461284,
+        "MOVE: trailblaze": 0.217895
+      }
+    }
+  ]
+}

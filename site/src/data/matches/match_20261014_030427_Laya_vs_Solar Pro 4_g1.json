@@ -1,0 +1,460 @@
+{
+  "id": "match_20261014_030427_Laya_vs_Solar Pro 4_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "solar_pro_4",
+      "display_name": "Solar Pro 4",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "upstage/solar-pro4",
+      "quantization": null,
+      "username": "Solar Pro 4",
+      "role": "p2",
+      "team": "Solar Pro 4's team",
+      "model_key": "upstage/solar-pro4",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Pro 4"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 6,
+  "duration_seconds": 260.29,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|Solar Pro 4||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, F|",
+    "|poke|p1|Torterra, L50, M|",
+    "|poke|p1|Scrafty, L50, M|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Garchomp, L50, M|",
+    "|poke|p2|Toxapex, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Mimikyu, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, M|202/202",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|-end|p2a: Kingambit|fallenundefined|[silent]",
+    "|switch|p2a: Garchomp|Garchomp, L50, M|100/100",
+    "|move|p1a: Torterra|Trailblaze|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|78/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|-damage|p1a: Torterra|177/202|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p2a: Garchomp|Garchomp-Mega, L50, M",
+    "|-mega|p2a: Garchomp|Garchomp|Garchompite",
+    "|move|p2a: Garchomp|Outrage|p1a: Torterra",
+    "|-damage|p1a: Torterra|50/202",
+    "|move|p1a: Torterra|Trailblaze|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|44/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|157/157",
+    "|move|p2a: Garchomp|Outrage|p1a: Rotom|[from] lockedmove",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|-start|p2a: Garchomp|confusion|[fatigue]",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, F|177/177",
+    "|turn|4",
+    "|",
+    "|-activate|p2a: Garchomp|confusion",
+    "|move|p2a: Garchomp|Earthquake|p1a: Torkoal",
+    "|-supereffective|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torterra|Torterra, L50, M|50/202",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|move|p1a: Torterra|Growth|p1a: Torterra",
+    "|-boost|p1a: Torterra|atk|1",
+    "|-boost|p1a: Torterra|spa|1",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Torterra",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|faint|p1a: Torterra",
+    "|-damage|p2a: Kingambit|90/100|[from] item: Life Orb",
+    "|",
+    "|win|Solar Pro 4"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 42% BRING: torterra, 20% BRING: rotom, 16% BRING: torkoal\nPick 2: 44% BRING: torkoal, 23% BRING: scrafty, 16% BRING: rotom\nPick 3: 45% BRING: rotom, 26% BRING: scrafty, 17% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5319,
+      "latency_ms": 861,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "kingambit,garchomp,mimikyu",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Bring Kingambit, Garchomp, Mimikyu. Kingambit's Dark moves crush Sinistea and Rotom; Garchomp's Earthquake obliterates Torkoal/Simisear and pressures Torterra; Mimikyu's Disguise + Play Rough handles Scrafty (survives one Dark hit, KO's back). Supreme Overlord on Kingambit scales as teammates fall. Lead with Garchomp to remove Torkoal or Simisear quickly, or Mimikyu to bait Scrafty.",
+      "hidden_reasoning": "The opponent's team has Rotom (likely Rotom-Wash with Levitate), Torkoal (Fire, possibly Drought), Torterra (Grass/Ground), Scrafty (Dark/Fighting), Sinistea Masterpiece (Grass/Ghost), Simisear (Fire).\n\nMy team: Kingambit (Dark/Steel, Life Orb, Supreme Overlord), Garchomp (Dragon/Ground, Garchompite, Rough Skin), Toxapex (Poison/Water, Leftovers, Regenerator), Dragapult (Dragon/Ghost, Choice Scarf, Infiltrator), Rotom-Wash (Electric/Water, Expert Belt, Levitate), Mimikyu (Ghost/Fairy, Focus Sash, Disguise).\n\nI need to pick 3. Let me think about the matchup.\n\nOpponent threats:\n- Rotom-Wash: Levitate, special attacker, can hit with Thunderbolt/Hydropump. Weak to Dark/Ghost. Kingambit and Dragapult can handle it.\n- Torkoal: Fire, possibly Drought. Weak to Ground (Garchomp). Can set sun with Drought.\n- Torterra: Grass/Ground, physically bulky. Weak to Ice/Fire/Flying/Poison. Garchomp's Earthquake hits it, but it's Grass so 0x? Wait, Torterra is Grass/Ground. Earthquake is Ground, so it's neutral against Grass/Ground (Ground vs Ground is neutral, Ground vs Grass is neutral). Actually Ground moves are neutral against Ground types. So Earthquake is neutral. Dragon Claw is neutral. Outrage is neutral. Torterra is bulky.\n- Scrafty: Dark/Fighting. Weak to Fairy (Mimikyu's Play Rough), Flying, Psychic. Resists Dark, Ghost. Kingambit's moves are Dark/Steel - Dark is resisted by Scrafty (Dark resists Dark), Steel is neutral. So Kingambit doesn't do much to Scrafty. Mimikyu's Play Rough is super effective.\n- Sinistea Masterpiece: Grass/Ghost. Weak to Dark, Ghost, Ice, Fire, Poison. Kingambit's Dark moves are super effective. Garchomp's Dragon moves are neutral. Dragapult's Shadow Ball is super effective.\n- Simisear: Fire. Weak to Ground (Garchomp), Rock, Water. Rotom-Wash's Water moves are super effective.\n\nMy team analysis:\n- Kingambit: Great physically, Supreme Overlord boosts stats when a teammate faints. Life Orb. Good against Sinistea (Dark super effective), Rotom (Dark super effective), but struggles against Scrafty (resists Dark, weak to Fairy). Sucker Punch is priority Dark.\n- Garchomp: Fast (169), Rough Skin. Earthquake hits Torkoal, Simisear, Torterra (neutral). Dragon Claw/Outrage for others. Good physical attacker.\n- Toxapex: Defensive wall, Toxic Spikes, Regenerator. Can stall. Weak to Electric (but Rotom-Wash is on my team, not opponent's... wait, opponent has Rotom which could be Rotom-Wash or just Rotom? The opponent's Rotom is listed as \"rotom (Electric/Ghost)\" - it could be any form. But Levitate is the only ability listed, so it's likely Rotom-Wash since that's the most common in competitive. Actually Rotom has 5 forms, all have Levitate. So it could be any. But typically Rotom-Wash is the most used. Let me assume it's Rotom-Wash with Expert Belt? No, the opponent's Rotom doesn't have an item listed, just stats and ability. So it's a base Rotom or some form. The stats range is given. I'll assume it's Rotom-Wash since that's most common, but it could be any. Actually, the format is \"gen9championsrotomarenabssregmb\" - this might indicate some rules. Let me not overthink.\n\n- Dragapult: Very fast (213), Choice Scarf. Dracometeor, Shadow Ball, Phantom Force, U-turn. Good special attacker. Can hit Sinistea (Shadow Ball super effective), Rotom (Dracometeor/Shadow Ball), but weak to Scrafty? Scrafty is Dark/Fighting, Dragapult is Dragon/Ghost. Scrafty's moves: probably Dark/Fighting moves. Dragapult is weak to Dark (Ghost weak to Dark? No, Ghost is weak to Dark, Dragon is weak to Ice/Dragon/Fairy. Dragapult as Dragon/Ghost is weak to Dark, Ice, Dragon, Fairy. Scrafty is Dark/Fighting, so it can hit Dragapult with Dark moves (super effective against Ghost) and Fighting moves (neutral against Dragon, neutral against Ghost). So Scrafty is a threat to Dragapult.\n- Rotom-Wash: My own Rotom-Wash. Electric/Water, Levitate, Expert Belt. Hydropump, Thunderbolt, Will-O-Wisp, Volt Switch. Good special attacker, can burn with Will-O-Wisp. Weak to Grass (Torterra's Grass moves? Torterra is Grass/Ground, so Grass moves are neutral against it? Actually Grass vs Grass/Ground: Grass is neutral against Grass, neutral against Ground. So Torterra's Grass moves are neutral against Rotom-Wash. But Torterra can also use Earthquake which is neutral. Rotom-Wash is weak to Grass (Electric/Water weak to Grass). So Torterra's Grass moves are super effective? Wait, Rotom-Wash is Electric/Water. Weaknesses: Grass (2x). So Torterra's Grass-type moves are super effective against Rotom-Wash. But Torterra's Grass moves... Torterra can learn Power Whip, Energy Ball, etc. But Torterra is also Ground, so it can use Earthquake which is neutral. Rotom-Wash is a good lead or mid-game Pokémon.\n- Mimikyu: Ghost/Fairy, Focus Sash, Disguise. Play Rough (Fairy super effective against Scrafty, Dragapult, etc.), Sucker Punch? No, Play Rough, Swords Dance, Shadow Claw, Phantom Force. Disguise lets it survive one hit. Good against Scrafty (Play Rough super effective), but weak to Steel (Kingambit's Iron Head is super effective? Kingambit is Dark/Steel, Iron Head is Steel. Mimikyu is Ghost/Fairy, Steel is neutral against Ghost/Fairy? Steel is neutral against Ghost and Fairy. So Iron Head is neutral. But Mimikyu's Disguise will block it once. Mimikyu is also weak to Dark (Kingambit's Dark moves are super effective), but Disguise blocks one hit.\n\nNow, I need to pick 3. The format is \"gen9championsrotomarenabssregmb\" - this might be a specific ruleset. \"champions\" might mean we're using champion Pokémon? \"rotomarenabssregmb\" - maybe Rotom, Arenabss, Reg, Mb? Not sure. Let me focus on the team.\n\nGood core: Kingambit + Garchomp + something.\nKingambit and Garchomp both benefit from Supreme Overlord (Kingambit's ability) - when a teammate faints, Kingambit gets a boost. So I want Kingambit to be the last standing or have teammates that can chip away.\n\nGarchomp is fast and hits hard, can handle Torkoal, Simisear, Torterra.\nKingambit handles Sinistea, Rotom, but struggles with Scrafty.\nMimikyu handles Scrafty with Play Rough, and can use Disguise to survive a hit.\nDragapult is fast and can U-turn, but Choice Scarf locks it in.\nToxapex is a defensive wall but slow.\nRotom-Wash is my own, can burn and hit hard, but weak to Grass.\n\nOpponent's team: Rotom, Torkoal, Torterra, Scrafty, Sinistea, Simisear.\nThis is a grass-heavy team? Torkoal (Fire), Torterra (Grass/Ground), Simisear (Fire), Sinistea (Grass/Ghost), Scrafty (Dark/Fighting), Rotom (Electric/Ghost).\n\nTorkoal might have Drought, which sets sun. Sun boosts Fire moves and weakens Water. My Rotom-Wash and Toxapex are Water, so sun hurts them. Garchomp is Ground, not affected by sun much. Kingambit is Dark/Steel, not affected. Mimikyu is Ghost/Fairy, not affected. Dragapult is Dragon/Ghost, not affected.\n\nIf Torkoal has Drought, it's a big threat. Garchomp's Earthquake is super effective against Torkoal (Fire weak to Ground). So Garchomp can remove Torkoal.\n\nScrafty is a threat to Dragapult and Kingambit (resists Dark). Mimikyu's Play Rough is super effective against Scrafty.\n\nSinistea Masterpiece is Grass/Ghost, weak to Dark (Kingambit), Ghost (Dragapult, Mimikyu), Ice, Fire, Poison. Kingambit's Sucker Punch or Kowtow Cleave can hit it super effectively.\n\nTorterra is bulky, Grass/Ground. Weak to Ice, Fire, Flying, Poison. My team doesn't have Ice or Fire (except Rotom-Wash has no Fire, Torkoal is opponent's). Wait, Rotom-Wash has no Fire moves. Toxapex has Liquidation (Water), which is neutral against Torterra (Water vs Grass/Ground: Water is super effective against Grass, neutral against Ground, so 2x? Actually Water vs Grass is 2x, Water vs Ground is neutral. So Water is 2x against Grass/Ground. Yes! Liquidation is super effective against Torterra. But Toxapex is slow (55). Rotom-Wash's Hydropump is also super effective against Torterra.\n\nSo my Water types (Toxapex, Rotom-Wash) can hit Torterra super effectively.\n\nSimisear is Fire, weak to Ground (Garchomp), Rock, Water (Rotom-Wash, Toxapex).\n\nRotom (opponent) is Electric/Ghost, likely Rotom-Wash. Weak to Dark (Kingambit), Ghost (Dragapult, Mimikyu), Ice. Kingambit's Dark moves are super effective.\n\nSo my team has good coverage:\n- Kingambit: super effective against Sinistea, Rotom. Resisted by Scrafty.\n- Garchomp: super effective against Torkoal, Simisear. Neutral against Torterra, Sinistea, Scrafty, Rotom.\n- Toxapex: super effective against Torterra, Simisear (Liquidation). Defensive.\n- Dragapult: super effective against Sinistea (Shadow Ball), Rotom (Dracometeor/Shadow Ball). Weak to Scrafty.\n- Rotom-Wash: super effective against Torterra, Simisear (Hydropump). Can burn with Will-O-Wisp.\n- Mimikyu: super effective against Scrafty (Play Rough), Dragapult? No, Mimikyu is Ghost/Fairy, Play Rough is Fairy, super effective against Dragapult (Dragon weak to Fairy). But Mimikyu vs Scrafty is good.\n\nI need to pick 3. Let me think about the best combination.\n\nOption 1: Kingambit, Garchomp, Mimikyu.\n- Kingambit leads? Or Garchomp leads? Garchomp is fast and can set up or attack. Kingambit benefits from Supreme Overlord, so maybe lead with Garchomp or Mimikyu to sacrifice.\n- Mimikyu handles Scrafty with Play Rough, and can use Disguise to survive a hit from anyone.\n- Garchomp handles Torkoal, Simisear, and can attack Torterra neutrally.\n- Kingambit handles Sinistea, Rotom, and gets boosts from Supreme Overlord.\n\nOption 2: Kingambit, Garchomp, Rotom-Wash.\n- Rotom-Wash handles Torterra, Simisear, can burn. But sun from Torkoal hurts it.\n- Kingambit and Garchomp as before.\n\nOption 3: Kingambit, Garchomp, Toxapex.\n- Toxapex is a defensive wall, can Toxic Spike and stall. But slow.\n\nOption 4: Dragapult, Garchomp, Kingambit?\n- Dragapult is very fast and can U-turn, but Choice Scarf locks it. It can hit Sinistea and Rotom super effectively. But Scrafty is a counter.\n\nI think the best core is Kingambit, Garchomp, and either Mimikyu or Rotom-Wash.\n\nMimikyu is great because:\n- Disguise lets it survive one hit, so it can get a free Play Rough off against Scrafty or others.\n- Play Rough is super effective against Scrafty, Dragapult (if opponent had Dragapult, but they don't), etc.\n- Mimikyu is fast (162), can move before many opponents.\n- It can also use Swords Dance to set up.\n\nBut Mimikyu is weak to Steel (Kingambit's Iron Head is neutral, but if I bring Kingambit, I need to be careful not to hit Mimikyu with Iron Head? No, Kingambit is on my team, so I control it. I won't hit my own Mimikyu. But if I bring Kingambit and Mimikyu, Kingambit's Iron Head is neutral against Mimikyu, so it's fine. I just won't use it against my own Pokémon.\n\nActually, the concern is: if I bring Kingambit and Mimikyu, and the opponent uses a Steel move? The opponent doesn't have Steel types. Torkoal is Fire, Torterra is Grass/Ground, Scrafty is Dark/Fighting, Sinistea is Grass/Ghost, Simisear is Fire, Rotom is Electric/Ghost. None have Steel moves. So Mimikyu is safe from Steel.\n\nMimikyu's weaknesses: Dark (Kingambit covers this, but Kingambit is on my team, so I control it. The opponent doesn't have Dark types except Scrafty, which has Dark moves. Scrafty's Dark moves are super effective against Mimikyu, but Disguise blocks one hit. So Mimikyu can survive one Dark hit from Scrafty and then hit back with Play Rough super effectively. That's a great trade.\n\nSo Mimikyu vs Scrafty: Scrafty hits with Dark move (super effective), Mimikyu's Disguise activates, survives. Then Mimikyu uses Play Rough (super effective) to knock out Scrafty. Great.\n\nMimikyu vs Torkoal: Torkoal has Fire moves, super effective against Mimikyu? Mimikyu is Ghost/Fairy. Fire is neutral against Ghost, neutral against Fairy. So Fire is neutral. Mimikyu can hit Torkoal with Play Rough (Fairy vs Fire is neutral? Fairy vs Fire is neutral. Actually Fairy is neutral against Fire. So Play Rough is neutral. Shadow Claw is neutral. Phantom Force is neutral. So Mimikyu doesn't do much to Torkoal. But Torkoal doesn't do much to Mimikyu either (neutral). So it's a stalemate unless Mimikyu sets up.\n\nMimikyu vs Torterra: Torterra is Grass/Ground. Play Rough is neutral (Fairy vs Grass is neutral, Fairy vs Ground is neutral). Shadow Claw is neutral (Ghost vs Grass is neutral, Ghost vs Ground is neutral). Phantom Force is neutral. Torterra's Grass moves are neutral against Mimikyu (Grass vs Ghost is neutral, Grass vs Fairy is neutral). Ground moves are neutral. So neutral vs neutral. Mimikyu can use Swords Dance and then hit hard.\n\nMimikyu vs Sinistea: Sinistea is Grass/Ghost. Play Rough is neutral (Fairy vs Grass is neutral, Fairy vs Ghost is neutral). Shadow Claw is super effective (Ghost vs Ghost is 2x, Ghost vs Grass is neutral, so 2x). Phantom Force is super effective (Ghost vs Ghost is 2x). So Mimikyu hits Sinistea super effectively. Sinistea's Grass moves are neutral, Ghost moves are neutral against Mimikyu (Ghost vs Ghost is neutral? Actually Ghost vs Ghost is neutral. Ghost moves are neutral against Ghost types. So Sinistea's Ghost moves are neutral against Mimikyu. Grass moves are neutral. So Mimikyu can kill Sinistea.\n\nMimikyu vs Simisear: Simisear is Fire. Play Rough is neutral. Shadow Claw is neutral. Phantom Force is neutral. Simisear's Fire moves are neutral against Mimikyu. So neutral vs neutral. Mimikyu can set up and hit.\n\nMimikyu vs Rotom: Rotom is Electric/Ghost. Play Rough is neutral (Fairy vs Electric is neutral, Fairy vs Ghost is neutral). Shadow Claw is super effective (Ghost vs Ghost is 2x). Phantom Force is super effective. Rotom's Electric moves are neutral against Mimikyu (Electric vs Ghost is neutral, Electric vs Fairy is neutral). Ghost moves are neutral. So Mimikyu hits Rotom super effectively.\n\nSo Mimikyu is good against Sinistea, Rotom, Scrafty, and can handle others with setup. Its main weakness is Steel, but opponent has no Steel. So Mimikyu is a great pick.\n\nNow, Kingambit and Garchomp:\n- Kingambit: Dark/Steel. Sucker Punch (priority Dark), Kowtow Cleave (Dark), Iron Head (Steel), Swords Dance.\n- Kingambit is super effective against Sinistea (Dark vs Ghost is 2x, Dark vs Grass is neutral, so 2x), Rotom (Dark vs Ghost is 2x, Dark vs Electric is neutral, so 2x). Resisted by Scrafty (Dark vs Dark is 0.5x, Dark vs Fighting is neutral, so 0.5x). Neutral against Torkoal (Dark vs Fire is neutral, Dark vs Fire? Dark is neutral against Fire. Steel is neutral against Fire. So neutral). Neutral against Torterra (Dark vs Grass is neutral, Dark vs Ground is neutral; Steel vs Grass is neutral, Steel vs Ground is neutral). Neutral against Simisear (Dark vs Fire is neutral, Steel vs Fire is neutral).\n\nSo Kingambit is amazing against Sinistea and Rotom, bad against Scrafty, neutral against others.\n\nGarchomp: Dragon/Ground. Earthquake (Ground), Dragon Claw (Dragon), Swords Dance, Outrage (Dragon).\n- Garchomp is super effective against Torkoal (Ground vs Fire is 2x), Simisear (Ground vs Fire is 2x). Neutral against Torterra (Ground vs Ground is neutral, Ground vs Grass is neutral; Dragon vs Grass is neutral, Dragon vs Ground is neutral). Neutral against Sinistea (Ground vs Grass is neutral, Ground vs Ghost is neutral; Dragon vs Grass is neutral",
+      "note": "",
+      "tokens": 6392,
+      "latency_ms": 64158,
+      "cost_usd": 0.001642554,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% MOVE: trailblaze, 15% MOVE: bulldoze, 9% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1916,
+      "latency_ms": 48,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.6128,
+        "MOVE: bulldoze": 0.1525,
+        "MOVE: energyball": 0.0732,
+        "MOVE: growth": 0.0883,
+        "SWITCH: torkoal": 0.034,
+        "SWITCH: rotom": 0.0392
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torterra lead vs Kingambit is problematic: Kingambit's Dark/Steel attacks are neutral or not very effective against Grass/Ground, while Torterra's Grass moves hit Kingambit super effectively. Switching to Garchomp lets me hit Torterra super effectively with Earthquake (2x) while taking mostly neutral damage back. Garchomp outspeeds most Torterra sets (169 vs 68-118). Preserve Kingambit for later when Supreme Overlord activates.",
+      "hidden_reasoning": "The opponent led Torterra. I'm leading Kingambit. Torterra's stats range from Spe 68-118, so it could be slower or faster than my Kingambit (Spe 102). I don't know its moves yet.\n\nKingambit has Supreme Overlord active (0 allies fainted so far, so no boost). It has Life Orb.\n\nTorterra is Grass/Ground. Kingambit is Dark/Steel. Dark moves are super effective against Torterra's Grass typing? No, Dark is not very effective against Grass. Steel is not very effective against Grass either. Actually, Dark vs Grass: not very effective. Steel vs Grass: not very effective. So Kingambit's attacks won't do much damage to Torterra.\n\nWait, let me think about this more carefully. Torterra is Grass/Ground. Kingambit's moves:\n- Sucker Punch (Dark) - Dark vs Grass/Ground: Dark is neutral vs Grass, neutral vs Ground. So neutral damage.\n- Kowtow Cleave (Dark) - same, neutral.\n- Iron Head (Steel) - Steel vs Grass: not very effective (0.5x). Steel vs Ground: neutral. So 0.5x damage.\n- Swords Dance - status.\n\nSo Kingambit is not in a great position to attack Torterra. Torterra likely has Grass moves (Wood Hammer, Energy Ball, etc.) that are super effective against Steel (Kingambit's typing). Torterra also has Ground moves which are neutral against Dark/Steel.\n\nGiven that Kingambit's attacks are mostly neutral or not very effective against Torterra, and Torterra likely has super effective moves against Kingambit, I should consider switching.\n\nBut wait, I need to see what Torterra does first. If I use Sucker Punch, it only works if Torterra is attacking. Since I don't know Torterra's moves, I can't be sure.\n\nActually, the best play here might be to switch to Garchomp. Garchomp's Earthquake is super effective against Torterra (Ground vs Grass/Ground: Ground is neutral vs Grass, super effective vs Ground... wait, Ground vs Ground is neutral. Ground vs Grass is super effective. So Earthquake vs Grass/Ground is super effective (2x). Garchomp can hurt Torterra significantly.\n\nAlternatively, I could switch to Mimikyu. Mimikyu's Play Rough (Fairy) is super effective against Torterra's Grass typing (Fairy vs Grass: super effective). But Mimikyu is Ghost/Fairy, and Torterra's Grass moves are not very effective against Fairy, and its Ground moves are neutral against Ghost. So Mimikyu is also a good switch.\n\nBut I should also consider that I want to preserve my Pokémon. Kingambit is my win condition with Supreme Overlord. If I switch it out now, I lose the opportunity to set it up.\n\nActually, let me think about what Torterra might do. Torterra likely has:\n- Wood Hammer (Grass, physical)\n- Earthquake (Ground, physical)\n- Stone Edge (Rock, physical)\n- Protect or Recover or Leech Seed or Energy Ball\n\nIf Torterra uses Wood Hammer or Earthquake, both are super effective against Kingambit (Wood Hammer: Grass vs Steel = super effective; Earthquake: Ground vs Steel = neutral, but Ground vs Dark = neutral). Actually, Earthquake is neutral against Dark/Steel. Wood Hammer is super effective against Steel.\n\nSo Kingambit is in a bad spot. I should switch.\n\nBut which Pokémon to switch to? Garchomp or Mimikyu?\n\nGarchomp (Dragon/Ground) vs Torterra (Grass/Ground):\n- Garchomp's Earthquake is super effective (2x) vs Torterra.\n- Garchomp's Dragon Claw is neutral.\n- Torterra's Wood Hammer is neutral vs Dragon/Ground (Grass vs Dragon = neutral, Grass vs Ground = neutral). Wait, Grass vs Dragon is neutral. Grass vs Ground is neutral. So Wood Hammer is neutral against Garchomp.\n- Torterra's Earthquake is neutral vs Ground (Earthquake vs Ground is neutral).\n- Torterra's Stone Edge is neutral vs Dragon/Ground (Rock vs Dragon = neutral, Rock vs Ground = neutral).\n\nSo Garchomp is a great switch. It can hit Torterra super effectively with Earthquake, and Torterra's moves are mostly neutral against it.\n\nMimikyu (Ghost/Fairy) vs Torterra (Grass/Ground):\n- Mimikyu's Play Rough (Fairy) is super effective vs Grass (2x), neutral vs Ground. So 2x damage.\n- Mimikyu's Shadow Claw (Ghost) is neutral vs Grass/Ground (Ghost vs Grass = neutral, Ghost vs Ground = neutral).\n- Mimikyu's Phantom Force (Ghost) same.\n- Torterra's Wood Hammer (Grass) is not very effective vs Fairy (0.5x), neutral vs Ghost. So 0.5x damage.\n- Torterra's Earthquake (Ground) is neutral vs Ghost/Fairy (Ground vs Ghost = neutral, Ground vs Fairy = neutral).\n- Torterra's Stone Edge (Rock) is neutral vs Ghost/Fairy.\n\nSo Mimikyu is also a great switch. It can hit Torterra super effectively with Play Rough, and Torterra's Grass moves are not very effective against it.\n\nBoth are good switches. Garchomp has higher HP and can take more hits, but Mimikyu has Disguise which can bait one hit.\n\nGiven that I want to preserve Kingambit for later (when Supreme Overlord kicks in), I should switch. I'll switch to Garchomp because it has higher HP and can potentially set up Swords Dance or just attack with Earthquake.\n\nActually, let me reconsider. The opponent's Torterra has speed range 68-118. My Garchomp has speed 169, so Garchomp will outspeed most Torterra sets. My Mimikyu has speed 162, also outspeeds most Torterra sets.\n\nI think switching to Garchomp is the best play. It can immediately attack with Earthquake for super effective damage, and it has high HP to survive potential counterattacks.\n\nWait, but I should also consider that I don't know Torterra's moves. If Torterra has Protect, then attacking might be wasteful. But I have to take a risk.\n\nLet me go with switching to Garchomp.\n\nActually, I realize I should think about this more strategically. The opponent led Torterra, which suggests they might want to handle my Garchomp (since Garchomp's Earthquake is super effective against Torterra). But Torterra is not that effective against Garchomp. So leading Torterra might be a guess to counter my Garchomp, but it's not a great counter.\n\nAlternatively, the opponent might be leading Torterra to handle my Kingambit, since Torterra's Grass moves are super effective against Steel. But Kingambit is Dark/Steel, and Dark moves are neutral against Grass/Ground. So Kingambit can still attack Torterra, just not very effectively.\n\nI think the opponent led Torterra to try to remove my Garchomp, which is a common lead for Garchomp counters. But Torterra isn't a great counter to Garchomp.\n\nGiven all this, I'll switch to Garchomp and attack with Earthquake.\n\nWait, but I should also consider that if I switch to Garchomp, the opponent might switch to something that counters Garchomp, like Rotom-Wash (which has Levitate and can hit Garchomp with Ghost moves) or Scrafty (which has Dark/Fighting moves that can hit Garchomp super effectively).\n\nBut I have to make a decision based on the information I have. I'll switch to Garchomp.\n\nActually, let me reconsider one more time. Kingambit is my win condition. If I keep Kingambit in, I can try to set up Swords Dance and then attack with boosted moves. But Kingambit's attacks are not very effective against Torterra, and Torterra's attacks are super effective against Kingambit. So keeping Kingambit in is risky.\n\nI'll switch to Garchomp.\n\nDecision: SWITCH: garchomp\n\nBut wait, I should also consider using Sucker Punch. Sucker Punch has priority +1, so it will go first if Torterra is attacking. But I don't know if Torterra is attacking. If Torterra uses a status move or Protect, Sucker Punch will fail. And even if it hits, it does neutral damage to Torterra, which might not be enough to KO.\n\nI think switching is the better play.\n\nLet me finalize: SWITCH: garchomp",
+      "note": "",
+      "tokens": 4297,
+      "latency_ms": 27274,
+      "cost_usd": 0.000927,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: trailblaze, 13% MOVE: bulldoze, 13% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2018,
+      "latency_ms": 52,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.6326,
+        "MOVE: bulldoze": 0.1326,
+        "MOVE: energyball": 0.0579,
+        "MOVE: growth": 0.1285,
+        "SWITCH: torkoal": 0.0227,
+        "SWITCH: rotom": 0.0257
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "Torterra at 87% HP with +1 Speed from Trailblaze. Garchomp at 78.1% HP. Earthquake is not very effective (0.5x) vs Torterra's Ground typing. Dragonclaw/Outrage are neutral. Mega Garchomp guarantees outspeeding (269 vs Torterra's max 177). Outrage [MEGA] has highest KO chance; if it survives, switch to Kingambit (resists Grass) next turn. Risk: confusion if Outrage doesn't KO, but switching mitigates it.",
+      "hidden_reasoning": "Thinking about the battle state:\n\n- My Garchomp is at 78.1% HP (143/183)\n- Opponent's Torterra is at 87% HP, with +1 Speed boost from Trailblaze\n- Torterra's revealed move is Trailblaze (Grass/Physical, BP:50)\n- Torterra has possible abilities: Overgrow or Shell Armor\n- Torterra's speed range is 68-118 at level 50, but it got +1 Speed boost, so now it's 102-177\n\nGarchomp's speed is 169. Torterra's base speed is 68-118, so even with +1 it's 102-177. Garchomp at 169 outspeeds most Torterra sets, but a max-speed Torterra (118 base +1 = 177) would outspeed Garchomp.\n\nTorterra's HP is 87% after taking Rough Skin damage from Garchomp's entry. Wait, actually the log says \"Opposing Torterra is at 87% [from] ability: Rough Skin\" - that means Torterra lost 1/8 HP from Garchomp's Rough Skin ability when it made contact? No wait, Rough Skin damages the attacker. So when Torterra used Trailblaze on Garchomp, Garchomp took damage? No, the log says Torterra is at 87% from Rough Skin. That's confusing.\n\nActually, re-reading: \"Opposing Torterra: spe +1\" and \"Opposing Torterra is at 87% [from] ability: Rough Skin\" - this means Torterra used Trailblaze (contact move) and Garchomp's Rough Skin damaged Torterra, taking it to 87%.\n\nSo Torterra is at 87% HP, +1 Speed.\n\nNow for Turn 2:\n- Garchomp is active at 78.1% HP\n- Torterra is at 87% HP with +1 Speed\n\nOptions:\n1. Earthquake - neutral against Torterra (Ground vs Grass/Ground: Ground is neutral vs Grass, not very effective vs Ground... wait, Ground vs Ground is not very effective. So Earthquake is neutral vs Grass but not very effective vs Ground. Torterra is Grass/Ground, so Earthquake does neutral damage overall? Actually Ground vs Grass is neutral, Ground vs Ground is not very effective (0.5x). So combined: 1.0 x 0.5 = 0.5x, so not very effective.\n\nWait, let me recalculate. Earthquake is Ground-type. Torterra is Grass/Ground.\n- Ground vs Grass: neutral (1x)\n- Ground vs Ground: not very effective (0.5x)\nSo Earthquake does 0.5x damage to Torterra. That's not great.\n\n2. Dragonclaw - Dragon vs Grass/Ground: Dragon vs Grass is neutral, Dragon vs Ground is neutral. So 1x damage. Decent.\n\n3. Outrage - 120 BP Dragon, but confuses. High risk/reward.\n\n4. Swordsdance - boost attack, but Torterra already has +1 Speed and could outspeed after.\n\n5. Mega options - Mega Garchomp gets +1 Atk, +1 SpA, +1 Def, +1 Spe (total +100 to each stat). Mega Garchomp's speed would be 169 + 100 = 269, which definitely outspeeds Torterra. But Mega Garchomp loses its ability (Rough Skin) and gets Sand Veil instead... wait, no. Mega Garchomp's ability is Sand Veil. So I lose Rough Skin.\n\nActually, let me think about what Torterra's moves might be. It used Trailblaze (Grass, 50 BP). Common Torterra sets include:\n- Grass moves (Wood Hammer, Energy Ball, Leaf Storm)\n- Earthquake\n- Stone Edge\n- Protect\n- Stealth Rock\n- Leech Seed\n\nTorterra at 87% HP with +1 Speed. If it has Overgrow, it triggers at 1/3 HP or less, so not yet.\n\nGiven that Earthquake is not very effective (0.5x), and Dragonclaw is neutral (1x), I should consider:\n- Using Dragonclaw to hit neutrally\n- Using Swordsdance to boost, then hit hard\n- Mega Evolving to outspeed and hit harder\n\nBut wait, if Torterra has Shell Armor, it can't be critted. And if it has Overgrow, it's not active yet.\n\nThe key consideration: Torterra's speed range is 68-118 base. With +1, it's 102-177. Garchomp is 169. So if Torterra is fast (118 base), it outspeeds Garchomp even with the +1 boost... wait, 118 base +1 = 177, which is faster than 169. So a max-speed Torterra outspeeds Garchomp.\n\nIf I Mega Evolve, Garchomp gets +100 speed = 269, which outspeeds everything.\n\nBut Mega Garchomp loses Rough Skin. And Torterra is at 87% HP, so one good hit might not KO it.\n\nLet me think about the damage:\n- Dragonclaw (80 BP) at neutral: probably does around 50-60% damage to Torterra at 87% HP\n- Outrage (120 BP) at neutral: probably does around 70-80% damage, but confuses\n- Earthquake (100 BP) at 0.5x: probably does around 30-40% damage\n\nIf I Mega Evolve and use Dragonclaw or Outrage, I can likely KO Torterra or at least severely damage it.\n\nBut there's a risk: if Torterra survives, it could hit back with a super-effective Grass move (Wood Hammer, etc.) and possibly KO Garchomp.\n\nActually, Garchomp at 78.1% HP. Torterra's Grass moves are super effective against Garchomp (2x). Wood Hammer (150 BP) or Energy Ball (90 BP) could do significant damage.\n\nLet me think about the best play:\n- If I'm confident Torterra is slow (base speed < 100), I can just use Dragonclaw or Outrage without Mega\n- If Torterra could be fast, Mega Evolving guarantees the speed tie/advantage\n\nGiven the uncertainty, Mega Evolving with Dragonclaw or Outrage seems safest. Outrage has higher power but confuses. Dragonclaw is safer.\n\nActually, let me reconsider. Torterra used Trailblaze, which is a relatively low-power move (50 BP). This suggests it might be a setup sweeper or wall. Common Torterra sets:\n1. Stealth Rock + Leech Seed + Wood Hammer/Earthquake/Stone Edge + Protect\n2. Grass setter with Leaf Storm/Energy Ball/Wood Hammer/Protect\n\nIf it's a setup sweeper, it might use Leech Seed or Stealth Rock next. If it's a wall, it might just attack.\n\nI think the best play is to Mega Evolve and use Dragonclaw to try to KO Torterra. If it survives, I can switch to Kingambit or Mimikyu.\n\nActually, wait. Let me reconsider the damage calculation more carefully.\n\nGarchomp at level 50, Mega Garchomp:\n- Atk: 182 + 100 = 282 (wait, Mega Evolution adds 100 to each stat, so Atk becomes 282)\n- Actually, Mega Evolution in Pokémon Showdown: Mega Garchomp has base stats 130/145/100/60/100/145 (Atk/Def/SpA/SpD/Spe/HP... wait, let me check)\n\nActually, Mega Garchomp's base stats are: 130 HP, 145 Atk, 100 Def, 60 SpA, 100 SpD, 145 Spe. At level 50, this translates to:\n- HP: 183 (same as regular)\n- Atk: 145 base → at level 50, roughly 145 * 2 + 100 = 390 / 100 * 50... actually the formula is complex. Let me just estimate.\n\nRegular Garchomp Atk at level 50: 182 (given). Mega Garchomp Atk would be higher. The +100 to base stat translates to roughly +50-60 at level 50. So Mega Garchomp Atk ≈ 240-250.\n\nDragonclaw at 80 BP with Atk ~245 vs Torterra's Defense (112-172 base, at level 50 roughly 160-240). \n\nDamage = (2 * 50 / 5 + 2) * 80 * (Atk / Def) * modifiers\n= (20 + 2) * 80 * (245 / 200) * 1.0 (neutral)\n= 22 * 80 * 1.225\n= 2156\n\nTorterra's HP at level 50: 170-202 base → roughly 200-240 HP at level 50.\n\nDamage percentage = 2156 / 220 ≈ 9.8... wait, that's not right. Let me recalculate.\n\nActually, the damage formula in Pokémon is:\nDamage = ((2 * Level / 5 + 2) * Power * A/D) / 50 + 2) * modifiers\n\nFor level 50:\n= ((2 * 50 / 5 + 2) * 80 * (245/200)) / 50 + 2) * 1.0\n= ((20 + 2) * 80 * 1.225) / 50 + 2) * 1.0\n= (22 * 80 * 1.225) / 50 + 2) * 1.0\n= (2156) / 50 + 2) * 1.0\n= (43.12 + 2) * 1.0\n= 45.12\n\nSo about 45% damage. Torterra at 87% HP would go to about 42% HP. Not a KO.\n\nWith Outrage (120 BP):\n= ((22) * 120 * 1.225) / 50 + 2) * 1.0\n= (3234) / 50 + 2) * 1.0\n= (64.68 + 2) * 1.0\n= 66.68\n\nAbout 67% damage. Torterra at 87% would go to about 20% HP. Close to KO but not guaranteed.\n\nHmm, so even with Mega and Outrage, I might not KO Torterra. And if Torterra survives, it can hit back hard.\n\nLet me think about this differently. What if I don't Mega Evolve and just use Dragonclaw or Outrage? The damage would be lower but I keep Rough Skin.\n\nActually, the key insight: Torterra is at 87% HP and has +1 Speed. If I can't KO it, I need to consider the risk of switching or attacking.\n\nOption A: Mega Evolve + Outrage - high damage, might KO, but if not, Torterra hits back super effectively\nOption B: Mega Evolve + Dragonclaw - moderate damage, safer, keeps options open\nOption C: Swordsdance + Dragonclaw/Outrage - boost attack, but Torterra might outspeed and hit back\nOption D: Switch to Kingambit or Mimikyu - preserve Garchomp, but Torterra gets a free hit or sets up\n\nGiven that Torterra's Grass moves are super effective against Garchomp, and Garchomp is at 78% HP, I'm worried about taking a hit.\n\nBut Torterra's revealed move is Trailblaze (50 BP Grass). If it has Wood Hammer (150 BP), that's a big difference. If it has Energy Ball (90 BP), that's also significant.\n\nI think the best play is to Mega Evolve and use Outrage. The risk of not KOing is there, but the reward of KOing Torterra is high. If Torterra survives, I can switch to Kingambit (which resists Grass) or Mimikyu (which is neutral to Grass).\n\nActually, wait. Let me reconsider. If I Mega Evolve, I lose Rough Skin. Torterra's move will make contact (Wood Hammer, Earthquake, etc.), so I won't get the Rough Skin damage back.\n\nBut if I don't Mega Evolve, Torterra might outspeed me (if it's fast) and hit me with a super-effective move.\n\nI think Mega Evolve + Outrage is the best play. It maximizes my chance of KOing Torterra, and if it survives, I can switch.\n\nActually, let me reconsider one more time. Torterra's speed range is 68-118. With +1, it's 102-177. Garchomp is 169. So:\n- If Torterra is slow (68-100 base), Garchomp outspeeds even with +1\n- If Torterra is medium (101-117 base), Garchomp outspeeds or ties\n- If Torterra is fast (118 base), Torterra outspeeds Garchomp (177 vs 169)\n\nMega Garchomp speed is 269, which outspeeds everything.\n\nSo Mega Evolving guarantees I outspeed Torterra. This is valuable.\n\nI'll go with Mega Evolve + Outrage. The confusion risk is worth the higher damage chance.\n\nWait, actually, I should also consider: what if Torterra has Shell Armor? Then it can't be critted, but that doesn't affect my damage much. What if it has Overgrow? It's not active yet (Torterra is at 87% HP, Overgrow triggers at 1/3 or less).\n\nOK, I'm going with Mega Evolve + Outrage.\n\nHmm, but actually, let me reconsider the damage one more time. If Torterra has high Defense (172 base → ~240 at level 50), the damage would be lower. And if it has low Defense (112 base → ~160 at level 50), the damage would be higher.\n\nWith Outrage and Mega Garchomp Atk ~245:\n- vs high Def (240): damage = ((22 * 120 * (245/240)) / 50 + 2) = ((22 * 120 * 1.02) / 50 + 2) = (2705 / 50 + 2) = 56.1% damage. Torterra at 87% → 31% HP. Not KO.\n- vs low Def (160): damage = ((22 * 120 * (245/160)) / 50 + 2) = ((22 * 120 * 1.53) / 50 + 2) = (4049 / 50 + 2) = 82.98% damage. Torterra at 87% → 4% HP. Almost KO.\n\nSo the damage varies a lot based on Torterra's Defense. If it's high Def, I might not KO. If it's low Def, I likely KO.\n\nGiven the uncertainty, I think Outrage is still the best play because it maximizes my chance of KOing. If I don't KO, I can switch to Kingambit (which resists Grass and has Supreme Overlord if teammates fall... but I only have 3 Pokémon, so Supreme Overlord is already active? Wait, Supreme Overlord activates when teammates fall. I have 3 Pokémon total, and none have fallen yet. So Supreme Overlord is not active yet.\n\nActually, Supreme Overlord: \"When this Pokémon's allies in the double battle fall, its Dark-type moves gain a 1.5x power boost for each fallen ally.\" In singles, it's when other Pokémon on the team fall. Since I have 3 Pokémon and none have fallen, Supreme Overlord is not active.\n\nIf I KO Torterra, then I've removed one opponent Pokémon. If I switch to Kingambit later, Supreme Overlord might activate if Garchomp or Mimikyu falls.\n\nOK, I'm overthinking this. Let me just go with Mega Evolve + Outrage. It's the highest damage move and gives me the best chance of KOing Torterra.\n\nActually, one more thought: if I use Outrage and don't KO Torterra, I'll be confused next turn. That's a big risk. But if I KO Torterra, the confusion doesn't matter.\n\nAlternatively, I could use Dragonclaw [MEGA] for a safer play. The damage is lower but I don't risk confusion.\n\nLet me go with Dragonclaw [MEGA] for safety. If Torterra survives, I can still switch or set up next turn. The confusion from Outrage is too risky if I don't KO.\n\nActually, you know what, let me just go with Outrage [MEGA]. The power advantage is significant, and if I KO Torterra, the confusion doesn't matter. If I don't KO, I can switch next turn and the confusion might not matter if I switch away.\n\nHmm, but if I'm confused, I might attack my own Pokémon if I stay in. But I can switch next turn.\n\nOK, final decision: Outrage [MEGA]. Let me go with that.\n\nWait, actually, I just realized something. The opponent's Torterra used Trailblaze, which is a contact move. Garchomp's Rough Skin damaged Torterra. But Torterra's ability might be Shell Armor, which prevents critical hits. That doesn't affect my damage much.\n\nAlso, Torterra's item is unknown. It could be Leftovers,",
+      "note": "",
+      "tokens": 6843,
+      "latency_ms": 54019,
+      "cost_usd": 0.00176229,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% SWITCH: rotom, 25% MOVE: trailblaze, 14% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2107,
+      "latency_ms": 53,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.2538,
+        "MOVE: bulldoze": 0.1424,
+        "MOVE: energyball": 0.0877,
+        "MOVE: growth": 0.1424,
+        "SWITCH: torkoal": 0.0477,
+        "SWITCH: rotom": 0.3259
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% SWITCH: torkoal, 49% SWITCH: torterra",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1775,
+      "latency_ms": 43,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.5078,
+        "SWITCH: torterra": 0.4922
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: flamethrower, 23% MOVE: flamecharge, 12% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2088,
+      "latency_ms": 53,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.4138,
+        "MOVE: flamecharge": 0.2285,
+        "MOVE: fissure": 0.1242,
+        "MOVE: firespin": 0.1204,
+        "SWITCH: torterra": 0.1131
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal just switched in at full HP. Garchompmega is confused from Turn 3's Outrage. Torkoal is very slow (36-79 vs 158). Earthquake is super effective against Torkoal (2x) and will almost certainly KO it if the confusion roll allows an attack (67% chance). If Garchomp self-damages from confusion, Torkoal gets a free turn but Kingambit can switch in next turn to resist Fire and clean up with SO +1 (already active from Rotom's fall). Switching to Kingambit now is safer but Kingambit's Steel/Dark moves are neutral or not very effective vs Torkoal, making the KO slower. Risk Earthquake for the quick KO and SO +2 cleanup.",
+      "hidden_reasoning": "The opponent brought Torkoal in. Torkoal is Fire-type, slow (36-79 speed), and has unknown item/ability. My Garchompmega is at 44.8% HP and confused from the previous Outrage. \n\nLet me think about what to do:\n- Torkoal is super effective against Garchomp (Fire hits Ground super effectively)\n- Garchomp's Earthquake is super effective against Torkoal (Ground hits Fire super effectively, 2x)\n- Garchomp is confused, so using a move risks confusion damage or missing\n- I could switch to Kingambit (resists Fire, but Torkoal might have Drought/Sunny Day which makes Fire stronger... actually Kingambit is Dark/Steel, resists Fire? No, Steel resists Fire, Dark is neutral. So Kingambit takes neutral Fire damage, not super effective. Wait, Fire vs Steel is not very effective (0.5x). So Kingambit resists Torkoal's Fire moves.)\n- Mimikyu is Ghost/Fairy, neutral to Fire\n\nThe confusion is a problem. If I use Outrage again, it might not KO and I'll be confused for another turn. Earthquake is super effective against Torkoal and has no confusion risk... wait, Earthquake doesn't cause confusion. Only Outrage does.\n\nActually, let me reconsider. Garchomp is confused. When confused, there's a chance the Pokémon will hurt itself or do nothing. The confusion lasts 2-3 turns from Outrage.\n\nOptions:\n1. Earthquake - super effective against Torkoal, no confusion risk from the move itself, but Garchomp is already confused so there's a chance it won't execute or will self-damage\n2. Dragonclaw - neutral, no confusion risk from move\n3. Swordsdance - boost attack, but Torkoal is slow and might just attack\n4. Outrage - high power but causes confusion (already confused)\n5. Switch to Kingambit - safe, resists Fire, Supreme Overlord activates (Torkoal is the 2nd teammate to fall? No, Rotom fell first, so Torkoal would be the 2nd. Supreme Overlord gives +1 stage for each fallen teammate. Rotom fell, so +1. If Torkoal falls, +2 total.)\n6. Switch to Mimikyu - safe, but neutral to Fire\n\nGiven that Garchomp is confused and Torkoal is slow, I think the best play is to switch to Kingambit. Kingambit resists Fire (Steel typing), has high attack, and Supreme Overlord is already at +1 from Rotom falling. If Torkoal falls, Kingambit gets another boost.\n\nBut wait - Torkoal might have Drought and set up Sunny Day, which would make Fire moves stronger. Kingambit still resists Fire though.\n\nActually, let me reconsider. Garchomp is at 44.8% HP. If I stay in and Torkoal uses Fire Blast or Flamethrower, Garchomp could faint. Earthquake is super effective and would likely KO Torkoal (Torkoal has 145-177 HP, Earthquake is 100 BP super effective = roughly 2x damage, Garchomp's attack is 222 mega). \n\nBut the confusion... When confused, there's a 33% chance each turn the Pokémon hurts itself in confusion. So there's a risk Garchomp hurts itself before attacking.\n\nI think switching to Kingambit is the safer play. Kingambit can handle Torkoal well (resists Fire, high attack with Supreme Overlord +1). Then I can use Kingambit to clean up.\n\nActually, let me think about this more carefully. Torkoal's moves are unknown. It could have Fire Blast, Flamethrower, Earth Power, Hidden Power, etc. If it has Earth Power, that's neutral against Kingambit (Steel/Ground? No, Kingambit is Dark/Steel, Earth Power is neutral). If it has Fire Blast, Kingambit resists.\n\nKingambit's moves: suckerpunch (priority, but only works if opponent attacks first - Torkoal is slower so this could work), kowtowcleave (Dark, super effective against Torkoal's possible Psychic? No, Torkoal is pure Fire. Dark is neutral vs Fire), ironhead (Steel, not very effective vs Fire? No, Steel vs Fire is not very effective, but Iron Head is Steel-type so it would be not very effective against Torkoal).\n\nWait, Kingambit is Dark/Steel. Against Torkoal (Fire):\n- Dark moves: neutral\n- Steel moves: not very effective (0.5x)\n\nSo Kingambit's attacks are either neutral or not very effective against Torkoal. That's not great for KOing Torkoal quickly.\n\nHmm, but Kingambit has Supreme Overlord +1 already (Rotom fell). And Torkoal is slow. Kingambit can survive a Fire hit and then attack.\n\nActually, let me reconsider Garchomp. Garchompmega is at 44.8% HP. Earthquake is super effective against Torkoal. Even with confusion, there's a good chance Garchomp will attack and KO Torkoal. If it KOs Torkoal, then I switch to Kingambit and clean up with Supreme Overlord +2.\n\nThe risk is Garchomp hurting itself in confusion or Torkoal attacking first (but Torkoal is much slower, 36-79 vs 158).\n\nI think the best play is to use Earthquake. It's super effective, has no additional confusion risk (the move itself doesn't cause confusion), and Torkoal is too slow to outspeed. Even if Garchomp is confused, the confusion chance is 33% to self-damage, 67% to attack. And if it attacks, Earthquake will likely KO Torkoal.\n\nActually wait - when confused, the Pokémon may hurt itself OR do nothing OR attack. The standard confusion mechanic: each turn, 33% chance to hurt self, 67% chance to attack (or do nothing if the move can't be used). So there's a 67% chance Earthquake will hit.\n\nGiven Torkoal's low speed and Earthquake's super effectiveness, I'll risk it. If Garchomp faints from confusion self-damage, I lose, but if it attacks, Torkoal is KOed.\n\nAlternatively, I could switch to Kingambit to be safe. Kingambit resists Fire, and with Supreme Overlord +1, it has a good attack. But Kingambit's moves are not very effective or neutral against Torkoal, so it might take a while to KO.\n\nLet me go with Earthquake. The super effectiveness and speed advantage make it worth the risk.\n\nWait, actually I should think about what Torkoal's ability might be. If it's Drought, it summons Sunny Day on switch-in. But the battle log says \"Turn 3: Opposing Torkoal came in\" and there's no mention of Sunny Day being summoned. So either Torkoal doesn't have Drought, or Drought wasn't activated (maybe it was already sunny? No, weather is None). So Torkoal likely has White Smoke or Shell Armor.\n\nIf White Smoke, Torkoal's stats can't be lowered. If Shell Armor, no critical hits. Neither changes my decision much.\n\nI'll go with Earthquake. It's the best chance to KO Torkoal quickly.\n\nActually, let me reconsider one more time. Garchomp is confused. The confusion from Outrage lasts 2-3 turns. Turn 3 was when Outrage was used and Rotom fainted. So confusion started on Turn 3. Turn 4 is now. So Garchomp is in the first turn of confusion.\n\nIf I use Earthquake and it works (67% chance), Torkoal is KOed. Then I switch to Kingambit with Supreme Overlord +2 (Rotom and Torkoal fallen). Kingambit becomes a monster.\n\nIf Earthquake fails due to confusion (33% chance), Garchomp might hurt itself. Then Torkoal gets to attack next turn. Garchomp at 44.8% HP might not survive a Fire Blast.\n\nHmm, this is risky. But switching to Kingambit also has risks - Kingambit's attacks are weak against Torkoal, and Torkoal might have a strong Fire move that could hurt Kingambit over time.\n\nI think the risk is worth it. Earthquake is super effective and Torkoal is slow. Let me go with Earthquake.\n\nActually, one more thought: Swordsdance could be useful to boost Garchomp's attack, but it doesn't address the immediate threat of Torkoal attacking. And Garchomp is already at 44.8% HP.\n\nI'll go with Earthquake.\n\nWait, I need to also consider: if I switch to Kingambit, Kingambit's Sucker Punch is a priority move (priority +1). Torkoal is slow (36-79 speed). So Kingambit could Sucker Punch Torkoal before Torkoal attacks. But Sucker Punch only works if the opponent is attacking - it's a counter move. So Kingambit would wait for Torkoal to attack, then Sucker Punch. But Torkoal might not attack if it has a status move or if it's setting up.\n\nActually, Sucker Punch works when the opponent uses a damaging move. If Torkoal uses Fire Blast, Kingambit Sucker Punches first (priority +1). This could be a good way to KO Torkoal while minimizing damage.\n\nBut Kingambit's Dark moves are neutral against Torkoal (Fire). So Sucker Punch (70 BP Dark) would do neutral damage. Torkoal has 145-177 HP. Kingambit's attack is 205 + Supreme Overlord +1 = effectively higher. Let me calculate: Kingambit with SO +1 has effectively +1 attack stage, which is 1.5x. So effective attack is 205 * 1.5 = 307.5. Sucker Punch is 70 BP. Against Torkoal's 145-177 HP... 70 * 307.5 / 145 = ~148% damage at minimum HP, 70 * 307.5 / 177 = ~122% at max HP. So Sucker Punch would likely KO Torkoal if it attacks!\n\nBut the problem is Sucker Punch only works if Torkoal uses a damaging move. If Torkoal uses a status move (like Sunny Day if it has Drought, or Protect, or something else), Sucker Punch won't work.\n\nGiven the uncertainty, I think Earthquake is still the better play. It's an immediate attack that doesn't rely on Torkoal's action.\n\nLet me finalize: Earthquake.\n\nHmm, but actually I realize I should think about this differently. The confusion is a real risk. Let me calculate the expected value:\n\nOption 1: Earthquake\n- 67% chance: Garchomp attacks, Earthquake hits Torkoal super effectively. Torkoal likely faints (Earthquake 100 BP, Garchomp attack 222, super effective 2x, Torkoal HP 145-177). Damage: 100 * 222 * 2 / 145 = ~306% at min HP, 100 * 222 * 2 / 177 = ~251% at max HP. So Torkoal is definitely KOed.\n- 33% chance: Garchomp hurts itself in confusion. Damage from confusion is usually moderate. Garchomp at 44.8% HP might survive or might not. If it survives, Torkoal gets to attack next turn with a Fire move.\n\nOption 2: Switch to Kingambit\n- Kingambit resists Fire, so Torkoal's Fire move does 0.5x damage. Kingambit at 100% HP can survive a Fire Blast easily.\n- Kingambit's Sucker Punch could KO Torkoal if Torkoal attacks, but if Torkoal uses a status move, Kingambit needs to use another move.\n- Kingambit's other moves (kowtowcleave, ironhead) are neutral or not very effective against Torkoal.\n\nOption 3: Switch to Mimikyu\n- Mimikyu is neutral to Fire, so it takes full damage from Fire moves. Risky.\n- Mimikyu's Play Rough is neutral against Torkoal (Fairy vs Fire is neutral? No, Fairy is weak to Fire, so Play Rough would be... wait, Play Rough is Fairy-type, and Torkoal is Fire-type. Fairy is weak to Fire, so Play Rough would be not very effective against Torkoal? No, the move's type determines effectiveness against the target's type. Play Rough is Fairy-type, Torkoal is Fire-type. Fairy moves are not very effective against Fire? No, Fire resists Fairy? Let me check: Fire is weak to Water, Ground, Rock. Fire resists Fire, Grass, Ice, Bug, Steel, Fairy. Yes, Fire resists Fairy! So Play Rough would be not very effective against Torkoal. That's bad.\n\nSo Mimikyu is not great against Torkoal.\n\nBetween Earthquake and Kingambit switch, I think Earthquake is the better play because:\n1. Torkoal is slow and can't outspeed\n2. Earthquake is super effective and will KO Torkoal if it hits\n3. The confusion risk is worth the reward\n\nLet me go with Earthquake.\n\nActually, I just realized something. The confusion from Outrage - when does it start? Outrage lasts 2-3 turns, and then the user is confused. On Turn 3, Garchomp used Outrage and Rotom fainted. The confusion would start after Outrage ends. Outrage lasts 2-3 turns, so confusion would start on Turn 5 or 6, not Turn 4.\n\nWait, let me re-read the battle log:\n\"Turn 3: Opposing Rotom came in. Your Garchomp used Outrage. Opposing Rotom fainted. Your Garchomp: confusion started. Opposing Torkoal came in.\"\n\nSo confusion started on Turn 3, immediately after using Outrage. That means the Outrage was used and the confusion started right away. This is unusual - normally Outrage causes confusion after it ends. But the battle log says \"confusion started\" on Turn 3.\n\nSo Garchomp is confused on Turn 4. The confusion lasts 2-3 turns.\n\nOK so my analysis stands. Garchomp is confused on Turn 4.\n\nLet me go with Earthquake. The 67% chance of hitting and KOing Torkoal is worth it.\n\nActually, I want to reconsider one more time. If I switch to Kingambit, I avoid the confusion risk entirely. Kingambit can then use Sucker Punch to potentially KO Torkoal if Torkoal attacks. If Torkoal uses a status move, Kingambit can use kowtowcleave or ironhead. Kingambit at 100% HP with SO +1 is a strong attacker.\n\nBut Kingambit's moves are not very effective (Steel) or neutral (Dark) against Torkoal. So it might take 2 hits to KO Torkoal. And Torkoal's Fire moves are resisted by Kingambit, so Kingambit can survive.\n\nHmm, I think both options are viable. Let me go with Earthquake because it's the faster path to KOing Torkoal and getting Kingambit in with SO +2.\n\nFinal decision: Earthquake.",
+      "note": "",
+      "tokens": 6474,
+      "latency_ms": 47229,
+      "cost_usd": 0.0015471,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torterra",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "growth",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "32% MOVE: growth, 29% MOVE: trailblaze, 20% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2124,
+      "latency_ms": 56,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.2941,
+        "MOVE: bulldoze": 0.1959,
+        "MOVE: energyball": 0.1869,
+        "MOVE: growth": 0.323
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torterra at 24% HP with +1 Speed and Overgrow active. Garchompmega at 44.8% HP, possibly still confused from Turn 3's Outrage (confusion was active Turn 4). Using Outrage risks self-damage from confusion. Switching to Kingambit brings in a healthy Pokémon with Supreme Overlord +2 (Rotom and Torkoal fainted), which massively boosts Attack. Kingambit's Steel typing resists Torterra's Grass moves, and its Dark/Steel attacks with +2 Atk should KO Torterra. Safer than risking confusion on Garchomp.",
+      "hidden_reasoning": "The opponent's Torterra is at 24% HP. It has +1 Speed from Trailblaze. My Garchompmega is at 44.8% HP and confused from Turn 3's Outrage. The confusion resolved on Turn 4 (it used Earthquake and KO'd Torkoal). So the confusion is gone now.\n\nWait, let me re-read: Turn 4 says \"Your Garchomp: confusion activated\" then \"Your Garchomp used Earthquake\". So the confusion was active and it attacked. After attacking while confused, the confusion ends (or continues? In Pokémon, confusion causes self-damage and random action each turn; after the turn, confusion may continue or end randomly). Actually, in Showdown, confusion lasts 2-5 turns and each turn the confused Pokémon may attack itself or randomly attack. After Turn 4, Garchomp attacked (Earthquake) and KO'd Torkoal. The confusion status - does it persist? The log says \"confusion activated\" on Turn 4, meaning it was still confused. It attacked and hit. Now at Turn 5, is Garchomp still confused?\n\nTypically confusion lasts multiple turns. The log doesn't say \"confusion ended\" so it might still be active. But I can't be sure. Let me think about what's safest.\n\nTorterra is at 24% HP. It has +1 Speed. My Garchompmega is at 44.8% HP. If I use Outrage again, it might KO Torterra (120 BP Dragon, neutral vs Grass/Ground... wait, Dragon is neutral vs Grass and neutral vs Ground, so 1x). Torterra at 24% HP with ~170-202 HP max, so roughly 41-48 HP left. Outrage at 120 BP with 222 Atk... that's a lot of damage. Should KO.\n\nBut Outrage confuses the user afterwards. If Garchomp is already confused, using Outrage will confuse it again (or extend confusion). The risk is Garchomp might hurt itself or miss next turn.\n\nAlternatively, I could switch to Kingambit. Kingambit is at 100% HP, has Supreme Overlord (+1 Atk per fainted ally, so +2 from Rotom and Torkoal fainting). Kingambit's moves: suckerpunch, kowtowcleave, ironhead, swordsdance. Against Torterra (Grass/Ground), Dark moves are neutral (Grass resists Dark? No, Grass is neutral to Dark. Ground is neutral to Dark. So Dark is neutral vs Torterra). Steel moves (ironhead) are neutral vs Grass (Steel resists Grass? No, Steel takes neutral from Grass... wait, Grass hits Steel neutral? Actually Grass is neutral against Steel. Steel is neutral against Grass. So ironhead is neutral vs Torterra's Grass typing, and Ground typing resists Steel? No, Ground is neutral to Steel. So ironhead is neutral overall vs Torterra).\n\nKingambit at +2 Atk with SO would hit hard. But Torterra has high defense (112-172) and could survive. Also Torterra might use Grass move super effectively against Kingambit (Dark/Steel resists Grass? Dark resists Grass? No, Dark is neutral to Grass. Steel resists Grass! Yes, Steel resists Grass (0.5x). So Kingambit's Steel typing makes it take neutral from Torterra's Ground moves and resisted (0.5x) from Grass moves. That's good.\n\nBut Kingambit is slower (102 Spe) than Torterra's max (118). Torterra has +1 Speed, so effectively 102-177 speed range. Kingambit might be outsped.\n\nGarchompmega is faster (158 base, +1 from Mega? No, Mega doesn't change base stats directly but the stats shown are 158 Spe). Torterra max 118 +1 = 177. So Garchompmega at 158 vs Torterra at up to 177... Garchomp might be slower if Torterra has high speed investment. But Garchomp outspeeds most Torterra sets.\n\nActually, the stats shown: garchompmega Spe 158, torterra Spe 68-118. With +1 from Trailblaze, torterra is at 102-177. Garchomp at 158. So if Torterra is fast (118 base), it outspeeds Garchomp. If Torterra is slow (68 base), Garchomp outspeeds.\n\nGiven the uncertainty, and that Torterra is at 24% HP, I think the safest play is to finish it off with Garchomp. Outrage has 120 BP and will likely KO. The confusion risk is manageable since I can switch to Kingambit next turn if needed.\n\nBut wait - if Garchomp is currently confused, using Outrage might result in a random action (including self-damage). Let me check: in Pokémon, when a confused Pokémon uses a move, it attacks and then the confusion continues (or ends with some probability). Actually, each turn a confused Pokémon: 50% chance to attack itself (taking damage), 50% chance to attack the opponent using a random move. If it attacks the opponent, confusion continues to next turn (unless it was a move that cures confusion, which none of Garchomp's moves do). So if Garchomp is still confused, using Outrage might result in it attacking itself instead.\n\nHmm, but the log shows Turn 4: \"Your Garchomp: confusion activated\" then \"Your Garchomp used Earthquake\". This suggests the confusion was active and it chose to attack (randomly). So confusion is still active at Turn 5.\n\nIf I use Outrage while confused, there's a 50% chance Garchomp hurts itself instead of attacking Torterra. That's risky.\n\nAlternative: Switch to Kingambit. Kingambit is healthy, has SO +2, and can resist Torterra's Grass moves. Then set up or attack. But Kingambit might be outsped.\n\nAnother option: SwordsDance on Garchomp to boost Attack, then next turn hit hard. But that gives Torterra a free turn to attack Garchomp (which is at 44.8% HP, vulnerable).\n\nActually, let me reconsider. Torterra is at 24% HP. Even if Garchomp is confused, if the 50% roll goes right, Outrage KOs Torterra. If it goes wrong, Garchomp self-damages and Torterra gets to attack. Torterra's Grass move (Trailblaze, 50 BP) at +1 Atk (from Overgrow? No, Trailblaze doesn't boost Atk, it boosts Spe. Wait, Trailblaze is a Grass move that boosts Speed by 1 stage. It doesn't boost Attack. So Torterra's attack is neutral) vs Garchomp's Defense (135). Garchomp at 44.8% HP has about 82 HP. A Grass move from Torterra (50 BP, neutral) would do maybe 20-30 damage. Not fatal but hurts.\n\nActually, Torterra might have other moves. We only know Trailblaze. It could have Grassy Glide, Earthquake, Stone Edge, etc. But we don't know.\n\nGiven the risk, I think switching to Kingambit is safer. Kingambit at 100% HP, SO +2, can take a Grass hit (resisted by Steel) and retaliate with Dark/Steel moves. Kingambit's suckerpunch is priority (20 BP but priority +1), kowtowcleave is 85 BP Dark, ironhead is 80 BP Steel. With +2 Atk, these hit hard.\n\nBut Kingambit is slower than Torterra (potentially). If Torterra attacks first with a Grass move, Kingambit takes resisted damage (0.5x from Grass) and then attacks. Should be fine.\n\nActually, let me think about what Torterra's set might be. It used Trailblaze on Turn 1 and Turn 2. Trailblaze boosts Speed. So Torterra is a speed-boosting set. It might have Grassy Glide (priority Grass move), or just Trailblaze + Grassy Glide + Earthquake/Stone Edge/Protect. At 24% HP, Overgrow activates (1.5x Grass attack power).\n\nIf Torterra uses Grassy Glide (priority +1, 75 BP Grass), it would hit Kingambit for neutral * 0.5 (Steel resist) = 0.25x effectiveness. Not great for Torterra. Kingambit would survive easily.\n\nI think switching to Kingambit is the best play. It brings in a healthy Pokémon with SO +2, resists Torterra's Grass attacks, and can clean up.\n\nBut wait, I should also consider: if I switch to Kingambit, Torterra is at 24% HP and might be able to survive one hit from Kingambit. Kingambit's strongest move is kowtowcleave (85 BP Dark) or ironhead (80 BP Steel). With +2 Atk, these hit hard. Dark is neutral vs Torterra, Steel is neutral vs Torterra. So roughly 85 * 1.5 (SO +2 = 1.33x? Actually SO gives +1 Atk per fainted ally, so +2 means 1.67x? No, each stage is 1.5x, so +2 stages = 1.5 * 1.5 = 2.25x? Wait, that's not right. In Pokémon, each Attack boost stage multiplies by 1.5. So +1 = 1.5x, +2 = 2.25x. But Supreme Overlord gives +1 Atk per fainted ally. So with 2 fainted allies (Rotom, Torkoal), Kingambit has +2 Atk = 2.25x multiplier.\n\nSo kowtowcleave: 85 * 2.25 = 191.25 BP equivalent. That's huge. Should KO Torterra at 24% HP easily.\n\nBut Kingambit is slower. If Torterra attacks first, it might take a Grassy Glide or Trailblaze. But Steel resists Grass, so it's fine.\n\nActually, I realize I should just go for the KO with Garchomp if possible, because Garchomp is already active and Torterra is at 24%. But the confusion risk is real.\n\nLet me check: is Garchomp still confused? The log says Turn 4: \"Your Garchomp: confusion activated\" then it used Earthquake. In Showdown, confusion lasts 2-5 turns. It started on Turn 3 (after Outrage). Turn 4 it was still confused. Turn 5 it might still be confused (if it lasted 3+ turns). But we don't know the exact duration.\n\nGiven the uncertainty, I'll switch to Kingambit. It's the safer play and sets up for the rest of the battle. Kingambit with SO +2 is a monster.\n\nActually, wait. Let me reconsider the confusion mechanics. In Pokémon, when a confused Pokémon's turn comes:\n1. 50% chance: it attacks itself (taking damage equal to 1/8 of its max HP, or 1/16 in later gens? In Gen 5+, it's 1/8 max HP)\n2. 50% chance: it attacks the opponent using a random move from its memory (or just random move)\n\nIf it attacks the opponent, the confusion continues to the next turn (unless cured). If it attacks itself, there's a chance the confusion ends (in some gens, attacking itself has a 25% chance to cure confusion? Actually, in modern Pokémon, confusion ends after a random number of turns, and attacking itself doesn't necessarily cure it. The confusion duration is determined at the start.)\n\nIn Showdown, confusion typically lasts 2-5 turns. It started on Turn 3. Turn 4 it was active. Turn 5 it might still be active (if 3+ turns). But it could also have ended.\n\nGiven the risk, I'll switch to Kingambit. If Garchomp is no longer confused, I could use Outrage, but switching is safer and brings in a strong cleaner.\n\nActually, I just realized: if I switch to Kingambit, Torterra is at 24% HP and I can attack with Kingambit next turn. But Torterra gets a free turn now (since I switched). Torterra might use a move that could hurt Kingambit. But Kingambit resists Grass (Steel typing) and is neutral to Ground. So Torterra's Grass moves do 0.5x, Ground moves do 1x. Kingambit at 100% HP can take a few hits.\n\nAlternatively, I could use SwordsDance on Garchomp to boost Attack, then next turn hit hard with Earthquake or Dragonclaw. But that gives Torterra a free turn and Garchomp is at 44.8% HP.\n\nI think the best play is to switch to Kingambit. It's healthy, has SO +2, and can handle Torterra.\n\nWait, but there's another consideration: if I switch to Kingambit and Torterra is at 24% HP, Torterra might faint from Kingambit's attack next turn. But if Torterra survives, it could continue to be a problem. However, Kingambit with SO +2 should be able to KO Torterra in one hit.\n\nLet me go with switching to Kingambit.\n\nActually, let me reconsider one more time. The confusion on Garchomp: if it's still confused, and I use Outrage, there's a 50% chance Garchomp attacks itself. If it attacks itself, it takes 1/8 of 183 = ~23 HP damage, going to ~59 HP. Then Torterra gets to attack Garchomp. Torterra's Grass move at +1 Atk (Overgrow) and 24% HP... wait, Overgrow activates at 1/3 HP or less. Torterra is at 24% HP, so Overgrow is active (1.5x Grass attack). Trailblaze is 50 BP Grass, with Overgrow = 75 BP equivalent. Against Garchomp's Defense (135), that's maybe 20-30 damage. Garchomp would be at ~30-40 HP. Then next turn, if Garchomp is still confused, it might attack itself again or attack Torterra. Risky.\n\nIf I switch to Kingambit, Torterra gets a free turn. Torterra might use Grassy Glide (priority) or Trailblaze or another move. Kingambit at 100% HP, Steel resists Grass (0.5x), so even a strong Grass move does minimal damage. Then Kingambit attacks and likely KOs Torterra.\n\nI'm confident switching to Kingambit is the best play.\n\nDecision: SWITCH: kingambit",
+      "note": "",
+      "tokens": 6498,
+      "latency_ms": 40627,
+      "cost_usd": 0.00152874,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "31% MOVE: trailblaze, 25% MOVE: growth, 23% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2253,
+      "latency_ms": 60,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.3114,
+        "MOVE: bulldoze": 0.2278,
+        "MOVE: energyball": 0.2107,
+        "MOVE: growth": 0.2502
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torterra at 24% HP with +1 Atk/+1 SpA from Growth used last turn. Kingambit has SO +2 (20% boost) and Life Orb (1.3x). Torterra's speed is 68-118 vs Kingambit's 102 — could be faster if max speed. Sucker Punch has priority but fails if Torterra uses Growth again. Kowtow Cleave guarantees KO at this HP with SO+LO boost. Steel typing resists Torterra's Grass Trailblaze if it attacks first. Safe play: KO Torterra now with Kowtow Cleave, then clean up with remaining healthy Pokémon.",
+      "hidden_reasoning": "The user wants me to play a Pokémon Showdown battle turn. Let me analyze the situation.\n\n**Current State:**\n- My active Pokémon: Kingambit at 100% HP (175/175)\n- Opponent's active Pokémon: Torterra at 24% HP with +1 Atk and +1 SpA\n- Torterra has revealed moves: Trailblaze and Growth\n- Kingambit has Supreme Overlord +2 (Rotom and Torkoal fainted)\n- Kingambit has Life Orb\n\n**Analysis:**\n- Torterra is at 24% HP, very low. It has +1 Atk and +1 SpA from Growth.\n- Kingambit has SO +2, meaning its moves have 20% more power (10% per fainted ally, 2 allies fainted).\n- Kingambit's Speed is 102, Torterra's Speed is 68-118. Torterra could be faster if it's max speed investment (118), but Kingambit is likely faster at average Torterra speed.\n- Torterra's moves: Trailblaze (Grass physical, 50 BP) and Growth (status). It used Growth this turn, so it's not attacking this turn? Wait, no - Growth is a status move, so Torterra used Growth last turn. This turn, Torterra could use Trailblaze or another move.\n\nWait, let me re-read. Turn 5: \"Opposing Torterra used Growth\" - so Torterra used Growth last turn. This means Torterra boosted its Atk and SpA. Now on Turn 6, Torterra could attack with Trailblaze.\n\n**Kingambit's moves:**\n- Sucker Punch: priority +1, Dark physical, 70 BP, 100% accuracy. \"Usually goes first. Fails if target is not attacking.\" - This is key! Sucker Punch only works if the target is attacking. If Torterra uses Growth again or a non-attacking move, Sucker Punch fails.\n- Kowtow Cleave: Dark physical, 85 BP, 100% accuracy, never misses.\n- Iron Head: Steel physical, 80 BP, 100% accuracy, 20% flinch.\n- Swords Dance: Status, +2 Atk.\n\n**Strategy:**\nTorterra is at 24% HP. With Kingambit's SO +2 (20% boost) and Life Orb (1.3x), Kingambit's attacks are significantly boosted.\n\nLet me calculate damage potential:\n- Kowtow Cleave: 85 BP × 1.2 (SO) × 1.3 (LO) = ~132.6 effective BP. Dark move vs Grass/Ground. Dark is neutral vs Grass and Ground. So neutral damage.\n- Iron Head: 80 BP × 1.2 × 1.3 = ~124.8 effective BP. Steel is neutral vs Grass and Ground? Steel vs Grass is not very effective (0.5x), Steel vs Ground is neutral. So overall 0.5x effectiveness.\n- Sucker Punch: 70 BP × 1.2 × 1.3 = ~109.2 effective BP. But only works if Torterra attacks.\n\nTorterra at 24% HP with ~130+ effective BP Dark move should KO easily.\n\nThe question is whether Torterra will attack this turn. It used Growth last turn. It could use Trailblaze this turn. If it uses Trailblaze, Sucker Punch would work and go first (priority +1). But Sucker Punch has lower BP than Kowtow Cleave.\n\nActually, Sucker Punch's priority means it goes before Trailblaze even if Torterra is faster. But if Torterra uses Growth again (unlikely since it already boosted), Sucker Punch fails.\n\nGiven Torterra is at 24% HP, I should just attack with Kowtow Cleave or Iron Head to guarantee the KO. Sucker Punch is risky because if Torterra doesn't attack, it fails and I waste a turn.\n\nWait, but Sucker Punch says \"Usually goes first. Fails if target is not attacking.\" - this is a priority move that only works against attacking opponents. If Torterra uses Trailblaze, Sucker Punch goes first and hits. If Torterra uses Growth, Sucker Punch fails.\n\nGiven Torterra already used Growth last turn and is at 24% HP, it's likely to attack with Trailblaze this turn. But to be safe, I should use a move that always works.\n\nKowtow Cleave is the best option: 85 BP, never misses, Dark typing is neutral against Torterra's Grass/Ground typing. With SO +2 and Life Orb, it should easily KO Torterra.\n\nActually, let me reconsider. Torterra has Shell Armor or Overgrow. If it has Overgrow, it's at 24% HP which is below 1/3, so its Grass moves get 1.5x boost. But that doesn't matter for my attack.\n\nTorterra's Trailblaze is a Grass move. If Torterra attacks with Trailblaze, Kingambit's Dark/Steel typing resists Grass (Steel resists Grass 0.5x). So Kingambit would take reduced damage.\n\nI think the best play is Kowtow Cleave to guarantee the KO. Sucker Punch is tempting due to priority, but if Torterra decides to use Growth again (to get +3 Atk/SpA), Sucker Punch fails and I lose a turn.\n\nActually, wait - Torterra is at 24% HP. If it uses Growth again, it gets +1 Atk and +1 SpA (total +2 Atk, +2 SpA). But it's already at very low HP. The risk of Torterra attacking with Trailblaze and hitting Kingambit is there, but Kingambit resists Grass moves (Steel resists Grass 0.5x), so the damage would be halved.\n\nLet me go with Kowtow Cleave for a guaranteed KO. The priority of Sucker Punch isn't necessary when Torterra is at 24% HP and Kingambit's Speed (102) is likely higher than Torterra's (68-118, but probably not maxed given its bulky stats).\n\nActually, I realize I should consider: if Torterra is faster (speed 118), it could attack first with Trailblaze. Kingambit at 100% HP with Steel typing resisting Grass would take some damage but survive. Then Kingambit could retaliate. But with Kowtow Cleave, even if Torterra attacks first, Kingambit can still KO Torterra in retaliation.\n\nThe safest and most reliable choice is Kowtow Cleave.\n\nLet me also consider: should I use Sucker Punch? If Torterra attacks with Trailblaze, Sucker Punch goes first (priority +1) and KO's Torterra before it can attack. This would prevent Torterra from hitting Kingambit at all. But if Torterra uses Growth, Sucker Punch fails.\n\nGiven Torterra already used Growth last turn and is at 24% HP, it's more likely to attack. But there's still a chance it uses Growth again. I think the risk is worth it with Sucker Punch because:\n1. If Torterra attacks, Sucker Punch KO's it first (priority)\n2. If Torterra uses Growth, I can just attack next turn with full power\n\nBut actually, the safer play is Kowtow Cleave. Let me go with that.\n\nHmm, actually let me reconsider the Sucker Punch mechanic. \"Usually goes first. Fails if target is not attacking.\" - In Pokémon Showdown, Sucker Punch checks if the target is using an attacking move this turn. If the target uses a status move, Sucker Punch fails. If the target uses an attacking move, Sucker Punch goes first due to priority.\n\nTorterra's known moves are Trailblaze (attacking) and Growth (status). It used Growth last turn. It could use either this turn.\n\nI'll go with Kowtow Cleave for reliability. The KO is almost guaranteed at 24% HP with SO +2 and Life Orb.\n\nWait, one more thing: Torterra has Shell Armor (cannot be critted) or Overgrow. Neither affects my attack directly.\n\nFinal decision: Kowtow Cleave for a guaranteed KO.\n\nActually, I want to reconsider Sucker Punch one more time. The priority +1 means it goes before any other move. If Torterra is faster (speed 118 vs Kingambit 102), Torterra would normally move first. But Sucker Punch's priority means it goes first. So if Torterra attacks with Trailblaze, Sucker Punch hits first and potentially KO's Torterra before it can attack. This is a significant advantage.\n\nBut the risk is: if Torterra uses Growth, Sucker Punch fails and I waste the turn. Torterra then gets +1 Atk/+1 SpA (now +2/+2 total) and attacks next turn with boosted Trailblaze.\n\nGiven Torterra is at 24% HP and already used Growth last turn, I think it's more likely to attack. But I'm not 100% sure.\n\nI'll go with Kowtow Cleave for safety. The KO is guaranteed either way.\n\nLet me finalize: MOVE: kowtowcleave",
+      "note": "",
+      "tokens": 5339,
+      "latency_ms": 26844,
+      "cost_usd": 0.00108261,
+      "probabilities": null
+    }
+  ]
+}
