@@ -260,9 +260,8 @@ ladder:
     s4: [["gpt_6_luna_pro", "gpt_6_luna_decisions"]]   # 1-1 after the first two: the video needs a decider
   games_per_set: 4          # 2 teams x 2 sides
   # A version's check run: each model plays this many games, all against free opponents (anchor, PokéChamp, chimps);
-  # raised once they check out (13 Oct: c5 started at 2; then 9, every model against all three free opponents)
-  ceiling:
-    c5: 9
+  # raised once they check out (13 Oct: c5 started at 2, then 9; lifted that night, its own caps and pairings rule)
+  ceiling: {}
   parallel_games: 4         # games of a set played at once; local servers batch them (GPT-OSS 2.4x, Qwen 1.6x)
   provisional_games: 16     # a full placement
   max_autopilot: 0.5        # a match is void when either side fell back on more than half its turns
@@ -442,7 +441,7 @@ agents:
     model: "anthropic/claude-sonnet-5.5"
     released: "2026-09-28"
     max_games: 0
-    extra_games: {c4: 15, c5: 9}   # c5: placement only (anchor, PokéChamp, chimps); raised step by step
+    extra_games: {c4: 15, c5: 18}   # c5: placement (anchor, PokéChamp, chimps), then 9 neighbours games (13 Oct: on the plan's rotating Claude credits)
     pairing: {c5: "neighbours"}
     opponents: {c4: ["gemini_3_8_flash", "gpt_6_luna_pro", "gpt_6_luna", "claude_opus_5_5", "gpt_oss_20b"]}
     weights: "closed"
@@ -454,7 +453,7 @@ agents:
     model: "anthropic/claude-opus-5.5"
     released: "2026-09-22"
     max_games: 0
-    extra_games: {c4: 15, c5: 9}   # c5: placement only (anchor, PokéChamp, chimps); raised step by step
+    extra_games: {c4: 15, c5: 18}   # c5: placement (anchor, PokéChamp, chimps), then 9 neighbours games (13 Oct: on the plan's rotating Claude credits)
     pairing: {c5: "neighbours"}
     opponents: {c4: ["gemini_3_8_flash", "gpt_6_luna_pro", "gpt_6_luna", "claude_sonnet_5_5", "gpt_oss_20b"]}
     weights: "closed"
@@ -505,7 +504,7 @@ agents:
     model: "deepseek/deepseek-v4.1-flash"
     released: "2026-09-10"
     max_games: 8
-    extra_games: {c3: 55, c4: 67, c5: 112}
+    extra_games: {c3: 55, c4: 67, c5: 52}   # c5: 60 games, half the cheap tier's (13 Oct: the priciest cheap model, ~$0.022 a game)
     weights: "open"
     params_b: 763.2
   muse_spark_1_3:
@@ -544,7 +543,7 @@ agents:
     model: "upstage/solar-pro4"
     released: "2026-08-10"
     max_games: 8
-    extra_games: {c3: 55, c4: 67, c5: 112}
+    extra_games: {c3: 55, c4: 67, c5: 52}   # c5: 60 games, half the cheap tier's (13 Oct: ~$0.017 a game)
     weights: "closed"
   # Added 12 Oct for c5 (and its price tiers). Each starts at 9 games, paired by neighbours (placement only),
   # until the smoke test measures its cost per game and sets its tier's cap.
