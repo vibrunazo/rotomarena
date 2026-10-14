@@ -385,6 +385,10 @@ def test_capped_models_stop_at_their_game_limit(tmp_path):
     champ = AppConfig(telemetry=TelemetryConfig(output_dir=runs), ruleset=RulesetConfig(version="c1"))
     assert games_left(champ, haiku) == 7  # a new benchmark gets its own budget
     assert games_left(app_cfg, AgentConfig(name="bonsai", type="direct_llm")) > 1000  # uncapped
+    hand = make_match("match_20261009_x_g1", "haiku", "bonsai", "haiku", season="s4")
+    hand.voided = "played before a prompt fix"  # voided by hand: our decision, not the model's games
+    hand.save_json(runs / hand.match_id / "breadcrumbs.json")
+    assert games_played(app_cfg, "haiku") == 2
 
 
 def test_the_control_bot_borrows_its_opponents_own_team(monkeypatch):

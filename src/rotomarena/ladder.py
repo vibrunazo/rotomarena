@@ -224,9 +224,11 @@ def lane_count(agent_a: AgentConfig, agent_b: AgentConfig, app_cfg: AppConfig, r
 
 def games_played(app_cfg: AppConfig, config_id: str) -> int:
     """Every game this registry entry has played in the version being played, voided ones included (each one cost
-    tokens). The cap counts per version, so a new benchmark gets its own budget."""
+    tokens), except those voided by hand (MatchTelemetry.voided: our decision, such as a prompt fixed after they
+    were played, shouldn't use up a model's games). The cap counts per version, so a new benchmark gets its own
+    budget."""
     return sum(1 for m in load_matches(app_cfg.telemetry.output_dir, app_cfg.ruleset.version)
-               if any(p.config_id == config_id for p in m.players) and settings_current(m, app_cfg))
+               if any(p.config_id == config_id for p in m.players) and settings_current(m, app_cfg) and not m.voided)
 
 
 def cap_exempt(app_cfg: AppConfig, a: str, b: str) -> bool:
