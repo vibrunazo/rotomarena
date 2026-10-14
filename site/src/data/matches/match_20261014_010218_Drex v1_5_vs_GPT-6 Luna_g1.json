@@ -1,0 +1,407 @@
+{
+  "id": "match_20261014_010218_Drex v1_5_vs_GPT-6 Luna_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261014",
+  "players": [
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p1",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    },
+    {
+      "config_id": "gpt_6_luna",
+      "display_name": "GPT-6 Luna",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna",
+      "quantization": null,
+      "username": "GPT-6 Luna",
+      "role": "p2",
+      "team": "GPT-6 Luna's team",
+      "model_key": "openai/gpt-6-luna",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 27.29,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Drex v1.5||",
+    "|player|p2|GPT-6 Luna||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Hydreigon, L50, F|",
+    "|poke|p1|Kommo-o, L50, M|",
+    "|poke|p1|Gyarados, L50, M|",
+    "|poke|p1|Sylveon, L50, F|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Gliscor, L50, F|",
+    "|poke|p2|Dragonite, L50, F|",
+    "|poke|p2|Primarina, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|215/215",
+    "|switch|p2a: Primarina|Primarina, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Primarina|Moonblast|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|11/215",
+    "|move|p1a: Garchomp|Stealth Rock|p2a: Primarina",
+    "|-sidestart|p2: GPT-6 Luna|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Hydreigon|Hydreigon, L50, F|167/167",
+    "|move|p2a: Primarina|Moonblast|p1a: Hydreigon",
+    "|-supereffective|p1a: Hydreigon|2",
+    "|-enditem|p1a: Hydreigon|Focus Sash",
+    "|-damage|p1a: Hydreigon|1/167",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|move|p2a: Primarina|Moonblast|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Hydreigon|Hydreigon, L50, F|1/167",
+    "|turn|4",
+    "|",
+    "|move|p2a: Primarina|Moonblast|p1a: Hydreigon",
+    "|-supereffective|p1a: Hydreigon|2",
+    "|-damage|p1a: Hydreigon|0 fnt",
+    "|faint|p1a: Hydreigon",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|11/215",
+    "|turn|5",
+    "|",
+    "|move|p2a: Primarina|Moonblast|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|win|GPT-6 Luna"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 38% BRING: garchomp, 30% BRING: dragapult, 20% BRING: hydreigon\nPick 2: 43% BRING: hydreigon, 30% BRING: dragapult, 10% BRING: gyarados\nPick 3: 71% BRING: dragapult, 11% BRING: kommoo, 11% BRING: gyarados",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5413,
+      "latency_ms": 4362,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "primarina,gholdengo,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Scarf Primarina to pressure the Dragon-heavy roster; use Moonblast broadly and Energy Ball for Gyarados. Keep Gholdengo for Sylveon and Kingambit as a late-game answer to fast threats like Dragapult. Watch for Kommo-o’s Fighting moves.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2176,
+      "latency_ms": 7248,
+      "cost_usd": 0.000412175,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% MOVE: stealthrock, 22% MOVE: earthquake, 14% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1856,
+      "latency_ms": 645,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2191,
+        "MOVE: dragontail": 0.0407,
+        "MOVE: stealthrock": 0.5318,
+        "MOVE: stoneedge": 0.1383,
+        "SWITCH: hydreigon": 0.0317,
+        "SWITCH: dragapult": 0.0384
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use Scarf Primarina’s Moonblast to pressure the Dragon-heavy team; keep Gholdengo for Sylveon and Kingambit as a late-game cleaner. Garchomp is still at full health, and its speed is uncertain.",
+      "hidden_reasoning": "**Selecting moonblast for Primarina**\n\nI'm comparing moonblast versus Garchomp. I'm considering using a scarf to potentially outspeed. Primarina’s special attack is really high at 178, and since moonblast is super effective, it could likely get an OHKO. Garchomp has around 200 HP and 120 special defense while moonblast's base power is 95 with STAB. The damage might be around 170-200, so it's looking like a high chance for OHKO. I think moonblast is the way to go!",
+      "note": "",
+      "tokens": 2063,
+      "latency_ms": 3841,
+      "cost_usd": 0.000318175,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% SWITCH: hydreigon, 44% SWITCH: dragapult, 4% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1920,
+      "latency_ms": 655,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.0184,
+        "MOVE: dragontail": 0.0382,
+        "MOVE: stealthrock": 0.0204,
+        "MOVE: stoneedge": 0.0322,
+        "SWITCH: hydreigon": 0.4465,
+        "SWITCH: dragapult": 0.4443
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 5%; finish it with Moonblast. Stealth Rock is on my side. Preserve Primarina’s Scarf pressure against the remaining Dragon-types; keep Gholdengo for Sylveon and Kingambit for cleanup.",
+      "hidden_reasoning": "**Evaluating Moonblast strategy**\n\nI think we should use Moonblast for kills, and since we're already choice-locked into that move, it makes sense to keep it. I need to be careful about the dangers posed by rocks and what’s likely still out there. I must be precise in my approach here to avoid any mistakes. It’s all about making the best tactical decision while being aware of the risks!",
+      "note": "",
+      "tokens": 2024,
+      "latency_ms": 5415,
+      "cost_usd": 0.0002908,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "88% SWITCH: dragapult, 5% MOVE: dragontail, 3% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1951,
+      "latency_ms": 696,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.0338,
+        "MOVE: dragontail": 0.0549,
+        "MOVE: earthquake": 0.0052,
+        "MOVE: stealthrock": 0.025,
+        "SWITCH: garchomp": 0.0051,
+        "SWITCH: dragapult": 0.876
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina’s Moonblast brought Hydreigon to 1%; finish it while preserving Scarf pressure. Stealth Rock is on my side. Keep Gholdengo for Sylveon and Kingambit for cleanup; watch for Dragapult and Kommo-o.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2222,
+      "latency_ms": 3109,
+      "cost_usd": 0.0003283,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: hydreigon, 44% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1673,
+      "latency_ms": 577,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.4359,
+        "SWITCH: hydreigon": 0.5641
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragontail",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: dragontail, 26% MOVE: uturn, 19% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1957,
+      "latency_ms": 1250,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.2591,
+        "MOVE: dragontail": 0.4093,
+        "MOVE: earthquake": 0.0522,
+        "MOVE: stealthrock": 0.1859,
+        "SWITCH: garchomp": 0.0936
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina has Choice Scarf and is locked into Moonblast; Hydreigon is at 1%, so finish it. Stealth Rock is on my side. Preserve Primarina’s Fairy pressure for any remaining dragons; Gholdengo and Kingambit are healthy for the endgame.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2301,
+      "latency_ms": 3025,
+      "cost_usd": 0.000327675,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: earthquake, 34% MOVE: stoneedge, 17% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1976,
+      "latency_ms": 1210,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.4307,
+        "MOVE: dragontail": 0.1736,
+        "MOVE: stealthrock": 0.0519,
+        "MOVE: stoneedge": 0.3438
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Primarina is Choice-locked into Moonblast and has eliminated Hydreigon and Dragapult. Garchomp is at 5%; Moonblast should finish it. Stealth Rock remains on my side.",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2476,
+      "latency_ms": 4021,
+      "cost_usd": 0.0003893,
+      "probabilities": null
+    }
+  ]
+}
