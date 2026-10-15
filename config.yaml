@@ -315,9 +315,8 @@ agents:
     display_name: "Gemma 4 31B"
     role: "sparring"
     provider: "openrouter"
-    model: "google/gemma-4-31b-it:free"
+    model: "google/gemma-4-31b-it"   # 14 Oct: the paid endpoint ($0.20/$0.40 per million); the free one stayed rate-limited
     released: "2026-04-02"
-    max_parallel_games: 1   # Google's 16k input tokens/min on the free tier: 4 lanes at once hit it on turn 2
     weights: "open"
     params_b: 31.3
 

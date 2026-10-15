@@ -713,14 +713,14 @@ def describe_void_matches(state: LadderState, max_autopilot: float) -> List[Tupl
 
 
 def relay_opponents(app_cfg: AppConfig, config_id: str, state: LadderState) -> List[str]:
-    """Whom a relayed model meets: the active models and control bots nearest its rating, never a local model (the
-    GPU belongs to the round robin running beside it)."""
+    """Whom a relayed model meets: those it has played least, nearest its rating first, among the active models and
+    control bots, never a local model (the GPU belongs to the round robin running beside it). 14 Oct: by rating alone
+    the second relay set met GPT-6.1 Sol again."""
     mine = state.ratings.get(config_id)
     ids = [k for k in round_robin_ids(app_cfg) if k != config_id and not local_servers.local_agents([app_cfg.agents[k]])]
     rated = [k for k in ids if state.ratings.get(k) and state.ratings[k].rating is not None]
-    if not mine or mine.rating is None:
-        return rated
-    return sorted(rated, key=lambda k: abs(state.ratings[k].rating - mine.rating))
+    gap = (lambda k: abs(state.ratings[k].rating - mine.rating)) if mine and mine.rating is not None else (lambda k: 0)
+    return sorted(rated, key=lambda k: (state.games(config_id, k), gap(k)))
 
 
 async def relay_sets(app_cfg: AppConfig, config_id: str, games: int, opponents: Optional[List[str]] = None,
