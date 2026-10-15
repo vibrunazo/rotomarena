@@ -30690,6 +30690,798 @@
     ]
   },
   {
+    "config_id": "nemotron_3_5_super_vl",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 1,
+    "drafts": 3,
+    "display_name": "Nemotron 3.5 Super VL",
+    "model": "nvidia/nemotron-3.5-super-vl:free",
+    "model_key": "nvidia/nemotron-3.5-super-vl",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T15:44:20+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "The sets prioritize the Incineroar/Gholdengo/Kingambit core while giving Dragapult, Torkoal, and Azumarill distinct roles for the pick-3 format. EVs are capped at 32 per stat and 66 total, so spreads focus on key benchmarks rather than full investment. Items are all unique: Leftovers on Incineroar for pivot longevity, Sitrus on Gholdengo, Life Orb on Kingambit, Choice Scarf on Dragapult, Heat Rock on Torkoal, and Focus Sash on Azumarill.",
+    "team_text": "Incineroar @ Leftovers\nAbility: Intimidate\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Fake Out\n- Parting Shot\n- Flare Blitz\n- Snarl\n\nGholdengo @ Sitrus Berry\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 SpD\nCalm Nature\n- Shadow Ball\n- Make It Rain\n- Thunderbolt\n- Recover\n\nKingambit @ Life Orb\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Spe / 32 SpA / 2 HP\nTimid Nature\n- U-turn\n- Dragon Pulse\n- Shadow Ball\n- Thunderbolt\n\nTorkoal @ Heat Rock\nAbility: Drought\nEVs: 32 HP / 32 Def / 2 SpD\nRelaxed Nature\n- Stealth Rock\n- Rapid Spin\n- Eruption\n- Solar Beam\n\nAzumarill @ Focus Sash\nAbility: Huge Power\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Belly Drum\n- Aqua Jet\n- Play Rough\n- Ice Punch",
+    "members": [
+      {
+        "species": "Incineroar",
+        "sprite": "incineroar",
+        "item": "Leftovers",
+        "ability": "Intimidate",
+        "tera_type": "",
+        "nature": "Impish",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Fake Out",
+          "Parting Shot",
+          "Flare Blitz",
+          "Snarl"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "On switch-in, this Pokemon lowers the Attack of opponents by 1 stage.",
+          "nature": "+10% Defense, -10% Sp. Atk",
+          "moves": {
+            "Fake Out": "Normal · Physical · power 40 · 100% accuracy · priority +3. Has a 100% chance to make the target flinch. This move cannot be selected unless it is the user's first turn on the field.",
+            "Parting Shot": "Dark · Status · 100% accuracy. Lowers target's Atk, Sp. Atk by 1. User switches.",
+            "Flare Blitz": "Fire · Physical · power 120 · 100% accuracy. Has 33% recoil. 10% chance to burn. Thaws user.",
+            "Snarl": "Dark · Special · power 55 · 95% accuracy. 100% chance to lower the foe(s) Sp. Atk by 1."
+          }
+        }
+      },
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Sitrus Berry",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Calm",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Shadow Ball",
+          "Make It Rain",
+          "Thunderbolt",
+          "Recover"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Restores 1/4 max HP when at 1/2 max HP or less. Single use.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Sp. Def, -10% Attack",
+          "moves": {
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Make It Rain": "Steel · Special · power 120 · 100% accuracy. Lowers the user's Sp. Atk by 2. Hits foe(s).",
+            "Thunderbolt": "Electric · Special · power 90 · 100% accuracy. 10% chance to paralyze the target.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP."
+          }
+        }
+      },
+      {
+        "species": "Kingambit",
+        "sprite": "kingambit",
+        "item": "Life Orb",
+        "ability": "Supreme Overlord",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Kowtow Cleave",
+          "Sucker Punch",
+          "Swords Dance",
+          "Iron Head"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Kowtow Cleave": "Dark · Physical · power 85 · 100% accuracy. This move does not check accuracy.",
+            "Sucker Punch": "Dark · Physical · power 70 · 100% accuracy · priority +1. Usually goes first. Fails if target is not attacking.",
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Iron Head": "Steel · Physical · power 80 · 100% accuracy. 20% chance to make the target flinch."
+          }
+        }
+      },
+      {
+        "species": "Dragapult",
+        "sprite": "dragapult",
+        "item": "Choice Scarf",
+        "ability": "Infiltrator",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "U-turn",
+          "Dragon Pulse",
+          "Shadow Ball",
+          "Thunderbolt"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's Speed is 1.5x, but it can only select the first move it executes.",
+          "ability": "Moves ignore substitutes and foe's Reflect/Light Screen/Safeguard/Mist/Aurora Veil.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "U-turn": "Bug · Physical · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Dragon Pulse": "Dragon · Special · power 85 · 100% accuracy. No additional effect.",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Thunderbolt": "Electric · Special · power 90 · 100% accuracy. 10% chance to paralyze the target."
+          }
+        }
+      },
+      {
+        "species": "Torkoal",
+        "sprite": "torkoal",
+        "item": "Heat Rock",
+        "ability": "Drought",
+        "tera_type": "",
+        "nature": "Relaxed",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Stealth Rock",
+          "Rapid Spin",
+          "Eruption",
+          "Solar Beam"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's use of Sunny Day lasts 8 turns instead of 5.",
+          "ability": "On switch-in, this Pokemon summons Sunny Day.",
+          "nature": "+10% Defense, -10% Speed",
+          "moves": {
+            "Stealth Rock": "Rock · Status · 100% accuracy. Hurts foes on switch-in. Factors Rock weakness.",
+            "Rapid Spin": "Normal · Physical · power 50 · 100% accuracy. Free user from hazards/bind/Leech Seed; +1 Spe.",
+            "Eruption": "Fire · Special · power 150 · 100% accuracy. Less power as user's HP decreases. Hits foe(s).",
+            "Solar Beam": "Grass · Special · power 120 · 100% accuracy. Charges turn 1. Hits turn 2. No charge in sunlight."
+          }
+        }
+      },
+      {
+        "species": "Azumarill",
+        "sprite": "azumarill",
+        "item": "Focus Sash",
+        "ability": "Huge Power",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Belly Drum",
+          "Aqua Jet",
+          "Play Rough",
+          "Ice Punch"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
+          "ability": "This Pokemon's Attack is doubled.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Belly Drum": "Normal · Status · 100% accuracy. User loses 50% max HP. Maximizes Attack.",
+            "Aqua Jet": "Water · Physical · power 40 · 100% accuracy · priority +1. Usually goes first.",
+            "Play Rough": "Fairy · Physical · power 90 · 90% accuracy. 10% chance to lower the target's Attack by 1.",
+            "Ice Punch": "Ice · Physical · power 75 · 100% accuracy. 10% chance to freeze the target."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Incineroar",
+        "Gholdengo",
+        "Kingambit",
+        "Dragapult",
+        "Torkoal",
+        "Azumarill"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Incineroar",
+            "Gholdengo",
+            "Kingambit",
+            "Dragapult",
+            "Torkoal",
+            "Azumarill"
+          ],
+          "thought": "The team is built around a flexible BSS core of Incineroar, Gholdengo, and Kingambit, providing Intimidate support, status immunity, and strong priority. Dragapult offers speed control and pivoting, Torkoal sets sun for offensive pressure and hazard removal, and Azumarill provides Huge Power priority and Fairy/Water coverage. Together they can handle a wide variety of matchups in a bring-6 pick-3 format.",
+          "tokens": 4175
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [],
+        "error": null,
+        "thought": "The sets prioritize the Incineroar/Gholdengo/Kingambit core while giving Dragapult, Torkoal, and Azumarill distinct roles for the pick-3 format. EVs are capped at 32 per stat and 66 total, so spreads focus on key benchmarks rather than full investment. Items are all unique: Leftovers on Incineroar for pivot longevity, Sitrus on Gholdengo, Life Orb on Kingambit, Choice Scarf on Dragapult, Heat Rock on Torkoal, and Focus Sash on Azumarill.",
+        "team_text": "Incineroar @ Leftovers\nAbility: Intimidate\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Fake Out\n- Parting Shot\n- Flare Blitz\n- Snarl\n\nGholdengo @ Sitrus Berry\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 SpD\nCalm Nature\n- Shadow Ball\n- Make It Rain\n- Thunderbolt\n- Recover\n\nKingambit @ Life Orb\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Spe / 32 SpA / 2 HP\nTimid Nature\n- U-turn\n- Dragon Pulse\n- Shadow Ball\n- Thunderbolt\n\nTorkoal @ Heat Rock\nAbility: Drought\nEVs: 32 HP / 32 Def / 2 SpD\nRelaxed Nature\n- Stealth Rock\n- Rapid Spin\n- Eruption\n- Solar Beam\n\nAzumarill @ Focus Sash\nAbility: Huge Power\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Belly Drum\n- Aqua Jet\n- Play Rough\n- Ice Punch",
+        "tokens": 7248,
+        "cost_usd": 0.0,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config_id": "nemotron_3_5_super_vl",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 2,
+    "drafts": 3,
+    "display_name": "Nemotron 3.5 Super VL",
+    "model": "nvidia/nemotron-3.5-super-vl:free",
+    "model_key": "nvidia/nemotron-3.5-super-vl",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T15:44:45+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "Fixed Dragapult's move from the invalid \"dragondart\" to the correct \"Dragon Darts\". The rest of the team remains unchanged: Gholdengo as a Good as Gold Nasty Plot wincon, Kingambit as a Supreme Overlord cleaner, Espathra as a Choice Scarf Speed Boost Stored Power user, Dragapult as an Infiltrator Focus Sash Dragon Dance user, Garganacl as a Purifying Salt tank, and Empoleon as an Expert Belt pivot with hazards.",
+    "team_text": "Gholdengo @ Leftovers\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Shadow Ball\n- Flash Cannon\n- Recover\n\nKingambit @ Life Orb\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nEspathra @ Choice Scarf\nAbility: Speed Boost\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Calm Mind\n- Stored Power\n- Dazzling Gleam\n- Protect\n\nDragapult @ Focus Sash\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Dragon Dance\n- Dragon Darts\n- Phantom Force\n- U-turn\n\nGarganacl @ Sitrus Berry\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Stealth Rock\n- Body Press\n\nEmpoleon @ Expert Belt\nAbility: Torrent\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Stealth Rock\n- Flip Turn\n- Hydro Pump\n- Ice Beam",
+    "members": [
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Leftovers",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Nasty Plot",
+          "Shadow Ball",
+          "Flash Cannon",
+          "Recover"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Sp. Atk, -10% Attack",
+          "moves": {
+            "Nasty Plot": "Dark · Status · 100% accuracy. Raises the user's Sp. Atk by 2.",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Flash Cannon": "Steel · Special · power 80 · 100% accuracy. 10% chance to lower the target's Sp. Def by 1.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP."
+          }
+        }
+      },
+      {
+        "species": "Kingambit",
+        "sprite": "kingambit",
+        "item": "Life Orb",
+        "ability": "Supreme Overlord",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 2,
+          "atk": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Swords Dance",
+          "Kowtow Cleave",
+          "Sucker Punch",
+          "Iron Head"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Kowtow Cleave": "Dark · Physical · power 85 · 100% accuracy. This move does not check accuracy.",
+            "Sucker Punch": "Dark · Physical · power 70 · 100% accuracy · priority +1. Usually goes first. Fails if target is not attacking.",
+            "Iron Head": "Steel · Physical · power 80 · 100% accuracy. 20% chance to make the target flinch."
+          }
+        }
+      },
+      {
+        "species": "Espathra",
+        "sprite": "espathra",
+        "item": "Choice Scarf",
+        "ability": "Speed Boost",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Calm Mind",
+          "Stored Power",
+          "Dazzling Gleam",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's Speed is 1.5x, but it can only select the first move it executes.",
+          "ability": "This Pokemon's Speed is raised 1 stage at the end of each full turn on the field.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "Calm Mind": "Psychic · Status · 100% accuracy. Raises the user's Sp. Atk and Sp. Def by 1.",
+            "Stored Power": "Psychic · Special · power 20 · 100% accuracy.  + 20 power for each of the user's stat boosts.",
+            "Dazzling Gleam": "Fairy · Special · power 80 · 100% accuracy. No additional effect. Hits adjacent foes.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Dragapult",
+        "sprite": "dragapult",
+        "item": "Focus Sash",
+        "ability": "Infiltrator",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "hp": 2,
+          "atk": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Dragon Dance",
+          "Dragon Darts",
+          "Phantom Force",
+          "U-turn"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
+          "ability": "Moves ignore substitutes and foe's Reflect/Light Screen/Safeguard/Mist/Aurora Veil.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Dragon Dance": "Dragon · Status · 100% accuracy. Raises the user's Attack and Speed by 1.",
+            "Dragon Darts": "Dragon · Physical · power 50 · 100% accuracy. Hits twice. Doubles: Tries to hit each foe once.",
+            "Phantom Force": "Ghost · Physical · power 90 · 100% accuracy. Disappears turn 1. Hits turn 2. Breaks protection.",
+            "U-turn": "Bug · Physical · power 70 · 100% accuracy. User switches out after damaging the target."
+          }
+        }
+      },
+      {
+        "species": "Garganacl",
+        "sprite": "garganacl",
+        "item": "Sitrus Berry",
+        "ability": "Purifying Salt",
+        "tera_type": "",
+        "nature": "Impish",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Salt Cure",
+          "Recover",
+          "Stealth Rock",
+          "Body Press"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Restores 1/4 max HP when at 1/2 max HP or less. Single use.",
+          "ability": "Ghost damage to this Pokemon dealt with a halved offensive stat; can't be statused.",
+          "nature": "+10% Defense, -10% Sp. Atk",
+          "moves": {
+            "Salt Cure": "Rock · Physical · power 40 · 100% accuracy. Deals 1/16 max HP each turn; 1/8 on Steel, Water.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP.",
+            "Stealth Rock": "Rock · Status · 100% accuracy. Hurts foes on switch-in. Factors Rock weakness.",
+            "Body Press": "Fighting · Physical · power 80 · 100% accuracy. Uses user's Def stat as Atk in damage calculation."
+          }
+        }
+      },
+      {
+        "species": "Empoleon",
+        "sprite": "empoleon",
+        "item": "Expert Belt",
+        "ability": "Torrent",
+        "tera_type": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Stealth Rock",
+          "Flip Turn",
+          "Hydro Pump",
+          "Ice Beam"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks that are super effective against the target do 1.2x damage.",
+          "ability": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Water attacks.",
+          "nature": "+10% Sp. Atk, -10% Attack",
+          "moves": {
+            "Stealth Rock": "Rock · Status · 100% accuracy. Hurts foes on switch-in. Factors Rock weakness.",
+            "Flip Turn": "Water · Physical · power 60 · 100% accuracy. User switches out after damaging the target.",
+            "Hydro Pump": "Water · Special · power 110 · 80% accuracy. No additional effect.",
+            "Ice Beam": "Ice · Special · power 90 · 100% accuracy. 10% chance to freeze the target."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Gholdengo",
+        "Kingambit",
+        "Espathra",
+        "Dragapult",
+        "Garganacl",
+        "Empoleon"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Gholdengo",
+            "Kingambit",
+            "Espathra",
+            "Dragapult",
+            "Garganacl",
+            "Empoleon"
+          ],
+          "thought": "The team is built around a flexible balance/offense core: Gholdengo and Kingambit provide strong Steel/Dark offensive presence with priority and status blocking, Espathra and Dragapult offer fast Speed Boost and Infiltrator sweeping/pivoting, Garganacl serves as a Salt Cure tank, and Empoleon supplies a Water/Steel pivot that checks Fire and Fairy while setting hazards. This gives multiple viable 3-Pokémon lineups for different matchups at team preview.",
+          "tokens": 5852
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [
+          "\"dragondart\" is an invalid move."
+        ],
+        "error": null,
+        "thought": "The sets aim to give the team multiple viable leads and mid-game pivots: Gholdengo is a status-blocking Nasty Plot wincon with Leftovers recovery; Kingambit uses Supreme Overlord and Life Orb-boosted priority to clean late-game; Espathra uses Choice Scarf with Speed Boost to immediately outspeed and Calm Mind into a Stored Power sweep; Dragapult holds Focus Sash to survive a hit, set up Dragon Dance or fire Infiltrator moves through substitutes; Garganacl is the Purifying Salt tank with Salt Cure, Recover, and Sitrus Berry for longevity; Empoleon is an Expert Belt pivot with Flip Turn and Stealth Rock to check Fairies and Fires while chipping foes.",
+        "team_text": "Gholdengo @ Leftovers\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Shadow Ball\n- Flash Cannon\n- Recover\n\nKingambit @ Life Orb\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nEspathra @ Choice Scarf\nAbility: Speed Boost\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Calm Mind\n- Stored Power\n- Dazzling Gleam\n- Protect\n\nDragapult @ Focus Sash\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Dragon Dance\n- Dragon Dart\n- Phantom Force\n- U-turn\n\nGarganacl @ Sitrus Berry\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Stealth Rock\n- Body Press\n\nEmpoleon @ Expert Belt\nAbility: Torrent\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Stealth Rock\n- Flip Turn\n- Hydro Pump\n- Ice Beam",
+        "tokens": 7212,
+        "cost_usd": 0.0,
+        "finish_reason": "stop"
+      },
+      {
+        "attempt": 2,
+        "problems": [],
+        "error": null,
+        "thought": "Fixed Dragapult's move from the invalid \"dragondart\" to the correct \"Dragon Darts\". The rest of the team remains unchanged: Gholdengo as a Good as Gold Nasty Plot wincon, Kingambit as a Supreme Overlord cleaner, Espathra as a Choice Scarf Speed Boost Stored Power user, Dragapult as an Infiltrator Focus Sash Dragon Dance user, Garganacl as a Purifying Salt tank, and Empoleon as an Expert Belt pivot with hazards.",
+        "team_text": "Gholdengo @ Leftovers\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Shadow Ball\n- Flash Cannon\n- Recover\n\nKingambit @ Life Orb\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nEspathra @ Choice Scarf\nAbility: Speed Boost\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Calm Mind\n- Stored Power\n- Dazzling Gleam\n- Protect\n\nDragapult @ Focus Sash\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Dragon Dance\n- Dragon Darts\n- Phantom Force\n- U-turn\n\nGarganacl @ Sitrus Berry\nAbility: Purifying Salt\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Salt Cure\n- Recover\n- Stealth Rock\n- Body Press\n\nEmpoleon @ Expert Belt\nAbility: Torrent\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Stealth Rock\n- Flip Turn\n- Hydro Pump\n- Ice Beam",
+        "tokens": 4115,
+        "cost_usd": 0.0,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config_id": "nemotron_3_5_super_vl",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 3,
+    "drafts": 3,
+    "display_name": "Nemotron 3.5 Super VL",
+    "model": "nvidia/nemotron-3.5-super-vl:free",
+    "model_key": "nvidia/nemotron-3.5-super-vl",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T15:45:17+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "The sets focus on the stated balance: Gholdengo and Annihilape are late-game win conditions (Nasty Plot and Rage Fist), Kingambit provides priority and Supreme Overlord cleanup, Dragapult offers Choice Scarf speed control and U-turn momentum, while Toxapex and Corviknight handle defensive utility with Regenerator/Pressure, hazard control, and pivoting. Items are all unique to satisfy Item Clause, and EVs follow the strict 32-per-stat / 66-total limit.",
+    "team_text": "Gholdengo @ Leftovers\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Shadow Ball\n- Flash Cannon\n- Recover\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Spe / 32 SpA / 2 SpD\nTimid Nature\n- Shadow Ball\n- Dragon Pulse\n- U-turn\n- Thunder Wave\n\nAnnihilape @ Life Orb\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Rage Fist\n- Drain Punch\n- Taunt\n- Bulk Up\n\nToxapex @ Sitrus Berry\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Toxic\n- Recover\n- Protect\n- Haze\n\nCorviknight @ Wacan Berry\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 Spe\nImpish Nature\n- Brave Bird\n- U-turn\n- Roost\n- Defog",
+    "members": [
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Leftovers",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Nasty Plot",
+          "Shadow Ball",
+          "Flash Cannon",
+          "Recover"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Sp. Atk, -10% Attack",
+          "moves": {
+            "Nasty Plot": "Dark · Status · 100% accuracy. Raises the user's Sp. Atk by 2.",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Flash Cannon": "Steel · Special · power 80 · 100% accuracy. 10% chance to lower the target's Sp. Def by 1.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP."
+          }
+        }
+      },
+      {
+        "species": "Kingambit",
+        "sprite": "kingambit",
+        "item": "Focus Sash",
+        "ability": "Supreme Overlord",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Kowtow Cleave",
+          "Sucker Punch",
+          "Swords Dance",
+          "Iron Head"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
+          "ability": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Kowtow Cleave": "Dark · Physical · power 85 · 100% accuracy. This move does not check accuracy.",
+            "Sucker Punch": "Dark · Physical · power 70 · 100% accuracy · priority +1. Usually goes first. Fails if target is not attacking.",
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Iron Head": "Steel · Physical · power 80 · 100% accuracy. 20% chance to make the target flinch."
+          }
+        }
+      },
+      {
+        "species": "Dragapult",
+        "sprite": "dragapult",
+        "item": "Choice Scarf",
+        "ability": "Infiltrator",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "spa": 32,
+          "spd": 2,
+          "spe": 32
+        },
+        "moves": [
+          "Shadow Ball",
+          "Dragon Pulse",
+          "U-turn",
+          "Thunder Wave"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's Speed is 1.5x, but it can only select the first move it executes.",
+          "ability": "Moves ignore substitutes and foe's Reflect/Light Screen/Safeguard/Mist/Aurora Veil.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Dragon Pulse": "Dragon · Special · power 85 · 100% accuracy. No additional effect.",
+            "U-turn": "Bug · Physical · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Thunder Wave": "Electric · Status · 90% accuracy. Paralyzes the target."
+          }
+        }
+      },
+      {
+        "species": "Annihilape",
+        "sprite": "annihilape",
+        "item": "Life Orb",
+        "ability": "Defiant",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Rage Fist",
+          "Drain Punch",
+          "Taunt",
+          "Bulk Up"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Rage Fist": "Ghost · Physical · power 50 · 100% accuracy. +50 BP/hit on user. Max 6 hits. Resets on switch-out.",
+            "Drain Punch": "Fighting · Physical · power 75 · 100% accuracy. User recovers 50% of the damage dealt.",
+            "Taunt": "Dark · Status · 100% accuracy. Target can't use status moves its next 3 turns.",
+            "Bulk Up": "Fighting · Status · 100% accuracy. Raises the user's Attack and Defense by 1."
+          }
+        }
+      },
+      {
+        "species": "Toxapex",
+        "sprite": "toxapex",
+        "item": "Sitrus Berry",
+        "ability": "Regenerator",
+        "tera_type": "",
+        "nature": "Impish",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Toxic",
+          "Recover",
+          "Protect",
+          "Haze"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Restores 1/4 max HP when at 1/2 max HP or less. Single use.",
+          "ability": "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+          "nature": "+10% Defense, -10% Sp. Atk",
+          "moves": {
+            "Toxic": "Poison · Status · 90% accuracy. Badly poisons the target. Poison types can't miss.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn.",
+            "Haze": "Ice · Status · 100% accuracy. Eliminates all stat changes."
+          }
+        }
+      },
+      {
+        "species": "Corviknight",
+        "sprite": "corviknight",
+        "item": "Wacan Berry",
+        "ability": "Pressure",
+        "tera_type": "",
+        "nature": "Impish",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Brave Bird",
+          "U-turn",
+          "Roost",
+          "Defog"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Halves damage taken from a supereffective Electric-type attack. Single use.",
+          "ability": "If this Pokemon is the target of a foe's move, that move loses one additional PP.",
+          "nature": "+10% Defense, -10% Sp. Atk",
+          "moves": {
+            "Brave Bird": "Flying · Physical · power 120 · 100% accuracy. Has 33% recoil.",
+            "U-turn": "Bug · Physical · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Roost": "Flying · Status · 100% accuracy. Heals 50% HP. Flying-type removed 'til turn ends.",
+            "Defog": "Flying · Status · 100% accuracy. -1 evasion; ends user and target hazards/terrain."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Gholdengo",
+        "Kingambit",
+        "Dragapult",
+        "Annihilape",
+        "Toxapex",
+        "Corviknight"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Gholdengo",
+            "Kingambit",
+            "Dragapult",
+            "Annihilape",
+            "Toxapex",
+            "Corviknight"
+          ],
+          "thought": "The team is built around a balanced core of status-blocking, priority, and bulky pivoting. Gholdengo and Kingambit provide strong late-game win conditions, while Dragapult offers speed control and Toxapex/Corviknight provide defensive utility and momentum. The goal is to handle common threats in the restricted dex while maintaining flexible lead options for 3v3 team preview.",
+          "tokens": 5824
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [],
+        "error": null,
+        "thought": "The sets focus on the stated balance: Gholdengo and Annihilape are late-game win conditions (Nasty Plot and Rage Fist), Kingambit provides priority and Supreme Overlord cleanup, Dragapult offers Choice Scarf speed control and U-turn momentum, while Toxapex and Corviknight handle defensive utility with Regenerator/Pressure, hazard control, and pivoting. Items are all unique to satisfy Item Clause, and EVs follow the strict 32-per-stat / 66-total limit.",
+        "team_text": "Gholdengo @ Leftovers\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Shadow Ball\n- Flash Cannon\n- Recover\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Spe / 32 SpA / 2 SpD\nTimid Nature\n- Shadow Ball\n- Dragon Pulse\n- U-turn\n- Thunder Wave\n\nAnnihilape @ Life Orb\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Rage Fist\n- Drain Punch\n- Taunt\n- Bulk Up\n\nToxapex @ Sitrus Berry\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Toxic\n- Recover\n- Protect\n- Haze\n\nCorviknight @ Wacan Berry\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 Spe\nImpish Nature\n- Brave Bird\n- U-turn\n- Roost\n- Defog",
+        "tokens": 7112,
+        "cost_usd": 0.0,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
     "config_id": "nemotron_3_ultra",
     "version": "c5",
     "format": "gen9championsrotomarenabssregmb",
