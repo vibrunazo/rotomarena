@@ -526,6 +526,17 @@ agents:
     max_games: 8
     extra_games: {c3: 55, c4: 67, c5: 112}
     weights: "closed"
+  muse_spark_open:   # added 15 Oct, released that day: open weights derived from August's Muse Spark (816B, 42B active)
+    type: "direct_llm"
+    display_name: "Muse Spark Open"
+    provider: "openrouter"
+    model: "meta/muse-spark-open"
+    released: "2026-10-15"
+    max_games: 0
+    extra_games: {c5: 21}   # mid tier (~$0.045 a game on 4 real c5 turns, 15 Oct)
+    pairing: {c5: "neighbours"}
+    weights: "open"
+    params_b: 816
   gemini_3_8_flash:
     type: "direct_llm"
     display_name: "Gemini 3.8 Flash"
