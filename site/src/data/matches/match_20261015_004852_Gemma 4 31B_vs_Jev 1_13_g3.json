@@ -1,0 +1,359 @@
+{
+  "id": "match_20261015_004852_Gemma 4 31B_vs_Jev 1_13_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261015",
+  "players": [
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p1",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0,
+      "replay_name": "Gemma 4 31B"
+    },
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 266.44,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Gemma 4 31B||",
+    "|player|p2|Jev 1.13||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Kingambit, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Gliscor, L50, M|",
+    "|poke|p1|Palafin, L50, M|",
+    "|poke|p1|Garganacl, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Aegislash, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|165/165",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Dragon Darts|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|23/100",
+    "|-anim|p1a: Dragapult|Dragon Darts|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|Dragon Darts|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|35/100",
+    "|-anim|p1a: Dragapult|Dragon Darts|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Kingambit|Kingambit, L50, M|207/207",
+    "|move|p2a: Gholdengo|Poltergeist|p1a: Kingambit|[miss]",
+    "|-miss|p2a: Gholdengo|p1a: Kingambit",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Gholdengo|Nasty Plot|p2a: Gholdengo",
+    "|-boost|p2a: Gholdengo|spa|2",
+    "|move|p1a: Kingambit|Kowtow Cleave|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|-damage|p1a: Kingambit|187/207|[from] item: Life Orb",
+    "|",
+    "|win|Gemma 4 31B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,garchomp,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 55% BRING: dragapult, 11% BRING: aegislash, 10% BRING: rotomwash\nPick 2: 32% BRING: garchomp, 29% BRING: gholdengo, 17% BRING: rotomwash\nPick 3: 33% BRING: gholdengo, 32% BRING: rotomwash, 26% BRING: aegislash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6499,
+      "latency_ms": 1428,
+      "cost_usd": 0.000272958,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gliscor,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has many Steel/Ghost types and a Garchomp/Rotom-Wash core. I'll bring Dragapult for speed and coverage, Gliscor to check Garchomp and Rotom-Wash, and Kingambit as a powerful late-game cleaner. Dragapult leads to provide immediate pressure and a U-turn pivot option.",
+      "hidden_reasoning": "*   My Team: Kingambit, Gholdengo, Dragapult, Gliscor, Palafin, Garganacl.\n    *   Opponent's Team: Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n\n    *   Rotom-Wash: Water/Electric. Weak to Grass. Resists Water, Electric, Steel.\n    *   Aegislash: Steel/Ghost. Weak to Fire, Ground, Ghost, Dark.\n    *   Garchomp: Dragon/Ground. Weak to Ice, Dragon, Fairy.\n    *   Corviknight: Flying/Steel. Weak to Fire, Electric.\n    *   Dragapult: Dragon/Ghost. Weak to Fairy, Ice, Dragon, Ghost, Dark.\n    *   Gholdengo: Steel/Ghost. Weak to Fire, Ground, Ghost, Dark.\n\n    *   Kingambit: Strong against Aegislash, Dragapult, Gholdengo. Weak to Fighting, Ground.\n    *   Gholdengo: Strong against Dragapult, Garchomp (if it has a special move), Rotom-Wash (Thunderbolt).\n    *   Dragapult: Fast, strong against Garchomp, Dragapult.\n    *   Gliscor: Great against Rotom-Wash (immune to Electric, resists Ground), Garchomp (immune to Electric, resists Ground).\n    *   Palafin: Strong against Garchomp, Rotom-Wash (if it can hit).\n    *   Garganacl: Great wall, Salt Cure is useful against everything.\n\n    *   The opponent has a lot of Steel/Ghost types (Aegislash, Gholdengo, Corviknight).\n    *   Dragapult is a must for speed and hitting Garchomp/Dragapult.\n    *   Kingambit is a great late-game cleaner and hits the Ghost/Steel types hard.\n    *   Gholdengo provides a scarf and hits Rotom-Wash and Corviknight (though Corviknight resists Steel, Gholdengo has Thunderbolt).\n    *   Gliscor is an excellent pivot and check to Garchomp and Rotom-Wash.\n\n    *   Option 1: Dragapult, Kingambit, Gholdengo (High offense).\n    *   Option 2: Gliscor, Kingambit, Gholdengo (More balance).\n    *   Option 3: Dragapult, Kingambit, Gliscor (Good coverage).\n\n    Let's look at the opponent's team again: Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    They have a lot of Steel/Ghost. Kingambit is essential.\n    They have Garchomp and Rotom-Wash. Gliscor is a great answer to both.\n    Dragapult is essential for speed control.\n\n    Wait, Gholdengo is also very strong. But Gliscor's ability to tank and set spikes/toxic is huge.\n    Let's go with Dragapult, Kingambit, and Gliscor. Or maybe Gholdengo instead of Gliscor?\n    Actually, Gholdengo's Choice Scarf is very useful for revenge killing.\n\n    Let's consider the lead. Dragapult is the fastest and can U-turn out.\n    If I bring Dragapult, Kingambit, and Gholdengo, I have a very strong offensive core.\n    If I bring Dragapult, Kingambit, and Gliscor, I have more defensive utility.\n\n    Opponent's likely leads: Rotom-Wash or Garchomp.\n    Dragapult can U-turn into Gliscor if Rotom-Wash is out.\n    Kingambit is the closer.\n\n    Let's go with Dragapult, Kingambit, and Gliscor.\n\n    Wait, looking at the opponent's team again:\n    Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    They have 3 Steel types.\n    My team: Kingambit (Steel), Gholdengo (Steel), Dragapult, Gliscor, Palafin, Garganacl.\n\n    If I bring Dragapult, Kingambit, and Gliscor:\n    - Dragapult: Hits Garchomp, Dragapult, Aegislash, Gholdengo.\n    - Kingambit: Hits Aegislash, Dragapult, Gholdengo.\n    - Gliscor: Checks Rotom-Wash, Garchomp.\n\n    This seems like a very solid trio.\n\n    Let's double-check Gholdengo. Gholdengo's Make It Rain is powerful, but Kingambit's Kowtow Cleave/Sucker Punch is better against the Ghost/Steel types.\n\n    Final choice: Dragapult, Kingambit, Gliscor.\n\n    Wait, let's reconsider Gholdengo. Choice Scarf Gholdengo is a menace.\n    If I bring Dragapult, Gholdengo, and Kingambit:\n    - Dragapult (Fast)\n    - Gholdengo (Scarf, Special)\n    - Kingambit (Physical, Late game)\n\n    This is a very aggressive team. But Gliscor's Poison Heal and tankiness are often game-winning.\n    However, in a 3v3 format, speed and power often win.\n\n    Let's try Dragapult, Gholdengo, and Kingambit.\n    Wait, if they lead Rotom-Wash, Dragapult can't do much except U-turn.\n    If they lead Garchomp, Dragapult can hit it.\n\n    Let's go with Dragapult, Gholdengo, and Kingambit.\n\n    Wait, let's check the opponent's team again.\n    Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    They have a lot of Steel.\n    My Gholdengo has Thunderbolt for Corviknight and Rotom-Wash.\n    My Dragapult has Thunderbolt for Corviknight and Rotom-Wash.\n    My Kingambit has Sucker Punch for everything.\n\n    This seems strong.\n\n    Let's re-evaluate Gliscor. Gliscor is great for stalling and wearing down Garchomp/Rotom.\n    But with only 3 Pokémon, you can't afford to be too passive unless you have a clear win condition.\n    Kingambit is the win condition.\n\n    Let's go with Dragapult, Gholdengo, and Kingambit.\n\n    Wait, I'll lead with Dragapult for the speed and U-turn option.\n\n    Wait, let me think about the lead again.\n    If I lead Dragapult, and they lead Rotom-Wash, I U-turn into Gholdengo or Kingambit?\n    If I lead Gholdengo, and they lead Rotom-Wash, I can use Thunderbolt.\n    If I lead Kingambit, and they lead Rotom-Wash, I'm in trouble.\n\n    Let's lead Dragapult.\n\n    Wait, let's consider the opponent's Dragapult. It's as fast as mine.\n    If we both lead Dragapult, it's a speed tie or a mirror match.\n\n    Let's go with Dragapult, Gholdengo, Kingambit.\n\n    Wait, one more look at the opponent's team.\n    Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    They have a lot of Steel/Ghost.\n    My Kingambit is perfect for that.\n    My Gholdengo is also Steel/Ghost.\n    My Dragapult is Dragon/Ghost.\n\n    Actually, Gliscor might be better than Gholdengo because it handles Garchomp and Rotom-Wash much better.\n    Let's go with Dragapult, Gliscor, Kingambit.\n\n    Lead: Dragapult.\n    Back: Gliscor, Kingambit.\n\n    Wait, if I lead Dragapult and they lead Rotom-Wash, I U-turn into Gliscor.\n    If I lead Dragapult and they lead Garchomp, I can hit it with Dragon Darts.\n    If I lead Dragapult and they lead Corviknight, I can hit it with Thunderbolt.\n\n    This seems like a very flexible lead.\n\n    Final decision: Dragapult, Gliscor, Kingambit.\n\n    Wait, let me double check the legal actions.\n    BRING: dragapult, gliscor, kingambit.\n\n    Wait, I just noticed Gholdengo has Choice Scarf. That's a huge advantage for revenge killing.\n    If I bring Dragapult, Gholdengo, and Kingambit, I have two very fast Pokémon (Dragapult and Scarf Gholdengo).\n    That might be better than Gliscor's bulk.\n\n    Let's go with Dragapult, Gholdengo, Kingambit.\n\n    Wait, let's think about the opponent's Garchomp. If I don't have Gliscor, how do I stop Garchomp?\n    Dragapult can hit it, but Garchomp can hit Dragapult back.\n    Kingambit is weak to Ground.\n    Gholdengo is weak to Ground.\n    So Garchomp is a huge threat.\n    Gliscor is the only one who can safely switch into Garchomp's Earthquake.\n\n    Okay, Gliscor is necessary.\n\n    Final final decision: Dragapult, Gliscor, Kingambit.\n\n    Wait, let me check the moves again.\n    Dragapult: Dragon Darts, Phantom Force, U-turn, Thunderbolt.\n    Gliscor: Earthquake, Toxic, Spikes, Protect.\n    Kingambit: Kowtow Cleave, Sucker Punch, Iron Head, Swords Dance.\n\n    This covers all the bases.\n\n    Wait, let me check the opponent's team one more time.\n    Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    If I bring Dragapult, Gliscor, and Kingambit:\n    - Dragapult handles Dragapult, Garchomp (partially), Aegislash, Gholdengo.\n    - Gliscor handles Rotom-Wash, Garchomp.\n    - Kingambit handles Aegislash, Gholdengo, Dragapult.\n\n    This is a very balanced team.\n\n    Let's lead with Dragapult.\n\n    Wait, if I lead Dragapult, and they lead Rotom-Wash, I U-turn to Gliscor.\n    If I lead Dragapult, and they lead Garchomp, I can use Dragon Darts.\n    If I lead Dragapult, and they lead Corviknight, I can use Thunderbolt.\n\n    This seems like the best plan.\n\n    One last check: Is there any other combination?\n    Palafin? Palafin is great, but Gliscor's utility is better here.\n    Garganacl? Garganacl is a wall, but Kingambit is a better win condition.\n\n    Okay, Dragapult, Gliscor, Kingambit.",
+      "note": "",
+      "tokens": 4777,
+      "latency_ms": 39392,
+      "cost_usd": 0.00107757,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% MOVE: shadowball, 11% MOVE: dragondarts, 10% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2284,
+      "latency_ms": 385,
+      "cost_usd": 9.5928e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.65,
+        "MOVE: dragondarts": 0.11,
+        "MOVE: uturn": 0.02,
+        "MOVE: dragondance": 0.02,
+        "SWITCH: garchomp": 0.1,
+        "SWITCH: gholdengo": 0.1
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mirror match with Dragapult. I have max speed (213), so I should either outspeed or tie. Dragondarts is the most reliable and powerful option here, benefiting from Expert Belt and hitting twice.",
+      "hidden_reasoning": "*   My Dragapult vs. Opponent's Dragapult.\n    *   My Dragapult's stats: HP 165, Atk 172, Def 95, SpA 108, SpD 95, Spe 213.\n    *   Opponent's Dragapult's stats: HP 163-195, Atk 126-189, Def 85-139, SpA 108-167, SpD 85-139, Spe 145-213.\n    *   My Dragapult is likely faster or tied.\n    *   Moves available: Dragondarts, Phantom Force, U-turn, Thunderbolt.\n\n    *   Dragondarts is the strongest and most reliable option against another Dragapult. It hits twice, and since it's super effective, the Expert Belt will boost it.\n    *   Phantom Force is also super effective but takes two turns, giving the opponent a chance to switch or use a status move.\n    *   U-turn is not very effective and doesn't provide much pressure.\n    *   Thunderbolt is not very effective.\n\n    *   If I use Dragondarts, I'll likely deal significant damage.\n    *   If the opponent is faster (unlikely given my 213 speed, but possible if they are max speed/nature and I'm not, though 213 is max for Dragapult at level 50), I might take a hit first.\n    *   Wait, let's check the speed: 213 is the maximum speed for Dragapult at level 50 (130 base, nature +, max EVs). If both are max speed, it's a speed tie.\n\n    *   Dragondarts is the best offensive move here. It's super effective and hits twice.\n\n    *   Opponent's team: Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    *   My team: Dragapult, Gliscor, Kingambit.\n    *   Dragapult is a great lead. Dragondarts is the standard way to deal with another Pult.\n\n    *   Dragondarts: 2 * (50 * 1.5 [Type] * 1.2 [Expert Belt]) = 180 base power equivalent (roughly).\n    *   Phantom Force: 90 * 1.5 * 1.2 = 162 base power.\n    *   Dragondarts is better and immediate.",
+      "note": "",
+      "tokens": 2925,
+      "latency_ms": 10552,
+      "cost_usd": 0.00041339,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: garchomp, 46% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1962,
+      "latency_ms": 472,
+      "cost_usd": 8.2404e-05,
+      "probabilities": {
+        "SWITCH: garchomp": 0.54,
+        "SWITCH: gholdengo": 0.46
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: earthquake, 31% SWITCH: gholdengo, 14% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2293,
+      "latency_ms": 399,
+      "cost_usd": 9.6306e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.42,
+        "MOVE: swordsdance": 0.14,
+        "MOVE: flamethrower": 0.03,
+        "MOVE: stoneedge": 0.1,
+        "SWITCH: gholdengo": 0.31
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opposing Dragapult is gone. Now facing Garchomp. Dragapult outspeeds Garchomp and Dragon Darts is super effective and hits twice, which should either OHKO Garchomp or break a potential Focus Sash and leave it heavily damaged. I'll lead with Dragon Darts to maintain pressure.",
+      "hidden_reasoning": "*   My Dragapult is active.\n    *   Opponent's Garchomp is active.\n    *   Dragapult is faster than Garchomp (213 vs 109-169).\n    *   Dragapult's moves: Dragon Darts (Super Effective), Phantom Force, U-turn, Thunderbolt.\n    *   Garchomp is a Dragon/Ground type. Dragon Darts is super effective.\n\n    *   Dragon Darts: Strong, super effective, hits twice.\n    *   U-turn: Allows pivoting to Gliscor, who is a better check to Garchomp.\n    *   Switching to Gliscor: Gliscor resists Garchomp's Ground and Dragon moves (though Garchomp might have Stone Edge or Iron Head). Gliscor can poison Garchomp or set spikes.\n\n    *   Garchomp is likely to use Earthquake or Dragon Claw/Outrage.\n    *   If I use Dragon Darts, I deal significant damage, but Garchomp might survive and hit back.\n    *   If I U-turn, I deal some damage and get Gliscor in.\n    *   If I switch to Gliscor, I take a hit but position myself better.\n\n    *   Dragon Darts is very strong. Let's see the damage. Garchomp's HP is 183-215. Dragapult's Atk is 172. Dragon Darts (50 BP x 2) with Expert Belt (1.2x) and STAB (1.5x) and Super Effective (1.5x).\n    *   Calculation: 172 * 50 * 1.5 * 1.5 * 1.2 * 1.5 / (Garchomp Def 103-161).\n    *   Roughly: 172 * 50 * 4.05 / 130 ≈ 267. This would likely OHKO or leave Garchomp very low.\n    *   Wait, Dragon Darts is 50 BP *per hit*.\n    *   Actually, let's re-evaluate: 172 Atk, 50 BP, 1.5x STAB, 1.5x Super Effective, 1.2x Expert Belt.\n    *   Damage per hit: (172 * 50 * 1.5 * 1.5 * 1.2) / Def.\n    *   For Def 130: (23220) / 130 ≈ 178.\n    *   Two hits: 178 * 2 = 356.\n    *   Garchomp's max HP is 215. Dragon Darts is almost certainly an OHKO.\n\n    *   Wait, is Garchomp holding something? Maybe a Focus Sash or Leftovers?\n    *   Even with a Focus Sash, Dragon Darts hits twice, so it breaks the sash and deals damage.\n    *   If Garchomp is OHKO'd, I maintain momentum.\n\n    *   Is there any reason *not* to use Dragon Darts?\n    *   If Garchomp has a move like Stone Edge, it could hit Dragapult hard, but I move first.\n    *   If I U-turn, I lose the chance to OHKO and potentially give Garchomp a free turn to set up or attack Gliscor.\n\n    *   Dragon Darts is the most aggressive and likely most effective play.\n\n    *   Opponent's team: Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult (fainted), Gholdengo.\n    *   My team: Dragapult, Gliscor, Kingambit.\n    *   I've already taken out their Dragapult.\n    *   Garchomp is the current threat.\n\n    *   Dragon Darts is super effective and hits twice.\n    *   I outspeed Garchomp.\n    *   It's the best move.",
+      "note": "",
+      "tokens": 3445,
+      "latency_ms": 17499,
+      "cost_usd": 0.00054082,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "poltergeist",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: poltergeist, 41% MOVE: shadowball, 8% MOVE: trick",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2290,
+      "latency_ms": 617,
+      "cost_usd": 9.618e-05,
+      "probabilities": {
+        "MOVE: poltergeist": 0.44,
+        "MOVE: nastyplot": 0.07,
+        "MOVE: shadowball": 0.41,
+        "MOVE: trick": 0.08
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's Dragapult and Garchomp are fainted; Gholdengo is the last Pokémon. Dragapult is faster, but Phantom Force takes two turns and allows Gholdengo to set up. Kingambit is the ideal counter with Supreme Overlord (2 fainted foes) and Life Orb, resisting Ghost and hitting super effectively with Kowtow Cleave.",
+      "hidden_reasoning": "*   My Dragapult is active.\n    *   Opponent's Gholdengo is active.\n    *   Opponent's Dragapult and Garchomp are fainted.\n    *   Gholdengo is Steel/Ghost.\n    *   Dragapult's moves: Dragon Darts (not very effective), Phantom Force (super effective, but 2-turn move), U-turn (not very effective), Thunderbolt (neutral).\n    *   Gholdengo is likely to have Shadow Ball, Make It Rain, Nasty Plot, etc.\n    *   Dragapult is faster than Gholdengo.\n\n    *   Phantom Force: Super effective, but Gholdengo can switch (though it's the last Pokémon? Wait, the opponent brought 3 of 6. Dragapult and Garchomp are gone. Gholdengo is the last one).\n    *   If Gholdengo is the last Pokémon, Phantom Force is a strong option, but it gives Gholdengo a free turn to use Nasty Plot or a move.\n    *   Thunderbolt: Neutral damage.\n    *   U-turn: Very low damage, but allows switching to Kingambit or Gliscor.\n    *   Switching to Kingambit: Kingambit resists Ghost and Steel (though Gholdengo's Make It Rain is Steel, Kingambit is Steel/Dark, so it's neutral to Steel and resists Ghost). Kingambit can hit Gholdengo with Kowtow Cleave (super effective).\n    *   Switching to Gliscor: Gliscor is immune to Ground (not relevant here) and resists some things, but Gholdengo's Steel moves hit it neutrally. Gliscor can't do much to Gholdengo except Earthquake (super effective).\n\n    *   Gholdengo is the last Pokémon.\n    *   Dragapult is faster.\n    *   Phantom Force is super effective but takes two turns.\n    *   Thunderbolt is neutral.\n    *   Kingambit is the best counter to Gholdengo (Kowtow Cleave).\n    *   If I use Phantom Force, Gholdengo can use Nasty Plot on the turn I disappear, making the hit less effective or allowing it to survive.\n    *   If I switch to Kingambit now, I take a hit (likely Shadow Ball or Make It Rain), but I can then hit back with Kowtow Cleave.\n    *   Wait, if Gholdengo is the last Pokémon, I can just use Phantom Force? But Gholdengo might have a move like Recover or Nasty Plot.\n    *   Actually, Dragapult's Thunderbolt is a decent surprise, but Kowtow Cleave from Kingambit is the most reliable way to kill Gholdengo.\n    *   However, Dragapult is already in. If I U-turn, I do minimal damage and bring in Kingambit.\n    *   Let's look at the damage: Phantom Force is super effective. Gholdengo's bulk is decent.\n    *   If I use Phantom Force, Gholdengo can't switch. It must attack or set up.\n    *   If I switch to Kingambit, I take a hit. Kingambit has Life Orb and Supreme Overlord (2 fainted foes = +25% attack). Kowtow Cleave will likely OHKO or 2HKO Gholdengo.\n\n    *   Gholdengo is the last Pokémon.\n    *   Dragapult is faster.\n    *   Phantom Force is the strongest move Dragapult has against Gholdengo.\n    *   However, Gholdengo often carries Nasty Plot.\n    *   If I switch to Kingambit, I can hit it with Kowtow Cleave.\n    *   Let's consider the risk: If I use Phantom Force, I disappear. Gholdengo can use Nasty Plot. Then I hit.\n    *   If I switch to Kingambit, I take a hit.\n    *   Actually, Dragapult's Thunderbolt is a good option if Gholdengo is expecting a switch or Phantom Force. But Kowtow Cleave is the most reliable.\n    *   Wait, I have Kingambit with Life Orb and Supreme Overlord. It's a monster right now.\n    *   Let's switch to Kingambit to safely handle Gholdengo.\n\n    *   Wait, if I use Phantom Force, I might just kill it.\n    *   Let's check the speed: Dragapult (213) vs Gholdengo (max 149). Dragapult is much faster.\n    *   Phantom Force: Turn 1 disappear, Turn 2 hit.\n    *   If I use Phantom Force, Gholdengo can use Nasty Plot.\n    *   If I switch to Kingambit, I take a hit.\n    *   Let's go with Kingambit. It's the safest and most powerful counter.\n\n    *   Wait, I can U-turn! U-turn allows me to pivot to Kingambit while doing a tiny bit of damage.\n    *   But U-turn is 1/4x on Gholdengo. It's almost nothing.\n    *   Switching directly to Kingambit is better.\n\n    *   Wait, let's reconsider Phantom Force. If Gholdengo is the last Pokémon, it can't switch. Phantom Force is a guaranteed hit (unless it uses Protect).\n    *   But Kingambit is so strong with Supreme Overlord.\n    *   Let's switch to Kingambit.\n\n    *   Wait, I just realized: Gholdengo is Steel/Ghost. Kingambit is Steel/Dark.\n    *   Kowtow Cleave is Dark (super effective).\n    *   Gholdengo's Make It Rain is Steel (neutral).\n    *   Gholdengo's Shadow Ball is Ghost (resisted by Kingambit).\n    *   Kingambit is the perfect switch-in.\n\n    *   Wait, let's check if Gholdengo has any other moves. It could have Thunderbolt or Focus Blast. Focus Blast would be a huge problem for Kingambit.\n    *   But Kowtow Cleave is so strong.\n\n    *   Let's try Phantom Force first? No, the 2-turn delay is bad.\n    *   Let's switch to Kingambit.\n\n    *   Wait, I can use Thunderbolt? It's neutral.\n    *   Actually, the most consistent play is switching to Kingambit.\n\n    *   Wait, let me double check the opponent's team.\n    *   Rotom-Wash, Aegislash, Garchomp, Corviknight, Dragapult, Gholdengo.\n    *   They brought Dragapult, Garchomp, and Gholdengo.\n    *   So Gholdengo is indeed the last one.\n\n    *   Decision: SWITCH: kingambit.\n\n    *   Wait, let me think about Phantom Force again.\n    *   If I use Phantom Force, I disappear. Gholdengo uses Nasty Plot. I hit. Gholdengo survives (maybe) and hits back.\n    *   If I switch to Kingambit, I take a hit. I use Kowtow Cleave. Gholdengo dies.\n    *   Kingambit is the way.\n\n    *   Wait, one more thing. Does Gholdengo have a move that hits Kingambit hard?\n    *   Focus Blast is the only one. But it's 70% accuracy.\n    *   Shadow Ball and Make It Rain are not that scary.\n\n    *   Let's switch to Kingambit.\n\n    *   Wait, I just noticed Dragapult has Thunderbolt. Gholdengo is not weak to Electric, but it's neutral.\n    *   But Kowtow Cleave is the hammer.\n\n    *   Final decision: SWITCH: kingambit.\n\n    *   Wait, let me check if I should use U-turn.\n    *   U-turn does 1/4x damage. It's basically a switch.\n    *   Switching is better because I don't waste a turn of Dragapult's presence if I need it later (though I don't, since Gholdengo is the last one).\n    *   Actually, switching is the same as U-turn here.\n\n    *   Wait, if I use Phantom Force, I might OHKO it?\n    *   Dragapult (Expert Belt) Phantom Force vs Gholdengo.\n    *   Phantom Force is 90 BP. Super effective (2x). Expert Belt (1.2x).\n    *   Gholdengo's SpD is 99-157.\n    *   Dragapult's Atk is 172.\n    *   Damage: ( (172 * 2 / 5) + 2 ) * 90 * 2 * 1.2 / (Def/2) ... wait, Gholdengo's Def is 103-161.\n    *   It's likely a 2HKO.\n    *   Kingambit's Kowtow Cleave is much more likely to be a 1HKO.\n\n    *   Let's switch to Kingambit.\n\n    *   Wait, I'll just use Phantom Force? No, the turn delay is too risky.\n    *   Switch to Kingambit.\n\n    *   Wait, I just realized I can't \"switch\" if I want to be optimal? No, switching is a legal action.\n\n    *   Let's double check the legal actions:\n    *   1. MOVE: dragondarts\n    *   2. MOVE: phantomforce\n    *   3. MOVE: uturn\n    *   4. MOVE: thunderbolt\n    *   5. SWITCH: gliscor\n    *   6. SWITCH: kingambit\n\n    *   I will choose SWITCH: kingambit.\n\n    *   Wait, let me think if there's any reason to stay in with Dragapult.\n    *   If I use Thunderbolt, I might do some damage.\n    *   But Kingambit is the best answer.\n\n    *   One last check: Gholdengo's ability is Good as Gold. It's immune to status moves.\n    *   Kingambit's Supreme Overlord is active (2 fainted).\n    *   Kingambit has Life Orb.\n    *   This is a guaranteed win if I switch to Kingambit.\n\n    *   Wait, what if Gholdengo uses Nasty Plot while I switch?\n    *   Then Kingambit takes a hit and hits back.\n    *   What if Gholdengo uses Recover?\n    *   Then Kingambit takes a hit and hits back.\n    *   What if Gholdengo uses Make It Rain?\n    *   Kingambit takes neutral damage and hits back.\n\n    *   The only risk is Focus Blast.\n    *   But even then, Kingambit is the best bet.\n\n    *   Wait, I'll use U-turn? No, 1/4x is too low.\n    *   SWITCH: kingambit.",
+      "note": "",
+      "tokens": 16120,
+      "latency_ms": 167015,
+      "cost_usd": 0.00398786,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: nastyplot, 27% MOVE: trick, 19% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2430,
+      "latency_ms": 443,
+      "cost_usd": 0.00010206,
+      "probabilities": {
+        "MOVE: poltergeist": 0.14,
+        "MOVE: nastyplot": 0.4,
+        "MOVE: shadowball": 0.19,
+        "MOVE: trick": 0.27
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's Dragapult and Garchomp are fainted. Gholdengo is the last Pokémon. Kingambit is the ideal counter with Supreme Overlord and Life Orb. Gholdengo is faster, but Kowtow Cleave is a guaranteed super-effective hit. Sucker Punch is an option, but Kowtow Cleave is more reliable if Gholdengo uses a status move.",
+      "hidden_reasoning": "*   My active Pokémon: Kingambit (100% HP, Life Orb, Supreme Overlord active with 2 fainted foes).\n    *   Opponent's active Pokémon: Gholdengo (100% HP, Good as Gold).\n    *   Opponent's team: Dragapult (fainted), Garchomp (fainted), Gholdengo (active).\n    *   Gholdengo's revealed move: Poltergeist (Physical Ghost).\n    *   Speed: Gholdengo (93-149) is faster than Kingambit (72).\n\n    *   Kingambit is a Dark/Steel type.\n    *   Gholdengo is a Steel/Ghost type.\n    *   Kingambit's Dark moves (Kowtow Cleave, Sucker Punch) are super effective against Gholdengo.\n    *   Gholdengo's Ghost moves (like Poltergeist) are super effective against Kingambit.\n    *   Kingambit has Supreme Overlord (2 fainted foes = +20% damage).\n    *   Kingambit has Life Orb (1.3x damage).\n\n    *   Gholdengo is faster.\n    *   If I use Kowtow Cleave, Gholdengo will hit me first.\n    *   If I use Sucker Punch, I might hit first if Gholdengo attacks.\n    *   If I use Swords Dance, Gholdengo will hit me first.\n    *   Gholdengo's Poltergeist missed last turn. This suggests Gholdengo might be using a physical set or just trying to hit hard.\n\n    *   Kowtow Cleave: High damage, guaranteed hit, but I take a hit first.\n    *   Sucker Punch: Priority, but fails if Gholdengo uses a non-attacking move (like Nasty Plot or Recover, though Gholdengo usually runs Shadow Ball/Make It Rain).\n    *   Swords Dance: Boosts attack, but I take a hit first.\n\n    *   Gholdengo's most common moves are Make It Rain (Steel) and Shadow Ball (Ghost).\n    *   Poltergeist was used and missed. Poltergeist requires the user to hold an item (which Gholdengo does).\n    *   Kingambit's bulk is decent, but Gholdengo's Ghost moves hit hard.\n    *   With Supreme Overlord and Life Orb, Kowtow Cleave is extremely powerful.\n\n    *   Kowtow Cleave is the most reliable way to deal massive damage.\n    *   Sucker Punch is risky if Gholdengo switches or uses a status move (though it's the last Pokémon, so it won't switch).\n    *   Let's calculate potential damage:\n        *   Kowtow Cleave: 85 BP * 2 (Super Effective) * 1.2 (Supreme Overlord) * 1.3 (Life Orb) * Atk/Def ratio.\n        *   This is likely to OHKO or leave Gholdengo very low.\n\n    *   Gholdengo is the last Pokémon.\n    *   Kingambit is the best counter.\n    *   Kowtow Cleave is the safest high-damage move.\n\n    *   Wait, Gholdengo used Poltergeist and missed. Poltergeist is a physical move. Gholdengo is usually special. If it's a physical Gholdengo, it might be less threatening than a special one, but Poltergeist is still strong.\n    *   Sucker Punch is a great option to avoid taking damage, but Kowtow Cleave is more consistent if Gholdengo uses a status move. However, Gholdengo is the last Pokémon, so it's likely to attack.\n    *   Let's go with Kowtow Cleave for the guaranteed hit and high damage.\n\n    *   Wait, let's re-evaluate Sucker Punch. If Gholdengo uses Shadow Ball or Make It Rain, Sucker Punch hits first. If Gholdengo uses Nasty Plot, Sucker Punch fails.\n    *   Given Gholdengo's speed and the fact that it's the last Pokémon, Kowtow Cleave is the most reliable way to ensure the knockout.\n\n    *   Kingambit's Atk: 205\n    *   Gholdengo's Def: 103-161\n    *   Kowtow Cleave: 85 * 2 (SE) * 1.2 (SO) * 1.3 (LO) = 265.2 effective BP.\n    *   This should be a massive hit.\n\n    *   Sucker Punch is priority. If Gholdengo attacks, I hit first. If Gholdengo uses a status move, I don't.\n    *   Kowtow Cleave is guaranteed.\n    *   Since Gholdengo is the last Pokémon, it's unlikely to switch.\n    *   I'll use Kowtow Cleave to ensure the hit.\n\n    *   Wait, if I use Sucker Punch and it works, I take 0 damage. If I use Kowtow Cleave, I take a hit.\n    *   But Kowtow Cleave is 100% accurate and doesn't rely on the opponent's move choice.\n    *   Let's stick with Kowtow Cleave.\n\n    *   Wait, looking at the battle log: \"Opposing Gholdengo used Poltergeist - Opposing Gholdengo missed\".\n    *   Poltergeist is a physical move. This is an unusual Gholdengo.\n    *   If it's physical, it might be using Iron Head or Poltergeist.\n    *   Either way, Kowtow Cleave is the way to go.\n\n    *   Wait, if I use Sucker Punch and it works, I might OHKO. If I use Kowtow Cleave, I definitely hit.\n    *   Let's use Kowtow Cleave.\n\n    *   Wait, one more check: Gholdengo's speed is 93-149. Kingambit's is 72. Gholdengo definitely moves first.\n    *   Kowtow Cleave is the safest bet.\n\n    *   Wait, if I use Sucker Punch and Gholdengo uses a status move (like Nasty Plot), I lose the turn.\n    *   If I use Kowtow Cleave, I hit regardless.\n\n    *   Let's go with Kowtow Cleave.",
+      "note": "",
+      "tokens": 4224,
+      "latency_ms": 31482,
+      "cost_usd": 0.00074827,
+      "probabilities": null
+    }
+  ]
+}
