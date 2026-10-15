@@ -29910,6 +29910,786 @@
     ]
   },
   {
+    "config_id": "muse_spark_open",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 1,
+    "drafts": 3,
+    "display_name": "Muse Spark Open",
+    "model": "meta/muse-spark-open",
+    "model_key": "meta/muse-spark-open",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T20:19:20+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "Building around Gholdengo/Kingambit endgame with Dragonite/Garchomp as Dragon-type setup sweepers, Rotom-Wash as defensive pivot, and Volcarona as special Quiver Dance wincon. Gholdengo and Volcarona provide Nasty Plot/Quiver Dance special pressure while Kingambit/Dragonite/Garchomp offer physical Swords Dance/Dragon Dance sweeping with priority. Rotom-Wash gives Volt Switch momentum and Will-O-Wisp support to enable the sweepers.",
+    "team_text": "Gholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect\n\nVolcarona @ Lum Berry\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Quiver Dance\n- Fiery Dance\n- Bug Buzz\n- Morning Sun\n\nGarchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Stone Edge",
+    "members": [
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Life Orb",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Nasty Plot",
+          "Make It Rain",
+          "Shadow Ball",
+          "Recover"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Sp. Atk, -10% Attack",
+          "moves": {
+            "Nasty Plot": "Dark · Status · 100% accuracy. Raises the user's Sp. Atk by 2.",
+            "Make It Rain": "Steel · Special · power 120 · 100% accuracy. Lowers the user's Sp. Atk by 2. Hits foe(s).",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP."
+          }
+        }
+      },
+      {
+        "species": "Kingambit",
+        "sprite": "kingambit",
+        "item": "Focus Sash",
+        "ability": "Supreme Overlord",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Swords Dance",
+          "Kowtow Cleave",
+          "Sucker Punch",
+          "Iron Head"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
+          "ability": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Kowtow Cleave": "Dark · Physical · power 85 · 100% accuracy. This move does not check accuracy.",
+            "Sucker Punch": "Dark · Physical · power 70 · 100% accuracy · priority +1. Usually goes first. Fails if target is not attacking.",
+            "Iron Head": "Steel · Physical · power 80 · 100% accuracy. 20% chance to make the target flinch."
+          }
+        }
+      },
+      {
+        "species": "Dragonite",
+        "sprite": "dragonite",
+        "item": "Dragoninite",
+        "ability": "Multiscale",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "hp": 2,
+          "atk": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Dragon Dance",
+          "Extreme Speed",
+          "Earthquake",
+          "Roost"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Dragonite, this item allows it to Mega Evolve in battle.",
+          "ability": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Dragon Dance": "Dragon · Status · 100% accuracy. Raises the user's Attack and Speed by 1.",
+            "Extreme Speed": "Normal · Physical · power 80 · 100% accuracy · priority +2. Nearly always goes first.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Roost": "Flying · Status · 100% accuracy. Heals 50% HP. Flying-type removed 'til turn ends."
+          }
+        }
+      },
+      {
+        "species": "Rotom-Wash",
+        "sprite": "rotom-wash",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "tera_type": "",
+        "nature": "Bold",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Volt Switch",
+          "Hydro Pump",
+          "Will-O-Wisp",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+          "nature": "+10% Defense, -10% Attack",
+          "moves": {
+            "Volt Switch": "Electric · Special · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Hydro Pump": "Water · Special · power 110 · 80% accuracy. No additional effect.",
+            "Will-O-Wisp": "Fire · Status · 85% accuracy. Burns the target.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Volcarona",
+        "sprite": "volcarona",
+        "item": "Lum Berry",
+        "ability": "Flame Body",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Quiver Dance",
+          "Fiery Dance",
+          "Bug Buzz",
+          "Morning Sun"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder cures itself if it has a non-volatile status or is confused. Single use.",
+          "ability": "30% chance a Pokemon making contact with this Pokemon will be burned.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "Quiver Dance": "Bug · Status · 100% accuracy. Raises the user's Sp. Atk, Sp. Def, Speed by 1.",
+            "Fiery Dance": "Fire · Special · power 80 · 100% accuracy. 50% chance to raise the user's Sp. Atk by 1.",
+            "Bug Buzz": "Bug · Special · power 90 · 100% accuracy. 10% chance to lower the target's Sp. Def by 1.",
+            "Morning Sun": "Normal · Status · 100% accuracy. Heals the user by a weather-dependent amount."
+          }
+        }
+      },
+      {
+        "species": "Garchomp",
+        "sprite": "garchomp",
+        "item": "Garchompite",
+        "ability": "Rough Skin",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "hp": 2,
+          "atk": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Swords Dance",
+          "Earthquake",
+          "Dragon Claw",
+          "Stone Edge"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Garchomp, this item allows it to Mega Evolve into Mega Garchomp.",
+          "ability": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Dragon Claw": "Dragon · Physical · power 80 · 100% accuracy. No additional effect.",
+            "Stone Edge": "Rock · Physical · power 100 · 80% accuracy. High critical hit ratio."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Gholdengo",
+        "Kingambit",
+        "Dragonite",
+        "Rotom-Wash",
+        "Volcarona",
+        "Garchomp"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Gholdengo",
+            "Kingambit",
+            "Dragonite",
+            "Rotom-Wash",
+            "Volcarona",
+            "Garchomp"
+          ],
+          "thought": "Building a balanced BSS core with offensive pressure and defensive utility: Gholdengo + Kingambit provide strong endgame and hazard control, Dragonite + Garchomp give Dragon coverage and setup sweeping, while Rotom-Wash offers pivot/support and Volcarona is a potent special setup sweeper to cover varied matchups in pick-3.",
+          "tokens": 2178
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [],
+        "error": null,
+        "thought": "Building around Gholdengo/Kingambit endgame with Dragonite/Garchomp as Dragon-type setup sweepers, Rotom-Wash as defensive pivot, and Volcarona as special Quiver Dance wincon. Gholdengo and Volcarona provide Nasty Plot/Quiver Dance special pressure while Kingambit/Dragonite/Garchomp offer physical Swords Dance/Dragon Dance sweeping with priority. Rotom-Wash gives Volt Switch momentum and Will-O-Wisp support to enable the sweepers.",
+        "team_text": "Gholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect\n\nVolcarona @ Lum Berry\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Quiver Dance\n- Fiery Dance\n- Bug Buzz\n- Morning Sun\n\nGarchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Stone Edge",
+        "tokens": 3357,
+        "cost_usd": 0.00613145,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config_id": "muse_spark_open",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 2,
+    "drafts": 3,
+    "display_name": "Muse Spark Open",
+    "model": "meta/muse-spark-open",
+    "model_key": "meta/muse-spark-open",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T20:21:22+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "Building a balanced BSS pick-3 core: Tyranitar sets sand to support Garchomp/Dragonite and checks special attackers, Garchomp and Dragonite provide setup sweeping and priority, Kingambit offers Supreme Overlord late-game cleaning with Sucker Punch, Gholdengo blocks status and sweeps with Nasty Plot, and Rotom-Wash provides defensive pivot with Will-O-Wisp and Volt Switch momentum.",
+    "team_text": "Garchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Protect\n\nGholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nTyranitar @ Tyranitarite\nAbility: Sand Stream\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Stealth Rock\n- Stone Edge\n- Crunch\n- Earthquake\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect",
+    "members": [
+      {
+        "species": "Garchomp",
+        "sprite": "garchomp",
+        "item": "Garchompite",
+        "ability": "Rough Skin",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "atk": 32,
+          "def": 2,
+          "spe": 32
+        },
+        "moves": [
+          "Swords Dance",
+          "Earthquake",
+          "Dragon Claw",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Garchomp, this item allows it to Mega Evolve into Mega Garchomp.",
+          "ability": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Dragon Claw": "Dragon · Physical · power 80 · 100% accuracy. No additional effect.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Life Orb",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Nasty Plot",
+          "Make It Rain",
+          "Shadow Ball",
+          "Recover"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Sp. Atk, -10% Attack",
+          "moves": {
+            "Nasty Plot": "Dark · Status · 100% accuracy. Raises the user's Sp. Atk by 2.",
+            "Make It Rain": "Steel · Special · power 120 · 100% accuracy. Lowers the user's Sp. Atk by 2. Hits foe(s).",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Recover": "Normal · Status · 100% accuracy. Heals the user by 50% of its max HP."
+          }
+        }
+      },
+      {
+        "species": "Dragonite",
+        "sprite": "dragonite",
+        "item": "Dragoninite",
+        "ability": "Multiscale",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "atk": 32,
+          "def": 2,
+          "spe": 32
+        },
+        "moves": [
+          "Dragon Dance",
+          "Extreme Speed",
+          "Earthquake",
+          "Roost"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Dragonite, this item allows it to Mega Evolve in battle.",
+          "ability": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Dragon Dance": "Dragon · Status · 100% accuracy. Raises the user's Attack and Speed by 1.",
+            "Extreme Speed": "Normal · Physical · power 80 · 100% accuracy · priority +2. Nearly always goes first.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Roost": "Flying · Status · 100% accuracy. Heals 50% HP. Flying-type removed 'til turn ends."
+          }
+        }
+      },
+      {
+        "species": "Kingambit",
+        "sprite": "kingambit",
+        "item": "Focus Sash",
+        "ability": "Supreme Overlord",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Swords Dance",
+          "Kowtow Cleave",
+          "Sucker Punch",
+          "Iron Head"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
+          "ability": "This Pokemon's moves have 10% more power for each fainted ally, up to 5 allies.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Kowtow Cleave": "Dark · Physical · power 85 · 100% accuracy. This move does not check accuracy.",
+            "Sucker Punch": "Dark · Physical · power 70 · 100% accuracy · priority +1. Usually goes first. Fails if target is not attacking.",
+            "Iron Head": "Steel · Physical · power 80 · 100% accuracy. 20% chance to make the target flinch."
+          }
+        }
+      },
+      {
+        "species": "Tyranitar",
+        "sprite": "tyranitar",
+        "item": "Tyranitarite",
+        "ability": "Sand Stream",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Stealth Rock",
+          "Stone Edge",
+          "Crunch",
+          "Earthquake"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Tyranitar, this item allows it to Mega Evolve in battle.",
+          "ability": "On switch-in, this Pokemon summons Sandstorm.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Stealth Rock": "Rock · Status · 100% accuracy. Hurts foes on switch-in. Factors Rock weakness.",
+            "Stone Edge": "Rock · Physical · power 100 · 80% accuracy. High critical hit ratio.",
+            "Crunch": "Dark · Physical · power 80 · 100% accuracy. 20% chance to lower the target's Defense by 1.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig."
+          }
+        }
+      },
+      {
+        "species": "Rotom-Wash",
+        "sprite": "rotom-wash",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "tera_type": "",
+        "nature": "Bold",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Volt Switch",
+          "Hydro Pump",
+          "Will-O-Wisp",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+          "nature": "+10% Defense, -10% Attack",
+          "moves": {
+            "Volt Switch": "Electric · Special · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Hydro Pump": "Water · Special · power 110 · 80% accuracy. No additional effect.",
+            "Will-O-Wisp": "Fire · Status · 85% accuracy. Burns the target.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Garchomp",
+        "Gholdengo",
+        "Dragonite",
+        "Kingambit",
+        "Tyranitar",
+        "Rotom-Wash"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Garchomp",
+            "Gholdengo",
+            "Dragonite",
+            "Kingambit",
+            "Tyranitar",
+            "Rotom-Wash"
+          ],
+          "thought": "Building a balanced BSS core for pick 3/6: Garchomp and Dragonite provide fast offensive pressure and Dragon coverage, Kingambit + Gholdengo form a strong offensive/defensive steel-ghost backbone, while Tyranitar sets sand and checks special threats and Rotom-Wash gives pivot, Will-O-Wisp and Water/Electric coverage.",
+          "tokens": 2080
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [],
+        "error": null,
+        "thought": "Building a balanced BSS pick-3 core: Tyranitar sets sand to support Garchomp/Dragonite and checks special attackers, Garchomp and Dragonite provide setup sweeping and priority, Kingambit offers Supreme Overlord late-game cleaning with Sucker Punch, Gholdengo blocks status and sweeps with Nasty Plot, and Rotom-Wash provides defensive pivot with Will-O-Wisp and Volt Switch momentum.",
+        "team_text": "Garchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Protect\n\nGholdengo @ Life Orb\nAbility: Good as Gold\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Nasty Plot\n- Make It Rain\n- Shadow Ball\n- Recover\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nKingambit @ Focus Sash\nAbility: Supreme Overlord\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Swords Dance\n- Kowtow Cleave\n- Sucker Punch\n- Iron Head\n\nTyranitar @ Tyranitarite\nAbility: Sand Stream\nEVs: 32 HP / 32 Atk / 2 SpD\nAdamant Nature\n- Stealth Rock\n- Stone Edge\n- Crunch\n- Earthquake\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect",
+        "tokens": 3438,
+        "cost_usd": 0.0061757,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config_id": "muse_spark_open",
+    "version": "c5",
+    "format": "gen9championsrotomarenabssregmb",
+    "bench": "rotom-champ-bench",
+    "draft": 3,
+    "drafts": 3,
+    "display_name": "Muse Spark Open",
+    "model": "meta/muse-spark-open",
+    "model_key": "meta/muse-spark-open",
+    "prompt_version": "draft-3",
+    "drafted_at": "2026-10-15T20:23:12+00:00",
+    "legal": true,
+    "repaired": false,
+    "repairs": [],
+    "thought": "Building for 3v3 BSS pick-3, I need self-sufficient sweepers and pivots. Garchomp/Dragonite get Mega Stones for immediate power with setup, Volcarona provides Quiver Dance win-con, Gholdengo blocks status and cleans with Make It Rain, Rotom-Wash offers Volt Switch + Will-O-Wisp control, and Annihilape gives Bulk Up + Rage Fist bulk to handle stall.",
+    "team_text": "Garchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Protect\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect\n\nGholdengo @ Choice Scarf\nAbility: Good as Gold\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Make It Rain\n- Shadow Ball\n- Thunderbolt\n- Trick\n\nAnnihilape @ Lum Berry\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Bulk Up\n- Rage Fist\n- Drain Punch\n- Protect\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nVolcarona @ Life Orb\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Quiver Dance\n- Fiery Dance\n- Bug Buzz\n- Protect",
+    "members": [
+      {
+        "species": "Garchomp",
+        "sprite": "garchomp",
+        "item": "Garchompite",
+        "ability": "Rough Skin",
+        "tera_type": "",
+        "nature": "Jolly",
+        "evs": {
+          "atk": 32,
+          "def": 2,
+          "spe": 32
+        },
+        "moves": [
+          "Swords Dance",
+          "Earthquake",
+          "Dragon Claw",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Garchomp, this item allows it to Mega Evolve into Mega Garchomp.",
+          "ability": "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+          "nature": "+10% Speed, -10% Sp. Atk",
+          "moves": {
+            "Swords Dance": "Normal · Status · 100% accuracy. Raises the user's Attack by 2.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Dragon Claw": "Dragon · Physical · power 80 · 100% accuracy. No additional effect.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Rotom-Wash",
+        "sprite": "rotom-wash",
+        "item": "Leftovers",
+        "ability": "Levitate",
+        "tera_type": "",
+        "nature": "Bold",
+        "evs": {
+          "hp": 32,
+          "def": 32,
+          "spd": 2
+        },
+        "moves": [
+          "Volt Switch",
+          "Hydro Pump",
+          "Will-O-Wisp",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "At the end of every turn, holder restores 1/16 of its max HP.",
+          "ability": "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+          "nature": "+10% Defense, -10% Attack",
+          "moves": {
+            "Volt Switch": "Electric · Special · power 70 · 100% accuracy. User switches out after damaging the target.",
+            "Hydro Pump": "Water · Special · power 110 · 80% accuracy. No additional effect.",
+            "Will-O-Wisp": "Fire · Status · 85% accuracy. Burns the target.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Gholdengo",
+        "sprite": "gholdengo",
+        "item": "Choice Scarf",
+        "ability": "Good as Gold",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Make It Rain",
+          "Shadow Ball",
+          "Thunderbolt",
+          "Trick"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's Speed is 1.5x, but it can only select the first move it executes.",
+          "ability": "This Pokemon is immune to Status moves.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "Make It Rain": "Steel · Special · power 120 · 100% accuracy. Lowers the user's Sp. Atk by 2. Hits foe(s).",
+            "Shadow Ball": "Ghost · Special · power 80 · 100% accuracy. 20% chance to lower the target's Sp. Def by 1.",
+            "Thunderbolt": "Electric · Special · power 90 · 100% accuracy. 10% chance to paralyze the target.",
+            "Trick": "Psychic · Status · 100% accuracy. User switches its held item with the target's."
+          }
+        }
+      },
+      {
+        "species": "Annihilape",
+        "sprite": "annihilape",
+        "item": "Lum Berry",
+        "ability": "Defiant",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 32,
+          "atk": 32,
+          "spe": 2
+        },
+        "moves": [
+          "Bulk Up",
+          "Rage Fist",
+          "Drain Punch",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder cures itself if it has a non-volatile status or is confused. Single use.",
+          "ability": "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Bulk Up": "Fighting · Status · 100% accuracy. Raises the user's Attack and Defense by 1.",
+            "Rage Fist": "Ghost · Physical · power 50 · 100% accuracy. +50 BP/hit on user. Max 6 hits. Resets on switch-out.",
+            "Drain Punch": "Fighting · Physical · power 75 · 100% accuracy. User recovers 50% of the damage dealt.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      },
+      {
+        "species": "Dragonite",
+        "sprite": "dragonite",
+        "item": "Dragoninite",
+        "ability": "Multiscale",
+        "tera_type": "",
+        "nature": "Adamant",
+        "evs": {
+          "hp": 2,
+          "atk": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Dragon Dance",
+          "Extreme Speed",
+          "Earthquake",
+          "Roost"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "If held by a Dragonite, this item allows it to Mega Evolve in battle.",
+          "ability": "If this Pokemon is at full HP, damage taken from attacks is halved.",
+          "nature": "+10% Attack, -10% Sp. Atk",
+          "moves": {
+            "Dragon Dance": "Dragon · Status · 100% accuracy. Raises the user's Attack and Speed by 1.",
+            "Extreme Speed": "Normal · Physical · power 80 · 100% accuracy · priority +2. Nearly always goes first.",
+            "Earthquake": "Ground · Physical · power 100 · 100% accuracy. Hits adjacent Pokemon. Double damage on Dig.",
+            "Roost": "Flying · Status · 100% accuracy. Heals 50% HP. Flying-type removed 'til turn ends."
+          }
+        }
+      },
+      {
+        "species": "Volcarona",
+        "sprite": "volcarona",
+        "item": "Life Orb",
+        "ability": "Flame Body",
+        "tera_type": "",
+        "nature": "Timid",
+        "evs": {
+          "hp": 2,
+          "spa": 32,
+          "spe": 32
+        },
+        "moves": [
+          "Quiver Dance",
+          "Fiery Dance",
+          "Bug Buzz",
+          "Protect"
+        ],
+        "smogon_teams": 0,
+        "fallback": false,
+        "notes": {
+          "item": "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+          "ability": "30% chance a Pokemon making contact with this Pokemon will be burned.",
+          "nature": "+10% Speed, -10% Attack",
+          "moves": {
+            "Quiver Dance": "Bug · Status · 100% accuracy. Raises the user's Sp. Atk, Sp. Def, Speed by 1.",
+            "Fiery Dance": "Fire · Special · power 80 · 100% accuracy. 50% chance to raise the user's Sp. Atk by 1.",
+            "Bug Buzz": "Bug · Special · power 90 · 100% accuracy. 10% chance to lower the target's Sp. Def by 1.",
+            "Protect": "Normal · Status · 100% accuracy · priority +4. Prevents moves from affecting the user this turn."
+          }
+        }
+      }
+    ],
+    "meta": {
+      "used": 0,
+      "of": 6,
+      "slots": 0,
+      "fallbacks": 0,
+      "sample_teams": 0
+    },
+    "picks": {
+      "legal": true,
+      "species": [
+        "Garchomp",
+        "Rotom-Wash",
+        "Gholdengo",
+        "Annihilape",
+        "Dragonite",
+        "Volcarona"
+      ],
+      "repairs": [],
+      "attempts": [
+        {
+          "attempt": 1,
+          "problems": [],
+          "error": null,
+          "pokemon": [
+            "Garchomp",
+            "Rotom-Wash",
+            "Gholdengo",
+            "Annihilape",
+            "Dragonite",
+            "Volcarona"
+          ],
+          "thought": "Building a balanced 3v3 core with strong offensive pressure, defensive pivoting, and type coverage. Rotom-Wash provides VoltTurn and control, Garchomp/Dragonite offer fast physical threats, while Gholdengo/Volcarona handle special offense and Annihilape gives bulk and setup potential.",
+          "tokens": 2056
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "problems": [],
+        "error": null,
+        "thought": "Building for 3v3 BSS pick-3, I need self-sufficient sweepers and pivots. Garchomp/Dragonite get Mega Stones for immediate power with setup, Volcarona provides Quiver Dance win-con, Gholdengo blocks status and cleans with Make It Rain, Rotom-Wash offers Volt Switch + Will-O-Wisp control, and Annihilape gives Bulk Up + Rage Fist bulk to handle stall.",
+        "team_text": "Garchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 2 Def / 32 Spe\nJolly Nature\n- Swords Dance\n- Earthquake\n- Dragon Claw\n- Protect\n\nRotom-Wash @ Leftovers\nAbility: Levitate\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Volt Switch\n- Hydro Pump\n- Will-O-Wisp\n- Protect\n\nGholdengo @ Choice Scarf\nAbility: Good as Gold\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Make It Rain\n- Shadow Ball\n- Thunderbolt\n- Trick\n\nAnnihilape @ Lum Berry\nAbility: Defiant\nEVs: 32 HP / 32 Atk / 2 Spe\nAdamant Nature\n- Bulk Up\n- Rage Fist\n- Drain Punch\n- Protect\n\nDragonite @ Dragoninite\nAbility: Multiscale\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Dragon Dance\n- Extreme Speed\n- Earthquake\n- Roost\n\nVolcarona @ Life Orb\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Quiver Dance\n- Fiery Dance\n- Bug Buzz\n- Protect",
+        "tokens": 3342,
+        "cost_usd": 0.0062513,
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  {
     "config_id": "muse_wonder",
     "version": "c5",
     "format": "gen9championsrotomarenabssregmb",
