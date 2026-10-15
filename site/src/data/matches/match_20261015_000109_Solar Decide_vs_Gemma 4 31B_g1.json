@@ -1,0 +1,697 @@
+{
+  "id": "match_20261015_000109_Solar Decide_vs_Gemma 4 31B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261015",
+  "players": [
+    {
+      "config_id": "solar_decide_flash",
+      "display_name": "Solar Decide Flash",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "upstage/solar-decide-flash",
+      "quantization": null,
+      "username": "Solar Decide",
+      "role": "p1",
+      "team": "Solar Decide Flash's team",
+      "model_key": "upstage/solar-decide-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Solar Decide Flash"
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0,
+      "replay_name": "Gemma 4 31B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 10,
+  "duration_seconds": 315.7,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Solar Decide Flash||",
+    "|player|p2|Gemma 4 31B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Tauros-Paldea-Blaze, L50, M|",
+    "|poke|p1|Delphox, L50, F|",
+    "|poke|p1|Glimmora, L50, F|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Roserade, L50, M|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|poke|p2|Palafin, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|switch|p2a: Incineroar|Incineroar, L50, F|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Garchomp|atk|1",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Incineroar|Fake Out|p1a: Rotom",
+    "|-immune|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Garchomp",
+    "|-unboost|p1a: Garchomp|atk|1",
+    "|-unboost|p1a: Garchomp|spa|1",
+    "|",
+    "|switch|p2a: Palafin|Palafin, L50, F|100/100|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|125/125",
+    "|move|p2a: Palafin|Flip Turn|p1a: Rotom",
+    "|-damage|p1a: Rotom|62/125",
+    "|",
+    "|detailschange|p2a: Palafin|Palafin-Hero, L50, F",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100|[from] Flip Turn",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|183/183",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|114/183",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|62/125",
+    "|move|p2a: Dragapult|Draco Meteor|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|-unboost|p2a: Dragapult|spa|2",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|turn|6",
+    "|",
+    "|switch|p2a: Palafin|Palafin-Hero, L50, F|100/100",
+    "|-activate|p2a: Palafin|ability: Zero to Hero",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|114/183",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|150/150",
+    "|move|p2a: Palafin|Wave Crash|p1a: Tauros",
+    "|-supereffective|p1a: Tauros|1",
+    "|-enditem|p1a: Tauros|Focus Sash",
+    "|-damage|p1a: Tauros|1/150",
+    "|-damage|p2a: Palafin|76/100|[from] Recoil",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|114/183",
+    "|move|p2a: Palafin|Jet Punch|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|27/183",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|switch|p1a: Tauros|Tauros-Paldea-Blaze, L50, M|1/150",
+    "|move|p2a: Palafin|Jet Punch|p1a: Tauros",
+    "|-supereffective|p1a: Tauros|1",
+    "|-damage|p1a: Tauros|0 fnt",
+    "|faint|p1a: Tauros",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|27/183",
+    "|turn|10",
+    "|",
+    "|move|p2a: Palafin|Jet Punch|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|win|Gemma 4 31B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotom,taurospaldeablaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 65% BRING: garchomp, 19% BRING: rotom, 7% BRING: roserade\nPick 2: 48% BRING: rotom, 17% BRING: glimmora, 14% BRING: roserade\nPick 3: 53% BRING: taurospaldeablaze, 28% BRING: delphox, 10% BRING: glimmora",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6449,
+      "latency_ms": 5394,
+      "cost_usd": 0.00032245,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,palafin,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "The opponent has a mix of Fire, Fighting, and Poison types. I'll lead with Incineroar for Fake Out and Intimidate, then pivot to Palafin to activate Zero to Hero. Dragapult provides essential speed and coverage, especially for Garchomp and Rotom.",
+      "hidden_reasoning": "*   Opponent's Team: Rotom (Electric/Ghost), Tauros-Paldea-Blaze (Fighting/Fire), Delphox (Fire/Psychic), Glimmora (Rock/Poison), Garchomp (Dragon/Ground), Roserade (Grass/Poison).\n    *   My Team: Incineroar, Kingambit, Gholdengo, Dragapult, Annihilape, Palafin.\n\n    *   Rotom: Weak to Ghost, Dark.\n    *   Tauros-Blaze: Weak to Water, Ground, Psychic.\n    *   Delphox: Weak to Water, Ground, Rock, Ghost.\n    *   Glimmora: Weak to Ground, Psychic, Water.\n    *   Garchomp: Weak to Ice, Dragon, Fairy.\n    *   Roserade: Weak to Fire, Ice, Flying, Psychic.\n\n    *   Incineroar: Great for Intimidate, Fake Out, and dealing with Roserade.\n    *   Kingambit: Strong attacker, Sucker Punch for priority, handles Rotom and Delphox.\n    *   Gholdengo: Scarf, Make It Rain for Glimmora/Roserade, Shadow Ball for Rotom/Delphox.\n    *   Dragapult: Fast, Shadow Ball for Rotom/Delphox, Draco Meteor for Garchomp.\n    *   Annihilape: Strong Fighting/Ghost, handles Glimmora/Tauros (though Tauros is Fire/Fighting).\n    *   Palafin: Huge damage, Jet Punch for Tauros/Delphox/Glimmora.\n\n    *   The opponent has several Fire/Fighting/Psychic types.\n    *   Palafin is essential for dealing with Tauros-Blaze and Delphox.\n    *   Gholdengo is great for Glimmora and Roserade.\n    *   Incineroar provides utility (Fake Out, Parting Shot, Intimidate).\n    *   Dragapult is a great general speed threat.\n    *   Kingambit is a late-game cleaner.\n\n    *   Lead: Incineroar (Fake Out, Intimidate, Parting Shot to pivot Palafin or Gholdengo).\n    *   Back: Palafin (needs to switch out and back in for Zero to Hero), Gholdengo (covers the Rock/Poison/Grass threats).\n\n    *Alternative:*\n    *   Lead: Dragapult (Speed, general pressure).\n    *   Back: Palafin, Kingambit.\n\n    *Let's evaluate the opponent's likely leads:*\n    *   Glimmora (Toxic Debris) is a common lead.\n    *   Rotom (Volt Switch) is common.\n\n    If Glimmora leads, Incineroar's Fake Out is useful, but Gholdengo's Make It Rain is devastating.\n    If Rotom leads, Incineroar's Fake Out is useful, then Parting Shot to Palafin or Gholdengo.\n\n    Let's go with Incineroar, Palafin, and Gholdengo.\n    Wait, Kingambit is often better than Gholdengo if I have Palafin for the Fire types. But Gholdengo's Scarf and Steel typing are very useful against Glimmora and Roserade.\n\n    Let's try: Incineroar, Palafin, Gholdengo.\n    Wait, maybe Dragapult instead of Gholdengo for more speed and coverage?\n    Opponent has Garchomp. Dragapult can hit it with Draco Meteor.\n    Opponent has Rotom. Dragapult can hit it with Shadow Ball.\n    Opponent has Delphox. Dragapult can hit it with Shadow Ball.\n\n    Let's go with Incineroar, Palafin, and Dragapult.\n    Wait, Gholdengo is better against Glimmora and Roserade.\n    Let's go Incineroar, Palafin, Gholdengo.\n\n    Wait, let's check the types again.\n    Opponent: Rotom (Ele/Gho), Tauros (Fig/Fir), Delphox (Fir/Psy), Glimmora (Roc/Poi), Garchomp (Dra/Gro), Roserade (Gra/Poi).\n    My team: Incineroar (Fir/Dar), Palafin (Wat), Gholdengo (Ste/Gho).\n    - Rotom: Gholdengo (Shadow Ball), Incineroar (Dark moves).\n    - Tauros: Palafin (Water), Gholdengo (Steel - not really, but Palafin is the key).\n    - Delphox: Palafin (Water), Gholdengo (Shadow Ball).\n    - Glimmora: Gholdengo (Make It Rain), Palafin (Water).\n    - Garchomp: Gholdengo (not great), Palafin (not great), Incineroar (not great).\n    Wait, I have no way to hit Garchomp hard with this trio.\n\n    Let's swap Gholdengo for Dragapult.\n    Trio: Incineroar, Palafin, Dragapult.\n    - Rotom: Dragapult (Shadow Ball).\n    - Tauros: Palafin (Water).\n    - Delphox: Palafin (Water), Dragapult (Shadow Ball).\n    - Glimmora: Palafin (Water).\n    - Garchomp: Dragapult (Draco Meteor).\n    - Roserade: Incineroar (Flare Blitz).\n\n    This seems more balanced.\n\n    Wait, Kingambit is a monster. If I bring Kingambit, Palafin, and Incineroar?\n    - Rotom: Kingambit (Sucker Punch/Kowtow Cleave).\n    - Tauros: Palafin (Water).\n    - Delphox: Palafin (Water), Kingambit (Sucker Punch).\n    - Glimmora: Palafin (Water).\n    - Garchomp: Kingambit (not great), Palafin (not great).\n    Still the Garchomp problem.\n\n    Let's go with Incineroar, Palafin, and Dragapult.\n\n    Wait, let's reconsider Gholdengo. Make It Rain is huge.\n    If I bring Incineroar, Palafin, and Gholdengo, I can't hit Garchomp.\n    If I bring Incineroar, Palafin, and Dragapult, I can hit everything.\n\n    Let's double check the opponent's team again.\n    Rotom, Tauros-B, Delphox, Glimmora, Garchomp, Roserade.\n    My team: Incineroar, Palafin, Dragapult.\n    Lead: Incineroar.\n    Back: Palafin, Dragapult.\n\n    Wait, maybe Annihilape? Annihilape is great against Glimmora and Tauros.\n    But Palafin is better against Tauros.\n\n    Let's stick with Incineroar, Palafin, Dragapult.\n\n    Wait, let's look at the stats.\n    Dragapult Speed: 213.\n    Opponent's fastest possible: Delphox (171), Garchomp (169), Tauros (167), Glimmora (151), Roserade (156), Rotom (157).\n    Dragapult outspeeds everything.\n\n    Incineroar lead is standard for Fake Out and pivoting.\n\n    Final choice: Incineroar, Palafin, Dragapult.\n\n    Wait, let me think about Gholdengo one more time.\n    Gholdengo's Make It Rain is incredibly strong.\n    But Dragapult's speed and Draco Meteor are crucial for Garchomp.\n    If I bring Incineroar, Palafin, and Dragapult, I have a way to deal with every single Pokémon on the opponent's team.\n\n    Wait, what if the opponent leads Glimmora?\n    Incineroar Fake Out, then Parting Shot to Palafin.\n    Then Palafin hits Glimmora with Jet Punch or Wave Crash.\n    Then Palafin flips out with Flip Turn.\n    Then Dragapult comes in to clean up.\n\n    This seems like a solid plan.\n\n    One last check:\n    Opponent: Rotom, Tauros-B, Delphox, Glimmora, Garchomp, Roserade.\n    My team: Incineroar, Palafin, Dragapult.\n    - Rotom: Dragapult (Shadow Ball)\n    - Tauros-B: Palafin (Water)\n    - Delphox: Palafin (Water) / Dragapult (Shadow Ball)\n    - Glimmora: Palafin (Water)\n    - Garchomp: Dragapult (Draco Meteor)\n    - Roserade: Incineroar (Flare Blitz)\n\n    Wait, what if they lead Rotom?\n    Incineroar Fake Out, then Parting Shot to Palafin.\n    Palafin uses Flip Turn to switch out.\n    Then Dragapult comes in and uses Shadow Ball.\n\n    This seems very strong.\n\n    Wait, let me check if I should bring Kingambit instead of Dragapult.\n    Kingambit is great, but Dragapult's speed and Garchomp coverage are more important here.\n\n    Final decision: Incineroar, Palafin, Dragapult.",
+      "note": "",
+      "tokens": 4360,
+      "latency_ms": 33802,
+      "cost_usd": 0.00094715,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% SWITCH: rotom, 23% MOVE: stoneedge, 23% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2223,
+      "latency_ms": 1058,
+      "cost_usd": 0.00011115,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.107158,
+        "MOVE: sandstorm": 0.014502,
+        "MOVE: stealthrock": 0.050618,
+        "MOVE: stoneedge": 0.226853,
+        "SWITCH: rotom": 0.374017,
+        "SWITCH: taurospaldeablaze": 0.226853
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "fakeout",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use Fake Out to flinch Garchomp and disrupt its first turn. After that, I'll look to use Parting Shot to bring in Palafin and activate Zero to Hero, or Will-O-Wisp to further neuter Garchomp's attack power.",
+      "hidden_reasoning": "*   My lead: Incineroar (Fire/Dark)\n    *   Opponent's lead: Garchomp (Dragon/Ground)\n    *   Incineroar's Ability: Intimidate (already triggered, Garchomp -1 Atk)\n    *   Garchomp is faster than Incineroar.\n\n    *   Garchomp is a huge threat. It likely has Earthquake, which hits Incineroar hard.\n    *   Incineroar has Fake Out, which has priority +3 and a 100% flinch chance (if the target isn't immune).\n    *   Using Fake Out allows me to disrupt Garchomp's first move and potentially pivot later or set up a burn.\n    *   Alternatively, I could use Will-O-Wisp to burn Garchomp, but that's risky if Garchomp uses Earthquake first (since Garchomp is faster).\n    *   Fake Out is the standard lead move for Incineroar to gain momentum.\n\n    *   Fake Out: Priority +3, flinches Garchomp.\n    *   Parting Shot: Lowers stats and switches, but Garchomp moves first.\n    *   Will-O-Wisp: 85% accuracy, but Garchomp moves first.\n    *   Switching: Switching to Palafin or Dragapult. Palafin needs to enter and leave to activate Zero to Hero. Dragapult is fast and can hit Garchomp with Draco Meteor.\n\n    *   Fake Out is the safest and most effective first move. It guarantees a hit (unless Garchomp has a specific immunity, which it doesn't) and a flinch.\n    *   After Fake Out, I can decide whether to use Parting Shot to bring in Palafin or Will-O-Wisp to cripple Garchomp further.\n\n    *   Plan: Use Fake Out to flinch Garchomp. Then potentially use Parting Shot to bring in Palafin to activate Zero to Hero, or Will-O-Wisp to burn Garchomp.\n\n    *   Wait, if I Fake Out, Garchomp flinches. Then next turn, I can Parting Shot or Will-O-Wisp.\n    *   If I Parting Shot now, Garchomp hits me first.\n    *   If I switch now, Garchomp hits the incoming Pokemon.\n\n    *   Fake Out is the best play.",
+      "note": "",
+      "tokens": 2899,
+      "latency_ms": 20543,
+      "cost_usd": 0.00043846,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% SWITCH: garchomp, 12% SWITCH: taurospaldeablaze, 2% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2245,
+      "latency_ms": 1608,
+      "cost_usd": 0.00011225,
+      "probabilities": {
+        "MOVE: discharge": 0.018934,
+        "MOVE: electricterrain": 0.011484,
+        "MOVE: risingvoltage": 0.016709,
+        "MOVE: voltswitch": 0.024312,
+        "SWITCH: garchomp": 0.805096,
+        "SWITCH: taurospaldeablaze": 0.123465
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom is active and faster than Incineroar. I will use Parting Shot to lower Rotom's Special Attack and pivot to Palafin to begin the Zero to Hero process. Dragapult remains a key speed threat for later.",
+      "hidden_reasoning": "*   My active Pokémon: Incineroar (Fire/Dark).\n    *   Opponent's active Pokémon: Rotom (Electric/Ghost).\n    *   Opponent's team: Rotom, Garchomp, and one more (Taurospaldeablaze, Delphox, Glimmora, or Roserade).\n    *   Current situation: Turn 2. Incineroar used Fake Out on Turn 1, but Rotom is immune to it (Ghost type).\n    *   Rotom is faster than Incineroar.\n\n    *   Rotom is Electric/Ghost.\n    *   Incineroar's moves:\n        *   `partingshot`: Lowers Atk/SpA, switches out. Good for pivoting.\n        *   `flareblitz`: Fire physical. Not very effective against Rotom.\n        *   `willowisp`: Burn. Rotom is a special attacker usually, so burn isn't as impactful, but still useful.\n    *   Rotom's likely moves: Thunderbolt, Overcast/Shadow Ball, Volt Switch, Will-O-Wisp.\n\n    *   I want to get Palafin in to activate Zero to Hero.\n    *   `partingshot` is the ideal way to do this because it lowers Rotom's stats and allows a safe switch.\n    *   If I switch directly to Palafin, Rotom might use Thunderbolt or Volt Switch.\n    *   If I use `partingshot`, I can bring in Palafin.\n\n    *   Rotom is Electric/Ghost.\n    *   Palafin is Water.\n    *   Rotom's Thunderbolt will hit Palafin hard.\n    *   However, `partingshot` lowers Rotom's Special Attack, mitigating some of that damage.\n    *   Alternatively, I could switch to Dragapult, who is faster and can hit Rotom with Shadow Ball.\n\n    *   `partingshot` -> Palafin.\n    *   `partingshot` -> Dragapult.\n    *   Switch to Dragapult.\n\n    *   If I use `partingshot`, I lower Rotom's SpA.\n    *   Then I bring in Palafin.\n    *   Palafin can then use `flipturn` to switch back out, activating Zero to Hero.\n    *   This seems like a solid sequence.\n\n    *   Rotom is faster. It will move before Incineroar.\n    *   If Rotom uses Thunderbolt, Incineroar takes a hit, then uses `partingshot`.\n    *   If Rotom uses Volt Switch, it switches out, and Incineroar uses `partingshot` on the incoming Pokémon.\n\n    *   `partingshot` is the best move here to facilitate the Palafin strategy and weaken the opponent.\n\n    *   Wait, if I use `partingshot`, I choose the replacement *after* the move executes in the game logic, but in Showdown, `partingshot` is a move that triggers a switch. The legal actions list `partingshot` as a move. I don't choose the switch-in *with* the move in the same action line; the game will prompt for the switch-in after the move is executed.\n\n    *   Wait, looking at the legal actions:\n        1. MOVE: partingshot\n        2. MOVE: flareblitz\n        3. MOVE: willowisp\n        4. SWITCH: palafin\n        5. SWITCH: dragapult\n\n    *   If I select `MOVE: partingshot`, the game will then ask me who to switch to.\n\n    *   Plan: Use `partingshot` to lower Rotom's stats and pivot to Palafin to start the Zero to Hero process.\n\n    *   Wait, is there a risk? Rotom might use a move that Incineroar hates. But Incineroar is bulky.\n    *   Is Dragapult better? Dragapult is faster and can threaten Rotom. But getting Palafin's form change is a high priority.\n\n    *   Let's go with `partingshot`.\n\n    *   Wait, let me double-check Rotom's typing. Electric/Ghost.\n    *   Incineroar is Fire/Dark.\n    *   Rotom's moves: Thunderbolt (Super Effective vs Palafin), Shadow Ball (Neutral vs Incineroar), Volt Switch (Neutral vs Incineroar).\n    *   Incineroar's `partingshot` will lower Rotom's SpA, making Thunderbolt less scary for Palafin.\n\n    *   Wait, if I use `partingshot`, I'll be prompted to switch. I'll choose Palafin. Then Palafin can use `flipturn` to switch back out.\n\n    *   Let's refine the notes.\n\n    *   Notes: Rotom is active. Use Parting Shot to lower its Special Attack and pivot to Palafin to begin the Zero to Hero process. Dragapult is a backup for speed and Ghost coverage.\n\n    *   Decision: MOVE: partingshot.",
+      "note": "",
+      "tokens": 3579,
+      "latency_ms": 39975,
+      "cost_usd": 0.00064686,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is currently at -2 Attack (Intimidate + Parting Shot). I will bring in Palafin now to begin the Zero to Hero process, intending to use Flip Turn on the next turn to pivot out and activate the Hero form.",
+      "hidden_reasoning": "*   My active Pokémon: Incineroar (HP 100%).\n    *   Opponent's active Pokémon: Garchomp (HP 100%, Atk -1, SpA -1).\n    *   Opponent's team: Garchomp, Rotom, and one more (Taurospaldeablaze, Delphox, Glimmora, or Roserade).\n    *   My team: Incineroar, Dragapult, Palafin.\n\n    *   Incineroar used Parting Shot on Turn 2, which lowered Garchomp's Atk and SpA and pivoted out.\n    *   Wait, the battle log says:\n        Turn 1: Opposing Rotom came in. Incineroar used Fake Out (immune).\n        Turn 2: Opposing Garchomp came in. Incineroar used Parting Shot.\n    *   Wait, the log says \"Your Incineroar used Parting Shot\" and then \"Opposing Garchomp: atk -1, Opposing Garchomp: spa -1\".\n    *   Wait, Parting Shot *pivots* the user out. The \"LEGAL ACTIONS\" for Turn 3 (which is the current turn, although the prompt says \"Turn 2\" at the top, the log shows Turn 2 just happened) are SWITCH: palafin or SWITCH: dragapult.\n    *   Wait, the prompt says \"Turn 2 | Weather: None | Field: None\" but the log shows Turn 2 already happened. Let's re-read.\n    *   Log:\n        Turn 1: Rotom came in, Fake Out (immune).\n        Turn 2: Garchomp came in, Parting Shot used.\n    *   If Parting Shot was used, Incineroar *must* be switching out. The legal actions are the choices for the switch-in.\n\n    *   Garchomp is active. It has -1 Atk and -1 SpA.\n    *   I need to bring in a Pokémon.\n    *   Palafin: Needs to come in and then use Flip Turn to activate Zero to Hero. Garchomp is a threat, but Palafin's Water moves are super effective. However, Garchomp might use Earthquake.\n    *   Dragapult: Fast, can hit Garchomp with Shadow Ball or Draco Meteor.\n\n    *   If I bring in Palafin, I can use Flip Turn next turn to switch out and activate Zero to Hero.\n    *   If I bring in Dragapult, I can potentially chip Garchomp or force a switch.\n    *   Garchomp's attack is lowered (-1 from Intimidate, -1 from Parting Shot = -2 total). This makes it much less dangerous.\n\n    *   Palafin is the priority to get Zero to Hero active.\n    *   Garchomp is at -2 Attack. Palafin can take a hit reasonably well or just Flip Turn out immediately.\n    *   Wait, if I bring in Palafin now, I can use Flip Turn on the next turn.\n\n    *   The prompt says \"Turn 2\" at the top, but the log shows Turn 2 just finished. The legal actions are the switch-ins for the Parting Shot.\n    *   Current state: Garchomp is active. Incineroar just used Parting Shot.\n    *   Choice: Palafin or Dragapult.\n    *   Palafin is the best bet to start the Zero to Hero process.\n\n    *   Garchomp is -2 Atk.\n    *   Palafin comes in.\n    *   Next turn: Palafin uses Flip Turn.\n    *   This activates Zero to Hero and allows me to pivot back to Incineroar or Dragapult.\n\n    *   Wait, if I bring in Dragapult, I can potentially KO Garchomp or put it in a bad spot. But Palafin's Hero form is too strong to ignore.\n    *   Let's go with Palafin.\n\n    *   Wait, let me double-check the log again.\n    *   Turn 1: Rotom came in. Fake Out (immune).\n    *   Turn 2: Garchomp came in. Parting Shot.\n    *   Wait, the log says \"Opposing Garchomp came in\" *then* \"Your Incineroar used Parting Shot\". This means Garchomp switched in *on* the turn Incineroar used Parting Shot.\n    *   So Garchomp is the current active Pokémon.\n    *   Garchomp's stats: Atk -1 (Intimidate) and then -1 (Parting Shot) = -2 Atk.\n    *   Wait, the log says \"Opposing Garchomp: atk -1\" then \"Opposing Garchomp: spa -1\". That's the effect of Parting Shot. The Intimidate happened at the very start (Turn 1 lead).\n    *   So Garchomp is indeed -2 Atk.\n\n    *   Palafin is the best choice to start the Zero to Hero process.\n\n    *   Wait, is there any risk? Garchomp might use a special move (though it's -1 SpA) or a status move. But generally, Palafin is safe enough to Flip Turn out.\n\n    *   Wait, the legal actions are:\n        1. SWITCH: palafin\n        2. SWITCH: dragapult\n    *   This confirms I am choosing who comes in after Parting Shot.\n\n    *   Plan: Bring in Palafin, use Flip Turn next turn to activate Zero to Hero.\n\n    *   Wait, let me check Garchomp's possible moves. Earthquake is the big one. Palafin can take a -2 Earthquake.\n\n    *   Let's commit to Palafin.",
+      "note": "",
+      "tokens": 3784,
+      "latency_ms": 47510,
+      "cost_usd": 0.0007072,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% SWITCH: rotom, 30% SWITCH: taurospaldeablaze, 14% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2438,
+      "latency_ms": 1799,
+      "cost_usd": 0.0001219,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.111132,
+        "MOVE: sandstorm": 0.028099,
+        "MOVE: stealthrock": 0.142696,
+        "MOVE: stoneedge": 0.028099,
+        "SWITCH: rotom": 0.387888,
+        "SWITCH: taurospaldeablaze": 0.302087
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flipturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Use Flip Turn to deal damage to the weakened Garchomp and switch Palafin out to activate its Hero Form. Garchomp's attack is currently -2, making it a safe time to pivot.",
+      "hidden_reasoning": "*   My Palafin (Zero Form) is active.\n    *   Opposing Garchomp is active.\n    *   Garchomp is at -2 Attack and -1 SpA (Intimidate + Parting Shot).\n    *   Goal: Activate Palafin's Hero Form using `flipturn`.\n\n    *   Palafin's speed (122) vs Garchomp's speed (109-169).\n    *   Garchomp is at -2 Attack, so its physical moves (like Earthquake) will do significantly less damage.\n    *   `flipturn` is the optimal move here to deal some damage and switch Palafin out to trigger Zero to Hero.\n\n    *   `flipturn` deals Water damage (super effective against Ground).\n    *   Garchomp's Rough Skin might deal a small amount of damage to Palafin, but that's negligible.\n    *   Switching out Palafin transforms it into Hero Form.\n\n    *   Garchomp is weakened.\n    *   Palafin needs to switch out to become Hero Form.\n    *   `flipturn` achieves both damage and the switch.",
+      "note": "",
+      "tokens": 2891,
+      "latency_ms": 11574,
+      "cost_usd": 0.00036782,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin has used Flip Turn and is switching out to activate Hero Form. Rotom (Electric/Ghost) is at 49% HP. Dragapult is the best switch-in due to its speed and the ability to hit Rotom with a super-effective Shadow Ball.",
+      "hidden_reasoning": "*   My Palafin just used Flip Turn on Rotom.\n    *   Rotom is at 49% HP.\n    *   Palafin is switching out, which activates Zero to Hero (Hero Form).\n    *   The opponent's Rotom is active.\n    *   I need to choose which Pokémon to switch into.\n\n    *   Rotom (Electric/Ghost) is active.\n    *   Rotom's potential moves: Thunderbolt, Overcast/Volt Switch, Shadow Ball, Will-O-Wisp, etc.\n    *   My options: Incineroar or Dragapult.\n\n    *   Incineroar (Fire/Dark):\n        *   Resists Ghost (Rotom's Shadow Ball).\n        *   Weak to Electric (Rotom's Thunderbolt).\n        *   Can use Fake Out (if Rotom isn't immune, but it's Ghost, so it is immune) or Will-O-Wisp.\n        *   Intimidate will trigger again if Rotom is physical (unlikely).\n    *   Dragapult (Dragon/Ghost):\n        *   Immune to Normal/Fighting.\n        *   Resists Ghost (Rotom's Shadow Ball).\n        *   Neutral to Electric.\n        *   Fastest Pokémon on the field.\n        *   Can hit Rotom with Shadow Ball.\n\n    *   Rotom is Electric/Ghost.\n    *   Dragapult is Dragon/Ghost.\n    *   Dragapult is generally faster and can threaten Rotom with Shadow Ball.\n    *   Incineroar is bulky but takes a hit from Thunderbolt.\n    *   Since Palafin is switching out, I want a safe entry. Dragapult is a strong choice here because it's fast and can pressure Rotom.\n\n    *   Wait, the battle log says \"Your Palafin used Flip Turn\" and \"Opposing Rotom is at 49%\".\n    *   The \"LEGAL ACTIONS\" provided are `SWITCH: incineroar` and `SWITCH: dragapult`.\n    *   This means the game is currently processing the switch-out from Flip Turn. I must choose the replacement.\n\n    *   Rotom is likely to use Thunderbolt or Volt Switch.\n    *   Dragapult is faster and can retaliate with Shadow Ball.\n    *   Incineroar is slower and takes more damage from Thunderbolt.\n    *   Dragapult is the better pivot here.\n\n    *   Palafin is now in Hero Form.\n    *   Rotom is at 49%.\n    *   Dragapult can potentially KO or severely damage Rotom.\n\n    *   Wait, let me double-check Rotom's typing. Rotom-Wash is Water/Electric. Rotom-Heat is Fire/Electric. Rotom-Mow is Grass/Electric. Rotom-Frost is Ice/Electric.\n    *   The prompt says \"rotom (Electric/Ghost)\". This is Rotom-Ghost (though not a standard form in most games, it's listed as Electric/Ghost here).\n    *   If it's Electric/Ghost, Shadow Ball (Ghost) is super effective.\n    *   Dragapult's Shadow Ball will hit hard.\n\n    *   Switch to Dragapult.\n\n    *   Wait, looking at the legal actions:\n        1. SWITCH: incineroar\n        2. SWITCH: dragapult\n    *   I will choose Dragapult.",
+      "note": "",
+      "tokens": 3249,
+      "latency_ms": 20873,
+      "cost_usd": 0.00052866,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "77% SWITCH: garchomp, 13% SWITCH: taurospaldeablaze, 3% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2630,
+      "latency_ms": 1136,
+      "cost_usd": 0.0001315,
+      "probabilities": {
+        "MOVE: discharge": 0.033668,
+        "MOVE: electricterrain": 0.029712,
+        "MOVE: risingvoltage": 0.014035,
+        "MOVE: voltswitch": 0.02314,
+        "SWITCH: garchomp": 0.766285,
+        "SWITCH: taurospaldeablaze": 0.13316
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom is at 49% HP and is Electric/Ghost. Dragapult is significantly faster and has Shadow Ball, which is super effective and boosted by Expert Belt. I will use Shadow Ball to attempt a knockout.",
+      "hidden_reasoning": "*   My active Pokémon: Dragapult (100% HP).\n    *   Opponent's active Pokémon: Rotom (Electric/Ghost) (49% HP).\n    *   Dragapult's speed: 213 (definitely faster than Rotom's 99-157).\n    *   Rotom's HP: 49%.\n    *   Dragapult's moves: Shadow Ball (Ghost, super effective), Draco Meteor, Thunderbolt, U-turn.\n    *   Rotom is Electric/Ghost. Shadow Ball is super effective (Ghost vs Ghost).\n    *   Rotom's HP is low (49%). Shadow Ball with Expert Belt (super effective) should deal significant damage.\n\n    *   Shadow Ball: 80 BP * 1.5 (super effective) * 1.2 (Expert Belt) = 144 effective BP.\n    *   Rotom's SpD range: 87-141.\n    *   Dragapult's SpA: 152.\n    *   Calculation: (152 / Rotom's SpD) * 144 * (some constants).\n    *   Even at the high end of Rotom's SpD (141), Shadow Ball is likely to do massive damage.\n    *   Rotom is at 49%. Shadow Ball is very likely to KO or leave it extremely low.\n\n    *   Rotom might use a move like Volt Switch to pivot.\n    *   Rotom might use a status move.\n    *   Regardless, Dragapult moves first.\n\n    *   Shadow Ball is the most efficient move to remove Rotom.\n    *   If Rotom is KO'd, I maintain momentum.\n    *   If Rotom survives, I can still pivot or attack again.\n\n    *   Rotom is Electric/Ghost.\n    *   Shadow Ball is Ghost-type.\n    *   Ghost vs Ghost is super effective.\n    *   Expert Belt boosts super effective moves.\n    *   Rotom is at 49% HP.\n    *   Shadow Ball is the clear choice.",
+      "note": "",
+      "tokens": 3147,
+      "latency_ms": 20406,
+      "cost_usd": 0.00044694,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% SWITCH: rotom, 22% MOVE: stealthrock, 22% SWITCH: taurospaldeablaze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2669,
+      "latency_ms": 1586,
+      "cost_usd": 0.00013345,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.102763,
+        "MOVE: sandstorm": 0.080032,
+        "MOVE: stealthrock": 0.21755,
+        "MOVE: stoneedge": 0.102763,
+        "SWITCH: rotom": 0.27934,
+        "SWITCH: taurospaldeablaze": 0.21755
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 62% HP and has -2 Attack and -1 Sp. Atk. Dragapult is significantly faster. Draco Meteor is super effective and boosted by Expert Belt, making it the most likely move to secure a knockout or leave Garchomp in range for a follow-up. I will prioritize removing Garchomp now.",
+      "hidden_reasoning": "*   My active Pokémon: Dragapult (100% HP).\n    *   Opponent's active Pokémon: Garchomp (62% HP).\n    *   Opponent's team: Garchomp, Rotom (49% HP), and one more (Taurospaldeablaze, Delphox, Glimmora, or Roserade).\n    *   Dragapult's speed: 213 (faster than Garchomp's max 169).\n    *   Garchomp's stats: -2 Attack, -1 SpA (from Incineroar's Intimidate and Parting Shot).\n\n    *   Shadow Ball: Neutral damage.\n    *   Draco Meteor: Super effective, high damage, but lowers SpA by 2.\n    *   Thunderbolt: Not effective.\n    *   U-turn: Neutral damage, allows switching.\n\n    *   Garchomp is at 62%.\n    *   Draco Meteor is super effective and likely to do massive damage, potentially knocking it out or leaving it very low.\n    *   Shadow Ball is neutral.\n    *   Garchomp is -1 SpA, which helps Dragapult's bulk slightly, though Dragapult is mostly fragile.\n    *   The opponent has Rotom (Electric/Ghost) and one other.\n    *   If I use Draco Meteor, I lose SpA, but Garchomp is a major threat.\n\n    *   Draco Meteor is the strongest option to put pressure on Garchomp.\n    *   If Garchomp survives, I can still pivot or attack again.\n    *   If Garchomp is knocked out, I've removed a huge threat.\n\n    *   Garchomp's HP: 62%.\n    *   Draco Meteor (130 BP, Super Effective, Expert Belt doesn't apply to Draco Meteor unless it's super effective, which it is).\n    *   Wait, Expert Belt *does* apply to super effective moves.\n    *   Draco Meteor is super effective against Garchomp.\n    *   Damage calculation (rough): 130 * 1.5 (STAB) * 2 (Super Effective) * 1.2 (Expert Belt) = 468 relative power. This should easily KO or severely cripple Garchomp.\n\n    *   If I use Draco Meteor, I drop my SpA.\n    *   If I use Shadow Ball, I keep my SpA but do less damage.\n    *   Given Garchomp is at 62%, Draco Meteor is the most efficient way to remove it.\n\n    *   Garchomp is -2 Atk and -1 SpA.\n    *   Dragapult is much faster.\n    *   Draco Meteor is the best move.",
+      "note": "",
+      "tokens": 3365,
+      "latency_ms": 28524,
+      "cost_usd": 0.00051074,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% SWITCH: taurospaldeablaze, 38% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2389,
+      "latency_ms": 1264,
+      "cost_usd": 0.00011945,
+      "probabilities": {
+        "SWITCH: garchomp": 0.377541,
+        "SWITCH: taurospaldeablaze": 0.622459
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "82% SWITCH: garchomp, 9% MOVE: gigaimpact, 7% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2734,
+      "latency_ms": 902,
+      "cost_usd": 0.0001367,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.086018,
+        "MOVE: highhorsepower": 0.024645,
+        "MOVE: ragingbull": 0.066991,
+        "MOVE: trailblaze": 0.006231,
+        "SWITCH: garchomp": 0.816116
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult's Special Attack is severely crippled (-2) after Draco Meteor, making it ineffective against Tauros-Paldea-Blaze. Palafin-Hero is the best switch-in, as its Water-type attacks are super effective against Tauros's Fire typing and it can deal massive damage.",
+      "hidden_reasoning": "*   My active Pokémon: Dragapult (SpA -2).\n    *   Opponent's active Pokémon: Tauros-Paldea-Blaze (Fighting/Fire).\n    *   Opponent's remaining Pokémon: Garchomp (62% HP).\n    *   Dragapult's stats: SpA is currently -2 due to Draco Meteor.\n    *   Tauros-Paldea-Blaze's stats: Fighting/Fire.\n    *   Dragapult's moves: Shadow Ball (Ghost), Draco Meteor (Dragon), Thunderbolt (Electric), U-turn (Bug).\n\n    *   Shadow Ball: Neutral damage.\n    *   Draco Meteor: Neutral damage.\n    *   Thunderbolt: Neutral damage.\n    *   U-turn: Very low damage (1/4x).\n\n    *   Dragapult's SpA is severely crippled (-2). It cannot deal significant damage.\n    *   Tauros-Paldea-Blaze is a physical attacker.\n    *   Palafin-Hero is a strong physical attacker and resists Fire (though not Fighting).\n    *   Incineroar is a bulky pivot with Intimidate and resists Fire.\n\n    *   Switching to Palafin-Hero: Palafin is Water-type, which is super effective against Tauros-Paldea-Blaze's Fire typing. Palafin can hit hard with Jet Punch or Wave Crash.\n    *   Switching to Incineroar: Incineroar can Intimidate Tauros and pivot again.\n\n    *   Tauros-Paldea-Blaze is likely to use a physical attack.\n    *   Palafin-Hero is very strong and can potentially OHKO or heavily damage Tauros.\n    *   Dragapult is useless right now with -2 SpA.\n\n    *   Switching to Palafin-Hero seems like the best play. Palafin's Water moves will deal massive damage to Tauros-Paldea-Blaze.\n\n    *   Wait, let's check the typing again. Tauros-Paldea-Blaze is Fighting/Fire.\n    *   Water is super effective against Fire.\n    *   Fighting is neutral to Water.\n    *   So Palafin's Water moves are super effective.\n\n    *   Wait, is there any risk? Tauros might have a coverage move (like Psychic or Ground), but Palafin is generally bulkier and hits harder.\n\n    *   Let's consider Incineroar. Incineroar is Fire/Dark. Tauros is Fighting/Fire. Incineroar is weak to Fighting. Not a good switch.\n\n    *   So, Palafin-Hero is the way to go.\n\n    *   Wait, I just noticed Dragapult's SpA is -2. I should definitely switch.\n\n    *   Is there any reason to stay in? No. Dragapult cannot do any meaningful damage.\n\n    *   Decision: SWITCH: palafinhero.",
+      "note": "",
+      "tokens": 3579,
+      "latency_ms": 22891,
+      "cost_usd": 0.0005355,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% SWITCH: taurospaldeablaze, 4% MOVE: gigaimpact, 2% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2686,
+      "latency_ms": 899,
+      "cost_usd": 0.0001343,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.041002,
+        "MOVE: sandstorm": 0.004897,
+        "MOVE: stealthrock": 0.017092,
+        "MOVE: stoneedge": 0.003814,
+        "SWITCH: taurospaldeablaze": 0.933195
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "wavecrash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 62% HP and has -2 Attack, making it a minimal threat. Palafin-Hero's Wave Crash is super effective and boosted by Mystic Water, which should easily secure a knockout. I will prioritize removing Garchomp now to clear the way for dealing with Tauros-Paldea-Blaze.",
+      "hidden_reasoning": "*   My active Pokémon: Palafin-Hero (Water)\n    *   Opponent's active Pokémon: Garchomp (Dragon/Ground)\n    *   Garchomp's HP: 62%\n    *   Garchomp's stats: -2 Attack, -1 Sp. Atk (from Incineroar's Intimidate and Parting Shot)\n    *   Palafin-Hero's stats: Zero to Hero activated (massive Attack boost)\n    *   Palafin-Hero's item: Mystic Water (1.2x Water damage)\n\n    *   Garchomp is Dragon/Ground.\n    *   Water moves are super effective against Ground.\n    *   Wave Crash is a high-power Water move (120 BP).\n    *   Jet Punch is a priority Water move (60 BP).\n    *   Garchomp's Attack is currently -2, meaning its Earthquake or Dragon Claw will do significantly less damage.\n\n    *   Wave Crash: 120 BP * 2 (Super Effective) * 1.2 (Mystic Water) = 288 effective BP.\n    *   Jet Punch: 60 BP * 2 (Super Effective) * 1.2 (Mystic Water) = 144 effective BP.\n    *   Garchomp is at 62% HP. Wave Crash is very likely to knock it out or leave it with very little HP.\n\n    *   Garchomp's Attack is -2. Even if it hits Palafin with a strong move, the damage will be minimal.\n    *   Palafin is faster than some Garchomps but slower than others. However, with -2 Attack, Garchomp is not an immediate threat.\n\n    *   Wave Crash is the strongest option to remove Garchomp quickly.\n    *   Jet Punch is safer if I'm worried about speed, but Wave Crash is more decisive.\n    *   Given Garchomp's -2 Attack, I can afford to take a hit to secure the KO.\n\n    *   Garchomp is at 62%.\n    *   Palafin-Hero's Attack is huge.\n    *   Wave Crash (120 BP) vs Garchomp (Ground/Dragon).\n    *   Calculation: Palafin-Hero's Attack is roughly 233. Garchomp's Defense is roughly 103-161.\n    *   Damage = ((2 * 50 / 5 + 2) * 120 * 2 * 1.2 / Garchomp_Def) * 50 / 100... wait, that's not the formula.\n    *   Standard formula: ((2 * Level/5 + 2) * Power * A/D / Z) * Modifier.\n    *   At level 50: (22 * 120 * 233 / 130) * 2 * 1.2 ≈ 120,000 / 130 * 2.4 ≈ 2200 damage.\n    *   Garchomp's HP is around 183-215. 2200 is way more than enough to KO.\n\n    *   Wait, let me re-check the stats. Palafin-Hero's Attack is 233. Garchomp's HP is 62% of ~200 = 124.\n    *   Wave Crash will definitely KO Garchomp.\n\n    *   Garchomp is -2 Attack.\n    *   Wave Crash is the most efficient way to remove it.\n    *   Tauros-Paldea-Blaze is still out there.\n\n    *   Wait, if I use Wave Crash, I take recoil.\n    *   If I use Jet Punch, I might not KO, but I take no recoil.\n    *   But Garchomp is at 62%. Jet Punch (60 BP) might not be enough.\n    *   Let's use Wave Crash to ensure the KO.\n\n    *   Wait, is there any reason to use Flip Turn? No, I want to keep Palafin-Hero in to deal with Tauros later.\n    *   Is there any reason to use Close Combat? No, Water is better.\n\n    *   Decision: Wave Crash.",
+      "note": "",
+      "tokens": 3882,
+      "latency_ms": 26565,
+      "cost_usd": 0.00064284,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "66% SWITCH: garchomp, 11% MOVE: gigaimpact, 11% MOVE: ragingbull",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2755,
+      "latency_ms": 1046,
+      "cost_usd": 0.00013775,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.114848,
+        "MOVE: highhorsepower": 0.019958,
+        "MOVE: ragingbull": 0.114848,
+        "MOVE: trailblaze": 0.089444,
+        "SWITCH: garchomp": 0.660903
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "jetpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Tauros-Paldea-Blaze is at 1% HP after its Focus Sash was triggered. Jet Punch provides priority (+1), ensuring a knockout regardless of Tauros's speed. After this, I will deal with the debuffed Garchomp.",
+      "hidden_reasoning": "*   My Palafin-Hero is active.\n    *   Opponent's Tauros-Paldea-Blaze is active and at 1% HP (Focus Sash triggered last turn).\n    *   Opponent's Garchomp is at 62% HP and has -2 Attack and -1 Sp. Atk.\n    *   Opponent's Rotom is fainted.\n    *   Palafin-Hero is at 76.3% HP.\n\n    *   Tauros is at 1% HP. Any attack will knock it out.\n    *   Jet Punch has priority (+1), ensuring Palafin moves first regardless of Tauros's speed.\n    *   Wave Crash, Flip Turn, and Close Combat also deal damage, but Jet Punch is the safest and most efficient way to secure the KO without taking unnecessary damage or lowering stats.\n\n    *   Tauros is almost certainly gone.\n    *   Garchomp is the remaining threat, but it's heavily debuffed (-2 Atk).\n    *   Palafin-Hero is a strong counter to Garchomp (Water moves are super effective).\n\n    *   Jet Punch is the best choice because it's priority and guaranteed to KO the 1% Tauros.\n\n    *   Tauros is at 1% HP.\n    *   Jet Punch is priority +1.\n    *   Palafin-Hero is active.\n    *   Garchomp is the only other Pokémon left for the opponent.",
+      "note": "",
+      "tokens": 3374,
+      "latency_ms": 10770,
+      "cost_usd": 0.00043388,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Tauros",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% SWITCH: taurospaldeablaze, 3% MOVE: gigaimpact, 2% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2812,
+      "latency_ms": 1469,
+      "cost_usd": 0.0001406,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.032368,
+        "MOVE: sandstorm": 0.003011,
+        "MOVE: stealthrock": 0.015289,
+        "MOVE: stoneedge": 0.003412,
+        "SWITCH: taurospaldeablaze": 0.945921
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "jetpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 14% HP and Tauros is at 1% HP. Jet Punch provides priority and sufficient power to knock out Garchomp immediately, regardless of speed. After Garchomp faints, I will easily clean up Tauros with another priority move.",
+      "hidden_reasoning": "*   My Palafin-Hero is active.\n    *   Opposing Garchomp is active and at 14% HP.\n    *   Opposing Tauros-Paldea-Blaze is at 1% HP.\n    *   Opposing Rotom is fainted.\n    *   Garchomp's Attack is reduced by -2 (from Incineroar's Intimidate and Parting Shot).\n    *   Palafin-Hero's speed is 122, Garchomp's speed range is 109-169.\n\n    *   Garchomp is at 14% HP.\n    *   Jet Punch (priority +1) will definitely hit first and should easily knock out Garchomp at 14% HP.\n    *   Wave Crash would also work but causes recoil.\n    *   Close Combat would also work but lowers defenses.\n    *   Flip Turn would work but switches Palafin out.\n\n    *   Jet Punch is the safest and most efficient option. It's priority, so it doesn't matter if Garchomp is faster. It deals enough damage to finish off a Pokémon at 14% HP.\n\n    *   Garchomp is at 14%.\n    *   Jet Punch: 60 BP * 1.2 (Mystic Water) * STAB (1.5) = 108 effective BP.\n    *   Palafin-Hero's Attack is 233.\n    *   Garchomp's Defense is 103-161.\n    *   Damage calculation: ( ( (2 * 50 / 2 + 2) * 108 * 233 / 161 / 50 ) + 2 ) * 0.85 (approx) = roughly 30-40% of Garchomp's HP.\n    *   14% HP is very low. Jet Punch will definitely KO.\n\n    *   Garchomp is at 14%.\n    *   Tauros is at 1%.\n    *   Jet Punch will KO Garchomp.\n    *   Then I'll be left with Tauros at 1%.\n    *   Palafin-Hero can then use Jet Punch again to KO Tauros.\n\n    *   Wait, if I use Jet Punch now, Garchomp dies. Then Tauros is the only one left.\n    *   Is there any risk? Garchomp might have a move that could hurt Palafin, but it's at -2 Attack. Even a strong move like Earthquake won't do much.\n    *   Jet Punch is the best move.",
+      "note": "",
+      "tokens": 3606,
+      "latency_ms": 17589,
+      "cost_usd": 0.00052236,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "gigaimpact",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: gigaimpact, 29% MOVE: stealthrock, 29% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2821,
+      "latency_ms": 1315,
+      "cost_usd": 0.00014105,
+      "probabilities": {
+        "MOVE: gigaimpact": 0.287988,
+        "MOVE: sandstorm": 0.136036,
+        "MOVE: stealthrock": 0.287988,
+        "MOVE: stoneedge": 0.287988
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "jetpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 14% HP. Jet Punch provides priority and is super effective, ensuring a knockout regardless of Garchomp's speed or potential moves. This should win the battle.",
+      "hidden_reasoning": "*   My active Pokémon: Palafin-Hero (76.3% HP).\n    *   Opponent's active Pokémon: Garchomp (14% HP).\n    *   Opponent's team: Rotom (fainted), Tauros-Paldea-Blaze (fainted), Garchomp (active).\n    *   Garchomp's HP: 14%.\n    *   Palafin-Hero's moves: Jet Punch (priority +1), Wave Crash, Flip Turn, Close Combat.\n\n    *   Garchomp is at 14% HP.\n    *   Jet Punch is a priority move (+1) and is Water-type (super effective against Ground).\n    *   Even with Garchomp's potential speed, Jet Punch will move first.\n    *   14% HP is very low; Jet Punch should easily finish it off.\n\n    *   Jet Punch: Priority +1, Water-type, 60 BP, Mystic Water boost (1.2x).\n    *   Wave Crash: 120 BP, recoil, not priority.\n    *   Close Combat: 120 BP, lowers stats, not priority.\n    *   Flip Turn: 60 BP, switches out, not priority.\n\n    *   Jet Punch is the safest and most efficient way to secure the knockout on Garchomp.\n\n    *   Opponent's team is now fully defeated (Rotom, Tauros, Garchomp).\n    *   Wait, the prompt says \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\"\n    *   Rotom (fainted), Tauros (fainted), Garchomp (14% HP).\n    *   Once Garchomp faints, the battle is over.\n\n    *   Action: MOVE: jetpunch.",
+      "note": "",
+      "tokens": 3453,
+      "latency_ms": 13348,
+      "cost_usd": 0.00045882,
+      "probabilities": null
+    }
+  ]
+}
