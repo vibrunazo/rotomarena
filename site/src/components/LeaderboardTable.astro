@@ -36,7 +36,7 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
     </span>}
   </div>
 )}
-<div class="table-scroll">
+<div class="table-scroll lb-scroll">
   <table class="leaderboard" data-sortable>
     <thead>
       <tr>
@@ -197,9 +197,16 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
     .leaderboard th { letter-spacing: 0.04em; }
     .leaderboard td.model a { display: inline-block; max-width: 9.5rem; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
   }
+  /* phones: the table runs edge to edge (its text stays 12px in), the most room for names */
+  @media (max-width: 700px) {
+    .lb-scroll { margin-inline: -16px; border-radius: 0; border-left: 0; border-right: 0; }
+    .leaderboard tr > :first-child { padding-left: 12px; }
+    .leaderboard tr > :last-child { padding-right: 12px; }
+    .leaderboard td.model a { max-width: 10.5rem; }
+  }
   @media (max-width: 440px) {
     .leaderboard .narrow-hide, .leaderboard :global(.margins) { display: none; }
     .leaderboard th, .leaderboard td { padding-left: 0.2rem; padding-right: 0.2rem; font-size: 0.86rem; }
-    .leaderboard td.model a { max-width: 6.8rem; }
+    .leaderboard td.model a { max-width: 8.2rem; }
   }
 </style>

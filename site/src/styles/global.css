@@ -94,6 +94,7 @@ a:hover { text-decoration-color: var(--cyan); text-shadow: var(--glow-text); }
 a:focus-visible, button:focus-visible, th:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
 
 .wrap { max-width: var(--page); margin: 0 auto; padding-inline: 20px; }
+@media (max-width: 700px) { .wrap { padding-inline: 16px; } }  /* phones: the usual 16px side margin */
 .prose { max-width: var(--measure); }
 
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: 0.02em; }
