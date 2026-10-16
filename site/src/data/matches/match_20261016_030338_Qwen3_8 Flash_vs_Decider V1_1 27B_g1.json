@@ -1,0 +1,510 @@
+{
+  "id": "match_20261016_030338_Qwen3_8 Flash_vs_Decider V1_1 27B_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261016",
+  "players": [
+    {
+      "config_id": "qwen3_8_flash",
+      "display_name": "Qwen3.8 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.8-flash",
+      "quantization": null,
+      "username": "Qwen3.8 Flash",
+      "role": "p1",
+      "team": "Qwen3.8 Flash's team",
+      "model_key": "qwen/qwen3.8-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Qwen3.8 Flash"
+    },
+    {
+      "config_id": "pplx_decider_v1_1_27b",
+      "display_name": "Perplexity Decider V1.1 27B",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.1-27b",
+      "quantization": null,
+      "username": "Decider V1.1 27B",
+      "role": "p2",
+      "team": "Perplexity Decider V1.1 27B's team",
+      "model_key": "perplexity/pplx-decider-v1.1-27b",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.1 27B"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 6,
+  "duration_seconds": 130.98,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Qwen3.8 Flash||",
+    "|player|p2|Perplexity Decider V1.1 27B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Arcanine-Hisui, L50, M|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Clefable, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Palafin, L50, M|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Chandelure, L50, M|",
+    "|poke|p2|Whimsicott, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Arcanine|Arcanine-Hisui, L50, M|172/172",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|move|p2a: Dragapult|Dragon Pulse|p1a: Gholdengo",
+    "|-resisted|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|132/162",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Palafin|Palafin, L50, M|100/100",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Palafin",
+    "|-damage|p2a: Palafin|23/100",
+    "|-damage|p1a: Gholdengo|116/162|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Palafin|Flip Turn|p1a: Gholdengo",
+    "|-damage|p1a: Gholdengo|61/162",
+    "|-damage|p2a: Palafin|13/100|[from] item: Life Orb",
+    "|",
+    "|detailschange|p2a: Palafin|Palafin-Hero, L50, M",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100|[from] Flip Turn",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|-damage|p1a: Gholdengo|45/162|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Chandelure|Chandelure, L50, M|100/100",
+    "|turn|4",
+    "|",
+    "|detailschange|p2a: Chandelure|Chandelure-Mega, L50, M",
+    "|-mega|p2a: Chandelure|Chandelure|Chandelurite",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Chandelure",
+    "|-supereffective|p2a: Chandelure|1",
+    "|-damage|p2a: Chandelure|0 fnt",
+    "|faint|p2a: Chandelure",
+    "|-damage|p1a: Gholdengo|29/162|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Palafin|Palafin-Hero, L50, M|13/100",
+    "|-activate|p2a: Palafin|ability: Zero to Hero",
+    "|turn|5",
+    "|",
+    "|move|p2a: Palafin|Waterfall|p1a: Gholdengo",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|-damage|p2a: Palafin|4/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|157/157",
+    "|turn|6",
+    "|",
+    "|move|p2a: Palafin|Close Combat|p1a: Rotom",
+    "|-damage|p1a: Rotom|73/157",
+    "|-unboost|p2a: Palafin|def|1",
+    "|-unboost|p2a: Palafin|spd|1",
+    "|-enditem|p1a: Rotom|Sitrus Berry|[eat]",
+    "|-heal|p1a: Rotom|112/157|[from] item: Sitrus Berry",
+    "|-damage|p2a: Palafin|0 fnt|[from] item: Life Orb",
+    "|faint|p2a: Palafin",
+    "|",
+    "|win|Qwen3.8 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,palafin,chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 41% BRING: dragapult, 25% BRING: whimsicott, 14% BRING: palafin\nPick 2: 32% BRING: palafin, 26% BRING: chandelure, 15% BRING: whimsicott\nPick 3: 35% BRING: chandelure, 27% BRING: whimsicott, 19% BRING: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5622,
+      "latency_ms": 1461,
+      "cost_usd": 0.00011244,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "arcaninehisui,rotomwash,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Arcanine leads to handle Chandelure/Whimsicott/Dragapult. Rotom-Wash covers Palafin/Toxapex/Chandelure. Gholdengo breaks Whimsicott (Good as Gold blocks Prankster) and Toxapex (Focus Blast). Chople Berry on Arcanine survives Palafin Hero's Fighting moves. Expect Whimsicott support or Chandelure wallbreaker from opponent.",
+      "hidden_reasoning": "Let me analyze the opponent's team and figure out the best 3 Pokémon to bring.\n\nOpponent's team:\n- Gholdengo (Steel/Ghost) - special attacker, immune to status with Good as Gold\n- Palafin (Water) - Zero to Hero ability, switches to Hero form when switching out\n- Dragapult (Dragon/Ghost) - fast special attacker, can have Clear Body, Infiltrator, or Cursed Body\n- Toxapex (Poison/Water) - bulky wall, can have Regenerator or Merciless\n- Chandelure (Ghost/Fire) - special attacker, can have Flash Fire, Flame Body, or Infiltrator\n- Whimsicott (Grass/Fairy) - support, Prankster priority, can set up Tailwind, Leech Seed, etc.\n\nMy team options:\n- Gholdengo: Steel/Ghost special attacker, immune to status (Good as Gold). Good against Fairy (Whimsicott), neutral to Ghost (Dragapult, Chandelure). Weak to Fire (Chandelure), Ground, Fighting.\n- Corviknight: Flying/Steel physical wall. Good against Fairy (Whimsicott), neutral to Dragon (Dragapult). Weak to Fire (Chandelure), Electric.\n- Arcanine-Hisui: Fire/Rock physical attacker. Good against Fire (Chandelure), Fairy (Whimsicott), Grass. Weak to Water (Palafin, Toxapex), Ground, Fighting.\n- Rotom-Wash: Electric/Water special wall. Good against Water (Palafin, Toxapex), Fire (Chandelure). Weak to Grass (Whimsicott), Ground.\n- Clefable: Fairy special wall/attacker. Good against Dragon (Dragapult), Fighting. Weak to Steel (Gholdengo), Poison (Toxapex).\n- Dragapult: Dragon/Ghost fast special attacker. Good against Ghost (Gholdengo, Chandelure), Dragon. Weak to Dark, Ice, Fairy (Whimsicott).\n\nKey threats to handle:\n1. Chandelure - threatens Gholdengo, Corviknight, Clefable, Dragapult. Arcanine-Hisui and Rotom-Wash can handle it.\n2. Whimsicott - threatens Dragapult, Clefable. Arcanine-Hisui, Corviknight, Gholdengo can handle it.\n3. Palafin - threatens Arcanine-Hisui, Toxapex. Rotom-Wash can handle it.\n4. Toxapex - threatens Clefable, Arcanine-Hisui. Rotom-Wash, Gholdengo can handle it.\n5. Gholdengo - threatens Clefable, Whimsicott. Dragapult, Arcanine-Hisui can handle it.\n6. Dragapult - threatens Gholdengo, Clefable. Corviknight, Arcanine-Hisui can handle it.\n\nI need a core that covers all 6 threats. Let me think about coverage:\n\nOption 1: Arcanine-Hisui, Rotom-Wash, Gholdengo\n- Arcanine handles: Chandelure (resists Fire, hits super effective), Whimsicott (resists Fairy, hits super effective), Dragapult (resists Dragon, hits super effective with Rock)\n- Rotom-Wash handles: Palafin (resists Water, hits super effective), Toxapex (resists Poison, hits super effective), Chandelure (resists Fire, hits super effective)\n- Gholdengo handles: Whimsicott (resists Fairy, hits super effective), Clefable (if they had one), Gholdengo (neutral), Dragapult (neutral)\n- Weaknesses: Gholdengo is weak to Fire (Chandelure), but Arcanine covers that. Rotom-Wash is weak to Grass (Whimsicott), but Arcanine covers that.\n\nOption 2: Arcanine-Hisui, Rotom-Wash, Corviknight\n- Corviknight handles: Whimsicott (resists Fairy), Dragapult (resists Dragon)\n- But Corviknight is weak to Fire (Chandelure) - Arcanine covers\n- Corviknight is weak to Electric - not a big threat here\n\nOption 3: Arcanine-Hisui, Rotom-Wash, Dragapult\n- Dragapult handles: Gholdengo (Ghost moves), Chandelure (Ghost moves)\n- But Dragapult is weak to Fairy (Whimsicott) - Arcanine covers\n- Dragapult is fast and hits hard\n\nI think Arcanine-Hisui + Rotom-Wash is a strong core. They cover each other's weaknesses well.\n\nFor the third slot:\n- Gholdengo: Good special attacker, immune to status (Prankster Tailwind, Leech Seed, Will-O-Wisp, Thunder Wave all blocked). Handles Whimsicott well. But weak to Fire (Chandelure) - Arcanine covers.\n- Corviknight: Physical wall, handles Whimsicott and Dragapult. But weak to Fire - Arcanine covers.\n- Dragapult: Fast special attacker, handles Gholdengo and Chandelure with Ghost moves.\n\nI think Gholdengo is the best third option because:\n1. Good as Gold blocks all of Whimsicott's support moves (Tailwind, Leech Seed, etc.)\n2. Make It Train hits Whimsicott super effectively\n3. It's a strong special attacker that can break through Toxapex with Focus Blast\n4. It covers the Gholdengo mirror well\n\nLet me go with: Arcanine-Hisui, Rotom-Wash, Gholdengo\n\nActually, let me reconsider. Arcanine-Hisui leads because it can handle multiple threats and has Chople Berry to survive a Fighting hit (from Palafin's Hero form).\n\nWait, Palafin's Hero form has high Attack. Chople Berry would help Arcanine survive a Close Combat or Drain Punch. That's good.\n\nRotom-Wash can handle Palafin's Hero form (resists Water, hits with Volt Switch or Hydropump).\n\nLet me finalize: Lead Arcanine-Hisui, then Rotom-Wash, then Gholdengo.\n\nActually, should I lead with Gholdengo? It's immune to status which is great against Whimsicott. But Arcanine-Hisui is more versatile as a lead.\n\nI'll go with: Arcanine-Hisui, Rotom-Wash, Gholdengo\n",
+      "note": "",
+      "tokens": 3675,
+      "latency_ms": 26929,
+      "cost_usd": 0.00086741,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonpulse",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: dragonpulse, 11% MOVE: phantomforce, 8% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1983,
+      "latency_ms": 496,
+      "cost_usd": 3.966e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.7326882618668604,
+        "MOVE: shadowball": 0.07679067712467742,
+        "MOVE: flamethrower": 0.0046818987687501255,
+        "MOVE: phantomforce": 0.11364717560916855,
+        "SWITCH: palafin": 0.0676586591902808,
+        "SWITCH: chandelure": 0.004533327440262547
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Arcanine-Hisui has no super effective move vs Dragapult (Headsmash neutral, Flareblitz resisted, Extremespeed no effect). Switch to Gholdengo which resists Dragon/Ghost STAB, outspeeds most Dragapult, and hits with Make It Rain. Keep Arcanine for Chandelure/Whimsicott later. Rotom-Wash saved for Palafin/Toxapex.",
+      "hidden_reasoning": "Let me analyze this matchup:\n\nArcanine-Hisui vs Dragapult:\n- Dragapult is Dragon/Ghost type\n- Headsmash (Rock) is neutral against Dragon/Ghost - not super effective\n- Flareblitz (Fire) is not very effective against Dragon/Ghost\n- Extremespeed (Normal) has no effect on Ghost types\n- Morning Sun heals Arcanine\n\nDragapult outspeeds Arcanine-Hisui (145-213 vs 142).\n\nThe problem is Arcanine-Hisui doesn't have a super effective move against Dragapult. Headsmash is neutral (Rock vs Dragon/Ghost = neutral). Flareblitz is resisted. Extremespeed has no effect.\n\nI need to think about what Dragapult likely has. Common sets include Dragon Darts, Shadow Ball, Flamethrower, U-turn, etc. Arcanine-Hisui resists Fire and is neutral to Dragon. It's weak to Dragon (no, wait - Fire/Rock is neutral to Dragon). Actually Fire/Rock is neutral to Dragon and Ghost. So Dragapult's Dragon Darts would be neutral. Shadow Ball would be neutral too.\n\nThe issue is Arcanine-Hisui can't hit Dragapult super effectively with any of its moves. Headsmash is neutral (Rock vs Dragon/Ghost = neutral). \n\nI should probably switch to Rotom-Wash which can handle Dragapult better with Hydropump (super effective against Dragon). Or Gholdengo which resists Ghost and Dragon.\n\nActually, Rotom-Wash with Hydropump is super effective against Dragapult (Water vs Dragon = 2x). But Dragapult outspeeds Rotom-Wash too. However, Rotom-Wash has good bulk.\n\nGholdengo resists both Dragon and Ghost, and has Make It Rain (Steel, neutral to Dragon/Ghost). Gholdengo also outspeeds Dragapult at base 149 vs 145-213.\n\nI think switching to Gholdengo is the best play here. Gholdengo resists Dragapult's likely STAB moves (Dragon and Ghost), and can hit back with Make It Rain. It also outspeeds most Dragapult sets.\n\nWait, but I should consider that Dragapult might have Flamethrower or other coverage. But Gholdengo's typing means it resists Dragon and Ghost, and is neutral to most coverage.\n\nLet me switch to Gholdengo.",
+      "note": "",
+      "tokens": 2929,
+      "latency_ms": 12850,
+      "cost_usd": 0.000573942,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: palafin, 30% SWITCH: chandelure, 18% MOVE: dragonpulse",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1873,
+      "latency_ms": 466,
+      "cost_usd": 3.746e-05,
+      "probabilities": {
+        "MOVE: dragonpulse": 0.18484311442618784,
+        "SWITCH: palafin": 0.5150381822307073,
+        "SWITCH: chandelure": 0.3001187033431049
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Gholdengo vs Dragapult. Shadow Ball is 2x super effective (Ghost vs Ghost) with 100% accuracy and no drawback. Make It Rain is neutral and drops my SpA by 2. Dragapult likely outspeeds me (145-213 vs my 149) but Dragon Pulse is resisted. Plan: KO Dragapult with Shadow Ball, then handle Chandelure/Whimsicott with Arcanine and Palafin/Toxapex with Rotom-Wash.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Gholdengo is active at 132/162 HP (81.5%) with Life Orb\n- Opponent's Dragapult is active at full HP\n- Dragapult has used Dragon Pulse (not very effective against Gholdengo)\n- Speed: My Gholdengo is 149, Dragapult could be 145-213\n\nKey considerations:\n1. Shadow Ball is super effective against Dragapult (Ghost hits Dragon/Ghost for 2x)\n2. Make It Rain is neutral (Steel vs Dragon/Ghost) and lowers my SpA by 2 after use\n3. Focus Blast does nothing against Ghost types\n4. Nasty Plot could set up but I need to be careful about speed\n\nDragapult's speed range is 145-213. My Gholdengo is 149. So Dragapult could outspeed me if it has any speed investment beyond the minimum. If Dragapult has 252 Spe EVs, it would be at 213, clearly outspeeding me.\n\nThe best move here is Shadow Ball - it's super effective (2x), 100% accuracy, and I don't know if Dragapult outspeeds me. Even if Dragapult moves first, Dragon Pulse is not very effective against Gholdengo (resisted by Steel).\n\nLet me calculate damage:\n- Shadow Ball: 80 BP × 2 (super effective) × 1.3 (Life Orb) = effectively 208 BP equivalent\n- With my 185 SpA, this should do significant damage to Dragapult\n\nMake It Rain: 120 BP × 1 (neutral) × 1.3 = effectively 156 BP, but lowers my SpA by 2. Not ideal.\n\nShadow Ball is clearly the best offensive option here. It's super effective, accurate, and doesn't have a drawback like Make It Rain's SpA drop.\n\nI should use Shadow Ball.",
+      "note": "",
+      "tokens": 3039,
+      "latency_ms": 14615,
+      "cost_usd": 0.00046769,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flipturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: flipturn, 25% SWITCH: dragapult, 25% MOVE: waterfall",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2163,
+      "latency_ms": 523,
+      "cost_usd": 4.326e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.24741784533316433,
+        "MOVE: flipturn": 0.3748256460977423,
+        "MOVE: closecombat": 0.00740508186014103,
+        "MOVE: aquajet": 0.02132518127750581,
+        "SWITCH: dragapult": 0.24876977836706404,
+        "SWITCH: chandelure": 0.1002564670643824
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin at 23% - Shadow Ball will KO it (100% acc, Life Orb boosted). After Palafin dies, expect Chandelure/Whimsicott/Toxapex/Gholdengo. Keep Gholdengo up to handle Chandelure (resists Fire/Ghost) and Whimsicott (Good as Gold). Arcanine saved for Toxapex wall. Rotom-Wash for bulk.",
+      "hidden_reasoning": "Palafin is at 23% HP. Shadow Ball is neutral (Ghost vs Water) but with Life Orb boost and 185 SpA, it should KO. Make It Rain is not very effective (Steel vs Water). Focus Blast is super effective (Fighting vs Water) but only 70% accuracy. Shadow Ball is 100% accuracy and should OHKO at 23%. Let me calculate: Shadow Ball 80 BP * 185 SpA / 82-136 SpD * 1.3 (Life Orb) * 1.0 (neutral) = should easily KO at 23%.\n\nI'll use Shadow Ball to KO Palafin.\n",
+      "note": "",
+      "tokens": 2972,
+      "latency_ms": 8118,
+      "cost_usd": 0.00036004,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% SWITCH: dragapult, 20% SWITCH: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1961,
+      "latency_ms": 470,
+      "cost_usd": 3.922e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.7984249312290777,
+        "SWITCH: chandelure": 0.20157506877092235
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Chandelure",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "95% SWITCH: chandelure, 5% SWITCH: palafinhero",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1923,
+      "latency_ms": 480,
+      "cost_usd": 3.846e-05,
+      "probabilities": {
+        "SWITCH: palafinhero": 0.052076840723351045,
+        "SWITCH: chandelure": 0.9479231592766489
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "fireblast",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "63% MOVE: fireblast [MEGA], 31% MOVE: hex [MEGA], 3% MOVE: fireblast",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2488,
+      "latency_ms": 511,
+      "cost_usd": 4.976e-05,
+      "probabilities": {
+        "MOVE: hex": 0.02024408208113246,
+        "MOVE: hex [MEGA]": 0.3057000321275048,
+        "MOVE: fireblast": 0.030843555740685782,
+        "MOVE: fireblast [MEGA]": 0.6273143646895867,
+        "MOVE: willowisp": 0.0008106943311710537,
+        "MOVE: willowisp [MEGA]": 0.0018494047167144669,
+        "MOVE: calmmind": 0.0013372401081751912,
+        "MOVE: calmmind [MEGA]": 0.011193606284092186,
+        "SWITCH: palafinhero": 0.000707019920937223
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has only Palafin (13%) and Chandelure left (Dragapult fainted). Shadow Ball is 2x on Chandelure and will KO it with LO+STAB. I outspeed (149 vs max 145). After KO, Gholdengo at ~29HP. Next turn Shadow Ball easily finishes Palafin at 13% (neutral but huge damage). Arcanine and Rotom-Wash are backup but shouldn't be needed.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n1. My Gholdengo is at 45/162 HP (27.8%) with Life Orb active.\n2. Opponent's Chandelure is at 100% HP, Ghost/Fire type.\n3. Palafin is still alive at 13% HP.\n\nChandelure is Ghost/Fire. My Shadow Ball is Ghost-type, which is super effective against Ghost (2x). But Chandelure resists Ghost? No - Ghost is not resisted by Fire. Let me think: Chandelure is Ghost/Fire. Ghost moves against Ghost/Fire: Ghost is super effective against Ghost (2x), and neutral against Fire. So Shadow Ball is 2x super effective.\n\nHowever, Chandelure likely has Flash Fire ability, which means Fire moves are immune. But Shadow Ball is Ghost-type, so that's fine.\n\nThe problem: Chandelure has high SpA (148-216 range). It can hit Gholdengo with Fire Blast or Shadow Ball. Gholdengo resists Ghost (Steel/Ghost resists Ghost? No - Ghost is not resisted by Steel. Ghost is neutral against Steel. And Ghost is neutral against Ghost. So Ghost moves are neutral against Gholdengo). Fire is resisted by Steel, so Fire moves are not very effective against Gholdengo.\n\nWait, let me reconsider Gholdengo's typing: Steel/Ghost.\n- Fire vs Steel: 0.5x (resisted)\n- Ghost vs Steel: 1x (neutral)\n- Ghost vs Ghost: 1x (neutral)\nSo Fire is resisted, Ghost is neutral. Chandelure's Shadow Ball would be neutral damage.\n\nBut Chandelure could also have Energy Ball or other coverage.\n\nMy Shadow Ball against Chandelure: Ghost vs Ghost = 2x, Ghost vs Fire = 1x. Total 2x super effective.\n\nWith Life Orb boost (1.3x) and 2x effectiveness, Shadow Ball at 80 BP would do significant damage. Let me estimate:\n- Base damage: 80 * 185 (SpA) / 100 * (99-156 Def range) ... roughly\n- With Life Orb: 1.3x\n- 2x super effective\n- Chandelure HP range: 135-167\n\nShadow Ball with Life Orb and 2x should do massive damage. Let me calculate roughly:\n80 * 185 / 99 (min def) = ~149.5\nWith STAB (1.5x): ~224\nWith Life Orb (1.3x): ~291\nWith 2x SE: ~582\nAgainst HP of 135-167... that's way over. Even at max def (156):\n80 * 185 / 156 = ~94.9\nWith STAB: ~142\nWith LO: ~185\nWith 2x: ~370\nAgainst 167 HP... still a massive KO.\n\nSo Shadow Ball will definitely KO Chandelure.\n\nBut wait - if I KO Chandelure, I lose Gholdengo to Life Orb recoil (45/162 - 16 = 29 HP remaining). And Palafin is still at 13%.\n\nAfter KOing Chandelure, the opponent will send out Palafin (at 13%) or Toxapex or Whimsicott or Gholdengo. Palafin at 13% is almost dead.\n\nActually, the opponent brought 3 Pokémon: Dragapult (fainted), Palafin (13%), and Chandelure. So after Chandelure faints, only Palafin is left.\n\nSo if I KO Chandelure with Shadow Ball, the opponent sends Palafin at 13%, and I can KO it next turn.\n\nMy Gholdengo will be at 45 - 16 (LO recoil) = 29 HP after attacking. Then next turn I can Shadow Ball Palafin (2x super effective against Water? No - Ghost vs Water is neutral). Actually, Shadow Ball vs Palafin (Water) is neutral. Make It Rain vs Palafin (Water) is neutral too. Focus Blast vs Palafin (Water) is neutral.\n\nWait, Palafin is Water type. Ghost moves are neutral against Water. So Shadow Ball at 80 BP with Life Orb and STAB should do enough to KO Palafin at 13%.\n\nLet me estimate Shadow Ball vs Palafin:\n80 * 185 / 105 (min def) = ~141\nWith STAB: ~211\nWith LO: ~274\nAgainst 13% of 175-207 HP = ~23-27 HP. Definitely KO.\n\nSo plan: Shadow Ball Chandelure to KO it, then Shadow Ball Palafin next turn to win.\n\nBut I need to be careful - Chandelure might have a move that can OHKO Gholdengo. At 45 HP, if Chandelure has a strong move... but I outspeed (149 vs max 145), so I attack first.\n\nActually, Chandelure's max speed is 145, and my Gholdengo is 149. So I move first. Shadow Ball will KO Chandelure before it can attack.\n\nLet me go with Shadow Ball.",
+      "note": "",
+      "tokens": 4311,
+      "latency_ms": 25367,
+      "cost_usd": 0.00090361,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Palafin",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "waterfall",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "78% MOVE: waterfall, 9% MOVE: aquajet, 9% MOVE: closecombat",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2283,
+      "latency_ms": 515,
+      "cost_usd": 4.566e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.7835454730244564,
+        "MOVE: flipturn": 0.04054783840157841,
+        "MOVE: closecombat": 0.0854303738116958,
+        "MOVE: aquajet": 0.09047631476226922
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent's last Pokémon is Palafin-Hero at 13%. All 3 brought Pokémon accounted for (Dragapult fainted, Chandelure fainted, Palafin active). Shadow Ball will KO Palafin regardless of who moves first - if I move first, instant win. If Palafin OHKOs me, I switch to Rotom-Wash (resists Water) and KO Palafin next turn. Shadow Ball is the winning move either way.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Gholdengo is at 29/162 HP (17.9%)\n- Opponent's Palafin-Hero is at 13% HP with Life Orb\n- Palafin-Hero has Speed range 108-167, my Gholdengo has 149. So Palafin could outspeed me.\n- Palafin-Hero's Atk range is 162-233, and it has Flip Turn (Water/Physical, BP 60)\n- My Gholdengo has Def 115, so Water is neutral against Steel/Ghost.\n\nIf I use Shadow Ball:\n- Shadow Ball is neutral on Water (not super effective, not resisted)\n- My SpA is 185, with Life Orb 1.3x boost\n- Palafin-Hero at 13% HP - Shadow Ball should easily KO it\n- Even if Palafin outspeeds and uses Flip Turn, my Gholdengo at 29 HP might survive a neutral physical hit from Palafin-Hero (Atk 162-233, BP 60, Life Orb 1.3x) vs my Def 115... that's dangerous. Palafin could OHKO me.\n\nWait, let me think about this more carefully. Palafin-Hero's Atk could be up to 233. Flip Turn is 60 BP, neutral, with Life Orb 1.3x. Against my Def 115... that's a lot of damage. I'm at 29 HP. If Palafin outspeeds and uses Flip Turn, I could be OHKO'd.\n\nBut if I use Shadow Ball and I go first (my 149 vs their 108-167), Shadow Ball should easily KO Palafin at 13%.\n\nThe question is: who moves first? My Gholdengo has 149 Speed. Palafin-Hero has 108-167 Speed. If Palafin has max speed (167), it outspeeds me. If it has less, I outspeed it.\n\nGiven that Palafin is a fast sweeper, it likely has significant speed investment. But it also needs Attack investment for Flip Turn to be threatening. It's uncertain.\n\nIf I switch to Rotom-Wash:\n- Rotom-Wash is Electric/Water, Levitate\n- Palafin-Hero's Flip Turn is Water - resisted by Water\n- Rotom-Wash at 157 HP full, Palafin at 13%\n- Hydropump would KO Palafin easily\n- But switching gives Palafin a free turn - it could use Flip Turn to switch out to Toxapex or Gholdengo\n\nIf I switch to Arcanine-Hisui:\n- Arcanine is Fire/Rock, Palafin's Water is super effective\n- Risky switch\n\nThe safest play: Shadow Ball. Even if Palafin outspeeds and OHKOs me, Shadow Ball at 13% HP target should KO it. But if I get OHKO'd first, I lose Gholdengo.\n\nActually wait - if Palafin OHKOs me, I still win because I have Arcanine and Rotom-Wash at full HP, and Palafin will be at 13% or dead. If I KO Palafin, I win because opponent has no Pokémon left (all 3 brought have been seen: Dragapult fainted, Chandelure fainted, Palafin is the last one).\n\nSo the opponent's team is: Dragapult (fainted), Chandelure (fainted), Palafin (active). That's all 3 they brought. If I KO Palafin, I win!\n\nThe question is just whether I can KO Palafin before it KOs me. Shadow Ball should easily KO a Pokémon at 13% HP. Even if Palafin moves first and OHKOs Gholdengo, I lose Gholdengo but... wait, no. If Palafin moves first and OHKOs Gholdengo, the turn ends with Gholdengo fainted. Then I switch to Arcanine or Rotom-Wash next turn and KO Palafin.\n\nActually, if I use Shadow Ball and Palafin outspeeds and OHKOs me, I lose Gholdengo. But then I switch to Rotom-Wash (resists Water) and KO Palafin with Hydropump. I still win.\n\nIf I use Shadow Ball and I move first, I KO Palafin and win immediately.\n\nEither way, Shadow Ball is the winning move. Let me use it.",
+      "note": "",
+      "tokens": 4205,
+      "latency_ms": 18059,
+      "cost_usd": 0.000792606,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo fainted. Palafin-Hero at 4% HP is opponent's last Pokémon. Switching to Rotom-Wash: resists Water (0.5x from Waterfall), can KO Palafin next turn with Hydropump or Volt Switch. Arcanine would be 4x weak to Water - bad switch.",
+      "hidden_reasoning": "Gholdengo has fainted. I need to switch in either Rotom-Wash or Arcanine-Hisui to face Palafin-Hero at 4% HP.\n\nPalafin-Hero is Water type. Rotom-Wash resists Water (Electric/Water resists Water), so it's safe. Arcanine-Hisui is Fire/Rock, which is weak to Water (4x weakness). So Arcanine would be a terrible switch.\n\nRotom-Wash can use Hydropump or Volt Switch to finish off Palafin at 4% HP. Actually, even a neutral hit would KO at 4%. But I should be careful - Palafin-Hero has high Attack and could OHKO with Waterfall. However, Rotom-Wash resists Water, so Waterfall would do reduced damage.\n\nWait, Rotom-Wash is Electric/Water. Water moves against Water are not very effective (0.5x). So Palafin's Waterfall would do 0.5x damage. That's very safe.\n\nI'll switch to Rotom-Wash and then use Hydropump (super effective on Water) or even just any move to finish it off at 4%.\n\nActually, I just need to switch. The battle will continue next turn where I can attack.\n\nLet me switch to Rotom-Wash - it resists Water and can KO Palafin at 4% easily next turn.\n",
+      "note": "",
+      "tokens": 3236,
+      "latency_ms": 7824,
+      "cost_usd": 0.000406936,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "closecombat",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: closecombat, 12% MOVE: aquajet, 11% MOVE: waterfall",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2431,
+      "latency_ms": 494,
+      "cost_usd": 4.862e-05,
+      "probabilities": {
+        "MOVE: waterfall": 0.10860419549205176,
+        "MOVE: flipturn": 0.04384283331712654,
+        "MOVE: closecombat": 0.7317970150984774,
+        "MOVE: aquajet": 0.11575595609234418
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Palafin-Hero at 4% is opponent's last Pokémon. Volt Switch is super effective, 100% accuracy, guaranteed KO. Switch doesn't matter since game ends. Win this turn.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- Opponent's Palafin-Hero is at 4% HP (about 7-8 HP out of ~175-207)\n- It's their last Pokémon (Dragapult and Chandelure are fainted)\n- My Rotom-Wash is at full HP (157/157)\n\nPalafin-Hero has Water-type moves (Flip Turn, Waterfall). Rotom-Wash resists Water (0.5x).\n\nI need to KO Palafin at 4% HP. Let me check my options:\n\n1. Hydropump - Water/Special, 110 BP, but NOT very effective on Water-type Palafin. Still, at 4% HP (~7-8 HP), even a resisted hit should KO. Rotom-Wash SpA is 125. Against Palafin's SpD (96-152). A resisted hit with 110 BP should easily do more than 8 damage.\n\n2. Voltswitch - Electric/Special, 70 BP, super effective. This would definitely KO at 4% HP. But it switches me out to Arcanine-Hisui. Since it's the last Pokémon, I don't need to worry about what comes after.\n\n3. Will-o-wisp - Status, won't KO.\n\n4. Pain Split - Shares HP, Rotom at 157, Palafin at ~7. This would set both to ~82. Not useful for KO.\n\n5. Switch to Arcanine - 4x weak to Water, bad idea.\n\nThe safest option is Volt Switch (super effective, guaranteed KO at 4%) or Hydropump (even resisted, should KO at 4% with 110 BP). \n\nActually, let me think about Volt Switch more carefully. It's super effective (2x) with 70 BP. Rotom-Wash SpA 125 vs Palafin SpD 96-152. At 4% HP, even a neutral hit would KO. Super effective is guaranteed.\n\nBut wait - Volt Switch switches me out. Since Palafin is the last Pokémon, the game ends when it faints. So the switch doesn't matter.\n\nHydropump is 80% accuracy but resisted. At 4% HP (~7-8 HP), even a resisted hit should KO easily. Let me calculate: 110 BP * 0.5 (resist) = effective 55 BP. With SpA 125 vs SpD ~120 (average), damage would be around (2*50/5+2)*55*125/120/50 + 2 ≈ 60+ damage. Way more than 8 HP.\n\nBoth work. Volt Switch is 100% accuracy and super effective - most reliable. Hydropump is 80% accuracy but resisted. \n\nI'll go with Volt Switch for guaranteed KO and accuracy. Since it's the last Pokémon, the switch doesn't matter.\n\nActually wait - could Palafin have a Protect or something? No, it's at 4% and the opponent wouldn't want to waste a turn. Volt Switch is the safest choice.",
+      "note": "",
+      "tokens": 3798,
+      "latency_ms": 16240,
+      "cost_usd": 0.000610916,
+      "probabilities": null
+    }
+  ]
+}
