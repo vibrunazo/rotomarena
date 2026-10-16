@@ -352,7 +352,7 @@ agents:
     model: "qwen/qwen3.8-27b"
     released: "2026-08-05"
     max_games: 0
-    extra_games: {c5: 9}
+    extra_games: {c5: 30}   # 16 Oct: the mid tier, 30 like Gemini 3.8 Flash (it was set up as an expensive newcomer)
     pairing: {c5: "neighbours"}
     model_key: "qwen/qwen3.8-27b"
     weights: "open"
@@ -612,8 +612,9 @@ agents:
     model: "z-ai/glm-5.3"
     released: "2026-08-18"
     max_games: 0
-    extra_games: {c5: 9}
+    extra_games: {c5: 30}   # 16 Oct: the mid tier, 30 like Gemini 3.8 Flash (it was set up as an expensive newcomer)
     pairing: {c5: "neighbours"}
+    batch: {c5: true}   # 16 Oct: Z.ai's batch keeps its thinking (4 real turns: same thinking, half the cost)
     weights: "open"
     params_b: 753.3
   kimi_k3:
@@ -646,7 +647,7 @@ agents:
     model: "xiaomi/mimo-v2.6-pro"
     released: "2026-09-21"
     max_games: 0
-    extra_games: {c5: 9}
+    extra_games: {c5: 30}   # 16 Oct: the mid tier, 30 like Gemini 3.8 Flash (it was set up as an expensive newcomer)
     pairing: {c5: "neighbours"}
     weights: "open"
     params_b: 1024.2
@@ -700,8 +701,7 @@ agents:
     model: "qwen/qwen3.8-flash"
     released: "2026-08-26"
     max_games: 0
-    extra_games: {c5: 9}
-    pairing: {c5: "neighbours"}
+    extra_games: {c5: 120}   # 16 Oct: the cheap tier's 120, playing everyone (it was set up as an expensive newcomer)
   qwen3_8_max_prime:
     type: "direct_llm"
     display_name: "Qwen3.8 Max Prime"
