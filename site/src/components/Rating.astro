@@ -15,8 +15,6 @@ const down = r !== null && ci_low !== null ? r - Math.round(ci_low) : 0;
   : (
     <span class="rating" title={fixed ? 'Fixed by definition' : `95% interval ${Math.round(ci_low!)}–${Math.round(ci_high!)}`}>
       <strong>{r}</strong>
-      {fixed
-        ? <span class="fixed">fixed</span>
-        : <span class="margins" aria-label={`plus ${up}, minus ${down}`}><span>+{up}</span><span>−{down}</span></span>}
+      {!fixed && <span class="margins" aria-label={`plus ${up}, minus ${down}`}><span>+{up}</span><span>−{down}</span></span>}
     </span>
   )}
