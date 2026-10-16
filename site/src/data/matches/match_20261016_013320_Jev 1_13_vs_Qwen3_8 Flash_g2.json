@@ -1,0 +1,408 @@
+{
+  "id": "match_20261016_013320_Jev 1_13_vs_Qwen3_8 Flash_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261016",
+  "players": [
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p1",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    },
+    {
+      "config_id": "qwen3_8_flash",
+      "display_name": "Qwen3.8 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.8-flash",
+      "quantization": null,
+      "username": "Qwen3.8 Flash",
+      "role": "p2",
+      "team": "Qwen3.8 Flash's team",
+      "model_key": "qwen/qwen3.8-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Qwen3.8 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 151.82,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Jev 1.13||",
+    "|player|p2|Qwen3.8 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Aegislash, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Clefable, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|78/100",
+    "|-damage|p1a: Dragapult|147/163|[from] item: Life Orb",
+    "|move|p2a: Kingambit|Swords Dance|p2a: Kingambit",
+    "|-boost|p2a: Kingambit|atk|2",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|move|p2a: Kingambit|Sucker Punch||[still]",
+    "|-fail|p2a: Kingambit",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|125/125",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Rotom",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|147/163",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|turn|5",
+    "|",
+    "|move|p1a: Gholdengo|Nasty Plot|p1a: Gholdengo",
+    "|-boost|p1a: Gholdengo|spa|2",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|win|Qwen3.8 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 45% BRING: dragapult, 18% BRING: aegislash, 15% BRING: gholdengo\nPick 2: 38% BRING: gholdengo, 18% BRING: rotomwash, 18% BRING: aegislash\nPick 3: 34% BRING: rotomwash, 26% BRING: aegislash, 22% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6406,
+      "latency_ms": 1295,
+      "cost_usd": 0.000269052,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "kingambit,gholdengo,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Kingambit leads to threaten Aegislash with 4x Kowtow Cleave and set up Swords Dance. Gholdengo is backup sweeper (Nasty Plot + Shadow Ball for Aegislash/Gholdengo). Dragapult handles Toxapex with Fire Blast and provides speed control with Choice Scarf. Opponent likely leads Aegislash or Corviknight.",
+      "hidden_reasoning": "Let me analyze the opponent's team and figure out the best 3 Pokémon to bring.\n\nOpponent's team:\n- Rotom-Wash (Electric/Water) - Levitate\n- Aegislash (Steel/Ghost) - Stance Change\n- Toxapex (Poison/Water) - likely Regenerator\n- Corviknight (Flying/Steel) - Pressure/Unnerve/Mirror Armor\n- Dragapult (Dragon/Ghost) - Clear Body/Infiltrator/Cursed Body\n- Gholdengo (Steel/Ghost) - Good as Gold\n\nMy team options:\n- Kingambit (Dark/Steel) - Supreme Overlord, Swords Dance, Kowtow Cleave, Iron Head, Sucker Punch\n- Gholdengo (Steel/Ghost) - Good as Gold, Make It Rain, Shadow Ball, Nasty Plot, Recover\n- Dragapult (Dragon/Ghost) - Choice Scarf, Infiltrator, Dragon Darts, U-turn, Fire Blast, Shadow Ball\n- Corviknight (Flying/Steel) - Mirror Armor, Defog, Roost, U-turn, Body Press\n- Clefable (Fairy) - Unaware, Big Root, Moonblast, Calm Mind, Moonlight, Wish\n- Rotom-Wash (Electric/Water) - Levitate, Sitrus Berry, Volt Switch, Hydro Pump, Thunderbolt, Will-O-Wisp\n\nKey threats from opponent:\n1. Aegislash - Steel/Ghost, hard to hit with physical moves in defensive stance. Kingambit's Kowtow Cleave is super effective. Gholdengo's Shadow Ball is super effective.\n2. Dragapult - Fast, Dragon/Ghost. Kingambit's Sucker Punch can hit it if it attacks. Corviknight can tank it.\n3. Gholdengo - Steel/Ghost, immune to status. Shadow Ball from my Gholdengo or Kingambit's Kowtow Cleave.\n4. Toxapex - Very bulky, hard to break through. Clefable's Moonblast is good. Kingambit's Iron Head is neutral.\n5. Corviknight - Bulky, can Body Press. My Kingambit can break through with Kowtow Cleave.\n6. Rotom-Wash - Levitate immune to Ground. My Dragapult's Fire Blast can hit it.\n\nStrategy considerations:\n- Kingambit: Great against Aegislash (Kowtow Cleave 4x), Corviknight (Kowtow Cleave super effective), Gholdengo (Kowtow Cleave super effective). Swords Dance makes it a monster. Sucker Punch handles Dragapult.\n- Gholdengo: Good as Gold means it can't be statused. Make It Rain hits Steel types hard. Shadow Ball hits Aegislash and Gholdengo. Nasty Plot + Recover makes it a win condition.\n- Dragapult: Choice Scarf lets it outspeed everything. Dragon Darts hits Aegislash super effectively (in blade stance). Fire Blast hits Corviknight and Toxapex. U-turn for pivoting.\n- Corviknight: Can handle Dragapult, but struggles against Aegislash and Gholdengo.\n- Clefable: Calm Mind + Moonblast can sweep, but struggles against Aegislash and Gholdengo (Steel types resist Fairy).\n- Rotom-Wash: Will-O-Wisp helps against physical attackers, but struggles against Aegislash and Gholdengo.\n\nBest picks:\n- Kingambit: Handles Aegislash, Corviknight, Gholdengo with Kowtow Cleave. Swords Dance + Sucker Punch for Dragapult. Very strong.\n- Gholdengo: Handles Aegislash (Shadow Ball), Gholdengo (Shadow Ball/Make It Rain), Corviknight (Make It Rain). Nasty Plot is a win condition. Good as Gold prevents status.\n- Dragapult: Speed control with Choice Scarf. Dragon Darts hits Aegislash hard. Fire Blast for Corviknight/Toxapex. U-turn for pivoting.\n\nWait, let me reconsider. Kingambit and Gholdengo overlap a bit in what they handle. Let me think about coverage:\n\nKingambit: Dark/Steel - Kowtow Cleave (4x on Aegislash, 2x on Corviknight, 2x on Gholdengo), Iron Head (2x on Clefable-like, neutral on most), Sucker Punch (priority for Dragapult), Swords Dance\nGholdengo: Steel/Ghost - Make It Rain (2x on Corviknight, 2x on Aegislash in blade, neutral on most), Shadow Ball (2x on Aegislash, 2x on Gholdengo), Nasty Plot, Recover\nDragapult: Dragon/Ghost - Dragon Darts (2x on Aegislash, 2x on Gholdengo), Fire Blast (2x on Corviknight, 2x on Toxapex), U-turn, Shadow Ball\n\nThe issue with Kingambit + Gholdengo is that both are Steel types, making them weak to the same things (Fire, Ground, Fighting). But the opponent doesn't seem to have many of those.\n\nActually, let me reconsider. The opponent has:\n- Rotom-Wash: Water/Electric - no super effective moves against either Kingambit or Gholdengo\n- Aegislash: Steel/Ghost - neutral against Kingambit (Dark hits Steel normally, Steel hits Ghost normally), but Kowtow Cleave is 4x! Against Gholdengo, Shadow Ball is 2x.\n- Toxapex: Poison/Water - neutral against Kingambit, neutral against Gholdengo (Poison doesn't hit Steel super effectively). Toxapex can wall both.\n- Corviknight: Flying/Steel - Kingambit's Kowtow Cleave is 2x. Gholdengo's Make It Rain is 2x.\n- Dragapult: Dragon/Ghost - Kingambit's Sucker Punch handles it. Gholdengo's Shadow Ball is 2x.\n- Gholdengo: Steel/Ghost - Kingambit's Kowtow Cleave is 2x. Gholdengo's Shadow Ball is 2x.\n\nThe main problem is Toxapex. It walls both Kingambit and Gholdengo. Dragapult's Fire Blast can hit it super effectively though.\n\nI think Kingambit + Gholdengo + Dragapult is a strong core:\n- Kingambit: Swords Dance sweeper, handles Aegislash, Corviknight, Gholdengo\n- Gholdengo: Nasty Plot sweeper, handles Aegislash, Gholdengo, Corviknight\n- Dragapult: Speed control, handles Toxapex (Fire Blast), pivots with U-turn\n\nThis gives me good coverage against all opponent threats. Let me go with this.\n\nOrder: Kingambit leads because it can threaten Aegislash immediately with Kowtow Cleave (4x). If they lead Aegislash, Kingambit can Swords Dance or just hit hard.\n\nActually, maybe Gholdengo leads? Good as Gold means it can't be statused, and it can Nasty Plot up safely. But Kingambit's Kowtow Cleave 4x on Aegislash is very threatening.\n\nI'll lead Kingambit for the immediate threat, then Gholdengo as backup sweeper, then Dragapult for speed control and Toxapex handling.",
+      "note": "",
+      "tokens": 3874,
+      "latency_ms": 34616,
+      "cost_usd": 0.0009635,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: shadowball, 24% SWITCH: gholdengo, 16% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2264,
+      "latency_ms": 446,
+      "cost_usd": 9.5088e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.29,
+        "MOVE: dragondarts": 0.07,
+        "MOVE: protect": 0.09,
+        "MOVE: uturn": 0.16,
+        "SWITCH: gholdengo": 0.24,
+        "SWITCH: rotomwash": 0.15
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "swordsdance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Kingambit leads vs Dragapult. Kingambit is bulky enough (142 Def, 207 HP) to survive a Dragapult hit and set up Swords Dance. Next turn, +2 Kowtow Cleave with Black Glasses should OHKO most threats. Opponent's other 2 brought: unknown from rotomwash, aegislash, toxapex, corviknight, gholdengo. Kingambit handles Aegislash well. Dragapult (my own) with Choice Scarf handles fast threats.",
+      "hidden_reasoning": "Let me analyze this situation:\n\n- I'm leading Kingambit against their Dragapult\n- Dragapult is faster (145-213 vs my 70), so it moves first\n- Kingambit has Black Glasses (Dark moves 1.2x power)\n- Supreme Overlord boosts power for each fainted ally (currently 0 fainted, so no boost)\n\nOptions:\n1. Kowtow Cleave - 85 * 1.2 = 102 BP, super effective on Dragapult (2x), so effectively 204 BP. Dragapult has 85-139 Def. This could do massive damage.\n2. Iron Head - 80 BP, not very effective on Dragon/Ghost (resists Steel? No, Steel is neutral on Dragon/Ghost). Actually Steel is not super effective on Dragon/Ghost. It's neutral.\n3. Sucker Punch - Priority +1, 70 * 1.2 = 84 BP, super effective (2x) = 168 BP. But it fails if target is not attacking. Dragapult is likely attacking, so this would work and go first.\n4. Swords Dance - Set up, but Dragapult will hit me first. Kingambit has 142 Def, Dragapult's physical attacks might not do too much, but it could use special moves too.\n\nThe key question: what does Dragapult do? It likely has Dragon Darts or some attacking move. \n\nIf I use Sucker Punch, it goes first (priority +1), is super effective, and deals 70 * 1.2 * 2 = 168 effective BP. This is safer than Kowtow Cleave because I go first and don't take damage.\n\nIf I use Kowtow Cleave, it's 85 * 1.2 * 2 = 204 effective BP, but I take a hit first.\n\nIf I use Swords Dance, I set up but take a hit first. Kingambit at 142 Def can probably survive a Dragapult hit, then I have +2 Atk with Kowtow Cleave doing massive damage next turn.\n\nActually, let me think about this more carefully. The opponent's Dragapult could be holding a Choice item (Scarf, Band, Specs) or something else. If it's a Choice Scarf, it's very fast. If it's a Choice Band, it hits hard physically.\n\nKingambit's bulk: 207 HP, 142 Def, 105 SpD. It's quite bulky. A Dragapult hit probably won't OHKO Kingambit.\n\nI think Swords Dance is the play here. Kingambit is bulky enough to survive a Dragapult hit, and then next turn I can sweep with +2 Kowtow Cleave. The opponent might switch out, but even if they do, I've set up on a predicted switch which is great.\n\nWait, but if they switch to something like Aegislash (which resists Dark), Swords Dance might not be optimal. But Kingambit is my best answer to Aegislash anyway.\n\nActually, let me reconsider. The opponent brought 3 of 6. They could have brought Aegislash, Corviknight, Toxapex, Gholdengo, or Rotom-Wash as their other two.\n\nI think Swords Dance is the best move here. Kingambit can survive a Dragapult hit (it has great physical bulk), and then I can sweep. Even if Dragapult switches, I've set up for free.\n\nLet me go with Swords Dance.",
+      "note": "",
+      "tokens": 3190,
+      "latency_ms": 17444,
+      "cost_usd": 0.000669988,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% SWITCH: gholdengo, 33% SWITCH: rotomwash, 14% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2364,
+      "latency_ms": 394,
+      "cost_usd": 9.9288e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.11,
+        "MOVE: dragondarts": 0.03,
+        "MOVE: protect": 0.05,
+        "MOVE: uturn": 0.14,
+        "SWITCH: gholdengo": 0.34,
+        "SWITCH: rotomwash": 0.33
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit at +2 with Black Glasses, 162/207 HP. Opponent Dragapult at 90% with Life Orb, moves first (Spe 145-213 vs 70). Sucker Punch goes first if Dragapult attacks (very likely - it's a Life Orb sweeper). If it switches, I lose momentum but Kingambit stays healthy. Plan: OHKO Dragapult with Sucker Punch, then Kingambit handles remaining threats. Opponent has 2 more Pokémon from: rotomwash, aegislash, toxapex, corviknight, gholdengo.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n1. My Kingambit has +2 Attack, is at 162/207 HP, with Black Glasses.\n2. Opponent's Dragapult is at 90% HP, has Life Orb, and moves first (Spe 145-213 vs my 70).\n3. Dragapult has revealed Shadow Ball (super effective on... wait, no. Shadow Ball is Ghost type, and Kingambit is Dark/Steel. Ghost is neutral against Dark, and Steel resists Ghost. So Shadow Ball was NVE - confirmed by the log).\n\nKey considerations:\n- Dragapult moves first. If I use Kowtow Cleave, Dragapult will attack first. Shadow Ball does NVE damage (~45 HP based on turn 1). But Dragapult could also have Dragon Darts or other moves.\n- If Dragapult uses Dragon Darts, that's 2-3 hits of Dragon type. Dragon is neutral against Dark/Steel. At +2 Atk Kingambit's Kowtow Cleave is super effective (Dark is SE on Ghost).\n- Sucker Punch: priority +1, so it goes first IF Dragapult is attacking. Dragapult is likely attacking (it's a fast sweeper). Sucker Punch is Dark type, super effective on Ghost. But it fails if they switch.\n- Kowtow Cleave: guaranteed hit, super effective, +2 Atk with Black Glasses. Very powerful.\n- The risk: Dragapult moves first. If it uses Dragon Darts or another move, I take damage. But at 162/207, I can probably survive one hit.\n\nLet me calculate Kowtow Cleave damage:\n- Base power: 85\n- +2 Atk: 1.5x multiplier (actually +2 is 2x)\n- Black Glasses: 1.2x\n- STAB: 1.5x\n- Super effective on Ghost: 2x\n- Supreme Overlord: 1.1x (no fainted allies yet, so just 1.0x... wait, no fainted allies means 1.0x)\n\nActually Supreme Overlord gives 10% more per fainted ally. No allies fainted yet, so 1.0x.\n\nTotal multiplier: 85 × 2 (Atk +2) × 1.2 (Black Glasses) × 1.5 (STAB) × 2 (SE) = 85 × 7.2 = 612 effective power\n\nThat's massive. Even with Dragapult's high SpD, this should OHKO easily.\n\nThe question is: do I risk taking a hit first, or use Sucker Punch to go first?\n\nSucker Punch: 70 × 2 × 1.2 × 1.5 × 2 = 504 effective power. Still very strong, and goes first if Dragapult attacks. But fails if Dragapult switches.\n\nDragapult is at 90% and has Life Orb. If it switches, Sucker Punch fails. If it attacks, Sucker Punch goes first and likely OHKO.\n\nGiven that Dragapult is a fast attacker with Life Orb, it's very likely to attack. But there's a risk it switches to a more favorable matchup (like Corviknight or Toxapex).\n\nActually, let me think about what the opponent's other 2 Pokémon might be. They brought 3: Dragapult is one. The other 2 are from rotomwash, aegislash, toxapex, corviknight, gholdengo.\n\nIf they switch to Corviknight or Toxapex, Sucker Punch fails and I'm stuck. But Kowtow Cleave would also be bad on those (Corviknight resists Dark, Toxapex is neutral).\n\nI think the safest play is Kowtow Cleave. Dragapult will likely attack (it's at 90% with Life Orb, it's a sweeper). Even if I take a hit, I'm at 162 HP and Shadow Ball did ~45 damage. Dragon Darts might do more but I should survive. Then Kowtow Cleave OHKOs.\n\nActually wait - if Dragapult uses Dragon Darts, that's 2-3 hits of Dragon type. Dragon is neutral against Dark/Steel. With Life Orb and high Attack, each hit could do significant damage. Let me estimate: Dragapult Atk ~150, Dragon Darts BP 50, 2-3 hits. Against Kingambit Def 142. Each hit does roughly (150/142) × 50 × 0.85 ≈ 45 damage per hit. 2 hits = 90, 3 hits = 135. At 162 HP, I'd survive 2 hits but might not survive 3.\n\nHmm, that's risky. But Dragon Darts hitting 3 times is only 37.5% chance. Most likely 2 hits.\n\nActually, I think the best play is Sucker Punch. Dragapult is very likely to attack (it's a sweeper at 90% with Life Orb). If it attacks, I OHKO before it can hit. If it switches, I lose momentum but I'm still at +2 with 162 HP.\n\nLet me go with Sucker Punch - it goes first if Dragapult attacks, and the damage is still massive enough to OHKO. The risk of a switch is there but Dragapult seems like it wants to attack given it's at 90% and has Life Orb.\n\nActually, you know what, let me reconsider. Kowtow Cleave never misses and is super effective. Even if Dragapult attacks first, I can probably survive one hit and then OHKO. The guaranteed hit aspect of Kowtow Cleave is appealing.\n\nBut Sucker Punch going first means I OHKO without taking damage, preserving Kingambit for later. That's valuable.\n\nI'll go with Sucker Punch. The opponent is very likely attacking (Dragapult with Life Orb at 90% is trying to sweep), and if I OHKO without taking damage, Kingambit stays healthy for the rest of the game.",
+      "note": "",
+      "tokens": 4020,
+      "latency_ms": 22498,
+      "cost_usd": 0.00091404,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% SWITCH: rotomwash, 20% MOVE: shadowball, 20% MOVE: nastyplot",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2389,
+      "latency_ms": 409,
+      "cost_usd": 0.000100338,
+      "probabilities": {
+        "MOVE: poltergeist": 0.17,
+        "MOVE: shadowball": 0.2,
+        "MOVE: protect": 0.04,
+        "MOVE: nastyplot": 0.2,
+        "SWITCH: dragapult": 0.1,
+        "SWITCH: rotomwash": 0.29
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit at +2 with Black Glasses should OHKO Gholdengo with Kowtow Cleave (super effective Dark, massive Attack boost). After Gholdengo falls, I still have +2 Kingambit vs Dragapult (90% HP, Life Orb) and one unknown threat. My Dragapult with Choice Scarf can handle the opposing Dragapult if needed. Plan: Kowtow Cleave now to guarantee KO, then assess remaining threats.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n1. My Kingambit is at +2 Attack with Black Glasses, 162/207 HP\n2. Opponent switched to Gholdengo (Steel/Ghost, Good as Gold ability - immune to status moves)\n3. Opponent's Dragapult is on bench at 90% HP with Life Orb\n4. One more opponent Pokémon is still unknown (from rotomwash, aegislash, toxapex, corviknight)\n\nKey considerations:\n- Gholdengo is Steel/Ghost, so Kowtow Cleave (Dark) is super effective (2x)\n- At +2 Attack with Black Glasses: Kowtow Cleave has 85 * 1.5 (super effective) * 1.2 (Black Glasses) * 2 (Swords Dance boost) = very powerful\n- Kingambit's Atk is 205. At +2 that's 205 * 2 = 410 effective\n- Gholdengo's Def is 103-161. Let's say ~130 average.\n- Kowtow Cleave damage: roughly 85 * 410 / 130 * 1.5 * 1.2 ≈ very high, likely OHKO\n- Sucker Punch also works if Gholdengo attacks (Dark type, super effective, priority +1)\n- But Gholdengo has Good as Gold (immune to status), so Swords Dance won't work on it... wait, Swords Dance is a status move but it's used on MY Pokémon, not targeting Gholdengo. Good as Gold only makes Gholdengo immune to status moves used against it. So Swords Dance is fine.\n\nWait, actually let me reconsider. Good as Gold makes Gholdengo immune to status moves. Swords Dance is a status move but it's targeting myself, not Gholdengo. So Swords Dance works fine.\n\nThe question is: should I Kowtow Cleave now or Swords Dance again?\n\nIf I Kowtow Cleave:\n- At +2, with Black Glasses, super effective: should OHKO Gholdengo\n- Gholdengo's HP is 162-194. Let's calculate more carefully.\n- Kingambit Atk 205, +2 = 410. Kowtow Cleave BP 85, super effective (2x), Black Glasses (1.2x)\n- Damage ≈ (85 * 410 / Def) * 2 * 1.2 / some divisor\n- If Gholdengo Def is ~130: damage ≈ 85 * 410 / 130 * 2.4 ≈ 85 * 3.15 * 2.4 ≈ 642... that's way over HP. Should OHKO easily.\n\nIf I Swords Dance again:\n- +4 Attack is even more devastating but I risk taking a hit\n- Gholdengo could Nasty Plot or attack\n- But I can OHKO now, so why not?\n\nActually, the best play is Kowtow Cleave to OHKO Gholdengo. Then I still have +2 Kingambit to handle the last threat.\n\nBut wait - Sucker Punch is also super effective and priority +1. If Gholdengo attacks, Sucker Punch goes first and could OHKO. But if Gholdengo sets up (Nasty Plot), Sucker Punch fails. Kowtow Cleave always works.\n\nI'll go with Kowtow Cleave to guarantee the OHKO on Gholdengo.\n\nAfter Gholdengo faints, I'll have +2 Kingambit vs the last unknown Pokémon (rotomwash, aegislash, toxapex, or corviknight) plus the Dragapult at 90%.\n\nMy Dragapult with Choice Scarf can handle the Dragapult matchup and other threats.\n",
+      "note": "",
+      "tokens": 3682,
+      "latency_ms": 14191,
+      "cost_usd": 0.00068958,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "68% SWITCH: gholdengo, 32% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2079,
+      "latency_ms": 437,
+      "cost_usd": 8.7318e-05,
+      "probabilities": {
+        "SWITCH: dragapult": 0.32,
+        "SWITCH: gholdengo": 0.68
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "35% SWITCH: dragapult, 23% MOVE: nastyplot, 18% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2399,
+      "latency_ms": 416,
+      "cost_usd": 0.000100758,
+      "probabilities": {
+        "MOVE: poltergeist": 0.14,
+        "MOVE: shadowball": 0.18,
+        "MOVE: protect": 0.1,
+        "MOVE: nastyplot": 0.23,
+        "SWITCH: dragapult": 0.35
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit +2, 162/207 HP vs Gholdengo (100%, outspeeds). Game says Kowtow Cleave is SE on Gholdengo. Gholdengo's STAB (Make It Rain, Shadow Ball) are both NVE on Kingambit (Steel resists Steel, Dark resists Ghost). Plan: Kowtow Cleave to chip Gholdengo while it can't hurt me much. After Gholdengo dies, use my Dragapult (Choice Scarf, Spe 180) to outspeed and KO the 90% HP Dragapult. Opponent's last Pokémon is Dragapult - all 3 brought are known.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Kingambit is at +2 Atk, 162/207 HP, with Black Glasses\n- Opponent's Gholdengo is at 100% HP, Speed 93-149 (outspeeds my Kingambit at 70)\n- Opponent's Dragapult is at 90% HP with Life Orb\n- Opponent's Rotom-Wash is fainted\n\nKey considerations:\n1. Gholdengo outspeeds Kingambit, so if I use Kowtow Cleave, Gholdengo will attack first\n2. Gholdengo has Good as Gold (immune to status moves)\n3. Kowtow Cleave is super effective on Gholdengo (Dark vs Steel/Ghost)\n4. Sucker Punch would go first (priority +1) IF Gholdengo attacks, but fails if it switches or uses status\n\nThe opponent has 3 Pokémon brought: Dragapult, Gholdengo, Rotom-Wash. Rotom-Wash is fainted. So the opponent has Dragapult and Gholdengo left (plus Rotom-Wash is down).\n\nWait, the opponent brought 3 of their 6. We've seen: Dragapult, Gholdengo, Rotom-Wash. All 3 have been seen. Rotom-Wash is fainted. So the opponent has Dragapult (90%) and Gholdengo (100%) remaining.\n\nIf I use Kowtow Cleave: Gholdengo outspeeds and attacks first. Gholdengo likely has Make It Rain (Steel special, 120 BP) which is super effective on Kingambit (Steel vs Steel... no wait, Steel is not very effective on Steel). Actually Steel moves are not very effective on Steel types. So Make It Rain would be not very effective on Kingambit. Shadow Ball would be super effective (Ghost vs Dark/Steel... wait, Ghost is super effective on Dark? No, Ghost is not very effective on Dark. Actually Dark resists Ghost. So Shadow Ball would be not very effective too.\n\nHmm, what does Gholdengo hit Kingambit for? Kingambit is Dark/Steel. Steel resists Steel, Dark resists Ghost. So Gholdengo's STAB moves (Make It Rain and Shadow Ball) are both not very effective on Kingambit. Kingambit is very bulky defensively.\n\nSo if Gholdengo attacks, it won't do much damage. Then my Kowtow Cleave at +2 with Black Glasses should OHKO Gholdengo.\n\nLet me calculate: Kingambit Atk 205, +2 = 410. Kowtow Cleave BP 85, super effective (2x), Black Glasses (1.2x), Supreme Overlord (10% per fainted ally - 1 fainted ally (rotomwash is opponent's, not mine... wait, Supreme Overlord boosts for each fainted ALLY. My allies that are fainted: none. So no boost from Supreme Overlord).\n\nDamage calc: 410 * 85 * 2 * 1.2 / 100 / 50 * (random 0.85-1.0) * (252/255 level modifier)\n= 410 * 85 * 2 * 1.2 / 50 = 410 * 85 * 2.4 / 50 = 410 * 204 / 50 = 1672.8\nThen multiply by 0.85-1.0: ~1422-1673\nDivide by Gholdengo's Def (103-161): ~8.8-16.2... wait that doesn't seem right.\n\nLet me redo the formula properly:\nDamage = (2 * Level / 50 + 2) * Power * A / D / 50 + 2\n= (2 * 50 / 50 + 2) * 85 * 410 / D / 50 + 2\n= 4 * 85 * 410 / D / 50 + 2\n= 139400 / D / 50 + 2\n= 2788 / D + 2\n\nWait, I need to include the multipliers:\n= 4 * 85 * (410) * 2 (super effective) * 1.2 (black glasses) / D / 50 + 2\n= 4 * 85 * 410 * 2.4 / D / 50 + 2\n= 334,560 / D / 50 + 2\n= 6691.2 / D + 2\n\nIf D = 103: 6691.2 / 103 + 2 = 65 + 2 = 67... that seems too low.\n\nI'm messing up the formula. Let me use the standard one:\nDamage = (((2 * Level / 50 + 2) * Power * A / D) / 50 + 2) * modifiers\n\n= (((2 * 50/50 + 2) * 85 * 410 / D) / 50 + 2) * 2 * 1.2\n= ((4 * 85 * 410 / D) / 50 + 2) * 2.4\n= ((34850 / D) / 50 + 2) * 2.4\n\nIf D = 103: (34850/103/50 + 2) * 2.4 = (6.76 + 2) * 2.4 = 8.76 * 2.4 = 21.0... \n\nThat's way too low. I think I'm confusing the formula. Let me look at it more carefully.\n\nThe actual formula is:\nDamage = (((2 * Level / 50 + 2) * Power * A / D) / 50 + 2) * modifiers * random\n\nFor Level 50:\n= (((2 * 50 / 50 + 2) * 85 * 410 / D) / 50 + 2) * modifiers * random\n= ((4 * 85 * 410 / D) / 50 + 2) * modifiers * random\n\nIf D = 103:\n= (139400 / 103 / 50 + 2) * 2.4 * random\n= (1353.4 / 50 + 2) * 2.4 * random\n= (27.07 + 2) * 2.4 * random\n= 29.07 * 2.4 * random\n= 69.8 * random (0.85-1.0)\n= 59.3 to 69.8\n\nThat's still too low. Gholdengo has 194 HP max. So this wouldn't OHKO?\n\nWait, I think I'm making an error. Let me reconsider. The +2 boost means the Attack stat is doubled (multiplied by 2), not added. So 205 * 2 = 410. That's what I used.\n\nHmm, but 69 damage against 194 HP... that's only about 35%. That can't be right for a super effective hit with +2 and Black Glasses.\n\nLet me reconsider. Maybe I'm wrong about the stat. At level 50, Kingambit's Attack is 205. With +2, it becomes 205 * 2 = 410. \n\nActually wait - I think the issue is that the formula I'm using gives damage in terms of the HP stat directly. Let me recalculate:\n\nDamage = (((2 * 50/50 + 2) * 85 * 410 / 103) / 50 + 2) * 2 * 1.2 * random\n= ((4 * 85 * 410 / 103) / 50 + 2) * 2.4 * random\n= ((139400 / 103) / 50 + 2) * 2.4 * random\n= (1353.4 / 50 + 2) * 2.4 * random\n= (27.07 + 2) * 2.4 * random\n= 29.07 * 2.4 * random\n= 69.8 * random\n\nSo max damage is about 69.8, which is about 36% of 194 HP. That doesn't OHKO at all!\n\nHmm, but wait. The opponent's Gholdengo might have lower Defense. The range is 103-161. Even at 103, we only do ~70 damage.\n\nActually, I think I need to reconsider. Maybe the +2 boost is applied differently. In Pokémon, +2 means the stat is multiplied by 2. So Attack = 205 * 2 = 410. That's correct.\n\nBut wait, maybe I should check if Kowtow Cleave ignores defense boosts? No, it just ignores accuracy checks.\n\nSo Kowtow Cleave at +2 with Black Glasses does about 36% to Gholdengo at best. That's not an OHKO at all!\n\nThis changes my plan significantly. Let me reconsider.\n\nActually, wait. Let me re-examine. The opponent's Gholdengo - what's its actual Defense? The range is 103-161. If it's a special attacker Gholdengo (which is the most common set), it likely has low or no EVs in Defense, so around 103-115.\n\nEven at 103, we do ~70 damage. Gholdengo has 162-194 HP. So we do about 36-43% damage. Not an OHKO.\n\nSo my plan from Turn 3 was wrong. Kowtow Cleave won't OHKO Gholdengo.\n\nWhat should I do? Options:\n1. Kowtow Cleave - does ~36-43% damage, Gholdengo attacks first (but not very effectively on Kingambit)\n2. Sucker Punch - priority, goes first if Gholdengo attacks, super effective, BP 70 * 2 (SE) * 1.2 (black glasses) * 2 (+2) = effectively 70 * 2.4 = 168 power equivalent. Wait no, Sucker Punch BP is 70.\n\nDamage with Sucker Punch:\n= ((4 * 70 * 410 / 103) / 50 + 2) * 2 * 1.2 * random\n= ((114800 / 103) / 50 + 2) * 2.4 * random\n= (1114.6 / 50 + 2) * 2.4 * random\n= (22.29 + 2) * 2.4 * random\n= 24.29 * 2.4 * random\n= 58.3 * random (0.85-1.0)\n= 49.6 to 58.3\n\nEven less than Kowtow Cleave. And it fails if Gholdengo switches.\n\n3. Swords Dance again - +4 Atk. But Gholdengo outspeeds and attacks first.\n\nWith +4: Attack = 205 * 4 = 820\nKowtow Cleave damage:\n= ((4 * 85 * 820 / 103) / 50 + 2) * 2.4 * random\n= ((278800 / 103) / 50 + 2) * 2.4 * random\n= (2706.8 / 50 + 2) * 2.4 * random\n= (54.14 + 2) * 2.4 * random\n= 56.14 * 2.4 * random\n= 134.7 * random (0.85-1.0)\n= 114.5 to 134.7\n\nAt 134.7 max damage vs Gholdengo's HP of 162-194, that's 69-83% of HP. Still not OHKO!\n\nHmm, this is a problem. Let me reconsider the whole situation.\n\nActually, I realize I might be making a calculation error. Let me redo more carefully.\n\nThe damage formula for a physical move:\nDamage = floor(floor(floor(2 * Level / 50 + 2) * Power * A / D) / 50 + 2) * modifiers\n\nLevel 50, so 2 * 50 / 50 + 2 = 4\n\nFor Kowtow Cleave (85 BP) at +2 (A = 410) vs Gholdengo (D = 103):\nBase = floor(floor(4 * 85 * 410 / 103) / 50 + 2)\n= floor(floor(139400 / 103) / 50 + 2)\n= floor(floor(1353.4) / 50 + 2)\n= floor(1353 / 50 + 2)\n= floor(27.06 + 2)\n= floor(29.06)\n= 29\n\nThen multiply by modifiers: 29 * 2 (SE) * 1.2 (Black Glasses) * random(0.85-1.0)\n= 29 * 2.4 * random\n= 69.6 * random\n= 59.2 to 69.6\n\nSo max ~70 damage. Gholdengo has 162-194 HP. Definitely not OHKO.\n\nOK so I was wrong about the OHKO. Let me think about what to do.\n\nThe opponent has: Gholdengo (100%) and Dragapult (90%). Rotom-Wash is fainted.\n\nGholdengo outspeeds Kingambit. Gholdengo's STAB moves are both not very effective on Kingambit (Steel resists Steel, Dark resists Ghost). So Gholdengo can't do much to Kingambit.\n\nBut Kingambit can't OHKO Gholdengo either.\n\nWhat about switching? My Dragapult with Choice Scarf outspeeds Gholdengo (Spe 180 vs 93-149). Dragapult can hit Gholdengo with... Shadow Ball (Ghost, super effective on Steel/Ghost? No, Ghost is not very effective on Dark... wait Gholdengo is Steel/Ghost. Ghost moves on Ghost types are... not very effective? No, Ghost is super effective on Ghost. Wait:\n- Ghost vs Steel: not very effective (0.5x)\n- Ghost vs Ghost: super effective (2x)\n- Combined: 2x * 0.5x = 1x (neutral)\n\nActually for Steel/Ghost:\n- Ghost moves: 2x (Ghost) * 0.5x (Steel) = 1x neutral\n- Dark moves: 2x (Ghost) * 0.5x (Steel) = 1x neutral... wait no.\n- Dark vs Ghost: 2x\n- Dark vs Steel: 0.5x\n- Combined: 2x * 0.5x = 1x\n\nHmm wait, that's not right either. Let me check:\n- Dark is super effective on Ghost (2x) and not very effective on Steel (0.5x)\n- For a Steel/Ghost type: 2x * 0.5x = 1x (neutral)\n\nSo Kingambit's Dark moves are NEUTRAL on Gholdengo, not super effective!\n\nWait, but the legal actions say \"super effective on gholdengo\" for Kowtow Cleave. Let me re-check.\n\nActually, I think I might be wrong. Let me look at the type chart again:\n- Dark attacks vs Ghost: 2x (super effective)\n- Dark attacks vs Steel: 0.5x (not very effective)\n- Dark attacks vs Steel/Ghost: 2x * 0.5x = 1x (neutral)\n\nBut the game says \"super effective on gholdengo\" for Kowtow Cleave. Hmm, maybe I'm wrong about the type matchup.\n\nWait, actually I need to double-check. In Gen 9:\n- Dark vs Steel: 0.5x (not very effective)\n- Dark vs Ghost: 2x (super effective)\n- Dark vs Steel/Ghost: 0.5x * 2x = 1x (neutral)\n\nBut the game explicitly says \"super effective on gholdengo\". Let me trust the game's assessment. Maybe I'm wrong about the type chart.\n\nActually, looking more carefully at the type chart:\n- Dark is NOT very effective against Steel (0.5x)\n- Dark IS super effective against Ghost (2x)\n- Dark vs Steel/Ghost = 0.5 * 2 = 1x (neutral)\n\nBut the game says super effective. Hmm, maybe the game is using a different calculation or I'm misremembering. Let me just trust the game's assessment since it says \"super effective on gholdengo\".\n\nWait, actually I just realized - maybe I'm wrong about Dark vs Steel. Let me think again...\n\nIn Gen 6+, Steel resists Dark. So Dark vs Steel is 0.5x. And Dark vs Ghost is 2x. Combined for Steel/Ghost: 0.5 * 2 = 1x.\n\nBut the game says \"super effective on gholdengo\". This is confusing. Let me just trust the game.\n\nActually, you know what, I just recalled - in some generations or with certain abilities, the matchup might be different",
+      "note": "",
+      "tokens": 7134,
+      "latency_ms": 46341,
+      "cost_usd": 0.00226466,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% MOVE: nastyplot, 25% MOVE: shadowball, 19% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2405,
+      "latency_ms": 454,
+      "cost_usd": 0.00010101,
+      "probabilities": {
+        "MOVE: poltergeist": 0.17,
+        "MOVE: shadowball": 0.25,
+        "MOVE: protect": 0.19,
+        "MOVE: nastyplot": 0.39
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit +2 with Black Glasses and Supreme Overlord (2 fainted allies) should OHKO Gholdengo with Kowtow Cleave. Gholdengo's STAB moves are NVE on Kingambit so it can't hurt much. This is the final Pokémon - KO it to win.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- My Kingambit is at +2 Attack, 162/207 HP, with Black Glasses\n- Opponent's Gholdengo is at 100% HP, moves first (Spe 93-149 vs my 70)\n- Opponent has only Gholdengo left (Dragapult and Rotom-Wash are fainted)\n- Gholdengo has Good as Gold (immune to status moves)\n\nKey considerations:\n- Kowtow Cleave is super effective on Gholdengo (Dark hits Ghost)\n- At +2 with Black Glasses, Kingambit's Kowtow Cleave should be very powerful\n- Kingambit Atk 205, +2 boost = effectively 410 Atk\n- Black Glasses gives 1.2x, Supreme Overlord gives 10% per fainted ally (2 fainted = 1.2x)\n- Kowtow Cleave BP 85, SE = 1.5x\n- Total damage multiplier: 85 × 1.5 × 1.2 × 1.2 = ~122.4 effective BP\n- Gholdengo has Def 103-161, HP 162-194\n\nLet me calculate: With +2 Attack (410), Black Glasses (1.2x), Supreme Overlord (1.2x for 2 fainted allies), SE (1.5x), BP 85:\nDamage ≈ (2*50/50 + 2) * 410 * 85 * 1.5 * 1.2 * 1.2 / (255 * Def)\n= 4 * 410 * 85 * 1.5 * 1.2 * 1.2 / (255 * Def)\n= 4 * 410 * 85 * 2.592 / (255 * Def)\n= 359,712 / (255 * Def)\n\nIf Def is 103: 359,712 / 26,265 ≈ 13.7 → way over OHKO\nIf Def is 161: 359,712 / 41,055 ≈ 8.8 → still OHKO\n\nSo Kowtow Cleave should OHKO Gholdengo regardless. The opponent's Gholdengo moves first though, so it can attack. But Gholdengo's attacks (Make It Rain, Shadow Ball) are both NVE on Kingambit (Steel resists Steel, Dark resists Ghost). So even if it hits, it won't do much damage.\n\nI should just use Kowtow Cleave to finish the game.",
+      "note": "",
+      "tokens": 3657,
+      "latency_ms": 16267,
+      "cost_usd": 0.00060423,
+      "probabilities": null
+    }
+  ]
+}

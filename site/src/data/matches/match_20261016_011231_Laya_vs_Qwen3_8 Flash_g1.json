@@ -1,0 +1,429 @@
+{
+  "id": "match_20261016_011231_Laya_vs_Qwen3_8 Flash_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261016",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "qwen3_8_flash",
+      "display_name": "Qwen3.8 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.8-flash",
+      "quantization": null,
+      "username": "Qwen3.8 Flash",
+      "role": "p2",
+      "team": "Qwen3.8 Flash's team",
+      "model_key": "qwen/qwen3.8-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "Qwen3.8 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 5,
+  "duration_seconds": 132.39,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|Qwen3.8 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, F|",
+    "|poke|p1|Torterra, L50, F|",
+    "|poke|p1|Scrafty, L50, F|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Arcanine-Hisui, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Clefable, L50, M|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, F|202/202",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Gholdengo|Focus Blast|p1a: Torterra",
+    "|-damage|p1a: Torterra|88/202",
+    "|-damage|p2a: Gholdengo|90/100|[from] item: Life Orb",
+    "|move|p1a: Torterra|Trailblaze|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|77/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Gholdengo|Focus Blast|p1a: Torterra",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|faint|p1a: Torterra",
+    "|-damage|p2a: Gholdengo|67/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|157/157",
+    "|turn|3",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|-damage|p2a: Gholdengo|58/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, F|177/177",
+    "|turn|4",
+    "|",
+    "|move|p2a: Gholdengo|Focus Blast|p1a: Torkoal",
+    "|-damage|p1a: Torkoal|52/177",
+    "|-damage|p2a: Gholdengo|48/100|[from] item: Life Orb",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Arcanine|Arcanine-Hisui, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|move|p2a: Arcanine|Head Smash|p1a: Torkoal",
+    "|-supereffective|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|",
+    "|win|Qwen3.8 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 55% BRING: torterra, 14% BRING: rotom, 12% BRING: torkoal\nPick 2: 35% BRING: torkoal, 27% BRING: scrafty, 18% BRING: rotom\nPick 3: 47% BRING: rotom, 30% BRING: scrafty, 14% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5325,
+      "latency_ms": 1347,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,corviknight,arcaninehisui",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent has 2 Fire types (Torkoal, Simisear), Torterra, Scrafty, Sinistcha, Rotom. Gholdengo handles Scrafty/Sinistcha/Torterra. Corviknight handles Torkoal/Torterra/Scrafty. Hisui Arcanine handles Torkoal/Simisear/Torterra. Lead Gholdengo for offensive pressure. Chopleberry on Arcanine helps vs Scrafty.",
+      "hidden_reasoning": "Let me analyze the opponent's team and decide which 3 Pokémon to bring.\n\nOpponent's team:\n- Rotom (Electric/Ghost) - Levitate, can be annoying with Will-O-Wisp/Thunderbolt\n- Torkoal (Fire) - Drought, White Smoke, Shell Armor - very defensive, can set up sun\n- Torterra (Grass/Ground) - Overgrow/Shell Armor - bulky, weak to Ice/Flying/Poison/Bug\n- Scrafty (Dark/Fighting) - Shed Skin/Moxie/Intimidate - can be threatening with Moxie\n- Sinistcha-Masterpiece (Grass/Ghost) - Hospitality/Heatproof - bulky special attacker\n- Simisear (Fire) - Gluttony/Blaze - fast Fire type\n\nMy options:\n- Gholdengo (Steel/Ghost) - Good against Torkoal, Torterra, Sinistcha, Scrafty. Weak to Fire (Torkoal, Simisear).\n- Corviknight (Flying/Steel) - Good against Torkoal, Torterra, Scrafty. Weak to Electric (Rotom).\n- Hisui Arcanine (Fire/Rock) - Good against Torkoal (with Rock moves), Simisear, Torterra. Weak to Water/Ground.\n- Rotom-Wash (Electric/Water) - Good against Torkoal, Torterra, Scrafty. Neutral to most.\n- Clefable (Fighting) - Good against Scrafty, Torkoal (neutral). Can Calm Mind.\n- Dragapult (Dragon/Ghost) - Fast, good against Torkoal, Torterra, Scrafty. Weak to Ice/Ground.\n\nLet me think about what the opponent might bring. They have 6 Pokémon and will bring 3.\n\nThe opponent's team has:\n- 2 Fire types (Torkoal, Simisear)\n- 1 Grass/Ground (Torterra)\n- 1 Grass/Ghost (Sinistcha)\n- 1 Electric/Ghost (Rotom)\n- 1 Dark/Fighting (Scrafty)\n\nKey threats:\n- Torkoal with Drought can boost Fire moves\n- Scrafty with Moxie can sweep if it gets a KO\n- Sinistcha is bulky and can set up\n- Torterra is bulky with Ground typing\n\nGood choices for me:\n1. Gholdengo - Excellent against Scrafty (Ghost+Steel resists Dark and Fighting), Sinistcha (Ghost resists Ghost, Steel resists Grass), Torterra (Steel resists Grass, Ground is neutral to Steel). Can Nasty Plot and sweep.\n2. Corviknight - Good against Torkoal (Steel resists Fire, Flying is neutral), Torterra (Flying super effective), Scrafty (Steel resists Fighting). Can Defog hazards and U-turn.\n3. Hisui Arcanine - Good against Torkoal (Rock super effective, Fire neutral), Simisear (Rock super effective), Torterra (Fire neutral, Rock super effective). Chopleberry helps against Fighting (Scrafty).\n\nAlternative: Rotom-Wash is good against Torkoal (Water super effective), Torterra (Water super effective), Scrafty (Electric neutral, Water neutral). But it's slow.\n\nI think Gholdengo, Corviknight, and Hisui Arcanine make a great core:\n- Gholdengo handles Scrafty, Sinistcha, Torterra\n- Corviknight handles Torkoal, Torterra, Scrafty\n- Hisui Arcanine handles Torkoal, Simisear, Torterra\n\nThis covers most of the opponent's team well. Let me lead with Gholdengo since it's the most versatile offensive threat.\n\nActually, let me reconsider. The opponent might bring Torkoal + Simisear (Fire core) which would be bad for Gholdengo. But Corviknight handles Torkoal and Hisui Arcanine handles both Fire types.\n\nI'll go with: Gholdengo (lead), Corviknight, Hisui Arcanine\n\nThis gives me:\n- Gholdengo vs Scrafty, Sinistcha, Torterra\n- Corviknight vs Torkoal, Torterra, Scrafty\n- Hisui Arcanine vs Torkoal, Simisear, Torterra\n\nGood coverage overall.\n",
+      "note": "",
+      "tokens": 3234,
+      "latency_ms": 19775,
+      "cost_usd": 0.00066174,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: trailblaze, 19% MOVE: bulldoze, 11% MOVE: growth",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1850,
+      "latency_ms": 254,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.5369,
+        "MOVE: bulldoze": 0.1856,
+        "MOVE: energyball": 0.0762,
+        "MOVE: growth": 0.1143,
+        "SWITCH: torkoal": 0.0401,
+        "SWITCH: rotom": 0.0469
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Gholdengo leads with offensive pressure. Torterra is Grass/Ground so Focus Blast is 2x super effective. I outspeed (149 vs max 118). If Focus Blast hits, likely OHKO. If it misses, I can switch to Corviknight to handle Torterra defensively. Remaining threats: Rotom (Will-O-Wisp but immune to status), Torkoal (need Arcanine), Scrafty (Gholdengo handles), Sinistcha (Gholdengo handles), Simisear (Arcanine handles).",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- I lead with Gholdengo (Life Orb, Good as Gold ability)\n- Opponent leads with Torterra (Grass/Ground)\n- Torterra's speed range is 68-118, my Gholdengo has 149 Spe, so I outspeed\n\nTorterra is Grass/Ground type. My moves:\n- Make It Rain (Steel, 120 BP) - neutral damage (1x) against Grass/Ground\n- Shadow Ball (Ghost, 80 BP) - neutral damage (1x) against Grass/Ground\n- Focus Blast (Fighting, 120 BP) - super effective (2x) against Grass/Ground! But 70% accuracy\n- Nasty Plot - setup\n\nFocus Blast is 2x super effective with 120 BP, so effectively 240 BP equivalent. Even at 70% accuracy, this is the best option. But if it misses, I lose momentum.\n\nActually, let me think about this more carefully. Make It Rain is 120 BP neutral. Focus Blast is 120 BP super effective (2x) = 240 BP equivalent, but 70% accuracy. With Life Orb boost, Focus Blast would do massive damage.\n\nI'll go with Focus Blast - it's the most damaging option and Torterra has no way to really threaten Gholdengo much (Ground moves won't do much to Steel/Ghost, Grass moves are resisted).\n\nWait, actually Torterra could have Earthquake which is neutral against Steel/Ghost... no, Ground is super effective against Steel. So Earthquake would hit Gholdengo for 2x. But Gholdengo has 113 Def and Torterra's Atk is 116-177. Still, I outspeed and Focus Blast should OHKO or near-OHKO.\n\nLet me go with Focus Blast to try to OHKO Torterra. If it misses, I can still switch or try again next turn.",
+      "note": "",
+      "tokens": 2845,
+      "latency_ms": 13779,
+      "cost_usd": 0.000507838,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "59% MOVE: trailblaze, 14% MOVE: bulldoze, 13% MOVE: energyball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1989,
+      "latency_ms": 48,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.5917,
+        "MOVE: bulldoze": 0.1362,
+        "MOVE: energyball": 0.126,
+        "MOVE: growth": 0.0839,
+        "SWITCH: torkoal": 0.0344,
+        "SWITCH: rotom": 0.0277
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torterra at 43% HP, +1 Speed from Trailblaze. Focus Blast is 4x super effective and should OHKO. Even if Torterra outspeeds, Trailblaze is not very effective (only ~20 dmg). If Focus Blast misses (30%), I can switch to Corviknight next turn. Gholdengo should stay for Scrafty/Sinistcha matchups later.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- Torterra is at 43% HP with +1 Speed from Trailblaze\n- Gholdengo is at 126/162 HP (77.8%)\n- I need to decide whether to attack or switch\n\nTorterra's Speed is now +1, so it could be 102-177 (base 68-118 * 1.5). My Gholdengo has 149 Speed. If Torterra has max Speed investment (118), with +1 Trailblaze it would be 177, outspeeding me. If it has less Speed investment, I might still outspeed.\n\nThe opponent's Torterra used Trailblaze (Grass/Physical, BP 50) which was not very effective against Gholdengo (Steel/Ghost resists Grass). It boosted its Speed.\n\nNow, Torterra at 43% HP - if it has Overgrow ability, its Grass moves get 1.5x at 1/3 HP or less. 43% is above 1/3 (33%), so Overgrow isn't active yet. But if I hit it and it drops below 33%, Overgrow could activate.\n\nLet me think about damage:\n- Focus Blast: 120 BP, Fighting type, super effective vs Grass/Ground (4x). With STAB? No, Gholdengo isn't Fighting type. So it's 120 * 4 * 1.3 (Life Orb) = huge damage. At 43% HP, Focus Blast should OHKO if it hits (70% accuracy).\n- Make It Rain: 120 BP Steel, super effective vs Grass (2x). 120 * 2 * 1.3 = decent. But it lowers SpA by 2, which is bad for a special attacker.\n- Shadow Ball: 80 BP Ghost, neutral vs Grass/Ground. Not ideal.\n\nThe question is whether I outspeed. Torterra's Speed range is 68-118. With +1 Trailblaze: 102-177. My Gholdengo is 149. If Torterra has high Speed EVs (118 base), it would be 177 and outspeed me. If it has low Speed (68), it would be 102 and I outspeed.\n\nGiven that this Torterra used Trailblaze, it might be a physical attacker with some Speed investment. But many Torterra are bulky with low Speed. The Speed range 68-118 means it could go either way.\n\nIf I use Focus Blast and it hits, it should OHKO at 43% HP (4x super effective, 120 BP, Life Orb). The risk is:\n1. Focus Blast misses (30% chance)\n2. Torterra outspeeds and hits me with a boosted Trailblaze (but it's not very effective against Steel/Ghost, so only 0.5x)\n\nActually, even if Torterra outspeeds, Trailblaze is not very effective against me. It did 20 damage last turn (126-146 = 20 damage from 146 to 126). So even if I miss Focus Blast, the worst case is I take another ~20 damage and can try again or switch.\n\nI think Focus Blast is the right call here. 70% accuracy but 4x super effective should OHKO at 43%. Even if I'm slower, the incoming damage is minimal.\n\nLet me also consider: if Torterra is at 43% and I OHKO it, I've eliminated one of their Pokémon. Good for me.\n\nI'll go with Focus Blast.",
+      "note": "",
+      "tokens": 3452,
+      "latency_ms": 22068,
+      "cost_usd": 0.00064676,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "52% SWITCH: rotom, 48% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1649,
+      "latency_ms": 198,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.4766,
+        "SWITCH: rotom": 0.5234
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: risingvoltage, 22% MOVE: charge, 18% MOVE: discharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1932,
+      "latency_ms": 42,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1612,
+        "MOVE: discharge": 0.1827,
+        "MOVE: risingvoltage": 0.3413,
+        "MOVE: charge": 0.217,
+        "SWITCH: torkoal": 0.0978
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash is active. Shadow Ball is super effective (Ghost on Ghost) with STAB + Life Orb + SE = huge damage. Gholdengo likely outspeeds most Rotom-Wash. After this, remaining threats: Torkoal, Scrafty, Sinistcha, Simisear. Gholdengo handles Scrafty/Sinistcha well. Keep Gholdengo in for now. Don't set up Nasty Plot at 67% HP against a fast threat.",
+      "hidden_reasoning": "Let me analyze the situation:\n\n- Gholdengo is at 67.9% HP with Life Orb\n- Rotom-Wash (Levitate) is active at 100% HP\n- Rotom-Wash is Electric/Ghost type\n\nKey considerations:\n1. Shadow Ball is super effective on Rotom (Ghost hits Ghost) - 80 BP, 100% accuracy\n2. Make It Train is not very effective on Rotom (Steel on Electric/Ghost = 0.5x) - 120 BP but lowered SpA by 2\n3. Focus Blast is no effect on Rotom (Fighting on Electric/Ghost = 0x) - completely useless\n4. Nasty Plot could set up but Rotom might have Will-O-Wisp (blocked by Good as Gold) or other moves\n\nSpeed: Gholdengo 149 vs Rotom 99-157. Rotom-Wash typically runs around 99-118 Spe investment, but could be faster. I'll likely outspeed most Rotom-Wash sets.\n\nShadow Ball at 80 BP with STAB (1.5x) and Life Orb (1.3x) and super effective (2x) = 80 * 1.5 * 1.3 * 2 = 312 effective power. That should be a solid hit on Rotom-Wash.\n\nLet me estimate damage: Gholdengo SpA is 185. Against Rotom-Wash with base Def 87 (let's say around 130-150 actual). Shadow Ball with STAB + LO + SE should do significant damage, likely 60-80% of Rotom-Wash's HP.\n\nActually, let me think more carefully. Rotom-Wash has base 137 SpA and 130 Def/SpD ranges. With max HP around 157 and decent special defense, Shadow Ball might not OHKO but will do heavy damage.\n\nThe plan: Use Shadow Ball to hit Rotom-Wash hard. If it survives, I can hit again next turn or switch. Gholdengo should stay in since it handles the remaining threats (Scrafty, Sinistcha) well.\n\nI should NOT use Nasty Plot here because Rotom-Wash could potentially have Volt Switch or other moves that threaten Gholdengo, and I want to keep pressure. Also, Gholdengo is already at 67.9% HP so setting up is risky.\n\nDecision: Shadow Ball is the best move here - super effective, 100% accuracy, and should do heavy damage to Rotom-Wash.",
+      "note": "",
+      "tokens": 3454,
+      "latency_ms": 16225,
+      "cost_usd": 0.0005709,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: flamethrower, 21% MOVE: flamecharge, 21% MOVE: firespin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1989,
+      "latency_ms": 47,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.4166,
+        "MOVE: flamecharge": 0.2062,
+        "MOVE: fissure": 0.171,
+        "MOVE: firespin": 0.2062
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opponent brought Torterra, Rotom, Torkoal - all three now seen. Torkoal is their last Pokémon. Focus Blast is 2x SE and should OHKO (468 effective BP vs SpD 81-134). Even if it misses (30%), I outspeed and can retry. Weather is None so Torkoal is NOT Drought - it's Whitesmoke or Shell Armor. Winning this turn with Focus Blast.",
+      "hidden_reasoning": "Let me analyze the current situation:\n\n- Torkoal is active (Fire type), 100% HP\n- My Gholdengo is at 94/162 (58%) with Life Orb\n- Torkoal has very low Speed (36-79), so Gholdengo definitely moves first\n- Torkoal's ability is unknown: whitesmoke, drought, or shellarmor\n\nKey considerations:\n1. Make It Rain is \"not very effective\" on Torkoal (Steel vs Fire = 0.5x). With Life Orb and STAB: 120 * 1.5 * 1.3 * 0.5 = 117 effective BP. Torkoal has high Def (144-211) but lower SpD (81-134). This might not OHKO.\n2. Shadow Ball is neutral (Ghost vs Fire = 1x). 80 * 1.5 * 1.3 = 156 effective BP. Probably won't OHKO either.\n3. Focus Blast is super effective (Fighting vs Fire = 2x). 120 * 1.5 * 1.3 * 2 = 468 effective BP. This should OHKO Torkoal! But 70% accuracy.\n4. Nasty Plot: I'm at 58% HP, but Torkoal is very slow. If I set up Nasty Plot, I can then OHKO with boosted attacks. But Focus Blast already OHKOs without setup.\n5. Switch to Arcanine: Arcanine is Fire/Rock, which resists Fire. But Torkoal is Fire type, so Arcanine's Headsmash (Rock) would be super effective. However, Torkoal has high Def.\n\nThe best option seems to be Focus Blast - it's 2x super effective and should OHKO Torkoal even at +0. The risk is 30% miss chance. If it misses, Torkoal attacks me (probably with a Fire move or Eruption if Drought).\n\nAlternatively, I could switch to Arcanine Hisui. Arcanine has Chopleberry (resists Fighting, not relevant here). Arcanine is Fire/Rock - Fire is neutral to Fire, Rock is super effective against Fire. Headsmash (150 BP, Rock) would do massive damage. But Torkoal has high Def (144-211). Let me calculate: 150 * 1.5 (STAB) * 2 (SE) = 450 effective BP vs Torkoal's SpD (81-134). Wait, Headsmash is Physical, so it hits Def. Torkoal's Def is 144-211, which is very high. That might not OHKO.\n\nActually, let me reconsider. Focus Blast with Gholdengo:\n- 120 BP * 1.5 STAB * 1.3 Life Orb * 2 SE = 468 effective BP vs SpD (81-134)\n- Torkoal HP: 145-177\n- This should definitely OHKO even at max SpD\n\nIf Focus Blast misses, Torkoal could hit me. If it has Drought, it might use Eruption or Fire Blast. Gholdengo at 94 HP could survive one hit but not two.\n\nI think Focus Blast is the best play here. The OHKO chance is very high, and even if it misses, I can switch next turn. The 30% miss risk is worth it for the guaranteed OHKO.\n\nActually, let me also consider: if Torkoal has Drought, it sets up Sunny Day on switch-in. But the log doesn't mention weather changing, so either it doesn't have Drought or the weather hasn't been announced yet. Wait, the field says \"Weather: None\" - so Torkoal doesn't have Drought, or it hasn't triggered yet. Actually, abilities trigger on switch-in, so if it had Drought, weather would be Sunny Day. Since weather is None, Torkoal does NOT have Drought. So it's either Whitesmoke or Shell Armor.\n\nThis means Torkoal's main threat is probably a Fire-type attack (Fire Blast, Overheat, etc.) or maybe a Ground/Electric move. With Whitesmoke, it can't have stats lowered. With Shell Armor, no crits.\n\nFocus Blast should OHKO. Let me go with that.\n\nAfter Torkoal falls, remaining opponent Pokémon: Scrafty, Sinistcha, Simisear (one of these three was brought as the third). Wait, the opponent brought 3 of 6: Torterra, Rotom, Torkoal have all been seen. So those are the 3 brought. The opponent has no more Pokémon!\n\nWait, let me re-read: \"The opponent brought 3 of the 6 it showed at team preview: all have been seen.\" So Torterra, Rotom, and Torkoal are the 3 brought. If Torkoal faints, the opponent has no more Pokémon and I win!\n\nSo Focus Blast to OHKO Torkoal wins the game! Even if it misses (30%), I can try again next turn since I outspeed.\n\nLet me go with Focus Blast.",
+      "note": "",
+      "tokens": 4212,
+      "latency_ms": 25326,
+      "cost_usd": 0.0008782,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Arcanine",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo fainted. Torkoal at 29% HP is the last opponent Pokémon. Arcanine-Hisui resists Flamethrower (Fire vs Fire = 0.5x) and outspeeds. Headsmash is 2x SE on Fire and should OHKO easily at 29%. Corviknight's Ironhead would be 0.5x (Steel vs Fire), so Arcanine is clearly better. Win this turn with Headsmash.",
+      "hidden_reasoning": "Gholdengo fainted. I need to switch in one of my remaining Pokémon. The opponent's active Pokémon is Torkoal at 29% HP with Flamethrower as a known move.\n\nLet me think about what's best:\n\n1. **Corviknight**: Steel/Flying, immune to Ground, resists Fire. Ironhead is super effective against Torkoal (Steel on Grass). Corviknight can safely switch in and kill Torkoal with Ironhead. It's also a good defensive pivot.\n\n2. **Arcanine-Hisui**: Fire/Rock, 4x weak to Ground but Torkoal doesn't have Ground moves (it's Fire-type). However, Arcanine-Hisui is Fire-type, so it's neutral to Flamethrower. Headsmash (Rock) is 2x SE against Torkoal. But Torkoal has high Defense (144-211), so Rock moves might not OHKO at 29%. Actually at 29% HP, even neutral damage should kill.\n\nWait, Torkoal is Fire-type. Rock is 2x SE against Fire. Headsmash at 150 BP x 2 = 300 effective BP against Torkoal's Def of 144-211. At 29% HP, this should easily KO.\n\nBut Corviknight is safer - it resists Flamethrower and has Ironhead (Steel) which is 2x SE against Torkoal (Steel on Grass... wait, Torkoal is pure Fire, not Grass). Ironhead is Steel, which is not very effective against Fire (0.5x). That's bad.\n\nActually wait - Torkoal is pure Fire type. Ironhead (Steel) against Fire = 0.5x. That's not ideal.\n\nArcanine-Hisui's Headsmash (Rock) against Fire = 2x SE. That's much better for killing Torkoal.\n\nBut Arcanine-Hisui is weak to Flamethrower? No - Fire vs Fire is 0.5x. So Arcanine-Hisui resists Flamethrower.\n\nSo Arcanine-Hisui is the better choice: resists Flamethrower, and Headsmash is 2x SE. Should OHKO at 29% HP easily.\n\nAlso, Arcanine-Hisui outspeeds Torkoal (142 vs 36-79 Spe), so it moves first.\n\nI'll go with Arcanine-Hisui.",
+      "note": "",
+      "tokens": 3420,
+      "latency_ms": 21617,
+      "cost_usd": 0.000527336,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: flamethrower, 24% MOVE: fissure, 23% MOVE: firespin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2229,
+      "latency_ms": 239,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.3387,
+        "MOVE: flamecharge": 0.1991,
+        "MOVE: fissure": 0.2365,
+        "MOVE: firespin": 0.2256
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "headsmash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal at 29% HP. Arcanine-Hisui has Rock Head (no recoil from Headsmash). Headsmash is 2x SE with STAB, should OHKO easily at 29%. This wins the game.",
+      "hidden_reasoning": "Torkoal is at 29% HP and Arcanine-Hisui is at full HP. Arcanine-Hisui outspeeds Torkoal (142 vs 36-79). Headsmash is 2x super effective on Fire type.\n\nLet me calculate: Headsmash is 150 BP Rock physical. Torkoal has 144-211 Def. Arcanine-Hisui has 183 Atk. At 29% HP, Torkoal has roughly 42-51 HP remaining.\n\nRock vs Fire = 2x super effective. STAB = 1.5x. So damage is very high. Even with Torkoal's high Def, this should OHKO easily at 29%.\n\nThe recoil from Headsmash is 1/2 damage dealt, but Arcanine has Rock Head ability, so no recoil.\n\nI should just use Headsmash to finish Torkoal and win the game.",
+      "note": "",
+      "tokens": 3261,
+      "latency_ms": 13370,
+      "cost_usd": 0.000378046,
+      "probabilities": null
+    }
+  ]
+}
