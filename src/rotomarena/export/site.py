@@ -154,14 +154,16 @@ def _median(values: Iterable[float]) -> Optional[float]:
 def model_stats(config_id: str, matches: List[MatchTelemetry]) -> Dict[str, Any]:
     """Behaviour across every match a model played in the exported versions, rated or not."""
     turns: List[TurnBreadcrumb] = []
-    priced_turns: List[TurnBreadcrumb] = []  # cost and tokens: not from games relayed through a chat app (no API bill)
+    # cost and tokens: not from games relayed through a chat app (no API bill) nor batched (half price), so a model's
+    # cost per game and price tier stay what calling it directly costs
+    priced_turns: List[TurnBreadcrumb] = []
     tera_turns, mega_turns, played, priced, formats = [], [], 0, 0, set()
     for m in matches:
         for p in m.players:
             if p.config_id != config_id:
                 continue
             played += 1
-            relayed = any(t.startswith("relay:") and t.endswith(f":{config_id}") for t in m.tags)
+            relayed = any(t.startswith(("relay:", "batch:")) and t.endswith(f":{config_id}") for t in m.tags)
             if not relayed:
                 priced += 1
                 priced_turns.extend(player_turns(m, p.role))

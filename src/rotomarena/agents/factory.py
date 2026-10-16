@@ -280,6 +280,8 @@ def create_agent_instance(
             from rotomarena.llm.relay import tag
 
             player.match_tags = [tag(agent_cfg.name)]
+        elif agent_cfg.batch.get(app_config.ruleset.version):
+            player.match_tags = [f"batch:{agent_cfg.name}"]  # about half price: kept out of its cost figures
         return player
     if agent_cfg.type == "decision":
         return DecisionPlayer(client=decision_client, **common)
