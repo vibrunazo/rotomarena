@@ -12,6 +12,8 @@ let rank = 0;
 const rows = models.map((m) => ({ m, rank: m.rating !== null && isModel(m) ? ++rank : null }));
 const tiers = ((meta as any).price_tiers ?? []) as { name: string; low: number; high: number | null }[];
 const SMALL_B = 36;  // "small": published total parameters, 36B or less
+// A tag is an icon; its words show on hover, or on a tap (the button takes focus), so names keep the row's width
+const ICONS: Record<string, string> = { anchor: '⚓', 'control group': '⚙', 'sparring partner': '⚔' };
 const tierTitle = (t: { name: string; low: number; high: number | null }) =>
   t.high === 0 ? 'Costs nothing: local models and free tiers' :
   `Cost per game in the main benchmark: ${t.low ? `$${t.low}` : '$0'}${t.high ? ` to $${t.high}` : ' and up'}`;
@@ -40,14 +42,14 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
       <tr>
         <th class="r" data-sort="num">#</th>
         <th data-sort="text">Model</th>
-        <th class="r" data-sort="num">Rating (95% CI){!compact && <sup class="fn-ref"><a href="#fn-ci">1</a></sup>}</th>
-        <th class="r" data-sort="num">Games</th>
-        {!compact && <th class="r" data-sort="num" title="Wins">W</th>}
-        {!compact && <th class="r" data-sort="num" title="Losses">L</th>}
-        <th class="r" data-sort="num">Win rate</th>
-        {!compact && <th class="r" data-sort="num" title="Hallucination rate: turns with no usable answer, played by default">Halluc.<sup class="fn-ref"><a href="#fn-hallucination">2</a></sup></th>}
-        {!compact && <th class="r" data-sort="num">Tokens / turn</th>}
-        {!compact && <th class="r" data-sort="num">Cost / game</th>}
+        <th class="r" data-sort="num">Rating<span class="phone-hide"> (95% CI)</span>{!compact && <sup class="fn-ref phone-hide"><a href="#fn-ci">1</a></sup>}</th>
+        <th class="r narrow-hide" data-sort="num">Games</th>
+        {!compact && <th class="r phone-hide" data-sort="num" title="Wins">W</th>}
+        {!compact && <th class="r phone-hide" data-sort="num" title="Losses">L</th>}
+        <th class="r" data-sort="num">Win<span class="phone-hide"> rate</span></th>
+        {!compact && <th class="r phone-hide" data-sort="num" title="Hallucination rate: turns with no usable answer, played by default">Halluc.<sup class="fn-ref"><a href="#fn-hallucination">2</a></sup></th>}
+        {!compact && <th class="r phone-hide" data-sort="num">Tokens / turn</th>}
+        {!compact && <th class="r" data-sort="num">Cost<span class="phone-hide"> / game</span></th>}
       </tr>
     </thead>
     <tbody>
@@ -55,18 +57,20 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
         <tr data-structure={isModel(m) ? (m.type === 'decision' ? 'system1' : 'llm') : 'bot'} data-open={m.weights === 'open' ? '1' : '0'}
             data-small={m.params_b != null && m.params_b <= SMALL_B ? '1' : '0'} data-tier={m.price_tier ?? ''} data-ranked={rank ? '1' : '0'}>
           <td class="r num rank" data-value={rank ?? 999}>{rank ?? '—'}</td>
-          <td data-value={m.display_name}>
-            <a href={routes.model(m.config_id)}>{m.display_name}</a>
-            {roleLabel(role(m)) && <span class="pill" title={roleTitle(role(m), m.type)}>{roleLabel(role(m))}</span>}
-            {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
+          <td class="model" data-value={m.display_name}>
+            <a href={routes.model(m.config_id)} title={m.display_name}>{m.display_name}</a>
+            {roleLabel(role(m)) && <button type="button" class="tag" aria-label={roleLabel(role(m))!}
+              data-tip={`${roleLabel(role(m))}: ${roleTitle(role(m), m.type)}`}>{ICONS[roleLabel(role(m))!] ?? '•'}</button>}
+            {m.provisional && <button type="button" class="tag warn" aria-label="provisional"
+              data-tip={`provisional: ${provisionalTitle(meta.ladder.provisional_games)}`}>?</button>}
           </td>
           <td class="r" data-value={m.rating ?? -1}><Rating model={m} /></td>
-          <td class="r num" data-value={m.games}>{m.games}</td>
-          {!compact && <td class="r num" data-value={m.wins}>{m.wins}</td>}
-          {!compact && <td class="r num" data-value={m.losses}>{m.losses}</td>}
+          <td class="r num narrow-hide" data-value={m.games}>{m.games}</td>
+          {!compact && <td class="r num phone-hide" data-value={m.wins}>{m.wins}</td>}
+          {!compact && <td class="r num phone-hide" data-value={m.losses}>{m.losses}</td>}
           <td class="r num" data-value={m.win_rate}>{fmtPct(m.win_rate)}</td>
-          {!compact && <td class="r num" data-value={m.autopilot_rate}>{isModel(m) ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
-          {!compact && <td class="r num" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
+          {!compact && <td class="r num phone-hide" data-value={m.autopilot_rate}>{isModel(m) ? fmtPct(m.autopilot_rate, 1) : '—'}</td>}
+          {!compact && <td class="r num phone-hide" data-value={m.tokens_per_turn ?? -1}>{m.tokens_per_turn?.toLocaleString('en-US') ?? '—'}</td>}
           {!compact && <td class="r num" data-value={m.cost_per_game_usd}>{isModel(m) ? fmtCost(m.cost_per_game_usd) : '—'}</td>}
         </tr>
       ))}
@@ -119,6 +123,28 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
     });
   }
 
+  // Tags: their words in a floating box on hover or tap, kept inside the screen; a tap elsewhere or a scroll hides it
+  const tip = document.createElement('div');
+  tip.className = 'tag-tip';
+  tip.hidden = true;
+  document.body.append(tip);
+  const show = (tag: HTMLElement) => {
+    tip.textContent = tag.dataset.tip ?? '';
+    tip.hidden = false;
+    const r = tag.getBoundingClientRect();
+    const w = tip.offsetWidth, h = tip.offsetHeight;
+    tip.style.left = `${Math.max(16, Math.min(r.left + r.width / 2 - w / 2, innerWidth - w - 16))}px`;
+    tip.style.top = `${r.top - h - 8 >= 8 ? r.top - h - 8 : r.bottom + 8}px`;
+  };
+  const hide = () => { tip.hidden = true; };
+  for (const tag of document.querySelectorAll<HTMLElement>('.leaderboard .tag')) {
+    tag.addEventListener('mouseenter', () => show(tag));
+    tag.addEventListener('mouseleave', hide);
+    tag.addEventListener('click', (e) => { e.stopPropagation(); show(tag); });  // a tap also fires mouseenter: never toggle
+  }
+  document.addEventListener('click', hide);
+  addEventListener('scroll', hide, { passive: true });
+
   // Sort by clicking a header; a second click reverses. Rows keep their data-value for numbers.
   for (const table of document.querySelectorAll<HTMLTableElement>('table[data-sortable]')) {
     const headers = [...table.tHead!.rows[0].cells];
@@ -153,6 +179,27 @@ const tierTitle = (t: { name: string; low: number; high: number | null }) =>
   .filters button { font: inherit; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--border, #2a3550);
     background: transparent; color: inherit; cursor: pointer; }
   .filters button[aria-pressed="true"] { border-color: var(--accent, #43e0ff); color: var(--accent, #43e0ff); }
-  .leaderboard td .pill { margin-left: 0.4rem; }
   .leaderboard td a { font-weight: 500; }
+  .leaderboard td.model { white-space: nowrap; }
+  /* tags: a small icon; its words on hover or tap (focus) */
+  .tag { position: relative; display: inline-grid; place-items: center; width: 1.35em; height: 1.35em; margin-left: 0.3rem;
+    padding: 0; border-radius: 50%; border: 1px solid var(--line-strong); background: transparent; color: var(--text-dim);
+    font: 600 0.75rem/1 var(--font-body); cursor: help; vertical-align: 0.1em; }
+  .tag.warn { color: var(--amber); border-color: rgba(255, 181, 71, 0.45); }
+  /* the tag's words float above the page (the table's scroll box would clip them) */
+  :global(.tag-tip) { position: fixed; z-index: 50; max-width: min(18rem, calc(100vw - 32px)); padding: 0.45rem 0.6rem;
+    border-radius: 8px; background: var(--panel-solid); border: 1px solid var(--line-strong); color: var(--text);
+    font: 400 0.8rem/1.35 var(--font-body); box-shadow: var(--shadow-panel); pointer-events: none; }
+  /* phones: rank, model, rating, win rate and cost fit without scrolling sideways */
+  @media (max-width: 700px) {
+    .leaderboard .phone-hide { display: none; }
+    .leaderboard th, .leaderboard td { padding-left: 0.3rem; padding-right: 0.3rem; }
+    .leaderboard th { letter-spacing: 0.04em; }
+    .leaderboard td.model a { display: inline-block; max-width: 9.5rem; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
+  }
+  @media (max-width: 440px) {
+    .leaderboard .narrow-hide, .leaderboard :global(.margins) { display: none; }
+    .leaderboard th, .leaderboard td { padding-left: 0.2rem; padding-right: 0.2rem; font-size: 0.86rem; }
+    .leaderboard td.model a { max-width: 6.8rem; }
+  }
 </style>
