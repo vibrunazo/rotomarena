@@ -645,7 +645,10 @@ async def play_set(id_a: str, id_b: str, app_cfg: AppConfig, already_played: int
                     games = [group.create_task(runner.run_game(player_a, player_b, *set_teams(agent_a, agent_b, app_cfg, game),
                                                                game, own_teams=own))
                              for (player_a, player_b), game in zip(lanes, round_games)]
-                    guard = group.create_task(stall_guard(players, app_cfg.ladder.stall_minutes, f"{id_a} vs {id_b}"))
+                    # a batched model's turn waits for its batch (Google's took over 20 minutes, 15 Oct): its window
+                    stall = (26 * 60 if any(a.batch.get(app_cfg.ruleset.version) for a in (agent_a, agent_b))
+                             else app_cfg.ladder.stall_minutes)
+                    guard = group.create_task(stall_guard(players, stall, f"{id_a} vs {id_b}"))
                     await asyncio.gather(*games)
                     guard.cancel()
             except ExceptionGroup as failed:

@@ -14,6 +14,7 @@ import asyncio
 import itertools
 import json
 import time
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import aiohttp
@@ -22,6 +23,8 @@ from openai.types.chat import ChatCompletion
 from rotomarena.llm import pricing
 
 BATCHES_URL = "https://openrouter.ai/api/v1/batches"
+# touched while a batch is pending, so the round robin's watchdog (ladder.watchdog) sees a waiting run, not a dead one
+HEARTBEAT = Path(__file__).resolve().parents[3] / "runs" / "live" / "heartbeat"
 TERMINAL = {"completed", "failed", "expired", "cancelled"}
 _ids = itertools.count(1)
 
@@ -102,6 +105,11 @@ class BatchQueue:
             wait = self.poll_seconds
             while True:
                 await asyncio.sleep(wait)
+                try:
+                    HEARTBEAT.parent.mkdir(parents=True, exist_ok=True)
+                    HEARTBEAT.touch()
+                except OSError:
+                    pass
                 async with session.get(f"{BATCHES_URL}/{batch_id}", headers=headers) as r:
                     batch = await r.json(content_type=None)
                 if r.status >= 300:
