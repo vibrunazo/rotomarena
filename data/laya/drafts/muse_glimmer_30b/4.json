@@ -1,0 +1,63 @@
+{
+  "config_id": "muse_glimmer_30b",
+  "model": "meta/muse-glimmer-30b",
+  "provider": "openrouter",
+  "model_key": "meta/muse-glimmer-30b",
+  "quantization": null,
+  "format": "gen9championsrotomarenabssregmb",
+  "prompt_version": "draft-3",
+  "ruleset_version": "c5",
+  "drafted_at": "2026-10-16T18:35:55+00:00",
+  "picks": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "answer": "<thought>Team built around a bulky offensive core with hazard control and priority, using Gholdengo to block removal, Corviknight for physical bulk and Defog, Toxapex for stall and recovery, Garchomp and Dragapult for fast offensive pressure, and Annihilape as a late-game win condition with Rage Fist snowball.</thought>\n<pokemon>\nGarchomp\nDragapult\nCorviknight\nToxapex\nGholdengo\nAnnihilape\n</pokemon>",
+        "reasoning": "Step 1: pick your six Pokémon from the legal list.\n\nWe need output thought and pokemon list.\n\nPick six. Format RotomArena BSS Reg M-B. Bring 6 Pick 3? Actually Bring 6 Pick 3-6 depending. Probably pick 6.\n\nNeed balanced team. Choose meta picks: Garchomp, Dragapult, Corviknight, Toxapex, Gholdengo, Annihilape? All legal.\n\nLet's pick: Garchomp, Dragapult, Corviknight, Toxapex, Gholdengo, Annihilape\n\nProvide thought.\n\n",
+        "thought": "Team built around a bulky offensive core with hazard control and priority, using Gholdengo to block removal, Corviknight for physical bulk and Defog, Toxapex for stall and recovery, Garchomp and Dragapult for fast offensive pressure, and Annihilape as a late-game win condition with Rage Fist snowball.",
+        "pokemon": [
+          "Garchomp",
+          "Dragapult",
+          "Corviknight",
+          "Toxapex",
+          "Gholdengo",
+          "Annihilape"
+        ],
+        "problems": [],
+        "tokens": 1806,
+        "latency_ms": 4236,
+        "cost_usd": 0.00038452,
+        "finish_reason": "stop"
+      }
+    ],
+    "legal": true,
+    "species": [
+      "Garchomp",
+      "Dragapult",
+      "Corviknight",
+      "Toxapex",
+      "Gholdengo",
+      "Annihilape"
+    ],
+    "repairs": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "answer": "<thought>Sets give Garchomp and Dragapult fast offensive pressure with hazard support, Corviknight provides physical bulk and Defog while Gholdengo blocks removal with Good as Gold. Toxapex stalls with Regenerator and hazards, and Annihilape snowballs Rage Fist late game with Bulk Up.</thought>\n<team>\nGarchomp @ Life Orb\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Earthquake\n- Dragon Claw\n- Swords Dance\n- Stealth Rock\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Draco Meteor\n- Shadow Ball\n- U-turn\n- Thunderbolt\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nToxapex @ Sitrus Berry\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Recover\n- Haze\n- Toxic Spikes\n- Sludge Bomb\n\nGholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 HP / 2 Spe\nModest Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 HP / 2 Spe\nAdamant Nature\n- Rage Fist\n- Bulk Up\n- Drain Punch\n- Shadow Ball\n</team>",
+      "reasoning": "Step 1 done. Need build sets with constraints: EV limit max total 66, max 32 in one stat. Item clause unique. No duplicate items.\n\nNeed pick items from list. Use Leftovers, Choice Scarf, Life Orb, etc.\n\nBuild sets:\n\nGarchomp: Rough Skin, item maybe Life Orb or Dragon Fang. EVs 32 Atk / 32 Spe / 2 HP? total 66. Nature Jolly. Moves Earthquake, Swords Dance, Dragon Claw, Stealth Rock? Stealth Rock allowed. Could do Earthquake, Dragon Claw, Swords Dance, Stealth Rock.\n\nDragapult: Infiltrator, Choice Scarf, EVs 32 SpA / 32 Spe /2 Atk? Need 66. Moves Draco Meteor, Shadow Ball, U-turn, Thunderbolt? Could be.\n\nCorviknight: Pressure, Leftovers, EVs 32 HP /32 Def /2 SpD? Nature Impish. Moves Roost, Defog, Body Press, U-turn.\n\nToxapex: Regenerator, Black Sludge? Not in list. Leftovers used. Maybe Sitrus Berry. EVs 32 HP /32 Def /2 SpD. Moves Recover, Haze, Toxic Spikes, Sludge Bomb.\n\nGholdengo: Good as Gold, Spell Tag, EVs 32 HP /32 SpA /2 Spe. Moves Make It Rain, Shadow Ball, Nasty Plot, Recover? Recover allowed. Or Trick.\n\nAnnihilape: Defiant, Sitrus? Can't duplicate. Use Focus Sash. EVs 32 HP /32 Atk /2 Spe. Moves Rage Fist, Bulk Up, Drain Punch, Shadow Ball? Or Close Combat.\n\nNeed unique items: Life Orb, Choice Scarf, Leftovers, Sitrus Berry, Spell Tag, Focus Sash. All distinct.\n\nCheck moves legality: Garchomp has Stealth Rock yes. Swords Dance yes. Earthquake yes. Dragon Claw yes.\n\nDragapult moves: Draco Meteor yes, Shadow Ball yes, U-turn yes, Thunderbolt yes.\n\nCorviknight: Roost yes, Defog yes, Body Press yes, U-turn yes.\n\nToxapex: Recover yes, Haze yes, Toxic Spikes yes, Sludge Bomb yes.\n\nGholdengo: Make It Rain yes, Shadow Ball yes, Nasty Plot yes, Recover yes.\n\nAnnihilape: Rage Fist yes, Bulk Up yes, Drain Punch yes, Shadow Ball yes.\n\nEVs within limit.\n\nOutput format.\n\n",
+      "thought": "Sets give Garchomp and Dragapult fast offensive pressure with hazard support, Corviknight provides physical bulk and Defog while Gholdengo blocks removal with Good as Gold. Toxapex stalls with Regenerator and hazards, and Annihilape snowballs Rage Fist late game with Bulk Up.",
+      "team": "Garchomp @ Life Orb\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Earthquake\n- Dragon Claw\n- Swords Dance\n- Stealth Rock\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Draco Meteor\n- Shadow Ball\n- U-turn\n- Thunderbolt\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nToxapex @ Sitrus Berry\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Recover\n- Haze\n- Toxic Spikes\n- Sludge Bomb\n\nGholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 HP / 2 Spe\nModest Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 HP / 2 Spe\nAdamant Nature\n- Rage Fist\n- Bulk Up\n- Drain Punch\n- Shadow Ball",
+      "problems": [],
+      "tokens": 3380,
+      "latency_ms": 11088,
+      "cost_usd": 0.00175744,
+      "finish_reason": "stop"
+    }
+  ],
+  "legal": true,
+  "team": "Garchomp @ Life Orb\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Earthquake\n- Dragon Claw\n- Swords Dance\n- Stealth Rock\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Draco Meteor\n- Shadow Ball\n- U-turn\n- Thunderbolt\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nToxapex @ Sitrus Berry\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Recover\n- Haze\n- Toxic Spikes\n- Sludge Bomb\n\nGholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 HP / 2 Spe\nModest Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 HP / 2 Spe\nAdamant Nature\n- Rage Fist\n- Bulk Up\n- Drain Punch\n- Shadow Ball",
+  "thought": "Sets give Garchomp and Dragapult fast offensive pressure with hazard support, Corviknight provides physical bulk and Defog while Gholdengo blocks removal with Good as Gold. Toxapex stalls with Regenerator and hazards, and Annihilape snowballs Rage Fist late game with Bulk Up.",
+  "repaired": false,
+  "repairs": []
+}

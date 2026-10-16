@@ -1,0 +1,63 @@
+{
+  "config_id": "muse_glimmer_30b",
+  "model": "meta/muse-glimmer-30b",
+  "provider": "openrouter",
+  "model_key": "meta/muse-glimmer-30b",
+  "quantization": null,
+  "format": "gen9championsrotomarenabssregmb",
+  "prompt_version": "draft-3",
+  "ruleset_version": "c5",
+  "drafted_at": "2026-10-16T18:21:28+00:00",
+  "picks": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "answer": "<thought>Team built around Gholdengo's hazard control and special pressure, with Kingambit providing late-game sweep and priority. Dragapult offers fast offensive pressure and pivoting, while Corviknight gives defensive backbone and Defog support. Tinkaton adds hazard setting and breaking power, and Annihilape supplies strong physical offense and Rage Fist snowball potential.</thought>\n<pokemon>\nGholdengo\nKingambit\nDragapult\nCorviknight\nTinkaton\nAnnihilape\n</pokemon>",
+        "reasoning": "Step 1: pick your six Pokémon from the legal list.\n\nWe need output thought and pokemon list.\n\nPick six. Need balanced for BSS Reg M-B? RotomArena BSS Reg M-B. Probably Balanced? Let's pick core: Gholdengo, Kingambit, Dragapult, Corviknight, Tinkaton, Annihilape? All legal.\n\nNeed 6 lines names exactly as in legal list.\n\nPick: Gholdengo\nKingambit\nDragapult\nCorviknight\nTinkaton\nAnnihilape\n\nThought 2-4 sentences.\n\n",
+        "thought": "Team built around Gholdengo's hazard control and special pressure, with Kingambit providing late-game sweep and priority. Dragapult offers fast offensive pressure and pivoting, while Corviknight gives defensive backbone and Defog support. Tinkaton adds hazard setting and breaking power, and Annihilape supplies strong physical offense and Rage Fist snowball potential.",
+        "pokemon": [
+          "Gholdengo",
+          "Kingambit",
+          "Dragapult",
+          "Corviknight",
+          "Tinkaton",
+          "Annihilape"
+        ],
+        "problems": [],
+        "tokens": 1812,
+        "latency_ms": 2199,
+        "cost_usd": 0.00039172,
+        "finish_reason": "stop"
+      }
+    ],
+    "legal": true,
+    "species": [
+      "Gholdengo",
+      "Kingambit",
+      "Dragapult",
+      "Corviknight",
+      "Tinkaton",
+      "Annihilape"
+    ],
+    "repairs": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "answer": "<thought>Sets focus Gholdengo as special breaker with Nasty Plot + Recover and hazard immunity, Kingambit as Supreme Overlord late sweeper with Swords Dance priority, Dragapult as fast Choice Scarf pivot, Corviknight as physical wall with Defog and Body Press, Tinkaton as hazard setter and breaker, and Annihilape as Rage Fist snowball wincon. Items are all unique and EVs stay under 32 per stat and 66 total.</thought>\n<team>\nGholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- U-turn\n- Dragon Darts\n- Shadow Ball\n- Sucker Punch\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nTinkaton @ Babiri Berry\nAbility: Pickpocket\nEVs: 32 Atk / 32 HP / 2 SpD\nAdamant Nature\n- Gigaton Hammer\n- Play Rough\n- Stealth Rock\n- Knock Off\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Rage Fist\n- Close Combat\n- Bulk Up\n- Shadow Ball\n</team>",
+      "reasoning": "Step 1 done. Need build sets with constraints: EVs max 32 in one stat and 66 total. So EVs line sum <=66. Use 32/32/2 etc.\n\nItems must be unique from list. No duplicate. Choose items.\n\nNeed abilities from list.\n\nMoves from allowed list.\n\nNo Terastal.\n\nProvide export format.\n\nLet's craft sets:\n\nGholdengo @ Spell Tag? Spell Tag is allowed. Ability Good as Gold. EVs 32 HP / 32 SpA / 2 Spe? Max 32 per stat. Total 66. Use 32 SpA / 32 Spe /2 HP. Timid nature. Moves: Make It Rain, Shadow Ball, Nasty Plot, Recover? Recover allowed. Good.\n\nKingambit @ Black Glasses? Item list includes Black Glasses. Ability Supreme Overlord. EVs 32 Atk / 32 Spe /2 HP. Adamant. Moves: Kowtow Cleave, Sucker Punch, Swords Dance, Iron Head? Iron Head allowed. Or Low Kick.\n\nDragapult @ Choice Scarf. Ability Infiltrator. EVs 32 Atk /32 Spe /2 HP? Need 66 total. Use 32 Spe /32 Atk /2 HP. Jolly. Moves: U-turn, Dragon Darts, Shadow Ball, Sucker Punch.\n\nCorviknight @ Leftovers. Ability Pressure. EVs 32 HP /32 Def /2 SpD. Impish. Moves: Roost, Defog, Body Press, U-turn.\n\nTinkaton @ Babiri Berry. Ability Pickpocket. EVs 32 HP /32 Atk /2 SpD. Adamant. Moves: Gigaton Hammer, Play Rough, Stealth Rock, Knock Off.\n\nAnnihilape @ Focus Sash. Ability Defiant. EVs 32 Atk /32 Spe /2 HP. Jolly. Moves: Rage Fist, Close Combat, Bulk Up, Shadow Ball? Shadow Ball allowed. Or Drain Punch.\n\nEnsure items unique: Spell Tag, Black Glasses, Choice Scarf, Leftovers, Babiri Berry, Focus Sash. All distinct and in list.\n\nCheck moves legality: Gholdengo Make It Rain yes, Shadow Ball yes, Nasty Plot yes, Recover yes.\n\nKingambit Kowtow Cleave yes, Sucker Punch yes, Swords Dance yes, Iron Head yes.\n\nDragapult U-turn yes, Dragon Darts yes, Shadow Ball yes, Sucker Punch yes.\n\nCorviknight Roost yes, Defog yes, Body Press yes, U-turn yes.\n\nTinkaton Gigaton Hammer yes, Play Rough yes, Stealth Rock yes, Knock Off yes.\n\nAnnihilape Rage Fist yes, Close Combat yes, Bulk Up yes, Shadow Ball yes.\n\nEVs within limits.\n\nProvide answer.",
+      "thought": "Sets focus Gholdengo as special breaker with Nasty Plot + Recover and hazard immunity, Kingambit as Supreme Overlord late sweeper with Swords Dance priority, Dragapult as fast Choice Scarf pivot, Corviknight as physical wall with Defog and Body Press, Tinkaton as hazard setter and breaker, and Annihilape as Rage Fist snowball wincon. Items are all unique and EVs stay under 32 per stat and 66 total.",
+      "team": "Gholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- U-turn\n- Dragon Darts\n- Shadow Ball\n- Sucker Punch\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nTinkaton @ Babiri Berry\nAbility: Pickpocket\nEVs: 32 Atk / 32 HP / 2 SpD\nAdamant Nature\n- Gigaton Hammer\n- Play Rough\n- Stealth Rock\n- Knock Off\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Rage Fist\n- Close Combat\n- Bulk Up\n- Shadow Ball",
+      "problems": [],
+      "tokens": 3461,
+      "latency_ms": 6353,
+      "cost_usd": 0.00188928,
+      "finish_reason": "stop"
+    }
+  ],
+  "legal": true,
+  "team": "Gholdengo @ Spell Tag\nAbility: Good as Gold\nEVs: 32 SpA / 32 Spe / 2 HP\nTimid Nature\n- Make It Rain\n- Shadow Ball\n- Nasty Plot\n- Recover\n\nKingambit @ Black Glasses\nAbility: Supreme Overlord\nEVs: 32 Atk / 32 Spe / 2 HP\nAdamant Nature\n- Kowtow Cleave\n- Sucker Punch\n- Swords Dance\n- Iron Head\n\nDragapult @ Choice Scarf\nAbility: Infiltrator\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- U-turn\n- Dragon Darts\n- Shadow Ball\n- Sucker Punch\n\nCorviknight @ Leftovers\nAbility: Pressure\nEVs: 32 HP / 32 Def / 2 SpD\nImpish Nature\n- Roost\n- Defog\n- Body Press\n- U-turn\n\nTinkaton @ Babiri Berry\nAbility: Pickpocket\nEVs: 32 Atk / 32 HP / 2 SpD\nAdamant Nature\n- Gigaton Hammer\n- Play Rough\n- Stealth Rock\n- Knock Off\n\nAnnihilape @ Focus Sash\nAbility: Defiant\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Rage Fist\n- Close Combat\n- Bulk Up\n- Shadow Ball",
+  "thought": "Sets focus Gholdengo as special breaker with Nasty Plot + Recover and hazard immunity, Kingambit as Supreme Overlord late sweeper with Swords Dance priority, Dragapult as fast Choice Scarf pivot, Corviknight as physical wall with Defog and Body Press, Tinkaton as hazard setter and breaker, and Annihilape as Rage Fist snowball wincon. Items are all unique and EVs stay under 32 per stat and 66 total.",
+  "repaired": false,
+  "repairs": []
+}

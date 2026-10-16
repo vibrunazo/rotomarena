@@ -1,0 +1,63 @@
+{
+  "config_id": "hy3",
+  "model": "tencent/hy3",
+  "provider": "openrouter",
+  "model_key": "tencent/hy3",
+  "quantization": null,
+  "format": "gen9championsrotomarenabssregmb",
+  "prompt_version": "draft-3",
+  "ruleset_version": "c5",
+  "drafted_at": "2026-10-16T18:54:53+00:00",
+  "picks": {
+    "attempts": [
+      {
+        "attempt": 1,
+        "answer": "<thought>\nThe team is built to handle the common bulky Water/Fairy/Grass threats in this format with a balanced spread of offensive and defensive Pokémon. I chose a core with type coverage, speed control, and strong wallbreakers while respecting item and species clauses.\n</thought>\n<pokemon>\nToxapex\nGarchomp\nVolcarona\nRotom-Wash\nTyranitar\nSkeledirge\n</pokemon>",
+        "reasoning": "The team is built to control the pace of single battles with strong defensive pivots, hazard control, and a mix of offensive threats that can pressure common bulky waters and fairies. I'm picking a balanced core with a fire/water/grass spread, a strong fairy check, and a speed control option.",
+        "thought": "The team is built to handle the common bulky Water/Fairy/Grass threats in this format with a balanced spread of offensive and defensive Pokémon. I chose a core with type coverage, speed control, and strong wallbreakers while respecting item and species clauses.",
+        "pokemon": [
+          "Toxapex",
+          "Garchomp",
+          "Volcarona",
+          "Rotom-Wash",
+          "Tyranitar",
+          "Skeledirge"
+        ],
+        "problems": [],
+        "tokens": 1775,
+        "latency_ms": 3520,
+        "cost_usd": 9.00075e-05,
+        "finish_reason": "stop"
+      }
+    ],
+    "legal": true,
+    "species": [
+      "Toxapex",
+      "Garchomp",
+      "Volcarona",
+      "Rotom-Wash",
+      "Tyranitar",
+      "Skeledirge"
+    ],
+    "repairs": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "answer": "<thought>The sets use Regenerator Toxapex for bulky hazard control, Mega Garchomp and Mega Tyranitar for physical wallbreaking and speed via Dragon Dance/Swords Dance, and Volcarona/Skeledirge as special wincons against Water/Fairy/Grass. Rotom-Wash pivots with Volt Switch and Levitate, while items are all unique from the legal Champions list.</thought>\n<team>\nToxapex @ Leftovers\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Chilling Water\n- Toxic Spikes\n- Recover\n- Baneful Bunker\n\nGarchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 Def\nJolly Nature\n- Earthquake\n- Stone Edge\n- Swords Dance\n- Protect\n\nVolcarona @ Life Orb\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 SpD\nTimid Nature\n- Quiver Dance\n- Bug Buzz\n- Fiery Dance\n- Fire Blast\n\nRotom-Wash @ Sitrus Berry\nAbility: Levitate\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Hydro Pump\n- Thunderbolt\n- Volt Switch\n- Pain Split\n\nTyranitar @ Tyranitarite\nAbility: Sand Stream\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Crunch\n- Stone Edge\n- Dragon Dance\n- Earthquake\n\nSkeledirge @ Spell Tag\nAbility: Unaware\nEVs: 32 HP / 32 SpA / 2 Def\nModest Nature\n- Torch Song\n- Shadow Ball\n- Will-O-Wisp\n- Slack Off\n</team>",
+      "reasoning": "The team plan is to handle bulky Water/Fairy/Grass threats with balanced offense/defense, speed control, and wallbreakers. Toxapex provides defensive utility with Regenerator and status/HAzards; Garchomp and Tyranitar provide speed/physical wallbreaking and sand control; Volcarona and Skeledirge are special attackers; Rotom-Wash gives pivot and BoltBeam coverage. Items are assigned uniquely from the allowed list: Leftovers (Toxapex), Garchompite (Garchomp), Life Orb (Volcarona), Sitrus Berry (Rotom-Wash), Tyranitarite (Tyranitar), Choice Scarf (Skeledirge) or maybe something else; but Skeledirge can use Throat Spray? Not in list. Use Wise Glasses or Spell Tag. Let's assign: Toxapex Leftovers, Garchomp Garchompite, Volcarona Life Orb, Rotom-Wash Sitrus Berry, Tyranitar Tyranitarite, Skeledirge Spell Tag (Ghost boost). All items unique. EVs max 66 total, max 32 per stat.\n\nToxapex: Regenerator, EV 32 HP / 32 Def / 2 SpD? Actually max 32 per stat, total 66. So 32 HP, 32 Def, 2 SpD = 66. Bold nature (+Def -Atk). Moves: Recover, Toxic Spikes, Baneful Bunker, Scald? Chilling Water. Use Chilling Water, Toxic Spikes, Recover, Baneful Bunker.\n\nGarchomp: Garchompite, Rough Skin (or Sand Veil, but Rough Skin pre-mega). EVs 32 Atk / 32 Spe / 2 Def = 66. Jolly. Moves: Earthquake, Stone Edge, Swords Dance, Protect.\n\nVolcarona: Life Orb, Flame Body (or Swarm). EVs 32 SpA / 32 Spe / 2 SpD = 66. Timid. Moves: Quiver Dance, Bug Buzz, Fiery Dance, Fire Blast (or Heat Wave). Use Fire Blast.\n\nRotom-Wash: Sitrus Berry, Levitate. EVs 32 HP / 32 SpA / 2 Spe = 66. Modest? Actually +SpA -Atk. Moves: Hydro Pump, Thunderbolt, Volt Switch, Pain Split.\n\nTyranitar: Tyranitarite, Sand Stream. EVs 32 Atk / 32 Spe / 2 HP = 66. Adamant? Jolly for speed. Use Jolly. Moves: Crunch, Stone Edge, Dragon Dance, Earthquake.\n\nSkeledirge: Spell Tag, Unaware (good vs Calm Mind). EVs 32 SpA / 32 HP / 2 Def = 66. Modest. Moves: Torch Song, Shadow Ball, Will-O-Wisp, Slack Off.\n\nCheck items: Leftovers, Garchompite, Life Orb, Sitrus Berry, Tyranitarite, Spell Tag – all unique and from list.\n\nAbilities: Toxapex Regenerator, Garchomp Rough Skin, Volcarona Flame Body, Rotom-Wash Levitate, Tyranitar Sand Stream, Skeledirge Unaware.\n\nMoves all from list.\n\nEV total: each 66 max, 32 per stat max. Good.\n\nNow write export.",
+      "thought": "The sets use Regenerator Toxapex for bulky hazard control, Mega Garchomp and Mega Tyranitar for physical wallbreaking and speed via Dragon Dance/Swords Dance, and Volcarona/Skeledirge as special wincons against Water/Fairy/Grass. Rotom-Wash pivots with Volt Switch and Levitate, while items are all unique from the legal Champions list.",
+      "team": "Toxapex @ Leftovers\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Chilling Water\n- Toxic Spikes\n- Recover\n- Baneful Bunker\n\nGarchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 Def\nJolly Nature\n- Earthquake\n- Stone Edge\n- Swords Dance\n- Protect\n\nVolcarona @ Life Orb\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 SpD\nTimid Nature\n- Quiver Dance\n- Bug Buzz\n- Fiery Dance\n- Fire Blast\n\nRotom-Wash @ Sitrus Berry\nAbility: Levitate\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Hydro Pump\n- Thunderbolt\n- Volt Switch\n- Pain Split\n\nTyranitar @ Tyranitarite\nAbility: Sand Stream\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Crunch\n- Stone Edge\n- Dragon Dance\n- Earthquake\n\nSkeledirge @ Spell Tag\nAbility: Unaware\nEVs: 32 HP / 32 SpA / 2 Def\nModest Nature\n- Torch Song\n- Shadow Ball\n- Will-O-Wisp\n- Slack Off",
+      "problems": [],
+      "tokens": 3731,
+      "latency_ms": 11666,
+      "cost_usd": 0.00108519,
+      "finish_reason": "stop"
+    }
+  ],
+  "legal": true,
+  "team": "Toxapex @ Leftovers\nAbility: Regenerator\nEVs: 32 HP / 32 Def / 2 SpD\nBold Nature\n- Chilling Water\n- Toxic Spikes\n- Recover\n- Baneful Bunker\n\nGarchomp @ Garchompite\nAbility: Rough Skin\nEVs: 32 Atk / 32 Spe / 2 Def\nJolly Nature\n- Earthquake\n- Stone Edge\n- Swords Dance\n- Protect\n\nVolcarona @ Life Orb\nAbility: Flame Body\nEVs: 32 SpA / 32 Spe / 2 SpD\nTimid Nature\n- Quiver Dance\n- Bug Buzz\n- Fiery Dance\n- Fire Blast\n\nRotom-Wash @ Sitrus Berry\nAbility: Levitate\nEVs: 32 HP / 32 SpA / 2 Spe\nModest Nature\n- Hydro Pump\n- Thunderbolt\n- Volt Switch\n- Pain Split\n\nTyranitar @ Tyranitarite\nAbility: Sand Stream\nEVs: 32 Atk / 32 Spe / 2 HP\nJolly Nature\n- Crunch\n- Stone Edge\n- Dragon Dance\n- Earthquake\n\nSkeledirge @ Spell Tag\nAbility: Unaware\nEVs: 32 HP / 32 SpA / 2 Def\nModest Nature\n- Torch Song\n- Shadow Ball\n- Will-O-Wisp\n- Slack Off",
+  "thought": "The sets use Regenerator Toxapex for bulky hazard control, Mega Garchomp and Mega Tyranitar for physical wallbreaking and speed via Dragon Dance/Swords Dance, and Volcarona/Skeledirge as special wincons against Water/Fairy/Grass. Rotom-Wash pivots with Volt Switch and Levitate, while items are all unique from the legal Champions list.",
+  "repaired": false,
+  "repairs": []
+}

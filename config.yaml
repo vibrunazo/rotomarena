@@ -539,6 +539,19 @@ agents:
     pairing: {c5: "neighbours"}
     weights: "open"
     params_b: 816
+  ling_3_1_flash:   # added 16 Oct: inclusionAI's hybrid-reasoning MoE (560B, 25B active), MIT; a few c5 games.
+    # It ignores every thinking control (4-6.6K tokens a turn at low effort or a 1,024 budget, probed 16 Oct), so no
+    # exception helps: it plays under c5's 8,192 cap like everyone, at about $0.02 a game
+    type: "direct_llm"
+    display_name: "Ling 3.1 Flash"
+    provider: "openrouter"
+    model: "inclusionai/ling-3.1-flash"
+    released: "2026-10-02"
+    max_games: 0
+    extra_games: {c5: 9}
+    pairing: {c5: "neighbours"}
+    weights: "open"
+    params_b: 560
   gemini_3_8_flash:
     type: "direct_llm"
     display_name: "Gemini 3.8 Flash"
@@ -800,6 +813,23 @@ agents:
     # ~6K), past the English checkpoint's 512. Options share the head budget, so long lists go 24 at a time.
     decision_request: {model: "multilingual", max_len: 8192, head_max_len: 1024}
     decision_max_options: 24
+    weights: "open"
+    params_b: 0.32
+  laya_rotomarena:   # 16 Oct: Laya fine-tuned on open models' c5 drafts (scripts/laya/, credits on its model page)
+    # drafting test (16 Oct, PokéChamp piloting both sides, 60 games a team): its team rated 1542, 105th of 230 pool
+    # teams; base Laya's 829, last. Battling: 14 of 200 wins vs PokéChamp on the same teams, base Laya 9
+    type: "decision"
+    display_name: "Laya RotomArena"
+    provider: "local"
+    model: "laya-rotomarena"
+    released: "2026-10-16"
+    port: 8092
+    model_key: "rotomarena/laya-rotomarena"
+    decision_request: {model: "laya-rotomarena", max_len: 8192, head_max_len: 1024}
+    decision_max_options: 24
+    max_games: 0
+    extra_games: {c5: 21}
+    pairing: {c5: "neighbours"}
     weights: "open"
     params_b: 0.32
   solar_decide_flash:

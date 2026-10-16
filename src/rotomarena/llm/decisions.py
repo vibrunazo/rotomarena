@@ -5,7 +5,9 @@ questions: which action this turn, which Pokémon, item or move."""
 from __future__ import annotations
 
 import asyncio
+import json
 import math
+import os
 import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
@@ -142,6 +144,10 @@ class DecisionClient:
                     raise RuntimeError(f"decision request failed ({status}): {message or str(data)[:500]}")
                 await asyncio.sleep(2 * errors)
                 continue
+            if os.environ.get("ROTOMARENA_DECISION_LOG"):  # opt-in: every request and answer (Laya's lessons)
+                with open(os.environ["ROTOMARENA_DECISION_LOG"], "a", encoding="utf-8") as log:
+                    log.write(json.dumps({"model": self.model, "state": state, "questions": questions,
+                                          "answers": data["answers"]}, ensure_ascii=False) + "\n")
             usage = data.get("usage") or {}
             return data["answers"], Usage(requests=1, input_tokens=int(usage.get("input_tokens") or 0),
                                           cost_usd=float(usage.get("cost") or 0.0),
