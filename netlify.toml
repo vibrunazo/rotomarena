@@ -1,15 +1,8 @@
-# The site is a static Astro build of exported ladder data (site/src/data). Netlify never runs games.
+# The site moved to Cloudflare Workers on 17 Oct 2026 (site/wrangler.jsonc). Netlify only redirects the old address
+# there, page for page: netlify-redirect/_redirects, published as is, with no build. It redeploys only when that
+# folder changes.
 [build]
-  base = "site"
-  command = "npm run build"
-  publish = "dist"
-  # Rebuild only when the site or its data changed, not on harness-only commits. On the first build both refs are
-  # the same commit, which would read as "no changes", so that one always builds (exit 1 = build).
+  base = "netlify-redirect"
+  publish = "."
+  command = "echo redirect only"
   ignore = "if [ \"$CACHED_COMMIT_REF\" = \"$COMMIT_REF\" ]; then exit 1; fi; git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
-
-[build.environment]
-  NODE_VERSION = "22"
-  PNPM_VERSION = "12.6.0"   # the site uses pnpm (package.json packageManager)
-  NODE_OPTIONS = "--max-old-space-size=6144"
-
-# Headers and redirects: site/public/_headers and site/public/_redirects (the same files Cloudflare Pages reads)

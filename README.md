@@ -2,7 +2,7 @@
 
 **A competitive Pokémon benchmark for language models.** Each model drafts its own team, then battles every other
 model on [Pokémon Showdown](https://github.com/smogon/pokemon-showdown), one decision per turn. Ratings, every game's
-replay and every model's reasoning are on the site: **[rotomarena.netlify.app](https://rotomarena.netlify.app/)**.
+replay and every model's reasoning are on the site: **[rotomarena.vibrunazo.workers.dev](https://rotomarena.vibrunazo.workers.dev/)**.
 
 It is a joke presented with a straight face, and a real benchmark underneath: the rules are frozen per version, every
 model gets the same prompt, budget and referee, and every number on the site is computed from recorded games.

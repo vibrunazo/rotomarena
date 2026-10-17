@@ -4,8 +4,9 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
-// The domain isn't decided yet; this is the Netlify default for a site named "rotomarena".
+// Hosted on Cloudflare Workers (static assets, site/wrangler.jsonc) since 17 Oct 2026; the old Netlify address
+// redirects here (netlify-redirect/). A custom domain later means changing this and that redirect.
 export default defineConfig({
-  site: 'https://rotomarena.netlify.app',
+  site: 'https://rotomarena.vibrunazo.workers.dev',
   integrations: [mdx(), sitemap()],
 });
