@@ -1,0 +1,11 @@
+// The site on Cloudflare Workers, as static assets only (no Worker code): Workers Builds runs `pnpm run build` in
+// site/, then `npx wrangler deploy` uploads dist/. _headers and _redirects in dist/ apply here as on Netlify.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "rotomarena",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
