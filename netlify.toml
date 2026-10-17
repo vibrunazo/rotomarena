@@ -9,5 +9,7 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  PNPM_VERSION = "12.6.0"   # the site uses pnpm (package.json packageManager)
+  NODE_OPTIONS = "--max-old-space-size=6144"
 
 # Headers and redirects: site/public/_headers and site/public/_redirects (the same files Cloudflare Pages reads)

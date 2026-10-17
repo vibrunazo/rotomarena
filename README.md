@@ -85,7 +85,7 @@ set `local_llm.manage: false` and start a `llama-server` on each port yourself i
 `site/` is an [Astro](https://astro.build/) static site built from the exported JSON:
 
 ```bash
-cd site && npm install && npm run build   # large data: NODE_OPTIONS=--max-old-space-size=6144
+cd site && pnpm install && pnpm run build   # large data: NODE_OPTIONS=--max-old-space-size=6144
 ```
 
 ## Laya RotomArena
