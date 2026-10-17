@@ -36,6 +36,14 @@ def start_run() -> str:
     return "Started the round robin. It resumes where it stopped: pairs already played are skipped."
 
 
+def publish_now() -> str:
+    """Exports the standings and pushes them to the site, in the background (the export takes a minute)."""
+    subprocess.Popen([sys.executable, "-m", "rotomarena.dashboard.driver", "--publish"], cwd=ROOT,
+                     stdout=subprocess.DEVNULL, stderr=open(RUNS / "driver.err", "a", encoding="utf-8"),
+                     creationflags=NO_WINDOW | NEW_GROUP, close_fds=True)
+    return "Publishing: the standings go to the site in a minute or two (see the publisher lines below)."
+
+
 def stop_run(app_cfg: AppConfig) -> str:
     """Stops the driver and the round robin, then the servers they leave behind (a stopped process can't clean up).
     The games in progress are lost; the next start replays them."""

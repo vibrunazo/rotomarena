@@ -1,6 +1,8 @@
-"""Runs the round robin and publishes the standings to the site every 45 minutes (export, commit site/src/data,
-push), and once more when it ends. Started by the run monitor's Start button (or `python -m
-rotomarena.dashboard.driver`); stopped by its Stop button. Logs to runs/roundrobin*.log."""
+"""Runs the round robin and publishes the standings to the site (export, commit site/src/data, push) when it ends.
+In between, the site is published only on request: the run monitor's Publish button, or `python -m
+rotomarena.dashboard.driver --publish`. Every push is a site build, and builds are what the host's free tier counts
+(17 Oct: a 45-minute timer had used 75% of Netlify's month by the 17th). Started by the run monitor's Start button
+(or `python -m rotomarena.dashboard.driver`); stopped by its Stop button. Logs to runs/roundrobin*.log."""
 
 from __future__ import annotations
 
@@ -16,7 +18,6 @@ ROOT = Path(__file__).resolve().parents[3]
 RUNS = ROOT / "runs"
 DRIVER_PID = RUNS / "driver.pid"
 ROUND_ROBIN_PID = RUNS / "roundrobin.pid"
-PUBLISH_EVERY = 45 * 60
 GAMES_PER_PAIR = 3   # every pair plays three games (10 Oct: was 2; a 1-1 told nothing)
 STALLED = 4          # the round robin's exit code when its games stopped making progress
 MAX_RESTARTS = 10    # stalls in a row the driver restarts before giving up
@@ -53,7 +54,6 @@ def publish(final: bool) -> None:
 def main() -> None:
     RUNS.mkdir(exist_ok=True)
     DRIVER_PID.write_text(str(os.getpid()))
-    last = time.time()
     for attempt in range(MAX_RESTARTS + 1):
         say("starting round robin" if attempt == 0 else f"restarting the stalled round robin ({attempt}/{MAX_RESTARTS})")
         with open(RUNS / "roundrobin.log", "a", encoding="utf-8") as out, \
@@ -63,9 +63,6 @@ def main() -> None:
             ROUND_ROBIN_PID.write_text(str(proc.pid))
             while proc.poll() is None:
                 time.sleep(60)
-                if time.time() - last > PUBLISH_EVERY:
-                    publish(final=False)
-                    last = time.time()
         if proc.returncode != STALLED:
             break
         say("round robin stalled (no decision for ladder.stall_minutes); its stuck games will be replayed")
@@ -76,4 +73,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if "--publish" in sys.argv:
+        publish(final=False)
+    else:
+        main()

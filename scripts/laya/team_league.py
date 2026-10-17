@@ -3,7 +3,10 @@ differ. Every team in the pool (legal drafts by the models in sources.py: the la
 plus test teams in data/laya/test_drafts/<name>/, rated beside them but never trained on) plays random others in rounds, one game from each side, in the simulator; the games stay in runs/laya-league/,
 away from the ladder's. Results: data/laya/league_games.jsonl; each team's strength, a Bradley-Terry rating over
 its games, goes to data/laya/team_ratings.json. Resumable: played games count, and teams drafted since join in.
-Usage: uv run python scripts/laya/team_league.py [--games-per-team N] [--parallel N]"""
+--pilot <config id> has another player pilot both sides (say Laya, to rate teams by what it can win with; a local
+decision model answers from its server already running, never started here); its results get their own files,
+league_games_<pilot>.jsonl and team_ratings_<pilot>.json, and its games go to runs/laya-league-<pilot>/.
+Usage: uv run python scripts/laya/team_league.py [--games-per-team N] [--parallel N] [--pilot ID]"""
 import argparse
 import asyncio
 import glob
@@ -29,7 +32,7 @@ from rotomarena.teams.draft import validate_team  # noqa: E402
 from rotomarena.teams.loader import parse_smogon_team  # noqa: E402
 
 DATA = ROOT / "data" / "laya"
-POOL, GAMES, RATINGS = DATA / "pool.json", DATA / "league_games.jsonl", DATA / "team_ratings.json"
+POOL = DATA / "pool.json"
 GAME_MINUTES = 30  # a game past this is dropped (and played again on the next run)
 
 
@@ -104,23 +107,26 @@ async def main() -> None:
     ap.add_argument("--games-per-team", type=int, default=40)
     ap.add_argument("--parallel", type=int, default=6)
     ap.add_argument("--teams", type=int, default=0, help="only the first N teams (a test)")
+    ap.add_argument("--pilot", default="pokechamp")
     args = ap.parse_args()
     app = AppConfig.load(str(ROOT / "config.yaml"))
     register(app)
     app.local_llm.manage = False
-    app.telemetry.output_dir = str(ROOT / "runs" / "laya-league")
+    suffix = "" if args.pilot == "pokechamp" else f"_{args.pilot}"
+    games_path, ratings_path = DATA / f"league_games{suffix}.jsonl", DATA / f"team_ratings{suffix}.json"
+    app.telemetry.output_dir = str(ROOT / "runs" / f"laya-league{suffix.replace('_', '-', 1)}")
     pool = update_pool(app)
     valid = sorted(t for t, v in pool.items() if v["valid"])
     log(f"pool: {len(valid)} valid teams ({len(pool) - len(valid)} broken under {app.ruleset.version}'s rules)")
     teams = valid[:args.teams or None]
-    games = [json.loads(line) for line in GAMES.open(encoding="utf-8")] if GAMES.exists() else []
+    games = [json.loads(line) for line in games_path.open(encoding="utf-8")] if games_path.exists() else []
     played = Counter(t for g in games for t in (g["a"], g["b"]))
 
-    pokechamp = app.agents["pokechamp"]
+    pilot = app.agents[args.pilot]
     runner = MatchRunner(telemetry_config=app.telemetry, rules=current_rules(app))
     lanes: asyncio.Queue = asyncio.Queue()
     for lane in range(1, args.parallel + 1):
-        lanes.put_nowait(create_players(pokechamp, pokechamp, app, lane=lane))
+        lanes.put_nowait(create_players(pilot, pilot, app, lane=lane))
 
     async def play(a: str, b: str, game: int) -> None:
         pa, pb = await lanes.get()
@@ -136,7 +142,7 @@ async def main() -> None:
             lanes.put_nowait((pa, pb))
         winner = {pa.agent_name: a, pb.agent_name: b}.get(result.winner)
         record = {"a": a, "b": b, "game": game, "winner": winner, "turns": result.total_turns, "match_id": result.match_id}
-        with GAMES.open("a", encoding="utf-8") as f:
+        with games_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(record) + "\n")
         games.append(record)
 
@@ -153,11 +159,12 @@ async def main() -> None:
             await asyncio.gather(*(play(a, b, g) for a, b in pairs for g in (0, 1)))
             played = Counter(t for g in games for t in (g["a"], g["b"]))
             ratings = bradley_terry(games, teams)
-            RATINGS.write_text(json.dumps({t: {"rating": round(ratings[t], 1), "games": played[t],
+            ratings_path.write_text(json.dumps({t: {"rating": round(ratings[t], 1), "games": played[t],
                                                "wins": sum(g["winner"] == t for g in games),
                                                "sources": pool[t]["sources"]} for t in teams}, indent=1) + "\n",
                                encoding="utf-8")
     log("done")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

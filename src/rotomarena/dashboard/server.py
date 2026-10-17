@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 from rotomarena.config import AppConfig
-from rotomarena.dashboard.control import relay_pid, start_relay, start_run, stop_relay, stop_run
+from rotomarena.dashboard.control import publish_now, relay_pid, start_relay, start_run, stop_relay, stop_run
 from rotomarena.llm import relay as hand_relay
 from rotomarena.dashboard.relay import relay
 from rotomarena.dashboard.status import live_battles, sim_battle_lines, status
@@ -133,6 +133,8 @@ def serve(config_file: str, host: str, port: int) -> None:
                 message = start_run()
             elif path == "/api/run/stop":
                 message = stop_run(AppConfig.load(config_file))
+            elif path == "/api/publish":
+                message = publish_now()
             elif path == "/api/relay/start":
                 query = self.path.partition("?")[2]
                 model = m.group(1) if (m := re.search(r"(?:^|&)model=([a-z0-9_]+)", query)) else ""

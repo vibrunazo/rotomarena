@@ -158,13 +158,14 @@ def main() -> None:
     ap.add_argument("--battle-log", default=str(DATA / "battle_decisions.jsonl"))
     ap.add_argument("--min-games", type=int, default=20)
     ap.add_argument("--max-copies", type=int, default=3)
+    ap.add_argument("--ratings", default=str(DATA / "team_ratings.json"), help="which league's ratings (team_league.py)")
     args = ap.parse_args()
     app = AppConfig.load(str(ROOT / "config.yaml"))
     laya = app.agents["laya"]
     rng = random.Random(16)
     builder = Lessons(app, laya.decision_max_options or 255, rng)
     pool = json.loads((DATA / "pool.json").read_text(encoding="utf-8"))
-    ratings = json.loads((DATA / "team_ratings.json").read_text(encoding="utf-8"))
+    ratings = json.loads(Path(args.ratings).read_text(encoding="utf-8"))
     rated = {t: r for t, r in ratings.items()
              if r["games"] >= args.min_games and not any(s.startswith("test:") for s in pool[t]["sources"])}
     values = sorted(r["rating"] for r in rated.values())
