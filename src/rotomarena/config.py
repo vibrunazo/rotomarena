@@ -18,7 +18,7 @@ AgentRole = Literal["anchor", "sparring", "control", "contestant"]
 ReasoningLevel = Literal["off", "minimal", "low", "medium", "high"]
 
 # Free OpenRouter model used for tests and as the default LLM (see AGENTS.md).
-FREE_TEST_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
+FREE_TEST_MODEL = "nvidia/nemotron-3.5-super-vl:free"
 
 
 class ServerConfig(BaseModel):

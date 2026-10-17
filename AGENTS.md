@@ -3,12 +3,12 @@
 ## ⚠️ CRITICAL TESTING POLICY: Free LLM Model for Internal Testing
 When running live test battles or automated verification runs that require an LLM agent:
 - **NEVER use paid Gemini or paid models for test runs** to avoid burning the user's credits.
-- **ALWAYS use the free OpenRouter model:** `nvidia/nemotron-3-ultra-550b-a55b:free`
+- **ALWAYS use the free OpenRouter model:** `nvidia/nemotron-3.5-super-vl:free` (17 Oct: Nemotron 3 Ultra's free endpoint kept failing)
 
 ### Standard Test Command:
 ```powershell
 uv run rotomarena battle `
-  --p1 direct_llm --p1-provider openrouter --p1-model nvidia/nemotron-3-ultra-550b-a55b:free `
+  --p1 direct_llm --p1-provider openrouter --p1-model nvidia/nemotron-3.5-super-vl:free `
   --p2 heuristic `
   --games 1
 ```
