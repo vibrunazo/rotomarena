@@ -10,13 +10,4 @@
 [build.environment]
   NODE_VERSION = "22"
 
-[[headers]]
-  for = "/_astro/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[redirects]]
-  from = "/arxiv"
-  to = "/paper/"
-  status = 301
-
+# Headers and redirects: site/public/_headers and site/public/_redirects (the same files Cloudflare Pages reads)

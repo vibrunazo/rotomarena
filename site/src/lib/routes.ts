@@ -1,5 +1,5 @@
 // Every internal link goes through here. Moving the Pokémon pages under a game prefix later (a multi-game site)
-// means changing these paths, moving the page files, and adding redirects in netlify.toml.
+// means changing these paths, moving the page files, and adding redirects in site/public/_redirects.
 export const routes = {
   home: '/',
   // A benchmark's current leaderboard is its page (data.boardHref); these are Overall, categories, archived versions
