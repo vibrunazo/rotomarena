@@ -561,7 +561,8 @@ agents:
     max_games: 8
     extra_games: {c3: 55, c4: 67, c5: 22}   # c5: 30 games: 21 in the mid tier, then 9 more batched (16 Oct)
     pairing: {c5: "neighbours"}
-    batch: {c5: true}   # 16 Oct: OpenRouter's Batch API, about half price (tested on Argon and Sol: thinking intact)
+    # 18 Oct: not batched. Its batches took about a day each to come back (Claude's and Sol's take ~8 min), so its
+    # batched set vs Sol stalled the whole run for 27 h; called directly it costs ~1-1.5 cents a game anyway
     weights: "closed"
   gemini_4_argon:   # added 13 Oct, listed that day: $2/$10 per million tokens, half price at launch
     type: "direct_llm"
