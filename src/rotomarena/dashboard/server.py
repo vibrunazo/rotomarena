@@ -139,7 +139,8 @@ def serve(config_file: str, host: str, port: int) -> None:
                 query = self.path.partition("?")[2]
                 model = m.group(1) if (m := re.search(r"(?:^|&)model=([a-z0-9_]+)", query)) else ""
                 games = int(m.group(1)) if (m := re.search(r"(?:^|&)games=(\d+)", query)) else 0
-                message = start_relay(model, games)
+                opponents = m.group(1) if (m := re.search(r"(?:^|&)opponents=([a-z0-9_,]+)", query)) else ""
+                message = start_relay(model, games, opponents)
             elif path == "/api/relay/stop":
                 message = stop_relay()
             elif path.startswith("/api/relay/answer/"):

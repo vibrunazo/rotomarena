@@ -82,15 +82,20 @@ def relay_pid() -> Optional[int]:
     return pid if _alive(pid) else None
 
 
-def start_relay(config_id: str, games: int) -> str:
-    """Plays `games` games of `config_id` answered by hand (rotomarena ladder relay), beside any round robin."""
+def start_relay(config_id: str, games: int, opponents: str = "") -> str:
+    """Plays `games` games of `config_id` answered by hand (rotomarena ladder relay), beside any round robin;
+    `opponents` (comma-separated config ids) picks whom it meets, say models that answer directly, since a batched
+    opponent's every turn waits for its batch."""
     if relay_pid():
         return "Relay games are already going."
     if not re.fullmatch(r"[a-z0-9_]+", config_id) or not 1 <= games <= 30:
         return "Pick a model and 1-30 games."
+    if opponents and not re.fullmatch(r"[a-z0-9_]+(,[a-z0-9_]+)*", opponents):
+        return "Opponents: comma-separated config ids."
     RELAY_PID.parent.mkdir(parents=True, exist_ok=True)
     log = open(RUNS / "relay" / "relay.log", "a", encoding="utf-8")
-    proc = subprocess.Popen([sys.executable, "-m", "rotomarena.cli", "ladder", "relay", config_id, "--games", str(games)],
+    cmd = [sys.executable, "-m", "rotomarena.cli", "ladder", "relay", config_id, "--games", str(games)]
+    proc = subprocess.Popen(cmd + (["--opponents", opponents] if opponents else []),
                             cwd=ROOT, stdout=log, stderr=log, creationflags=NO_WINDOW | NEW_GROUP, close_fds=True)
     RELAY_PID.write_text(str(proc.pid))
     return f"Started {games} relay game(s) of {config_id}. Prompts appear in the Relay panel."
