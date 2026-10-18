@@ -571,9 +571,11 @@ agents:
     model: "google/gemini-4-argon"
     released: "2026-10-13"
     max_games: 0
-    extra_games: {c5: 27}   # 16 Oct: 9 more, batched (it had played 18: placement, relay and extra games)
+    # 18 Oct: no more API games (its 18 played stand). Google's batches took about a day each (Gemini 3.8 Flash's set
+    # stalled the run for 27 h), and unbatched it costs ~$0.26 a game: its 9 more games are played by hand through
+    # the Gemini app instead (ladder relay; relay games aren't held to this cap)
+    extra_games: {c5: 18}
     pairing: {c5: "neighbours"}
-    batch: {c5: true}   # 16 Oct: OpenRouter's Batch API, about half price (tested on Argon and Sol: thinking intact)
     weights: "closed"
   solar_pro_4:
     type: "direct_llm"
