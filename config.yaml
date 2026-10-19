@@ -630,7 +630,8 @@ agents:
     max_games: 0
     extra_games: {c5: 30}   # 16 Oct: the mid tier, 30 like Gemini 3.8 Flash (it was set up as an expensive newcomer)
     pairing: {c5: "neighbours"}
-    batch: {c5: true}   # 16 Oct: Z.ai's batch keeps its thinking (4 real turns: same thinking, half the cost)
+    # 19 Oct: not batched. In play its batched games cost the same as direct ones (1.43 against 1.49 cents a game),
+    # and one batch hadn't come back after 8 hours, stalling the run
     weights: "open"
     params_b: 753.3
   kimi_k3:
