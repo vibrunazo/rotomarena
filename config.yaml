@@ -783,6 +783,15 @@ agents:
     model: "typesafe/jev-1.13"
     released: "2026-09-17"
     weights: "closed"
+  clef:   # added 20 Oct: Cloudflare's decision model (27B, a Qwen3.8-27B fine-tune, Apache-2.0; listed 1 Oct), the
+    # highest-precision of its family (Clef-flash 9B is the fast one, Clef-omni adds audio and video); Jev's API
+    type: "decision"
+    display_name: "Clef"
+    provider: "openrouter"
+    model: "cloudflare/clef"
+    released: "2026-10-01"
+    weights: "open"
+    params_b: 27
   gpt_6_luna_decisions:
     type: "decision"
     display_name: "GPT-6 Luna Decisions"
