@@ -664,7 +664,8 @@ agents:
     max_games: 0
     extra_games: {c5: 18}   # 16 Oct: 9 more, batched
     pairing: {c5: "neighbours"}
-    batch: {c5: true}   # 16 Oct: OpenRouter's Batch API, about half price (tested on Argon and Sol: thinking intact)
+    # 20 Oct: not batched. Its batch provider charges ~10x more for input than the cheapest direct one, so batched
+    # turns cost about the same (0.78 against 0.84 cents) and took 5-10 minutes each
     weights: "open"
     params_b: 2779.9
   gpt_6_1_sol:
