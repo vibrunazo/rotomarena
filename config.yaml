@@ -326,6 +326,19 @@ agents:
     model: "minimax/minimax-m3.1-flash:free"
     released: "2026-10-19"
     weights: "closed"
+  beam_1_0:   # added 20 Oct: Reflection's Beam 1.0 (501B, 23B active), Apache-2.0, on OpenRouter since 16 Oct. Keeps to
+    # c5's 4,096 budget (305-1,855 thinking tokens on replayed c5 turns; ~0.2 cents a turn). Free only inside the
+    # OpenCode app, whose free tier refuses other clients: played through OpenRouter, placement plus a few games
+    type: "direct_llm"
+    display_name: "Beam 1.0"
+    provider: "openrouter"
+    model: "reflection/beam-1.0-501b-a23b"
+    released: "2026-10-16"
+    max_games: 0
+    extra_games: {c5: 15}
+    pairing: {c5: "neighbours"}
+    weights: "open"
+    params_b: 501
   gemma_4_31b:
     type: "direct_llm"
     display_name: "Gemma 4 31B"
