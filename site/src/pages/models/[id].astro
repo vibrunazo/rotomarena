@@ -14,7 +14,7 @@ const { model: m } = Astro.props as { model: Model };
 const llm = isModel(m);
 // Its standing on each current board (archived versions are on the archive page)
 const currentBoards = boards.filter((b) => !b.archived && m.boards[b.id]);
-const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x));
+const ranked = (await boardModels()).filter((x) => x.rating !== null && isModel(x) && !x.retired);
 const rank = ranked.findIndex((x) => x.config_id === m.config_id) + 1;
 const matches = (await matchEntries()).filter((e) => !e.data.void_reason && e.data.players.some((p) => p.config_id === m.config_id));  // rated games only: voided ones aren't its record
 // Its own team in each bench (one per bench's current version)
@@ -32,7 +32,7 @@ const kind: Record<string, string> = {
   heuristic: 'Rule-based bot',
 };
 const facts: [string, string][] = [
-  ['Rank', llm && rank ? `${rank} of ${ranked.length}` : '—'],
+  ['Rank', m.retired ? 'retired' : llm && rank ? `${rank} of ${ranked.length}` : '—'],
   ['Record', `${m.wins}–${m.losses}${m.draws ? `–${m.draws}` : ''}`],
   ['Win rate', fmtPct(m.win_rate)],
   ['Turns played', m.turns.toLocaleString('en-US')],
@@ -68,6 +68,10 @@ const facts: [string, string][] = [
     {m.quantization && <span> · <span class="quant" title={quantTitle(m.quantization)}>{m.quantization}</span></span>}
     {m.provisional && <span class="pill warn" title={provisionalTitle(meta.ladder.provisional_games)}>provisional</span>}
   </p>
+
+  {m.retired && (
+    <p class="prose note">Retired: it no longer plays on the ladder, so it is left off the leaderboards. Its games still count in everyone's ratings.</p>
+  )}
 
   {m.config_id === meta.ladder.anchor && (
     <p class="prose note">This model is the anchor. Its rating is {meta.ladder.anchor_rating} by definition and has never been in doubt.</p>

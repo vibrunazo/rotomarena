@@ -1,0 +1,583 @@
+{
+  "id": "match_20261019_203322_Laya_vs_MiniMax M3_1 Flash_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "laya",
+      "display_name": "Laya",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "laya",
+      "quantization": null,
+      "username": "Laya",
+      "role": "p1",
+      "team": "Laya's team",
+      "model_key": "convaiinnovations/laya",
+      "autopilot_rate": 0.0,
+      "replay_name": "Laya"
+    },
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p2",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 8,
+  "duration_seconds": 34.23,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Laya||",
+    "|player|p2|MiniMax M3.1 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom, L50|",
+    "|poke|p1|Torkoal, L50, F|",
+    "|poke|p1|Torterra, L50, F|",
+    "|poke|p1|Scrafty, L50, M|",
+    "|poke|p1|Sinistcha-Masterpiece, L50|",
+    "|poke|p1|Simisear, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Arcanine-Hisui, L50, F|",
+    "|poke|p2|Annihilape, L50, M|",
+    "|poke|p2|Hatterene, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Torterra|Torterra, L50, F|202/202",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Torterra",
+    "|-damage|p1a: Torterra|114/202",
+    "|move|p1a: Torterra|Trailblaze|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|87/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Torterra",
+    "|-damage|p1a: Torterra|24/202",
+    "|move|p1a: Torterra|Trailblaze|p2a: Gholdengo",
+    "|-resisted|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|65/100",
+    "|-boost|p1a: Torterra|spe|1",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Torterra",
+    "|-damage|p1a: Torterra|0 fnt",
+    "|faint|p1a: Torterra",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Rotom|Rotom, L50|157/157",
+    "|turn|4",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Rotom",
+    "|-supereffective|p1a: Rotom|1",
+    "|-damage|p1a: Rotom|0 fnt",
+    "|faint|p1a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Torkoal|Torkoal, L50, F|177/177",
+    "|turn|5",
+    "|",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Torkoal",
+    "|-damage|p1a: Torkoal|83/177",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Arcanine|Arcanine-Hisui, L50, F|100/100",
+    "|-ability|p2a: Arcanine|Intimidate|boost",
+    "|-fail|p1a: Torkoal|unboost|[from] ability: White Smoke|[of] p1a: Torkoal",
+    "|turn|6",
+    "|",
+    "|move|p2a: Arcanine|Will-O-Wisp|p1a: Torkoal",
+    "|-immune|p1a: Torkoal",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Arcanine",
+    "|-resisted|p2a: Arcanine|2",
+    "|-damage|p2a: Arcanine|91/100",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Arcanine|Flare Blitz|p1a: Torkoal",
+    "|-resisted|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|44/177",
+    "|-damage|p2a: Arcanine|84/100|[from] Recoil",
+    "|move|p1a: Torkoal|Flamethrower|p2a: Arcanine",
+    "|-resisted|p2a: Arcanine|2",
+    "|-damage|p2a: Arcanine|75/100",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Arcanine|Flare Blitz|p1a: Torkoal",
+    "|-resisted|p1a: Torkoal|1",
+    "|-damage|p1a: Torkoal|0 fnt",
+    "|faint|p1a: Torkoal",
+    "|-damage|p2a: Arcanine|66/100|[from] Recoil",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,kingambit,arcaninehisui",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo for its speed, special pressure, and Steel resistance to threats such as Torkoal; keep Kingambit and Arcanine-Hisui as physical backups. Avoid Rotom-Wash as it overlaps Gholdengo’s Electric coverage. Plan to scout and preserve Kingambit for the opponent’s slower Grass/Dark threats.",
+      "hidden_reasoning": "We need choose. Lead Gholdengo, then Kingambit, Arcanine perhaps. Opponent fire weakness and unusual Sinistcha. Gholdengo scarf outspeeds likely, but Torkoal weather. Rotom Wash as backup doesn't add redundancy, Gholdengo can exploit. Annihilape bulk vs? Hatterene. Best Gholdengo, Kingambit, Arcanine. Need scout.",
+      "note": "",
+      "tokens": 2177,
+      "latency_ms": 2273,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "torterra,torkoal,rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 37% BRING: torterra, 23% BRING: torkoal, 15% BRING: rotom\nPick 2: 42% BRING: torkoal, 27% BRING: scrafty, 16% BRING: rotom\nPick 3: 39% BRING: rotom, 36% BRING: scrafty, 15% BRING: sinistchamasterpiece",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5325,
+      "latency_ms": 9761,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: trailblaze, 14% MOVE: bulldoze, 11% SWITCH: rotom",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1852,
+      "latency_ms": 108,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.5552,
+        "MOVE: bulldoze": 0.1361,
+        "MOVE: energyball": 0.0594,
+        "MOVE: growth": 0.1027,
+        "SWITCH: torkoal": 0.0372,
+        "SWITCH: rotom": 0.1093
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo and use Shadow Ball against Torterra for safe super-effective damage while retaining Choice Scarf. Torterra is the likely physical attacker, so preserve Kingambit and Arcanine-Hisui for it if it switches. Two opposing reserves remain; avoid overcommitting before scouting their moves.",
+      "hidden_reasoning": "We need choose. Gholdengo vs Torterra. Shadowball good, super effective, 80 BP safe accuracy. Make rain bad. Focus blast perhaps strong but accuracy. Trick could reveal item and steal, but Torterra unknown item; status immunity irrelevant. Choice scarf locks move. Shadowball likely. Need notes <=60.",
+      "note": "",
+      "tokens": 2239,
+      "latency_ms": 2221,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "74% MOVE: trailblaze, 11% MOVE: bulldoze, 6% MOVE: energyball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1942,
+      "latency_ms": 48,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.7368,
+        "MOVE: bulldoze": 0.1109,
+        "MOVE: energyball": 0.0589,
+        "MOVE: growth": 0.058,
+        "SWITCH: torkoal": 0.0177,
+        "SWITCH: rotom": 0.0177
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Choice Scarf locks Gholdengo into Shadow Ball, which is our only legal attacking action. Torterra is at 56% and already took a super-effective hit; another Shadow Ball should threaten the KO. Keep Kingambit and Arcanine-Hisui ready once we learn which two reserves join.",
+      "hidden_reasoning": "We need choose. Choice scarf locked shadow ball already, so can only shadowball. At 56%, another likely KO? 80 BP neutral? Ghost vs Grass super effective, Torterra defense high. First did 44%. second likely KO. Use.",
+      "note": "",
+      "tokens": 2280,
+      "latency_ms": 2045,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "trailblaze",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: trailblaze, 10% MOVE: growth, 9% MOVE: bulldoze",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2002,
+      "latency_ms": 47,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: trailblaze": 0.6299,
+        "MOVE: bulldoze": 0.0904,
+        "MOVE: energyball": 0.0904,
+        "MOVE: growth": 0.0962,
+        "SWITCH: torkoal": 0.028,
+        "SWITCH: rotom": 0.0651
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Use Shadow Ball again to finish Torterra at 11%; stay locked into Choice Scarf and preserve both backups for the two undisclosed opponents. After this KO, reassess their leads and switch into the appropriate physical attacker.",
+      "hidden_reasoning": "We need KO likely. Shadowball. Notes under 60 words.",
+      "note": "",
+      "tokens": 2353,
+      "latency_ms": 1454,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: rotom, 44% SWITCH: torkoal",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1648,
+      "latency_ms": 37,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: torkoal": 0.4417,
+        "SWITCH: rotom": 0.5583
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "risingvoltage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "50% MOVE: risingvoltage, 18% MOVE: discharge, 16% MOVE: charge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1931,
+      "latency_ms": 46,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: doubleteam": 0.1051,
+        "MOVE: discharge": 0.1787,
+        "MOVE: risingvoltage": 0.5013,
+        "MOVE: charge": 0.1577,
+        "SWITCH: torkoal": 0.0571
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torterra is gone; Rotom is the active scout. Keep Gholdengo locked into Choice Scarf Shadow Ball, which is super-effective and can reveal Rotom’s move, speed, and item. Preserve full-health Kingambit and Arcanine-Hisui for the two remaining threats, especially Scrafty or Sinistcha.",
+      "hidden_reasoning": "We need choose. Gholdengo locked. Shadowball Rotom SE and scouts. Likely best attack. But Rotom possibly Scarf speed, can move first. Gholdengo frail-ish. Scouting necessary. Could switch Kingambit but what move unknown. Attack gains info and damage. Use Shadow Ball. Notes under 60.",
+      "note": "",
+      "tokens": 2494,
+      "latency_ms": 2090,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Torkoal",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "60% MOVE: flamethrower, 16% MOVE: flamecharge, 13% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1956,
+      "latency_ms": 46,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.6004,
+        "MOVE: flamecharge": 0.1591,
+        "MOVE: fissure": 0.1259,
+        "MOVE: firespin": 0.1146
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal is the final lead, with Scrafty and Sinistcha likely remaining. Gholdengo is locked into Choice Scarf Shadow Ball and outspeeds Torkoal; its high SpD should still allow repeated hits. Keep both healthy physical backups ready, especially against Scrafty’s Intimidate.",
+      "hidden_reasoning": "We need choose. Scarf locked, can shadowball. Torkoal likely sturdy, 4x shadowball? Ghost vs Fire neutral 2? Gholdengo steel/ghost, ghost vs fire 2x, fire vs steel .5 =&gt; 1x, special defense huge. Shadowball likely 2/3 kill. Could switch and lose scarf. Best attack. Remaining opponents likely scrafty/sinistcha since brought three, yes torterra rotom torkoal. Need manage Scrafty immunity? Shadowball super effective Scrafty, but scarf. Sinistcha also super. Continue.",
+      "note": "",
+      "tokens": 2669,
+      "latency_ms": 2570,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Arcanine",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is fainted, so switch to full-health Arcanine-Hisui. Its Intimidate can soften Scrafty if it appears, while Flare Blitz and superior speed should exploit Torkoal’s low Speed and 46% HP. Keep Kingambit for Scrafty or Sinistcha.",
+      "hidden_reasoning": "We need choose switch. Torkoal 46, Gholdengo dead. Arcanine physical risks fire, Kingambit resists steel but dark. Torkoal likely special. Arcanine better speed and intimidate, flare blitz. Need kill. Switch Arcanine. Notes under 60.",
+      "note": "",
+      "tokens": 2567,
+      "latency_ms": 1767,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: flamethrower, 25% MOVE: flamecharge, 19% MOVE: fissure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2188,
+      "latency_ms": 55,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.367,
+        "MOVE: flamecharge": 0.2522,
+        "MOVE: fissure": 0.1904,
+        "MOVE: firespin": 0.1904
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal is weak to nothing useful and very slow, but resists Flare Blitz. Apply Will-O-Wisp to secure the KO through burn damage while weakening its Flamethrower. Save Kingambit for the two undisclosed threats, likely Scrafty and Sinistcha.",
+      "hidden_reasoning": "We need choose. Torkoal 46, flareblitz resisted and recoil, extreme priority normal neutral likely best 80. Could burn via willow then residual, but need KO. Extreme speed likely safe. Weather none morningsun heals 1/2 useless. Flare blaze 120 resisted, damage perhaps 45 due atk and band, could KO from 46 likely; Fire resist means ~35% of 120, attack 167 vs def 150-211, damage 40-55, not guaranteed and recoil. Extreme 80 neutral ~55%. Torkoal HP remaining maybe 80, extreme does ~55-65, leaves. Then flare potentially. Better willowisp burn 33% per turn, takes 1/16, then another. Opponent Flamethrower. Burn halves attack irrelevant. We can burn then likely Torkoal uses flamethrower, then flare blitz. But burn chip. Extreme now likely 60%, then flame. Need optimize. Torkoal physical def high, normal neutral. Flare resisted. Willow burn could secure, since Torkoal slow and Gholdengo did 54% from full with neutral special. Extreme from 170 atk vs defense likely 55%; 46 remains 45. Burn and chip. Burn may prevent Flamethrower. Choose willowisp. Accuracy 85. Since Torkoal potentially White Smoke doesn't prevent burn. Drought absent weather. Yes.",
+      "note": "",
+      "tokens": 3005,
+      "latency_ms": 4815,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: flamethrower, 23% MOVE: firespin, 21% MOVE: flamecharge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2252,
+      "latency_ms": 56,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.3723,
+        "MOVE: flamecharge": 0.2088,
+        "MOVE: fissure": 0.1931,
+        "MOVE: firespin": 0.2258
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flareblitz",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal is at 46%, slow, and Revealed only Flamethrower. Flare Blitz is resisted, but Muscle Band damage should still KO while Arcanine can safely absorb the resisted hit. Will-O-Wisp only burned 15% last turn, so prioritize the immediate knockout. Keep Kingambit for Scrafty or Sinistcha.",
+      "hidden_reasoning": "We need choose. Burn 85%, then likely need attack. Flare blitz maybe guaranteed? At 46%, likely 120 power resisted, muscle band, damage perhaps 60-75%? Need calculate Tork def high. Flare Blitz likely not enough? In prior Ghold shadow did 54%. Flare physical perhaps around 40%. Will-o-wisp can burn and 85% likely. Burn halves attack, but already not relevant. We want KO eventually. Extreme Speed neutral 80 guaranteed-ish, likely 50-60% and could KO. Tork HP 84ish, Extreme Speed with band 88 BP, attack 167, defense likely 180: damage ~ (42*88*167/180)/50 +2 = 74%, maybe 60 after def. Could KO from 46? 88/50 base = 1.76, calc 73. So likely not. Flare 120 resisted, defense: 42*132*167/180/50=109 * .75*1.1=90, enough from 46. Recoil okay. Use flare blitz, likely KO.",
+      "note": "",
+      "tokens": 3027,
+      "latency_ms": 3795,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "flamethrower",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: flamethrower, 25% MOVE: flamecharge, 23% MOVE: firespin",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2354,
+      "latency_ms": 61,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: flamethrower": 0.2867,
+        "MOVE: flamecharge": 0.2491,
+        "MOVE: fissure": 0.2303,
+        "MOVE: firespin": 0.234
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "flareblitz",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Torkoal is at 24%, slow, and revealed only Flamethrower. Flare Blitz is resisted but should still KO with Muscle Band; recoil is safe at 128 HP. After removing it, keep Kingambit for the two undisclosed threats, likely Scrafty and Sinistcha.",
+      "hidden_reasoning": "We need choose KO likely flareblitz did enough previous 46 to24, another kills likely, recoil won't kill at 128. Or extreme speed neutral and faster; do it. Flare resistance 0.5 but 120 band 88? Attack 167, defense maybe ~200; damage perhaps 70. Current 42 HP, flare likely kill, recoil 29 leaving 99. Extreme speed BP80 neutral against fire? Fire resists normal? Both Fire resists? Fire is resistant to Fire, Bug, Grass, Ice, Steel; normal no, neutral. 80 likely perhaps 80 damage. Flare guaranteed likely. Since 42 HP, flare 1.1 maybe damage 80, kill. use flareblitz.",
+      "note": "",
+      "tokens": 3023,
+      "latency_ms": 3636,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

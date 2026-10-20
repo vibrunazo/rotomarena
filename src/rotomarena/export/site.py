@@ -436,6 +436,8 @@ def _model_rows(state: LadderState, app_cfg: AppConfig) -> List[Dict[str, Any]]:
             "display_name": registry.display_name if registry and registry.display_name else identity.display_name,
             "type": identity.agent_type,
             "weights": registry.weights if registry else None,
+            # no longer played (switched off in the registry): left off the leaderboards, its games still rated
+            "retired": bool(registry and not registry.active),
             "params_b": registry.params_b if registry else None,
             "released": registry.released if registry else None,
             "role": registry.role if registry else "contestant",

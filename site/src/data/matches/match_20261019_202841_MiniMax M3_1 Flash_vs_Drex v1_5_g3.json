@@ -1,0 +1,1029 @@
+{
+  "id": "match_20261019_202841_MiniMax M3_1 Flash_vs_Drex v1_5_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p1",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    },
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p2",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 15,
+  "duration_seconds": 57.67,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|MiniMax M3.1 Flash||",
+    "|player|p2|Drex v1.5||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Corviknight, L50, M|",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Scovillain, L50, M|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Hydreigon, L50, F|",
+    "|poke|p2|Kommo-o, L50, M|",
+    "|poke|p2|Gyarados, L50, M|",
+    "|poke|p2|Sylveon, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Gholdengo|Nasty Plot|p1a: Gholdengo",
+    "|-boost|p1a: Gholdengo|spa|2",
+    "|move|p2a: Garchomp|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|-damage|p2a: Garchomp|90/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Kingambit|Kingambit, L50, F|175/175",
+    "|turn|2",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Kingambit",
+    "|-supereffective|p1a: Kingambit|1",
+    "|-damage|p1a: Kingambit|0 fnt",
+    "|faint|p1a: Kingambit",
+    "|-damage|p2a: Garchomp|80/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Corviknight|Corviknight, L50, M|205/205",
+    "|-ability|p1a: Corviknight|Pressure",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Corviknight",
+    "|-immune|p1a: Corviknight",
+    "|move|p1a: Corviknight|Iron Head|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|59/100",
+    "|-damage|p1a: Corviknight|180/205|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|100/100",
+    "|move|p1a: Corviknight|Iron Head|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|74/100",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|move|p1a: Corviknight|Iron Head|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|69/100",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Corviknight",
+    "|-damage|p1a: Corviknight|138/205",
+    "|-unboost|p1a: Corviknight|spd|1",
+    "|move|p1a: Corviknight|Iron Head|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|39/100",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Dragapult|Shadow Ball|p1a: Corviknight",
+    "|-damage|p1a: Corviknight|78/205",
+    "|move|p1a: Corviknight|Iron Head|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|11/100",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|74/100",
+    "|move|p1a: Corviknight|Iron Head|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|50/100g",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p2a: Hydreigon|U-turn|p1a: Corviknight",
+    "|-resisted|p1a: Corviknight|2",
+    "|-damage|p1a: Corviknight|72/205",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|59/100|[from] U-turn",
+    "|move|p1a: Corviknight|Roost|p1a: Corviknight",
+    "|-heal|p1a: Corviknight|175/205",
+    "|-singleturn|p1a: Corviknight|move: Roost",
+    "|",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|50/100g",
+    "|move|p1a: Corviknight|Iron Head|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|26/100",
+    "|",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p2a: Hydreigon|U-turn|p1a: Corviknight",
+    "|-resisted|p1a: Corviknight|2",
+    "|-damage|p1a: Corviknight|169/205",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|59/100|[from] U-turn",
+    "|move|p1a: Corviknight|Iron Head|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|40/100",
+    "|-damage|p1a: Corviknight|144/205|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|upkeep",
+    "|turn|12",
+    "|",
+    "|move|p2a: Garchomp|Stone Edge|p1a: Corviknight|[miss]",
+    "|-miss|p2a: Garchomp|p1a: Corviknight",
+    "|move|p1a: Corviknight|Brave Bird|p2a: Garchomp",
+    "|-crit|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|-damage|p1a: Corviknight|119/205|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|faint|p2a: Garchomp",
+    "|-damage|p1a: Corviknight|91/205|[from] Recoil",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|26/100",
+    "|turn|13",
+    "|",
+    "|move|p2a: Hydreigon|U-turn|p1a: Corviknight",
+    "|-resisted|p1a: Corviknight|2",
+    "|-crit|p1a: Corviknight",
+    "|-damage|p1a: Corviknight|82/205",
+    "|",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|11/100|[from] U-turn",
+    "|move|p1a: Corviknight|Iron Head|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Hydreigon|Hydreigon, L50, F|26/100",
+    "|turn|14",
+    "|",
+    "|move|p2a: Hydreigon|U-turn|p1a: Corviknight",
+    "|-resisted|p1a: Corviknight|2",
+    "|-damage|p1a: Corviknight|76/205",
+    "|move|p1a: Corviknight|Iron Head|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|1/100",
+    "|",
+    "|upkeep",
+    "|turn|15",
+    "|",
+    "|move|p2a: Hydreigon|U-turn|p1a: Corviknight",
+    "|-resisted|p1a: Corviknight|2",
+    "|-damage|p1a: Corviknight|70/205",
+    "|move|p1a: Corviknight|Iron Head|p2a: Hydreigon",
+    "|-damage|p2a: Hydreigon|0 fnt",
+    "|faint|p2a: Hydreigon",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,kingambit,corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Bring Gholdengo as the balanced lead, with Kingambit behind it for Dark coverage and Corviknight as the bulky Steel/Flying answer. Gholdengo’s Focus Blast handles Kommoo, while Shadow Ball threatens the other Dragons. Watch for Dragapult’s Speed and Garchomp’s Ground attacks; pivot if needed.",
+      "hidden_reasoning": "We need choose team. Need infer abilities/moves not shown opponent. Strongest perhaps Gholdengo lead, Kingambit, Corviknight. Dragapult threatens. Gholdengo immune? Dragon moves neutral. Corviknight steel vs dragons useful. Kingambit dark. Mega only if evolved? Scovillainite is mega but species scovillain likely can mega only with item, yet legal action format [MEGA] perhaps. Bring gholdengo kingambit corviknight. Lead Gholdengo. Notes &lt;=60.",
+      "note": "",
+      "tokens": 2193,
+      "latency_ms": 3390,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 37% BRING: garchomp, 31% BRING: dragapult, 20% BRING: hydreigon\nPick 2: 41% BRING: hydreigon, 31% BRING: dragapult, 11% BRING: gyarados\nPick 3: 67% BRING: dragapult, 12% BRING: kommoo, 12% BRING: gyarados",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5425,
+      "latency_ms": 5491,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: earthquake, 33% MOVE: stealthrock, 4% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1856,
+      "latency_ms": 1883,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.5623,
+        "MOVE: dragontail": 0.0353,
+        "MOVE: stealthrock": 0.3267,
+        "MOVE: stoneedge": 0.011,
+        "SWITCH: hydreigon": 0.0334,
+        "SWITCH: dragapult": 0.0313
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo against Garchomp, which cannot threaten it with Ground. Use Nasty Plot to strengthen Shadow Ball, since Garchomp is likely weak to Ghost. Gholdengo’s base Speed may still beat Garchomp. Keep Kingambit for Dragons and Corviknight as the bulky pivot/answer toDragapult.",
+      "hidden_reasoning": "We need decide. Gholdengo vs garchomp, likely special setup. Nasty plot risky but garchomp speed maybe 109, gholdengo 149 thus outspeeds unless max speed 169. Focus blast 70%, shadow ball. Need infer set. Best perhaps nastyplot, then shadow ball next turn, Garchomp likely Earthquake/Rock Slide. Gholdengo survives ground (Steel), but dragon attacks. Make it rain bad. Nasty plot likely.",
+      "note": "",
+      "tokens": 2290,
+      "latency_ms": 2697,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo’s Nasty Plot was disrupted by Earthquake, revealing Garchomp’s Ground STAB and Life Orb. Bring Kingambit in: Ground is neutral against Dark/Steel, allowing Kowtow Cleave or Iron Head to pressure it. Corviknight would take double damage from Earthquake.",
+      "hidden_reasoning": "We need choose switch. Kingambit into EQ bad. Corviknight resists ground, but EQ neutral? Flying immune ground, Steel neutral = super effective! Actually Ground attacks do 2x Steel. Corviknight worse. Kingambit dark resists ground? Ground neutral dark, Steel resists? Ground neutral Steel, dark weak. EQ neutral to kingambit, okay. Need kill garchomp with Kowtow or iron head. Kingambit switch in. Could perhaps Garchomp EQ neutral, king can threaten. Corviknight Garchomp physical threatens it, but steel 4x? Garchomp dragon ground attacks only, EQ 2x steel. Kingambit better.",
+      "note": "",
+      "tokens": 2296,
+      "latency_ms": 4263,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: earthquake, 7% MOVE: stealthrock, 2% SWITCH: hydreigon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2110,
+      "latency_ms": 737,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.8634,
+        "MOVE: dragontail": 0.0166,
+        "MOVE: stealthrock": 0.0711,
+        "MOVE: stoneedge": 0.0065,
+        "SWITCH: hydreigon": 0.0224,
+        "SWITCH: dragapult": 0.02
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is gone, so Kingambit is the active attacker against weakened Garchomp (90%, Life Orb). Ground is neutral against Dark/Steel, making Kingambit a solid switch-in. Use Iron Head for solid damage and a 20% flinch chance; prioritize threatening this weakened Ground attacker before setting up Swords Dance. Corviknight remains the backup but is double-exposed to Earthquake.",
+      "hidden_reasoning": "We need choose. Garchomp 90, Kingambit can swords dance, but likely need KO. Ironhead flinch, Kowtow. Garchomp maybe speed. Sucker punch priority risky and lower. Could SD and let attack, but Garchomp threatens. Iron Head 80 vs HP ~? super effective? Steel neutral, Dark neutral. likely damage. Kowtow 85. Choose kowtowcleave for damage, perhaps threatens. Need account Garchomp Earthquake neutral, Kingambit sturdy? Kingambit not Steel actually Dark/Steel, EQ neutral. Attack after SD, but current no boost. Could swords dance now, Garchomp EQ/Kowtow. Better SD to leverage, but opponent may switch. Yet Garchomp 90% and likely kill. Iron head chance flinch useful. Use ironhead.",
+      "note": "",
+      "tokens": 2537,
+      "latency_ms": 3442,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Corviknight",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "26% MOVE: earthquake, 19% MOVE: stealthrock, 17% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2210,
+      "latency_ms": 727,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.2576,
+        "MOVE: dragontail": 0.0548,
+        "MOVE: stealthrock": 0.1919,
+        "MOVE: stoneedge": 0.1697,
+        "SWITCH: hydreigon": 0.1695,
+        "SWITCH: dragapult": 0.1566
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Both Gholdengo and Kingambit are fainted, so Corviknight must handle Garchomp. Garchomp is at 80% and outspeeds Corviknight; use Iron Head for reliable damage and a 20% flinch chance, avoiding Brave Bird’s recoil. Then finish it before switching if possible. Earthquakes are neutral against Steel, so Corviknight can endure one.",
+      "hidden_reasoning": "We need act. Corviknight vs garchomp 80%. Iron head safe 80 power, flinch. Brave bird 144 but recoil and Garchomp likely outspeeds, EQ kills? Corviknight 205, EQ 100 neutral? Steel resists ground? Steel takes neutral, dragon double? Corviknight flying/steel, ground neutral. Could use bravebird. Need win perhaps Iron Head accumulate, but only one mon. Uturn lets next not available (both fainted), no. Roost unnecessary. Iron Head best, chance flinch and no recoil. Garchomp can EQ likely then Corviknight ~? At 205, EQ around 90 neutral, survives. Use ironhead. Notes update.",
+      "note": "",
+      "tokens": 2631,
+      "latency_ms": 3022,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% SWITCH: hydreigon, 24% SWITCH: dragapult, 18% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2289,
+      "latency_ms": 799,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.0218,
+        "MOVE: dragontail": 0.0503,
+        "MOVE: stealthrock": 0.1332,
+        "MOVE: stoneedge": 0.1777,
+        "SWITCH: hydreigon": 0.3763,
+        "SWITCH: dragapult": 0.2407
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo and Kingambit are gone, so Corviknight must KO Garchomp. Garchomp is at 59% and faster, while Corviknight is at 88%. Iron Head should finish it, has useful 20% flinch chance, and avoids Brave Bird’s heavy recoil. After this, conserve the survivor for the two remaining opponents.",
+      "hidden_reasoning": "We need act. Garchomp 59, Corv 88. Ironhead likely KO? Calculate attack 96 vs def maybe 120, 80 BP, life orb 1.3 =&gt; around 75-90. Yes likely KO. Choose ironhead, flinch and no recoil.",
+      "note": "",
+      "tokens": 2586,
+      "latency_ms": 1816,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "32% SWITCH: dragapult, 27% MOVE: uturn, 27% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2343,
+      "latency_ms": 778,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.2728,
+        "MOVE: dragontail": 0.0937,
+        "MOVE: earthquake": 0.0034,
+        "MOVE: stealthrock": 0.2669,
+        "SWITCH: garchomp": 0.0447,
+        "SWITCH: dragapult": 0.3184
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains, with Gholdengo and Kingambit fainted. Garchomp is at 59%, and Hydreigon at 74%, with Hydreigon faster and likely stronger special attacker. Iron Head offers flinch chance without Brave Bird’s heavy recoil; avoid Roost unless an attack is especially threatening. Prioritize weakening both remaining threats.",
+      "hidden_reasoning": "We need choose. Only Corviknight, Hydreigon 74%, faster. Iron head versus unknown STAB dragon likely, perhaps 1.5x? Steel neutral, physical defense. Uturn super effective but pivots to fainted impossible, likely bad. Roost heal but loses ground. Brave bird risk. Iron head. Also Garchomp still alive. Need kill things. Iron head. Notes mention Garchomp and Hydreigon.",
+      "note": "",
+      "tokens": 2727,
+      "latency_ms": 2313,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: shadowball, 34% MOVE: uturn, 9% SWITCH: hydreigon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2374,
+      "latency_ms": 792,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.3401,
+        "MOVE: dragontail": 0.0514,
+        "MOVE: shadowball": 0.4139,
+        "MOVE: willowisp": 0.0791,
+        "SWITCH: garchomp": 0.0257,
+        "SWITCH: hydreigon": 0.0898
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains. Dragapult is fast and its moves are unknown, so avoid giving it a free turn. Iron Head deals reliable neutral damage with a 20% flinch chance, while U Turn cannot switch and is resisted. Brave Bird’s 33% recoil is too costly at this HP. Continue attacking with Iron Head; if Dragapult is weakened, it can also pressure Garchomp and Hydreigon.",
+      "hidden_reasoning": "We need decide. Dragapult 69%, unknown, very fast. Corviknight only survivor, need maximize. Iron head neutral? Steel vs ghost/steel? Steel super effective on both? Steel vs Ghost neutral, Dragon neutral, so neutral. Uturn not very effective and switches impossible (no alive). Roost perhaps heal 102 but lose turn, Dragapult likely kills? Iron head best, flinch. Could brave bird 1.2 and 120 but recoil, 33% of ~? 100 damage, risky; Dragapult perhaps physical? Dragapult attack likely. Ironhead reliable.",
+      "note": "",
+      "tokens": 2896,
+      "latency_ms": 2888,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "76% MOVE: shadowball, 22% SWITCH: hydreigon, 2% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2258,
+      "latency_ms": 941,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: shadowball": 0.7626,
+        "SWITCH: garchomp": 0.0222,
+        "SWITCH: hydreigon": 0.2152
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains, and Dragapult is at 39%, low enough for Iron Head to KO while avoiding Brave Bird’s heavy recoil. If it survives, its flinch chance is valuable against the faster Dragapult. Preserve Corviknight for the weakened Garchomp and Hydreigon afterward.",
+      "hidden_reasoning": "We need choose. Only corvi, drag at 39, will attack first. Ironhead likely 40-50% from 39, may not KO depending stats. Level 50 actual: damage 80*96*40/ (85-ish*80 +50) ~48, 39% of ~180=70. So KO! Ironhead super? Steel vs dragon neutral. Could KO. Opponent likely moves first, Shadow Ball could do 40-60 and perhaps KO? At 138, survives likely. Ironhead KOs. Do it.",
+      "note": "",
+      "tokens": 2939,
+      "latency_ms": 2350,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% SWITCH: hydreigon, 31% MOVE: shadowball, 8% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2309,
+      "latency_ms": 1534,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: shadowball": 0.3076,
+        "SWITCH: garchomp": 0.0829,
+        "SWITCH: hydreigon": 0.6095
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains against Dragapult at 11% HP. Iron Head should KO and has a 20% flinch chance if it survives; avoid Brave Bird’s 33% recoil. Garchomp and Hydreigon remain weakened, so preserve Corviknight to pressure them afterward.",
+      "hidden_reasoning": "We need choose. Dragapult 11%, Iron Head likely 80 BP steel vs dragon neutral, Gholdengo dead. Need KO but HP 78, brave bird recoil potentially still? Iron head safest, if survives. Could roost but opponent attacks. Iron Head. Notes under 60.",
+      "note": "",
+      "tokens": 2913,
+      "latency_ms": 3143,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: uturn, 20% MOVE: stealthrock, 12% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2539,
+      "latency_ms": 1302,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.5574,
+        "MOVE: dragontail": 0.1222,
+        "MOVE: earthquake": 0.0045,
+        "MOVE: stealthrock": 0.203,
+        "SWITCH: garchomp": 0.097,
+        "SWITCH: dragapult": 0.0159
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "roost",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains. Hydreigon is faster and has no revealed attacks, while Iron Head needs two hits to KO. Corviknight is at 78/205, so Roost restores a safe 102 HP before attacking. Afterward, continue using Iron Head against Hydreigon; Dragapult at 11% can be finished afterward.",
+      "hidden_reasoning": "We need decide. Corv at 78, Iron Head 80 BP against dark dragon neutral perhaps 50 damage, hydreigon 50%; need two. Hydreigon faster and unknown, risky. Roost heal 102, but allows attack. Dragapult 11 can likely be knocked by something later. We only have this mon, can't switch. Uturn no target to switch, and damage super effective 70 maybe 35-40, then forced switch impossible? U-turn likely fails/no available switch. Roost perhaps best to heal to 180 then Iron Head. But unknown move could hurt. Hydreigon likely moves: Draco Meteor, dark pulse, fire etc. Corv 78 vulnerable. Roost to 180, then survive one. Do that.",
+      "note": "",
+      "tokens": 3003,
+      "latency_ms": 3001,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "92% SWITCH: garchomp, 8% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2317,
+      "latency_ms": 1198,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.9234,
+        "SWITCH: dragapult": 0.0766
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% SWITCH: hydreigon, 22% MOVE: stealthrock, 18% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2598,
+      "latency_ms": 1643,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.0716,
+        "MOVE: dragontail": 0.1767,
+        "MOVE: stealthrock": 0.2204,
+        "MOVE: stoneedge": 0.1573,
+        "SWITCH: hydreigon": 0.3677,
+        "SWITCH: dragapult": 0.0063
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains. Garchomp is at 59% and faster; Iron Head deals strong neutral damage while risking less recoil than Brave Bird. Plan to weaken it now, then finish with Brave Bird or another Iron Head next turn. Avoid Roost; do not U-turn because there is nothing left to switch into.",
+      "hidden_reasoning": "We need decide. Garchomp 59%, Corvik 175. Iron head does maybe 40%, not KO. Brave bird perhaps 60%+, likely KO but recoil 58, leaves 117, and Garchomp faster attacks. Could do iron head then endure. Roost and Garch attacks. Garchomp EQ super effective physical but Corvik resists, likely ~50-70. Braverbird can KO. Need calculate: neutral 120 vs def ~130: 42 at attack 165, life orb 55, STAB 1.5 => maybe 80. Def 130: 46.5*1.5*1.3=90, 59% of 200=118. likely not KO? Corvik attack 96, brave 120: 46 base, defense 130: 46*1.5*1.2=83. Garch HP 120, no KO. Iron head: 31*1.5*1.3=60, 30%. Two turns. Garchomp likely Dragon Claw maybe kill? Corvik HP 175. Could iron, then brave next. Uturn 70 perhaps 50, lets no switch (only active remaining). Roost safe but wastes. Need use iron head likely, then potentially braverbird next if garch survives. But garch 59, likely iron takes to 25. Next brave kills. If garch attacks after iron, still 175. Iron head is best.",
+      "note": "",
+      "tokens": 3225,
+      "latency_ms": 6506,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: uturn, 17% MOVE: stealthrock, 16% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2655,
+      "latency_ms": 919,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.5729,
+        "MOVE: dragontail": 0.1625,
+        "MOVE: earthquake": 0.0074,
+        "MOVE: stealthrock": 0.1691,
+        "SWITCH: garchomp": 0.0746,
+        "SWITCH: dragapult": 0.0136
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Corviknight remains, facing Hydreigon at 26%. Iron Head took it from 50% to 26%, so it should KO now. Hydreigon is faster and may use U-turn, but targeting it prevents that. Garchomp at 59% and Dragapult at 11% can be finished afterward. Avoid Brave Bird’s 33% recoil.",
+      "hidden_reasoning": "We need choose. Hydreigon 26%, likely Iron Head 2 hits? Earlier at 50, iron to26, so next KOs. Flinch 20 but faster opponent. Could U-turn super effective guaranteed likely KO but switches and no target. That's good, preserves? Switching to none impossible, likely game ends? U-turn causes switch, no other mons, perhaps no action. So ironhead. Need maybe opponent U-turn, but KO first.",
+      "note": "",
+      "tokens": 3042,
+      "latency_ms": 2184,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% SWITCH: garchomp, 7% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2434,
+      "latency_ms": 806,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.9291,
+        "SWITCH: dragapult": 0.0709
+      }
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stoneedge",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: stoneedge, 21% MOVE: stealthrock, 18% SWITCH: hydreigon",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2726,
+      "latency_ms": 895,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.1618,
+        "MOVE: dragontail": 0.1526,
+        "MOVE: stealthrock": 0.2107,
+        "MOVE: stoneedge": 0.2921,
+        "SWITCH: hydreigon": 0.1758,
+        "SWITCH: dragapult": 0.0071
+      }
+    },
+    {
+      "turn": 12,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "bravebird",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight is the only survivor. Garchomp at 40% is faster and can hit with Earthquake, but Brave Bird should KO it while preserving enough HP. The 33% recoil is acceptable. Dragapult and Hydreigon remain low, but finish the active threat first.",
+      "hidden_reasoning": "We need decide. Garchomp 40, Corvi 144. Ironhead likely from 40 to near 0? Prior 59 to40, same ~19%. Current 40 means damage around 19, so likely survives at 21. Brave bird larger likely KO, recoil 48, leaving 96. Need act. Garchomp faster and EQ deadly perhaps Corvi resists, EQ 2x? Flying steel, ground 2x steel neutral =2x, current 144, likely ~90 damage, survives. Brave bird strongest. Sharp beak boosts. Use brave bird.",
+      "note": "",
+      "tokens": 3166,
+      "latency_ms": 2535,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "94% SWITCH: hydreigon, 6% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2489,
+      "latency_ms": 821,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: hydreigon": 0.9438,
+        "SWITCH: dragapult": 0.0562
+      }
+    },
+    {
+      "turn": 13,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: uturn, 19% MOVE: dragontail, 15% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2812,
+      "latency_ms": 934,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.5723,
+        "MOVE: dragontail": 0.1902,
+        "MOVE: earthquake": 0.0051,
+        "MOVE: stealthrock": 0.1529,
+        "SWITCH: dragapult": 0.0795
+      }
+    },
+    {
+      "turn": 13,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight is the only survivor, facing Hydreigon at 26% with 91 HP. Iron Head should KO without recoil and has a 20% flinch chance; if it survives, finish it next turn. Dragapult remains at 11% and can be finished afterward. Avoid U-turn because no teammate can switch in.",
+      "hidden_reasoning": "We need choose. Hydreigon 26%, Corvi 91. Iron head likely neutral? Steel vs dragon neutral, enough damage maybe 40%? At 100 HP HP actual 100, 26. Iron head 80 likely ~30-40, may not KO. Brave bird 144 power, neutral, definitely KO but recoil 33% of 91 = 30, leaving 61, good. However Hydreigon faster, could attack before, likely dark pulse? Unknown. Iron head flinch 20 and 16 PP. Need calculate level 50 stats actual perhaps 100 HP; 26 hp. Iron head 80 vs SpD maybe ~100, attack 96; damage ~30-40, likely KO. At 26% actual HP maybe 26, 80 BP neutral likely 25-30. Do Iron Head, no recoil, likely KO, flinch. If not, next. Also Dragapult 11 and active? Must target Hydreigon. Use iron head.",
+      "note": "",
+      "tokens": 3342,
+      "latency_ms": 3391,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 13,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 13,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 14,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: uturn, 19% MOVE: dragontail, 9% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2852,
+      "latency_ms": 943,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.7153,
+        "MOVE: dragontail": 0.1853,
+        "MOVE: earthquake": 0.0054,
+        "MOVE: stealthrock": 0.0939
+      }
+    },
+    {
+      "turn": 14,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight is the only survivor, facing Hydreigon at 26% with 82 HP. Iron Head should KO without recoil and has a 20% flinch chance; if it survives, finish it next turn. Dragapult remains at 11% and can be finished afterward. Avoid U-turn because no teammate can switch in.",
+      "hidden_reasoning": "We need choose. Only Corviknight, Hydreigon 26%, Iron Head likely KO? Earlier noted. Hydreigon faster can uturn, but no teammates. If Iron Head flinch, KO likely. Need maximize chance kill. Iron Head 80 steel neutral dark/dragon, damage from 82 HP attack 96, def likely ~120: ~ maybe 50-60, 26% of ~180 =47, yes. Use ironhead. If Hydreigon uses Uturn first, it damages and switches, Corviknight survives, no issue. But can target Garchomp/Dragapult dead, only active. Ironhead.",
+      "note": "",
+      "tokens": 3346,
+      "latency_ms": 3872,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 15,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: uturn, 44% MOVE: dragontail, 6% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2910,
+      "latency_ms": 998,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.4868,
+        "MOVE: dragontail": 0.4444,
+        "MOVE: earthquake": 0.0112,
+        "MOVE: stealthrock": 0.0576
+      }
+    },
+    {
+      "turn": 15,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "ironhead",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Corviknight is the only survivor, facing Hydreigon at 1% with 76 HP. Use Iron Head to finish it; it is faster, and KOing lets me prepare for the remaining opponent. Do not use U-turn since there is no usable teammate to switch in, and avoid Brave Bird’s unnecessary recoil.",
+      "hidden_reasoning": "We need choose ironhead to KO. But at 1%, even resisted? Iron head neutral, sure. Could Uturn super effective but unnecessary, switching impossible. Ironhead. Notes update.",
+      "note": "",
+      "tokens": 3294,
+      "latency_ms": 1870,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

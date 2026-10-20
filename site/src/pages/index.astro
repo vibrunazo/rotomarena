@@ -8,7 +8,7 @@ import { allModels, boardModels, boards, fmtDate, fmtInt, isModel, leaderboardHr
 const llms = (await allModels()).filter((m) => isModel(m) && m.games > 0);
 // Each benchmark's standings, top five of its main leaderboard
 const standings = await Promise.all(liveBenches.map(async (bench) => {
-  const all = (await boardModels(bench.main!)).filter((m) => m.games > 0);
+  const all = (await boardModels(bench.main!)).filter((m) => m.games > 0 && !m.retired);
   // the headline: how many models out-rate PokéChamp, a one-turn damage calculator (when it plays this board)
   const calc = all.find((m) => m.type === 'pokechamp');
   const contestants = all.filter(isModel);

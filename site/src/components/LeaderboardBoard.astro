@@ -10,7 +10,11 @@ import { archivedBoards, benchBoards, benchOf, benches, boardHref, boardModels, 
 
 interface Props { board: Board }
 const { board } = Astro.props;
-const models = await boardModels(board.id);
+// Retired models (no longer played) are left out of the table, chart and grid; their games still count in everyone's
+// ratings, so they are listed under the table
+const everyone = await boardModels(board.id);
+const models = everyone.filter((m) => !m.retired);
+const retired = everyone.filter((m) => m.retired && m.games > 0);
 const headToHead = headToHeadFor(board.id);
 const byId = await modelsById();
 const anchor = byId.get(board.anchor || meta.ladder.anchor);  // each board has its own
@@ -63,6 +67,11 @@ const record = (a: string, b: string) => {
   </p>
 
   <LeaderboardTable models={models} anchor={anchor?.config_id} />
+  {retired.length > 0 && (
+    <p class="small muted retired-note">Retired, not shown above:{' '}
+      {retired.map((m, i) => <>{i > 0 && ', '}<a href={routes.model(m.config_id)}>{m.display_name}</a></>)}.
+      They no longer play, but their games still count in everyone's ratings.</p>
+  )}
 
   <details class="rules">
     <summary>Rules{board.versions.length > 1 ? ` of the ${board.versions.length} versions counted here` : ''}</summary>

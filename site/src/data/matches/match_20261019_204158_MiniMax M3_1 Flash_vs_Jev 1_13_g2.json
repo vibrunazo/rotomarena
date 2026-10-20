@@ -1,0 +1,353 @@
+{
+  "id": "match_20261019_204158_MiniMax M3_1 Flash_vs_Jev 1_13_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p1",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    },
+    {
+      "config_id": "jev_1_13",
+      "display_name": "Jev 1.13",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13",
+      "quantization": null,
+      "username": "Jev 1.13",
+      "role": "p2",
+      "team": "Jev 1.13's team",
+      "model_key": "typesafe/jev-1.13",
+      "autopilot_rate": 0.0,
+      "replay_name": "Jev 1.13"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 15.08,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|MiniMax M3.1 Flash||",
+    "|player|p2|Jev 1.13||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Arcanine-Hisui, L50, M|",
+    "|poke|p1|Annihilape, L50, F|",
+    "|poke|p1|Hatterene, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Aegislash, L50, F|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Corviknight, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|switch|p2a: Dragapult|Dragapult, L50, M|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Rotom",
+    "|-damage|p2a: Rotom|42/100",
+    "|move|p2a: Rotom|Thunderbolt|p1a: Gholdengo",
+    "|-damage|p1a: Gholdengo|87/162",
+    "|",
+    "|-heal|p2a: Rotom|48/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Rotom",
+    "|-crit|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|4",
+    "|",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 44% BRING: dragapult, 17% BRING: gholdengo, 15% BRING: aegislash\nPick 2: 48% BRING: gholdengo, 17% BRING: rotomwash, 14% BRING: aegislash\nPick 3: 39% BRING: rotomwash, 26% BRING: aegislash, 20% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 6424,
+      "latency_ms": 1315,
+      "cost_usd": 0.000269808,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,rotomwash,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo for broad special coverage and Scarf speed, with Rotom-Wash and Kingambit as flexible backups. Threat order: Dragapult, Corviknight, opposing Rotom-Wash. Use Rotom’s Water moves against Corviknight and Gholdengo against Dragons; Kingambit handles physical threats and can set up Swords Dance.",
+      "hidden_reasoning": "We need choose 3. Need strategize. Our Rotom vs their Rotom. Lead maybe Gholdengo scarf, back Rotom, Kingambit. Mega available maybe Gholdengo. Opponent threats Dragapult, Corviknight. Gholdengo outspeeds most, Rotom 151. Kingambit handles physical. Could lead Rotom to threaten Hydro/Tbolt and scout. Their Rotom possibly choice specs. Best Gholdengo lead for broad coverage, but Shadowball resisted by? Corviknight ghost neutral steel resisted? Corviknight is steel/ghost, shadowball resisted. Dragapult neutral. Aegislash resisted. Make it rain good steel vs steel no effect. Focus blast. Maybe Mega Gholdengo is strong. Team preview only, no actions. Lead Gholdengo, back Rotom, Kingambit. Opp may lead Rotom. Notes under 60.",
+      "note": "",
+      "tokens": 2276,
+      "latency_ms": 3441,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "85% MOVE: shadowball, 7% SWITCH: gholdengo, 3% MOVE: protect",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2217,
+      "latency_ms": 381,
+      "cost_usd": 9.3114e-05,
+      "probabilities": {
+        "MOVE: shadowball": 0.85,
+        "MOVE: dragondarts": 0.01,
+        "MOVE: protect": 0.03,
+        "MOVE: uturn": 0.01,
+        "SWITCH: gholdengo": 0.07,
+        "SWITCH: rotomwash": 0.03
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo is a strong matchup against Dragapult: Shadow Ball is super effective, while its Choice Scarf may outpace Dragon Pulse. Avoid Focus Blast against Ghost. Threaten Dragapult first, then assess its revealed speed and moves before deciding whether Rotom-Wash or Kingambit should enter.",
+      "hidden_reasoning": "We need choose move. Scarf locked perhaps first move, make rain lowers SpA, shadow ball better but Dragapult can possibly outspeed. Trick useful? Unknown item. Make it rain weakens Dragapult special, Gholdengo special. Shadowball super effective but 80. Focus no effect. Choose shadowball likely. Need exact format notes <=60 words.",
+      "note": "",
+      "tokens": 2283,
+      "latency_ms": 2517,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% SWITCH: rotomwash, 49% SWITCH: gholdengo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1867,
+      "latency_ms": 396,
+      "cost_usd": 7.8414e-05,
+      "probabilities": {
+        "SWITCH: gholdengo": 0.49,
+        "SWITCH: rotomwash": 0.51
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: thunderbolt, 32% SWITCH: gholdengo, 22% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2165,
+      "latency_ms": 384,
+      "cost_usd": 9.093e-05,
+      "probabilities": {
+        "MOVE: voltswitch": 0.22,
+        "MOVE: thunderbolt": 0.42,
+        "MOVE: willowisp": 0.01,
+        "MOVE: protect": 0.03,
+        "SWITCH: gholdengo": 0.32
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Turn 2: Continue Gholdengo and attack the revealed opposing Rotom-Wash with Shadow Ball. It is super effective, has strong accuracy, and may leave Rotom exposed to a second hit or a future switch. Gholdengo’s Scarf likely gives favorable speed. Keep Rotom-Wash and Kingambit benched for Aegislash, Toxapex, or Corviknight.",
+      "hidden_reasoning": "We need decide. Gholdengo shadowball against rotom ghost neutral? Rotom Water/Electric weak to ghost? Ghost super against ghost, yes SE actually. Gholdengo special attack 185, Rotom SpD min 114. Shadow 80. Could kill likely ~? damage 80*185/114=130, yes. Rotom max HP157, 2HKO perhaps damage 130 leaves 27. Choice lock. Better attack. Need avoid possibly speed, but scarf likely. Shadowball. Notes under60.",
+      "note": "",
+      "tokens": 2375,
+      "latency_ms": 3792,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: thunderbolt, 38% SWITCH: gholdengo, 17% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2237,
+      "latency_ms": 378,
+      "cost_usd": 9.3954e-05,
+      "probabilities": {
+        "MOVE: voltswitch": 0.17,
+        "MOVE: thunderbolt": 0.42,
+        "MOVE: willowisp": 0.01,
+        "MOVE: protect": 0.02,
+        "SWITCH: gholdengo": 0.38
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Continue Gholdengo and finish the weakened opposing Rotom-Wash with Shadow Ball. It is super effective, and Gholdengo is healthy enough to risk another Thunderbolt. Keep Kingambit benched for the final unidentified threat; Rotom-Wash remains useful against Corviknight.",
+      "hidden_reasoning": "We need choose. Shadow ball likely kill Rotom, but scarf locked okay. Do it. Notes <=60.",
+      "note": "",
+      "tokens": 2440,
+      "latency_ms": 1841,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "50% MOVE: shadowball, 41% MOVE: poltergeist, 5% MOVE: nastyplot",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2254,
+      "latency_ms": 374,
+      "cost_usd": 9.4668e-05,
+      "probabilities": {
+        "MOVE: poltergeist": 0.41,
+        "MOVE: shadowball": 0.5,
+        "MOVE: protect": 0.04,
+        "MOVE: nastyplot": 0.05
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opposing Gholdengo is the immediate threat and likely has Choice Scarf; my Gholdengo is faster only if it invested accordingly. Shadow Ball is resisted by Steel but still usable, while switching to Kingambit risks opposing Focus Blast/Shadow Ball. Keep Gholdengo active and attack now, preserving Rotom-Wash for Corviknight and Kingambit as a later steel answer.",
+      "hidden_reasoning": "We need choose. Mirror Gholdengo, Shadow ball SE against steel? Steel resists ghost 0.5, but super effective due Steel? Ghost vs Steel is resisted, Gholdengo Steel/Ghost: steel resists ghost, ghost resists steel, 0.5. Other Gholdengo perhaps scarf. Our at 87, likely switch Rotom? But rotom could die. Kingambit resists steel/ghost? Dark neutral steel, ghost immune dark, good versus Gholdengo physically, but opponent special likely. Shadowball safest. Need notes <=60.",
+      "note": "",
+      "tokens": 2615,
+      "latency_ms": 3073,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

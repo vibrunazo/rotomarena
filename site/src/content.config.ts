@@ -56,6 +56,7 @@ const models = defineCollection({
     display_name: z.string(),
     type: z.string(),
     role: z.string(),
+    retired: z.boolean().default(false),  // no longer played: off the leaderboards, its games still rated
     provider: z.string().nullable(),
     model: z.string().nullable(),
     model_key: z.string().nullable(),

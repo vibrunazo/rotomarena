@@ -1,0 +1,893 @@
+{
+  "id": "match_20261019_202841_Drex v1_5_vs_MiniMax M3_1 Flash_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "drex_v1_5",
+      "display_name": "Drex v1.5",
+      "agent_type": "decision",
+      "provider": "local",
+      "model": "drex-v1.5",
+      "quantization": "Q8_0",
+      "username": "Drex v1.5",
+      "role": "p1",
+      "team": "Drex v1.5's team",
+      "model_key": "nace-ai/drex-v1.5",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v1.5"
+    },
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p2",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 13,
+  "duration_seconds": 58.78,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Drex v1.5||",
+    "|player|p2|MiniMax M3.1 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Hydreigon, L50, M|",
+    "|poke|p1|Kommo-o, L50, M|",
+    "|poke|p1|Gyarados, L50, F|",
+    "|poke|p1|Sylveon, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Arcanine-Hisui, L50, M|",
+    "|poke|p2|Annihilape, L50, F|",
+    "|poke|p2|Hatterene, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|215/215",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Rotom|Thunderbolt|p1a: Garchomp",
+    "|-immune|p1a: Garchomp",
+    "|move|p1a: Garchomp|Stealth Rock|p2a: Rotom",
+    "|-sidestart|p2: MiniMax M3.1 Flash|move: Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Rotom|Will-O-Wisp|p1a: Garchomp|[miss]",
+    "|-miss|p2a: Rotom|p1a: Garchomp",
+    "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+    "|-immune|p2a: Rotom|[from] ability: Levitate",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|122/215",
+    "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+    "|-immune|p2a: Rotom|[from] ability: Levitate",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|22/215",
+    "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+    "|-immune|p2a: Rotom|[from] ability: Levitate",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p1a: Hydreigon|Hydreigon, L50, M|167/167",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Hydreigon",
+    "|-resisted|p1a: Hydreigon|1",
+    "|-damage|p1a: Hydreigon|121/167",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|move|p2a: Rotom|Will-O-Wisp|p1a: Dragapult",
+    "|-status|p1a: Dragapult|brn",
+    "|",
+    "|-damage|p1a: Dragapult|153/163 brn|[from] brn",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Rotom",
+    "|-damage|p2a: Rotom|83/100",
+    "|",
+    "|switch|p1a: Hydreigon|Hydreigon, L50, M|121/167|[from] U-turn",
+    "|move|p2a: Rotom|Volt Switch|p1a: Hydreigon",
+    "|-resisted|p1a: Hydreigon|1",
+    "|-damage|p1a: Hydreigon|84/167",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100|[from] Volt Switch",
+    "|-damage|p2a: Gholdengo|93/100|[from] Stealth Rock",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Gholdengo|Focus Blast|p1a: Hydreigon",
+    "|-supereffective|p1a: Hydreigon|1",
+    "|-damage|p1a: Hydreigon|0 fnt",
+    "|faint|p1a: Hydreigon",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|153/163 brn",
+    "|turn|9",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|40/100",
+    "|move|p2a: Gholdengo|Focus Blast|p1a: Dragapult",
+    "|-immune|p1a: Dragapult",
+    "|",
+    "|-damage|p1a: Dragapult|143/163 brn|[from] brn",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|0 fnt",
+    "|faint|p2a: Gholdengo",
+    "|",
+    "|-damage|p1a: Dragapult|133/163 brn|[from] brn",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|-damage|p2a: Kingambit|94/100|[from] Stealth Rock",
+    "|turn|11",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|-heal|p2a: Kingambit|100/100|[from] item: Leftovers",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Garchomp|Garchomp, L50, M|22/215",
+    "|turn|12",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Kingambit",
+    "|-supereffective|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|0 fnt",
+    "|faint|p2a: Kingambit",
+    "|-damage|p1a: Garchomp|1/215|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|83/100",
+    "|-damage|p2a: Rotom|71/100|[from] Stealth Rock",
+    "|turn|13",
+    "|",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Garchomp",
+    "|-damage|p1a: Garchomp|0 fnt",
+    "|faint|p1a: Garchomp",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "rotomwash,gholdengo,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Rotom-Wash to pressure the Dragon-heavy team; Gholdengo provides a Choice Scarf special attacker and Trick/Good as Gold utility. Keep Kingambit as the anti-physical closer and switch-in against Gyarados or Kommo-o. Watch for Dragapult’s speed and Garchomp’s physical threats.",
+      "hidden_reasoning": "We need choose. Rotom is 4x dragon, but gyarados ground, arbok not present. Lead Rotom. Gholdengo scarf. Third maybe Kingambit. Opponent has no obvious ground? Dragapult immune. Gyarados. Rotom strong. Could bring Hatterene for special? Gholdengo handles. Kingambit revenge. Team order Rotom, Gholdengo, Kingambit. Notes &lt;=60.",
+      "note": "",
+      "tokens": 2181,
+      "latency_ms": 2701,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,hydreigon,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 40% BRING: garchomp, 29% BRING: dragapult, 18% BRING: hydreigon\nPick 2: 41% BRING: hydreigon, 31% BRING: dragapult, 10% BRING: gyarados\nPick 3: 66% BRING: dragapult, 12% BRING: gyarados, 12% BRING: kommoo",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5425,
+      "latency_ms": 4891,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "58% MOVE: stealthrock, 12% MOVE: earthquake, 11% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1855,
+      "latency_ms": 1856,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.1203,
+        "MOVE: dragontail": 0.1129,
+        "MOVE: stealthrock": 0.5795,
+        "MOVE: stoneedge": 0.0808,
+        "SWITCH: hydreigon": 0.0571,
+        "SWITCH: dragapult": 0.0495
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead with reliable Thunderbolt to reveal Garchomp’s response and roll paralysis. Gholdengo is the strongest immediate pivot if Garchomp threatens; Shadow Ball would be super effective. Avoid Water’s lower accuracy, and save Will-O-Wisp for confirmed physical threats if Rotom remains healthy.",
+      "hidden_reasoning": "We need choose. Thunderbolt maybe 10 para, magnet boost. Hydro pump perhaps Garchomp weak water? Garchomp takes neutral water, thunder neutral. Want status cripple. Will-o-wisp physical attacker, though Rotom frail and Garchomp possibly speed. Burn useful. But Garchomp could kill Rotom with STAB physical. Need maximize info? Thunderbolt reliable, 10%. Hydro 80. Maybe Thunderbolt. Could Gholdengo come in and make rain, setup special. Opposing ground chomp physical, Gholdengo sturdy. Gholdengo Choice Scarf outspeed maybe 149 vs likely. Shadow ball neutral? Gholdengo versus Garchomp: shadowball super effective, likely best. But Rotom Thunderbolt 252 actual. Garchomp HP ~200, Rotom SpA 157, tbolt 90 adjusted 1.2 = maybe 120. Good. Hydra 110 adjusted, 80. Thunderbolt.",
+      "note": "",
+      "tokens": 2351,
+      "latency_ms": 4114,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: earthquake, 12% MOVE: dragontail, 10% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1907,
+      "latency_ms": 642,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.535,
+        "MOVE: dragontail": 0.121,
+        "MOVE: stealthrock": 0.0765,
+        "MOVE: stoneedge": 0.1043,
+        "SWITCH: hydreigon": 0.0801,
+        "SWITCH: dragapult": 0.0831
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Thunderbolt is unusable against Ground. Burn Garchomp to halve its likely physical attacks and preserve Rotom’s HP; Gholdengo remains the preferred pivot if Garchomp pressures Rotom. Kingambit can later absorb physical Dragon attacks, while Shadow Ball handles Dragapult and Gyarados.",
+      "hidden_reasoning": "We need choose. Thunderbolt immune, don't waste. Hydro pump STAB 4x? Garchomp water neutral, super Dragon. 80 accuracy. Could pivot Gholdengo shadowball immediately. Rotom threatened physical likely earthquake/rock slide, Gholdengo weak? Ground 4x. Garchomp likely physical. Kingambit best switch, ability unknown perhaps rough skin irrelevant. Iron head resists dragon? neutral. Rotom can hydro. Also Will-O-Wisp cripples physical but Garchomp special maybe mixed? Garchomp likely physical. Use willowisp. It could have Swords Dance? Stat loss doesn't prevent. Burn halves attack. Best.",
+      "note": "",
+      "tokens": 2406,
+      "latency_ms": 4100,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% MOVE: earthquake, 15% MOVE: dragontail, 14% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1958,
+      "latency_ms": 725,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.303,
+        "MOVE: dragontail": 0.1512,
+        "MOVE: stealthrock": 0.1319,
+        "MOVE: stoneedge": 0.1406,
+        "SWITCH: hydreigon": 0.1386,
+        "SWITCH: dragapult": 0.1348
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is undamaged and fully answers Thunderbolt. Use Hydropump for strong neutral super-effective pressure; at 80% accuracy, it is worth attempting before pivoting. If it misses, switch to Gholdengo and attack with Shadow Ball. Preserve Kingambit for the likely physical threats and switch-in cleanup.",
+      "hidden_reasoning": "We need choose. Hydro pump super effective 2x, 80 acc. Garchomp possibly scarfed? Speed uncertain. Will-o failed. Switch Gholdengo threatens shadow ball and pivots. But Rotom faster perhaps guaranteed? If garchomp max 169 vs 151, maybe 2x speed. Hydro risk. Gholdengo Scarf 149, not necessarily faster. Shadowball strong. Rotom water STAB and magnet irrelevant. Could try Hydro Pump. If miss, then switch next. Garchomp at full. Best likely hydro. Could Volt switch gives safe pivot but no damage. Need establish matchup. Use hydropump.",
+      "note": "",
+      "tokens": 2522,
+      "latency_ms": 3465,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "36% MOVE: earthquake, 17% SWITCH: hydreigon, 17% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2019,
+      "latency_ms": 729,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.3634,
+        "MOVE: dragontail": 0.1035,
+        "MOVE: stealthrock": 0.082,
+        "MOVE: stoneedge": 0.1099,
+        "SWITCH: hydreigon": 0.1732,
+        "SWITCH: dragapult": 0.1681
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is already at 56% and cannot damage Rotom-Wash with Earthquake. Continue strong Water pressure with Hydro Pump, which can now KO. If it misses, pivot to Gholdengo and use Shadow Ball. Keep Kingambit available for Dragapult, Hydreigon, or Gyarados.",
+      "hidden_reasoning": "We need act. Garchomp 56, already did 3 attacks, likely HP originally 56? Wait notes says Garchomp undamaged turn3 contradictory log says 56%. Hydropump did damage? It says was at 56%, likely after hydro? Turn order Rotom first, Garchomp attacked. So perhaps hydro missed? Yet at 56 means damaged. Continue pressure, Garchomp physical and Rotom weak, but immunity. Hydro likely best. Could burn then pivot, but already 56 and perhaps kill. Choose hydro.",
+      "note": "",
+      "tokens": 2539,
+      "latency_ms": 2875,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% SWITCH: hydreigon, 40% SWITCH: dragapult, 5% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2065,
+      "latency_ms": 956,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.0369,
+        "MOVE: dragontail": 0.046,
+        "MOVE: stealthrock": 0.0165,
+        "MOVE: stoneedge": 0.0158,
+        "SWITCH: hydreigon": 0.4813,
+        "SWITCH: dragapult": 0.4034
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 10% and Rotom is immune to its Earthquake. Use Hydro Pump for the immediate KO; its 80% accuracy is acceptable. If it misses, pivot into Gholdengo next turn and finish with Shadow Ball. Thunderbolt and Volt Switch are ineffective, while Will-O-Wisp gives Garchomp time to recover or switch.",
+      "hidden_reasoning": "We need act. Garchomp 10%, hydro pump likely KO but 80%. Voltswitch immune, can pivot but bad. Hydro pump best, perhaps willow burn then? Need kill now, hydro 80% likely. Gholdengo shadowball not legal active actions only listed moves for rotom; switching. Choose hydro. Notes &lt;=60 words.",
+      "note": "",
+      "tokens": 2553,
+      "latency_ms": 3693,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "38% SWITCH: dragapult, 33% MOVE: earthquake, 14% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2109,
+      "latency_ms": 1414,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.1367,
+        "MOVE: dragontail": 0.1196,
+        "MOVE: earthquake": 0.3337,
+        "MOVE: stealthrock": 0.0272,
+        "SWITCH: garchomp": 0.0054,
+        "SWITCH: dragapult": 0.3774
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Hydreigon is at 72% and Rotom-Wash is still undamaged. Burn Hydreigon now to limit its damage and create a safe pivot into Gholdengo, which resists Dragon and is immune to Dark. Garchomp remains at 10% and can be finished later. Preserve Kingambit for the final opposing threat.",
+      "hidden_reasoning": "We need choose. Hydreigon 72, not very effective but likely threatens. Rotom can burn it; then switch Gholdengo perhaps. Need infer hidden move. Will-o-wisp is good, 85%, pivots. But each turn action only. Burn Hydreigon now, likely Gholdengo can come in and perhaps need absorb. However Gholdengo resists dark, dragon special? Gholdengo steel/ghost, Hydreigon dark dragon: both resisted by steel? Steel resists dragon, dark? Steel resists dark? In modern gens steel resists dark? Steel resists fairy, steel, fire, water, ice; not dark. Ghost immune dark, so immune. Hydreigon likely special attacks. Gholdengo is good pivot. Use willowisp.",
+      "note": "",
+      "tokens": 2753,
+      "latency_ms": 2884,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: uturn, 31% MOVE: shadowball, 12% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2163,
+      "latency_ms": 1573,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.4185,
+        "MOVE: dragontail": 0.1227,
+        "MOVE: shadowball": 0.3104,
+        "MOVE: willowisp": 0.0494,
+        "SWITCH: garchomp": 0.0044,
+        "SWITCH: hydreigon": 0.0946
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "voltswitch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is burned and weak to Rotom’s Electric moves. Use Volt Switch to damage it, inflict possible paralysis, and pivot into Gholdengo. Gholdengo resists Dragon, can then threaten Shadow Ball, and can later finish Garchomp and Hydreigon. Kingambit remains the closer for Kommoo or Gyarados.",
+      "hidden_reasoning": "We need decide. Burn active already. Rotom can pivot. Gholdengo choice scarf speed 149 possibly. Dragapult max 213, perhaps speed. Gholdengo immune dragon, but Gholdengo weak? Ghost resisted. Volt switch into Gholdengo and then shadowball. This is best. Could thunderbolt paralyze but low damage. Voltswitch pressure and pivot. Need legal action exact. Notes <=60.",
+      "note": "",
+      "tokens": 2844,
+      "latency_ms": 2233,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Hydreigon",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% SWITCH: hydreigon, 2% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1951,
+      "latency_ms": 784,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.0238,
+        "SWITCH: hydreigon": 0.9762
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp remains at 10%, Dragapult is burned at 93%, and Hydreigon is at 50% with Volt Switch damage. Switch into Gholdengo: it resists Dragon and Dark, can use Shadow Ball against Hydreigon, and Choice Scarf provides speed. Preserve Kingambit as the physical closer.",
+      "hidden_reasoning": "We need act. Legal only switches, Volt Switch likely did damage? Current turn after Volt Switch, opponent Hydreigon active 50/100g weird max 100? Rotom still active. Need switch Gholdengo likely. Notes &lt;=60. Exact.",
+      "note": "",
+      "tokens": 2723,
+      "latency_ms": 2044,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: earthquake, 23% MOVE: uturn, 17% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2380,
+      "latency_ms": 805,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.2294,
+        "MOVE: dragontail": 0.0499,
+        "MOVE: earthquake": 0.5108,
+        "MOVE: stealthrock": 0.0366,
+        "SWITCH: garchomp": 0.0042,
+        "SWITCH: dragapult": 0.1691
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is active against Hydreigon at 50%, with Choice Scarf. Focus Blast is the strongest accurate-enough option and super effective, threatening a KO despite 70% accuracy. Shadow Ball is resisted, and Make It Rain unnecessarily lowers Gholdengo’s already modest Sp. Atk. Preserve Kingambit for Garchomp or Dragapult.",
+      "hidden_reasoning": "We need choose. Gholdengo scarf locked? It came in via Volt Switch, can choose move. Focus blast 2x, 70%, likely KO? Gholdengo SpA 185, Hydreigon SpD range 99-156. Focus 120 2x; likely 2HKO maybe. Shadowball 80 not very effective. Make rain steel vs dragon neutral, but hydreigon can exploit? Need KO. Focus blast. But scarf and good as gold. Choose focus blast. Notes.",
+      "note": "",
+      "tokens": 2952,
+      "latency_ms": 3074,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "98% SWITCH: dragapult, 2% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2071,
+      "latency_ms": 691,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "SWITCH: garchomp": 0.0173,
+        "SWITCH: dragapult": 0.9827
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% MOVE: shadowball, 15% MOVE: uturn, 2% MOVE: dragontail",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2396,
+      "latency_ms": 1566,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: uturn": 0.1516,
+        "MOVE: dragontail": 0.0218,
+        "MOVE: shadowball": 0.8139,
+        "MOVE: willowisp": 0.0073,
+        "SWITCH: garchomp": 0.0055
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo’s Focus Blast is super effective against Dragapult and should KO it at 93% HP. It is locked into Choice Scarf, so Shadow Ball is unavailable. If it misses, reassess versus Garchomp at 10% and preserve Kingambit for later threats.",
+      "hidden_reasoning": "We need choose. Gholdengo vs Dragapult. Shadowball not legal due choice scarf locked from focus blast? Legal only focusblast/switch. Focus blast neutral 2x? Fighting vs Dragon Ghost super effective 2x, likely can kill 93% but accuracy. Could use switch Rotom, but Rotom has magnet and thunderbolt, perhaps. Need maximize. Focus Blast likely KO? Dragapult HP 93%, Gholdengo spa 185, 120 BP, super effective, likely 130 damage, yes. Do it. Notes.",
+      "note": "",
+      "tokens": 2917,
+      "latency_ms": 2722,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: shadowball, 1% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2283,
+      "latency_ms": 764,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: shadowball": 0.994,
+        "SWITCH: garchomp": 0.006
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is burned at 87% and weak to Focus Blast; a hit should remove it. Gholdengo is at 66 HP, but this is the best immediate KO opportunity. If it misses, reassess and preserve Kingambit for Garchomp. Do not switch unless the KO attempt is clearly too risky.",
+      "hidden_reasoning": "We need choose. Focus blast 70% super effective, Dragapult 87, Gholdengo 66. Could KO likely, but miss risk. Rotom can maybe status and hydro? Active is Gholdengo, switch rotom gives Rotom will-o-wisp but already burned, voltswitch weak. Gholdengo focus blast likely best, but Dragapult speed may kill. If hit, Dragapult gone. Switch Kingambit perhaps safely? Yet Gholdengo can attack. Use focus blast. Notes plan.",
+      "note": "",
+      "tokens": 2985,
+      "latency_ms": 2657,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo fainted, so bring Kingambit into burned Dragapult at 81%. Kingambit can outspeed and threatens Dragapult with physical Dark/Steel moves, while also covering Garchomp at 10%. Rotom risks another super-effective Shadow Ball and has no reliable way to KO Dragapult.",
+      "hidden_reasoning": "We need choose switch kingambit likely. Rotom could burn? Dragapult at 81, needs KO. Kingambit outspeeds, focus unavailable. Sucker punch physical neutral? Dragon dark. Foul play. Rotom will likely be hit by shadowball and maybe dies, unless burn finishes. Switch Kingambit. Note garchomp 10% can come in but unlikely. Kingambit threatens Dragapult and Garchomp.",
+      "note": "",
+      "tokens": 2900,
+      "latency_ms": 2429,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: shadowball, 3% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2516,
+      "latency_ms": 1225,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: shadowball": 0.9668,
+        "SWITCH: garchomp": 0.0332
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is at 81% and burned. Sucker Punch is priority, super effective, and should KO before Dragapult can use Shadow Ball. Foul Play would likely also KO, but allows the faster Dragapult to attack first. Garchomp remains at 10%.",
+      "hidden_reasoning": "We need choose. Dragapult 81 burned, outspeeds. Sucker punch priority goes first but \"fails if target not attacking\" opponent may attack. 70 BP dark super effective, King Atk 205 likely damage: BP70, atk 205 vs def ~100, 0.7*205*70/100+2 =102* .7? Formula base damage 102, STAB1.5, 0.714 =109, super 2x =218? Wait 205*70/100=143+2, x1.5=217, x2=434, half=217! Massive. Actual Drag def perhaps 110, King attack 205, 70BP super: (42*205*110/100/50)+2=191, STAB1.5=287, 2=574, burn attacker irrelevant physical, likely 287. KO. Sucker punch best. If it attacks, priority ensures. Dragapult may choose shadowball, King survives? neutral King steel dark, special shadow neutral from special attacker. damage SpA ~160 vs spd107: 80*160*107/100/50 +2=276, *2 STAB=552, burn 1.5 attack =828, random 85-100 around 700, King HP 175, likely OHKO! Hmm Dragapult at 81 HP and has threatened Gholdengo from 162 to66 with two hits, ~96 each because Gholdengo spd113. King SpD107, attack stat maybe 170, shadow ~140, King dies likely. Foul Play uses target attack 160 against defense 110 physical: 95*160*110/100/50=334, STAB 1.5=501, super 2=1002, guarantees OHKO Dragapult but Drag moves first and likely OHKOs King. Need switch Rotom, perhaps let Rotom take hit? Rotom spdef129, HP104, shadow from Drag SpA maybe170: 80*170*129/100/50=280, *2=560, random .85=476, Rotom dies. Could Volt switch to Rotom and then Gholdengo? Rotom has Magnet, perhaps Volt Switch to Gholdengo? But legal switch only rotomwash, no gholdengo faint. Need use King and perhaps Foul Play, but likely dies. Sucker priority means Drag can't attack, so \"fails if target not attacking\" if Drag uses U-turn/Shadowball it attacks. Priority Sucker KO likely, Drag dies before move. Use sucker punch.",
+      "note": "",
+      "tokens": 3567,
+      "latency_ms": 7010,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "92% MOVE: earthquake, 4% MOVE: dragontail, 2% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2746,
+      "latency_ms": 925,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.9231,
+        "MOVE: dragontail": 0.0379,
+        "MOVE: stealthrock": 0.0191,
+        "MOVE: stoneedge": 0.0198
+      }
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "foulplay",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Garchomp is at 10% and faster, so avoid giving it a free hit. Foul Play uses its strong Attack for maximum Dark damage and should KO. Sucker Punch is safer in speed order but likely has less damage. If Foul Play misses, pursue with Sucker Punch/Iron Head next turn.",
+      "hidden_reasoning": "We need choose. Garchomp 10%, faster. Sucker priority guarantees first but maybe not KO? King Atk 205, garch def range perhaps 103, HP ~183 at 10%=18, priority dark neutral-ish resist? Garchomp ground no dragon dark weakness? Dark neutral to dragon ground. Sucker 70 likely 40-60%, maybe KO perhaps not. Foulplay using garch attack 135-200, dark neutral, huge. likely KO. But speed means Garch attacks first, likely kills? King resists ground, EQ neutral, survives. Foul Play likely KO. Swords dance unnecessary. Sucker probably ~60% and likely KO too. Garch 10% and focus kill. Foul play.",
+      "note": "",
+      "tokens": 3193,
+      "latency_ms": 3185,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 13,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% MOVE: earthquake, 13% MOVE: dragontail, 5% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2744,
+      "latency_ms": 918,
+      "cost_usd": 0.0,
+      "probabilities": {
+        "MOVE: earthquake": 0.799,
+        "MOVE: dragontail": 0.1284,
+        "MOVE: stealthrock": 0.0217,
+        "MOVE: stoneedge": 0.0509
+      }
+    },
+    {
+      "turn": 13,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Only Garchomp remains from the opponent’s brought team. It is at 1% HP, and Rotom is immune to its Earthquake, so we can attack without Ground risk. Hydro Pump has enough power to OHKO; even on a miss, Rotom can follow up while staying immune to Earthquake. Prioritize finishing Garchomp immediately.",
+      "hidden_reasoning": "We need choose Hydro Pump. 80% KO at 1%, almost guaranteed even miss leaves 1 and faster? Rotom speed possibly below max garchomp, but water super effective neutral? Garchomp water neutral, HP nearly dead. Need OHKO. Hydro pump. Could Will-O burn, then EQ likely KO Rotom because ground immune! EQ immunity, but life orb recoil? Rotom immune. Garchomp attacks EQ no effect, so can freely status. Hydro pump safest immediate. 80% and even accuracy perhaps level 50 no evasion unless sand veil doesn't affect accuracy. Sand veil only evasiveness in sand, no weather. Use Hydro. Notes long term: remaining opposing all brought are 3, but all three fainted? Garchomp active not fainted, so only 1 remaining! Ah opponent brought Garchomp Hydreigon Dragapult, yes others preview not brought. Once Garchomp gone win. Need KO. Hydro Pump accuracy 80. Could Will-O at 1%, then no need risk? Garchomp Earthquake no effect to Rotom, but could have other moves unknown, likely Crunch/Rock Slide? Garchomp likely Earthquake and Stealth Rock only? Moveset unknown. Will-O 85 and then whatever. If burn could life orb issue? Garchomp can attack freely. Hydro has 80%. Could use Willowisp 85, but it might miss then Garchomp possibly attack. Hydro immediate.",
+      "note": "",
+      "tokens": 3437,
+      "latency_ms": 5865,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

@@ -1,0 +1,982 @@
+{
+  "id": "match_20261019_203804_Drex v2_0_vs_MiniMax M3_1 Flash_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "drex_v2_0",
+      "display_name": "Drex v2.0",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "nace-ai/drex-v2.0",
+      "quantization": null,
+      "username": "Drex v2.0",
+      "role": "p1",
+      "team": "Drex v2.0's team",
+      "model_key": "nace-ai/drex-v2.0",
+      "autopilot_rate": 0.0,
+      "replay_name": "Drex v2.0"
+    },
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p2",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 16,
+  "duration_seconds": 88.34,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Drex v2.0||",
+    "|player|p2|MiniMax M3.1 Flash||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Aegislash, L50, F|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Corviknight, L50, F|",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Dragapult, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Mimikyu, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|poke|p2|Ceruledge, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|202/202",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Rotom|atk|1",
+    "|turn|1",
+    "|",
+    "|move|p1a: Incineroar|Fake Out|p2a: Rotom",
+    "|-damage|p2a: Rotom|76/100",
+    "|-damage|p1a: Incineroar|182/202|[from] item: Life Orb",
+    "|cant|p2a: Rotom|flinch",
+    "|",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|194/194",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Gholdengo",
+    "|-damage|p1a: Gholdengo|72/194",
+    "|-damage|p2a: Rotom|67/100|[from] item: Life Orb",
+    "|",
+    "|-heal|p1a: Gholdengo|84/194|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p2a: Rotom|Nasty Plot|p2a: Rotom",
+    "|-boost|p2a: Rotom|spa|2",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Rotom",
+    "|-damage|p2a: Rotom|10/100",
+    "|",
+    "|-heal|p1a: Gholdengo|96/194|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p2a: Rotom|Hydro Pump|p1a: Gholdengo|[miss]",
+    "|-miss|p2a: Rotom|p1a: Gholdengo",
+    "|move|p1a: Gholdengo|Shadow Ball|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|-heal|p1a: Gholdengo|108/194|[from] item: Leftovers",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, M|100/100",
+    "|turn|5",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|0 fnt",
+    "|faint|p1a: Gholdengo",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+    "|turn|6",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|5/163",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Kingambit",
+    "|-resisted|p2a: Kingambit|1",
+    "|-damage|p2a: Kingambit|81/100",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|182/202",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Kingambit|atk|1",
+    "|-ability|p2a: Kingambit|Defiant|boost",
+    "|-boost|p2a: Kingambit|atk|2",
+    "|move|p2a: Kingambit|Sucker Punch||[still]",
+    "|-fail|p2a: Kingambit",
+    "|",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch||[still]",
+    "|-fail|p2a: Kingambit",
+    "|move|p1a: Incineroar|Will-O-Wisp|p2a: Kingambit",
+    "|-status|p2a: Kingambit|brn",
+    "|",
+    "|-damage|p2a: Kingambit|75/100 brn|[from] brn",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|switch|p2a: Mimikyu|Mimikyu, L50, F|100/100",
+    "|move|p1a: Incineroar|Protect||[still]",
+    "|-fail|p1a: Incineroar",
+    "|",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|move|p1a: Incineroar|Protect|p1a: Incineroar",
+    "|-singleturn|p1a: Incineroar|Protect",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-activate|p1a: Incineroar|move: Protect",
+    "|",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p1a: Incineroar|Protect||[still]",
+    "|-fail|p1a: Incineroar",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|110/202",
+    "|",
+    "|upkeep",
+    "|turn|12",
+    "|",
+    "|move|p1a: Incineroar|Protect|p1a: Incineroar",
+    "|-singleturn|p1a: Incineroar|Protect",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-activate|p1a: Incineroar|move: Protect",
+    "|",
+    "|upkeep",
+    "|turn|13",
+    "|",
+    "|move|p1a: Incineroar|Protect||[still]",
+    "|-fail|p1a: Incineroar",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|40/202",
+    "|",
+    "|upkeep",
+    "|turn|14",
+    "|",
+    "|move|p1a: Incineroar|Protect|p1a: Incineroar",
+    "|-singleturn|p1a: Incineroar|Protect",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-activate|p1a: Incineroar|move: Protect",
+    "|",
+    "|upkeep",
+    "|turn|15",
+    "|",
+    "|move|p1a: Incineroar|Protect||[still]",
+    "|-fail|p1a: Incineroar",
+    "|move|p2a: Mimikyu|Play Rough|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|0 fnt",
+    "|faint|p1a: Incineroar",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, F|5/163",
+    "|turn|16",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Mimikyu",
+    "|-activate|p2a: Mimikyu|ability: Disguise",
+    "|-damage|p2a: Mimikyu|100/100",
+    "|detailschange|p2a: Mimikyu|Mimikyu-Busted, L50, F",
+    "|-damage|p2a: Mimikyu|88/100|[from] pokemon: Mimikyu-Busted",
+    "|move|p2a: Mimikyu|Shadow Claw|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "rotomwash,mimikyu,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Rotom-Wash for speed and utility. Keep Mimikyu behind it to absorb physical attacks and threaten Dragapult with Shadow Claw, since Mimikyu is immune to its own Dragon/Ghost strikes. Kingambit is the final choice, handling Incineroar and weakened Steel-types. Watch for Will-O-Wisp, Scald, and opposing Dragapult’s speed.",
+      "hidden_reasoning": "We need choose. Rotom lead fast, Gholdengo maybe against Aegislash. Mimikyu handles physical but sash. Opponent has speedy-ish dragapult. Best bring Rotom, Mimikyu, Kingambit? Gholdengo redundancy, Rotom already. Lead Rotom, Mimikyu, Kingambit. Against steel/ghost and dragapult, Mimikyu shadow immune. Kingambit. Could use Gholdengo instead Kingambit to threaten Aegislash, but Rotom and Gholdengo. Mimikyu needed scarf sweepers/incineroar. Kingambit handles incineroar. Three.\n\nMega? format champions allows mega perhaps Rotom no mega. Answer exact.",
+      "note": "",
+      "tokens": 2240,
+      "latency_ms": 3210,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,dragapult,gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 25% BRING: incineroar, 20% BRING: dragapult, 17% BRING: toxapex\nPick 2: 25% BRING: dragapult, 22% BRING: gholdengo, 19% BRING: toxapex\nPick 3: 32% BRING: gholdengo, 23% BRING: aegislash, 22% BRING: corviknight",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5319,
+      "latency_ms": 3331,
+      "cost_usd": 0.00031914,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "fakeout",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: fakeout, 17% MOVE: protect, 12% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1862,
+      "latency_ms": 1121,
+      "cost_usd": 0.00011172,
+      "probabilities": {
+        "MOVE: fakeout": 0.4639,
+        "MOVE: protect": 0.1703,
+        "MOVE: crunch": 0.0956,
+        "MOVE: willowisp": 0.1193,
+        "SWITCH: dragapult": 0.0652,
+        "SWITCH: gholdengo": 0.0858
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Rotom-Wash as planned. Incineroar is weak to Water and slower, so Hydro Pump can threaten an immediate KO; Rotom’s Attack drop does not matter. If it survives, pivot Rotom into Mimikyu or Kingambit while preserving both for later threats.",
+      "hidden_reasoning": "We need choose. Incineroar fire dark, Rotom special. Nasty plot risks. Hydro pump good but accuracy, Incineroar perhaps. Discharge reliable. We need establish switch later. Probably Hydro Pump for KO, but at -1 attack irrelevant. Incineroar speed lower. Use hydropump. Life orb. Notes under 60.",
+      "note": "",
+      "tokens": 2258,
+      "latency_ms": 2013,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "26% SWITCH: gholdengo, 23% MOVE: crunch, 18% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1841,
+      "latency_ms": 893,
+      "cost_usd": 0.00011046,
+      "probabilities": {
+        "MOVE: protect": 0.1611,
+        "MOVE: crunch": 0.231,
+        "MOVE: willowisp": 0.1666,
+        "SWITCH: dragapult": 0.1829,
+        "SWITCH: gholdengo": 0.2583
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash is faster and strongly outspecced; its lowered Attack is irrelevant. Hydro Pump is super effective and should OHKO the damaged Incineroar, though it risks an 80% miss. Nasty Plot is a safe alternative, but allowing Incineroar another Fake Out is unnecessary.",
+      "hidden_reasoning": "We need choose hydro pump likely. Concern Fake Out, but no priority next. LO incin. HP 90%, hydro super effective. Rotom SpA 155 vs defenses. Calculate hydro 110*155/96 ~177 at 90% =159, 4x due fire = 640, definitely OHKO. Hydro accuracy 80 risk, discharge lower. Nasty plot could assure but incin maybe outspeed? Rotom faster, can boost then kill, but Intimidate already. Hydro.",
+      "note": "",
+      "tokens": 2452,
+      "latency_ms": 2677,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "25% MOVE: shadowball, 22% MOVE: trick, 15% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2012,
+      "latency_ms": 1654,
+      "cost_usd": 0.00012072,
+      "probabilities": {
+        "MOVE: shadowball": 0.2502,
+        "MOVE: recover": 0.1281,
+        "MOVE: protect": 0.1301,
+        "MOVE: trick": 0.2244,
+        "SWITCH: dragapult": 0.1512,
+        "SWITCH: incineroar": 0.1159
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "nastyplot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is at 43% and Rotom-Wash is at 67%, but one Hydro Pump likely will not OHKO. Use Nasty Plot to secure a boosted special attack; its Steel typing resists Discharge, and Mimikyu’s Ghost/Dark attacks are resisted. Keep Kingambit reserved for Incineroar and potential Steel threats.",
+      "hidden_reasoning": "We need choose. Gholdengo 43%, Rotom 67, likely hydro kills? 110 water vs steel ghost, neutral? Steel resists? Water neutral, Gholdengo SpDef 99-157, HP 162, likely hydro 110 special from 155 with LO, perhaps ~70% HP, not kill. Discharge electric resisted steel. Nasty plot setup then likely. But Gholdengo may attack, Rotom vulnerable. Could switch Mimikyu, but Gholdengo steel ghost resisted dark/ghost, playrough neutral, painsplit halves. Need strategically preserve Rotom. Nasty plot boosts to 265, next hydro/discharge. Choose nastyplot. Notes &lt;=60 words.",
+      "note": "",
+      "tokens": 2704,
+      "latency_ms": 4077,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: shadowball, 20% MOVE: trick, 15% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2096,
+      "latency_ms": 792,
+      "cost_usd": 0.00012576,
+      "probabilities": {
+        "MOVE: shadowball": 0.4372,
+        "MOVE: recover": 0.0571,
+        "MOVE: protect": 0.0522,
+        "MOVE: trick": 0.1974,
+        "SWITCH: dragapult": 0.1514,
+        "SWITCH: incineroar": 0.1048
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "hydropump",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Plan: Rotom-Wash is at 14 HP but has a +2 SpA boost, making Hydro Pump its strongest immediate threat; it should likely OHKO Gholdengo at 49%. Avoid Nasty Plot and resisted Discharge. If Hydro Pump misses, Rotom is in immediate danger, so the backup is switching into Mimikyu or Kingambit. Keep Kingambit available for Incineroar.",
+      "hidden_reasoning": "We need act. Rotom 14 hp, +2, Gholdengo 49. Hydro pump perhaps 2HKO? Rotom spa 155, likely damage 110 maybe at 49% with +2 and LO, likely ~? Gholdengo SpD around 130, water neutral, 110 BP, damage maybe 80% of 49? Rotom SpA 155, 2x boost, 110*155/130*1.3 ~170, >49%. OHKO likely, but accuracy. Discharge resisted steel and status. Could switch to mimikyu, but Gholdengo shadowball and Rotom can perhaps attack. Best hydropump immediate, despite 80%. If miss, Gholdengo may shadowball KO. Volt switch pivots to Mimikyu, but electric resisted and Gholdengo can kill? Volt switch damage minimal. Need likely hydro. Nasty plot makes no sense. Could switch Kingambit: Choice scarf, darkpulse super effective ghost, but Gholdengo has good as gold irrelevant; Rotom survives? We need preserve boosted Rotom and kill Gholdengo. Hydro. Notes <=60.",
+      "note": "",
+      "tokens": 2885,
+      "latency_ms": 3904,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is the best switch-in. Gholdengo’s Steel typing resists Mimikyu’s Shadow Claw and Play Rough, while Good as Gold blocks Swords Dance. Kingambit’s Sucker Punch should OHKO the weakened Gholdengo from 55% and can be selected after entering; preserve Kingambit’s Choice Scarf utility and watch for Incineroar.",
+      "hidden_reasoning": "We need choose switch. Need infer best. Gholdengo 55%, shadowball threatens Mimikyu somewhat, Kingambit. Mimikyu playrough resisted? Steel resists fairy, but physical 90 and Kingambit attack. Kingambit can ironhead, super effective steel, 185 attack, likely 2hit? Gholdengo at 55, ironhead 80 neutral, maybe damage 50-60%, two hit. Sucker dark neutral. Mimikyu playrough resisted, shadowclaw resisted. Both weak. Need deal before shadowball. Gholdengo speed 93-149, Mimikyu 160 faster, can swords dance perhaps but then Shadow Ball. Mimikyu play rough likely only ~35%. Kingambit ironhead maybe ~55%, dark pulse. Could switch Kingambit, Choice Scarf but not locked. It has better offense and bulk. Yet Incineroar remaining. Kingambit ideal versus Gholdengo, can perhaps Sucker Punch (priority) and KO? At 55%, likely Sucker Punch 70% super? Gholdengo Ghost neutral, King Atk 185, likely ~45% after Def. Two hit. Ironhead same. Shadow ball likely 50-ish. Mimikyu has disguise but once hit. Faster means can Play Rough and maybe Death? Not enough.\n\nCould Mimikyu swordsdance, but gholdengo attacks. Gholdengo 55, two ironheads safely perhaps. Switch Kingambit. Sucker Punch priority useful. But choice scarf means switching in locks into suckerpunch only? In modern games Choice item locks after selecting a move, and since locked cannot switch, yes choice lock; can use repeated sucker punch. That guarantees priority, though means no Iron Head later. It may KO in two, and outspeed? priority. If choose ironhead, locks and slower than gholdengo but 2HKO likely, risk. Choice Scarf Kingambit speed actual 110 base, scarf 198, above Gholdengo likely, but choice lock is only move. Sucker punch 70, perhaps KO from 55? Calculate King Atk 185, Ghold def around 130, BP70: damage ((42*70*185/130)/50)+2 =88% random 88-105, at 55 definitely OHKO! So Kingambit sucker punch OHKO. Great. Switch Kingambit, then priority Sucker Punch next turn. But Gholdengo can switch; still strong. Could use Dark Pulse immediate, 80 BP lower actual. Yet this turn must switch. Mimikyu faster can enter, perhaps Swords Dance threatens, but Gholdengo has good gold status immunity! Swords Dance fails due Good as Gold. Playrough resisted. So Kingambit clearly.",
+      "note": "",
+      "tokens": 3097,
+      "latency_ms": 7412,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo at 55% likely survives one hit, so Sucker Punch deals more damage than Dark Pulse and prevents it from using a status move. Kingambit should survive Shadow Ball. After this hit, plan to switch if necessary, avoiding Choice Scarf lock; Mimikyu remains available for later cleanup.",
+      "hidden_reasoning": "We need decide. Sucker punch likely OHKO? King Atk 185, choice scarf doesn't affect attack. 70% BP dark versus ghost steel 2x. Rough damage at 55%: 185*70/100*2*STAB1.5 / defense ~132 =29.4, only 55%, not OHKO! Existing notes claimed OHKO perhaps based actual spread. Need infer. Dark pulse similar but special 72 and defense irrelevant, 80 BP, likely maybe 39%. Sucker priority and choice lock. Could switch Mimikyu, but bad. Attack now. Sucker punch possibly Gholdengo uses shadow ball and could kill Kingambit? 175 HP, King high defense/spdef, survives. Sucker likely brings to 20ish, then next turn can KO but scarf locks, Gholdengo leftovers and can maybe recover only. Sucker first, then dark pulse impossible due scarf! Important Choice Scarf locks first move; must kill in one hit or switch. Dark pulse may do more. Calculate actual neutral defenses. Gholdengo HP 178, at 55 98. SpD perhaps 129. King SpA 72: damage 72*80*1.5*2/129 /50 +2 =26.8%, leaves 28%. Sucker: King 185*70*1.5*2/132/50+2 =31.5%, leaves 23.5%. Neither KO. Iron head 80 resisted: 185*80*1.5*.5/132/50+2=18.8. Thus no KO. Need switch to avoid choice lock? But switching to Mimikyu then maybe pain split damage equalizes, though Steel resists. Could switch Mimikyu, Gholdengo likely shadowball, then Mimikyu can swords dance next turn? But opponent can switch. Rotom dead. Mimikyu weak-ish. Maybe exploit Sucker Punch \"fails if target not attacking\", and Gholdengo might switch. Dark pulse better damage and no priority; Gholdengo speed maybe, but action simultaneous. Could Gholdengo Shadow Ball do ~? King SpD109, SpA maybe170: 170*80*1*0.75? ghost versus dark/steel neutral = 29%, okay. Dark pulse leaves 28, next turn Gholdengo can attack and King kills perhaps. Choice locked dark pulse then. Could use lowkick? Gholdengo weight unknown, likely 88kg, king? Low kick has no effect and locks. Iron head could flinch, perhaps better: 20% flinch, damage 19%, then next turn Sucker? locked. Not.\n\nSwitch Mimikyu is probably best because choice lock. But Mimikyu versus steel poor. Pain Split can halve 55 to 27.5, then Swords Dance/Play rough. Good as gold only status (Swords Dance) blocked, but pain split is not status and can work? Gholdengo can attack. Mimikyu has focus sash, survives maybe.\n\nCould Sucker punch expected actual damage with 185 Atk and likely Gholdengo defense 116: ~35%; not enough. Notes explicitly say should OHKO weakened Gholdengo from 55%; perhaps prior reasoning based assumed neutral and it may indeed with actual stat around 103 minimum. 31% no. If actual Def 103: 40%, leaves 15. Still not OHKO. Maybe Atk boosted? Defiant not yet. Darkpulse perhaps stronger. Sucker priority means Gholdengo doesn't get to move? Sucker Punch only priority, doesn't prevent. Gholdengo attacks.\n\nCould choose darkpulse for more damage; no priority means Gholdengo possibly speed 149 and attacks first, but survives. Dark pulse likely 26%, sucker 31. Sucker better. Choice lock then can switch later to Mimikyu, but Gholdengo left 20%. Mimikyu can maybe finish with shadowclaw after sash? resisted.\n\nPerhaps Iron Head can flinch 20 and is King only way to remain choice locked but Sucker. At 55%, after iron leaves 36; Gholdengo attacks. Worse.\n\nSwitch Mimikyu is rational to avoid locked ineffective move and preserve King for last Pokémon? We don't know opponent third. Mimikyu can switch later. Choice item lock only if stays. But King can switch later. Sucker is chip and then switch. Better than Mimikyu entering. So sucker, then assess. Use notes.",
+      "note": "",
+      "tokens": 3656,
+      "latency_ms": 11070,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "27% MOVE: shadowball, 22% SWITCH: dragapult, 17% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2280,
+      "latency_ms": 1243,
+      "cost_usd": 0.0001368,
+      "probabilities": {
+        "MOVE: shadowball": 0.27,
+        "MOVE: recover": 0.1075,
+        "MOVE: protect": 0.0765,
+        "MOVE: trick": 0.15,
+        "SWITCH: dragapult": 0.2215,
+        "SWITCH: incineroar": 0.1745
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% SWITCH: dragapult, 47% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2019,
+      "latency_ms": 1383,
+      "cost_usd": 0.00012114,
+      "probabilities": {
+        "SWITCH: dragapult": 0.5252,
+        "SWITCH: incineroar": 0.4748
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "24% MOVE: shadowball, 24% MOVE: protect, 22% MOVE: uturn",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2328,
+      "latency_ms": 925,
+      "cost_usd": 0.00013968,
+      "probabilities": {
+        "MOVE: shadowball": 0.2406,
+        "MOVE: uturn": 0.216,
+        "MOVE: protect": 0.2378,
+        "MOVE: dragonclaw": 0.1069,
+        "SWITCH: incineroar": 0.1988
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Use Sucker Punch immediately: Dragapult is faster and likely attacking, while the priority Dark move is super effective. Kingambit can withstand this attack and threatens Incineroar later. Keep Mimikyu as the fresh switch-in, but avoid exposing it to Dragapult without knowing its moves.",
+      "hidden_reasoning": "We need decide sucker punch likely Dragapult attacking, priority. Kingambit Choice Scarf locked but okay. Sucker super effective, though likely not OHKO, good. Could switch Mimikyu, but Dragapult fast and Mimikyu weak SpD. Sucker best. Note Incineroar remains.",
+      "note": "",
+      "tokens": 2799,
+      "latency_ms": 1891,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% SWITCH: incineroar, 35% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2214,
+      "latency_ms": 1067,
+      "cost_usd": 0.00013284,
+      "probabilities": {
+        "MOVE: shadowball": 0.3474,
+        "SWITCH: incineroar": 0.6526
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult is at 3%, so finish it now with priority Sucker Punch before it can attack. Choice Scarf will lock Kingambit into Sucker Punch afterward, so keep Mimikyu available as the switch-in for Incineroar or the remaining threats.",
+      "hidden_reasoning": "We need answer exact. Need choose suckerpunch, obvious. Notes &lt;=60. Mention scarf lock though after move locked. Dragapult 3%, priority. Mimikyu preserve.",
+      "note": "",
+      "tokens": 2824,
+      "latency_ms": 1656,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "32% MOVE: willowisp, 25% MOVE: protect, 19% MOVE: fakeout",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2443,
+      "latency_ms": 1120,
+      "cost_usd": 0.00014658,
+      "probabilities": {
+        "MOVE: fakeout": 0.1914,
+        "MOVE: protect": 0.2538,
+        "MOVE: crunch": 0.1737,
+        "MOVE: willowisp": 0.3249,
+        "SWITCH: dragapult": 0.0562
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit’s Choice Scarf locks Sucker Punch, but it is faster than Incineroar and gets priority, safely using Sucker Punch twice while at +1 Attack. Dragapult remains at 3% for a later priority finish; Mimikyu is the fresh switch-in if Kingambit is overwhelmed. Focus on eliminating Incineroar first.",
+      "hidden_reasoning": "We need choose. King at 81, attack +1 after defiant? Sequence intimidate -1 then defiant +2 = +1. Sucker priority and likely kills incin at 90, though not very effective, 70 BP with 185 attack +1, LO target. Calculate ~? 42 atk (185*1.5) 70 = 39? defense 110 gives 37, not very effective .5, LO => 24%; leaves. Better ironhead but locked? choice scarf only first move it executes? It already executed sucker punch, likely locked? Yet legal ironhead not offered, so lock. Switch Mimikyu likely bad versus incin but king can survive and kill perhaps sucker punch only. Could sucker punch KO? Initial Rotom fake out 30. King sucker on Dragapult. Incin at 90 after LO. King attack: 185 base, +1 = 277.5; dark 70 = 19,425; defense ~130, formula 42.5*19.4/130=6.35* STAB2=12.7*.5=6.35? Wait formula: ((42*19*70/130)+2)*1.5*.5 = ~48. not 24. At +1 only. So not kill. Could switch Mimikyu; but then lose King momentum and Incin attacks. King needs kill incin, but only suckerpunch and dark not effective, damage maybe 48. Two hits. Incin speed possibly up to 123 > king scarf 165, actually speed 110 base *1.5=165, so king faster except priority. Sucker guaranteed first and twice can kill. Stay and sucker. Dragapult 3 remains can return and need priority finish. Incin possibly Fake Out only on active, priority but King is slower by speed and fake out flinch, danger. King scarf 165 vs incin max123, so sucker first. Use.",
+      "note": "",
+      "tokens": 3264,
+      "latency_ms": 5694,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: protect, 37% MOVE: crunch, 9% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2425,
+      "latency_ms": 1193,
+      "cost_usd": 0.0001455,
+      "probabilities": {
+        "MOVE: protect": 0.4819,
+        "MOVE: crunch": 0.3699,
+        "MOVE: willowisp": 0.0593,
+        "SWITCH: dragapult": 0.0889
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Mimikyu",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Incineroar is bulky, resists Sucker Punch, and can burn or flinch Kingambit. Mimikyu is fresh with Focus Sash, offering a better position to handle Incineroar; afterward, prioritize finishing the 3% Dragapult. Keep Kingambit as the switch-in for faster threats.",
+      "hidden_reasoning": "We need choose. King at +1, sucker priority but not very effective. Mimikyu can switch, perhaps incineroar threatens king via fake out/WoW. Dragapult 3% later. Use sucker likely damage but Incin might attack and burn. Since priority, can KO? 70 BP resisted, +1, likely ~35-50% and Incin 90%, no. Mimikyu switch, but then incineroar can fake out mimikyu? Mimikyu ghost immune? Fake out normal hits. Need preserve king perhaps switch to mimikyu, then fake out, then mimic can attack. But king is status and +1. Incin could be removed via Mimikyu shadowclaw/playrough. Switch.",
+      "note": "",
+      "tokens": 3094,
+      "latency_ms": 2983,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: protect, 35% MOVE: crunch, 12% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2531,
+      "latency_ms": 1205,
+      "cost_usd": 0.00015186,
+      "probabilities": {
+        "MOVE: protect": 0.4269,
+        "MOVE: crunch": 0.3486,
+        "MOVE: willowisp": 0.1214,
+        "SWITCH: dragapult": 0.1032
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is faster and fully healthy. Incineroar at 90% can be hit hard by Play Rough, which is super effective and may lower its Attack. Avoid Pain Split and risky setup; focus on removing Incineroar before returning to Dragapult at 3%.",
+      "hidden_reasoning": "We need choose. Mimikyu play rough super effective? Fairy vs dark/fire yes. Need kill 90%. 90 BP likely. Attack unboosted. Could swords dance but risk. Play Rough now. Incin may fake out? Mimikyu speed, unless incin priority Fake Out only first turn switching, Protect last turn. Play rough.",
+      "note": "",
+      "tokens": 3114,
+      "latency_ms": 1958,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "42% MOVE: protect, 35% MOVE: crunch, 15% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2577,
+      "latency_ms": 1296,
+      "cost_usd": 0.00015462,
+      "probabilities": {
+        "MOVE: protect": 0.425,
+        "MOVE: crunch": 0.3529,
+        "MOVE: willowisp": 0.1488,
+        "SWITCH: dragapult": 0.0732
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is full HP and faster than Incineroar. Its Disguise and Focus Sash provide ample protection, so use the super-effective Play Rough to threaten Incineroar at 90% and potentially lower its Attack. After it is removed, switch to burned Kingambit to finish the 3% Dragapult.",
+      "hidden_reasoning": "We need play rough. Protect possibility but repeated protect, likely maybe. Mimikyu no boosted attack. Play rough best.",
+      "note": "",
+      "tokens": 3114,
+      "latency_ms": 1539,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu remains full HP, healthy, and faster than Incineroar. Continue super-effective Play Rough to pressure its remaining 54% HP; do not weaken into Shadow Claw or risk Pain Split. Once Incineroar falls, switch to burned Kingambit to finish the 3% Dragapult.",
+      "hidden_reasoning": "We need decide. Mimikyu play rough 54%, likely can 2HKO? HP range 170-202, at 54 =92-109. Mim attack stat with no boosts, play rough 90, 150 attack perhaps damage 70-90. Not KO likely, and Life Orb. But Incin at 54, Mim full. Continue play rough. Could switch Kingambit to finish dragapult, but Incin would possibly attack, Mimikyu safely. Need remove incin. Play rough repeated. Notes concise.",
+      "note": "",
+      "tokens": 3237,
+      "latency_ms": 2435,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: protect, 33% MOVE: crunch, 12% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2630,
+      "latency_ms": 919,
+      "cost_usd": 0.0001578,
+      "probabilities": {
+        "MOVE: protect": 0.4778,
+        "MOVE: crunch": 0.3317,
+        "MOVE: willowisp": 0.1177,
+        "SWITCH: dragapult": 0.0728
+      }
+    },
+    {
+      "turn": 13,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: protect, 33% MOVE: crunch, 15% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2665,
+      "latency_ms": 1241,
+      "cost_usd": 0.0001599,
+      "probabilities": {
+        "MOVE: protect": 0.4474,
+        "MOVE: crunch": 0.3267,
+        "MOVE: willowisp": 0.1462,
+        "SWITCH: dragapult": 0.0798
+      }
+    },
+    {
+      "turn": 13,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is full HP and faster than Incineroar. Incineroar remains at 54% and has repeatedly used Protect, but Play Rough is super effective and can pressure out any failed protection. Keep attacking with Play Rough; after Incineroar falls, switch to burned Kingambit to finish the 3% Dragapult.",
+      "hidden_reasoning": "We need act. Incin protect spam perhaps consecutive. Mimikyu playrough. Need eventually Kamb. At 54%, playrough super effective likely ~? 135 attack after disguise? Current attack 140, 90 BP 126, neutral defense 127, damage ~60%; remaining 54, yes. But perhaps protect. Still best. If protect, switch Kamb? Burning Kamb vs incin. Yet Drag 3. Could switch and risk incin killing. Mimikyu is good. Swords dance while protect could be bait. Continue.",
+      "note": "",
+      "tokens": 3280,
+      "latency_ms": 4451,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 14,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "46% MOVE: protect, 32% MOVE: crunch, 13% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2716,
+      "latency_ms": 687,
+      "cost_usd": 0.00016296,
+      "probabilities": {
+        "MOVE: protect": 0.455,
+        "MOVE: crunch": 0.3223,
+        "MOVE: willowisp": 0.1323,
+        "SWITCH: dragapult": 0.0904
+      }
+    },
+    {
+      "turn": 14,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is full HP and faster, with Focus Sash and Disguise intact. Incineroar is at 19%; Play Rough is super effective and should KO it. After that, switch to burned Kingambit to finish the 3% Dragapult.",
+      "hidden_reasoning": "We need choose. Incin 19%, play rough likely OHKO? Mimikyu atk 140, 90 BP fairy vs fire dark super effective 2x, 252 nominal, 19% ~34 HP, yes. But Mimikyu disguise? attacking. Use playrough. Need notes <=60.",
+      "note": "",
+      "tokens": 3273,
+      "latency_ms": 1782,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 15,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "protect",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: protect, 33% MOVE: crunch, 15% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2751,
+      "latency_ms": 1533,
+      "cost_usd": 0.00016506,
+      "probabilities": {
+        "MOVE: protect": 0.4407,
+        "MOVE: crunch": 0.3304,
+        "MOVE: willowisp": 0.1454,
+        "SWITCH: dragapult": 0.0835
+      }
+    },
+    {
+      "turn": 15,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "playrough",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is full HP and faster than Incineroar, with Disguise and Focus Sash intact. Incineroar is at 19%; continue super-effective Play Rough to KO it, then switch to burned Kingambit to finish the 3% Dragapult.",
+      "hidden_reasoning": "We need choose playrough likely. But Incin at 19, play rough super effective definitely. Mimikyu perhaps disguised, focus sash. Continue. Need exactly format.",
+      "note": "",
+      "tokens": 3263,
+      "latency_ms": 2582,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 15,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 16,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "77% MOVE: shadowball, 12% MOVE: protect, 6% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2866,
+      "latency_ms": 1483,
+      "cost_usd": 0.00017196,
+      "probabilities": {
+        "MOVE: shadowball": 0.7657,
+        "MOVE: uturn": 0.0476,
+        "MOVE: protect": 0.1244,
+        "MOVE: dragonclaw": 0.0623
+      }
+    },
+    {
+      "turn": 16,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Mimikyu is full HP with Disguise and Focus Sash intact. Dragapult is at 3%, and Shadow Cloak is super effective; attack now to secure the knockout before it can use Shadow Ball. Keep Kingambit as the follow-up sweeper if another opponent appears.",
+      "hidden_reasoning": "We need kill 3%. Shadow claw from full 140 atk likely huge, but Mimikyu disguised. Could switch Kingambit sucker punch priority, guaranteed kill even if speed. Switch then next turn, but risk? Current Dragapult could attack Mimikyu and break disguise, but full HP sash. Better switch kingambit, then sucker punch kill. However burned and choice scarf. Action switch. But could shadowclaw immediately kill likely. Dragapult 3%, even neutral? Ghost resisted by Dragon, super effective due Ghost. Mimikyu attack lowered by intimidate -1? Current effects only disguise listed, perhaps Mimikyu came in after Intimidate active, and no stat drop logged for Mimikyu! weird perhaps no intimidate trigger on switch? It should. Yet shadow claw ~140 neutral? Against Dragon, 2x, guaranteed. Use shadowclaw, no need risk burn. Need infer if exact damage: Attack Mimikyu 140, Dragapult defense maybe ~100, level 50, 70 BP STAB 2x. Against 3%, definitely KO. So attack now.",
+      "note": "",
+      "tokens": 3532,
+      "latency_ms": 4286,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}
