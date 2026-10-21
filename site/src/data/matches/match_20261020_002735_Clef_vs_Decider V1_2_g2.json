@@ -1,0 +1,783 @@
+{
+  "id": "match_20261020_002735_Clef_vs_Decider V1_2_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261020",
+  "players": [
+    {
+      "config_id": "clef",
+      "display_name": "Clef",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "cloudflare/clef",
+      "quantization": null,
+      "username": "Clef",
+      "role": "p1",
+      "team": "Clef's team",
+      "model_key": "cloudflare/clef",
+      "autopilot_rate": 0.0,
+      "replay_name": "Clef"
+    },
+    {
+      "config_id": "pplx_decider_v1_2",
+      "display_name": "Perplexity Decider V1.2",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.2",
+      "quantization": null,
+      "username": "Decider V1.2",
+      "role": "p2",
+      "team": "Perplexity Decider V1.2's team",
+      "model_key": "perplexity/pplx-decider-v1.2",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.2"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 10,
+  "duration_seconds": 9.61,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Clef||",
+    "|player|p2|Perplexity Decider V1.2||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Scizor, L50, M|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Garchomp, L50, M|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p2|Tyranitar, L50, F|",
+    "|poke|p2|Metagross, L50|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Weavile, L50, F|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|switch|p2a: Tyranitar|Tyranitar, L50, F|100/100",
+    "|-weather|Sandstorm|[from] ability: Sand Stream|[of] p2a: Tyranitar",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Tyranitar",
+    "|-supereffective|p2a: Tyranitar|1",
+    "|-damage|p2a: Tyranitar|65/100",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|202/202|[from] U-turn",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Tyranitar|atk|1",
+    "|move|p2a: Tyranitar|Stealth Rock|p1a: Incineroar",
+    "|-sidestart|p1: Clef|move: Stealth Rock",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p1a: Incineroar|190/202|[from] Sandstorm",
+    "|-heal|p2a: Tyranitar|71/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Incineroar",
+    "|-supereffective|p1a: Incineroar|1",
+    "|-damage|p1a: Incineroar|114/202",
+    "|move|p1a: Incineroar|Taunt|p2a: Tyranitar",
+    "|-start|p2a: Tyranitar|move: Taunt",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p1a: Incineroar|102/202|[from] Sandstorm",
+    "|-heal|p2a: Tyranitar|77/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|-damage|p1a: Dragapult|143/163|[from] Stealth Rock",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|79/163",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p1a: Dragapult|69/163|[from] Sandstorm",
+    "|-heal|p2a: Tyranitar|82/100|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Toxapex|Toxapex, L50, F|157/157",
+    "|-damage|p1a: Toxapex|138/157|[from] Stealth Rock",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Toxapex",
+    "|-supereffective|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|86/157",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p1a: Toxapex|77/157|[from] Sandstorm",
+    "|-heal|p2a: Tyranitar|88/100|[from] item: Leftovers",
+    "|-heal|p1a: Toxapex|86/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Toxapex",
+    "|-supereffective|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|36/157",
+    "|move|p1a: Toxapex|Toxic|p2a: Tyranitar",
+    "|-status|p2a: Tyranitar|tox",
+    "|",
+    "|-weather|none",
+    "|-heal|p2a: Tyranitar|94/100 tox|[from] item: Leftovers",
+    "|-heal|p1a: Toxapex|45/157|[from] item: Leftovers",
+    "|-damage|p2a: Tyranitar|88/100 tox|[from] psn",
+    "|-end|p2a: Tyranitar|move: Taunt",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Toxapex",
+    "|-supereffective|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|0 fnt",
+    "|faint|p1a: Toxapex",
+    "|",
+    "|-heal|p2a: Tyranitar|94/100 tox|[from] item: Leftovers",
+    "|-damage|p2a: Tyranitar|82/100 tox|[from] psn",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|102/202",
+    "|-damage|p1a: Incineroar|52/202|[from] Stealth Rock",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Tyranitar|atk|1",
+    "|turn|7",
+    "|",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Incineroar",
+    "|-supereffective|p1a: Incineroar|1",
+    "|-damage|p1a: Incineroar|0 fnt",
+    "|faint|p1a: Incineroar",
+    "|",
+    "|-heal|p2a: Tyranitar|88/100 tox|[from] item: Leftovers",
+    "|-damage|p2a: Tyranitar|71/100 tox|[from] psn",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|69/163",
+    "|-damage|p1a: Dragapult|49/163|[from] Stealth Rock",
+    "|turn|8",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Tyranitar",
+    "|-supereffective|p2a: Tyranitar|1",
+    "|-damage|p2a: Tyranitar|37/100 tox",
+    "|move|p2a: Tyranitar|Earthquake|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|7/163",
+    "|",
+    "|-heal|p2a: Tyranitar|42/100 tox|[from] item: Leftovers",
+    "|-damage|p2a: Tyranitar|20/100r tox|[from] psn",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|switch|p2a: Metagross|Metagross, L50|100/100",
+    "|move|p1a: Dragapult|U-turn|p2a: Metagross",
+    "|-damage|p2a: Metagross|82/100",
+    "|",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Metagross",
+    "|-damage|p2a: Metagross|65/100",
+    "|move|p2a: Metagross|Ice Punch|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|-damage|p2a: Metagross|55/100|[from] item: Life Orb",
+    "|",
+    "|win|Perplexity Decider V1.2"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "tyranitar,metagross,dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 31% BRING: tyranitar, 22% BRING: rotomwash, 16% BRING: weavile\nPick 2: 26% BRING: metagross, 26% BRING: dragonite, 21% BRING: rotomwash\nPick 3: 35% BRING: dragonite, 25% BRING: rotomwash, 25% BRING: weavile",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5635,
+      "latency_ms": 1751,
+      "cost_usd": 0.0001127,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,toxapex,incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 24% BRING: dragapult, 23% BRING: toxapex, 22% BRING: incineroar\nPick 2: 35% BRING: toxapex, 24% BRING: incineroar, 24% BRING: garchomp\nPick 3: 53% BRING: incineroar, 26% BRING: garchomp, 15% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5820,
+      "latency_ms": 2040,
+      "cost_usd": 0.000624204,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "59% MOVE: uturn, 18% SWITCH: incineroar, 10% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2047,
+      "latency_ms": 593,
+      "cost_usd": 8.5974e-05,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0289,
+        "MOVE: shadowball": 0.0271,
+        "MOVE: dracometeor": 0.0809,
+        "MOVE: uturn": 0.5865,
+        "SWITCH: toxapex": 0.0976,
+        "SWITCH: incineroar": 0.1789
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "stealthrock",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: stealthrock, 21% MOVE: stoneedge, 20% MOVE: knockoff",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1944,
+      "latency_ms": 685,
+      "cost_usd": 3.888e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.14938499164857674,
+        "MOVE: stealthrock": 0.34153272607068874,
+        "MOVE: knockoff": 0.19739798448785306,
+        "MOVE: stoneedge": 0.21034740386511516,
+        "SWITCH: metagross": 0.04555350520691385,
+        "SWITCH: dragonite": 0.05578338872085253
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% SWITCH: incineroar, 37% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1754,
+      "latency_ms": 493,
+      "cost_usd": 7.3668e-05,
+      "probabilities": {
+        "SWITCH: toxapex": 0.3666,
+        "SWITCH: incineroar": 0.6334
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "50% MOVE: earthquake, 15% MOVE: stoneedge, 14% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2183,
+      "latency_ms": 519,
+      "cost_usd": 4.366e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.5028919367662864,
+        "MOVE: stealthrock": 0.05097893297907867,
+        "MOVE: knockoff": 0.03767224681785931,
+        "MOVE: stoneedge": 0.15275328462288754,
+        "SWITCH: metagross": 0.1391477938153294,
+        "SWITCH: dragonite": 0.11655580499855873
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "taunt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "28% MOVE: taunt, 21% MOVE: partingshot, 21% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2153,
+      "latency_ms": 535,
+      "cost_usd": 9.0426e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.213,
+        "MOVE: willowisp": 0.0888,
+        "MOVE: taunt": 0.2811,
+        "MOVE: roar": 0.0874,
+        "SWITCH: toxapex": 0.1167,
+        "SWITCH: dragapult": 0.213
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: earthquake, 14% MOVE: stoneedge, 9% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2247,
+      "latency_ms": 499,
+      "cost_usd": 4.494e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.673746031373121,
+        "MOVE: knockoff": 0.025562175746036152,
+        "MOVE: stoneedge": 0.14028908243067445,
+        "SWITCH: metagross": 0.08842573424735323,
+        "SWITCH: dragonite": 0.07197697620281511
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% SWITCH: dragapult, 21% MOVE: partingshot, 20% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2274,
+      "latency_ms": 597,
+      "cost_usd": 9.5508e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.2125,
+        "MOVE: willowisp": 0.0865,
+        "MOVE: taunt": 0.0202,
+        "MOVE: roar": 0.0729,
+        "SWITCH: toxapex": 0.1981,
+        "SWITCH: dragapult": 0.4097
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: earthquake, 32% MOVE: knockoff, 15% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2367,
+      "latency_ms": 528,
+      "cost_usd": 4.734e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.33148226368585504,
+        "MOVE: knockoff": 0.323413701836216,
+        "MOVE: stoneedge": 0.15337154247935428,
+        "SWITCH: metagross": 0.09669590876274743,
+        "SWITCH: dragonite": 0.0950365832358272
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% SWITCH: toxapex, 34% MOVE: uturn, 7% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2441,
+      "latency_ms": 582,
+      "cost_usd": 0.000102522,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0153,
+        "MOVE: shadowball": 0.0202,
+        "MOVE: dracometeor": 0.0633,
+        "MOVE: uturn": 0.3424,
+        "SWITCH: toxapex": 0.4886,
+        "SWITCH: incineroar": 0.0701
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "66% MOVE: earthquake, 16% MOVE: knockoff, 7% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2602,
+      "latency_ms": 547,
+      "cost_usd": 5.204e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.662801430740497,
+        "MOVE: knockoff": 0.16055956642906952,
+        "MOVE: stoneedge": 0.07012705989973264,
+        "SWITCH: metagross": 0.06048983841063528,
+        "SWITCH: dragonite": 0.04602210452006537
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: toxic, 23% MOVE: recover, 19% MOVE: toxicspikes",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2530,
+      "latency_ms": 678,
+      "cost_usd": 0.00010626,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.1871,
+        "MOVE: toxic": 0.4023,
+        "MOVE: recover": 0.2319,
+        "MOVE: sludgebomb": 0.0614,
+        "SWITCH: dragapult": 0.0307,
+        "SWITCH: incineroar": 0.0867
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "73% MOVE: earthquake, 12% MOVE: knockoff, 6% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2807,
+      "latency_ms": 531,
+      "cost_usd": 5.614e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.7251629834081922,
+        "MOVE: stealthrock": 0.016662729597193903,
+        "MOVE: knockoff": 0.11934846467814679,
+        "MOVE: stoneedge": 0.0408272540248141,
+        "SWITCH: metagross": 0.0551533380674925,
+        "SWITCH: dragonite": 0.042845230224160424
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "recover",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: recover, 16% SWITCH: incineroar, 13% MOVE: toxicspikes",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2674,
+      "latency_ms": 614,
+      "cost_usd": 0.000112308,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.1284,
+        "MOVE: toxic": 0.0221,
+        "MOVE: recover": 0.5362,
+        "MOVE: sludgebomb": 0.0698,
+        "SWITCH: dragapult": 0.0862,
+        "SWITCH: incineroar": 0.1573
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% SWITCH: incineroar, 17% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2385,
+      "latency_ms": 575,
+      "cost_usd": 0.00010017,
+      "probabilities": {
+        "SWITCH: dragapult": 0.1694,
+        "SWITCH: incineroar": 0.8306
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "72% MOVE: earthquake, 8% MOVE: stoneedge, 8% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2907,
+      "latency_ms": 554,
+      "cost_usd": 5.814e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.7200753561496125,
+        "MOVE: stealthrock": 0.03989335743844511,
+        "MOVE: knockoff": 0.0156865022892396,
+        "MOVE: stoneedge": 0.08248487750218486,
+        "SWITCH: metagross": 0.07651920318418813,
+        "SWITCH: dragonite": 0.06534070343632989
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: partingshot, 18% SWITCH: dragapult, 14% MOVE: roar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2739,
+      "latency_ms": 624,
+      "cost_usd": 0.000115038,
+      "probabilities": {
+        "MOVE: partingshot": 0.4294,
+        "MOVE: willowisp": 0.112,
+        "MOVE: taunt": 0.1351,
+        "MOVE: roar": 0.1416,
+        "SWITCH: dragapult": 0.1818
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "24% MOVE: earthquake, 21% MOVE: knockoff, 19% SWITCH: dragonite",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 3039,
+      "latency_ms": 542,
+      "cost_usd": 6.078e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.24097098578900505,
+        "MOVE: stealthrock": 0.06847663410900123,
+        "MOVE: knockoff": 0.21255943272607297,
+        "MOVE: stoneedge": 0.1252290649149833,
+        "SWITCH: metagross": 0.16196281230454299,
+        "SWITCH: dragonite": 0.19080107015639447
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "69% MOVE: uturn, 21% MOVE: dracometeor, 5% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2858,
+      "latency_ms": 761,
+      "cost_usd": 0.000120036,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0458,
+        "MOVE: shadowball": 0.0495,
+        "MOVE: dracometeor": 0.2108,
+        "MOVE: uturn": 0.6939
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "30% SWITCH: metagross, 20% SWITCH: dragonite, 20% MOVE: knockoff",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 3145,
+      "latency_ms": 544,
+      "cost_usd": 6.29e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.1844600581064024,
+        "MOVE: stealthrock": 0.056527517243027035,
+        "MOVE: knockoff": 0.19544481599953062,
+        "MOVE: stoneedge": 0.0633018393686224,
+        "SWITCH: metagross": 0.2972938961863701,
+        "SWITCH: dragonite": 0.20297187309604736
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "79% MOVE: uturn, 14% MOVE: dracometeor, 4% MOVE: phantomforce",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2964,
+      "latency_ms": 648,
+      "cost_usd": 0.000124488,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0366,
+        "MOVE: shadowball": 0.0354,
+        "MOVE: dracometeor": 0.1402,
+        "MOVE: uturn": 0.7878
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% MOVE: icepunch, 21% MOVE: bulletpunch, 11% SWITCH: dragonite",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 3217,
+      "latency_ms": 593,
+      "cost_usd": 6.434e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.1038395515306417,
+        "MOVE: bulletpunch": 0.20897327041995922,
+        "MOVE: icepunch": 0.5637002266094504,
+        "MOVE: thunderpunch": 0.008859043448112253,
+        "SWITCH: tyranitar": 0.005358492454574069,
+        "SWITCH: dragonite": 0.10926941553726237
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% MOVE: uturn, 9% MOVE: phantomforce, 7% MOVE: shadowball",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 3067,
+      "latency_ms": 721,
+      "cost_usd": 0.000128814,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0874,
+        "MOVE: shadowball": 0.0713,
+        "MOVE: dracometeor": 0.0342,
+        "MOVE: uturn": 0.807
+      }
+    }
+  ]
+}

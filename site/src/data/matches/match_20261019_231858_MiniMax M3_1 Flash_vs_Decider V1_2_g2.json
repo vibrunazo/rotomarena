@@ -1,0 +1,555 @@
+{
+  "id": "match_20261019_231858_MiniMax M3_1 Flash_vs_Decider V1_2_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261019",
+  "players": [
+    {
+      "config_id": "minimax_m3_1_flash",
+      "display_name": "MiniMax M3.1 Flash",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "quantization": null,
+      "username": "MiniMax M3.1 Flash",
+      "role": "p1",
+      "team": "MiniMax M3.1 Flash's team",
+      "model_key": "minimax/minimax-m3.1-flash",
+      "autopilot_rate": 0.0,
+      "replay_name": "MiniMax M3.1 Flash"
+    },
+    {
+      "config_id": "pplx_decider_v1_2",
+      "display_name": "Perplexity Decider V1.2",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.2",
+      "quantization": null,
+      "username": "Decider V1.2",
+      "role": "p2",
+      "team": "Perplexity Decider V1.2's team",
+      "model_key": "perplexity/pplx-decider-v1.2",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.2"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 8,
+  "duration_seconds": 35.03,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|MiniMax M3.1 Flash||",
+    "|player|p2|Perplexity Decider V1.2||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Gholdengo, L50|",
+    "|poke|p1|Kingambit, L50, F|",
+    "|poke|p1|Arcanine-Hisui, L50, F|",
+    "|poke|p1|Annihilape, L50, M|",
+    "|poke|p1|Hatterene, L50, F|",
+    "|poke|p2|Tyranitar, L50, F|",
+    "|poke|p2|Metagross, L50|",
+    "|poke|p2|Dragonite, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Weavile, L50, F|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Gholdengo|Gholdengo, L50|162/162",
+    "|switch|p2a: Tyranitar|Tyranitar, L50, F|100/100",
+    "|-weather|Sandstorm|[from] ability: Sand Stream|[of] p2a: Tyranitar",
+    "|turn|1",
+    "|",
+    "|move|p1a: Gholdengo|Focus Blast|p2a: Tyranitar",
+    "|-supereffective|p2a: Tyranitar|2",
+    "|-damage|p2a: Tyranitar|0 fnt",
+    "|faint|p2a: Tyranitar",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Metagross|Metagross, L50|100/100",
+    "|turn|2",
+    "|",
+    "|switch|p2a: Dragonite|Dragonite, L50, M|100/100",
+    "|move|p1a: Gholdengo|Focus Blast|p2a: Dragonite",
+    "|-resisted|p2a: Dragonite|1",
+    "|-damage|p2a: Dragonite|89/100",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p2a: Dragonite|83/100|[from] Sandstorm",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Gholdengo|Focus Blast|p2a: Dragonite|[miss]",
+    "|-miss|p1a: Gholdengo|p2a: Dragonite",
+    "|move|p2a: Dragonite|Earthquake|p1a: Gholdengo",
+    "|-supereffective|p1a: Gholdengo|1",
+    "|-damage|p1a: Gholdengo|14/162",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p2a: Dragonite|77/100|[from] Sandstorm",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p1a: Rotom|Rotom-Wash, L50|125/125",
+    "|move|p2a: Dragonite|Earthquake|p1a: Rotom",
+    "|-immune|p1a: Rotom|[from] ability: Levitate",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p2a: Dragonite|71/100|[from] Sandstorm",
+    "|-damage|p1a: Rotom|118/125|[from] Sandstorm",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|switch|p2a: Metagross|Metagross, L50|100/100",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Metagross",
+    "|-damage|p2a: Metagross|37/100",
+    "|",
+    "|-weather|none",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|switch|p2a: Dragonite|Dragonite, L50, M|71/100",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|22/100",
+    "|-status|p2a: Dragonite|par",
+    "|",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Dragonite|Extreme Speed|p1a: Rotom",
+    "|-damage|p1a: Rotom|68/125",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Dragonite",
+    "|-damage|p2a: Dragonite|0 fnt",
+    "|faint|p2a: Dragonite",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Metagross|Metagross, L50|37/100",
+    "|turn|8",
+    "|",
+    "|move|p1a: Rotom|Thunderbolt|p2a: Metagross",
+    "|-damage|p2a: Metagross|0 fnt",
+    "|faint|p2a: Metagross",
+    "|",
+    "|win|MiniMax M3.1 Flash"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "tyranitar,metagross,dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 31% BRING: tyranitar, 23% BRING: rotomwash, 13% BRING: weavile\nPick 2: 28% BRING: metagross, 24% BRING: dragonite, 23% BRING: rotomwash\nPick 3: 30% BRING: dragonite, 28% BRING: rotomwash, 23% BRING: weavile",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5647,
+      "latency_ms": 3448,
+      "cost_usd": 0.00011294,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "gholdengo,kingambit,rotomwash",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead with Gholdengo: it resists Dragon and Dark, handles Rotom well, and Choice Scarf enables pressure. Keep Kingambit for Weavile and other physical threats, with Rotom-Wash as special attacker/status support. Watch for Trick removing Scarf or Sand Stream.",
+      "hidden_reasoning": "We need choose team. Opponent has 6 but bring 3 likely unknown. Need lead robust. Rotom mirror speed tie, levitate, magnet. Gholdengo scarf special but likely tera? Champions maybe tera absent? Mega. Kingambit physical. Best Gholdengo lead? Opponent dragonite/tyranitar threaten, weavile. Gholdengo resists dragon dark, good. Bring rotom, gholdengo, kingambit. Lead Gholdengo. Need exact format.",
+      "note": "",
+      "tokens": 2177,
+      "latency_ms": 4300,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: earthquake, 22% MOVE: stealthrock, 15% MOVE: knockoff",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1918,
+      "latency_ms": 700,
+      "cost_usd": 3.836e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.5728207580948249,
+        "MOVE: stealthrock": 0.22339181159999483,
+        "MOVE: knockoff": 0.15286404225664307,
+        "MOVE: stoneedge": 0.008475479748270716,
+        "SWITCH: metagross": 0.02366921603096836,
+        "SWITCH: dragonite": 0.018778692269298274
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead Gholdengo against Tyranitar. Focus Blast has fourfold effectiveness and can heavily damage it; it also lets Gholdengo trap the now-choicelocked foe. If accuracy fails, preserve Gholdengo’s Choice Scarf for later pressure. Watch for Sand Stream, Dark/Dark STAB, and possible Trick.",
+      "hidden_reasoning": "We need choose. Focus blast 4x but 70; make rain steel and sand ends, 2x? Steel vs rock/steel half? Rock neutral steel resisted, so not super effective. Focus best likely. Choice lock then need pivot, but can switch after. Trick scarf risk unknown but good. Focus 70% to remove. Could make rain safely and preserve scarf for pressure later. Tyranitar sand stream; make rain removes weather and hits 1x? Steel against Rock neutral, Dark neutral = 1x, 120. Focus can 4x. Attack.",
+      "note": "",
+      "tokens": 2300,
+      "latency_ms": 4597,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% SWITCH: metagross, 46% SWITCH: dragonite",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1628,
+      "latency_ms": 522,
+      "cost_usd": 3.256e-05,
+      "probabilities": {
+        "SWITCH: metagross": 0.5416823157343043,
+        "SWITCH: dragonite": 0.4583176842656957
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% SWITCH: dragonite, 39% MOVE: thunderpunch, 8% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1972,
+      "latency_ms": 498,
+      "cost_usd": 3.944e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.06780938575551622,
+        "MOVE: bulletpunch": 0.07267527786924825,
+        "MOVE: icepunch": 0.07933975340460907,
+        "MOVE: thunderpunch": 0.3885422561595519,
+        "SWITCH: dragonite": 0.39163332681107454
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Continue Gholdengo’s Choice-locked Focus Blast: it is super effective against Metagross’s Steel typing and preserves momentum. If it misses, later consider switching to Rotom-Wash; keep Kingambit for Weavile or other physical threats. Watch for Trick removing the Scarf and possible Sand Stream on the final opponent.",
+      "hidden_reasoning": "We need decide. Gholdengo scarfed first move locked Focus Blast. Metagross likely threatens. Focus blast 4x? Fighting vs steel psychic neutral, super effective steel, 2x. Good. But choice lock risky. We can attack. Metagross possibly clairvoyance not in given abilities. Focus blast likely 70 accuracy. Shadowball not legal due choice lock? Legal only focus. Switch and trap perhaps still choice locked. Focus Blast is best. Notes under 60 words.",
+      "note": "",
+      "tokens": 2350,
+      "latency_ms": 5531,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "90% MOVE: earthquake, 8% SWITCH: metagross, 1% MOVE: extremespeed",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2035,
+      "latency_ms": 523,
+      "cost_usd": 4.07e-05,
+      "probabilities": {
+        "MOVE: outrage": 0.006476495474229762,
+        "MOVE: extremespeed": 0.008807214240719072,
+        "MOVE: earthquake": 0.8986361893340541,
+        "MOVE: airslash": 0.0046942743725056045,
+        "SWITCH: metagross": 0.08138582657849142
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "focusblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is locked into Focus Blast and can likely knock out Dragonite despite resistance, especially with Choice Scarf and superior Speed. Continue attacking rather than switching; preserve Kingambit for Weavile and Rotom-Wash for Ground immunity, status, and Rotom matchup. Watch for Trick removing Scarf and Multiscale halving the first hit.",
+      "hidden_reasoning": "We need decide. Gholdengo choice locked, focus blast only move. Dragonite at 83, not very effective but likely kill? Gholdengo SpA185, dragonite SpD around 108-167; 120 resisted? Fighting vs dragon/flying: resisted, not very effective. Damage maybe 40-60%, could kill. Better focusblast to secure. Need perhaps note.",
+      "note": "",
+      "tokens": 2545,
+      "latency_ms": 3368,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% MOVE: earthquake, 7% SWITCH: metagross",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1902,
+      "latency_ms": 1638,
+      "cost_usd": 3.804e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.9343152010285752,
+        "SWITCH: metagross": 0.06568479897142468
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is critically low and Choice-locked into an inaccurate, resisted attack. Bring in Rotom-Wash, which is immune to Earthquake and can threaten Dragonite with Will-O-Wisp or strong special moves. Keep Gholdengo for later cleanup and Kingambit for physical threats; watch for Dragonite switching and Metagross entering.",
+      "hidden_reasoning": "We need decide. Gholdengo 14 hp, locked focusblast, dragonite likely attack lethal? Rotom in is ground immune, good. Switch rotom, preserve Gholdengo perhaps focusblast kill later but choice lock. Rotom can willowisp dragonite, hydro. Also opponent likely switch metagross. Need notes <=60. Action switch rotomwash.",
+      "note": "",
+      "tokens": 2630,
+      "latency_ms": 2579,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "89% SWITCH: metagross, 11% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2098,
+      "latency_ms": 532,
+      "cost_usd": 4.196e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.10652904940994708,
+        "SWITCH: metagross": 0.8934709505900529
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Rotom-Wash is healthy, Ground-immune, and faster than Dragonite, so continue attacking. Thunderbolt has a useful 10% paralysis chance and Magnet boosts it; avoid Water’s resistance and unnecessary switching. Watch for Dragonite’s Multiscale, which may indicate an ability change.",
+      "hidden_reasoning": "We need choose. Rotom vs Dragonite. Thunderbolt 90, magnet 1.2, likely 108 neutral? Dragonite not resist. 71% HP, Rotom needs perhaps 2 hits? Rotom SpA 157, defense 130, Tbolt ~ perhaps 45%. Could willowisp then attack, but burn. Need speed tie maybe Rotom faster. Thunderbolt best, preserve others. If kill great. Dragonite EQ useless. Thunderbolt. Notes under 60.",
+      "note": "",
+      "tokens": 2781,
+      "latency_ms": 4758,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% SWITCH: dragonite, 27% MOVE: thunderpunch, 5% MOVE: icepunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2365,
+      "latency_ms": 556,
+      "cost_usd": 4.73e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.019498237513579493,
+        "MOVE: bulletpunch": 0.027536573855909345,
+        "MOVE: icepunch": 0.04866024931960523,
+        "MOVE: thunderpunch": 0.2738725440086802,
+        "SWITCH: dragonite": 0.6304323953022257
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Metagross is at 37% and vulnerable enough for boosted Thunderbolt; Rotom moves first and can likely knock it out. If it survives, consider Will-O-Wisp. Keep Gholdengo benched at 14% unless needed urgently, and preserve Kingambit for Weavile or other physical threats.",
+      "hidden_reasoning": "We need choose Thunderbolt likely KO? Metagross 37% HP, Rotom SpA 157, magnet 1.2, TB 90, Steel resist .5. Damage estimate 157*.? 90*1.2*.5* STAB 1.5? Electric vs steel 0.5, magnet 1.2, STAB 1.5 = 121? 157*90*.5*1.5*1.2/50 ~101, enough. KO. Thunderbolt. Notes &lt;=60 words.",
+      "note": "",
+      "tokens": 2809,
+      "latency_ms": 3533,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "extremespeed",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: extremespeed, 36% SWITCH: metagross, 7% MOVE: outrage",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2377,
+      "latency_ms": 1629,
+      "cost_usd": 4.754e-05,
+      "probabilities": {
+        "MOVE: outrage": 0.07311490516621096,
+        "MOVE: extremespeed": 0.5144148681892335,
+        "MOVE: earthquake": 0.019157109830410857,
+        "MOVE: airslash": 0.033882209940828634,
+        "SWITCH: metagross": 0.35943090687331597
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragonite is at 22% and paralyzed while Rotom-Wash is nearly full HP and faster. Thunderbolt should secure the knockout, preserving Gholdengo’s 14% HP and Kingambit for Metagross or Weavile. Avoid risking an inaccurate Hydro Pump or switching into unnecessary paralysis.",
+      "hidden_reasoning": "We need decide. Dragonite 22 paralyzed, Rotom 94. Thunderbolt likely kill. Choose thunderbolt. Notes under 60 words.",
+      "note": "",
+      "tokens": 2769,
+      "latency_ms": 2160,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% MOVE: thunderpunch, 17% MOVE: icepunch, 11% MOVE: bulletpunch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2425,
+      "latency_ms": 2358,
+      "cost_usd": 4.85e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.07482897331514589,
+        "MOVE: bulletpunch": 0.1056011705358538,
+        "MOVE: icepunch": 0.17222017178912133,
+        "MOVE: thunderpunch": 0.6473496843598789
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Metagross is at 37% and Rotom-Wash has Magnet-boosted Thunderbolt, with a 10% paralysis chance. Rotom moves first, so attack rather than risk a switch; preserve Gholdengo at 14% and Kingambit for Weavile or Incineroar. If Thunderbolt does not finish Metagross, use Will-O-Wisp to secure the weakened target.",
+      "hidden_reasoning": "We need decide. Rotom 68, Metagross 37. Thunderbolt likely OHKO? Rotom SpA 157, tbolt 90 magnet 1.2, steel resist .5. Damage ~? 157*90/150*1.2*.5=56% max, min ~? 37% likely maybe 42% after stat; likely 2HKO. Hydro pump steel resist too and inaccurate. Will-o-wisp risky burn could secure, but Metagross speed up to134, can hit Rotom maybe 68. Thunderbolt paralysis 10, likely. Need perhaps Volt Switch? We want kill. Thunderbolt. Notes plan.",
+      "note": "",
+      "tokens": 2932,
+      "latency_ms": 3639,
+      "cost_usd": 0.0,
+      "probabilities": null
+    }
+  ]
+}

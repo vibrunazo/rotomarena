@@ -1,0 +1,363 @@
+{
+  "id": "match_20261020_002659_PokeChamp_vs_Clef_g2",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261020",
+  "players": [
+    {
+      "config_id": "pokechamp",
+      "display_name": "PokéChamp",
+      "agent_type": "pokechamp",
+      "provider": null,
+      "model": null,
+      "quantization": null,
+      "username": "PokeChamp",
+      "role": "p1",
+      "team": "Clef's team",
+      "model_key": null,
+      "autopilot_rate": 0.0,
+      "replay_name": "PokéChamp"
+    },
+    {
+      "config_id": "clef",
+      "display_name": "Clef",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "cloudflare/clef",
+      "quantization": null,
+      "username": "Clef",
+      "role": "p2",
+      "team": "Clef's team",
+      "model_key": "cloudflare/clef",
+      "autopilot_rate": 0.0,
+      "replay_name": "Clef"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 4,
+  "duration_seconds": 5.25,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|PokéChamp||",
+    "|player|p2|Clef||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Scizor, L50, F|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Incineroar, L50, F|",
+    "|poke|p2|Scizor, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|detailschange|p1a: Garchomp|Garchomp-Mega, L50, F",
+    "|-mega|p1a: Garchomp|Garchomp|Garchompite",
+    "|move|p2a: Dragapult|Draco Meteor|p1a: Garchomp",
+    "|-supereffective|p1a: Garchomp|1",
+    "|-damage|p1a: Garchomp|13/183",
+    "|-unboost|p2a: Dragapult|spa|2",
+    "|move|p1a: Garchomp|Dragon Claw|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-crit|p2a: Dragapult",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Toxapex",
+    "|-supereffective|p2a: Toxapex|1",
+    "|-crit|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|0 fnt",
+    "|faint|p2a: Toxapex",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Incineroar|Incineroar, L50, F|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Garchomp|atk|1",
+    "|turn|3",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Incineroar",
+    "|-supereffective|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|34/100",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Garchomp",
+    "|-unboost|p1a: Garchomp|atk|1",
+    "|-unboost|p1a: Garchomp|spa|1",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|move|p1a: Garchomp|Earthquake|p2a: Incineroar",
+    "|-supereffective|p2a: Incineroar|1",
+    "|-damage|p2a: Incineroar|0 fnt",
+    "|faint|p2a: Incineroar",
+    "|",
+    "|win|PokéChamp"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,incineroar,dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,incineroar,toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 27% BRING: dragapult, 25% BRING: toxapex, 22% BRING: incineroar\nPick 2: 33% BRING: incineroar, 29% BRING: toxapex, 22% BRING: garchomp\nPick 3: 48% BRING: toxapex, 29% BRING: garchomp, 14% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5966,
+      "latency_ms": 2284,
+      "cost_usd": 0.000250572,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "54% MOVE: dracometeor, 15% MOVE: uturn, 10% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2087,
+      "latency_ms": 590,
+      "cost_usd": 8.7654e-05,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0699,
+        "MOVE: shadowball": 0.078,
+        "MOVE: dracometeor": 0.5414,
+        "MOVE: uturn": 0.1539,
+        "SWITCH: incineroar": 0.0978,
+        "SWITCH: toxapex": 0.0589
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: toxapex, 44% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1765,
+      "latency_ms": 485,
+      "cost_usd": 7.413e-05,
+      "probabilities": {
+        "SWITCH: incineroar": 0.4407,
+        "SWITCH: toxapex": 0.5593
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: toxic, 27% MOVE: toxicspikes, 20% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2082,
+      "latency_ms": 725,
+      "cost_usd": 8.7444e-05,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.2688,
+        "MOVE: toxic": 0.3432,
+        "MOVE: recover": 0.0225,
+        "MOVE: sludgebomb": 0.1653,
+        "SWITCH: incineroar": 0.2002
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: partingshot, 29% MOVE: roar, 20% MOVE: taunt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2100,
+      "latency_ms": 565,
+      "cost_usd": 8.82e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.3683,
+        "MOVE: willowisp": 0.1355,
+        "MOVE: taunt": 0.205,
+        "MOVE: roar": 0.2913
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "roar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "49% MOVE: roar, 24% MOVE: partingshot, 15% MOVE: taunt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2175,
+      "latency_ms": 570,
+      "cost_usd": 9.135e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.2416,
+        "MOVE: willowisp": 0.1187,
+        "MOVE: taunt": 0.1477,
+        "MOVE: roar": 0.492
+      }
+    }
+  ]
+}

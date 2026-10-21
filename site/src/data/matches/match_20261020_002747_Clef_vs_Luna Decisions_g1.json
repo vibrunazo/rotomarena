@@ -1,0 +1,866 @@
+{
+  "id": "match_20261020_002747_Clef_vs_Luna Decisions_g1",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261020",
+  "players": [
+    {
+      "config_id": "clef",
+      "display_name": "Clef",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "cloudflare/clef",
+      "quantization": null,
+      "username": "Clef",
+      "role": "p1",
+      "team": "Clef's team",
+      "model_key": "cloudflare/clef",
+      "autopilot_rate": 0.0,
+      "replay_name": "Clef"
+    },
+    {
+      "config_id": "gpt_6_luna_decisions",
+      "display_name": "GPT-6 Luna Decisions",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "openai/gpt-6-luna-decisions",
+      "quantization": null,
+      "username": "Luna Decisions",
+      "role": "p2",
+      "team": "GPT-6 Luna Decisions's team",
+      "model_key": "openai/gpt-6-luna-decisions",
+      "autopilot_rate": 0.0,
+      "replay_name": "GPT-6 Luna Decisions"
+    }
+  ],
+  "winner_role": "p1",
+  "turns": 11,
+  "duration_seconds": 10.88,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Clef||",
+    "|player|p2|GPT-6 Luna Decisions||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Toxapex, L50, M|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p1|Scizor, L50, M|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Chandelure, L50, M|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Scizor, L50, F|",
+    "|poke|p2|Clefable, L50, F|",
+    "|poke|p2|Kingambit, L50, M|",
+    "|poke|p2|Greninja, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Toxapex|Toxapex, L50, M|157/157",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Toxapex",
+    "|-supereffective|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|53/157",
+    "|move|p1a: Toxapex|Toxic Spikes|p2a: Garchomp",
+    "|-sidestart|p2: Luna Decisions|move: Toxic Spikes",
+    "|",
+    "|-heal|p1a: Toxapex|62/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|-heal|p1a: Toxapex|114/157|[from] ability: Regenerator|[silent]",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|move|p2a: Garchomp|Earthquake|p1a: Dragapult",
+    "|-damage|p1a: Dragapult|42/163",
+    "|",
+    "|upkeep",
+    "|turn|3",
+    "|",
+    "|move|p1a: Dragapult|U-turn|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|81/100",
+    "|-damage|p1a: Dragapult|22/163|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|switch|p1a: Scizor|Scizor, L50, M|177/177|[from] U-turn",
+    "|move|p2a: Garchomp|Dragon Claw|p1a: Scizor",
+    "|-resisted|p1a: Scizor|1",
+    "|-damage|p1a: Scizor|138/177",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Rotom|Rotom-Wash, L50|100/100",
+    "|detailschange|p1a: Scizor|Scizor-Mega, L50, M",
+    "|-mega|p1a: Scizor|Scizor|Scizorite",
+    "|move|p1a: Scizor|Swords Dance|p1a: Scizor",
+    "|-boost|p1a: Scizor|atk|2",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Rotom|Will-O-Wisp|p1a: Scizor",
+    "|-status|p1a: Scizor|brn",
+    "|move|p1a: Scizor|X-Scissor|p2a: Rotom",
+    "|-damage|p2a: Rotom|49/100",
+    "|",
+    "|-heal|p2a: Rotom|55/100|[from] item: Leftovers",
+    "|-damage|p1a: Scizor|127/177 brn|[from] brn",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Rotom|Will-O-Wisp|p1a: Scizor|[miss]",
+    "|-miss|p2a: Rotom|p1a: Scizor",
+    "|move|p1a: Scizor|X-Scissor|p2a: Rotom",
+    "|-crit|p2a: Rotom",
+    "|-damage|p2a: Rotom|0 fnt",
+    "|faint|p2a: Rotom",
+    "|",
+    "|-damage|p1a: Scizor|116/177 brn|[from] brn",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+    "|-status|p2a: Clefable|psn",
+    "|turn|7",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|81/100",
+    "|-status|p2a: Garchomp|psn",
+    "|move|p1a: Scizor|Bullet Punch|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|45/100 psn",
+    "|-damage|p1a: Scizor|94/177 brn|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|",
+    "|-damage|p2a: Garchomp|33/100 psn|[from] psn",
+    "|-damage|p1a: Scizor|83/177 brn|[from] brn",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Scizor",
+    "|-damage|p1a: Scizor|5/177 brn",
+    "|move|p1a: Scizor|X-Scissor|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|-damage|p1a: Scizor|0 fnt|[from] ability: Rough Skin|[of] p2a: Garchomp",
+    "|faint|p2a: Garchomp",
+    "|faint|p1a: Scizor",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Clefable|Clefable, L50, F|100/100 psn",
+    "|switch|p1a: Toxapex|Toxapex, L50, M|114/157",
+    "|turn|9",
+    "|",
+    "|detailschange|p2a: Clefable|Clefable-Mega, L50, F",
+    "|-mega|p2a: Clefable|Clefable|Clefablite",
+    "|move|p2a: Clefable|Moonblast|p1a: Toxapex",
+    "|-resisted|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|79/157",
+    "|move|p1a: Toxapex|Sludge Bomb|p2a: Clefable",
+    "|-supereffective|p2a: Clefable|1",
+    "|-damage|p2a: Clefable|69/100 psn",
+    "|",
+    "|-heal|p1a: Toxapex|88/157|[from] item: Leftovers",
+    "|-damage|p2a: Clefable|56/100 psn|[from] psn",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|move|p2a: Clefable|Moonblast|p1a: Toxapex",
+    "|-resisted|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|57/157",
+    "|move|p1a: Toxapex|Sludge Bomb|p2a: Clefable",
+    "|-supereffective|p2a: Clefable|1",
+    "|-damage|p2a: Clefable|27/100 psn",
+    "|",
+    "|-heal|p1a: Toxapex|66/157|[from] item: Leftovers",
+    "|-damage|p2a: Clefable|14/100 psn|[from] psn",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p2a: Clefable|Moonblast|p1a: Toxapex",
+    "|-resisted|p1a: Toxapex|1",
+    "|-damage|p1a: Toxapex|34/157",
+    "|move|p1a: Toxapex|Sludge Bomb|p2a: Clefable",
+    "|-supereffective|p2a: Clefable|1",
+    "|-damage|p2a: Clefable|0 fnt",
+    "|faint|p2a: Clefable",
+    "|",
+    "|win|Clef"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "garchomp,rotomwash,clefable",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 56% BRING: garchomp, 18% BRING: greninja, 12% BRING: rotomwash\nPick 2: 72% BRING: rotomwash, 16% BRING: greninja, 7% BRING: clefable\nPick 3: 58% BRING: clefable, 22% BRING: greninja, 14% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 4784,
+      "latency_ms": 1670,
+      "cost_usd": 0.0004784,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "toxapex,dragapult,scizor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 34% BRING: toxapex, 24% BRING: dragapult, 22% BRING: garchomp\nPick 2: 36% BRING: dragapult, 28% BRING: scizor, 24% BRING: garchomp\nPick 3: 50% BRING: scizor, 35% BRING: garchomp, 9% BRING: chandelure",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5825,
+      "latency_ms": 1789,
+      "cost_usd": 0.00024465,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "toxicspikes",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: toxicspikes, 30% MOVE: toxic, 13% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2010,
+      "latency_ms": 532,
+      "cost_usd": 8.442e-05,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.4311,
+        "MOVE: toxic": 0.2963,
+        "MOVE: recover": 0.0144,
+        "MOVE: sludgebomb": 0.0519,
+        "SWITCH: dragapult": 0.1284,
+        "SWITCH: scizor": 0.0779
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "100% MOVE: earthquake, 0% MOVE: swordsdance, 0% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1668,
+      "latency_ms": 541,
+      "cost_usd": 0.0001668,
+      "probabilities": {
+        "MOVE: earthquake": 1.0,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.0,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragapult",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% SWITCH: dragapult, 19% MOVE: toxic, 14% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2104,
+      "latency_ms": 548,
+      "cost_usd": 0.00050496,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.1256,
+        "MOVE: toxic": 0.1944,
+        "MOVE: recover": 0.1443,
+        "MOVE: sludgebomb": 0.0529,
+        "SWITCH: dragapult": 0.3435,
+        "SWITCH: scizor": 0.1393
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "99% MOVE: earthquake, 1% MOVE: swordsdance, 0% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1772,
+      "latency_ms": 601,
+      "cost_usd": 0.0001772,
+      "probabilities": {
+        "MOVE: earthquake": 0.99,
+        "MOVE: swordsdance": 0.01,
+        "MOVE: dragonclaw": 0.0,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "uturn",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% MOVE: uturn, 30% SWITCH: scizor, 12% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2187,
+      "latency_ms": 591,
+      "cost_usd": 9.1854e-05,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0545,
+        "MOVE: shadowball": 0.0545,
+        "MOVE: dragonclaw": 0.1182,
+        "MOVE: uturn": 0.3905,
+        "SWITCH: toxapex": 0.0781,
+        "SWITCH: scizor": 0.3041
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "97% MOVE: dragonclaw, 2% MOVE: earthquake, 1% SWITCH: rotomwash",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1893,
+      "latency_ms": 615,
+      "cost_usd": 0.0001893,
+      "probabilities": {
+        "MOVE: earthquake": 0.02,
+        "MOVE: swordsdance": 0.0,
+        "MOVE: dragonclaw": 0.97,
+        "MOVE: stoneedge": 0.0,
+        "SWITCH: rotomwash": 0.01,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Scizor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "66% SWITCH: scizor, 34% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1909,
+      "latency_ms": 545,
+      "cost_usd": 8.0178e-05,
+      "probabilities": {
+        "SWITCH: toxapex": 0.3398,
+        "SWITCH: scizor": 0.6602
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "swordsdance",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "23% MOVE: swordsdance [MEGA], 15% MOVE: bulletpunch [MEGA], 14% MOVE: xscissor [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2532,
+      "latency_ms": 557,
+      "cost_usd": 0.000106344,
+      "probabilities": {
+        "MOVE: swordsdance": 0.0752,
+        "MOVE: swordsdance [MEGA]": 0.2344,
+        "MOVE: bulletpunch": 0.1086,
+        "MOVE: bulletpunch [MEGA]": 0.1461,
+        "MOVE: xscissor": 0.0886,
+        "MOVE: xscissor [MEGA]": 0.1367,
+        "MOVE: defog": 0.0764,
+        "MOVE: defog [MEGA]": 0.069,
+        "SWITCH: toxapex": 0.0546,
+        "SWITCH: dragapult": 0.0102
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Rotom",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% SWITCH: rotomwash, 21% MOVE: earthquake, 7% SWITCH: clefable",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2042,
+      "latency_ms": 1069,
+      "cost_usd": 0.0002042,
+      "probabilities": {
+        "MOVE: earthquake": 0.21,
+        "MOVE: swordsdance": 0.02,
+        "MOVE: dragonclaw": 0.01,
+        "MOVE: stoneedge": 0.04,
+        "SWITCH: rotomwash": 0.65,
+        "SWITCH: clefable": 0.07
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "94% MOVE: willowisp, 4% MOVE: voltswitch, 1% MOVE: hydropump",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2051,
+      "latency_ms": 379,
+      "cost_usd": 0.0002051,
+      "probabilities": {
+        "MOVE: hydropump": 0.01,
+        "MOVE: voltswitch": 0.04,
+        "MOVE: willowisp": 0.94,
+        "MOVE: painsplit": 0.01,
+        "SWITCH: garchomp": 0.0,
+        "SWITCH: clefable": 0.0
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "xscissor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "29% MOVE: xscissor, 27% MOVE: defog, 18% MOVE: swordsdance",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2409,
+      "latency_ms": 586,
+      "cost_usd": 0.000101178,
+      "probabilities": {
+        "MOVE: swordsdance": 0.1751,
+        "MOVE: bulletpunch": 0.1058,
+        "MOVE: xscissor": 0.292,
+        "MOVE: defog": 0.2722,
+        "SWITCH: toxapex": 0.1379,
+        "SWITCH: dragapult": 0.017
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "willowisp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: willowisp, 31% MOVE: hydropump, 25% MOVE: voltswitch",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2156,
+      "latency_ms": 385,
+      "cost_usd": 0.0002156,
+      "probabilities": {
+        "MOVE: hydropump": 0.31,
+        "MOVE: voltswitch": 0.25,
+        "MOVE: willowisp": 0.33,
+        "MOVE: painsplit": 0.03,
+        "SWITCH: garchomp": 0.04,
+        "SWITCH: clefable": 0.04
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "xscissor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "51% MOVE: xscissor, 17% SWITCH: toxapex, 14% MOVE: defog",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2536,
+      "latency_ms": 584,
+      "cost_usd": 0.000106512,
+      "probabilities": {
+        "MOVE: swordsdance": 0.0997,
+        "MOVE: bulletpunch": 0.0664,
+        "MOVE: xscissor": 0.5063,
+        "MOVE: defog": 0.1434,
+        "SWITCH: toxapex": 0.1676,
+        "SWITCH: dragapult": 0.0165
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Clefable",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% SWITCH: clefable, 7% SWITCH: garchomp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1948,
+      "latency_ms": 592,
+      "cost_usd": 0.0001948,
+      "probabilities": {
+        "SWITCH: garchomp": 0.07,
+        "SWITCH: clefable": 0.93
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% SWITCH: garchomp, 10% MOVE: moonblast [MEGA], 1% MOVE: moonblast",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2473,
+      "latency_ms": 589,
+      "cost_usd": 0.0002473,
+      "probabilities": {
+        "MOVE: moonblast": 0.01,
+        "MOVE: moonblast [MEGA]": 0.1,
+        "MOVE: calmmind": 0.01,
+        "MOVE: calmmind [MEGA]": 0.01,
+        "MOVE: wish": 0.01,
+        "MOVE: wish [MEGA]": 0.0,
+        "MOVE: stealthrock": 0.0,
+        "MOVE: stealthrock [MEGA]": 0.0,
+        "SWITCH: garchomp": 0.86
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "bulletpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: bulletpunch, 17% SWITCH: toxapex, 14% MOVE: defog",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2733,
+      "latency_ms": 593,
+      "cost_usd": 0.000114786,
+      "probabilities": {
+        "MOVE: swordsdance": 0.1282,
+        "MOVE: bulletpunch": 0.437,
+        "MOVE: xscissor": 0.103,
+        "MOVE: defog": 0.1386,
+        "SWITCH: toxapex": 0.1698,
+        "SWITCH: dragapult": 0.0233
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "xscissor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "41% MOVE: xscissor, 27% MOVE: bulletpunch, 14% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2807,
+      "latency_ms": 619,
+      "cost_usd": 0.000117894,
+      "probabilities": {
+        "MOVE: swordsdance": 0.0704,
+        "MOVE: bulletpunch": 0.2742,
+        "MOVE: xscissor": 0.4068,
+        "MOVE: defog": 0.0948,
+        "SWITCH: toxapex": 0.1357,
+        "SWITCH: dragapult": 0.0181
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% MOVE: earthquake, 12% SWITCH: clefable, 2% MOVE: dragonclaw",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2351,
+      "latency_ms": 664,
+      "cost_usd": 0.0002351,
+      "probabilities": {
+        "MOVE: earthquake": 0.83,
+        "MOVE: swordsdance": 0.01,
+        "MOVE: dragonclaw": 0.02,
+        "MOVE: stoneedge": 0.02,
+        "SWITCH: clefable": 0.12
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Clefable",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "96% SWITCH: toxapex, 4% SWITCH: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2483,
+      "latency_ms": 637,
+      "cost_usd": 0.00059592,
+      "probabilities": {
+        "SWITCH: toxapex": 0.9584,
+        "SWITCH: dragapult": 0.0416
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "43% MOVE: sludgebomb, 35% MOVE: toxic, 11% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2866,
+      "latency_ms": 629,
+      "cost_usd": 0.000120372,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.0801,
+        "MOVE: toxic": 0.3549,
+        "MOVE: recover": 0.1062,
+        "MOVE: sludgebomb": 0.4332,
+        "SWITCH: dragapult": 0.0256
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "78% MOVE: moonblast [MEGA], 9% MOVE: stealthrock [MEGA], 7% MOVE: calmmind [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2657,
+      "latency_ms": 630,
+      "cost_usd": 0.0002657,
+      "probabilities": {
+        "MOVE: moonblast": 0.03,
+        "MOVE: moonblast [MEGA]": 0.78,
+        "MOVE: calmmind": 0.01,
+        "MOVE: calmmind [MEGA]": 0.07,
+        "MOVE: wish": 0.0,
+        "MOVE: wish [MEGA]": 0.0,
+        "MOVE: stealthrock": 0.02,
+        "MOVE: stealthrock [MEGA]": 0.09
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "57% MOVE: moonblast, 28% MOVE: wish, 10% MOVE: stealthrock",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2564,
+      "latency_ms": 409,
+      "cost_usd": 0.0002564,
+      "probabilities": {
+        "MOVE: moonblast": 0.57,
+        "MOVE: calmmind": 0.05,
+        "MOVE: wish": 0.28,
+        "MOVE: stealthrock": 0.1
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% MOVE: sludgebomb, 19% MOVE: toxic, 9% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2975,
+      "latency_ms": 627,
+      "cost_usd": 0.00012495,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.0516,
+        "MOVE: toxic": 0.1858,
+        "MOVE: recover": 0.0871,
+        "MOVE: sludgebomb": 0.6484,
+        "SWITCH: dragapult": 0.0272
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "93% MOVE: sludgebomb, 3% MOVE: toxic, 2% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 3095,
+      "latency_ms": 650,
+      "cost_usd": 0.00012999,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.0144,
+        "MOVE: toxic": 0.0269,
+        "MOVE: recover": 0.0171,
+        "MOVE: sludgebomb": 0.929,
+        "SWITCH: dragapult": 0.0127
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "moonblast",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "86% MOVE: moonblast, 9% MOVE: wish, 3% MOVE: calmmind",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2672,
+      "latency_ms": 747,
+      "cost_usd": 0.0002672,
+      "probabilities": {
+        "MOVE: moonblast": 0.86,
+        "MOVE: calmmind": 0.03,
+        "MOVE: wish": 0.09,
+        "MOVE: stealthrock": 0.02
+      }
+    }
+  ]
+}

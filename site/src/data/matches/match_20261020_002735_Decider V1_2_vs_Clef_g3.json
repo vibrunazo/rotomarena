@@ -1,0 +1,700 @@
+{
+  "id": "match_20261020_002735_Decider V1_2_vs_Clef_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261020",
+  "players": [
+    {
+      "config_id": "pplx_decider_v1_2",
+      "display_name": "Perplexity Decider V1.2",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "perplexity/pplx-decider-v1.2",
+      "quantization": null,
+      "username": "Decider V1.2",
+      "role": "p1",
+      "team": "Perplexity Decider V1.2's team",
+      "model_key": "perplexity/pplx-decider-v1.2",
+      "autopilot_rate": 0.0,
+      "replay_name": "Perplexity Decider V1.2"
+    },
+    {
+      "config_id": "clef",
+      "display_name": "Clef",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "cloudflare/clef",
+      "quantization": null,
+      "username": "Clef",
+      "role": "p2",
+      "team": "Clef's team",
+      "model_key": "cloudflare/clef",
+      "autopilot_rate": 0.0,
+      "replay_name": "Clef"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 9,
+  "duration_seconds": 9.27,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Perplexity Decider V1.2||",
+    "|player|p2|Clef||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Tyranitar, L50, M|",
+    "|poke|p1|Metagross, L50|",
+    "|poke|p1|Dragonite, L50, F|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Weavile, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p2|Toxapex, L50, F|",
+    "|poke|p2|Incineroar, L50, M|",
+    "|poke|p2|Scizor, L50, M|",
+    "|poke|p2|Rotom-Wash, L50|",
+    "|poke|p2|Garchomp, L50, F|",
+    "|poke|p2|Dragapult, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Tyranitar|Tyranitar, L50, M|175/175",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|100/100",
+    "|-weather|Sandstorm|[from] ability: Sand Stream|[of] p1a: Tyranitar",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Tyranitar|atk|1",
+    "|turn|1",
+    "|",
+    "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+    "|move|p1a: Tyranitar|Earthquake|p2a: Garchomp",
+    "|-damage|p2a: Garchomp|74/100",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|upkeep",
+    "|turn|2",
+    "|",
+    "|detailschange|p2a: Garchomp|Garchomp-Mega, L50, F",
+    "|-mega|p2a: Garchomp|Garchomp|Garchompite",
+    "|move|p2a: Garchomp|Earthquake|p1a: Tyranitar",
+    "|-supereffective|p1a: Tyranitar|1",
+    "|-damage|p1a: Tyranitar|0 fnt",
+    "|faint|p1a: Tyranitar",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Metagross|Metagross, L50|155/155",
+    "|turn|3",
+    "|",
+    "|move|p2a: Garchomp|Earthquake|p1a: Metagross",
+    "|-supereffective|p1a: Metagross|1",
+    "|-damage|p1a: Metagross|0 fnt",
+    "|faint|p1a: Metagross",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Dragonite|Dragonite, L50, F|166/166",
+    "|turn|4",
+    "|",
+    "|move|p1a: Dragonite|Outrage|p2a: Garchomp",
+    "|-supereffective|p2a: Garchomp|1",
+    "|-damage|p2a: Garchomp|0 fnt",
+    "|faint|p2a: Garchomp",
+    "|",
+    "|-weather|Sandstorm|[upkeep]",
+    "|-damage|p1a: Dragonite|156/166|[from] Sandstorm",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Incineroar|Incineroar, L50, M|100/100",
+    "|-ability|p2a: Incineroar|Intimidate|boost",
+    "|-unboost|p1a: Dragonite|atk|1",
+    "|turn|5",
+    "|",
+    "|move|p1a: Dragonite|Outrage|p2a: Incineroar|[from] lockedmove",
+    "|-damage|p2a: Incineroar|64/100",
+    "|move|p2a: Incineroar|Parting Shot|p1a: Dragonite",
+    "|-unboost|p1a: Dragonite|atk|1",
+    "|-unboost|p1a: Dragonite|spa|1",
+    "|",
+    "|switch|p2a: Toxapex|Toxapex, L50, F|100/100|[from] Parting Shot",
+    "|",
+    "|-weather|none",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p1a: Dragonite|Outrage|p2a: Toxapex|[from] lockedmove",
+    "|-damage|p2a: Toxapex|77/100",
+    "|-start|p1a: Dragonite|confusion|[fatigue]",
+    "|move|p2a: Toxapex|Toxic|p1a: Dragonite",
+    "|-status|p1a: Dragonite|tox",
+    "|",
+    "|-heal|p2a: Toxapex|82/100|[from] item: Leftovers",
+    "|-damage|p1a: Dragonite|146/166 tox|[from] psn",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|-activate|p1a: Dragonite|confusion",
+    "|-damage|p1a: Dragonite|130/166 tox|[from] confusion",
+    "|move|p2a: Toxapex|Sludge Bomb|p1a: Dragonite",
+    "|-damage|p1a: Dragonite|99/166 tox",
+    "|",
+    "|-heal|p2a: Toxapex|88/100|[from] item: Leftovers",
+    "|-damage|p1a: Dragonite|79/166 tox|[from] psn",
+    "|upkeep",
+    "|turn|8",
+    "|",
+    "|-activate|p1a: Dragonite|confusion",
+    "|move|p1a: Dragonite|Outrage|p2a: Toxapex",
+    "|-damage|p2a: Toxapex|65/100",
+    "|move|p2a: Toxapex|Sludge Bomb|p1a: Dragonite",
+    "|-damage|p1a: Dragonite|48/166 tox",
+    "|",
+    "|-heal|p2a: Toxapex|71/100|[from] item: Leftovers",
+    "|-damage|p1a: Dragonite|18/166 tox|[from] psn",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|-activate|p1a: Dragonite|confusion",
+    "|-damage|p1a: Dragonite|3/166 tox|[from] confusion",
+    "|move|p2a: Toxapex|Sludge Bomb|p1a: Dragonite",
+    "|-damage|p1a: Dragonite|0 fnt",
+    "|faint|p1a: Dragonite",
+    "|",
+    "|win|Clef"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "tyranitar,metagross,dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 31% BRING: tyranitar, 22% BRING: rotomwash, 16% BRING: weavile\nPick 2: 26% BRING: metagross, 26% BRING: dragonite, 21% BRING: rotomwash\nPick 3: 35% BRING: dragonite, 25% BRING: rotomwash, 25% BRING: weavile",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5635,
+      "latency_ms": 1609,
+      "cost_usd": 0.0001127,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "incineroar,toxapex,garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 26% BRING: incineroar, 24% BRING: toxapex, 20% BRING: dragapult\nPick 2: 56% BRING: toxapex, 17% BRING: garchomp, 14% BRING: scizor\nPick 3: 38% BRING: garchomp, 35% BRING: scizor, 21% BRING: dragapult",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5825,
+      "latency_ms": 1662,
+      "cost_usd": 0.00024465,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: earthquake, 31% MOVE: stealthrock, 12% MOVE: stoneedge",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1954,
+      "latency_ms": 482,
+      "cost_usd": 3.908e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.4408752726850217,
+        "MOVE: stealthrock": 0.30711555386287503,
+        "MOVE: knockoff": 0.046935201455003656,
+        "MOVE: stoneedge": 0.1169702581949119,
+        "SWITCH: metagross": 0.050357386316839794,
+        "SWITCH: dragonite": 0.037746327485347814
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Garchomp",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% SWITCH: garchomp, 22% MOVE: partingshot, 19% MOVE: taunt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2020,
+      "latency_ms": 563,
+      "cost_usd": 8.484e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.2162,
+        "MOVE: willowisp": 0.1096,
+        "MOVE: taunt": 0.1915,
+        "MOVE: roar": 0.0639,
+        "SWITCH: toxapex": 0.084,
+        "SWITCH: garchomp": 0.3348
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: earthquake, 23% MOVE: stealthrock, 12% MOVE: knockoff",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2117,
+      "latency_ms": 490,
+      "cost_usd": 4.234e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.4529286000233185,
+        "MOVE: stealthrock": 0.22920645817293203,
+        "MOVE: knockoff": 0.12314247452034952,
+        "MOVE: stoneedge": 0.025931953080001274,
+        "SWITCH: metagross": 0.08732379651108929,
+        "SWITCH: dragonite": 0.0814667176923094
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": true
+      },
+      "source": "model",
+      "thought": "37% MOVE: earthquake [MEGA], 21% MOVE: earthquake, 9% MOVE: swordsdance [MEGA]",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2380,
+      "latency_ms": 576,
+      "cost_usd": 9.996e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.2083,
+        "MOVE: earthquake [MEGA]": 0.3713,
+        "MOVE: swordsdance": 0.0362,
+        "MOVE: swordsdance [MEGA]": 0.0885,
+        "MOVE: dragonclaw": 0.0278,
+        "MOVE: dragonclaw [MEGA]": 0.064,
+        "MOVE: stealthrock": 0.0822,
+        "MOVE: stealthrock [MEGA]": 0.072,
+        "SWITCH: toxapex": 0.022,
+        "SWITCH: incineroar": 0.0278
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Metagross",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "56% SWITCH: metagross, 44% SWITCH: dragonite",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1827,
+      "latency_ms": 1000,
+      "cost_usd": 3.654e-05,
+      "probabilities": {
+        "SWITCH: metagross": 0.5572698590956108,
+        "SWITCH: dragonite": 0.44273014090438917
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "icepunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "80% MOVE: icepunch, 9% MOVE: meteormash, 7% SWITCH: dragonite",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2157,
+      "latency_ms": 480,
+      "cost_usd": 4.314e-05,
+      "probabilities": {
+        "MOVE: meteormash": 0.09473607793973512,
+        "MOVE: bulletpunch": 0.025066343140579112,
+        "MOVE: icepunch": 0.8012181638557017,
+        "MOVE: thunderpunch": 0.007542998325485754,
+        "SWITCH: dragonite": 0.07143641673849843
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "earthquake",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "63% MOVE: earthquake, 18% MOVE: stealthrock, 7% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2250,
+      "latency_ms": 747,
+      "cost_usd": 9.45e-05,
+      "probabilities": {
+        "MOVE: earthquake": 0.6251,
+        "MOVE: swordsdance": 0.0669,
+        "MOVE: dragonclaw": 0.0224,
+        "MOVE: stealthrock": 0.1777,
+        "SWITCH: toxapex": 0.04,
+        "SWITCH: incineroar": 0.068
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Dragonite",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "45% MOVE: outrage, 40% MOVE: extremespeed, 12% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2136,
+      "latency_ms": 488,
+      "cost_usd": 4.272e-05,
+      "probabilities": {
+        "MOVE: outrage": 0.4497544823029189,
+        "MOVE: extremespeed": 0.3998459962119314,
+        "MOVE: earthquake": 0.11521468543443304,
+        "MOVE: airslash": 0.03518483605071671
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragonclaw",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "33% MOVE: dragonclaw, 22% MOVE: stealthrock, 22% MOVE: earthquake",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2398,
+      "latency_ms": 603,
+      "cost_usd": 0.000100716,
+      "probabilities": {
+        "MOVE: earthquake": 0.2158,
+        "MOVE: swordsdance": 0.0882,
+        "MOVE: dragonclaw": 0.3329,
+        "MOVE: stealthrock": 0.2209,
+        "SWITCH: toxapex": 0.0476,
+        "SWITCH: incineroar": 0.0946
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "81% SWITCH: incineroar, 19% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2085,
+      "latency_ms": 649,
+      "cost_usd": 8.757e-05,
+      "probabilities": {
+        "SWITCH: toxapex": 0.1883,
+        "SWITCH: incineroar": 0.8117
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "34% MOVE: partingshot, 23% MOVE: taunt, 16% SWITCH: toxapex",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2419,
+      "latency_ms": 898,
+      "cost_usd": 0.00058056,
+      "probabilities": {
+        "MOVE: partingshot": 0.3359,
+        "MOVE: willowisp": 0.1255,
+        "MOVE: taunt": 0.2291,
+        "MOVE: roar": 0.1544,
+        "SWITCH: toxapex": 0.155
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "55% MOVE: toxic, 20% MOVE: toxicspikes, 16% MOVE: sludgebomb",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2514,
+      "latency_ms": 587,
+      "cost_usd": 0.000105588,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.2039,
+        "MOVE: toxic": 0.5542,
+        "MOVE: recover": 0.0248,
+        "MOVE: sludgebomb": 0.1557,
+        "SWITCH: incineroar": 0.0615
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "32% MOVE: sludgebomb, 29% MOVE: toxicspikes, 22% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2621,
+      "latency_ms": 577,
+      "cost_usd": 0.000110082,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.2881,
+        "MOVE: toxic": 0.0554,
+        "MOVE: recover": 0.2175,
+        "MOVE: sludgebomb": 0.3226,
+        "SWITCH: incineroar": 0.1164
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "65% MOVE: sludgebomb, 16% MOVE: toxicspikes, 9% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2725,
+      "latency_ms": 724,
+      "cost_usd": 0.00011445,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.1562,
+        "MOVE: toxic": 0.0269,
+        "MOVE: recover": 0.0738,
+        "MOVE: sludgebomb": 0.6549,
+        "SWITCH: incineroar": 0.0883
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "outrage",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "sludgebomb",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "83% MOVE: sludgebomb, 8% MOVE: toxicspikes, 4% MOVE: recover",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2837,
+      "latency_ms": 631,
+      "cost_usd": 0.000119154,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.0761,
+        "MOVE: toxic": 0.0163,
+        "MOVE: recover": 0.0423,
+        "MOVE: sludgebomb": 0.8273,
+        "SWITCH: incineroar": 0.0379
+      }
+    }
+  ]
+}

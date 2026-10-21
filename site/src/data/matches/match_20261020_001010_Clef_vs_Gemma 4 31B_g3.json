@@ -1,0 +1,800 @@
+{
+  "id": "match_20261020_001010_Clef_vs_Gemma 4 31B_g3",
+  "game": "pokemon",
+  "format": "gen9championsrotomarenabssregmb",
+  "version": "c5",
+  "date": "20261020",
+  "players": [
+    {
+      "config_id": "clef",
+      "display_name": "Clef",
+      "agent_type": "decision",
+      "provider": "openrouter",
+      "model": "cloudflare/clef",
+      "quantization": null,
+      "username": "Clef",
+      "role": "p1",
+      "team": "Clef's team",
+      "model_key": "cloudflare/clef",
+      "autopilot_rate": 0.0,
+      "replay_name": "Clef"
+    },
+    {
+      "config_id": "gemma_4_31b",
+      "display_name": "Gemma 4 31B",
+      "agent_type": "direct_llm",
+      "provider": "openrouter",
+      "model": "google/gemma-4-31b-it",
+      "quantization": null,
+      "username": "Gemma 4 31B",
+      "role": "p2",
+      "team": "Gemma 4 31B's team",
+      "model_key": "google/gemma-4-31b-it",
+      "autopilot_rate": 0.0,
+      "replay_name": "Gemma 4 31B"
+    }
+  ],
+  "winner_role": "p2",
+  "turns": 12,
+  "duration_seconds": 820.82,
+  "void_reason": null,
+  "log": [
+    "|init|battle",
+    "|gametype|singles",
+    "|player|p1|Clef||",
+    "|player|p2|Gemma 4 31B||",
+    "|gen|9",
+    "|tier|[Gen 9 Champions] RotomArena BSS Reg M-B",
+    "|rule|Species Clause: Limit one of each Pokémon",
+    "|rule|Item Clause: Limit 1 of each item",
+    "|clearpoke",
+    "|poke|p1|Toxapex, L50, F|",
+    "|poke|p1|Incineroar, L50, F|",
+    "|poke|p1|Scizor, L50, F|",
+    "|poke|p1|Rotom-Wash, L50|",
+    "|poke|p1|Garchomp, L50, F|",
+    "|poke|p1|Dragapult, L50, M|",
+    "|poke|p2|Kingambit, L50, F|",
+    "|poke|p2|Gholdengo, L50|",
+    "|poke|p2|Dragapult, L50, F|",
+    "|poke|p2|Gliscor, L50, M|",
+    "|poke|p2|Palafin, L50, F|",
+    "|poke|p2|Garganacl, L50, M|",
+    "|teampreview|3",
+    "|",
+    "|teamsize|p1|3",
+    "|teamsize|p2|3",
+    "|start",
+    "|switch|p1a: Dragapult|Dragapult, L50, M|163/163",
+    "|switch|p2a: Dragapult|Dragapult, L50, F|100/100",
+    "|turn|1",
+    "|",
+    "|move|p1a: Dragapult|Draco Meteor|p2a: Dragapult",
+    "|-supereffective|p2a: Dragapult|1",
+    "|-damage|p2a: Dragapult|0 fnt",
+    "|-unboost|p1a: Dragapult|spa|2",
+    "|faint|p2a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p2a: Gholdengo|Gholdengo, L50|100/100",
+    "|turn|2",
+    "|",
+    "|move|p1a: Dragapult|Shadow Ball|p2a: Gholdengo",
+    "|-supereffective|p2a: Gholdengo|1",
+    "|-damage|p2a: Gholdengo|65/100",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Dragapult",
+    "|-supereffective|p1a: Dragapult|1",
+    "|-damage|p1a: Dragapult|0 fnt",
+    "|faint|p1a: Dragapult",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Toxapex|Toxapex, L50, F|157/157",
+    "|turn|3",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|202/202",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Gholdengo|atk|1",
+    "|move|p2a: Gholdengo|Shadow Ball|p1a: Incineroar",
+    "|-resisted|p1a: Incineroar|1",
+    "|-damage|p1a: Incineroar|161/202",
+    "|",
+    "|upkeep",
+    "|turn|4",
+    "|",
+    "|switch|p2a: Kingambit|Kingambit, L50, F|100/100",
+    "|-activate|p2a: Kingambit|ability: Supreme Overlord",
+    "|-start|p2a: Kingambit|fallen1|[silent]",
+    "|move|p1a: Incineroar|Parting Shot|p2a: Kingambit",
+    "|-unboost|p2a: Kingambit|atk|1",
+    "|-unboost|p2a: Kingambit|spa|1",
+    "|",
+    "|switch|p1a: Toxapex|Toxapex, L50, F|157/157|[from] Parting Shot",
+    "|",
+    "|upkeep",
+    "|turn|5",
+    "|",
+    "|move|p2a: Kingambit|Swords Dance|p2a: Kingambit",
+    "|-boost|p2a: Kingambit|atk|2",
+    "|move|p1a: Toxapex|Toxic Spikes|p2a: Kingambit",
+    "|-sidestart|p2: Gemma 4 31B|move: Toxic Spikes",
+    "|",
+    "|upkeep",
+    "|turn|6",
+    "|",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Toxapex",
+    "|-damage|p1a: Toxapex|62/157",
+    "|-damage|p2a: Kingambit|90/100|[from] item: Life Orb",
+    "|move|p1a: Toxapex|Toxic|p2a: Kingambit",
+    "|-immune|p2a: Kingambit",
+    "|",
+    "|-heal|p1a: Toxapex|71/157|[from] item: Leftovers",
+    "|upkeep",
+    "|turn|7",
+    "|",
+    "|move|p2a: Kingambit|Kowtow Cleave|p1a: Toxapex",
+    "|-damage|p1a: Toxapex|0 fnt",
+    "|faint|p1a: Toxapex",
+    "|-damage|p2a: Kingambit|80/100|[from] item: Life Orb",
+    "|",
+    "|upkeep",
+    "|",
+    "|switch|p1a: Incineroar|Incineroar, L50, F|161/202",
+    "|-ability|p1a: Incineroar|Intimidate|boost",
+    "|-unboost|p2a: Kingambit|atk|1",
+    "|turn|8",
+    "|",
+    "|move|p1a: Incineroar|Taunt|p2a: Kingambit",
+    "|-start|p2a: Kingambit|move: Taunt",
+    "|cant|p2a: Kingambit|move: Taunt|Swords Dance",
+    "|",
+    "|upkeep",
+    "|turn|9",
+    "|",
+    "|move|p2a: Kingambit|Sucker Punch||[still]",
+    "|-fail|p2a: Kingambit",
+    "|move|p1a: Incineroar|Roar|p2a: Kingambit",
+    "|-end|p2a: Kingambit|fallen1|[silent]",
+    "|drag|p2a: Gholdengo|Gholdengo, L50|65/100",
+    "|",
+    "|upkeep",
+    "|turn|10",
+    "|",
+    "|move|p2a: Gholdengo|Thunderbolt|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|94/202",
+    "|move|p1a: Incineroar|Roar|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo|[from] ability: Good as Gold",
+    "|",
+    "|upkeep",
+    "|turn|11",
+    "|",
+    "|move|p2a: Gholdengo|Thunderbolt|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|30/202",
+    "|move|p1a: Incineroar|Parting Shot|p2a: Gholdengo",
+    "|-immune|p2a: Gholdengo|[from] ability: Good as Gold",
+    "|",
+    "|upkeep",
+    "|turn|12",
+    "|",
+    "|move|p2a: Gholdengo|Thunderbolt|p1a: Incineroar",
+    "|-damage|p1a: Incineroar|0 fnt",
+    "|faint|p1a: Incineroar",
+    "|",
+    "|win|Gemma 4 31B"
+  ],
+  "decisions": [
+    {
+      "turn": 0,
+      "role": "p1",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,toxapex,incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Lead: 29% BRING: dragapult, 27% BRING: toxapex, 17% BRING: garchomp\nPick 2: 39% BRING: toxapex, 30% BRING: garchomp, 15% BRING: incineroar\nPick 3: 48% BRING: incineroar, 31% BRING: garchomp, 16% BRING: scizor",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 5838,
+      "latency_ms": 1722,
+      "cost_usd": 0.00024519600000000004,
+      "probabilities": null
+    },
+    {
+      "turn": 0,
+      "role": "p2",
+      "action": {
+        "kind": "bring",
+        "target": "dragapult,gholdengo,kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "The opponent has a bulky core (Toxapex, Incineroar, Rotom-Wash) and fast threats (Garchomp, Dragapult). I'll bring Dragapult for speed and pressure, Gholdengo (Choice Scarf) to handle Toxapex/Scizor and outspeed their Dragapult, and Kingambit as a powerful late-game cleaner with Sucker Punch. Dragapult will lead to provide flexibility with U-turn and speed.",
+      "hidden_reasoning": "*   My Team: Kingambit, Gholdengo, Dragapult, Gliscor, Palafin, Garganacl.\n    *   Opponent's Team: Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp, Dragapult.\n\n    *   Toxapex: Very bulky, Regenerator, Haze/Toxic/Recover.\n    *   Incineroar: Intimidate, Fake Out, Flare Blitz, Knock Off.\n    *   Scizor: Technician Bullet Punch, Swords Dance.\n    *   Rotom-Wash: Hydro Pump, Volt Switch, Will-O-Wisp.\n    *   Garchomp: Earthquake, Dragon Claw/Outrage, Swords Dance.\n    *   Dragapult: Fast, mixed or physical attacker.\n\n    *   Gholdengo: Great for dealing with Toxapex and Scizor. Choice Scarf makes it a strong revenge killer.\n    *   Dragapult: Fast, can pressure Garchomp and Dragapult.\n    *   Kingambit: Strong late-game cleaner, Sucker Punch is crucial.\n    *   Gliscor: Great for stalling, absorbing Garchomp's Earthquake, and setting Spikes.\n    *   Palafin: Huge damage, Jet Punch priority.\n    *   Garganacl: Salt Cure is devastating against Toxapex and Rotom-Wash.\n\n    *   The opponent has a lot of bulk (Toxapex, Incineroar, Rotom-Wash).\n    *   Garchomp and Dragapult are the main speed threats.\n    *   I need a core that can handle their bulk and outspeed their threats.\n    *   Gholdengo (Scarf) is essential for speed and hitting Toxapex/Scizor.\n    *   Dragapult is essential for speed and hitting Garchomp/Dragapult.\n    *   Kingambit is a powerhouse for cleaning up.\n\n    *   Wait, Gliscor is great against Garchomp and Rotom-Wash.\n    *   Palafin is great against Incineroar and Toxapex.\n    *   Garganacl is great against Toxapex and Rotom-Wash.\n\n    *   Let's look at the opponent's likely lead. Incineroar or Rotom-Wash are common leads.\n    *   If I lead Dragapult, I can U-turn out or pressure.\n    *   If I lead Gholdengo, I can hit hard immediately.\n    *   If I lead Kingambit, I'm slow but strong.\n\n    *   Selection: Gholdengo, Dragapult, Kingambit. (Strong offensive core).\n    *   Wait, maybe Gliscor instead of Kingambit? Gliscor provides a much-needed Ground immunity and a way to wear down the opponent.\n    *   Actually, Kingambit is too strong to pass up in a 3v3 format if I can get him in safely.\n    *   Let's go with Gholdengo, Dragapult, and Kingambit.\n\n    *   Wait, let's reconsider. The opponent has Toxapex and Incineroar. Gholdengo is great for Toxapex. Dragapult is great for Garchomp. Kingambit is great for everything if they are weakened.\n    *   Is there a better lead? Dragapult is the fastest.\n    *   Let's try Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, let's check the opponent's team again. Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp, Dragapult.\n    *   If I bring Dragapult, Gholdengo, and Kingambit:\n        *   Dragapult handles Garchomp and Dragapult.\n        *   Gholdengo handles Toxapex and Scizor.\n        *   Kingambit handles Incineroar (with Sucker Punch) and cleans up.\n\n    *   Wait, if they lead Incineroar, Dragapult can U-turn. If they lead Rotom-Wash, Dragapult can hit with Thunderbolt.\n\n    *   Let's refine the lead. Dragapult is a safe lead.\n\n    *   Final Team Choice: Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, let me double-check if Palafin or Gliscor would be better.\n    *   Palafin needs to switch out to activate Zero to Hero. In a 3v3, that's a wasted turn.\n    *   Gliscor is great, but Kingambit's raw power and Sucker Punch are often more decisive in these formats.\n\n    *   Let's go with Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, let's think about the opponent's possible leads.\n    *   If they lead Rotom-Wash, Dragapult's Thunderbolt is a great option.\n    *   If they lead Incineroar, Dragapult's U-turn allows me to pivot.\n    *   If they lead Garchomp, Dragapult can pressure it.\n\n    *   Wait, Gholdengo is Scarfed. It might be a better lead to put immediate pressure.\n    *   But Dragapult is naturally faster.\n\n    *   Let's stick with Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, let's consider the opponent's Dragapult. If they have one, my Dragapult is a mirror match. Gholdengo (Scarf) would outspeed and KO it with Shadow Ball.\n\n    *   Let's go: Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, one more check. Is Kingambit too slow? Sucker Punch helps.\n    *   Is Gholdengo too reliant on the scarf? Yes, but that's the point.\n\n    *   Let's try this: Dragapult, Gholdengo, Kingambit.\n\n    *   Wait, I just realized the format is \"Pokémon Champions singles\". This usually means a high-power environment.\n    *   Let's double-check the opponent's team again.\n    *   Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp, Dragapult.\n    *   My team: Kingambit, Gholdengo, Dragapult, Gliscor, Palafin, Garganacl.\n\n    *   If I bring Dragapult, Gholdengo, and Kingambit, I have a very strong offensive presence.\n\n    *   Let's go.\n\n    *   Wait, let me think about the lead again.\n    *   Dragapult is the safest lead.\n\n    *   Final decision: BRING: dragapult, gholdengo, kingambit.",
+      "note": "",
+      "tokens": 3794,
+      "latency_ms": 47794,
+      "cost_usd": 0.001137315,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "dracometeor",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "44% MOVE: dracometeor, 26% MOVE: shadowball, 10% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2079,
+      "latency_ms": 584,
+      "cost_usd": 8.7318e-05,
+      "probabilities": {
+        "MOVE: phantomforce": 0.0772,
+        "MOVE: shadowball": 0.261,
+        "MOVE: dracometeor": 0.4371,
+        "MOVE: uturn": 0.0754,
+        "SWITCH: toxapex": 0.0518,
+        "SWITCH: incineroar": 0.0975
+      }
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "dragondarts",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Dragapult mirror match. I have max speed (213), so I likely move first or tie. Dragondarts is the strongest immediate option, benefiting from Expert Belt and hitting twice to bypass potential Focus Sash. I'll aim to remove the opposing Dragapult early to maintain speed control.",
+      "hidden_reasoning": "*   My team: Dragapult (Expert Belt), Gholdengo (Choice Scarf), Kingambit (Life Orb).\n    *   Opponent's team: Dragapult (active), and two others from (Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp).\n    *   Current matchup: Dragapult vs. Dragapult.\n    *   Speed: My Dragapult is at 213 (likely max speed). Opponent's Dragapult is 145-213. It's a speed tie or I'm faster.\n\n    *   Dragondarts: Physical, Dragon-type, hits twice. Super effective. Expert Belt boost.\n    *   Phantomforce: Physical, Ghost-type. Super effective. Two-turn move.\n    *   U-turn: Pivot. Not super effective.\n    *   Thunderbolt: Special, Electric-type. Not super effective.\n\n    *   Dragondarts is the most immediate and powerful option. It hits twice, which is great for breaking potential Focus Sashes or Multiscale (though Pult doesn't have it).\n    *   Phantomforce is powerful but gives the opponent a free turn to switch or set up.\n    *   U-turn is safe but doesn't put pressure on the opposing Pult.\n    *   Thunderbolt is weak here.\n\n    *   If I use Dragondarts and win the speed tie (or am faster), I likely deal massive damage or OHKO.\n    *   If I lose the speed tie, I might get hit first.\n    *   Opponent's Pult could be Special or Physical. If it's Special, it might use Shadow Ball or Draco Meteor. If Physical, Dragon Darts or Phantom Force.\n\n    *   Dragondarts is the strongest immediate play. It leverages the Expert Belt and the speed advantage.\n\n    *   Plan: Use Dragondarts to pressure or KO the opposing Dragapult. If it survives, I can evaluate switching or continuing the attack. Keep Gholdengo for the bulky core and Kingambit for the late game.",
+      "note": "",
+      "tokens": 2859,
+      "latency_ms": 22315,
+      "cost_usd": 0.0005443,
+      "probabilities": null
+    },
+    {
+      "turn": 1,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Gholdengo",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opposing Dragapult is at -2 SpA after Draco Meteor. Gholdengo with Choice Scarf outspeeds Dragapult and can threaten it with Shadow Ball. I'll save Kingambit as my late-game cleaner.",
+      "hidden_reasoning": "*   My Dragapult fainted to a Draco Meteor from the opposing Dragapult.\n    *   Opposing Dragapult now has -2 Special Attack.\n    *   I have Gholdengo (Choice Scarf) and Kingambit (Life Orb) remaining.\n    *   Opponent's Dragapult is active.\n\n    *   Gholdengo is Choice Scarfed. It outspeeds the opposing Dragapult (unless the opponent's Dragapult is also Scarfed, but Gholdengo's base speed is 106, Dragapult's is 145. Wait, let's check the speed stats. My Dragapult was 213. Opposing Dragapult's range is 145-213. Gholdengo's speed is 106. With Choice Scarf, Gholdengo's speed is 106 * 1.5 = 159. This is faster than a non-scarfed Dragapult (max 213, but usually around 170-180 if not maxed, but 213 is the max). Actually, 106 * 1.5 = 159. A max speed Dragapult is 213. So Gholdengo does *not* outspeed a max speed Dragapult.\n    *   However, Gholdengo is a Ghost type, and Dragapult is Ghost/Dragon. Shadow Ball is super effective.\n    *   Kingambit is slow but has Sucker Punch.\n\n    *   Opposing Dragapult just used Draco Meteor, dropping its SpA to -2. This makes its special attacks much weaker.\n    *   If I switch to Gholdengo, it can hit with Shadow Ball.\n    *   If I switch to Kingambit, it can use Sucker Punch or Kowtow Cleave.\n\n    *   Gholdengo is a better switch-in to a -2 SpA Dragapult. It can potentially OHKO or 2HKO with Shadow Ball.\n    *   Kingambit is a strong late-game cleaner, but it's vulnerable to Dragapult's potential moves (though Draco Meteor is now weak).\n    *   The opponent has other Pokémon (Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp).\n    *   Gholdengo's Choice Scarf allows it to potentially outspeed some of the other threats or at least move before them if they aren't max speed.\n\n    *   Opposing Dragapult is at -2 SpA.\n    *   Gholdengo is the best bet to remove the Dragapult now while its special attack is lowered, or simply to put pressure.\n    *   Actually, if I switch to Gholdengo, I can use Shadow Ball.\n    *   Wait, if I switch to Gholdengo, and the opponent switches, I'm locked into a move.\n    *   If I switch to Kingambit, I can use Sucker Punch.\n\n    *   Gholdengo's Shadow Ball is strong.\n    *   Kingambit's Sucker Punch is a priority move.\n    *   Since the opponent's SpA is -2, Gholdengo is very safe.\n\n    *   Opponent's Dragapult: -2 SpA.\n    *   My Gholdengo: Choice Scarf.\n    *   My Kingambit: Life Orb.\n    *   Gholdengo is the safer and more offensive switch-in here to maintain momentum.\n\n    *   Wait, let's re-evaluate speed.\n    *   Dragapult base speed: 145.\n    *   Gholdengo base speed: 106.\n    *   Max speed Dragapult (Lvl 50): 213.\n    *   Max speed Gholdengo (Lvl 50): 167.\n    *   Choice Scarf Gholdengo: 167 * 1.5 = 250.\n    *   So Gholdengo *does* outspeed Dragapult with a Choice Scarf.\n\n    *   Switch to Gholdengo.\n    *   Next turn: Use Shadow Ball to potentially OHKO the Dragapult.\n\n    *   Opponent might switch to a resist (like Toxapex or Incineroar).\n    *   If I use Shadow Ball and they switch to Toxapex, I'm locked into Shadow Ball.\n    *   But Gholdengo is generally a great presence.\n\n    *   Kingambit is my win condition. I should save it for later.\n    *   Gholdengo is the best tool to deal with Dragapult right now.\n\n    *   Opposing Dragapult is -2 SpA.\n    *   Gholdengo outspeeds with Scarf.\n    *   Shadow Ball is the move.\n\n    *   Wait, let's check the legal actions.\n    *   1. SWITCH: gholdengo\n    *   2. SWITCH: kingambit\n\n    *   I'll go with Gholdengo.",
+      "note": "",
+      "tokens": 3380,
+      "latency_ms": 38409,
+      "cost_usd": 0.000911175,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "59% MOVE: shadowball, 17% MOVE: phantomforce, 11% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2187,
+      "latency_ms": 1272,
+      "cost_usd": 9.1854e-05,
+      "probabilities": {
+        "MOVE: phantomforce": 0.1741,
+        "MOVE: shadowball": 0.5866,
+        "MOVE: dracometeor": 0.0163,
+        "MOVE: uturn": 0.0635,
+        "SWITCH: toxapex": 0.0539,
+        "SWITCH: incineroar": 0.1056
+      }
+    },
+    {
+      "turn": 2,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Opposing Dragapult is at -2 SpA after Draco Meteor. Although it is faster than my Choice Scarf Gholdengo, its special attacks are now weak. I will use Shadow Ball to deal super effective damage and potentially remove it from the field.",
+      "hidden_reasoning": "*   My Dragapult fainted to a Draco Meteor.\n    *   Opposing Dragapult's SpA is now -2.\n    *   My Gholdengo is active, holding Choice Scarf.\n    *   Opposing Dragapult is active.\n    *   Gholdengo's speed (106 * 1.5 = 159) vs Opposing Dragapult's speed (145-213).\n    *   Wait, the \"Speed\" section says: \"your gholdengo 106 vs opposing dragapult 145-213 (possible range): it moves first, unless a move has priority.\" This means the opposing Dragapult is faster than my Gholdengo even with the Choice Scarf. Let me re-calculate.\n    *   Gholdengo base speed is 106. At level 50, max speed is 159 (with positive nature and 252 EVs).\n    *   Dragapult base speed is 145. At level 50, min speed is 145 (with negative nature and 0 EVs).\n    *   If the opponent's Dragapult is faster than my Scarf Gholdengo, it must be very fast.\n    *   Wait, the prompt says \"your gholdengo 106 vs opposing dragapult 145-213\". This is comparing base speeds or current speeds? Usually, Showdown's \"Speed\" section compares the actual current speeds. If it says \"it moves first\", it means the opponent moves first.\n\n    *   Opposing Dragapult is at -2 SpA.\n    *   It likely has Phantom Force, Dragon Darts, or U-turn.\n    *   If it uses a special attack, it will do very little damage.\n    *   If it uses a physical attack (Phantom Force, Dragon Darts), it could do significant damage.\n    *   Gholdengo is Ghost/Steel.\n    *   Shadow Ball is super effective against Dragapult.\n    *   Make It Rain is not very effective.\n    *   Thunderbolt is not very effective.\n    *   Trick could be useful, but Shadow Ball is the primary offensive option.\n\n    *   If I use Shadow Ball, I might KO or severely damage the Dragapult.\n    *   If the opponent's Dragapult is faster, it will hit me first.\n    *   Since it's at -2 SpA, a special attack won't hurt much.\n    *   A physical attack (like Phantom Force) would be dangerous.\n    *   However, Phantom Force takes two turns.\n    *   Dragon Darts would do decent damage but not a OHKO.\n\n    *   Gholdengo's Shadow Ball is the best bet to remove the threat.\n    *   The opponent's Dragapult is likely to switch or attack.\n    *   If it attacks with a special move, Gholdengo survives easily.\n    *   If it attacks with a physical move, Gholdengo takes a hit but should survive.\n    *   Shadow Ball is the most logical move to put pressure on the opponent's Dragapult.\n\n    *   Wait, let me re-read the speed: \"your gholdengo 106 vs opposing dragapult 145-213 (possible range): it moves first\".\n    *   If the opponent is faster, Shadow Ball might not be a guaranteed OHKO if they survive the hit and hit back, but they are at -2 SpA.\n    *   Actually, Shadow Ball is the only move that deals significant damage.\n\n    *   Opponent's Dragapult is -2 SpA.\n    *   Gholdengo is Choice Scarfed.\n    *   Opponent's Dragapult is faster.\n    *   Shadow Ball is the best move.\n\n    *   Wait, if the opponent's Dragapult is faster, can I switch to Kingambit?\n    *   Kingambit is slow and takes a hit.\n    *   But Gholdengo is already in.\n    *   Shadow Ball is the most aggressive and correct play here to punish the -2 SpA and potentially remove the Dragapult.\n\n    *   Opposing Dragapult: -2 SpA.\n    *   Gholdengo: Choice Scarf.\n    *   Move: Shadow Ball.\n    *   Goal: KO or heavily damage the opposing Dragapult.\n\n    *   Wait, let me double-check the speed again. 106 * 1.5 = 159. Dragapult base is 145. If Dragapult has any investment in speed, it will be faster than 159. (145 * 1.1 = 159.5, so even a modest investment makes it faster).\n    *   If the opponent's Dragapult is faster, it will hit first. But with -2 SpA, its special attacks are useless. Physical attacks are the only threat.\n    *   Shadow Ball is the way to go.\n\n    *   Is there any other option? Trick?\n    *   Trick would give the opponent's Dragapult the Choice Scarf, which it might already have or not want. Shadow Ball is more direct.\n\n    *   Let's consider the opponent's possible moves:\n        *   Dragon Darts (Physical)\n        *   Phantom Force (Physical, 2 turns)\n        *   U-turn (Physical)\n        *   Draco Meteor (Special, -2 SpA)\n        *   Shadow Ball (Special, -2 SpA)\n        *   Thunderbolt (Special, -2 SpA)\n        *   Fire Blast (Special, -2 SpA)\n\n    *   If it uses Dragon Darts, Gholdengo takes a hit.\n    *   If it uses Phantom Force, Gholdengo is safe for one turn.\n    *   If it uses U-turn, Gholdengo takes a hit and the opponent switches.\n    *   If it uses a special move, Gholdengo takes negligible damage.\n\n    *   Shadow Ball is the best move.\n\n    *   Wait, I just noticed the \"Speed\" section says \"your gholdengo 106 vs opposing dragapult 145-213\". This is definitely comparing base speeds or something weird, because Gholdengo's current speed is not 106 if it has a Choice Scarf. It should be 106 * 1.5 = 159 (if max speed).\n    *   Actually, the \"Speed\" section in these prompts often shows the base speed or the current speed without the item's multiplier if it's not yet applied in the text. But it says \"it moves first\", which is the definitive part.\n\n    *   Regardless, Shadow Ball is the best move.\n\n    *   Plan: Use Shadow Ball to damage/KO the -2 SpA Dragapult.\n    *   Next: Depending on the result, continue with Gholdengo or switch to Kingambit.\n\n    *   Wait, if I use Shadow Ball and it doesn't KO, and the opponent uses U-turn, I'm locked into Shadow Ball.\n    *   But Shadow Ball is the only move that hits Dragapult for super effective damage.\n    *   If I use Make It Rain, it's not very effective.\n    *   If I use Thunderbolt, it's not very effective.\n    *   If I use Trick, I might lose my scarf.\n\n    *   Shadow Ball is the correct play.",
+      "note": "",
+      "tokens": 4161,
+      "latency_ms": 70629,
+      "cost_usd": 0.00120207,
+      "probabilities": null
+    },
+    {
+      "turn": 2,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "61% SWITCH: toxapex, 39% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 1831,
+      "latency_ms": 506,
+      "cost_usd": 7.6902e-05,
+      "probabilities": {
+        "SWITCH: toxapex": 0.6095,
+        "SWITCH: incineroar": 0.3905
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "53% SWITCH: incineroar, 26% MOVE: toxicspikes, 11% MOVE: toxic",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2146,
+      "latency_ms": 616,
+      "cost_usd": 9.0132e-05,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.2602,
+        "MOVE: toxic": 0.1102,
+        "MOVE: recover": 0.0254,
+        "MOVE: sludgebomb": 0.0723,
+        "SWITCH: incineroar": 0.5319
+      }
+    },
+    {
+      "turn": 3,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "shadowball",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is locked into Shadow Ball due to Choice Scarf. Toxapex is a wall, but Shadow Ball is neutral. I'll use Shadow Ball to chip away or hit a switch-in, keeping Kingambit as my late-game cleaner.",
+      "hidden_reasoning": "*   My Gholdengo is active, holding a Choice Scarf.\n    *   Opponent's Toxapex is active.\n    *   My Dragapult is fainted.\n    *   My Kingambit is healthy.\n    *   Opponent's Dragapult is fainted.\n    *   Opponent has one more Pokémon to bring in (Incineroar, Scizor, Rotom-Wash, or Garchomp).\n\n    *   Gholdengo's moves: Make It Rain (Steel), Shadow Ball (Ghost), Thunderbolt (Electric), Trick (Psychic).\n    *   Toxapex's typing: Poison/Water.\n    *   Gholdengo's Steel moves (Make It Rain) are resisted by Toxapex (Poison/Water resists Steel).\n    *   Gholdengo's Ghost moves (Shadow Ball) are neutral.\n    *   Gholdengo's Electric moves (Thunderbolt) are super effective against Water.\n    *   Toxapex is notoriously bulky and often uses Scald, Toxic, Recover, and Haze.\n\n    *   Gholdengo is locked into Shadow Ball from the previous turn.\n    *   Wait, the battle log says: \"Your Gholdengo used Shadow Ball... Opposing Dragapult fainted.\"\n    *   Since Gholdengo is holding a Choice Scarf, it is now locked into Shadow Ball.\n\n    *   Shadow Ball vs. Toxapex: Neutral damage.\n    *   Toxapex is very bulky. Shadow Ball won't do much.\n    *   Toxapex likely has Recover and Scald.\n    *   If I stay in with Gholdengo, I'm just chipping away at a wall.\n    *   If I switch to Kingambit, Kingambit is Steel/Dark. Toxapex's main attacks (Scald, Toxic) are problematic. Scald is neutral, Toxic is resisted (Steel). However, Kingambit is slow and Toxapex is a wall.\n\n    *   Wait, I can't use Thunderbolt because I'm locked into Shadow Ball.\n    *   If I switch to Kingambit, I can potentially set up Swords Dance if Toxapex doesn't have a strong attack or if I can tank it.\n    *   But Toxapex is a great switch-in to Gholdengo.\n    *   Actually, Gholdengo is locked into Shadow Ball. Shadow Ball does very little to Toxapex.\n    *   Switching to Kingambit allows me to potentially use Swords Dance or Kowtow Cleave/Iron Head.\n    *   However, Kingambit is also not great against Toxapex (Toxapex resists Iron Head and is neutral to Kowtow Cleave).\n\n    *   Wait, let's look at the legal actions:\n        1. MOVE: shadowball\n        2. SWITCH: kingambit\n\n    *   If I use Shadow Ball, I do minimal damage.\n    *   If I switch to Kingambit, I'm bringing in my last Pokémon.\n    *   Is there a better play?\n    *   Toxapex is a wall. Gholdengo is locked into Shadow Ball.\n    *   If I switch to Kingambit, I can potentially use Swords Dance.\n    *   But if the opponent switches to Incineroar or Garchomp, Kingambit might be in trouble (though Kingambit is strong).\n    *   Actually, Gholdengo is the only one who can potentially threaten Toxapex with Thunderbolt, but it's locked into Shadow Ball.\n\n    *   Let's evaluate the damage of Shadow Ball on Toxapex. It's neutral. Toxapex has high SpD. It won't do much.\n    *   Switching to Kingambit: Kingambit can take a hit from Toxapex (Scald) and potentially set up.\n    *   But if I switch now, I lose the Choice Scarf momentum.\n    *   Wait, if I use Shadow Ball, I'm just wasting a turn.\n    *   If I switch to Kingambit, I can use Swords Dance.\n    *   Let's consider the opponent's remaining team: Incineroar, Scizor, Rotom-Wash, Garchomp.\n    *   Kingambit is great against Scizor and Garchomp (if it doesn't have Fire Fang/Stone Edge). It's okay against Incineroar (Sucker Punch).\n    *   Toxapex is the wall.\n\n    *   If I stay in and use Shadow Ball, I do a bit of damage.\n    *   If I switch to Kingambit, I can potentially set up.\n    *   Given Gholdengo is locked into Shadow Ball, it's not doing much to Toxapex.\n    *   Switching to Kingambit seems more proactive.\n\n    *   Wait, let me double-check the lock.\n    *   Turn 2: \"Your Gholdengo used Shadow Ball... Opposing Dragapult fainted.\"\n    *   Yes, Gholdengo is locked into Shadow Ball.\n\n    *   Is there any reason to keep Gholdengo in?\n    *   Maybe to bait a switch? If the opponent switches Toxapex out, I might hit the incoming Pokémon with a strong Shadow Ball.\n    *   If they switch to Incineroar, Shadow Ball is neutral.\n    *   If they switch to Garchomp, Shadow Ball is neutral.\n    *   If they switch to Rotom-Wash, Shadow Ball is neutral.\n    *   If they switch to Scizor, Shadow Ball is neutral.\n\n    *   Actually, switching to Kingambit now might be premature. If I use Shadow Ball, I might force the opponent to switch Toxapex out if they fear I'll switch to Kingambit and set up.\n    *   But Toxapex is designed to wall Gholdengo.\n    *   Let's look at the HP: Gholdengo is at 66%.\n    *   If I switch to Kingambit, I have a full-HP Kingambit.\n    *   Toxapex's moves are likely Scald, Recover, Toxic, Haze.\n    *   Kingambit is immune to Toxic. Scald can burn, which is bad.\n\n    *   Let's try using Shadow Ball once to see if they switch. If they stay in, I'll switch to Kingambit. If they switch, I might get a hit.\n    *   Actually, Shadow Ball on Toxapex is very weak.\n    *   Let's switch to Kingambit. Kingambit can potentially set up Swords Dance while Toxapex is out, as Toxapex doesn't have a lot of offensive pressure (unless it has something weird).\n\n    *   Wait, if I switch to Kingambit, and the opponent switches to Incineroar, I'm in a bad spot.\n    *   But if I stay in with Gholdengo and use Shadow Ball, and they switch to Incineroar, I hit Incineroar with Shadow Ball.\n\n    *   Let's think: Gholdengo is locked into Shadow Ball.\n    *   Toxapex is a wall.\n    *   If I use Shadow Ball, I do minimal damage.\n    *   If I switch to Kingambit, I can potentially set up.\n    *   But Kingambit is my last Pokémon. I should be careful.\n\n    *   Let's use Shadow Ball. It's a neutral hit. It's better than switching and potentially getting into a bad matchup if the opponent predicts the switch.\n\n    *   Wait, if I use Shadow Ball, and the opponent uses Recover, I've wasted a turn.\n    *   If I switch to Kingambit, I can use Swords Dance.\n    *   Toxapex's only way to stop Swords Dance is Haze.\n    *   If Toxapex has Haze, Kingambit can't set up.\n    *   If Toxapex doesn't have Haze, Kingambit can get to +2 or +6.\n\n    *   Let's consider the opponent's team again: Toxapex, Incineroar, Scizor, Rotom-Wash, Garchomp, Dragapult.\n    *   This is a very standard bulky core.\n    *   Gholdengo is locked into Shadow Ball.\n    *   I'll use Shadow Ball. It's the safest play to see what Toxapex does.\n\n    *   Wait, I just realized: Gholdengo is Choice Scarfed. It's fast.\n    *   Toxapex is slow.\n    *   Shadow Ball will do some damage.\n    *   Let's just go with Shadow Ball.\n\n    *   Wait, I just noticed the legal actions:\n        1. MOVE: shadowball\n        2. SWITCH: kingambit\n\n    *   If I use Shadow Ball, I'm locked into it.\n    *   If I switch to Kingambit, I'm not locked.\n    *   Let's use Shadow Ball.\n\n    *   Wait, let me reconsider. If I switch to Kingambit, I can use Swords Dance.\n    *   Toxapex is a great opportunity to set up if it doesn't have Haze.\n    *   But if it does have Haze, I'm wasting turns.\n    *   And if the opponent switches to Incineroar, Kingambit is at a disadvantage.\n\n    *   Let's stick with Shadow Ball. It's a neutral hit and keeps Kingambit healthy for later.\n\n    *   Wait, I just thought of something. If I use Shadow Ball and the opponent switches to Incineroar, I hit Incineroar. If I switch to Kingambit and the opponent switches to Incineroar, I'm in a bad spot.\n    *   So Shadow Ball is better for scouting.\n\n    *   Wait, let me check the damage again. Shadow Ball on Toxapex.\n    *   Gholdengo SpA 203. Toxapex SpD 145-213.\n    *   It's not going to do much, but it's better than switching into a potential Incineroar.\n\n    *   Final decision: Shadow Ball.\n\n    *   Wait, one more thing. If I use Shadow Ball, and the opponent uses Recover, I've done nothing.\n    *   But if I switch to Kingambit, I can use Swords Dance.\n    *   Actually, let's try Shadow Ball.\n\n    *   Wait, I just realized I'm locked into Shadow Ball. If I want to use any other move, I *must* switch.\n    *   If I switch to Kingambit, I can use any of its moves.\n    *   If I stay in, I *must* use Shadow Ball.\n    *   Since Shadow Ball is not very effective against Toxapex, switching to Kingambit to potentially set up Swords Dance is a strong play.\n    *   But Kingambit is my last Pokémon.\n    *   Let's use Shadow Ball. It's safer.\n\n    *   Wait, let's look at the notes. \"I'll save Kingambit as my late-game cleaner.\"\n    *   If I switch him in now, he's not a late-game cleaner anymore.\n    *   So I should stay in with Gholdengo as long as possible.\n\n    *   Okay, Shadow Ball it is.\n\n    *   Wait, I just noticed the opponent's team again. They have Incineroar, Scizor, Rotom-Wash, Garchomp.\n    *   If I use Shadow Ball and they switch to Incineroar, I hit Incineroar.\n    *   If I use Shadow Ball and they switch to Garchomp, I hit Garchomp.\n    *   If I use Shadow Ball and they switch to Rotom-Wash, I hit Rotom-Wash.\n    *   If I use Shadow Ball and they switch to Scizor, I hit Scizor.\n    *   All of these are neutral or better.\n    *   So Shadow Ball is a good move regardless of whether they switch or stay in.\n\n    *   Let's go.\n\n    *   Wait, one last check. Is there any other move?\n    *   No, only Shadow Ball and Switch to Kingambit.\n    *   Shadow Ball.",
+      "note": "",
+      "tokens": 5323,
+      "latency_ms": 74535,
+      "cost_usd": 0.00177948,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "40% MOVE: partingshot, 33% SWITCH: toxapex, 10% MOVE: taunt",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2207,
+      "latency_ms": 589,
+      "cost_usd": 9.2694e-05,
+      "probabilities": {
+        "MOVE: partingshot": 0.4047,
+        "MOVE: willowisp": 0.0803,
+        "MOVE: taunt": 0.0992,
+        "MOVE: roar": 0.0842,
+        "SWITCH: toxapex": 0.3316
+      }
+    },
+    {
+      "turn": 4,
+      "role": "p2",
+      "action": {
+        "kind": "switch",
+        "target": "Kingambit",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is locked into Shadow Ball, which is resisted by Incineroar (Fire/Dark). Staying in provides minimal chip damage and leaves Gholdengo vulnerable to Flare Blitz or Knock Off. Switching to Kingambit allows me to use neutral moves (Kowtow Cleave, Sucker Punch) and potentially capitalize on a U-turn to Toxapex.",
+      "hidden_reasoning": "*   My Gholdengo is locked into Shadow Ball (Choice Scarf).\n    *   Opponent's Incineroar is active (79% HP).\n    *   Opponent's team: Incineroar, Toxapex, Dragapult (fainted).\n    *   My team: Gholdengo, Kingambit, Dragapult (fainted).\n    *   Gholdengo's Shadow Ball is not very effective against Incineroar.\n    *   Incineroar is a Fire/Dark type. It likely has Flare Blitz and Knock Off.\n    *   Kingambit is Steel/Dark. It is weak to Fire and Fighting.\n\n    *   Gholdengo is not doing much damage with Shadow Ball to Incineroar.\n    *   If I stay in, Incineroar will likely use a Fire-type move (Flare Blitz) or Knock Off.\n    *   If I switch to Kingambit, Incineroar might use Flare Blitz, which would be devastating.\n    *   However, Gholdengo is already damaged (66%).\n    *   Wait, Incineroar is a Fire/Dark type. Shadow Ball is Ghost, which is neutral to Dark but resisted by some types? No, Ghost is neutral to Dark. Wait, the log says \"It was not very effective\". Let's check: Ghost vs Dark is neutral. Wait, Incineroar is Fire/Dark. Ghost is neutral to Fire and neutral to Dark. Why was it \"not very effective\"?\n    *   Wait, Ghost is neutral to Dark. Let me re-check. Ghost vs Dark: Neutral. Ghost vs Fire: Neutral.\n    *   Wait, the log says \"Your Gholdengo used Shadow Ball - It was not very effective\". This is strange. Let me re-read the types.\n    *   Incineroar: Fire/Dark. Shadow Ball: Ghost.\n    *   Wait, Ghost is *not* resisted by Fire or Dark.\n    *   Wait, maybe Incineroar has a specific ability or item? No, Intimidate.\n    *   Wait, I might be misremembering the type chart. Let me double-check.\n    *   Ghost vs Dark: Neutral.\n    *   Ghost vs Fire: Neutral.\n    *   Wait, is Incineroar's type different? No, Fire/Dark.\n    *   Is Gholdengo's move different? Shadow Ball is Ghost.\n    *   Wait, maybe the opponent switched? \"Opposing Incineroar came in... Your Gholdengo used Shadow Ball - It was not very effective\".\n    *   Wait, if it's \"not very effective\", maybe the opponent is not Incineroar? No, the log says \"Opposing Incineroar came in\".\n    *   Let me re-read the log carefully.\n    *   Turn 3:\n        - Opposing Incineroar came in\n        - Opposing Incineroar's ability: Intimidate\n        - Your Gholdengo: atk -1\n        - Your Gholdengo used Shadow Ball\n        - It was not very effective\n        - Opposing Incineroar is at 79%\n    *   This is very weird. Ghost is neutral to Fire/Dark.\n    *   Wait, maybe I'm wrong about the type chart. Let me check again.\n    *   Ghost is resisted by... nothing? No, Ghost is resisted by Normal (immune).\n    *   Wait, is Incineroar's type different? No.\n    *   Is it possible the opponent has a different Pokémon? No, it says Incineroar.\n    *   Wait, I'll just focus on the current situation. Gholdengo is locked into Shadow Ball. Incineroar is a threat.\n    *   If I switch to Kingambit, I risk a Flare Blitz.\n    *   If I stay in, I'm just chipping away with a move that is apparently \"not very effective\" (even if the game says so, I should trust the log).\n    *   Actually, if Shadow Ball is \"not very effective\", it means the damage is low.\n    *   Incineroar's most likely moves: Flare Blitz, Knock Off, Fake Out, U-turn.\n    *   Gholdengo is a Steel/Ghost type. It's weak to Fire and Ghost/Dark.\n    *   Incineroar's Flare Blitz will hit Gholdengo hard. Knock Off will also hit Gholdengo hard.\n    *   Kingambit is also weak to Fire.\n    *   Toxapex is a huge wall.\n    *   If I switch to Kingambit now, I'm just swapping one Fire-weak Pokémon for another.\n    *   But Gholdengo is locked into Shadow Ball.\n    *   If I switch to Kingambit, I can potentially use Sucker Punch or Kowtow Cleave.\n    *   Wait, if I switch to Kingambit, Incineroar might U-turn out to Toxapex.\n    *   If I stay in with Gholdengo, I'm just taking damage.\n    *   Let's consider the match-up. I have Kingambit and Gholdengo left. Opponent has Incineroar and Toxapex.\n    *   Kingambit is the best answer to Toxapex (Iron Head), but Incineroar destroys Kingambit.\n    *   Gholdengo is also weak to Incineroar.\n    *   The only way to beat Incineroar is... well, I don't have a strong answer. Kingambit's Kowtow Cleave is super effective against Incineroar (Dark vs Dark is neutral, but Kowtow Cleave is Dark, Incineroar is Fire/Dark... wait, Dark vs Dark is neutral).\n    *   Wait, Dark is super effective against Psychic and Ghost. Incineroar is Fire/Dark. Dark moves are neutral to Incineroar.\n    *   Wait, Kowtow Cleave is Dark. Incineroar is Fire/Dark. Dark vs Dark is neutral.\n    *   Wait, I'm confused. Let's re-evaluate.\n    *   Kingambit's moves: Kowtow Cleave (Dark), Sucker Punch (Dark), Iron Head (Steel), Swords Dance.\n    *   Incineroar's types: Fire/Dark.\n    *   Steel is resisted by Fire. Dark is neutral to Dark.\n    *   So Kingambit doesn't have a super effective move against Incineroar.\n    *   Gholdengo's moves: Make It Rain (Steel), Shadow Ball (Ghost), Thunderbolt (Electric), Trick.\n    *   Steel is resisted by Fire. Ghost is neutral. Electric is neutral.\n    *   Wait, Gholdengo's Thunderbolt is neutral to Incineroar. Shadow Ball is neutral.\n    *   Wait, why did the log say \"not very effective\"? Maybe Incineroar has a specific set or I'm just wrong about the type chart.\n    *   Regardless, Gholdengo is locked into Shadow Ball.\n    *   If I switch to Kingambit, I'm just putting another Fire-weak Pokémon in.\n    *   But if I stay in, I'm just taking hits.\n    *   Is there any other option? No.\n    *   Let's think about the long game. I need to take out Incineroar to let Kingambit sweep Toxapex.\n    *   If I switch to Kingambit, I can use Sucker Punch to potentially chip Incineroar or use Swords Dance if I predict a switch.\n    *   But Incineroar is likely to use Flare Blitz.\n    *   Wait, if I switch to Kingambit, and Incineroar uses Flare Blitz, Kingambit is almost dead.\n    *   If I stay in with Gholdengo, and Incineroar uses Flare Blitz, Gholdengo is almost dead.\n    *   Is there any reason to prefer one over the other?\n    *   Kingambit has Supreme Overlord. With Dragapult fainted, it has a boost.\n    *   Gholdengo is locked into Shadow Ball.\n    *   If I switch to Kingambit, I can at least use a move that might do more damage or use Sucker Punch.\n    *   Wait, if I switch to Kingambit, Incineroar might U-turn.\n    *   Let's try switching to Kingambit. It's the only other Pokémon I have.\n\n    *   Wait, let me re-read the \"not very effective\" part.\n    *   Ghost vs Fire/Dark.\n    *   Ghost is neutral to Fire. Ghost is neutral to Dark.\n    *   Wait... is Ghost resisted by Dark?\n    *   Let me check: Ghost is *not* resisted by Dark. Dark is *immune* to Psychic and resists Ghost? No, Dark is *weak* to Bug, Fighting, and Fairy. Dark *resists* Ghost and Dark.\n    *   AHA! Dark resists Ghost!\n    *   Okay, so Shadow Ball (Ghost) is resisted by Incineroar (Fire/Dark). That's why it was \"not very effective\".\n    *   Now it makes sense.\n\n    *   So Gholdengo is locked into a move that is resisted by Incineroar.\n    *   Kingambit is also weak to Fire.\n    *   But Kingambit can use Kowtow Cleave or Sucker Punch, which are neutral.\n    *   Wait, if I switch to Kingambit, I'm just swapping one Pokémon that's weak to Fire for another.\n    *   But Gholdengo is locked into a resisted move.\n    *   If I switch to Kingambit, I can at least use a neutral move.\n    *   Is there any other play?\n    *   If I stay in, I'm just wasting Gholdengo's HP.\n    *   If I switch to Kingambit, I can potentially use Sucker Punch to deal damage.\n    *   Let's switch to Kingambit.\n\n    *   Wait, if I switch to Kingambit, and Incineroar uses Flare Blitz, Kingambit takes massive damage.\n    *   If I stay in, Gholdengo takes massive damage.\n    *   Since Gholdengo is already at 66%, it might die faster.\n    *   Kingambit is at 100%.\n    *   Let's switch to Kingambit to preserve Gholdengo for later (maybe to hit Toxapex with Make It Rain if I can switch moves, but I'm locked into Shadow Ball).\n    *   Wait, Gholdengo is locked into Shadow Ball. Shadow Ball is neutral to Toxapex.\n    *   Kingambit's Iron Head is super effective against Toxapex.\n    *   So I definitely want Kingambit for Toxapex.\n    *   I should try to keep Kingambit healthy.\n    *   If I switch to Kingambit now, I risk its health.\n    *   But if I stay in with Gholdengo, I'm just using a resisted move.\n    *   Wait, if I stay in and Gholdengo dies, I'm left with only Kingambit.\n    *   If I switch to Kingambit and it takes a Flare Blitz, I'm in a similar position.\n    *   Let's try switching to Kingambit. It's better to have a Pokémon that can actually hit the opponent.\n\n    *   Wait, one more thing. Incineroar might use U-turn.\n    *   If I switch to Kingambit, and Incineroar U-turns to Toxapex, I'm in a great position (Kingambit vs Toxapex).\n    *   If I stay in with Gholdengo, and Incineroar U-turns to Toxapex, I'm still locked into Shadow Ball.\n    *   So switching to Kingambit seems like the better play.\n\n    *   Wait, let me double-check the speed.\n    *   Gholdengo (Choice Scarf) is likely faster than Incineroar.\n    *   But Shadow Ball is resisted.\n    *   Kingambit is slower than Incineroar.\n    *   If I switch to Kingambit, Incineroar will move first.\n    *   If Incineroar uses Flare Blitz, Kingambit takes a lot of damage.\n    *   If Incineroar uses Knock Off, Kingambit takes some damage.\n    *   If Incineroar uses U-turn, I'm in a good spot.\n\n    *   Let's consider the alternative: stay in and use Shadow Ball.\n    *   It does very little damage. Incineroar will then hit Gholdengo with Flare Blitz or Knock Off.\n    *   Gholdengo is already damaged.\n    *   It seems better to switch to Kingambit and hope for a U-turn or just take the hit with a healthier Pokémon.\n\n    *   Wait, if I switch to Kingambit, I can use Sucker Punch next turn.\n    *   Sucker Punch is a priority move.\n    *   That's a way to deal damage to Incineroar without taking a hit (if Incineroar attacks).\n\n    *   Plan: Switch to Kingambit. If Incineroar U-turns, I'm happy. If it attacks, I'll use Sucker Punch or Kowtow Cleave.\n\n    *   Wait, let me check the \"not very effective\" again.\n    *   Ghost vs Fire/Dark.\n    *   Ghost is neutral to Fire. Ghost is resisted by Dark.\n    *   So it's 1x * 0.5x = 0.5x. Yes, \"not very effective\".\n\n    *   Okay, switching to Kingambit is the move.\n\n    *   Wait, one last check. Does Kingambit have any other options?\n    *   No, just switching.\n\n    *   Let's do it.\n\n    *   Wait, I just realized something. Gholdengo is locked into Shadow Ball.\n    *   If I switch to Kingambit, and Incineroar uses Flare Blitz, Kingambit will be heavily damaged.\n    *   If I stay in, Gholdengo will be heavily damaged.\n    *   Is there any way to avoid the Fire move?\n    *   No, I only have Kingambit and Gholdengo. Both are weak to Fire.\n    *   So I have to take the hit.\n    *   Switching to Kingambit is better because it can actually fight back with neutral moves.\n\n    *   Wait, I just thought of something. What if Incineroar uses Fake Out?\n    *   Fake Out is a priority move. It would flinch Gholdengo or Kingambit.\n    *   If I switch to Kingambit, Fake Out will hit Kingambit.\n    *   If I stay in, Fake Out will hit Gholdengo.\n    *   Either way, I'm taking a hit.\n\n    *   Let's go with SWITCH: kingambit.",
+      "note": "",
+      "tokens": 6088,
+      "latency_ms": 103588,
+      "cost_usd": 0.002133255,
+      "probabilities": null
+    },
+    {
+      "turn": 4,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Toxapex",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 5,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "toxicspikes",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "48% MOVE: toxicspikes, 38% MOVE: toxic, 7% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2453,
+      "latency_ms": 843,
+      "cost_usd": 0.000103026,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.4841,
+        "MOVE: toxic": 0.3814,
+        "MOVE: recover": 0.0242,
+        "MOVE: sludgebomb": 0.0445,
+        "SWITCH: incineroar": 0.0658
+      }
+    },
+    {
+      "turn": 5,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "swordsdance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is at -1 Atk due to Intimidate and Parting Shot. Toxapex is a defensive wall. I need to regain offensive pressure to be a threat to Toxapex and the remaining Incineroar. Swords Dance will bring me to +1 Atk, offsetting the debuffs.",
+      "hidden_reasoning": "*   My Kingambit is active, but has -1 Attack and -1 Special Attack due to Incineroar's Intimidate and Parting Shot.\n    *   Opponent's Toxapex is active.\n    *   Opponent's team: Toxapex, Incineroar (79%), Dragapult (fainted).\n    *   My team: Kingambit, Gholdengo (66%), Dragapult (fainted).\n    *   Kingambit has Supreme Overlord (1 ally fainted = +10% power).\n    *   Kingambit has Life Orb.\n\n    *   Toxapex is a very defensive Pokémon. It likely has Recover, Haze, Toxic, and Scald/Surf.\n    *   Kingambit's current Attack is reduced. Using Kowtow Cleave or Iron Head won't do much damage.\n    *   Swords Dance is a great option here. Toxapex is slow and doesn't have high offensive pressure against Kingambit (unless it has a surprising move).\n    *   If I use Swords Dance, I'll go from -1 Atk to +1 Atk.\n    *   If I switch to Gholdengo, I'm back to a Choice-locked Shadow Ball, which Toxapex resists/neutralizes (Ghost is neutral, but Toxapex is very bulky).\n\n    *   Toxapex might use Toxic, Haze, or Recover.\n    *   Haze would reset my Swords Dance boost.\n    *   Toxic would poison me.\n    *   Recover just stalls.\n    *   However, Kingambit is the best answer to Incineroar and can potentially break through Toxapex if boosted.\n\n    *   If I Swords Dance, I offset the Intimidate/Parting Shot and become a threat.\n    *   If Toxapex uses Haze, I've wasted a turn, but I'm still in a better position than switching to Gholdengo (who is locked into Shadow Ball).\n    *   If Toxapex uses Toxic, I'm poisoned, but I'm still +1 Atk.\n    *   If I use Kowtow Cleave now, it's -1 Atk and won't do much.\n\n    *   Toxapex is slow. Kingambit is likely faster or similar.\n    *   Swords Dance is the most proactive play to regain momentum.\n\n    *   Wait, Gholdengo is Choice Scarf. If I switch back, I'm locked into Shadow Ball. Shadow Ball is neutral on Toxapex.\n    *   Kingambit is the better pivot here to set up.\n\n    *   Toxapex often carries Haze. If it Hazes, Swords Dance is negated.\n    *   But without a boost, Kingambit does negligible damage to Toxapex.\n    *   The goal is to eventually hit Incineroar or Toxapex hard.\n    *   Let's try Swords Dance.\n\n    *   Kingambit: -1 Atk.\n    *   Swords Dance: +2 Atk.\n    *   Result: +1 Atk.\n    *   Supreme Overlord: +10% damage.\n    *   Life Orb: 1.3x damage.\n\n    *   Toxapex is Poison/Water.\n    *   Kowtow Cleave (Dark) is neutral.\n    *   Iron Head (Steel) is not very effective.\n    *   Sucker Punch (Dark) is neutral.\n\n    *   If I Swords Dance, I prepare to hit Incineroar (who is already weakened) or Toxapex.\n    *   If Toxapex switches back to Incineroar, I'm +1 and can hit hard.\n\n    *   Toxapex is a wall. I need a boost to do any real damage.\n    *   Swords Dance is the best way to recover from the Intimidate/Parting Shot.\n\n    *   Toxapex might use Toxic.\n    *   Toxapex might use Haze.\n    *   Toxapex might use Recover.\n    *   Toxapex might use Scald (burn risk).\n    *   Even with these risks, Swords Dance is the most logical move to regain offensive pressure.\n\n    *   Wait, if Toxapex uses Haze, I'm back to -1? No, Haze resets all stat changes to 0. So I'd go from +1 back to 0. That's actually an improvement from -1.\n\n    *   Let's go with Swords Dance.",
+      "note": "",
+      "tokens": 3934,
+      "latency_ms": 40886,
+      "cost_usd": 0.000939465,
+      "probabilities": null
+    },
+    {
+      "turn": 6,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "toxic",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "60% MOVE: toxic, 24% MOVE: toxicspikes, 10% SWITCH: incineroar",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2512,
+      "latency_ms": 587,
+      "cost_usd": 0.000105504,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.2362,
+        "MOVE: toxic": 0.6009,
+        "MOVE: recover": 0.0256,
+        "MOVE: sludgebomb": 0.0344,
+        "SWITCH: incineroar": 0.1028
+      }
+    },
+    {
+      "turn": 6,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is at +1 Atk. Toxapex is a defensive wall and likely carries Haze and Toxic. Further Swords Dance is risky. Kowtow Cleave is the strongest neutral option to chip Toxapex. Gholdengo is locked into Shadow Ball, which is also neutral. I will prioritize chipping Toxapex with Kingambit.",
+      "hidden_reasoning": "*   My Kingambit is at +1 Attack (after Swords Dance).\n    *   Opponent's Toxapex is active.\n    *   Opponent's Incineroar is at 79% HP.\n    *   Opponent's Dragapult is fainted.\n    *   My Dragapult is fainted.\n    *   My Gholdengo is at 66% HP.\n    *   Toxic Spikes are on my side.\n\n    *   Toxapex is a massive wall. It's Poison/Water.\n    *   Kingambit's moves:\n        *   Kowtow Cleave: Neutral damage.\n        *   Sucker Punch: Priority, neutral damage.\n        *   Iron Head: Not very effective.\n        *   Swords Dance: Already at +1. Another SD would put me at +3.\n    *   Toxapex's likely moves: Toxic, Recover, Haze, Scald/Surf, Baneful Foetid, etc.\n    *   If Toxapex uses Haze, my SD boosts are gone.\n    *   If Toxapex uses Toxic, Kingambit is poisoned.\n\n    *   Kingambit is a strong attacker, but Toxapex is designed to stop it.\n    *   Gholdengo is Steel/Ghost. It resists Poison and is neutral to Water.\n    *   Gholdengo's moves: Make It Rain (Steel), Shadow Ball (Ghost), Thunderbolt (Electric), Trick (Psychic).\n    *   Thunderbolt is super effective against Toxapex.\n    *   Make It Rain is not very effective.\n    *   Shadow Ball is neutral.\n\n    *   Option 1: Attack with Kingambit (Kowtow Cleave). Toxapex will likely Recover or Haze.\n    *   Option 2: Use Swords Dance again. If Toxapex Hazes, it's a waste.\n    *   Option 3: Switch to Gholdengo. Gholdengo can hit Toxapex with Thunderbolt.\n\n    *   Toxapex is very slow. Kingambit is likely faster (72 vs 49-95, but usually Toxapex is very slow).\n    *   If I switch to Gholdengo, Toxapex might use Toxic or a Water move. Gholdengo is immune to Toxic.\n    *   Gholdengo's Thunderbolt is the best way to put pressure on Toxapex.\n\n    *   Wait, Gholdengo has a Choice Scarf. It is locked into Shadow Ball (from previous turns).\n    *   Wait, let me re-read the battle log.\n    *   Turn 2: \"Your Gholdengo used Shadow Ball\".\n    *   Turn 3: \"Your Gholdengo used Shadow Ball\".\n    *   Wait, the notes say \"Gholdengo is locked into Shadow Ball due to Choice Scarf\".\n    *   If Gholdengo is locked into Shadow Ball, Thunderbolt is not an option unless I switch out and back in.\n    *   Shadow Ball is neutral against Toxapex.\n\n    *   Kingambit is at +1 Atk.\n    *   Kowtow Cleave is the strongest neutral move.\n    *   Toxapex's main threat is Toxic and Haze.\n    *   If I use Kowtow Cleave, I chip Toxapex.\n    *   If I use Swords Dance again, I reach +3 Atk. This makes me a massive threat to Incineroar and Toxapex (though Toxapex can Haze).\n\n    *   Toxapex often runs Haze to stop setup sweepers like Kingambit.\n    *   If I use SD again, and it Hazes, I lose the boost.\n    *   If I use Kowtow Cleave, I do some damage.\n    *   If I switch to Gholdengo, I can use Shadow Ball (neutral).\n\n    *   Kingambit is the best win condition here (Supreme Overlord + SD).\n    *   Toxapex is the primary wall.\n    *   Kowtow Cleave is the most reliable damage.\n    *   Let's see: Kingambit (+1 Atk, Life Orb, Supreme Overlord) vs Toxapex.\n    *   Kowtow Cleave: 85 BP * 1.3 (Life Orb) * 1.2 (Supreme Overlord) * 1.5 (+1 Atk) = ~198 effective BP.\n    *   Toxapex has huge Defense. It will take a chunk, but not a lot.\n\n    *   If I switch to Gholdengo, I'm using Shadow Ball.\n    *   If I stay with Kingambit, I can either attack or set up more.\n    *   Given Toxapex's likelihood of Haze, further SD is risky.\n    *   Kowtow Cleave is the safest bet to start chipping.\n\n    *   Toxapex might use Toxic. Kingambit is not immune.\n    *   Toxapex might use Recover.\n    *   Toxapex might use Haze.\n    *   Toxapex might use Scald (burn risk).\n\n    *   If I switch to Gholdengo, I avoid Toxic and Burn.\n    *   Gholdengo's Shadow Ball is neutral.\n    *   But Gholdengo is locked into Shadow Ball.\n\n    *   Let's stick with Kingambit and use Kowtow Cleave. It's the most direct way to put pressure on the opponent's remaining team.\n\n    *   Wait, if I use Kowtow Cleave, I'm doing neutral damage.\n    *   If I use Sucker Punch, I'm doing neutral damage with priority.\n    *   Toxapex is slow, so priority isn't needed.\n\n    *   Is there any other option?\n    *   Switching to Gholdengo: Gholdengo is immune to Toxic. If Toxapex tries to poison Kingambit, Gholdengo is a safe switch.\n    *   However, Gholdengo is locked into Shadow Ball.\n\n    *   Let's use Kowtow Cleave. It's the strongest move available.\n\n    *   Wait, let me double-check the stats.\n    *   Kingambit Atk: 205.\n    *   Toxapex Def: 154-224.\n    *   Kowtow Cleave will do decent damage.\n\n    *   One more thing: Toxapex might be holding Leftovers.\n    *   If I use Kowtow Cleave, I'm chipping it.\n\n    *   Let's consider the opponent's side. They have Incineroar and Toxapex.\n    *   Incineroar is a threat to Kingambit (Fire/Dark).\n    *   Toxapex is a wall.\n    *   If I can break Toxapex, Incineroar is the only thing left.\n    *   Kingambit can beat Incineroar with Sucker Punch or Kowtow Cleave (though Incineroar resists Dark, wait... Incineroar is Fire/Dark, so Dark moves are not very effective).\n    *   Wait, Incineroar is Fire/Dark. Dark moves (Kowtow Cleave, Sucker Punch) are NOT very effective.\n    *   Iron Head is neutral.\n    *   Wait, Kingambit's best move against Incineroar is Iron Head.\n    *   Toxapex is Poison/Water. Kowtow Cleave is neutral. Iron Head is not very effective.\n\n    *   So:\n        *   Vs Toxapex: Kowtow Cleave (Neutral)\n        *   Vs Incineroar: Iron Head (Neutral)\n\n    *   If I use Kowtow Cleave now, I'm chipping Toxapex.\n\n    *   Wait, I just noticed something. Gholdengo is locked into Shadow Ball. Shadow Ball is neutral against Toxapex and Incineroar.\n    *   If I switch to Gholdengo, I can chip both.\n\n    *   But Kingambit is my main powerhouse. I should keep it healthy.\n    *   Toxapex's Toxic Spikes are already up. If I switch Gholdengo in, it's immune. If I switch Kingambit out and back in, it gets poisoned.\n\n    *   Let's use Kowtow Cleave.\n\n    *   Wait, let me re-evaluate the \"locked into Shadow Ball\" part.\n    *   Turn 2: \"Your Gholdengo used Shadow Ball\"\n    *   Turn 3: \"Your Gholdengo used Shadow Ball\"\n    *   Yes, it's definitely locked.\n\n    *   Final decision: Kowtow Cleave. It's the most powerful move Kingambit has for Toxapex.\n\n    *   Wait, one last check. Could I use Swords Dance again?\n    *   If Toxapex doesn't have Haze, +3 Atk Kingambit is terrifying.\n    *   But Toxapex almost always has Haze.\n    *   Kowtow Cleave is safer.\n\n    *   Actually, let's look at the damage.\n    *   Kingambit +1 Atk, Life Orb, Supreme Overlord (1 ally fainted).\n    *   Kowtow Cleave vs Toxapex.\n    *   It'll do some damage.\n\n    *   Let's go with Kowtow Cleave.\n\n    *   Wait, I just realized: Toxapex is Poison/Water.\n    *   Kowtow Cleave is Dark.\n    *   Dark is neutral to Poison/Water.\n    *   Iron Head is Steel.\n    *   Steel is not very effective against Water, but super effective against Poison.\n    *   Wait, Steel vs Poison/Water:\n        *   Steel vs Poison: 2x\n        *   Steel vs Water: 0.5x\n        *   Total: 2 * 0.5 = 1x (Neutral!)\n    *   Wait, let me re-calculate.\n    *   Steel is super effective against Poison.\n    *   Steel is resisted by Water.\n    *   So Steel moves are neutral against Toxapex.\n    *   Wait, the legal actions say: \"MOVE: ironhead | Steel, Physical, power 80, 100% accuracy, not very effective on toxapex\".\n    *   Why is it \"not very effective\"?\n    *   Let me check the types again.\n    *   Toxapex: Poison/Water.\n    *   Steel vs Poison: 2x.\n    *   Steel vs Water: 0.5x.\n    *   2 * 0.5 = 1.0. It should be neutral.\n    *   Why does the game say \"not very effective\"?\n    *   Ah, I see. In some generations or specific games, the typing might be different, but in Gen 9/Showdown, Steel vs Poison/Water is neutral.\n    *   Wait, let me re-read the legal actions carefully.\n    *   \"MOVE: ironhead | Steel, Physical, power 80, 100% accuracy, not very effective on toxapex\"\n    *   If the game says it's not very effective, I should trust the game's provided info over my memory. (Wait, maybe Toxapex has an ability? No, abilities don't change type effectiveness).\n    *   Wait, I know why! Steel is not very effective against Water. Poison is weak to Steel.\n    *   Wait, 2 * 0.5 is 1.\n    *   Let me double-check the type chart.\n    *   Steel -> Poison (2x)\n    *   Steel -> Water (0.5x)\n    *   Yes, it's neutral.\n    *   Maybe the \"not very effective\" in the legal actions is a mistake in the prompt's description, or I'm misremembering.\n    *   Regardless, Kowtow Cleave is also neutral.\n    *   Kowtow Cleave (85 BP) vs Iron Head (80 BP).\n    *   Kowtow Cleave is stronger and doesn't have the \"not very effective\" label.\n\n    *   Let's use Kowtow Cleave.",
+      "note": "",
+      "tokens": 5726,
+      "latency_ms": 95124,
+      "cost_usd": 0.00173877,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "recover",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: recover, 38% SWITCH: incineroar, 9% MOVE: toxicspikes",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2651,
+      "latency_ms": 595,
+      "cost_usd": 0.000111342,
+      "probabilities": {
+        "MOVE: toxicspikes": 0.0888,
+        "MOVE: toxic": 0.0243,
+        "MOVE: recover": 0.469,
+        "MOVE: sludgebomb": 0.0382,
+        "SWITCH: incineroar": 0.3798
+      }
+    },
+    {
+      "turn": 7,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "kowtowcleave",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is +1 Atk and immune to Toxic. Toxapex is at 45% HP. I will continue using Kowtow Cleave to chip Toxapex down or force a switch to Incineroar, where Kowtow Cleave will be super effective. Gholdengo is locked into Shadow Ball, which is neutral but less effective than Kingambit's pressure here.",
+      "hidden_reasoning": "*   My Kingambit: +1 Atk, 90.3% HP, Life Orb.\n    *   Opponent's Toxapex: 45% HP, Leftovers.\n    *   Opponent's Incineroar: 79% HP.\n    *   My Gholdengo: 66% HP, Choice Scarf.\n    *   Field: Toxic Spikes on my side.\n\n    *   Toxapex is at 45%. Kowtow Cleave did significant damage last turn (from 100% to 39%? No, wait. Turn 6: Kowtow Cleave brought Toxapex to 39%, then it healed to 45%).\n    *   Toxapex's moves seen: Toxic Spikes, Toxic.\n    *   Toxapex likely has Haze, Recover, and maybe Scald or Gunk Shot.\n    *   Kingambit is immune to Toxic.\n\n    *   Kowtow Cleave is the most reliable damage.\n    *   Sucker Punch is for priority, but Toxapex might use Recover or Haze.\n    *   Iron Head is not very effective.\n    *   Swords Dance: Kingambit is already +1. Another SD would make it +3, but Toxapex might Haze it away.\n\n    *   Toxapex is a wall. If I keep attacking with Kowtow Cleave, I can eventually wear it down.\n    *   If Toxapex uses Haze, my +1 Atk is gone.\n    *   If Toxapex uses Recover, it gains HP.\n    *   If Toxapex switches to Incineroar, Incineroar will Intimidate again.\n\n    *   Kowtow Cleave is the best bet to keep pressure on Toxapex.\n    *   Sucker Punch is risky if Toxapex uses a status move.\n    *   Switching to Gholdengo is an option, but Gholdengo is locked into Shadow Ball (from Turn 2/3), which is not very effective against Toxapex (Wait, Gholdengo is Choice Scarf, but it used Shadow Ball on Turn 2 and Turn 3. It's locked into Shadow Ball). Shadow Ball on Toxapex is neutral.\n\n    *   Toxapex is at 45%. Kowtow Cleave did a good chunk.\n    *   If I use Kowtow Cleave again, I might put it in range of a KO or force a switch.\n    *   If Toxapex uses Haze, I lose my boost. If it uses Recover, it heals.\n    *   Since I'm immune to Toxic, I can stay in.\n\n    *   Toxapex is likely to use Recover or Haze.\n    *   If I use Kowtow Cleave, I continue the chip.\n    *   If I use Swords Dance, I risk Haze.\n    *   Kowtow Cleave is the safest offensive move.\n\n    *   Kingambit's Atk: +1.\n    *   Toxapex's HP: 45%.\n    *   Kowtow Cleave (85 BP) + Life Orb (1.3x) + Supreme Overlord (1.1x for 1 faint) + +1 Atk (1.5x).\n    *   Toxapex's Def is very high.\n\n    *   Toxapex is a wall. The goal is to break it or force it out.\n    *   Kowtow Cleave is the most consistent way to do this.\n\n    *   Wait, Gholdengo is Choice Scarf. It used Shadow Ball.\n    *   Toxapex is Poison/Water. Shadow Ball is neutral.\n    *   Kingambit is Steel/Dark. Kowtow Cleave is Dark (neutral).\n    *   Kingambit is better here because it's immune to Toxic and can hit harder physically.\n\n    *   Toxapex might switch to Incineroar. If I use Kowtow Cleave, it hits Incineroar for super effective damage.\n    *   If Toxapex stays in, it's just chip.\n\n    *   Toxapex is at 45%. Kowtow Cleave is the best move.\n\n    *   Wait, let's check the damage again.\n    *   Turn 6: Kowtow Cleave brought Toxapex to 39%.\n    *   Toxapex healed to 45%.\n    *   Another Kowtow Cleave should bring it back down to ~35-40%.\n\n    *   Is there any reason to switch? Gholdengo is locked into Shadow Ball. Shadow Ball on Toxapex is neutral. Gholdengo is faster. But Kingambit is immune to Toxic.\n\n    *   Is there any reason to use Sucker Punch? Only if I expect a move like Recover or Haze? No, Sucker Punch fails if the opponent uses a status move.\n\n    *   Is there any reason to use Swords Dance? If I can get to +3, I can potentially OHKO Toxapex or Incineroar. But Haze is very likely on Toxapex.\n\n    *   Decision: Kowtow Cleave.",
+      "note": "",
+      "tokens": 4286,
+      "latency_ms": 32147,
+      "cost_usd": 0.001045485,
+      "probabilities": null
+    },
+    {
+      "turn": 7,
+      "role": "p1",
+      "action": {
+        "kind": "switch",
+        "target": "Incineroar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "forced",
+      "thought": "",
+      "hidden_reasoning": "",
+      "note": "Only one legal action: played without asking.",
+      "tokens": 0,
+      "latency_ms": 0,
+      "cost_usd": 0.0,
+      "probabilities": null
+    },
+    {
+      "turn": 8,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "taunt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "67% MOVE: taunt, 13% MOVE: partingshot, 11% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2663,
+      "latency_ms": 665,
+      "cost_usd": 0.000111846,
+      "probabilities": {
+        "MOVE: partingshot": 0.133,
+        "MOVE: willowisp": 0.1068,
+        "MOVE: taunt": 0.6674,
+        "MOVE: roar": 0.0928
+      }
+    },
+    {
+      "turn": 8,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "swordsdance",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is currently +1 Atk. Incineroar is the last Pokémon and resists all of Kingambit's attacks. To make a dent, I need more power. I'll use Swords Dance to reach +3 Atk, gambling that I can survive a hit (likely Flare Blitz) to then deal massive damage even with resisted moves.",
+      "hidden_reasoning": "*   My Kingambit: 167/207 HP, +1 Atk (after Intimidate from Incineroar), -1 SpA.\n    *   Opponent's Incineroar: 79% HP.\n    *   Opponent's team: Dragapult (fainted), Toxapex (fainted), Incineroar (active).\n    *   My team: Kingambit (active), Gholdengo (66% HP), Dragapult (fainted).\n    *   Hazards: Toxic Spikes on my side.\n\n    *   Kingambit was at +2 Atk (from Swords Dance), then Incineroar's Intimidate brought it down to +1 Atk.\n    *   Incineroar is Fire/Dark. Kingambit's moves (Kowtow Cleave, Sucker Punch, Iron Head) are all resisted or not very effective.\n    *   Incineroar likely has Flare Blitz (Fire) and potentially Knock Off or Darkest Hour. Flare Blitz is a massive threat to Kingambit.\n    *   Gholdengo is Steel/Ghost. It resists Incineroar's Dark moves but is weak to Fire. However, Gholdengo's Shadow Ball is neutral, and Make It Rain is resisted.\n\n    *   Kingambit is currently +1 Atk.\n    *   If I use Swords Dance again, I'll be at +3 Atk.\n    *   If I attack now, I'm doing very little damage to Incineroar.\n    *   If I switch to Gholdengo, I'm taking a hit (likely Flare Blitz) and Gholdengo is also weak to Fire.\n    *   Wait, Incineroar is the last Pokémon. If I can set up more, I can potentially sweep or force a mistake.\n    *   But Incineroar has Parting Shot and Intimidate. If I Swords Dance, Incineroar might Parting Shot again or just hit me with Flare Blitz.\n\n    *   Kingambit's current stats: +1 Atk.\n    *   Incineroar's likely moves: Flare Blitz, Knock Off, Parting Shot, Will-O-Wisp.\n    *   If I use Swords Dance, I go to +3.\n    *   If I use Kowtow Cleave, it's not very effective.\n    *   If I use Sucker Punch, it's not very effective.\n    *   If I use Iron Head, it's not very effective.\n\n    *   Incineroar is the only Pokémon left.\n    *   Kingambit is the best answer to Incineroar if it can survive a hit and hit back, but Kingambit is weak to Fire.\n    *   Gholdengo is also weak to Fire.\n    *   Wait, I have Supreme Overlord active (2 allies fainted = 20% boost).\n    *   If I use Swords Dance, I'm risking a huge hit from Flare Blitz.\n    *   However, attacking Incineroar with resisted moves is pointless.\n    *   Is there any other option? Switching to Gholdengo? Gholdengo is also weak to Fire.\n    *   The only way to beat Incineroar with this team is to either out-damage it with Kingambit or use Gholdengo's special attacks.\n    *   But Kingambit is already +1. Another Swords Dance makes it +3. Even then, Kowtow Cleave is resisted.\n    *   Wait, Kowtow Cleave is Dark. Incineroar is Fire/Dark. Dark is resisted by Dark.\n    *   Iron Head is Steel. Incineroar is Fire/Dark. Steel is resisted by Fire.\n    *   Sucker Punch is Dark. Resisted.\n\n    *   Wait, if I can't hit Incineroar for super effective damage, I have to rely on raw power or Gholdengo.\n    *   Gholdengo's Shadow Ball is neutral. Thunderbolt is neutral. Make It Rain is resisted.\n    *   If I switch to Gholdengo, Incineroar might use Flare Blitz (super effective) or Knock Off (neutral).\n    *   If I stay with Kingambit, Incineroar will likely use Flare Blitz (super effective).\n\n    *   Let's look at the damage. Kingambit +1 Atk, Life Orb, Supreme Overlord.\n    *   Kowtow Cleave vs Incineroar: Not very effective.\n    *   If I use Swords Dance, I'm at +3.\n    *   If I switch to Gholdengo, I can use Shadow Ball or Thunderbolt.\n\n    *   Actually, the best play might be to use Swords Dance to reach a point where even a resisted hit does significant damage, or to bait a switch (though there are no other Pokémon to switch to).\n    *   Wait, if Incineroar is the last Pokémon, it can't switch.\n    *   If I use Swords Dance, Incineroar will likely attack. Flare Blitz will do massive damage.\n    *   If I use Kowtow Cleave, I do some damage.\n    *   If I use Sucker Punch, I might hit first if Incineroar attacks.\n\n    *   Let's consider Gholdengo. Gholdengo is Choice Scarfed. It outspeeds Incineroar.\n    *   Gholdengo's Shadow Ball is neutral.\n    *   If I switch to Gholdengo, I take a hit, then I can hit back with Shadow Ball.\n    *   But Kingambit is already in.\n\n    *   Is there any way to win?\n    *   Kingambit +3 Atk Kowtow Cleave might actually do a lot of damage even if resisted.\n    *   Let's check: Kingambit Atk 205. +3 is roughly 2.5x. 205 * 2.5 = 512.\n    *   Kowtow Cleave 85 * 0.5 (resisted) * 1.3 (Life Orb) * 1.2 (Supreme Overlord) = 66.\n    *   That's still significant.\n\n    *   However, the most immediate threat is Flare Blitz.\n    *   If I use Swords Dance, I'm basically gambling that I can survive one Flare Blitz and then hit back.\n    *   If I use Sucker Punch, I might get a hit in.\n\n    *   Wait, I have Gholdengo with Choice Scarf. Gholdengo is faster.\n    *   If I switch to Gholdengo, I take a hit, then I can potentially 2HKO or 3HKO Incineroar with Shadow Ball.\n    *   But Kingambit is currently the one on the field.\n\n    *   Let's try Swords Dance. If I can get to +3, I might be able to punch through. Or, if I suspect a Parting Shot, Swords Dance is a waste. But Incineroar has no one to switch into. Parting Shot is useless if there are no other Pokémon.\n    *   Wait, if Incineroar uses Parting Shot, it just switches itself out... but there's no one to switch in! So Parting Shot is effectively just a stat drop.\n\n    *   So the options are:\n        1.  Swords Dance (get to +3).\n        2.  Sucker Punch (priority, but resisted).\n        3.  Kowtow Cleave (resisted).\n        4.  Switch to Gholdengo.\n\n    *   If I use Swords Dance, I'm at +3. If I then use Sucker Punch or Kowtow Cleave, I do more damage.\n    *   If I switch to Gholdengo, I'm taking a hit and then attacking.\n\n    *   Let's consider the risk of Flare Blitz. Kingambit has 167 HP. A strong Flare Blitz will likely OHKO or 2HKO.\n    *   If I use Swords Dance, I'm not doing any damage.\n    *   If I use Sucker Punch, I might do some damage and potentially flinch (no, Sucker Punch doesn't flinch).\n\n    *   Actually, the most reliable way to deal damage to Incineroar right now is Gholdengo's Shadow Ball or Thunderbolt, because they are neutral and Gholdengo is faster (Scarf).\n    *   But switching now means taking a hit.\n\n    *   Let's try Swords Dance. If I can survive one hit, +3 Atk makes me a monster. Even resisted hits will hurt.\n\n    *   Wait, I just realized: Incineroar is the *last* Pokémon.\n    *   If I use Swords Dance, and Incineroar uses Flare Blitz, I might die.\n    *   If I use Sucker Punch, and Incineroar uses Flare Blitz, I hit first.\n    *   Sucker Punch is resisted, but it's priority.\n\n    *   Let's compare:\n        *   Sucker Punch: Priority, resisted damage.\n        *   Swords Dance: No damage, +2 Atk, risk of OHKO.\n        *   Kowtow Cleave: No priority, resisted damage.\n\n    *   If I use Sucker Punch and it hits, I've done some damage. If I use Swords Dance, I've done nothing and might be dead.\n    *   Given the situation, Sucker Punch is the safest way to chip away, but Swords Dance is the only way to actually threaten a KO.\n    *   However, since Incineroar is the last Pokémon, I don't need to \"threaten\" a KO as much as I need to *get* the KO.\n\n    *   Let's try Swords Dance. If I can get to +3, I can potentially 2HKO with Kowtow Cleave or Sucker Punch.\n\n    *   Wait, let's look at the stats again. Kingambit is Steel/Dark. Incineroar is Fire/Dark.\n    *   Kingambit's best move is Kowtow Cleave (Dark), but it's resisted.\n    *   Iron Head (Steel) is also resisted.\n    *   Sucker Punch (Dark) is resisted.\n\n    *   Is there any other move? No.\n    *   What about Gholdengo? Gholdengo is Steel/Ghost.\n    *   Shadow Ball (Ghost) is neutral.\n    *   Thunderbolt (Electric) is neutral.\n    *   Make It Rain (Steel) is resisted.\n\n    *   Gholdengo is Choice Scarfed. It will definitely outspeed Incineroar.\n    *   If I switch to Gholdengo, I take a hit, then I can use Shadow Ball.\n    *   Shadow Ball from Gholdengo (203 SpA) vs Incineroar (114-174 SpD) is likely to do significant damage.\n\n    *   But I'm already in with Kingambit.\n    *   If I use Swords Dance, I'm gambling.\n    *   If I use Sucker Punch, I'm chipping.\n\n    *   Let's go with Swords Dance. If I can survive, +3 Atk is devastating. If I can't, I'm dead anyway.\n\n    *   Wait, I just noticed: Kingambit is at +1 Atk.\n    *   If I use Swords Dance, I go to +3.\n    *   If I use Sucker Punch now, it's +1 Atk.\n    *   If I use Sucker Punch after Swords Dance, it's +3 Atk.\n\n    *   Let's try Swords Dance.\n\n    *   Wait, one more thing. Incineroar's Intimidate already triggered.\n    *   If I use Swords Dance, I'm at +3.\n    *   If Incineroar uses Flare Blitz, I'm in trouble.\n    *   But if I use Sucker Punch, I'm just chipping.\n\n    *   Let's try Swords Dance.\n\n    *   Wait, I should check if Gholdengo is a better option.\n    *   Gholdengo's Shadow Ball: 203 SpA, 80 BP.\n    *   Incineroar's SpD: 99-156.\n    *   That's a lot of damage.\n    *   If I switch to Gholdengo, I take a hit, then I hit back.\n    *   If I stay with Kingambit, I take a hit, then I hit back.\n    *   The difference is that Gholdengo's hit is neutral, while Kingambit's is resisted.\n    *   Therefore, Gholdengo is actually the better attacker here.\n\n    *   But switching now means taking a hit.\n    *   If I use Swords Dance, I'm also taking a hit.\n    *   So the choice is:\n        1.  Swords Dance (stay in, get +3, then hit with resisted moves).\n        2.  Switch to Gholdengo (take hit, then hit with neutral moves).\n\n    *   Given that Gholdengo is Choice Scarfed and has neutral hits, it's a more reliable way to finish off Incineroar.\n    *   However, Kingambit has Supreme Overlord and Life Orb.\n    *   Let's see: +3 Atk, Life Orb, Supreme Overlord, resisted Kowtow Cleave.\n    *   That might actually be stronger than Gholdengo's Shadow Ball.\n\n    *   Let's try Swords Dance.\n\n    *   Wait, I'll just use Sucker Punch. It's safer. If Incineroar attacks, I hit first. If I use Swords Dance, I'm just a sitting duck.\n    *   Actually, Sucker Punch is the best move if I think Incineroar will attack. If I think Incineroar will use Parting Shot (which is useless now), Sucker Punch fails.\n    *   But Incineroar is the last Pokémon. It's going to attack.\n\n    *   Let's go with Swords Dance. I want that +3.\n\n    *   Wait, I'll reconsider. Sucker Punch is priority. If I can chip Incineroar down, I'm in a better position.\n    *   But +3 Atk is a huge jump.\n\n    *   Let's go with Swords Dance.\n\n    *   Wait, I'll check the damage one more time.\n    *   Kingambit +1 Atk, Life Orb, Supreme Overlord, Kowtow Cleave vs Incineroar.\n    *   It's not very effective.\n    *   If I use Swords Dance, I'm at +3.\n    *   If I then use Kowtow Cleave, it's still not very effective, but the raw power is much higher.\n\n    *   Let's try Swords Dance.\n\n    *   Wait, I'll just use Sucker Punch. It's the most consistent way to deal damage without risking a total OHKO from Flare Blitz while doing nothing.\n    *   No, if I'm going to take a Flare Blitz, I might as well get the boost.\n\n    *   Let's go with Swords Dance.\n\n    *   Wait, I just realized: Incineroar's Intimidate already happened.\n    *   If I use Swords Dance, I'm at +3.\n    *   If I then use Sucker Punch, I'm hitting with +3 Atk.\n    *   That's the play.\n\n    *   One last check: Is Gholdengo better?\n    *   Gholdengo is Scarfed. It outspeeds.\n    *   If I switch to Gholdengo, I take a hit, then I hit.\n    *   If I stay with Kingambit, I take a hit, then I hit.\n    *   Gholdengo's hit is neutral. Kingambit's is resisted.\n    *   Gholdengo is probably the safer bet to actually kill Incineroar.\n    *   But Kingambit is already there.\n\n    *   Let's try Swords Dance.\n\n    *   Wait, I'll just use Sucker Punch. I don't want to risk the OHKO.\n    *   Actually, I'll use Swords Dance. Let's be aggressive.\n\n    *   Wait, I'll use Sucker Punch. If I can get a few Sucker Punches in, I can win.\n    *   No, Sucker Punch is resisted. It won't do much.\n    *   Swords Dance is the only way to make the resisted moves hurt.\n\n    *   Final decision: Swords Dance.\n\n    *   Wait, I'll just use Kowtow Cleave. It's more reliable than Sucker Punch (which can fail).\n    *   But Swords Dance is the best way to increase damage.\n\n    *   Let's go with Swords Dance.",
+      "note": "",
+      "tokens": 7016,
+      "latency_ms": 115182,
+      "cost_usd": 0.00232299,
+      "probabilities": null
+    },
+    {
+      "turn": 9,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "roar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "47% MOVE: roar, 26% MOVE: partingshot, 20% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2703,
+      "latency_ms": 727,
+      "cost_usd": 0.000113526,
+      "probabilities": {
+        "MOVE: partingshot": 0.2637,
+        "MOVE: willowisp": 0.1971,
+        "MOVE: taunt": 0.0737,
+        "MOVE: roar": 0.4655
+      }
+    },
+    {
+      "turn": 9,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "suckerpunch",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Kingambit is +1 Atk but Taunted. Incineroar is the last Pokémon. A Flare Blitz from Incineroar would likely OHKO Kingambit. Sucker Punch is the safest option to deal significant damage and potentially finish the game if Incineroar attacks, while Kowtow Cleave risks an OHKO from Flare Blitz due to speed.",
+      "hidden_reasoning": "*   My Kingambit is at +1 Attack (after Swords Dance and Intimidate).\n    *   Opponent's Incineroar is at 79% HP.\n    *   Kingambit is currently Taunted.\n    *   Opponent's team: Only Incineroar remains.\n    *   My team: Kingambit (active), Gholdengo (66% HP).\n    *   Hazards: Toxic Spikes on my side.\n\n    *   Kingambit is Taunted. This means I cannot use Swords Dance.\n    *   Legal moves for Kingambit: Kowtow Cleave, Sucker Punch, Iron Head.\n    *   All of these are resisted by Incineroar (Fire/Dark).\n    *   Sucker Punch is priority, but Incineroar might use a status move (like Parting Shot or Taunt again, though Taunt is already active) or an attack.\n    *   Kowtow Cleave is the most reliable damage move.\n    *   Iron Head is resisted and less effective.\n\n    *   Gholdengo is Choice Scarfed.\n    *   Gholdengo has Shadow Ball, Make It Rain, Thunderbolt, Trick.\n    *   Incineroar is Fire/Dark.\n    *   Shadow Ball is neutral.\n    *   Make It Rain is resisted (Fire).\n    *   Thunderbolt is neutral.\n    *   Trick could potentially lock Incineroar into a move, but Incineroar is the last Pokémon, so it's not as valuable as just dealing damage.\n    *   Gholdengo is faster than Incineroar due to Choice Scarf.\n\n    *   Kingambit is +1 Atk.\n    *   Kowtow Cleave (85 BP) vs Incineroar (Fire/Dark): Resisted (0.5x).\n    *   Sucker Punch (70 BP) vs Incineroar: Resisted (0.5x).\n    *   Iron Head (80 BP) vs Incineroar: Resisted (0.5x).\n    *   Supreme Overlord is active (2 allies fainted = +20% power).\n    *   Life Orb is active (1.3x).\n    *   Even with boosts, Kingambit's attacks are resisted.\n\n    *   Gholdengo's Shadow Ball (80 BP) vs Incineroar: Neutral (1x).\n    *   Gholdengo's Thunderbolt (90 BP) vs Incineroar: Neutral (1x).\n    *   Gholdengo is faster.\n\n    *   If I stay with Kingambit, I'm hitting a wall. Incineroar might use Flare Blitz or another status move.\n    *   If I switch to Gholdengo, I take a hit (likely Flare Blitz or a status move), but Gholdengo can then hit Incineroar for neutral damage.\n    *   Wait, Kingambit is Taunted. I can't set up.\n    *   Is Kingambit's damage enough to win?\n        *   Kowtow Cleave: 85 * 0.5 (resisted) * 1.2 (Supreme Overlord) * 1.3 (Life Orb) * 1.5 (Atk boost) = ~83% of base power.\n        *   Shadow Ball (Gholdengo): 80 * 1 (neutral) = 80% of base power.\n    *   Actually, Kingambit's attack stat is much higher than Gholdengo's special attack stat.\n    *   Kingambit Atk: 205 * 1.5 = 307.\n    *   Gholdengo SpA: 203.\n    *   Incineroar Def: ~120. Incineroar SpD: ~120.\n    *   Kingambit's Kowtow Cleave will likely do more damage than Gholdengo's Shadow Ball, despite the resistance, because of the massive Attack stat and Life Orb/Supreme Overlord.\n\n    *   Wait, let's re-calculate.\n    *   Kowtow Cleave: (205 * 1.5 * 85 * 0.5 * 1.2 * 1.3) / 120 ≈ 135 damage.\n    *   Shadow Ball: (203 * 80 * 1) / 120 ≈ 135 damage.\n    *   They are similar. However, Kingambit is already out.\n\n    *   If I use Kowtow Cleave, I chip Incineroar.\n    *   If Incineroar uses Flare Blitz, Kingambit takes significant damage.\n    *   If I switch to Gholdengo, I take a hit, but Gholdengo is faster and can potentially finish Incineroar.\n\n    *   Wait, Incineroar is at 79%.\n    *   If I use Kowtow Cleave, I might put it in range for a Sucker Punch or a final hit.\n    *   But Incineroar has Parting Shot. If it uses Parting Shot, it switches out... but there are no other Pokémon left. Wait, the opponent only brought 3 Pokémon. Dragapult and Toxapex are gone. Incineroar is the last one. Parting Shot won't switch it out to anything.\n\n    *   Let's look at the legal actions again.\n    *   Kowtow Cleave is the most reliable. Sucker Punch depends on the opponent attacking.\n\n    *   Kingambit is Taunted.\n    *   Opponent's Incineroar is the last Pokémon.\n    *   Kingambit is +1 Atk.\n    *   Kowtow Cleave is the best bet to deal damage.\n\n    *   Wait, if I switch to Gholdengo, I'm switching into a potential Flare Blitz. Gholdengo has decent SpD but low Def.\n    *   Kingambit is much bulkier physically.\n\n    *   Let's use Kowtow Cleave. It's the most consistent move.\n\n    *   Wait, let me double check the damage.\n    *   Kingambit (205 Atk, +1) vs Incineroar (120 Def).\n    *   Kowtow Cleave: 85 * 0.5 (resisted) * 1.2 (SO) * 1.3 (LO) * 1.5 (boost) = 83.5% of base.\n    *   Actually, the calculation is: (Damage = (Power * Atk/Def * Modifier)).\n    *   (85 * 307 / 120) * 0.5 * 1.2 * 1.3 = 174 * 0.78 = 135.\n    *   Incineroar HP: 200 * 0.79 = 158.\n    *   Kowtow Cleave will leave Incineroar with about 23 HP.\n\n    *   If I use Kowtow Cleave, Incineroar is almost dead.\n    *   Then I can Sucker Punch or Kowtow Cleave again.\n\n    *   Is there any risk?\n    *   Incineroar might use Flare Blitz.\n    *   Kingambit HP: 167.\n    *   Flare Blitz (120 BP) vs Kingambit (140 Def): (120 * 180 / 140) * 1.5 (STAB) * 1.5 (Super Effective) = 128 * 2.25 = 288.\n    *   Wait, Kingambit might be OHKO'd by Flare Blitz.\n\n    *   If I switch to Gholdengo:\n    *   Flare Blitz vs Gholdengo (115 Def): (120 * 180 / 115) * 1.5 * 1.5 = 187 * 2.25 = 420.\n    *   Gholdengo is definitely OHKO'd by Flare Blitz.\n\n    *   So switching doesn't help if Incineroar uses Flare Blitz.\n    *   The only way to win is to hit Incineroar first or survive the hit.\n    *   Kingambit is slower or equal to Incineroar.\n    *   Sucker Punch is the only way to hit first if Incineroar attacks.\n\n    *   If I use Sucker Punch:\n    *   (70 * 307 / 120) * 0.5 * 1.2 * 1.3 = 149 * 0.78 = 116.\n    *   Incineroar HP: 158 - 116 = 42.\n    *   Sucker Punch is priority. If Incineroar uses Flare Blitz, Sucker Punch hits first.\n\n    *   Wait, if I use Sucker Punch and Incineroar uses a status move (like Taunt again or Parting Shot), Sucker Punch fails.\n    *   If I use Kowtow Cleave, I hit regardless, but I might get hit by Flare Blitz first.\n\n    *   Let's consider the situation:\n    *   Incineroar has used Taunt and Parting Shot.\n    *   It's likely to use Flare Blitz now to try and take out Kingambit.\n    *   Sucker Punch is the safest play to deal damage before taking a hit.\n\n    *   Wait, if I use Sucker Punch and it works, Incineroar is at ~42 HP.\n    *   Then I can Sucker Punch again to finish it.\n\n    *   Let's compare Kowtow Cleave vs Sucker Punch.\n    *   Kowtow Cleave: More damage, but risks being OHKO'd by Flare Blitz.\n    *   Sucker Punch: Less damage, but hits first if Incineroar attacks.\n\n    *   Given that Incineroar is the last Pokémon and Kingambit is the main threat, Flare Blitz is very likely. Sucker Punch is the better tactical choice.\n\n    *   Wait, let me re-verify the Sucker Punch damage.\n    *   Sucker Punch: 70 BP.\n    *   (70 * 307 / 120) * 0.5 * 1.2 * 1.3 = 116.\n    *   Incineroar HP: 158.\n    *   158 - 116 = 42.\n    *   Yes, it's a significant chunk.\n\n    *   What if Incineroar uses Parting Shot again?\n    *   Sucker Punch fails.\n    *   Kingambit takes a Parting Shot (lowers Atk/SpA).\n    *   Then I'm back to square one.\n\n    *   What if I use Kowtow Cleave?\n    *   If Incineroar uses Parting Shot, I hit it for ~135 damage, leaving it at ~23 HP.\n    *   Then I can finish it.\n\n    *   The risk of Flare Blitz is the main concern.\n    *   If I use Sucker Punch, I mitigate the risk of Flare Blitz.\n    *   If I use Kowtow Cleave, I maximize damage but risk the OHKO.\n\n    *   Let's go with Sucker Punch. It's the standard way to deal with Incineroar when you're slower and it's likely to attack.\n\n    *   Wait, one more thing. Kingambit is +1 Atk.\n    *   If I use Sucker Punch and it fails (because Incineroar uses Parting Shot), I lose my turn and my stats.\n    *   If I use Kowtow Cleave, I always hit.\n\n    *   Let's think about the most likely move for Incineroar.\n    *   It already used Taunt. It already used Parting Shot.\n    *   It's the last Pokémon. It needs to deal damage. Flare Blitz is the most likely move.\n    *   Sucker Punch is the best counter to Flare Blitz.\n\n    *   Wait, I just noticed Kingambit's HP is 167/207.\n    *   Flare Blitz damage: 288.\n    *   Yes, it's an OHKO.\n\n    *   Decision: Sucker Punch.\n\n    *   Wait, let me double check the legal actions.\n    *   1. MOVE: kowtowcleave\n    *   2. MOVE: suckerpunch\n    *   3. MOVE: ironhead\n    *   4. SWITCH: gholdengo\n\n    *   Sucker Punch is legal.\n\n    *   One last check: Is there any other option?\n    *   Switching to Gholdengo: Gholdengo is faster (Choice Scarf).\n    *   Gholdengo Shadow Ball: (203 * 80 / 120) = 135.\n    *   Incineroar HP: 158.\n    *   Gholdengo would leave Incineroar at 23 HP.\n    *   But Gholdengo takes a hit first if I switch.\n    *   If I switch, Incineroar might use Flare Blitz (OHKO Gholdengo) or Parting Shot (lowers Gholdengo's stats, but Gholdengo is special).\n    *   If I switch, I'm gambling that Incineroar doesn't use Flare Blitz.\n\n    *   Sucker Punch is the most proactive play.\n\n    *   Wait, I just realized something.\n    *   If I use Sucker Punch and it works, Incineroar is at 42 HP.\n    *   If I use Kowtow Cleave and it works, Incineroar is at 23 HP.\n    *   Both leave it in range for a final hit.\n    *   Sucker Punch is safer.\n\n    *   Final decision: Sucker Punch.\n\n    *   Wait, let me re-read the notes from previous turns.\n    *   Turn 8: \"I'll use Swords Dance to reach +3 Atk, gambling that I can survive a hit (likely Flare Blitz) to then deal massive damage even with resisted moves.\"\n    *   But I was Taunted! So I couldn't use Swords Dance.\n    *   Now I'm at +1 Atk.\n\n    *   Let's stick with Sucker Punch.\n\n    *   Wait, let me re-calculate the damage one more time.\n    *   Kingambit Atk: 205.\n    *   Boost: +1 (1.5x).\n    *   Total Atk: 307.5.\n    *   Sucker Punch Power: 70.\n    *   Resisted: 0.5x.\n    *   Supreme Overlord: 1.2x.\n    *   Life Orb: 1.3x.\n    *   Incineroar Def: 120 (approx).\n    *   Damage = (307.5 * 70 * 0.5 * 1.2 * 1.3) / 120 = 16744 / 120 = 139.5.\n    *   Incineroar HP: 158.\n    *   158 - 139.5 = 18.5.\n    *   Sucker Punch actually does almost as much as Kowtow Cleave because of the high attack stat.\n\n    *   Wait, let me re-calculate Kowtow Cleave.\n    *   Damage = (307.5 * 85 * 0.5 * 1.2 * 1.3) / 120 = 20442 / 120 = 170.\n    *   Kowtow Cleave would OHKO Incineroar!\n\n    *   If Kowtow Cleave OHKOs Incineroar, then the only question is: do I move first?\n    *   Kingambit Speed: 72.\n    *   Incineroar Speed: 72-123.\n    *   If Incineroar is faster, it hits first. If it uses Flare Blitz, I'm dead.\n    *   If I use Sucker Punch, I hit first (if it attacks).\n    *   If Sucker Punch does 139 damage, Incineroar is left with 19 HP.\n    *   Then I can finish it.\n\n    *   Wait, if Sucker Punch does 139 and Incineroar has 158, it's not an OHKO.\n    *   But it's much safer than Kowtow Cleave.\n\n    *   Let's double check the Sucker Punch damage again.\n    *   (307.5 * 70 * 0.5 * 1.2 * 1.3) / 120 = 139.5.\n    *   Yes, it's very close to the total HP.\n\n    *   Is there any chance Incineroar doesn't attack?\n    *   It could use Parting Shot or Taunt.\n    *   If it uses Parting Shot, Sucker Punch fails.\n    *   If it uses Taunt, Sucker Punch fails.\n    *   But if it uses Parting Shot, it's not doing damage.\n\n    *   Sucker Punch is the best play.\n\n    *   Wait, let me check the speed again.\n    *   Kingambit: 72.\n    *   Incineroar: 72-123.\n    *   If Incineroar is 72, it's a coin flip. If it's higher, it's faster.\n    *   Sucker Punch is the only way to guarantee hitting first if it attacks.\n\n    *   Final decision: Sucker Punch.",
+      "note": "",
+      "tokens": 7321,
+      "latency_ms": 82924,
+      "cost_usd": 0.00256446,
+      "probabilities": null
+    },
+    {
+      "turn": 10,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "roar",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "39% MOVE: roar, 27% MOVE: partingshot, 18% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2654,
+      "latency_ms": 654,
+      "cost_usd": 0.000111468,
+      "probabilities": {
+        "MOVE: partingshot": 0.2652,
+        "MOVE: willowisp": 0.176,
+        "MOVE: taunt": 0.1653,
+        "MOVE: roar": 0.3935
+      }
+    },
+    {
+      "turn": 10,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is immune to Incineroar's status moves (Good as Gold). With Choice Scarf, Gholdengo outspeeds Incineroar. Thunderbolt is the only neutral attacking move available and may potentially OHKO or severely weaken Incineroar, allowing Kingambit to clean up with Sucker Punch if needed.",
+      "hidden_reasoning": "*   My team: Gholdengo (active, Choice Scarf), Kingambit (80.7% HP).\n    *   Opponent's team: Incineroar (active, 79% HP).\n    *   Opponent's remaining Pokémon: Only Incineroar.\n    *   Gholdengo's moves: Make It Rain (Steel), Shadow Ball (Ghost), Thunderbolt (Electric), Trick (Psychic).\n    *   Kingambit's moves: Kowtow Cleave, Sucker Punch, Iron Head, Swords Dance.\n    *   Field: Toxic Spikes on my side.\n    *   Gholdengo is Choice Scarfed.\n\n    *   Incineroar is Fire/Dark.\n    *   Gholdengo's moves:\n        *   Make It Rain: Not very effective.\n        *   Shadow Ball: Not very effective.\n        *   Thunderbolt: Neutral.\n        *   Trick: Status.\n    *   Kingambit's moves:\n        *   Kowtow Cleave: Super effective.\n        *   Sucker Punch: Super effective.\n        *   Iron Head: Not very effective.\n        *   Swords Dance: Status.\n\n    *   Gholdengo is faster than Incineroar (usually), but Thunderbolt is only neutral.\n    *   Kingambit is slower but hits super effectively.\n    *   Incineroar has Flare Blitz, which would likely OHKO Kingambit.\n    *   Incineroar has Parting Shot, Roar, and Taunt.\n    *   Gholdengo is immune to status moves (Good as Gold), so Taunt/Parting Shot/Roar won't work on it.\n\n    *   If I stay with Gholdengo, I can use Thunderbolt. It's neutral damage.\n    *   If I switch to Kingambit, I risk a Flare Blitz.\n    *   Wait, Gholdengo is Choice Scarfed. If I use Thunderbolt, I'm locked into it.\n    *   Incineroar's HP is 79%. Thunderbolt might do significant damage, but probably not an OHKO.\n    *   Kingambit is +1 Atk (from previous turns, though Intimidate lowered it back to 0? Let's check).\n        *   Turn 5: SD (+2)\n        *   Turn 7: Intimidate (-1) -> Total +1\n        *   Turn 8: Taunted.\n        *   Turn 9: Roared out.\n        *   Wait, Roar forces a switch. Does it reset stat changes? No, Roar does not reset stat changes.\n        *   So Kingambit is still +1 Atk.\n    *   However, if I switch Kingambit back in, Incineroar's Intimidate will trigger again, bringing Kingambit back to 0 Atk.\n\n    *   Gholdengo is immune to Incineroar's utility moves (Parting Shot, Roar, Taunt).\n    *   Thunderbolt is the only move that does neutral damage.\n    *   If I use Thunderbolt, I chip Incineroar.\n    *   If I switch to Kingambit, I'm vulnerable to Flare Blitz.\n    *   If I use Thunderbolt and Incineroar doesn't OHKO Gholdengo, I can keep chipping or switch back to Kingambit for a Sucker Punch.\n    *   Wait, Gholdengo's Thunderbolt is 90 BP. Incineroar's SpD is decent.\n    *   Let's look at the current situation: Gholdengo is active. Incineroar is active.\n    *   If I use Thunderbolt, I'm locked into it.\n    *   If I switch to Kingambit, I'm likely to get hit by Flare Blitz.\n    *   Is there any other option? Trick? Giving Incineroar a Choice Scarf might be useful, but Thunderbolt is more direct.\n\n    *   Gholdengo's Thunderbolt vs Incineroar:\n        *   Gholdengo SpA: 203.\n        *   Incineroar SpD: 99-156.\n        *   Thunderbolt: 90 BP.\n        *   Damage: (203/120 * 90 / 120) * 1.1 approx... wait, the formula is more complex.\n        *   Roughly: 203 * 0.9 * (100/130) ≈ 140 damage? Incineroar has ~180 HP. It's a strong hit but not an OHKO.\n    *   Kingambit's Sucker Punch vs Incineroar:\n        *   Kingambit Atk: 205.\n        *   Incineroar Def: 99-156.\n        *   Sucker Punch: 70 BP * 0.7 (priority) * 2 (super effective).\n        *   This would do massive damage.\n\n    *   If I use Thunderbolt, I chip Incineroar.\n    *   If I switch to Kingambit, I risk Flare Blitz.\n    *   But Gholdengo is immune to Incineroar's status moves. This is a huge advantage.\n    *   I can use Thunderbolt to weaken Incineroar, then potentially use Kingambit's Sucker Punch to finish it.\n    *   Wait, if I use Thunderbolt and Incineroar uses Flare Blitz, Gholdengo takes a hit. Gholdengo's Def is 115, SpD is 111. Flare Blitz is physical.\n    *   Flare Blitz damage to Gholdengo: 120 BP * 1.5 (STAB) * 1.2 (Life Orb?) / Gholdengo's Def. It'll hurt, but Gholdengo has 128/194 HP.\n\n    *   Gholdengo is the safest Pokémon to have out because of Good as Gold.\n    *   Thunderbolt is the best attacking move Gholdengo has against Incineroar.\n    *   I will use Thunderbolt to chip Incineroar.\n\n    *   Wait, if I use Thunderbolt, I'm locked into it. If I then want to switch to Kingambit, I can.\n    *   If I switch to Kingambit now, I'm just inviting a Flare Blitz.\n    *   The only way to beat Incineroar safely is to chip it down or use Sucker Punch.\n    *   Sucker Punch requires Incineroar to attack.\n    *   If I switch to Kingambit, Incineroar will likely use Flare Blitz. Sucker Punch would then hit first.\n    *   Wait! If I switch to Kingambit, and Incineroar uses Flare Blitz, Sucker Punch (if I used it next turn) would work. But I can't use Sucker Punch on the turn I switch.\n    *   So if I switch to Kingambit, I take a Flare Blitz.\n    *   If I stay with Gholdengo, I can use Thunderbolt.\n\n    *   Is there any other move? Trick?\n    *   If I Trick the Choice Scarf onto Incineroar, Incineroar is locked into one move. If it's locked into Flare Blitz, I can use Sucker Punch. If it's locked into Parting Shot, it's useless.\n    *   Thunderbolt is more reliable for damage.\n\n    *   Gholdengo is active.\n    *   Incineroar is active.\n    *   Gholdengo is Choice Scarfed.\n    *   Thunderbolt is the best move.\n\n    *   Wait, let's double check the speed.\n    *   Gholdengo: 106. Choice Scarf: 106 * 1.5 = 159.\n    *   Incineroar: 72-123.\n    *   Gholdengo definitely outspeeds Incineroar.\n    *   Thunderbolt will hit first.\n\n    *   Plan: Use Thunderbolt to chip Incineroar. If Incineroar is low enough, Kingambit can finish it with Sucker Punch or Kowtow Cleave.\n\n    *   Wait, let's check if Gholdengo can OHKO Incineroar with Thunderbolt.\n    *   Gholdengo SpA 203. Incineroar SpD 99-156.\n    *   Thunderbolt 90 BP.\n    *   Damage calculation (approx): ( (2 * 50 / 2 + 2) * 203 / 100 * 90 / 130 ) * 1 = 128 damage.\n    *   Incineroar HP: 79% of ~180 = 142 HP.\n    *   It's very close to an OHKO. If Incineroar is on the lower end of SpD, it might even be an OHKO.\n\n    *   Let's go with Thunderbolt.\n\n    *   Wait, I just noticed Kingambit was Roared out.\n    *   Turn 9: \"Opposing Incineroar used Roar - Your Gholdengo came in\".\n    *   This means Gholdengo is now the active Pokémon.\n\n    *   Decision: MOVE: thunderbolt.",
+      "note": "",
+      "tokens": 5398,
+      "latency_ms": 63413,
+      "cost_usd": 0.00145146,
+      "probabilities": null
+    },
+    {
+      "turn": 11,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "partingshot",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "62% MOVE: partingshot, 20% MOVE: taunt, 15% MOVE: willowisp",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2717,
+      "latency_ms": 630,
+      "cost_usd": 0.000114114,
+      "probabilities": {
+        "MOVE: partingshot": 0.6249,
+        "MOVE: willowisp": 0.1508,
+        "MOVE: taunt": 0.1951,
+        "MOVE: roar": 0.0292
+      }
+    },
+    {
+      "turn": 11,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is locked into Thunderbolt by Choice Scarf. Incineroar is the last Pokémon at 46% HP. Thunderbolt is the only way to deal damage. I will continue using Thunderbolt to finish Incineroar or weaken it further for Kingambit.",
+      "hidden_reasoning": "*   My Gholdengo is active, holding a Choice Scarf.\n    *   Opponent's Incineroar is active, at 46% HP.\n    *   My Kingambit is in the back, at 80.7% HP, +1 Attack.\n    *   Opponent's team: Only Incineroar remains.\n    *   Gholdengo's move: Thunderbolt (locked in from previous turn).\n    *   Incineroar's moves seen: Parting Shot, Taunt, Roar.\n\n    *   Gholdengo's Thunderbolt hit Incineroar for some damage, bringing it to 46%.\n    *   Incineroar tried to use Roar, but Gholdengo is immune (Good as Gold).\n    *   Gholdengo is locked into Thunderbolt due to Choice Scarf.\n\n    *   Gholdengo's Thunderbolt is the only move it can use.\n    *   Incineroar is at 46%.\n    *   If Thunderbolt doesn't OHKO, Incineroar might use Parting Shot to switch out (but there are no other Pokémon left) or attack.\n    *   Wait, the opponent only brought 3 Pokémon (Dragapult, Toxapex, Incineroar). All others are fainted.\n    *   If Incineroar uses Parting Shot, it will just switch back to itself (or fail if it's the last one).\n    *   If Incineroar uses Flare Blitz, it will hit Gholdengo for significant damage, but Gholdengo is faster (with Choice Scarf).\n\n    *   Gholdengo's Thunderbolt is the only legal move besides switching.\n    *   Switching to Kingambit would put Kingambit in front of Incineroar, who has Flare Blitz.\n    *   Staying in with Gholdengo and using Thunderbolt is the best bet to finish Incineroar or leave it very low for Kingambit to finish with Sucker Punch.\n\n    *   Gholdengo's Thunderbolt is locked in.\n    *   Incineroar is at 46%.\n    *   Thunderbolt is the only way to deal damage right now.\n\n    *   Gholdengo's Thunderbolt hit Incineroar, bringing it to 46%.\n    *   Incineroar is the last Pokémon.\n    *   Gholdengo is locked into Thunderbolt.\n    *   Continue using Thunderbolt.",
+      "note": "",
+      "tokens": 3711,
+      "latency_ms": 17506,
+      "cost_usd": 0.000625545,
+      "probabilities": null
+    },
+    {
+      "turn": 12,
+      "role": "p1",
+      "action": {
+        "kind": "move",
+        "target": "taunt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "37% MOVE: taunt, 23% MOVE: willowisp, 20% MOVE: partingshot",
+      "hidden_reasoning": "",
+      "note": "",
+      "tokens": 2770,
+      "latency_ms": 3247,
+      "cost_usd": 0.0006648,
+      "probabilities": {
+        "MOVE: partingshot": 0.2011,
+        "MOVE: willowisp": 0.2312,
+        "MOVE: taunt": 0.3725,
+        "MOVE: roar": 0.1952
+      }
+    },
+    {
+      "turn": 12,
+      "role": "p2",
+      "action": {
+        "kind": "move",
+        "target": "thunderbolt",
+        "tera": false,
+        "mega": false
+      },
+      "source": "model",
+      "thought": "Gholdengo is locked into Thunderbolt and outspeeds Incineroar. Incineroar is at 14% HP. Thunderbolt will secure the knockout and win the game.",
+      "hidden_reasoning": "*   My Gholdengo is active, locked into Thunderbolt (Choice Scarf).\n    *   Opposing Incineroar is at 14% HP.\n    *   Gholdengo's Thunderbolt has already dealt significant damage (Incineroar was at 46% and is now at 14%).\n    *   Incineroar's moves seen: Parting Shot, Taunt, Roar.\n    *   Gholdengo is immune to status moves (Good as Gold).\n    *   Incineroar is the last Pokémon.\n\n    *   Gholdengo's Thunderbolt is likely to OHKO Incineroar at 14% HP.\n    *   Incineroar's only way to deal damage is through attacking moves (like Flare Blitz or Knock Off), but Gholdengo is faster (Choice Scarf) unless Incineroar is surprisingly fast.\n    *   Even if Incineroar attacks, Gholdengo has enough HP (66%) to survive one hit and likely finish it off.\n\n    *   The most direct path to victory is using Thunderbolt again to finish off Incineroar.\n\n    *   Gholdengo Speed: 106 * 1.5 = 159.\n    *   Incineroar Speed: 72-123.\n    *   Gholdengo definitely outspeeds Incineroar.\n\n    *   Thunderbolt will finish Incineroar.",
+      "note": "",
+      "tokens": 3500,
+      "latency_ms": 15799,
+      "cost_usd": 0.00050247,
+      "probabilities": null
+    }
+  ]
+}
